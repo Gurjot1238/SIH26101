@@ -24,7 +24,7 @@
 import { useSyncExternalStore } from 'react';
 import { type MaterialQuestion } from './materials';
 
-const KEY = 'statskill.material.v1';
+const KEY = 'NEXORA AI.material.v1';
 
 export type StoredMaterial = {
   fileName: string;

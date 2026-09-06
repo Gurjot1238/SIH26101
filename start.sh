@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# StatSkill Intelligence Platform — one-command local start (macOS)
+# NEXORA AI Intelligence Platform — one-command local start (macOS)
 #
 # Usage:  ./start.sh              the app and the auth server together
 #         ./start.sh --app-only   only the Vite dev server
@@ -21,7 +21,7 @@ for arg in "$@"; do
   esac
 done
 
-printf '\n  StatSkill Intelligence Platform — local start\n'
+printf '\n  NEXORA AI Intelligence Platform — local start\n'
 printf '  --------------------------------------------\n\n'
 
 # ---------------------------------------------------------------- Node check

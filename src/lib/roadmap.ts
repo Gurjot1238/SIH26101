@@ -3,7 +3,7 @@
  *
  * The page used to print `score: 68` against "Statistical Officer" and `78` against
  * "Senior Statistical Officer" — two numbers nothing had measured, sitting under the
- * word "readiness". StatSkill does not know the learner's grade, their appraisal, or
+ * word "readiness". NEXORA AI does not know the learner's grade, their appraisal, or
  * what their directorate expects; it knows how they answered questions in five
  * competencies. So a stage's readiness here is exactly that and nothing more: the
  * account's own percentage across the competencies the stage leans on, and `null`
@@ -47,7 +47,7 @@ export const roadmapStages: RoadmapStage[] = [
     sub: 'Longer horizon · system and people',
     status: 'Aspirational',
     competencies: ['leadership', 'inference', 'data-quality'],
-    note: 'Not scored here. StatSkill measures competency evidence, not seniority.',
+    note: 'Not scored here. NEXORA AI measures competency evidence, not seniority.',
   },
 ];
 

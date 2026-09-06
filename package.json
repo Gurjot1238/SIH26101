@@ -1,9 +1,9 @@
 {
-  "name": "statskill-intelligence-platform",
+  "name": "NEXORA AI-intelligence-platform",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "StatSkill Intelligence Platform — MoSPI capacity-building UI (SIH26101). Local macOS build.",
+  "description": "NEXORA AI Intelligence Platform — MoSPI capacity-building UI (SIH26101). Local macOS build.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

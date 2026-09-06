@@ -143,7 +143,7 @@ const NAME_MAX = 80;
 const OBVIOUS_PASSWORDS = new Set([
   'password', 'password1', 'password123', '1234567890', '12345678', '123456789',
   'qwertyuiop', 'letmein123', 'iloveyou1', 'admin12345', 'welcome123',
-  'statskill1', 'changeme123', 'passw0rd123', 'abcd123456',
+  'NEXORA AI1', 'changeme123', 'passw0rd123', 'abcd123456',
 ]);
 
 function requireString(value, field, label) {

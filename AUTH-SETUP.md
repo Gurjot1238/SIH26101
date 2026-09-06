@@ -7,7 +7,7 @@ nothing here is aspirational.
 One command starts both halves:
 
 ```bash
-cd ~/Documents/SIH26101/statskill-mac
+cd ~/Documents/SIH26101/NEXORA AI-mac
 ./start.sh
 ```
 
@@ -61,7 +61,7 @@ and give the dead "Sign out of demo" button something to do.
 ## 2. Run it
 
 ```bash
-cd ~/Documents/SIH26101/statskill-mac
+cd ~/Documents/SIH26101/NEXORA AI-mac
 ./start.sh
 ```
 

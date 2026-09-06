@@ -62,7 +62,7 @@ export type SealedQuestion = {
 
 export type SealedPaper = {
   label: string;
-  /** Said out loud on the page: these are StatSkill's own items, graded server-side. */
+  /** Said out loud on the page: these are NEXORA AI's own items, graded server-side. */
   note: string;
   length: number;
   questionsPerSection: number;

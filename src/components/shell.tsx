@@ -35,7 +35,7 @@ export function AppShell({ children, role, onRoleChange }: { children: ReactNode
       <div className="border-b border-sidebar-border px-6 py-5">
         <Link href="/dashboard" data-testid="link-brand" className="flex items-center gap-3">
           <div className="relative flex size-9 items-center justify-center rounded-lg bg-accent text-sidebar"><span className="font-serif text-xl font-semibold">S</span><span className="absolute -right-1 -top-1 size-2 rounded-full bg-[#9ed5cc]" /></div>
-          <div><p className="font-serif text-[21px] leading-none text-white">StatSkill</p><p className="mt-1 font-mono text-[8px] uppercase tracking-[.18em] text-sidebar-foreground/60">Intelligence platform</p></div>
+          <div><p className="font-serif text-[21px] leading-none text-white">NEXORA AI</p><p className="mt-1 font-mono text-[8px] uppercase tracking-[.18em] text-sidebar-foreground/60">Intelligence platform</p></div>
         </Link>
       </div>
       <div className="flex-1 overflow-y-auto px-3 py-5">
@@ -53,11 +53,11 @@ export function AppShell({ children, role, onRoleChange }: { children: ReactNode
         </nav>
       </div>
       <div className="border-t border-sidebar-border p-4">
-        <div className="flex items-center gap-3 rounded-lg bg-sidebar-accent/65 p-3">
+        <Link href="/profile" data-testid="link-profile-card" className="flex items-center gap-3 rounded-lg bg-sidebar-accent/65 p-3 transition-colors hover:bg-sidebar-accent cursor-pointer">
           <div className="flex size-9 items-center justify-center rounded-full bg-[#b8ddd6] text-xs font-bold text-sidebar">{initials(user?.name)}</div>
           <div className="min-w-0 flex-1"><p className="truncate text-sm font-semibold text-white">{user?.name ?? 'Ananya Sharma'}</p><p className="truncate text-[11px] text-sidebar-foreground/55">{user?.email ?? 'Directorate of Economics'}</p></div>
-          <button data-testid="button-profile-menu" onClick={() => setProfileOpen(!profileOpen)} className="text-sidebar-foreground/60 hover:text-white"><ChevronDown className="size-4" /></button>
-        </div>
+          <button data-testid="button-profile-menu" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setProfileOpen(!profileOpen); }} className="text-sidebar-foreground/60 hover:text-white"><ChevronDown className="size-4" /></button>
+        </Link>
         {profileOpen && <div className="mt-2 rounded-lg border border-sidebar-border bg-sidebar-accent p-2 text-xs"><button data-testid="button-signout-demo" disabled={signingOut} onClick={async () => { if (signingOut) return; setSigningOut(true); setProfileOpen(false); await signOut(); setLocation('/login'); }} className="w-full rounded px-2 py-1.5 text-left text-sidebar-foreground/80 hover:bg-sidebar">{signingOut ? 'Signing out...' : user ? 'Sign out' : 'Sign out of demo'}</button></div>}
       </div>
     </aside>
@@ -66,7 +66,7 @@ export function AppShell({ children, role, onRoleChange }: { children: ReactNode
         <div className="flex h-[68px] items-center justify-between px-4 sm:px-7 lg:px-10">
           <div className="flex items-center gap-3">
             <button data-testid="button-mobile-menu" onClick={() => setMobileOpen(!mobileOpen)} className="rounded-lg p-2 hover:bg-secondary md:hidden">{mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}</button>
-            <div><p className="font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">StatSkill / {currentLabel}</p><h1 className="mt-0.5 text-sm font-semibold text-foreground">{greeting()}, {firstName(user?.name)}</h1></div>
+            <div><p className="font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">NEXORA AI / {currentLabel}</p><h1 className="mt-0.5 text-sm font-semibold text-foreground">{greeting()}, {firstName(user?.name)}</h1></div>
           </div>
           <div className="flex items-center gap-2 sm:gap-4">
             <button data-testid="button-role-switch" onClick={() => onRoleChange(role === 'learner' ? 'manager' : 'learner')} className="hidden items-center gap-2 rounded-full border border-border bg-card px-3 py-2 text-xs font-semibold text-foreground sm:flex"><span className="size-2 rounded-full bg-[#74b7ad]" />{role === 'learner' ? 'Learner view' : 'Manager view'}<ChevronDown className="size-3.5 text-muted-foreground" /></button>

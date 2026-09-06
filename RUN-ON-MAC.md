@@ -1,11 +1,11 @@
-# Run StatSkill on your Mac
+# Run NEXORA AI on your Mac
 
-Everything below assumes you have this `statskill-mac` folder open in VS Code.
+Everything below assumes you have this `NEXORA AI-mac` folder open in VS Code.
 
 ## The short version
 
 ```bash
-cd ~/Documents/SIH26101/statskill-mac
+cd ~/Documents/SIH26101/NEXORA AI-mac
 ./start.sh
 ```
 
@@ -31,10 +31,10 @@ before login existed. Full detail: `AUTH-SETUP.md`.
 
 ## Step by step
 
-1. Open VS Code, then **File → Open Folder** and pick `statskill-mac`.
+1. Open VS Code, then **File → Open Folder** and pick `NEXORA AI-mac`.
 
 2. Open the built-in terminal with **Control + `** (backtick). The prompt should
-   already be inside `statskill-mac`. Confirm with:
+   already be inside `NEXORA AI-mac`. Confirm with:
 
    ```bash
    pwd

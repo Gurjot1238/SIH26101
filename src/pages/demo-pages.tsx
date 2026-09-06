@@ -1,6 +1,6 @@
 import { type DragEvent, type ReactNode, useEffect, useMemo, useState } from 'react';
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Award, BarChart3, Check, CheckCircle2, Clock3, Download, FileCheck2, Filter, Lightbulb, ListChecks, LockKeyhole, MapPin, Minus, Play, Plus, RefreshCw, ShieldCheck, Sparkles, Target, TrendingDown, TrendingUp, TriangleAlert, UploadCloud, Users, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, Award, BarChart3, Briefcase, Calendar, Camera, Check, CheckCircle2, Clock3, Download, Edit3, FileCheck2, Filter, Globe, Lightbulb, ListChecks, LockKeyhole, Mail, MapPin, Minus, Phone, Play, Plus, RefreshCw, Shield, ShieldCheck, Sparkles, Target, TrendingDown, TrendingUp, TriangleAlert, UploadCloud, Users, X } from 'lucide-react';
 import { Link, useLocation, useParams } from 'wouter';
 import { ActionButton, Badge, Card, ProgressBar, SectionHeading, ToastMessage } from '@/components/ui';
 import { initials, useSession } from '@/components/session-provider';
@@ -593,7 +593,7 @@ export function Materials() {
     : [];
 
   return <div className="mx-auto max-w-5xl animate-rise-in">
-     <PageIntro eyebrow="Materials lab · Local extraction" title="Turn a brief into a knowledge check." description="Upload a work material and StatSkill will extract selectable text in your browser, identify concepts, and build a grounded practice set." action={<Badge tone="navy"><LockKeyhole className="size-3.5" /> No external AI required</Badge>} />
+     <PageIntro eyebrow="Materials lab · Local extraction" title="Turn a brief into a knowledge check." description="Upload a work material and NEXORA AI will extract selectable text in your browser, identify concepts, and build a grounded practice set." action={<Badge tone="navy"><LockKeyhole className="size-3.5" /> No external AI required</Badge>} />
     {!work && !material && <Card className="p-6 sm:p-10">
       <div onDragOver={(event) => { event.preventDefault(); setIsDragging(true); }} onDragLeave={() => setIsDragging(false)} onDrop={handleDrop} className={`rounded-2xl border-2 border-dashed px-6 py-14 text-center transition-colors ${isDragging ? 'border-primary bg-[#e3f3ef]' : 'border-[#a9cdca] bg-[#f0f8f6]'}`}>
         <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-[#d9ece8] text-primary"><UploadCloud className="size-7" /></div>
@@ -780,7 +780,7 @@ export function Quiz() {
     if (questions.length > 0) begin(questions);
   };
 
-  if (paper.length === 0) return <div className="mx-auto max-w-3xl animate-rise-in"><PageIntro eyebrow="Grounded quiz" title="Generate a quiz from your material." description={`Upload a ${supportedFormatsSentence} file in Materials Lab first. StatSkill will extract the text and build questions from that source.`} /><Card className="p-8 text-center"><FileCheck2 className="mx-auto size-10 text-primary" /><p className="mt-4 text-sm text-muted-foreground">There is no generated material quiz in this browser session yet.</p><Link href="/materials" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white">Open Materials Lab <ArrowRight className="size-4" /></Link></Card></div>;
+  if (paper.length === 0) return <div className="mx-auto max-w-3xl animate-rise-in"><PageIntro eyebrow="Grounded quiz" title="Generate a quiz from your material." description={`Upload a ${supportedFormatsSentence} file in Materials Lab first. NEXORA AI will extract the text and build questions from that source.`} /><Card className="p-8 text-center"><FileCheck2 className="mx-auto size-10 text-primary" /><p className="mt-4 text-sm text-muted-foreground">There is no generated material quiz in this browser session yet.</p><Link href="/materials" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white">Open Materials Lab <ArrowRight className="size-4" /></Link></Card></div>;
   if (!started) return <div className="mx-auto max-w-3xl animate-rise-in"><PageIntro eyebrow="Grounded quiz · Generated locally" title="Test the brief, not your memory." description={`A ${paper.length}-question knowledge check built from extracted text in ${quizTitle}. Each answer points back to a source sentence.`} /><Card className="overflow-hidden"><div className="bg-sidebar p-8 text-sidebar-foreground sm:p-12"><div className="flex items-center justify-between"><Badge tone="amber">{paper.length} questions</Badge><span className="font-mono text-[10px] uppercase tracking-[.14em] text-sidebar-foreground/50">Source-grounded</span></div><h2 className="mt-8 max-w-lg break-words font-serif text-4xl text-white">{quizTitle}</h2><p className="mt-4 max-w-lg text-sm leading-6 text-sidebar-foreground/70">Practise identifying what the uploaded material actually says. Distractors are generated locally from the source topic.</p><ActionButton variant="amber" className="mt-8" onClick={() => begin(null)} icon={<Play className="size-4" />}>Begin knowledge check</ActionButton></div><div className="grid gap-3 p-6 sm:grid-cols-3">{[['01', 'Recall', 'Find the source statement'], ['02', 'Interpret', 'Read the signal'], ['03', 'Apply', 'Make the call']].map(([n, t, d]) => <div key={n}><p className="font-mono text-xs text-primary">{n}</p><p className="mt-2 text-sm font-semibold">{t}</p><p className="mt-1 text-xs text-muted-foreground">{d}</p></div>)}</div></Card></div>;
   if (done) return (
     <div className="mx-auto max-w-3xl animate-rise-in">
@@ -900,24 +900,211 @@ export function Intelligence() {
   return <div className="mx-auto max-w-[1440px] animate-rise-in"><PageIntro eyebrow="Training manager · Demonstration data" title="See the capability picture." description="A calm view of readiness across your directorate — where to invest, who needs support, and what is moving." action={<div className="flex gap-2"><button data-testid="button-intelligence-period" onClick={() => setPeriod(period === 'Last 90 days' ? 'This financial year' : 'Last 90 days')} className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2.5 text-xs font-semibold"><Filter className="size-3.5" />{period}</button><ActionButton onClick={() => setToast('Brief exported as a demonstration PDF')} icon={<Download className="size-4" />}>Export brief</ActionButton></div>} /><div className="mb-6 rounded-lg border border-[#d6e2e7] bg-[#edf3f6] px-4 py-3 text-xs text-[#29485a]"><span className="font-semibold">Demonstration Data</span> · Organisational figures are synthetic and intended for the SIH26101 product walkthrough.</div><div className="grid grid-cols-2 gap-3 lg:grid-cols-4"><Metric label="Directorate readiness" value="71.8%" note="+5.2 pts this quarter" /><Metric label="Active learners" value="184" note="of 216 staff" accent="amber" /><Metric label="Critical gaps" value="12" note="Across 3 competencies" accent="coral" /><Metric label="Learning hours" value="486" note="This financial year" /></div><div className="mt-7 grid gap-6 xl:grid-cols-[1.35fr_.65fr]"><Card className="p-5"><SectionHeading eyebrow="Capability movement" title="Learning activity vs target" description="Learners completing at least one assessed milestone each month." /><div className="h-[280px]"><ResponsiveContainer width="100%" height="100%"><BarChart data={org} margin={{ top: 8, right: 8, left: -15, bottom: 0 }}><CartesianGrid vertical={false} stroke="#e1e9ea" /><XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#718189' }} /><YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#718189' }} /><Tooltip contentStyle={{ borderRadius: 8, border: '1px solid #dfe9ea', fontSize: 12 }} /><Bar dataKey="trained" name="Active learners" fill="#2f7880" radius={[4, 4, 0, 0]} barSize={24} /><Bar dataKey="target" name="Target" fill="#c49743" radius={[4, 4, 0, 0]} barSize={24} /></BarChart></ResponsiveContainer></div></Card><Card className="p-5"><SectionHeading eyebrow="Competency distribution" title="Where support is needed" /><div className="space-y-5">{[['Statistical inference', 54, 'coral'], ['Data stewardship', 68, 'amber'], ['Dissemination', 79, 'teal'], ['Digital fluency', 83, 'teal']].map(([label, val, tone]) => <div key={String(label)}><div className="mb-2 flex justify-between text-xs"><span className="font-semibold">{label}</span><span className="font-mono text-muted-foreground">{val}%</span></div><ProgressBar value={Number(val)} color={tone === 'coral' ? 'bg-[#c86c5e]' : tone === 'amber' ? 'bg-accent' : 'bg-primary'} /></div>)}</div><button data-testid="button-view-gap-analysis" onClick={() => setToast('Gap analysis queued for review')} className="mt-7 w-full rounded-lg border border-border py-2.5 text-xs font-semibold text-primary hover:bg-secondary">Open gap analysis <ArrowRight className="ml-1 inline size-3.5" /></button></Card></div><div className="mt-7 grid gap-6 lg:grid-cols-3"><Card className="p-5 lg:col-span-2"><SectionHeading eyebrow="Priority queue" title="Signals that deserve a response" /><div className="divide-y divide-border">{[['12 people', 'Need support in statistical inference', 'High priority', 'coral'], ['28 people', 'Have not opened a pathway this quarter', 'Attention', 'amber'], ['46 people', 'Ready for an advanced practice module', 'Opportunity', 'teal']].map(([num, text, label, tone], i) => <div key={text} className="flex items-center gap-4 py-4"><div className={`flex size-10 items-center justify-center rounded-lg ${tone === 'coral' ? 'bg-[#f9e5e1] text-[#a34d43]' : tone === 'amber' ? 'bg-[#fff2d8] text-[#8a6319]' : 'bg-[#e2f1ef] text-[#216b67]'}`}><span className="font-mono text-xs font-bold">{num.split(' ')[0]}</span></div><div className="flex-1"><p className="text-sm font-semibold">{text}</p><p className="mt-1 text-xs text-muted-foreground">Detected by competency and activity signals</p></div><Badge tone={tone === 'coral' ? 'coral' : tone === 'amber' ? 'amber' : 'teal'}>{label}</Badge><button data-testid={`button-action-priority-${i}`} onClick={() => setToast(`${label} action noted for review`)} className="rounded-lg p-2 text-muted-foreground hover:bg-secondary hover:text-primary"><ArrowRight className="size-4" /></button></div>)}</div></Card><Card className="bg-[#f7ebd1] p-6"><Lightbulb className="size-5 text-[#9b722b]" /><p className="mt-5 font-mono text-[10px] uppercase tracking-[.16em] text-[#8a6319]">Manager note</p><h3 className="mt-2 font-serif text-2xl text-[#5f4a27]">Make the next cohort applied.</h3><p className="mt-3 text-sm leading-6 text-[#755f38]">The strongest shift this quarter came from worked examples, not video completion. Consider pairing the inference module with a live release review.</p><button data-testid="button-save-manager-note" onClick={() => setToast('Manager note saved')} className="mt-5 text-sm font-semibold text-[#8a6319] hover:underline">Save to planning brief <ArrowRight className="ml-1 inline size-4" /></button></Card></div>{toast && <ToastMessage message={toast} onClose={() => setToast('')} />}</div>;
 }
 
+export function Profile() {
+  const [, setLocation] = useLocation();
+  const { user } = useSession();
+  const [editing, setEditing] = useState(false);
+  const [name, setName] = useState(user?.name ?? 'Ananya Sharma');
+  const [email, setEmail] = useState(user?.email ?? 'ananya.sharma@mospi.gov.in');
+  const [phone, setPhone] = useState('+91 98765 43210');
+  const [bio, setBio] = useState('Statistical Officer with 6 years of experience in survey design, data quality assurance, and dissemination of national economic indicators.');
+  const [role, setRole] = useState('Statistical Officer');
+  const [department, setDepartment] = useState('Directorate of Economics & Statistics');
+  const [location, setLoc] = useState('Bengaluru, Karnataka');
+  const [language, setLanguage] = useState('English');
+  const [notifications, setNotifications] = useState(true);
+  const [weeklyDigest, setWeeklyDigest] = useState(true);
+  const [demoLabels, setDemoLabels] = useState(true);
+  const [saved, setSaved] = useState(false);
+  const [toast, setToast] = useState('');
+
+  useEffect(() => { if (user?.name) setName(user.name); }, [user?.name]);
+  useEffect(() => { if (user?.email) setEmail(user.email); }, [user?.email]);
+
+  const handleSave = () => { setEditing(false); setSaved(true); setToast('Profile updated successfully'); setTimeout(() => setToast(''), 3000); };
+  const handleCancel = () => { setEditing(false); setName(user?.name ?? 'Ananya Sharma'); setEmail(user?.email ?? 'ananya.sharma@mospi.gov.in'); };
+
+  const skills = [
+    { name: 'Data Quality', level: 82 },
+    { name: 'Statistical Inference', level: 68 },
+    { name: 'Data Dissemination', level: 74 },
+    { name: 'Leadership', level: 54 },
+    { name: 'Digital Tools', level: 61 },
+  ];
+
+  const stats = [
+    { label: 'Courses completed', value: '27', icon: Award },
+    { label: 'Assessments taken', value: '12', icon: Target },
+    { label: 'Learning hours', value: '142', icon: Clock3 },
+    { label: 'Current streak', value: '8 days', icon: Sparkles },
+  ];
+
+  const inputClass = 'w-full rounded-lg border border-input bg-card px-3 py-2.5 text-sm outline-none transition-all focus:ring-2 focus:ring-primary/20 focus:border-primary/40 disabled:opacity-60 disabled:cursor-not-allowed';
+
+  return <div className="mx-auto max-w-5xl animate-rise-in">
+    <PageIntro eyebrow="Profile & preferences" title="Your NEXORA AI identity." description="Manage your personal information, professional details, and platform preferences — all in one place." />
+
+    <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+      {stats.map((s) => <Card key={s.label} className="p-4 text-center">
+        <s.icon className="mx-auto size-5 text-primary" />
+        <p className="mt-2 font-serif text-2xl font-semibold">{s.value}</p>
+        <p className="mt-0.5 text-[11px] text-muted-foreground">{s.label}</p>
+      </Card>)}
+    </div>
+
+    <div className="grid gap-6 lg:grid-cols-[.8fr_1.2fr]">
+      <div className="space-y-6">
+        <Card className="overflow-hidden">
+          <div className="relative bg-gradient-to-br from-sidebar via-[#1e4a4f] to-[#173a3e] px-6 pb-16 pt-8 text-center">
+            <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 30% 40%, #9ed5cc 0%, transparent 60%)' }} />
+            <div className="relative mx-auto flex size-24 items-center justify-center rounded-full bg-[#b8ddd6] font-serif text-4xl text-sidebar ring-4 ring-white/20">
+              {initials(user?.name ?? name)}
+            </div>
+            <button data-testid="button-change-avatar" className="relative mx-auto mt-3 flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-[11px] font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/25">
+              <Camera className="size-3" /> Change photo
+            </button>
+          </div>
+          <div className="-mt-8 rounded-t-[20px] bg-card px-6 pb-6 pt-8 text-center">
+            <h2 className="font-serif text-xl">{name}</h2>
+            <p className="mt-1 text-sm text-muted-foreground">{role}</p>
+            <div className="mt-3 flex items-center justify-center gap-2">
+              <Badge tone="amber">Verified official</Badge>
+              <Badge tone="teal">Active</Badge>
+            </div>
+            <div className="mt-5 flex justify-center gap-6 border-t border-border pt-5 text-xs text-muted-foreground">
+              <div className="text-center"><p className="font-semibold text-foreground">27</p><p>Courses</p></div>
+              <div className="h-8 w-px bg-border" />
+              <div className="text-center"><p className="font-semibold text-foreground">68.4</p><p>Score</p></div>
+              <div className="h-8 w-px bg-border" />
+              <div className="text-center"><p className="font-semibold text-foreground">142h</p><p>Learning</p></div>
+            </div>
+          </div>
+        </Card>
+
+        <Card className="p-6">
+          <SectionHeading eyebrow="Competencies" title="Skill levels" />
+          <div className="space-y-4">
+            {skills.map((s) => <div key={s.name}>
+              <div className="mb-1.5 flex items-center justify-between text-sm">
+                <span className="font-medium">{s.name}</span>
+                <span className="font-mono text-xs text-muted-foreground">{s.level}%</span>
+              </div>
+              <ProgressBar value={s.level} />
+            </div>)}
+          </div>
+        </Card>
+      </div>
+
+      <div className="space-y-6">
+        <Card className="p-6">
+          <div className="mb-5 flex items-center justify-between">
+            <SectionHeading eyebrow="Personal" title="Your information" />
+            {!editing && <button data-testid="button-edit-profile" onClick={() => setEditing(true)} className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-2 text-xs font-semibold text-primary transition-colors hover:bg-secondary"><Edit3 className="size-3.5" /> Edit</button>}
+          </div>
+          <div className="space-y-5">
+            <label className="block">
+              <span className="flex items-center gap-2 text-sm font-semibold"><Users className="size-3.5 text-muted-foreground" /> Full name</span>
+              <input data-testid="input-name" type="text" value={name} onChange={(e) => setName(e.target.value)} disabled={!editing} className={`mt-2 ${inputClass}`} />
+            </label>
+            <label className="block">
+              <span className="flex items-center gap-2 text-sm font-semibold"><Mail className="size-3.5 text-muted-foreground" /> Email address</span>
+              <input data-testid="input-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={!editing} className={`mt-2 ${inputClass}`} />
+            </label>
+            <label className="block">
+              <span className="flex items-center gap-2 text-sm font-semibold"><Phone className="size-3.5 text-muted-foreground" /> Phone number</span>
+              <input data-testid="input-phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} disabled={!editing} className={`mt-2 ${inputClass}`} />
+            </label>
+            <label className="block">
+              <span className="flex items-center gap-2 text-sm font-semibold"><Edit3 className="size-3.5 text-muted-foreground" /> Bio</span>
+              <textarea data-testid="input-bio" value={bio} onChange={(e) => setBio(e.target.value)} disabled={!editing} rows={3} className={`mt-2 resize-none ${inputClass}`} />
+            </label>
+            {editing && <div className="flex gap-3 border-t border-border pt-5">
+              <ActionButton onClick={handleSave}>Save changes <Check className="size-4" /></ActionButton>
+              <ActionButton variant="outline" onClick={handleCancel}>Cancel</ActionButton>
+            </div>}
+          </div>
+        </Card>
+
+        <Card className="p-6">
+          <SectionHeading eyebrow="Professional" title="Work details" />
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div className="rounded-lg bg-secondary/50 p-4">
+              <p className="flex items-center gap-2 text-xs text-muted-foreground"><Briefcase className="size-3.5" /> Role</p>
+              <p className="mt-1.5 text-sm font-semibold">{role}</p>
+            </div>
+            <div className="rounded-lg bg-secondary/50 p-4">
+              <p className="flex items-center gap-2 text-xs text-muted-foreground"><Shield className="size-3.5" /> Department</p>
+              <p className="mt-1.5 text-sm font-semibold">{department}</p>
+            </div>
+            <div className="rounded-lg bg-secondary/50 p-4">
+              <p className="flex items-center gap-2 text-xs text-muted-foreground"><MapPin className="size-3.5" /> Location</p>
+              <p className="mt-1.5 text-sm font-semibold">{location}</p>
+            </div>
+            <div className="rounded-lg bg-secondary/50 p-4">
+              <p className="flex items-center gap-2 text-xs text-muted-foreground"><Calendar className="size-3.5" /> Joined</p>
+              <p className="mt-1.5 text-sm font-semibold">{user?.createdAt ? new Date(user.createdAt).toLocaleDateString('en-IN', { month: 'long', year: 'numeric' }) : 'March 2021'}</p>
+            </div>
+          </div>
+        </Card>
+
+        <Card className="p-6">
+          <SectionHeading eyebrow="Preferences" title="How you work" />
+          <div className="space-y-6">
+            <label className="block">
+              <span className="flex items-center gap-2 text-sm font-semibold"><Globe className="size-3.5 text-muted-foreground" /> Preferred language</span>
+              <select data-testid="select-language" value={language} onChange={(e) => setLanguage(e.target.value)} className={`mt-2 ${inputClass}`}>
+                <option>English</option><option>Hindi</option><option>Kannada</option><option>Tamil</option><option>Telugu</option><option>Bengali</option>
+              </select>
+            </label>
+
+            <label className="flex items-center justify-between gap-4">
+              <span>
+                <span className="block text-sm font-semibold">Push notifications</span>
+                <span className="mt-1 block text-xs text-muted-foreground">Get notified about assessment windows and new pathways.</span>
+              </span>
+              <button data-testid="button-toggle-notifications" onClick={() => setNotifications(!notifications)} className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${notifications ? 'bg-primary' : 'bg-secondary'}`}><span className={`absolute top-1 size-4 rounded-full bg-card transition-transform ${notifications ? 'left-6' : 'left-1'}`} /></button>
+            </label>
+
+            <label className="flex items-center justify-between gap-4">
+              <span>
+                <span className="block text-sm font-semibold">Weekly intelligence digest</span>
+                <span className="mt-1 block text-xs text-muted-foreground">A short Monday brief on your next learning move.</span>
+              </span>
+              <button data-testid="button-toggle-digest" onClick={() => setWeeklyDigest(!weeklyDigest)} className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${weeklyDigest ? 'bg-primary' : 'bg-secondary'}`}><span className={`absolute top-1 size-4 rounded-full bg-card transition-transform ${weeklyDigest ? 'left-6' : 'left-1'}`} /></button>
+            </label>
+
+            <label className="flex items-center justify-between gap-4">
+              <span>
+                <span className="block text-sm font-semibold">Show demonstration labels</span>
+                <span className="mt-1 block text-xs text-muted-foreground">Keep prototype data markers visible in your workspace.</span>
+              </span>
+              <button data-testid="button-toggle-demo-labels" onClick={() => setDemoLabels(!demoLabels)} className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${demoLabels ? 'bg-primary' : 'bg-secondary'}`}><span className={`absolute top-1 size-4 rounded-full bg-card transition-transform ${demoLabels ? 'left-6' : 'left-1'}`} /></button>
+            </label>
+
+            <div className="flex items-center gap-3 border-t border-border pt-5">
+              <ActionButton onClick={() => { setSaved(true); setToast('Preferences saved'); setTimeout(() => setToast(''), 3000); }}>{saved ? 'Preferences saved' : 'Save preferences'} <Check className="size-4" /></ActionButton>
+              <button data-testid="button-open-integrations" onClick={() => setLocation('/integrations')} className="text-sm font-semibold text-primary hover:underline">Manage integrations</button>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </div>
+    {toast && <ToastMessage message={toast} onClose={() => setToast('')} />}
+  </div>;
+}
+function Building2Icon() { return <svg viewBox="0 0 24 24" className="size-7 text-[#29485a]" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M4 21V5l8-3 8 3v16M8 9h1m3 0h1m3 0h1M8 13h1m3 0h1m3 0h1M8 17h1m3 0h1m3 0h1M10 21v-4h4v4" /></svg>; }
+
+export function Presentation() {
+  const [, setLocation] = useLocation(); const [slide, setSlide] = useState(0); const slides = [{ kicker: '01 · Orient', title: 'NEXORA AI turns competency data into a next action.', body: 'A guided tour for the official statistical workforce — from individual signal to organisational response.', target: '/dashboard', button: 'Open learner overview' }, { kicker: '02 · Diagnose', title: 'Start with the question behind the score.', body: 'Scenario-based assessment makes competency evidence useful, not ornamental.', target: '/assessment', button: 'Run a sample assessment' }, { kicker: '03 · Practise', title: 'Make a work material a learning surface.', body: 'Upload a briefing, ground the language, then practise the judgement it demands.', target: '/materials', button: 'Open materials lab' }, { kicker: '04 · See the system', title: 'Managers see where support will matter.', body: 'Organisational intelligence turns scattered activity into a prioritised queue.', target: '/intelligence', button: 'Open intelligence view' }]; const current = slides[slide]; return <div className="min-h-[calc(100dvh-68px)]"><div className="mx-auto flex min-h-[calc(100dvh-120px)] max-w-6xl flex-col justify-between py-8 sm:py-14"><div className="flex items-center justify-between"><div className="flex items-center gap-3"><div className="flex size-9 items-center justify-center rounded-lg bg-primary text-white"><span className="font-serif text-xl">S</span></div><div><p className="font-serif text-lg">NEXORA AI</p><p className="font-mono text-[9px] uppercase tracking-[.16em] text-muted-foreground">Guided presentation</p></div></div><Badge tone="amber">Prototype · Demonstration data</Badge></div><div className="grid items-center gap-12 py-14 lg:grid-cols-[1fr_.8fr]"><div key={slide} className="animate-rise-in"><p className="font-mono text-xs font-medium uppercase tracking-[.18em] text-primary">{current.kicker}</p><h1 className="mt-5 max-w-3xl font-serif text-5xl leading-[1.02] tracking-[-.03em] sm:text-7xl">{current.title}</h1><p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">{current.body}</p><ActionButton className="mt-8" onClick={() => setLocation(current.target)} icon={<ArrowRight className="size-4" />}>{current.button}</ActionButton></div><div className="relative aspect-square max-w-[440px] justify-self-center"><div className="absolute inset-7 rounded-full border border-primary/15" /><div className="absolute inset-16 rounded-full border border-primary/20" /><div className="absolute inset-[27%] flex flex-col items-center justify-center rounded-full bg-sidebar text-center text-white shadow-xl"><Sparkles className="mb-3 size-6 text-accent" /><span className="font-mono text-[10px] uppercase tracking-[.15em] text-sidebar-foreground/60">Signal</span><span className="mt-1 font-serif text-3xl">68.4</span><span className="mt-1 text-xs text-sidebar-foreground/60">competency index</span></div><div className="absolute left-0 top-[31%] rounded-lg border border-border bg-card p-3 shadow-lg"><p className="font-mono text-[9px] uppercase tracking-[.12em] text-muted-foreground">Next move</p><p className="mt-1 text-xs font-semibold">Applied inference</p></div><div className="absolute bottom-[20%] right-0 rounded-lg border border-border bg-card p-3 shadow-lg"><p className="font-mono text-[9px] uppercase tracking-[.12em] text-muted-foreground">Pathway</p><p className="mt-1 text-xs font-semibold">42% complete</p></div></div></div><div className="flex items-center justify-between border-t border-border pt-5"><div className="flex gap-2">{slides.map((s, i) => <button key={s.kicker} data-testid={`button-presentation-slide-${i}`} onClick={() => setSlide(i)} className={`h-1.5 rounded-full transition-all ${i === slide ? 'w-12 bg-primary' : 'w-5 bg-border'}`} aria-label={`Go to presentation slide ${i + 1}`} />)}</div><div className="flex gap-2"><button data-testid="button-presentation-previous" onClick={() => setSlide(Math.max(0, slide - 1))} disabled={slide === 0} className="rounded-lg border border-border p-2.5 disabled:opacity-30"><ArrowLeft className="size-4" /></button><button data-testid="button-presentation-next" onClick={() => setSlide(Math.min(slides.length - 1, slide + 1))} disabled={slide === slides.length - 1} className="rounded-lg bg-primary p-2.5 text-white disabled:opacity-30"><ArrowRight className="size-4" /></button></div></div></div></div>;
+}
 export function Roadmap() {
   const [expanded, setExpanded] = useState<number | null>(1);
   const milestones = [{ title: 'Statistical Officer', sub: 'Current role · Directorate of Economics', status: 'Current', score: 68, skills: ['Data quality', 'Official methods', 'Release practice'] }, { title: 'Senior Statistical Officer', sub: 'Next horizon · 12–18 months', status: 'Next horizon', score: 78, skills: ['Applied inference', 'Policy communication', 'Team leadership'] }, { title: 'Deputy Director, Statistics', sub: 'Longer horizon · 3–5 years', status: 'Aspirational', score: 0, skills: ['Strategic planning', 'System leadership', 'Advanced dissemination'] }];
   return <div className="mx-auto max-w-5xl animate-rise-in"><PageIntro eyebrow="Career roadmap" title="Make the next role legible." description="A skills-first view of your progression, grounded in the competencies expected across India’s official statistical system." action={<ActionButton variant="outline" onClick={() => setExpanded(expanded === null ? 1 : null)} icon={<MapPin className="size-4" />}>Recenter map</ActionButton>} /><Card className="overflow-hidden p-6 sm:p-10"><div className="relative"><div className="absolute left-[19px] top-5 h-[calc(100%-40px)] w-px bg-border sm:left-6" />{milestones.map((m, i) => <div key={m.title} className="relative mb-8 flex gap-5 last:mb-0 sm:gap-8"><div className={`z-10 flex size-10 shrink-0 items-center justify-center rounded-full border-4 border-card ${i === 0 ? 'bg-primary text-white' : i === 1 ? 'bg-accent text-foreground' : 'bg-secondary text-muted-foreground'}`}><span className="font-mono text-xs font-bold">{i === 0 ? <Check className="size-4" /> : `0${i + 1}`}</span></div><div className="min-w-0 flex-1 rounded-xl border border-border bg-card p-5 transition-colors hover:bg-secondary/50"><div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-start"><div><div className="flex flex-wrap items-center gap-2"><h2 className="font-serif text-xl">{m.title}</h2><Badge tone={i === 0 ? 'teal' : i === 1 ? 'amber' : 'neutral'}>{m.status}</Badge></div><p className="mt-1 text-xs text-muted-foreground">{m.sub}</p></div>{i < 2 && <div className="text-left sm:text-right"><p className="font-mono text-xl text-primary">{m.score}%</p><p className="text-[10px] text-muted-foreground">readiness</p></div>}</div><button data-testid={`button-expand-roadmap-${i}`} onClick={() => setExpanded(expanded === i ? null : i)} className="mt-4 flex items-center gap-1 text-xs font-semibold text-primary">{expanded === i ? 'Hide competency detail' : 'View competency detail'}<ArrowRight className={`size-3.5 transition-transform ${expanded === i ? 'rotate-90' : ''}`} /></button>{expanded === i && <div className="mt-4 grid gap-3 border-t border-border pt-4 sm:grid-cols-3">{m.skills.map((skill, j) => <div key={skill} className="rounded-lg bg-secondary p-3"><p className="text-xs font-semibold">{skill}</p><p className="mt-2 text-[11px] text-muted-foreground">{i === 0 ? 'Demonstrated' : j === 0 ? 'Focus next' : 'Build evidence'}</p></div>)}</div>}</div></div>)}</div></Card><div className="mt-6 grid gap-4 sm:grid-cols-2"><Card className="flex items-center gap-4 p-5"><div className="flex size-11 items-center justify-center rounded-xl bg-[#e2f1ef]"><Target className="size-5 text-primary" /></div><div><p className="text-sm font-semibold">Next evidence to collect</p><p className="mt-1 text-xs text-muted-foreground">Lead one quality review and document the decision.</p></div></Card><Card className="flex items-center gap-4 p-5"><div className="flex size-11 items-center justify-center rounded-xl bg-[#fff2d8]"><Award className="size-5 text-[#8a6319]" /></div><div><p className="text-sm font-semibold">Recognition milestone</p><p className="mt-1 text-xs text-muted-foreground">2 more pathway modules unlock a badge.</p></div></Card></div></div>;
 }
 
-export function Profile() {
-  const [saved, setSaved] = useState(false); const [notifications, setNotifications] = useState(true); const [language, setLanguage] = useState('English'); const [, setLocation] = useLocation(); const { user } = useSession();
-  return <div className="mx-auto max-w-4xl animate-rise-in"><PageIntro eyebrow="Profile & preferences" title="Keep the signal personal." description="The context StatSkill uses to make recommendations relevant to your role and working day." /><div className="grid gap-6 lg:grid-cols-[.72fr_1.28fr]"><Card className="bg-sidebar p-6 text-sidebar-foreground"><div className="flex size-20 items-center justify-center rounded-full bg-[#b8ddd6] font-serif text-3xl text-sidebar">{initials(user?.name)}</div><h2 className="mt-5 font-serif text-2xl text-white">{user?.name ?? 'Ananya Sharma'}</h2><p className="mt-1 text-sm text-sidebar-foreground/65">{user?.email ?? 'Directorate of Economics & Statistics'}</p><div className="mt-7 border-t border-sidebar-border pt-5 text-xs"><p className="font-mono uppercase tracking-[.14em] text-sidebar-foreground/45">Role</p><p className="mt-2 text-sm text-white">Statistical Officer</p><p className="mt-4 font-mono uppercase tracking-[.14em] text-sidebar-foreground/45">Location</p><p className="mt-2 flex items-center gap-1.5 text-sm text-white"><MapPin className="size-3.5 text-accent" /> Bengaluru, Karnataka</p></div><Badge tone="amber">Verified official</Badge></Card><Card className="p-6"><SectionHeading eyebrow="Preferences" title="How you work" /><div className="space-y-6"><label className="block"><span className="text-sm font-semibold">Preferred language</span><select data-testid="select-language" value={language} onChange={(e) => setLanguage(e.target.value)} className="mt-2 w-full rounded-lg border border-input bg-card px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary/20"><option>English</option><option>Hindi</option><option>Kannada</option></select></label><label className="flex items-center justify-between gap-4"><span><span className="block text-sm font-semibold">Weekly intelligence note</span><span className="mt-1 block text-xs text-muted-foreground">A short Monday brief on your next learning move.</span></span><button data-testid="button-toggle-notifications" onClick={() => setNotifications(!notifications)} className={`relative h-6 w-11 rounded-full transition-colors ${notifications ? 'bg-primary' : 'bg-secondary'}`}><span className={`absolute top-1 size-4 rounded-full bg-card transition-transform ${notifications ? 'left-6' : 'left-1'}`} /></button></label><label className="flex items-center justify-between gap-4"><span><span className="block text-sm font-semibold">Show demonstration labels</span><span className="mt-1 block text-xs text-muted-foreground">Keep prototype data markers visible in your workspace.</span></span><span className="rounded-full bg-[#e2f1ef] px-2 py-1 text-[10px] font-semibold text-primary">On</span></label><div className="border-t border-border pt-5"><ActionButton onClick={() => setSaved(true)}>{saved ? 'Preferences saved' : 'Save preferences'} <Check className="size-4" /></ActionButton><button data-testid="button-open-integrations" onClick={() => setLocation('/integrations')} className="ml-4 text-sm font-semibold text-primary hover:underline">Manage integrations</button></div></div></Card></div></div>;
-}
-
 export function Integrations() {
   const [connected, setConnected] = useState(true); const [syncing, setSyncing] = useState(false); const [toast, setToast] = useState('');
   const sync = () => { setSyncing(true); window.setTimeout(() => { setSyncing(false); setToast('iGOT training history synced locally'); }, 1200); };
-  return <div className="mx-auto max-w-4xl animate-rise-in"><PageIntro eyebrow="Integrations" title="Connect the systems that know your work." description="Prototype connectors for a future StatSkill intelligence layer. No external services are contacted in this demo." /><Card className="overflow-hidden"><div className="flex flex-col justify-between gap-5 border-b border-border p-6 sm:flex-row sm:items-center sm:p-8"><div className="flex items-center gap-4"><div className="flex size-14 items-center justify-center rounded-xl bg-[#dce5ee]"><Building2Icon /></div><div><h2 className="font-serif text-2xl">iGOT Karmayogi</h2><p className="mt-1 text-sm text-muted-foreground">Training history and course completion</p></div></div><Badge tone={connected ? 'teal' : 'neutral'}>{connected ? 'Connected' : 'Not connected'}</Badge></div><div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[1fr_260px]"><div><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Connector status</p><div className="mt-4 space-y-4">{[['Last sync', 'Today, 09:42 IST'], ['Records available', '27 completed courses'], ['Permission scope', 'Learning history only']].map(([l, v]) => <div key={l} className="flex justify-between border-b border-border pb-3 text-sm"><span className="text-muted-foreground">{l}</span><span className="font-semibold">{v}</span></div>)}</div><div className="mt-6 flex items-center gap-2 text-xs text-[#216b67]"><CheckCircle2 className="size-4" /> Connector is operating within its approved scope.</div></div><div className="rounded-xl bg-secondary p-5"><p className="text-xs text-muted-foreground">Demo controls</p><ActionButton className="mt-4 w-full" disabled={syncing} onClick={sync} icon={syncing ? <RefreshCw className="size-4 animate-spin" /> : <RefreshCw className="size-4" />}>{syncing ? 'Syncing...' : 'Sync now'}</ActionButton><button data-testid="button-disconnect-igot" onClick={() => { setConnected(!connected); setToast(connected ? 'iGOT connector paused' : 'iGOT connector restored'); }} className="mt-3 w-full py-2 text-xs font-semibold text-muted-foreground hover:text-foreground">{connected ? 'Pause connector' : 'Restore connector'}</button></div></div></Card><Card className="mt-5 p-6"><div className="flex items-center justify-between"><div><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Coming next</p><h2 className="mt-1 font-serif text-xl">Other trusted sources</h2></div><Badge tone="navy">Prototype</Badge></div><div className="mt-5 grid gap-3 sm:grid-cols-2"><div className="rounded-lg border border-dashed border-border p-4"><p className="text-sm font-semibold">Department HRMS</p><p className="mt-1 text-xs text-muted-foreground">Role history and movement signals</p></div><div className="rounded-lg border border-dashed border-border p-4"><p className="text-sm font-semibold">Learning Management System</p><p className="mt-1 text-xs text-muted-foreground">Local course and assessment events</p></div></div></Card>{toast && <ToastMessage message={toast} onClose={() => setToast('')} />}</div>;
-}
-function Building2Icon() { return <svg viewBox="0 0 24 24" className="size-7 text-[#29485a]" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M4 21V5l8-3 8 3v16M8 9h1m3 0h1m3 0h1M8 13h1m3 0h1m3 0h1M8 17h1m3 0h1m3 0h1M10 21v-4h4v4" /></svg>; }
-
-export function Presentation() {
-  const [, setLocation] = useLocation(); const [slide, setSlide] = useState(0); const slides = [{ kicker: '01 · Orient', title: 'StatSkill turns competency data into a next action.', body: 'A guided tour for the official statistical workforce — from individual signal to organisational response.', target: '/dashboard', button: 'Open learner overview' }, { kicker: '02 · Diagnose', title: 'Start with the question behind the score.', body: 'Scenario-based assessment makes competency evidence useful, not ornamental.', target: '/assessment', button: 'Run a sample assessment' }, { kicker: '03 · Practise', title: 'Make a work material a learning surface.', body: 'Upload a briefing, ground the language, then practise the judgement it demands.', target: '/materials', button: 'Open materials lab' }, { kicker: '04 · See the system', title: 'Managers see where support will matter.', body: 'Organisational intelligence turns scattered activity into a prioritised queue.', target: '/intelligence', button: 'Open intelligence view' }]; const current = slides[slide]; return <div className="min-h-[calc(100dvh-68px)]"><div className="mx-auto flex min-h-[calc(100dvh-120px)] max-w-6xl flex-col justify-between py-8 sm:py-14"><div className="flex items-center justify-between"><div className="flex items-center gap-3"><div className="flex size-9 items-center justify-center rounded-lg bg-primary text-white"><span className="font-serif text-xl">S</span></div><div><p className="font-serif text-lg">StatSkill</p><p className="font-mono text-[9px] uppercase tracking-[.16em] text-muted-foreground">Guided presentation</p></div></div><Badge tone="amber">Prototype · Demonstration data</Badge></div><div className="grid items-center gap-12 py-14 lg:grid-cols-[1fr_.8fr]"><div key={slide} className="animate-rise-in"><p className="font-mono text-xs font-medium uppercase tracking-[.18em] text-primary">{current.kicker}</p><h1 className="mt-5 max-w-3xl font-serif text-5xl leading-[1.02] tracking-[-.03em] sm:text-7xl">{current.title}</h1><p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">{current.body}</p><ActionButton className="mt-8" onClick={() => setLocation(current.target)} icon={<ArrowRight className="size-4" />}>{current.button}</ActionButton></div><div className="relative aspect-square max-w-[440px] justify-self-center"><div className="absolute inset-7 rounded-full border border-primary/15" /><div className="absolute inset-16 rounded-full border border-primary/20" /><div className="absolute inset-[27%] flex flex-col items-center justify-center rounded-full bg-sidebar text-center text-white shadow-xl"><Sparkles className="mb-3 size-6 text-accent" /><span className="font-mono text-[10px] uppercase tracking-[.15em] text-sidebar-foreground/60">Signal</span><span className="mt-1 font-serif text-3xl">68.4</span><span className="mt-1 text-xs text-sidebar-foreground/60">competency index</span></div><div className="absolute left-0 top-[31%] rounded-lg border border-border bg-card p-3 shadow-lg"><p className="font-mono text-[9px] uppercase tracking-[.12em] text-muted-foreground">Next move</p><p className="mt-1 text-xs font-semibold">Applied inference</p></div><div className="absolute bottom-[20%] right-0 rounded-lg border border-border bg-card p-3 shadow-lg"><p className="font-mono text-[9px] uppercase tracking-[.12em] text-muted-foreground">Pathway</p><p className="mt-1 text-xs font-semibold">42% complete</p></div></div></div><div className="flex items-center justify-between border-t border-border pt-5"><div className="flex gap-2">{slides.map((s, i) => <button key={s.kicker} data-testid={`button-presentation-slide-${i}`} onClick={() => setSlide(i)} className={`h-1.5 rounded-full transition-all ${i === slide ? 'w-12 bg-primary' : 'w-5 bg-border'}`} aria-label={`Go to presentation slide ${i + 1}`} />)}</div><div className="flex gap-2"><button data-testid="button-presentation-previous" onClick={() => setSlide(Math.max(0, slide - 1))} disabled={slide === 0} className="rounded-lg border border-border p-2.5 disabled:opacity-30"><ArrowLeft className="size-4" /></button><button data-testid="button-presentation-next" onClick={() => setSlide(Math.min(slides.length - 1, slide + 1))} disabled={slide === slides.length - 1} className="rounded-lg bg-primary p-2.5 text-white disabled:opacity-30"><ArrowRight className="size-4" /></button></div></div></div></div>;
+  return <div className="mx-auto max-w-4xl animate-rise-in"><PageIntro eyebrow="Integrations" title="Connect the systems that know your work." description="Prototype connectors for a future NEXORA AI intelligence layer. No external services are contacted in this demo." /><Card className="overflow-hidden"><div className="flex flex-col justify-between gap-5 border-b border-border p-6 sm:flex-row sm:items-center sm:p-8"><div className="flex items-center gap-4"><div className="flex size-14 items-center justify-center rounded-xl bg-[#dce5ee]"><Building2Icon /></div><div><h2 className="font-serif text-2xl">iGOT Karmayogi</h2><p className="mt-1 text-sm text-muted-foreground">Training history and course completion</p></div></div><Badge tone={connected ? 'teal' : 'neutral'}>{connected ? 'Connected' : 'Not connected'}</Badge></div><div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[1fr_260px]"><div><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Connector status</p><div className="mt-4 space-y-4">{[['Last sync', 'Today, 09:42 IST'], ['Records available', '27 completed courses'], ['Permission scope', 'Learning history only']].map(([l, v]) => <div key={l} className="flex justify-between border-b border-border pb-3 text-sm"><span className="text-muted-foreground">{l}</span><span className="font-semibold">{v}</span></div>)}</div><div className="mt-6 flex items-center gap-2 text-xs text-[#216b67]"><CheckCircle2 className="size-4" /> Connector is operating within its approved scope.</div></div><div className="rounded-xl bg-secondary p-5"><p className="text-xs text-muted-foreground">Demo controls</p><ActionButton className="mt-4 w-full" disabled={syncing} onClick={sync} icon={syncing ? <RefreshCw className="size-4 animate-spin" /> : <RefreshCw className="size-4" />}>{syncing ? 'Syncing...' : 'Sync now'}</ActionButton><button data-testid="button-disconnect-igot" onClick={() => { setConnected(!connected); setToast(connected ? 'iGOT connector paused' : 'iGOT connector restored'); }} className="mt-3 w-full py-2 text-xs font-semibold text-muted-foreground hover:text-foreground">{connected ? 'Pause connector' : 'Restore connector'}</button></div></div></Card><Card className="mt-5 p-6"><div className="flex items-center justify-between"><div><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Coming next</p><h2 className="mt-1 font-serif text-xl">Other trusted sources</h2></div><Badge tone="navy">Prototype</Badge></div><div className="mt-5 grid gap-3 sm:grid-cols-2"><div className="rounded-lg border border-dashed border-border p-4"><p className="text-sm font-semibold">Department HRMS</p><p className="mt-1 text-xs text-muted-foreground">Role history and movement signals</p></div><div className="rounded-lg border border-dashed border-border p-4"><p className="text-sm font-semibold">Learning Management System</p><p className="mt-1 text-xs text-muted-foreground">Local course and assessment events</p></div></div></Card>{toast && <ToastMessage message={toast} onClose={() => setToast('')} />}</div>;
 }

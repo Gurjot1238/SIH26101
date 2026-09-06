@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * StatSkill auth and progress server.
+ * NEXORA AI auth and progress server.
  *
  *   node server/index.mjs
  *
@@ -366,7 +366,7 @@ async function handleMe(req, res, cors) {
 function handleHealth(_req, res, cors) {
   sendJson(res, 200, {
     ok: true,
-    service: 'statskill-auth',
+    service: 'NEXORA AI-auth',
     passwordHash: 'scrypt',
     passwordPolicy: PASSWORD_POLICY,
     ...store.counts(),
@@ -525,7 +525,7 @@ async function handleCourseProgress(req, res, cors) {
 /**
  * Deal a sealed paper.
  *
- * A session is required. Not because the questions are secret — they are StatSkill's
+ * A session is required. Not because the questions are secret — they are NEXORA AI's
  * own scenarios and a determined visitor could collect them by signing up — but
  * because an anonymous caller has no attempt to file, so the only use for an
  * unauthenticated copy of the bank is scraping it.
@@ -666,7 +666,7 @@ housekeeping.unref();
 server.listen(PORT, HOST, () => {
   const counts = store.counts();
   console.log(`
-  StatSkill auth server
+  NEXORA AI auth server
   ---------------------
   URL        http://${HOST}:${PORT}
   Accounts   ${counts.users}

@@ -44,11 +44,11 @@ export const ASSESSMENT_SOURCE = 'assessment';
 export const ASSESSMENT_LABEL = 'Quarterly competency check';
 
 /**
- * Said out loud on the page. These are StatSkill's own items, and the result is a
+ * Said out loud on the page. These are NEXORA AI's own items, and the result is a
  * self-check against the framework rather than an official competency rating.
  */
 export const ASSESSMENT_NOTE =
-  'These fifteen scenarios are written into StatSkill and graded on the server against a fixed answer key. They are a self-check against the competency framework, not an official MoSPI or iGOT Karmayogi certification.';
+  'These fifteen scenarios are written into NEXORA AI and graded on the server against a fixed answer key. They are a self-check against the competency framework, not an official MoSPI or iGOT Karmayogi certification.';
 
 /* ------------------------------------------------------------------- the bank */
 

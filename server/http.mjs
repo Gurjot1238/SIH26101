@@ -1,5 +1,5 @@
 /**
- * HTTP plumbing for the StatSkill auth server.
+ * HTTP plumbing for the NEXORA AI auth server.
  *
  * Deliberately dependency-free: everything here uses only Node built-ins so
  * `npm install` is never required for the backend and there is no native

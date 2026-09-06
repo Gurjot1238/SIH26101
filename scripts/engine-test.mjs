@@ -581,7 +581,7 @@ check('a successful write is reported as durable', () =>
 );
 
 check('the paper is stored as JSON text, not held by reference', () => {
-  const raw = cell.get('statskill.material.v1');
+  const raw = cell.get('NEXORA AI.material.v1');
   if (typeof raw !== 'string') return `tab storage holds a ${typeof raw}`;
   if (JSON.parse(raw).questions.length !== sample.questions.length) return 'the stored copy lost questions';
 });
@@ -611,22 +611,22 @@ const damaged = [
 let damageIndex = 0;
 for (const [label, bad] of damaged) {
   damageIndex += 1;
-  cell.set('statskill.material.v1', JSON.stringify(bad));
+  cell.set('NEXORA AI.material.v1', JSON.stringify(bad));
   const fresh = await import(`${STORE}?damaged=${damageIndex}`);
   const restored = fresh.getMaterial();
-  const stillStored = cell.has('statskill.material.v1');
+  const stillStored = cell.has('NEXORA AI.material.v1');
   check(`a stored paper with ${label} is refused`, () => {
     if (restored !== null) return 'it was accepted and would have been graded';
     if (stillStored) return 'it was refused but left in storage to fail on every later read';
   });
 }
 
-cell.set('statskill.material.v1', '{"questions":[{"q":"half a pap');
+cell.set('NEXORA AI.material.v1', '{"questions":[{"q":"half a pap');
 const afterTruncation = await import(`${STORE}?damaged=truncated`);
 
 check('a paper truncated mid-write is dropped rather than parsed', () => {
   if (afterTruncation.getMaterial() !== null) return 'a half-written value was accepted';
-  if (cell.has('statskill.material.v1')) return 'the unparseable value was left in storage';
+  if (cell.has('NEXORA AI.material.v1')) return 'the unparseable value was left in storage';
 });
 
 session.setMaterial(paper);
@@ -634,7 +634,7 @@ session.clearMaterial();
 
 check('clearMaterial empties both the store and tab storage', () => {
   if (session.getMaterial() !== null) return 'the paper is still in memory';
-  if (cell.has('statskill.material.v1')) return 'the paper is still in tab storage';
+  if (cell.has('NEXORA AI.material.v1')) return 'the paper is still in tab storage';
 });
 
 check('unsubscribing stops the notifications', () => {

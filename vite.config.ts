@@ -8,7 +8,7 @@ import { defineConfig } from 'vite';
 // Differences from the original Replit config, and why:
 //   * PORT and BASE_PATH no longer throw when unset — Replit always injected
 //     them, a local terminal does not. Both now have sensible defaults.
-//   * base is '/' instead of '/statskill/', so the app is served from the root
+//   * base is '/' instead of '/NEXORA AI/', so the app is served from the root
 //     of http://localhost:5173 . App.tsx feeds import.meta.env.BASE_URL into
 //     wouter, so routing follows this automatically.
 //   * The @replit/* Vite plugins are removed. They only add Replit's in-editor

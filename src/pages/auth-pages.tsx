@@ -1,7 +1,7 @@
 /**
  * Sign in and create account pages.
  *
- * Every visual token here is borrowed from the rest of StatSkill — the same
+ * Every visual token here is borrowed from the rest of NEXORA AI — the same
  * `Card`, the same `ActionButton`, the same field markup used on the Profile
  * page, the same `civic-grid` / `noise` / `animate-rise-in` utilities. Nothing
  * in an existing file was modified to make these fit.
@@ -40,7 +40,7 @@ function AuthLayout({ eyebrow, title, description, children, footer }: {
             <span className="absolute -right-1 -top-1 size-2 rounded-full bg-[#9ed5cc]" />
           </div>
           <div>
-            <p className="font-serif text-[21px] leading-none text-foreground">StatSkill</p>
+            <p className="font-serif text-[21px] leading-none text-foreground">NEXORA AI</p>
             <p className="mt-1 font-mono text-[8px] uppercase tracking-[.18em] text-muted-foreground">Intelligence platform</p>
           </div>
         </Link>
@@ -185,7 +185,7 @@ export function Login() {
     eyebrow="Secure sign in"
     title="Welcome back."
     description="Sign in to pick up your competency plan where you left it."
-    footer={<>New to StatSkill? <Link href="/signup" data-testid="link-goto-signup" className="font-semibold text-primary hover:underline">Create an account</Link></>}
+    footer={<>New to NEXORA AI? <Link href="/signup" data-testid="link-goto-signup" className="font-semibold text-primary hover:underline">Create an account</Link></>}
   >
     {existing && !done && <AlreadySignedIn user={existing} onContinue={() => setLocation('/dashboard')} />}
     {done && <SuccessBanner message="Signed in. Taking you to your workspace..." />}
