@@ -1,0 +1,27 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+*.tsbuildinfo
+
+# logs
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# local env
+.env
+.env.local
+.env.*.local
+
+# auth server secrets and data — never commit these
+server/.env
+server/data/
+server/auth-server.log
+*.tmp
+
+# editor / OS
+.DS_Store
+.idea/
+*.swp
