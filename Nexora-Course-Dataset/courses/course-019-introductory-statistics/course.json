@@ -1,0 +1,813 @@
+{
+  "course_id": "openstax-introductory-statistics",
+  "title": "Introductory Statistics",
+  "provider": "OpenStax / Rice University",
+  "category": "Technology",
+  "subcategory": "Statistics",
+  "level": "Beginner",
+  "description": "OpenStax Introductory Statistics (CC BY 4.0). Section HTML was downloaded from the official OpenStax webview.",
+  "competencies": [
+    "Statistics",
+    "Data Science",
+    "Probability"
+  ],
+  "topics": [
+    "descriptive statistics",
+    "probability",
+    "inference"
+  ],
+  "source": {
+    "name": "OpenStax",
+    "official_url": "https://openstax.org/books/introductory-statistics/pages/1-introduction",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 9.2,
+    "estimated_minutes": 555
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 32,
+    "practice_questions": 96
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "openstax-introductory-statistics-m01",
+      "title": "Chapter 1: Chapter Objectives",
+      "competencies": [
+        "Statistics",
+        "Data Science",
+        "Probability"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-introductory-statistics-m01-l01",
+          "title": "Chapter Objectives",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/openstax-introductory-statistics-m01-l01.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this chapter, the student should be able to:"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m01-l02",
+          "title": "1.2 Data, Sampling, and Variation in Data and Sampling",
+          "type": "text",
+          "content_file": "content/module-01/lesson-02.md",
+          "practice_file": "practice/openstax-introductory-statistics-m01-l02.json",
+          "estimated_minutes": 38,
+          "objectives": [
+            "Data may come from a population or from a sample. Lowercase letters like  x x or  y y generally are used to represent data values. Most data can be put into the following categories:",
+            "All data that are the result of counting are called quantitative discrete data. These data take on only certain numerical values. If you count the number of phone calls you receive for each day of the w"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m01-l03",
+          "title": "1.3 Frequency, Frequency Tables, and Levels of Measurement",
+          "type": "text",
+          "content_file": "content/module-01/lesson-03.md",
+          "practice_file": "practice/openstax-introductory-statistics-m01-l03.json",
+          "estimated_minutes": 17,
+          "objectives": [
+            "It is not necessary to reduce most fractions in this course. Especially in [Probability Topics](<3-introduction>), the chapter on probability, it is more helpful to leave an answer as an unreduced fraction"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m01-l04",
+          "title": "1.4 Experimental Design and Ethics",
+          "type": "text",
+          "content_file": "content/module-01/lesson-04.md",
+          "practice_file": "practice/openstax-introductory-statistics-m01-l04.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m01-l05",
+          "title": "1.5 Data Collection Experiment",
+          "type": "text",
+          "content_file": "content/module-01/lesson-05.md",
+          "practice_file": "practice/openstax-introductory-statistics-m01-l05.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Student Learning Outcomes",
+            "The student will demonstrate the systematic sampling technique",
+            "The student will construct relative frequency tables",
+            "The student will interpret results and their differences from different data groupings",
+            "Movie SurveyAsk five classmates from a different class how many movies they saw at the theater last month. Do not include rented movies",
+            "Order the DataComplete the two relative frequency tables below using your class data"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m01-l06",
+          "title": "1.6 Sampling Experiment",
+          "type": "text",
+          "content_file": "content/module-01/lesson-06.md",
+          "practice_file": "practice/openstax-introductory-statistics-m01-l06.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Student Learning Outcomes",
+            "The student will demonstrate the simple random, systematic, stratified, and cluster sampling techniques",
+            "The student will explain the details of each procedure used",
+            "The following section contains restaurants stratified by city into columns and grouped horizontally by entree cost (clusters)",
+            "Restaurants Stratified by City and Entree Cost",
+            "Entree Cost | Under $10 | $10 to under $15 | $15 to under $20 | Over $20"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m01-l07",
+          "title": "Practice",
+          "type": "text",
+          "content_file": "content/module-01/lesson-07.md",
+          "practice_file": "practice/openstax-introductory-statistics-m01-l07.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Researcher A:3;  4;  11;  15;  16;  17;  22;  44;  37;  16;  14;  24;  25;  15;  26;  27;  33;  29;  35;  44;  13;  21;  22;  10;  12;  8;  40;  32;  26;  27;  31;  34;  29;  17;  8;  24;  18;  47;  33;  34",
+            "Researcher B:3;  14;  11;  5;  16;  17;  28;  41;  31;  18;  14;  14;  26;  25;  21;  22;  31;  2;  35;  44;  23;  21;  21;  16;  12;  18;  41;  22;  16;  25;  33;  34;  29;  13;  18;  24;  23;  42;  33;  29",
+            "Determine what the key terms refer to in the example for Researcher A"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m01-l08",
+          "title": "Homework",
+          "type": "text",
+          "content_file": "content/module-01/lesson-08.md",
+          "practice_file": "practice/openstax-introductory-statistics-m01-l08.json",
+          "estimated_minutes": 19,
+          "objectives": [
+            "A fitness center is interested in the mean amount of time a client exercises in the center each week",
+            "Ski resorts are interested in the mean age that children take their first ski and snowboard lessons. They need this information to plan their ski classes optimally",
+            "A cardiologist is interested in the mean recovery period of her patients who have had heart attacks",
+            "Insurance companies are interested in the mean health costs each year of their clients, so that they can determine the costs of health insurance",
+            "A politician is interested in the proportion of voters in his district who think he is doing a good job",
+            "A marriage counselor is interested in the proportion of clients she counsels who stay married"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m01-l09",
+          "title": "Bringing It Together: Homework",
+          "type": "text",
+          "content_file": "content/module-01/lesson-09.md",
+          "practice_file": "practice/openstax-introductory-statistics-m01-l09.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Have computer at home | 96%",
+            "Unable to come to campus for classes | 65%",
+            "Age 41 or over | 24%",
+            "Would like LBCC to offer more DL courses | 95%",
+            "Took DL classes due to a disability | 17%",
+            "Live at least 16 miles from campus | 13%"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m01-l10",
+          "title": "References",
+          "type": "text",
+          "content_file": "content/module-01/lesson-10.md",
+          "practice_file": "practice/openstax-introductory-statistics-m01-l10.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "The Data and Story Library, <http://lib.stat.cmu.edu/DASL/Stories/CrashTestDummies.html> (accessed May 1, 2013)",
+            "Gallup-Healthways Well-Being Index. <http://www.well-beingindex.com/default.asp> (accessed May 1, 2013)",
+            "Gallup-Healthways Well-Being Index. <http://www.well-beingindex.com/methodology.asp> (accessed May 1, 2013)",
+            "Gallup-Healthways Well-Being Index. <http://www.gallup.com/poll/146822/gallup-healthways-index-questions.aspx> (accessed May 1, 2013)",
+            "Data from <http://www.bookofodds.com/Relationships-Society/Articles/A0374-How-George-Gallup-Picked-the-President>",
+            "The Data and Story Library, <http://lib.stat.c"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m01-l11",
+          "title": "Solutions",
+          "type": "text",
+          "content_file": "content/module-01/lesson-11.md",
+          "practice_file": "practice/openstax-introductory-statistics-m01-l11.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "The average length of time (in months) AIDS patients live after treatment",
+            "No, we do not have enough information to make such a claim",
+            "Take a simple random sample from each group. One way is by assigning a number to each patient and using a random number generator to randomly select patients",
+            "This would be convenience sampling and is not random",
+            "Yes, the sample size of 150 would be large enough to reflect a population of one school",
+            "Even though the specific data support each researcher’s conclusions, the different results suggest that more data need to be collected before the researchers can reach a conclusion"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openstax-introductory-statistics-m02",
+      "title": "Chapter 2: Chapter Objectives",
+      "competencies": [
+        "Statistics",
+        "Data Science",
+        "Probability"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-introductory-statistics-m02-l01",
+          "title": "Chapter Objectives",
+          "type": "text",
+          "content_file": "content/module-02/lesson-01.md",
+          "practice_file": "practice/openstax-introductory-statistics-m02-l01.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this chapter, the student should be able to:"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m02-l02",
+          "title": "2.1 Stem-and-Leaf Graphs (Stemplots), Line Graphs, and Bar Graphs",
+          "type": "text",
+          "content_file": "content/module-02/lesson-02.md",
+          "practice_file": "practice/openstax-introductory-statistics-m02-l02.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "For Susan Dean's spring pre-calculus class, scores for the first exam were as follows (smallest to largest):",
+            "Table  2.1 Stem-and-Leaf Graph",
+            "The stemplot shows that most scores fell in the 60s, 70s, 80s, and 90s. Eight out of the 31 scores or approximately 26%  ( 8 31 ) ( 8 31 ) were in the 90s or 100, a fairly high number of As",
+            "For the Park City basketball team, scores for the last 30 games were as follows (smallest to largest):"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m02-l03",
+          "title": "2.2 Histograms, Frequency Polygons, and Time Series Graphs",
+          "type": "text",
+          "content_file": "content/module-02/lesson-03.md",
+          "practice_file": "practice/openstax-introductory-statistics-m02-l03.json",
+          "estimated_minutes": 21,
+          "objectives": [
+            "The relative frequency is equal to the frequency for an observed value of the data divided by the total number of data values in the sample. (Remember, frequency is defined as the number of times an answer occurs.) If:",
+            "To construct a histogram** , first decide how many **bars** or **interv"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m02-l04",
+          "title": "2.3 Measures of the Location of the Data",
+          "type": "text",
+          "content_file": "content/module-02/lesson-04.md",
+          "practice_file": "practice/openstax-introductory-statistics-m02-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "The common measures of location are quartiles and percentiles",
+            "The median is a number that measures the \"c"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m02-l05",
+          "title": "2.4 Box Plots",
+          "type": "text",
+          "content_file": "content/module-02/lesson-05.md",
+          "practice_file": "practice/openstax-introductory-statistics-m02-l05.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "You may encounter box-and-whisker plots that have dots marking outlier values. In those cases, the whiskers are not extending to the minimum and maximum values",
+            "Consider, again, this dataset",
+            "The first quartile is two, the median is seven, and the third quartile is nine. The smallest value is one, and the largest value is 11.5. The following image shows the constructed box plot"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m02-l06",
+          "title": "2.5 Measures of the Center of the Data",
+          "type": "text",
+          "content_file": "content/module-02/lesson-06.md",
+          "practice_file": "practice/openstax-introductory-statistics-m02-l06.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "The Greek letter _μ_ (pronounced \"mew\") represents the **population mean**. One of the requirements for the **sample mean** to be a good estimate of the **population mean** is for the sample taken to be truly random"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m02-l07",
+          "title": "2.6 Skewness and the Mean, Median, and Mode",
+          "type": "text",
+          "content_file": "content/module-02/lesson-07.md",
+          "practice_file": "practice/openstax-introductory-statistics-m02-l07.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Consider the following data set",
+            "This data set can be represented by following histogram. Each interval has width one, and each value is located in the middle of an interval"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m02-l08",
+          "title": "2.7 Measures of the Spread of the Data",
+          "type": "text",
+          "content_file": "content/module-02/lesson-08.md",
+          "practice_file": "practice/openstax-introductory-statistics-m02-l08.json",
+          "estimated_minutes": 26,
+          "objectives": [
+            "Because supermarket _B_ has a higher standard deviation, we know that there is more variation in the wait times at supermarket"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m02-l09",
+          "title": "2.8 Descriptive Statistics",
+          "type": "text",
+          "content_file": "content/module-02/lesson-09.md",
+          "practice_file": "practice/openstax-introductory-statistics-m02-l09.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Student Learning Outcomes",
+            "The student will construct a histogram and a box plot",
+            "The student will calculate univariate statistics",
+            "The student will examine the graphs to interpret what the data implies",
+            "Collect the Data Record the number of pairs of shoes you own",
+            "Table  2.36 Survey Results"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m02-l10",
+          "title": "Formula Review",
+          "type": "text",
+          "content_file": "content/module-02/lesson-10.md",
+          "practice_file": "practice/openstax-introductory-statistics-m02-l10.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Expression for finding the percentile of a data value:  ( x \\+ 0.5y n ) ( x \\+ 0.5y n ) (100)"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m02-l11",
+          "title": "Practice",
+          "type": "text",
+          "content_file": "content/module-02/lesson-11.md",
+          "practice_file": "practice/openstax-introductory-statistics-m02-l11.json",
+          "estimated_minutes": 21,
+          "objectives": [
+            "The miles per gallon rating for 30 cars are shown below (lowest to highest)",
+            "The height in feet of 25 trees is shown below (lowest to highest)",
+            "The data are the prices of different laptops at an electronics store. Round each value to the nearest ten",
+            "The data are daily high temperatures in a town for one month",
+            "In a survey, 40 people were asked how many times they visited a store before making a major purchase. The results are shown in [Table 2.37](<2-practice#M01_Ch02_tbl018>)",
+            "Number of times in store| Frequency"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m02-l12",
+          "title": "Homework",
+          "type": "text",
+          "content_file": "content/module-02/lesson-12.md",
+          "practice_file": "practice/openstax-introductory-statistics-m02-l12.json",
+          "estimated_minutes": 22,
+          "objectives": [
+            "Student grades on a chemistry exam were: 77, 78, 76, 81, 86, 51, 79, 82, 84, 99",
+            "State | Percent (%) | State | Percent (%) | State | Percent (%)",
+            "Alabama | 32.2 | Kentucky | 31.3 | North Dakota | 27.2",
+            "Alaska | 24.5 | Louisiana | 31.0 | Ohio | 29.2",
+            "Arizona | 24.3 | Maine | 26.8 | Oklahoma | 30.4",
+            "Arkansas | 30.1 | Maryland | 27.1 | Oregon | 26.8"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m02-l13",
+          "title": "Bringing It Together: Homework",
+          "type": "text",
+          "content_file": "content/module-02/lesson-13.md",
+          "practice_file": "practice/openstax-introductory-statistics-m02-l13.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Santa Clara County, CA, has approximately 27,873 Japanese-Americans. Their ages are as follows:",
+            "Age Group | Percent of Community"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m02-l14",
+          "title": "References",
+          "type": "text",
+          "content_file": "content/module-02/lesson-14.md",
+          "practice_file": "practice/openstax-introductory-statistics-m02-l14.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Burbary, Ken. _Facebook Demographics Revisited – 2001 Statistics,_ 2011\\. Available online at <http://www.kenburbary.com/2011/03/facebook-demographics-revisited-2011-statistics-2/> (accessed August 21, 2013)",
+            "Data on annual homicides in Detroit, 1961–73, from Gunst & Mason’s book ‘Regression Analysis and its Application’, Marcel Dekker"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m02-l15",
+          "title": "Solutions",
+          "type": "text",
+          "content_file": "content/module-02/lesson-15.md",
+          "practice_file": "practice/openstax-introductory-statistics-m02-l15.json",
+          "estimated_minutes": 18,
+          "objectives": [],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openstax-introductory-statistics-m03",
+      "title": "Chapter 3: Chapter Objectives",
+      "competencies": [
+        "Statistics",
+        "Data Science",
+        "Probability"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-introductory-statistics-m03-l01",
+          "title": "Chapter Objectives",
+          "type": "text",
+          "content_file": "content/module-03/lesson-01.md",
+          "practice_file": "practice/openstax-introductory-statistics-m03-l01.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this chapter, the student should be able to:"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m03-l02",
+          "title": "3.1 Terminology",
+          "type": "text",
+          "content_file": "content/module-03/lesson-02.md",
+          "practice_file": "practice/openstax-introductory-statistics-m03-l02.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m03-l03",
+          "title": "3.2 Independent and Mutually Exclusive Events",
+          "type": "text",
+          "content_file": "content/module-03/lesson-03.md",
+          "practice_file": "practice/openstax-introductory-statistics-m03-l03.json",
+          "estimated_minutes": 21,
+          "objectives": [
+            "Independent and mutually exclusive do **not** mean the same thing",
+            "Two events are independent if the following are true:",
+            "Sampling may be done **with** replacement or **without replacement**",
+            "If it is not known whether _A_ and _B_ are indepen"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m03-l04",
+          "title": "3.3 Two Basic Rules of Probability",
+          "type": "text",
+          "content_file": "content/module-03/lesson-04.md",
+          "practice_file": "practice/openstax-introductory-statistics-m03-l04.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "When calculating probability, there are two rules to consider when determining if two events are independent or dependent and if they are mutually exclusive or not",
+            "If _A_ and _B_ are two events defined on a sample space, then: _P_(_A_ AND _B_) = _P_(_B_)_P_(_A_ |_B_)",
+            "This rule may also be written as: _P_(_A_ |_B_) =  P(A AND B) P(B) P(A AND B) P(B)",
+            "If _A_ and _B_ are independent, then _P_(_A_ |_B_) = _P_(_A_). Then _P_(_A_ AND _B_) = _P_(_A_ |_B_)_P_(_B_) becomes _P_(_A_ AND _B_) = _P_(_A_)_P_(_B_)",
+            "If _A_ and _B_ are defined on a sample space, then: _P_(_A_ OR _B_) = _P_(_A_) + _P_(_B_) - _P_(_A_ AND _B_)",
+            "If _A_ and _B_ are mutually exclusive, then _P_(_A_ AND _B_) = 0. Then _P_(_A_ OR _B_) = _P_(_A_) + _P_(_B_) - _P_(_A_ AND _B_) becomes _P_(_A_ OR _B_) = _P_(_A_) + _P_(_B_)"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m03-l05",
+          "title": "3.4 Contingency Tables",
+          "type": "text",
+          "content_file": "content/module-03/lesson-05.md",
+          "practice_file": "practice/openstax-introductory-statistics-m03-l05.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Suppose a study of speeding violations and drivers who use cell phones produced the following fictional data:",
+            "Uses cell phone while driving | 25 | 280 | 305",
+            "Does not use cell phone while driving | 45 | 405 | 450",
+            "Total | 70 | 685 | 755",
+            "The total number of people in the sample is 755. The row totals are 305 and 450. The column totals are 70 and 685. Notice that 305 + 450 = 755 and 70 + 685 = 755",
+            "Calculate the following probabilities using the table"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-introductory-statistics-m03-l06",
+          "title": "3.5 Tree and Venn Diagrams",
+          "type": "text",
+          "content_file": "content/module-03/lesson-06.md",
+          "practice_file": "practice/openstax-introductory-statistics-m03-l06.json",
+          "estimated_minutes": 17,
+          "objectives": [
+            "Sometimes, when the probability problems are complex, it can be helpful to graph the situation. Tree diagrams and Venn diagrams are two tools that can be used to visualize and solve conditional probabilities",
+            "The first set of branches represents the first draw. The second set of branches represents the second draw. Each of the outcomes is distinct. In fact, we c"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "descriptive statistics",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "module_id": "openstax-biology-m05",
+  "questions": [
+    {
+      "question_id": "openstax-biology-m05-l01-q01",
+      "question": "According to the source lesson 'Chapter Outline', which statement is most accurate?",
+      "options": [
+        "![This photo shows the hustle and bustle of Grand Central Station.](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/c33d01251b06d2f8e2beed647f35321a6f2915a9) Figure 5.1 Despite its seeming hustle and bustle, Grand Central S",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m05-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Chapter Outline'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Chapter Outline.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m05-l01-q03",
+      "question": "When applying concepts from 'Chapter Outline', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m05-l02-q01",
+      "question": "According to the source lesson '5.1 Components and Structure', which statement is most accurate?",
+      "options": [
+        "## 5.1 Components and Structure ### Learning Objectives By the end of this section, you will be able to: * Understand the fluid mosaic model of cell membranes * Describe the functions of phospholipids, proteins, and carbohydrates in membran",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m05-l02-q02",
+      "question": "What is a reasonable learning takeaway from '5.1 Components and Structure'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 5.1 Components and Structure.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m05-l02-q03",
+      "question": "When applying concepts from '5.1 Components and Structure', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m05-l03-q01",
+      "question": "According to the source lesson '5.2 Passive Transport', which statement is most accurate?",
+      "options": [
+        "## 5.2 Passive Transport ### Learning Objectives By the end of this section, you will be able to: * Explain why and how passive transport occurs * Understand the processes of osmosis and diffusion * Define tonicity and describe its relevanc",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m05-l03-q02",
+      "question": "What is a reasonable learning takeaway from '5.2 Passive Transport'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 5.2 Passive Transport.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m05-l03-q03",
+      "question": "When applying concepts from '5.2 Passive Transport', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m05-l04-q01",
+      "question": "According to the source lesson '5.3 Active Transport', which statement is most accurate?",
+      "options": [
+        "## 5.3 Active Transport ### Learning Objectives By the end of this section, you will be able to: * Understand how electrochemical gradients affect ions * Distinguish between primary active transport and secondary active transport Active tra",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m05-l04-q02",
+      "question": "What is a reasonable learning takeaway from '5.3 Active Transport'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 5.3 Active Transport.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m05-l04-q03",
+      "question": "When applying concepts from '5.3 Active Transport', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

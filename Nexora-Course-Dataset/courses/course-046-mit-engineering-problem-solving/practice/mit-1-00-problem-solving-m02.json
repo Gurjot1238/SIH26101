@@ -1,0 +1,197 @@
+{
+  "module_id": "mit-1-00-problem-solving-m02",
+  "questions": [
+    {
+      "question_id": "mit-1-00-problem-solving-m02-l01-q01",
+      "question": "According to the source lesson '5d0d1cc6110d63ae6491835d50cbb7a7 MIT1 00S12 Lec 16', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 5d0d1cc6110d63ae6491835d50cbb7a7_MIT1_00S12_Lec_16.pdf from 1.00 Introduction to Computers and Engineering Problem Solving.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Programming Fundamentals",
+      "topic": "Java",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-1-00-problem-solving-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from '5d0d1cc6110d63ae6491835d50cbb7a7 MIT1 00S12 Lec 16'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 5d0d1cc6110d63ae6491835d50cbb7a7 MIT1 00S12 Lec 16.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Programming Fundamentals",
+      "topic": "Java",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-1-00-problem-solving-m02-l01-q03",
+      "question": "When applying concepts from '5d0d1cc6110d63ae6491835d50cbb7a7 MIT1 00S12 Lec 16', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Programming Fundamentals",
+      "topic": "Java",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-1-00-problem-solving-m02-l02-q01",
+      "question": "According to the source lesson '5c7ac64e4599de6f0dc1b1082e5bf58a MIT1 00S12 Lec 22', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 5c7ac64e4599de6f0dc1b1082e5bf58a_MIT1_00S12_Lec_22.pdf from 1.00 Introduction to Computers and Engineering Problem Solving.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Programming Fundamentals",
+      "topic": "Java",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-1-00-problem-solving-m02-l02-q02",
+      "question": "What is a reasonable learning takeaway from '5c7ac64e4599de6f0dc1b1082e5bf58a MIT1 00S12 Lec 22'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 5c7ac64e4599de6f0dc1b1082e5bf58a MIT1 00S12 Lec 22.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Programming Fundamentals",
+      "topic": "Java",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-1-00-problem-solving-m02-l02-q03",
+      "question": "When applying concepts from '5c7ac64e4599de6f0dc1b1082e5bf58a MIT1 00S12 Lec 22', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Programming Fundamentals",
+      "topic": "Java",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-1-00-problem-solving-m02-l03-q01",
+      "question": "According to the source lesson '0f29b7c86bd518742650ff0ddcc2decd MIT1 00S12 Lec 27', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 0f29b7c86bd518742650ff0ddcc2decd_MIT1_00S12_Lec_27.pdf from 1.00 Introduction to Computers and Engineering Problem Solving.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Programming Fundamentals",
+      "topic": "Java",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-1-00-problem-solving-m02-l03-q02",
+      "question": "What is a reasonable learning takeaway from '0f29b7c86bd518742650ff0ddcc2decd MIT1 00S12 Lec 27'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 0f29b7c86bd518742650ff0ddcc2decd MIT1 00S12 Lec 27.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Programming Fundamentals",
+      "topic": "Java",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-1-00-problem-solving-m02-l03-q03",
+      "question": "When applying concepts from '0f29b7c86bd518742650ff0ddcc2decd MIT1 00S12 Lec 27', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Programming Fundamentals",
+      "topic": "Java",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-1-00-problem-solving-m02-l04-q01",
+      "question": "According to the source lesson 'c180189647d5d99c2a2120c61c263aa3 MIT1 00S12 Lec 14', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource c180189647d5d99c2a2120c61c263aa3_MIT1_00S12_Lec_14.pdf from 1.00 Introduction to Computers and Engineering Problem Solving.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Programming Fundamentals",
+      "topic": "Java",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-1-00-problem-solving-m02-l04-q02",
+      "question": "What is a reasonable learning takeaway from 'c180189647d5d99c2a2120c61c263aa3 MIT1 00S12 Lec 14'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in c180189647d5d99c2a2120c61c263aa3 MIT1 00S12 Lec 14.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Programming Fundamentals",
+      "topic": "Java",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-1-00-problem-solving-m02-l04-q03",
+      "question": "When applying concepts from 'c180189647d5d99c2a2120c61c263aa3 MIT1 00S12 Lec 14', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Programming Fundamentals",
+      "topic": "Java",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

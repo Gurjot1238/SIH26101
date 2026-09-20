@@ -1,0 +1,16 @@
+{
+  "course_id": "openstax-statistics",
+  "provider": "OpenStax / Rice University",
+  "source_url": "https://openstax.org/books/statistics/pages/1-introduction",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "date_collected": "2026-09-20",
+  "reuse_permissions": "CC BY 4.0 permits copy, redistribute, remix with attribution.",
+  "changes_made": [
+    "Downloaded OpenStax section HTML and converted to Markdown",
+    "Grouped numbered chapters as modules",
+    "Omitted key-terms and end-of-chapter review pages",
+    "Added Nexora-generated practice questions grounded in section text"
+  ],
+  "notes": "Do not use the OpenStax name or logo to imply endorsement."
+}

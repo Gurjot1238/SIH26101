@@ -1,0 +1,392 @@
+{
+  "course_id": "mit-3-091-ssc",
+  "title": "3.091 Introduction to Solid State Chemistry",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Materials Science",
+  "level": "Beginner",
+  "description": "MIT OpenCourseWare 3.091 Introduction to Solid State Chemistry (Fall 2018). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Materials Science",
+    "Chemistry",
+    "Engineering Fundamentals"
+  ],
+  "topics": [
+    "bonding",
+    "crystals",
+    "polymers",
+    "metals"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/3-091-introduction-to-solid-state-chemistry-fall-2018/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Fall 2018",
+  "duration": {
+    "estimated_hours": 10.9,
+    "estimated_minutes": 653
+  },
+  "totals": {
+    "modules": 4,
+    "lessons": 16,
+    "practice_questions": 48
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-3-091-ssc-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Materials Science",
+        "Chemistry",
+        "Engineering Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-3-091-ssc-m01-l01",
+          "title": "afc24b897bba2b2ae32ec31497822f08 MIT3 091F18 GB1",
+          "type": "pdf",
+          "content_file": "content/module-01/afc24b897bba2b2ae32ec31497822f08_MIT3_091F18_GB1.pdf",
+          "practice_file": "practice/mit-3-091-ssc-m01-l01.json",
+          "estimated_minutes": 31,
+          "objectives": [],
+          "competencies": [
+            "Materials Science",
+            "Chemistry"
+          ],
+          "topics": [
+            "bonding",
+            "crystals",
+            "polymers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-3-091-ssc-m01-l02",
+          "title": "564bde8b98c0c96252beb607969967c2 MIT3 091F18 GB2",
+          "type": "pdf",
+          "content_file": "content/module-01/564bde8b98c0c96252beb607969967c2_MIT3_091F18_GB2.pdf",
+          "practice_file": "practice/mit-3-091-ssc-m01-l02.json",
+          "estimated_minutes": 27,
+          "objectives": [],
+          "competencies": [
+            "Materials Science",
+            "Chemistry"
+          ],
+          "topics": [
+            "bonding",
+            "crystals",
+            "polymers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-3-091-ssc-m01-l03",
+          "title": "2156071183f8c94a93de0838b8c12ddb MIT3 091F18 GB3",
+          "type": "pdf",
+          "content_file": "content/module-01/2156071183f8c94a93de0838b8c12ddb_MIT3_091F18_GB3.pdf",
+          "practice_file": "practice/mit-3-091-ssc-m01-l03.json",
+          "estimated_minutes": 40,
+          "objectives": [],
+          "competencies": [
+            "Materials Science",
+            "Chemistry"
+          ],
+          "topics": [
+            "bonding",
+            "crystals",
+            "polymers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-3-091-ssc-m01-l04",
+          "title": "7910f6d34595629aff617079c690bae9 MIT3 091F18 GB4",
+          "type": "pdf",
+          "content_file": "content/module-01/7910f6d34595629aff617079c690bae9_MIT3_091F18_GB4.pdf",
+          "practice_file": "practice/mit-3-091-ssc-m01-l04.json",
+          "estimated_minutes": 28,
+          "objectives": [],
+          "competencies": [
+            "Materials Science",
+            "Chemistry"
+          ],
+          "topics": [
+            "bonding",
+            "crystals",
+            "polymers"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-3-091-ssc-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Materials Science",
+        "Chemistry",
+        "Engineering Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-3-091-ssc-m02-l01",
+          "title": "517dc2d87c496e11cd209def68aed96a MIT3 091F18 GB5",
+          "type": "pdf",
+          "content_file": "content/module-02/517dc2d87c496e11cd209def68aed96a_MIT3_091F18_GB5.pdf",
+          "practice_file": "practice/mit-3-091-ssc-m02-l01.json",
+          "estimated_minutes": 32,
+          "objectives": [],
+          "competencies": [
+            "Materials Science",
+            "Chemistry"
+          ],
+          "topics": [
+            "bonding",
+            "crystals",
+            "polymers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-3-091-ssc-m02-l02",
+          "title": "717378f1643ea23915639efc0bf0a40b MIT3 091F18 GB6",
+          "type": "pdf",
+          "content_file": "content/module-02/717378f1643ea23915639efc0bf0a40b_MIT3_091F18_GB6.pdf",
+          "practice_file": "practice/mit-3-091-ssc-m02-l02.json",
+          "estimated_minutes": 48,
+          "objectives": [],
+          "competencies": [
+            "Materials Science",
+            "Chemistry"
+          ],
+          "topics": [
+            "bonding",
+            "crystals",
+            "polymers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-3-091-ssc-m02-l03",
+          "title": "0b96d759a9e98ced8c3611f19dc742d0 MIT3 091F18 GB7",
+          "type": "pdf",
+          "content_file": "content/module-02/0b96d759a9e98ced8c3611f19dc742d0_MIT3_091F18_GB7.pdf",
+          "practice_file": "practice/mit-3-091-ssc-m02-l03.json",
+          "estimated_minutes": 55,
+          "objectives": [],
+          "competencies": [
+            "Materials Science",
+            "Chemistry"
+          ],
+          "topics": [
+            "bonding",
+            "crystals",
+            "polymers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-3-091-ssc-m02-l04",
+          "title": "cf1f7d36d4409c9e18bbee542fa37945 MIT3 091F18 GB8",
+          "type": "pdf",
+          "content_file": "content/module-02/cf1f7d36d4409c9e18bbee542fa37945_MIT3_091F18_GB8.pdf",
+          "practice_file": "practice/mit-3-091-ssc-m02-l04.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Materials Science",
+            "Chemistry"
+          ],
+          "topics": [
+            "bonding",
+            "crystals",
+            "polymers"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-3-091-ssc-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Materials Science",
+        "Chemistry",
+        "Engineering Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-3-091-ssc-m03-l01",
+          "title": "db9f67c1d435da00b081d5abf6530e36 MIT3 091F18 GB9",
+          "type": "pdf",
+          "content_file": "content/module-03/db9f67c1d435da00b081d5abf6530e36_MIT3_091F18_GB9.pdf",
+          "practice_file": "practice/mit-3-091-ssc-m03-l01.json",
+          "estimated_minutes": 33,
+          "objectives": [],
+          "competencies": [
+            "Materials Science",
+            "Chemistry"
+          ],
+          "topics": [
+            "bonding",
+            "crystals",
+            "polymers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-3-091-ssc-m03-l02",
+          "title": "4cbf6f994e34b9cbe2630348a59a6cba MIT3 091F18 Exam1",
+          "type": "pdf",
+          "content_file": "content/module-03/4cbf6f994e34b9cbe2630348a59a6cba_MIT3_091F18_Exam1.pdf",
+          "practice_file": "practice/mit-3-091-ssc-m03-l02.json",
+          "estimated_minutes": 26,
+          "objectives": [],
+          "competencies": [
+            "Materials Science",
+            "Chemistry"
+          ],
+          "topics": [
+            "bonding",
+            "crystals",
+            "polymers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-3-091-ssc-m03-l03",
+          "title": "a97e7a968219f50d55d0e8531852e6bf MIT3 091F18 Q01",
+          "type": "pdf",
+          "content_file": "content/module-03/a97e7a968219f50d55d0e8531852e6bf_MIT3_091F18_Q01.pdf",
+          "practice_file": "practice/mit-3-091-ssc-m03-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Materials Science",
+            "Chemistry"
+          ],
+          "topics": [
+            "bonding",
+            "crystals",
+            "polymers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-3-091-ssc-m03-l04",
+          "title": "7af19f3c847cfbb5c9ef79325bf4cfb5 MIT3 091F18 Q02",
+          "type": "pdf",
+          "content_file": "content/module-03/7af19f3c847cfbb5c9ef79325bf4cfb5_MIT3_091F18_Q02.pdf",
+          "practice_file": "practice/mit-3-091-ssc-m03-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Materials Science",
+            "Chemistry"
+          ],
+          "topics": [
+            "bonding",
+            "crystals",
+            "polymers"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-3-091-ssc-m04",
+      "title": "Module 4",
+      "competencies": [
+        "Materials Science",
+        "Chemistry",
+        "Engineering Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-3-091-ssc-m04-l01",
+          "title": "f1ea41b638b861b0bbfef4b9135d0b10 MIT3 091F18 Exam2",
+          "type": "pdf",
+          "content_file": "content/module-04/f1ea41b638b861b0bbfef4b9135d0b10_MIT3_091F18_Exam2.pdf",
+          "practice_file": "practice/mit-3-091-ssc-m04-l01.json",
+          "estimated_minutes": 36,
+          "objectives": [],
+          "competencies": [
+            "Materials Science",
+            "Chemistry"
+          ],
+          "topics": [
+            "bonding",
+            "crystals",
+            "polymers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-3-091-ssc-m04-l02",
+          "title": "122daa2de21eb75279c410b6ebff876a MIT3 091F18 Exam3",
+          "type": "pdf",
+          "content_file": "content/module-04/122daa2de21eb75279c410b6ebff876a_MIT3_091F18_Exam3.pdf",
+          "practice_file": "practice/mit-3-091-ssc-m04-l02.json",
+          "estimated_minutes": 77,
+          "objectives": [],
+          "competencies": [
+            "Materials Science",
+            "Chemistry"
+          ],
+          "topics": [
+            "bonding",
+            "crystals",
+            "polymers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-3-091-ssc-m04-l03",
+          "title": "b31b4596f5c2458c69047aeecd92a875 MIT3 091F18 Final",
+          "type": "pdf",
+          "content_file": "content/module-04/b31b4596f5c2458c69047aeecd92a875_MIT3_091F18_Final.pdf",
+          "practice_file": "practice/mit-3-091-ssc-m04-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Materials Science",
+            "Chemistry"
+          ],
+          "topics": [
+            "bonding",
+            "crystals",
+            "polymers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-3-091-ssc-m04-l04",
+          "title": "ab0f0813d6cd633af1e09b49f26d0942 MIT3 091F18 Q03",
+          "type": "pdf",
+          "content_file": "content/module-04/ab0f0813d6cd633af1e09b49f26d0942_MIT3_091F18_Q03.pdf",
+          "practice_file": "practice/mit-3-091-ssc-m04-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Materials Science",
+            "Chemistry"
+          ],
+          "topics": [
+            "bonding",
+            "crystals",
+            "polymers"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

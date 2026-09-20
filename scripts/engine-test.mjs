@@ -28,6 +28,7 @@ const recommendations = await import(`${OUT}/lib/recommendations.js`);
 const courseLib = await import(`${OUT}/lib/courses.js`);
 const taxonomy = await import(`${OUT}/lib/topics.js`);
 const assessment = await import(`${OUT}/lib/assessment.js`);
+const markdown = await import(`${OUT}/lib/markdown.js`);
 console.warn = realWarn;
 
 /**
@@ -1656,6 +1657,81 @@ check('the dates on screen are the dates in the data', () => {
   if (insights.longDate(null) !== '') return 'a missing date printed something';
   if (insights.shortDate('not a date') !== '') return 'an unparseable date printed something';
 });
+section('lesson markdown parser (the in-app reader depends on this)');
+
+/** Find the first block of a given type in a parsed tree. */
+const firstBlock = (blocks, type) => blocks.find((b) => b.type === type);
+/** Flatten an inline tree back to its visible text, so a check can assert on content. */
+const inlineText = (nodes) => nodes.map((n) => {
+  if (n.type === 'text' || n.type === 'code') return n.value;
+  if (n.type === 'image') return `[image:${n.alt}]`;
+  return inlineText(n.children ?? []);
+}).join('');
+
+check('an ATX heading parses to a heading block with its level', () => {
+  const blocks = markdown.parseMarkdown('# Title\n\nSome text.');
+  const heading = firstBlock(blocks, 'heading');
+  if (!heading) return 'no heading block was produced';
+  if (heading.level !== 1) return `level was ${heading.level}, not 1`;
+  if (inlineText(heading.children) !== 'Title') return `heading text was "${inlineText(heading.children)}"`;
+  const para = firstBlock(blocks, 'paragraph');
+  if (!para || inlineText(para.children) !== 'Some text.') return 'the paragraph after the heading was lost';
+});
+
+check('bold, italic and inline code parse to their own nodes', () => {
+  const nodes = markdown.parseInline('Use **bold**, *em* and `code` here.');
+  const types = nodes.map((n) => n.type);
+  if (!types.includes('strong')) return 'no strong node';
+  if (!types.includes('em')) return 'no em node';
+  if (!types.includes('code')) return 'no code node';
+  const code = nodes.find((n) => n.type === 'code');
+  if (code.value !== 'code') return `code node held "${code.value}"`;
+});
+
+check('a link keeps its href and its visible text', () => {
+  const nodes = markdown.parseInline('See [the source](https://example.org/page).');
+  const link = nodes.find((n) => n.type === 'link');
+  if (!link) return 'no link node was produced';
+  if (link.href !== 'https://example.org/page') return `href was "${link.href}"`;
+  if (inlineText(link.children) !== 'the source') return `link text was "${inlineText(link.children)}"`;
+});
+
+check('an image becomes a caption node, never an <img> src', () => {
+  const nodes = markdown.parseInline('![a figure](https://dead.cdn/x.png)');
+  const image = nodes.find((n) => n.type === 'image');
+  if (!image) return 'no image node';
+  if ('src' in image) return 'the image node carried a src the reader could render as a broken img';
+  if (image.alt !== 'a figure') return `alt was "${image.alt}"`;
+});
+
+check('ordered and unordered lists parse with all their items', () => {
+  const ul = firstBlock(markdown.parseMarkdown('- one\n- two\n- three'), 'list');
+  if (!ul || ul.ordered) return 'unordered list did not parse as an unordered list';
+  if (ul.items.length !== 3) return `unordered list had ${ul.items.length} items`;
+  const ol = firstBlock(markdown.parseMarkdown('1. first\n2. second'), 'list');
+  if (!ol || !ol.ordered) return 'ordered list did not parse as an ordered list';
+  if (ol.items.length !== 2) return `ordered list had ${ol.items.length} items`;
+});
+
+check('a fenced code block is kept verbatim, not inline-parsed', () => {
+  const blocks = markdown.parseMarkdown('```\nx = **not bold**\n```');
+  const code = firstBlock(blocks, 'code');
+  if (!code) return 'no code block';
+  if (code.value !== 'x = **not bold**') return `code held "${code.value}"`;
+});
+
+check('an unmatched marker degrades to text instead of eating the line', () => {
+  const nodes = markdown.parseInline('2 * 3 = 6 and nothing closes');
+  const text = inlineText(nodes);
+  if (text !== '2 * 3 = 6 and nothing closes') return `the line came back as "${text}"`;
+});
+
+check('empty and junk input never throw and never drop to nothing', () => {
+  if (markdown.parseMarkdown('').length !== 0) return 'empty string did not parse to an empty tree';
+  const blocks = markdown.parseMarkdown('just a bare line with no markup at all');
+  if (!firstBlock(blocks, 'paragraph')) return 'a plain line did not become a paragraph';
+});
+
 if (failed > 0) {
   console.log('  Failures:');
   for (const failure of failures) console.log(`    - ${failure}`);

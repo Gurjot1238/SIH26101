@@ -1,0 +1,18 @@
+# 3.11 Macrolides
+
+> Source: Nursing Pharmacology. Wisconsin Technical College System / Open RN.
+> Official URL: https://wtcs.pressbooks.pub/pharmacology/
+> License: CC BY 4.0
+> Reused without endorsement. Original copyright notices retained.
+
+Macrolides are complex antibacterial broad-spectrum medications that are effective against both gram-positive and gram-negative bacteria. **Mechanism of Action:** Macrolides inhibit RNA protein synthesis and suppress reproduction of the bacteria. Macrolides are bacteriostatic as they do not actually kill bacteria, but inhibit additional growth and allow the body's immune system to kill the offending bacteria.[1] **Indications:** Macrolides are often used for respiratory infections, otitis media, pelvic inflammatory infections, and Chlamydia. **Specific Administration Considerations:** Macrolides can have significant impact on liver function and should be used cautiously in patients with liver disease or impairment. **Patient Teaching & Education:** GI upset is common and patients can be advised to take medication with food. Patients should also be advised to avoid excessive sunlight and to wear protective clothing and use sunscreen when outside, as well as to report any adverse reactions immediately. Advise patients to report symptoms of chest pain, palpitations, or yellowing of eyes or skin. Additionally, patients should be advised that these medications can cause drowsiness.[2] Now let's take a closer look at the medication grid for erythromycin and azithromycin in Table 3.11.[3] Table 3.11 Macrolides Medication Grid **Class/Subclass** |  **Prototype/Generic** |  **Administration Considerations** |  **Therapeutic Effects** |  **Side/Adverse Effects**  
+---|---|---|---|---  
+Macrolides | [erythromycin](<https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=16e754a6-f8e0-4ecf-8300-c55aebe73e33&audience=consumer>) [azithromycin](<https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8acce3c1-f4be-4968-a71f-3ffd9fbaa4a4&audience=consumer>) | Check for allergies PO: Reconstitute suspension with water. Can be given with or without food. Take with food if GI upset occurs IV: Reconstitute and shake until well dissolved. Dilute as instructed. Infuse a 500-mg dose of azithromycin IV over 1 hour or longer. Never give as a bolus or IM injection May prolong QT interval segment. Monitor for dysrhythmias | Monitor for systemic signs of infection: -WBCs -Fever Monitor actual site of infection | GI upset Hypersensitivity Photosensitivity Discontinue immediately if: -QT prolongation or dysrhythmias -Signs of liver damage or jaundice -Onset or worsening of myasthenia gravis  
+  **Critical Thinking Activity 3.11a** **Using the above grid information, consider the following clinical scenario question:** A nurse is administering azithromycin to a patient with an acute bacterial worsening of COPD. Today the patient's sclera appear yellow, which is a new finding. What is the nurse's next best response? Note: Answers to the Critical Thinking activities can be found in the "Answer Key" sections at the end of the book.
+
+* * *
+
+  1. This work is a derivative of [Microbiology](<https://cnx.org/contents/5CvTdmJL@7.1:rFziotaH@5/Introduction>) by [OpenStax](<https://openstax.org/>) licensed under [CC BY 4.0](<https://creativecommons.org/licenses/by/4.0/>). Access for free at <https://openstax.org/books/microbiology/pages/1-introduction> ↵
+  2. uCentral from Unbound Medicine. <https://www.unboundmedicine.com/ucentral> ↵
+  3. Daily Med, <https://dailymed.nlm.nih.gov/dailymed/index.cfm>, used for hyperlinked medications in this module. Retrieved June 28, 2019. ↵
+

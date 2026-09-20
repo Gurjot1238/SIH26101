@@ -1,0 +1,261 @@
+{
+  "course_id": "mit-6-01sc-eecs",
+  "questions": [
+    {
+      "question_id": "mit-6-01sc-eecs-m01-l01-q01",
+      "question": "According to the source lesson '71fa1d5eca0302926b8805ca19b0678e MIT6 01SCS11 final F09 sol', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 71fa1d5eca0302926b8805ca19b0678e_MIT6_01SCS11_final_F09_sol.pdf from 6.01SC Introduction to Electrical Engineering and Computer Science I.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "Python",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-01sc-eecs-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from '71fa1d5eca0302926b8805ca19b0678e MIT6 01SCS11 final F09 sol'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 71fa1d5eca0302926b8805ca19b0678e MIT6 01SCS11 final F09 sol.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "Python",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-01sc-eecs-m01-l01-q03",
+      "question": "When applying concepts from '71fa1d5eca0302926b8805ca19b0678e MIT6 01SCS11 final F09 sol', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "Python",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-01sc-eecs-m01-l02-q01",
+      "question": "According to the source lesson 'b24855ae002756667941f91464e487b9 MIT6 01SCS11 final F10 sol', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource b24855ae002756667941f91464e487b9_MIT6_01SCS11_final_F10_sol.pdf from 6.01SC Introduction to Electrical Engineering and Computer Science I.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "Python",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-01sc-eecs-m02-l01-q01",
+      "question": "According to the source lesson 'd4e866df24474de69e2f6e0ed5f1dc4b MIT6 01SCS11 final S11 sol', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource d4e866df24474de69e2f6e0ed5f1dc4b_MIT6_01SCS11_final_S11_sol.pdf from 6.01SC Introduction to Electrical Engineering and Computer Science I.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "Python",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-01sc-eecs-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'd4e866df24474de69e2f6e0ed5f1dc4b MIT6 01SCS11 final S11 sol'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in d4e866df24474de69e2f6e0ed5f1dc4b MIT6 01SCS11 final S11 sol.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "Python",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-01sc-eecs-m02-l01-q03",
+      "question": "When applying concepts from 'd4e866df24474de69e2f6e0ed5f1dc4b MIT6 01SCS11 final S11 sol', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "Python",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-01sc-eecs-m02-l02-q01",
+      "question": "According to the source lesson '9c1e8568c5a6c60d4a5f81aa96d7d421 MIT6 01SCS11 mid01 F09 sol', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 9c1e8568c5a6c60d4a5f81aa96d7d421_MIT6_01SCS11_mid01_F09_sol.pdf from 6.01SC Introduction to Electrical Engineering and Computer Science I.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "Python",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-01sc-eecs-m03-l01-q01",
+      "question": "According to the source lesson '976e11ed2fa08bacf0a7587bfa037672 MIT6 01SCS11 mid01 S11 sol', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 976e11ed2fa08bacf0a7587bfa037672_MIT6_01SCS11_mid01_S11_sol.pdf from 6.01SC Introduction to Electrical Engineering and Computer Science I.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "Python",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-01sc-eecs-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from '976e11ed2fa08bacf0a7587bfa037672 MIT6 01SCS11 mid01 S11 sol'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 976e11ed2fa08bacf0a7587bfa037672 MIT6 01SCS11 mid01 S11 sol.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "Python",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-01sc-eecs-m03-l01-q03",
+      "question": "When applying concepts from '976e11ed2fa08bacf0a7587bfa037672 MIT6 01SCS11 mid01 S11 sol', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "Python",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-01sc-eecs-m03-l02-q01",
+      "question": "According to the source lesson 'cf18baa007f2c3cb2c67af27e15d074d MIT6 01SCS11 mid02 F10 sol', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource cf18baa007f2c3cb2c67af27e15d074d_MIT6_01SCS11_mid02_F10_sol.pdf from 6.01SC Introduction to Electrical Engineering and Computer Science I.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "Python",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-01sc-eecs-m04-l01-q01",
+      "question": "According to the source lesson '17352857b0a91e64e1ad0e03c8d0c82b MIT6 01SCS11 final S09', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 17352857b0a91e64e1ad0e03c8d0c82b_MIT6_01SCS11_final_S09.pdf from 6.01SC Introduction to Electrical Engineering and Computer Science I.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "Python",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-01sc-eecs-m04-l01-q02",
+      "question": "What is a reasonable learning takeaway from '17352857b0a91e64e1ad0e03c8d0c82b MIT6 01SCS11 final S09'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 17352857b0a91e64e1ad0e03c8d0c82b MIT6 01SCS11 final S09.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "Python",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-01sc-eecs-m04-l01-q03",
+      "question": "When applying concepts from '17352857b0a91e64e1ad0e03c8d0c82b MIT6 01SCS11 final S09', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "Python",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-01sc-eecs-m04-l02-q01",
+      "question": "According to the source lesson '1c438acf29eb5f4040cd69738217864d MIT6 01SCS11 final S10', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 1c438acf29eb5f4040cd69738217864d_MIT6_01SCS11_final_S10.pdf from 6.01SC Introduction to Electrical Engineering and Computer Science I.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "Python",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

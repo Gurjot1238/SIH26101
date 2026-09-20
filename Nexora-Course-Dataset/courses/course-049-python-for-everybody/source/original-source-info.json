@@ -1,0 +1,14 @@
+{
+  "course_id": "py4e-python-for-everybody",
+  "provider": "Charles R. Severance",
+  "source_url": "https://www.py4e.com/book.php",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "date_collected": "2026-09-20",
+  "reuse_permissions": "CC BY 4.0 permits copy and redistribution with attribution.",
+  "changes_made": [
+    "Downloaded HTML chapters from py4e.com/html3",
+    "Converted to Markdown lessons",
+    "Added Nexora-generated practice questions"
+  ]
+}

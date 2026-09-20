@@ -1,0 +1,229 @@
+{
+  "course_id": "mit-6-0002-data-science",
+  "title": "6.0002 Introduction to Computational Thinking and Data Science",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Data Science",
+  "level": "Beginner",
+  "description": "MIT OpenCourseWare 6.0002 Introduction to Computational Thinking and Data Science (Fall 2016). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Data Science",
+    "Python Programming",
+    "Computational Thinking"
+  ],
+  "topics": [
+    "simulation",
+    "optimization",
+    "machine learning intro",
+    "plotting"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Fall 2016",
+  "duration": {
+    "estimated_hours": 10.5,
+    "estimated_minutes": 631
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 8,
+    "practice_questions": 24
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-6-0002-data-science-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Data Science",
+        "Python Programming",
+        "Computational Thinking"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-0002-data-science-m01-l01",
+          "title": "0a353b26f1c6bd161b28b3f249aa05d1 MIT6 0002F16 lec1",
+          "type": "pdf",
+          "content_file": "content/module-01/0a353b26f1c6bd161b28b3f249aa05d1_MIT6_0002F16_lec1.pdf",
+          "practice_file": "practice/mit-6-0002-data-science-m01-l01.json",
+          "estimated_minutes": 78,
+          "objectives": [],
+          "competencies": [
+            "Data Science",
+            "Python Programming"
+          ],
+          "topics": [
+            "simulation",
+            "optimization",
+            "machine learning intro"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-0002-data-science-m01-l02",
+          "title": "3edc8db04a770f3da51086320c8fe4da MIT6 0002F16 lec2",
+          "type": "pdf",
+          "content_file": "content/module-01/3edc8db04a770f3da51086320c8fe4da_MIT6_0002F16_lec2.pdf",
+          "practice_file": "practice/mit-6-0002-data-science-m01-l02.json",
+          "estimated_minutes": 73,
+          "objectives": [],
+          "competencies": [
+            "Data Science",
+            "Python Programming"
+          ],
+          "topics": [
+            "simulation",
+            "optimization",
+            "machine learning intro"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-0002-data-science-m01-l03",
+          "title": "69b5b28067ecf1769a6143453d77eba1 MIT6 0002F16 lec3",
+          "type": "pdf",
+          "content_file": "content/module-01/69b5b28067ecf1769a6143453d77eba1_MIT6_0002F16_lec3.pdf",
+          "practice_file": "practice/mit-6-0002-data-science-m01-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Data Science",
+            "Python Programming"
+          ],
+          "topics": [
+            "simulation",
+            "optimization",
+            "machine learning intro"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-0002-data-science-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Data Science",
+        "Python Programming",
+        "Computational Thinking"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-0002-data-science-m02-l01",
+          "title": "5b4ec0ef29910b74e6a4bbd5ccf4dda5 MIT6 0002F16 lec4",
+          "type": "pdf",
+          "content_file": "content/module-02/5b4ec0ef29910b74e6a4bbd5ccf4dda5_MIT6_0002F16_lec4.pdf",
+          "practice_file": "practice/mit-6-0002-data-science-m02-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Data Science",
+            "Python Programming"
+          ],
+          "topics": [
+            "simulation",
+            "optimization",
+            "machine learning intro"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-0002-data-science-m02-l02",
+          "title": "508a9076aebfc7d597dde836255182c7 MIT6 0002F16 lec5",
+          "type": "pdf",
+          "content_file": "content/module-02/508a9076aebfc7d597dde836255182c7_MIT6_0002F16_lec5.pdf",
+          "practice_file": "practice/mit-6-0002-data-science-m02-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Data Science",
+            "Python Programming"
+          ],
+          "topics": [
+            "simulation",
+            "optimization",
+            "machine learning intro"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-0002-data-science-m02-l03",
+          "title": "5af20311b02eaab959fcdb7ffb5694d3 MIT6 0002F16 lec6",
+          "type": "pdf",
+          "content_file": "content/module-02/5af20311b02eaab959fcdb7ffb5694d3_MIT6_0002F16_lec6.pdf",
+          "practice_file": "practice/mit-6-0002-data-science-m02-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Data Science",
+            "Python Programming"
+          ],
+          "topics": [
+            "simulation",
+            "optimization",
+            "machine learning intro"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-0002-data-science-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Data Science",
+        "Python Programming",
+        "Computational Thinking"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-0002-data-science-m03-l01",
+          "title": "3d8b8210a6f919be25369d985b650abf MIT6 0002F16 lec7",
+          "type": "pdf",
+          "content_file": "content/module-03/3d8b8210a6f919be25369d985b650abf_MIT6_0002F16_lec7.pdf",
+          "practice_file": "practice/mit-6-0002-data-science-m03-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Data Science",
+            "Python Programming"
+          ],
+          "topics": [
+            "simulation",
+            "optimization",
+            "machine learning intro"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-0002-data-science-m03-l02",
+          "title": "02f2ed5e44be5415b2cba8175c924092 MIT6 0002F16 lec8",
+          "type": "pdf",
+          "content_file": "content/module-03/02f2ed5e44be5415b2cba8175c924092_MIT6_0002F16_lec8.pdf",
+          "practice_file": "practice/mit-6-0002-data-science-m03-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Data Science",
+            "Python Programming"
+          ],
+          "topics": [
+            "simulation",
+            "optimization",
+            "machine learning intro"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

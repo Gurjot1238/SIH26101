@@ -1,0 +1,197 @@
+{
+  "module_id": "mit-6-170-software-studio-m02",
+  "questions": [
+    {
+      "question_id": "mit-6-170-software-studio-m02-l01-q01",
+      "question": "According to the source lesson 'a2acea2dbfdf2cce822ab7253509eaa0 MIT6 170S13 58 anal ogn', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource a2acea2dbfdf2cce822ab7253509eaa0_MIT6_170S13_58-anal-ogn.pdf from 6.170 Software Studio.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Software Engineering",
+      "topic": "design",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-170-software-studio-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'a2acea2dbfdf2cce822ab7253509eaa0 MIT6 170S13 58 anal ogn'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in a2acea2dbfdf2cce822ab7253509eaa0 MIT6 170S13 58 anal ogn.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Software Engineering",
+      "topic": "design",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-170-software-studio-m02-l01-q03",
+      "question": "When applying concepts from 'a2acea2dbfdf2cce822ab7253509eaa0 MIT6 170S13 58 anal ogn', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Software Engineering",
+      "topic": "design",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-170-software-studio-m02-l02-q01",
+      "question": "According to the source lesson '5442e3fc42355088ec9b137f8afaf699 MIT6 170S13 56 sec rev', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 5442e3fc42355088ec9b137f8afaf699_MIT6_170S13_56-sec-rev.pdf from 6.170 Software Studio.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Software Engineering",
+      "topic": "design",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-170-software-studio-m02-l02-q02",
+      "question": "What is a reasonable learning takeaway from '5442e3fc42355088ec9b137f8afaf699 MIT6 170S13 56 sec rev'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 5442e3fc42355088ec9b137f8afaf699 MIT6 170S13 56 sec rev.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Software Engineering",
+      "topic": "design",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-170-software-studio-m02-l02-q03",
+      "question": "When applying concepts from '5442e3fc42355088ec9b137f8afaf699 MIT6 170S13 56 sec rev', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Software Engineering",
+      "topic": "design",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-170-software-studio-m02-l03-q01",
+      "question": "According to the source lesson 'fba964ce0817bed1cb666febfce5f26f MIT6 170S13 28 con design', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource fba964ce0817bed1cb666febfce5f26f_MIT6_170S13_28-con-design.pdf from 6.170 Software Studio.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Software Engineering",
+      "topic": "design",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-170-software-studio-m02-l03-q02",
+      "question": "What is a reasonable learning takeaway from 'fba964ce0817bed1cb666febfce5f26f MIT6 170S13 28 con design'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in fba964ce0817bed1cb666febfce5f26f MIT6 170S13 28 con design.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Software Engineering",
+      "topic": "design",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-170-software-studio-m02-l03-q03",
+      "question": "When applying concepts from 'fba964ce0817bed1cb666febfce5f26f MIT6 170S13 28 con design', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Software Engineering",
+      "topic": "design",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-170-software-studio-m02-l04-q01",
+      "question": "According to the source lesson 'baa905f1c077ffb1c8c2f2e03e4a5100 MIT6 170S13 27 con idntfyg', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource baa905f1c077ffb1c8c2f2e03e4a5100_MIT6_170S13_27-con-idntfyg.pdf from 6.170 Software Studio.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Software Engineering",
+      "topic": "design",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-170-software-studio-m02-l04-q02",
+      "question": "What is a reasonable learning takeaway from 'baa905f1c077ffb1c8c2f2e03e4a5100 MIT6 170S13 27 con idntfyg'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in baa905f1c077ffb1c8c2f2e03e4a5100 MIT6 170S13 27 con idntfyg.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Software Engineering",
+      "topic": "design",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-170-software-studio-m02-l04-q03",
+      "question": "When applying concepts from 'baa905f1c077ffb1c8c2f2e03e4a5100 MIT6 170S13 27 con idntfyg', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Software Engineering",
+      "topic": "design",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

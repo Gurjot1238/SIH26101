@@ -1,0 +1,197 @@
+{
+  "module_id": "wtcs-nursing-pharmacology-m04",
+  "questions": [
+    {
+      "question_id": "wtcs-nursing-pharmacology-m04-l01-q01",
+      "question": "According to the source lesson '3.1 Antimicrobials Introduction', which statement is most accurate?",
+      "options": [
+        "Learning Objectives * Identify the classifications and actions of antimicrobial medications * Give examples of when, how, and to whom antimicrobial drugs may be administered * Identify the side effects and special considerations associated ",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m04-l01-q02",
+      "question": "What is a reasonable learning takeaway from '3.1 Antimicrobials Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.1 Antimicrobials Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m04-l01-q03",
+      "question": "When applying concepts from '3.1 Antimicrobials Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m04-l02-q01",
+      "question": "According to the source lesson '3.2 Antimicrobial Basics', which statement is most accurate?",
+      "options": [
+        "Basic Concepts Related to Antimicrobial Therapy Before we learn about medications that are used to treat infections in our patients, we must first understand the basics of microbiology.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m04-l02-q02",
+      "question": "What is a reasonable learning takeaway from '3.2 Antimicrobial Basics'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.2 Antimicrobial Basics.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m04-l02-q03",
+      "question": "When applying concepts from '3.2 Antimicrobial Basics', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m04-l03-q01",
+      "question": "According to the source lesson '3.3 Administration Considerations', which statement is most accurate?",
+      "options": [
+        "The administration of antimicrobial drug therapy involves special considerations to ensure that the therapeutic drug effect is achieved while maintaining patient safety and minimizing complications.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m04-l03-q02",
+      "question": "What is a reasonable learning takeaway from '3.3 Administration Considerations'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.3 Administration Considerations.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m04-l03-q03",
+      "question": "When applying concepts from '3.3 Administration Considerations', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m04-l04-q01",
+      "question": "According to the source lesson '3.4 Nursing Process', which statement is most accurate?",
+      "options": [
+        "Now that we have reviewed antimicrobial basics and administration considerations, we will take a closer look at specific antimicrobial classes and administration considerations, therapeutic effects, adverse effects, and specific teaching ne",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m04-l04-q02",
+      "question": "What is a reasonable learning takeaway from '3.4 Nursing Process'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.4 Nursing Process.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m04-l04-q03",
+      "question": "When applying concepts from '3.4 Nursing Process', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

@@ -1,0 +1,659 @@
+{
+  "course_id": "wtcs-nursing-pharmacology",
+  "title": "Nursing Pharmacology",
+  "provider": "Wisconsin Technical College System / Open RN",
+  "category": "Medical / Healthcare",
+  "subcategory": "Pharmacology",
+  "level": "Intermediate",
+  "description": "Open textbook / course 'Nursing Pharmacology' from Wisconsin Technical College System / Open RN. Chapters were downloaded from the openly licensed Pressbooks edition.",
+  "competencies": [
+    "Pharmacology",
+    "Patient Safety",
+    "Nursing Fundamentals"
+  ],
+  "topics": [
+    "pharmacokinetics",
+    "drug classes",
+    "medication safety"
+  ],
+  "source": {
+    "name": "Wisconsin Technical College System / Open RN",
+    "official_url": "https://wtcs.pressbooks.pub/pharmacology/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 6.6,
+    "estimated_minutes": 397
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 28,
+    "practice_questions": 84
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "wtcs-nursing-pharmacology-m02",
+      "title": "Kinetics &amp; Dynamics",
+      "competencies": [
+        "Pharmacology",
+        "Patient Safety",
+        "Nursing Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m02-l01",
+          "title": "1.1 Pharmacology Basics Introduction",
+          "type": "text",
+          "content_file": "content/module-02/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m02-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Discuss the processes of pharmacokinetics",
+            "Use multiple professional resources including technology to identify pertinent information related to drugs",
+            "Describe the processes of pharmacodynamics",
+            "Consider pharmacodynamic differences across the lifespan",
+            "Differentiate among prescription drugs, over-the-counter drugs, herbals, and dietary supplements"
+          ],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m02-l02",
+          "title": "1.2 Pharmacokinetics",
+          "type": "text",
+          "content_file": "content/module-02/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m02-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m02-l03",
+          "title": "1.3 Absorption",
+          "type": "text",
+          "content_file": "content/module-02/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m02-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m02-l04",
+          "title": "1.4 Distribution",
+          "type": "text",
+          "content_file": "content/module-02/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m02-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "The blood stream carries medications to their destinations in the body. Many factors can"
+          ],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m02-l05",
+          "title": "1.5 Metabolism",
+          "type": "text",
+          "content_file": "content/module-02/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m02-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m02-l06",
+          "title": "1.6 Excretion",
+          "type": "text",
+          "content_file": "content/module-02/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m02-l06.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "When providing care for a patient who has chronic kidney disease, how does this disease impact medication excretion?",
+            "Note: Answers to the Critical Thinking activities can be found in the \"Answer Key\" sections at the end of the book",
+            "Now let's further discuss the various routes of excretion from the body"
+          ],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m02-l07",
+          "title": "1.7 Pharmacodynamics",
+          "type": "text",
+          "content_file": "content/module-02/lesson-07.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m02-l07.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Understanding the **mechanism of action** ,[1] or how a medication functions within"
+          ],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m02-l08",
+          "title": "1.8 Medication Types",
+          "type": "text",
+          "content_file": "content/module-02/lesson-08.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m02-l08.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "A variety of substances available to the public include (but are not limited to) prescription medications (including brand name and generic drugs), over-the-counter medications, and herbals and supplements"
+          ],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m02-l09",
+          "title": "1.9 Examining Effect",
+          "type": "text",
+          "content_file": "content/module-02/lesson-09.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m02-l09.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Three additional principles related to the effect of a medication on a patient are onset, peak, and duration",
+            "Onset:** the onset of medication refers to when the medication first begins to take effect",
+            "Peak:** the peak of medication refers to the maximum concentration of medication in the body, and the patient shows evidence of greatest therapeutic effect",
+            "Duration:** the duration of medication refers to the length of time the medication produces its desired therapeutic effect"
+          ],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m02-l10",
+          "title": "1.10 Medication Safety",
+          "type": "text",
+          "content_file": "content/module-02/lesson-10.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m02-l10.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Now that the basic concepts of medication onset, peak, and duration have been discussed, it is important to understand the value of the therapeutic window and therapeutic index in medication administration",
+            "Now let's apply the idea of therapeutic window to the administration of medications requiring the monitoring of peak and trough level"
+          ],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m02-l11",
+          "title": "1.11 Preparing for Administration",
+          "type": "text",
+          "content_file": "content/module-02/lesson-11.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m02-l11.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m02-l12",
+          "title": "1.12 Module Learning Activities",
+          "type": "text",
+          "content_file": "content/module-02/lesson-12.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m02-l12.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-pharmacology-m03",
+      "title": "Legal/Ethical",
+      "competencies": [
+        "Pharmacology",
+        "Patient Safety",
+        "Nursing Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m03-l01",
+          "title": "2.1 Legal/Ethical Introduction",
+          "type": "text",
+          "content_file": "content/module-03/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m03-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Identify drug administration guidelines within the State Nurse Practice Act",
+            "Identify nursing responsibilities to prevent and respond to medication errors",
+            "Identify nursing responsibilities associated with controlled substances",
+            "Identify ethical responsibilities as they relate to medication errors",
+            "Explain how nursing response reflects respect for a patient's rights and responsibilities with drug therapy",
+            "Outline nursing actions within the scope of nursing practice as they relate to the administration of medication"
+          ],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m03-l02",
+          "title": "2.2 Ethical and Professional Foundations of Safe Medication Administration by Nurses",
+          "type": "text",
+          "content_file": "content/module-03/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m03-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Provision 1** focuses on respect for human dignity and the right for self-determination: \"The nurse practices with compassion and respect for the inherent dignity, worth, and unique attributes of every person.\"",
+            "Provision 3** states, \"The nurse promote"
+          ],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m03-l03",
+          "title": "2.3 Legal Foundations and National Guidelines for Safe Medication Administration",
+          "type": "text",
+          "content_file": "content/module-03/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m03-l03.json",
+          "estimated_minutes": 46,
+          "objectives": [
+            "American consumers benefit from having access to the safest and most advanced pharmaceutical system in the world. The main consumer watchdog in this system is the FDA's Center for Drug Evaluation and Research (CDER)",
+            "The center's best-known job is to evaluate new drugs before they can be sold. CDER's evaluation not only prevents quackery, but also provides doctors and patients the information they need to use medicines wisel"
+          ],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m03-l04",
+          "title": "2.4  Cultural and Social Determinants Related to Medication Administration",
+          "type": "text",
+          "content_file": "content/module-03/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m03-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Critical Thinking Activity"
+          ],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m03-l05",
+          "title": "2.5 Preventing Medication Errors",
+          "type": "text",
+          "content_file": "content/module-03/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m03-l05.json",
+          "estimated_minutes": 30,
+          "objectives": [],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-pharmacology-m04",
+      "title": "Antimicrobials",
+      "competencies": [
+        "Pharmacology",
+        "Patient Safety",
+        "Nursing Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m04-l01",
+          "title": "3.1 Antimicrobials Introduction",
+          "type": "text",
+          "content_file": "content/module-04/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m04-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Identify the classifications and actions of antimicrobial medications",
+            "Give examples of when, how, and to whom antimicrobial drugs may be administered",
+            "Identify the side effects and special considerations associated with antimicrobial therapy",
+            "Include considerations and implications of using antimicrobial medications across the lifespan",
+            "Include evidence-based concepts when using the nursing process",
+            "Identify and interpret related laboratory tests"
+          ],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m04-l02",
+          "title": "3.2 Antimicrobial Basics",
+          "type": "text",
+          "content_file": "content/module-04/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m04-l02.json",
+          "estimated_minutes": 21,
+          "objectives": [],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m04-l03",
+          "title": "3.3 Administration Considerations",
+          "type": "text",
+          "content_file": "content/module-04/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m04-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m04-l04",
+          "title": "3.4 Nursing Process",
+          "type": "text",
+          "content_file": "content/module-04/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m04-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m04-l05",
+          "title": "3.6 Cephalosporins",
+          "type": "text",
+          "content_file": "content/module-04/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m04-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m04-l06",
+          "title": "3.5 Penicillins",
+          "type": "text",
+          "content_file": "content/module-04/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m04-l06.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m04-l07",
+          "title": "3.7 Carbapenems",
+          "type": "text",
+          "content_file": "content/module-04/lesson-07.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m04-l07.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Carbapenems | [imipenem](<https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f41d8abd"
+          ],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m04-l08",
+          "title": "3.8 Monobactams",
+          "type": "text",
+          "content_file": "content/module-04/lesson-08.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m04-l08.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m04-l09",
+          "title": "3.9 Sulfonamides",
+          "type": "text",
+          "content_file": "content/module-04/lesson-09.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m04-l09.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m04-l10",
+          "title": "3.10 Fluoroquinolones",
+          "type": "text",
+          "content_file": "content/module-04/lesson-10.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m04-l10.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Tendinitis and tendon rupture",
+            "Peripheral neuropathy",
+            "Central nervous system effects"
+          ],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-pharmacology-m04-l11",
+          "title": "3.11 Macrolides",
+          "type": "text",
+          "content_file": "content/module-04/lesson-11.md",
+          "practice_file": "practice/wtcs-nursing-pharmacology-m04-l11.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Pharmacology",
+            "Patient Safety"
+          ],
+          "topics": [
+            "pharmacokinetics",
+            "drug classes",
+            "medication safety"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

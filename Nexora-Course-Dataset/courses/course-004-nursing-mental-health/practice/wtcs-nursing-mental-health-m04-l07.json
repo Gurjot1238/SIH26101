@@ -1,0 +1,53 @@
+{
+  "lesson_id": "wtcs-nursing-mental-health-m04-l07",
+  "questions": [
+    {
+      "question_id": "wtcs-nursing-mental-health-m04-l07-q01",
+      "question": "According to the source lesson '4.7 Implementation', which statement is most accurate?",
+      "options": [
+        "The _Implementation_ Standard of Practice by the American Nurses Association (ANA) states, \"The registered nurse implements the identified plan.\"[1] Review the competencies for the _Implementation_ Standard of Practice for registered nurses",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Psychiatric-Mental Health Nursing",
+      "topic": "mental health",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-mental-health-m04-l07-q02",
+      "question": "What is a reasonable learning takeaway from '4.7 Implementation'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 4.7 Implementation.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Psychiatric-Mental Health Nursing",
+      "topic": "mental health",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-mental-health-m04-l07-q03",
+      "question": "When applying concepts from '4.7 Implementation', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Psychiatric-Mental Health Nursing",
+      "topic": "mental health",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

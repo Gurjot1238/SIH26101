@@ -1,5 +1,5 @@
 import { type ReactNode, useState } from 'react';
-import { Bell, BookOpen, Building2, ChevronDown, ClipboardCheck, Compass, FileText, GraduationCap, LayoutDashboard, Menu, Network, Presentation, Sparkles, UserRound, X } from 'lucide-react';
+import { Bell, BookOpen, Building2, ChevronDown, ClipboardCheck, Compass, FileText, GraduationCap, LayoutDashboard, Library, Menu, Network, Presentation, Sparkles, UserRound, X } from 'lucide-react';
 import { Link, useLocation } from 'wouter';
 import { Badge } from './ui';
 import { firstName, greeting, initials, useSession } from './session-provider';
@@ -9,6 +9,7 @@ const learnerNav: NavItem[] = [
   { href: '/dashboard', label: 'Overview', icon: LayoutDashboard },
   { href: '/assessment', label: 'Assessment', icon: ClipboardCheck, count: '2' },
   { href: '/learning', label: 'My learning', icon: BookOpen },
+  { href: '/catalog', label: 'Course catalogue', icon: Library },
   { href: '/course-library', label: 'Course library', icon: GraduationCap },
   { href: '/materials', label: 'Materials lab', icon: FileText },
   { href: '/quiz', label: 'Knowledge check', icon: Sparkles },

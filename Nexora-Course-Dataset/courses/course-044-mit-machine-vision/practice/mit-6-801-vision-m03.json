@@ -1,0 +1,197 @@
+{
+  "module_id": "mit-6-801-vision-m03",
+  "questions": [
+    {
+      "question_id": "mit-6-801-vision-m03-l01-q01",
+      "question": "According to the source lesson 'da3ac40fc7c9b2ee07d9871423689547 l06', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource da3ac40fc7c9b2ee07d9871423689547_l06.pdf from 6.801 Machine Vision.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Vision",
+      "topic": "image formation",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-801-vision-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'da3ac40fc7c9b2ee07d9871423689547 l06'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in da3ac40fc7c9b2ee07d9871423689547 l06.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Vision",
+      "topic": "image formation",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-801-vision-m03-l01-q03",
+      "question": "When applying concepts from 'da3ac40fc7c9b2ee07d9871423689547 l06', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Vision",
+      "topic": "image formation",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-801-vision-m03-l02-q01",
+      "question": "According to the source lesson 'c3b41188c2bcce6dec7005cf8293712c l07', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource c3b41188c2bcce6dec7005cf8293712c_l07.pdf from 6.801 Machine Vision.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Vision",
+      "topic": "image formation",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-801-vision-m03-l02-q02",
+      "question": "What is a reasonable learning takeaway from 'c3b41188c2bcce6dec7005cf8293712c l07'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in c3b41188c2bcce6dec7005cf8293712c l07.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Vision",
+      "topic": "image formation",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-801-vision-m03-l02-q03",
+      "question": "When applying concepts from 'c3b41188c2bcce6dec7005cf8293712c l07', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Vision",
+      "topic": "image formation",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-801-vision-m03-l03-q01",
+      "question": "According to the source lesson '58dff54f9af7fc629059899a7a46fbc1 l08', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 58dff54f9af7fc629059899a7a46fbc1_l08.pdf from 6.801 Machine Vision.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Vision",
+      "topic": "image formation",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-801-vision-m03-l03-q02",
+      "question": "What is a reasonable learning takeaway from '58dff54f9af7fc629059899a7a46fbc1 l08'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 58dff54f9af7fc629059899a7a46fbc1 l08.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Vision",
+      "topic": "image formation",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-801-vision-m03-l03-q03",
+      "question": "When applying concepts from '58dff54f9af7fc629059899a7a46fbc1 l08', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Vision",
+      "topic": "image formation",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-801-vision-m03-l04-q01",
+      "question": "According to the source lesson '7014420f19eace2b345f6ff32e2e2052 l09', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 7014420f19eace2b345f6ff32e2e2052_l09.pdf from 6.801 Machine Vision.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Vision",
+      "topic": "image formation",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-801-vision-m03-l04-q02",
+      "question": "What is a reasonable learning takeaway from '7014420f19eace2b345f6ff32e2e2052 l09'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 7014420f19eace2b345f6ff32e2e2052 l09.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Vision",
+      "topic": "image formation",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-801-vision-m03-l04-q03",
+      "question": "When applying concepts from '7014420f19eace2b345f6ff32e2e2052 l09', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Vision",
+      "topic": "image formation",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

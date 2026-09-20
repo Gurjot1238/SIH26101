@@ -1,0 +1,197 @@
+{
+  "course_id": "mit-16-07-dynamics",
+  "questions": [
+    {
+      "question_id": "mit-16-07-dynamics-m01-l01-q01",
+      "question": "According to the source lesson '2ebdf0f79724d62c7f183da7db44a0a2 07F09 Lec31', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 2ebdf0f79724d62c7f183da7db44a0a2_MIT16_07F09_Lec31.pdf from 16.07 Dynamics.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Aerospace Engineering",
+      "topic": "particles",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-16-07-dynamics-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from '2ebdf0f79724d62c7f183da7db44a0a2 07F09 Lec31'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2ebdf0f79724d62c7f183da7db44a0a2 07F09 Lec31.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Aerospace Engineering",
+      "topic": "particles",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-16-07-dynamics-m01-l01-q03",
+      "question": "When applying concepts from '2ebdf0f79724d62c7f183da7db44a0a2 07F09 Lec31', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Aerospace Engineering",
+      "topic": "particles",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-16-07-dynamics-m01-l02-q01",
+      "question": "According to the source lesson '0d47b4e85e3fe2bd2ea002a2480c60b7 07F09 Lec32', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 0d47b4e85e3fe2bd2ea002a2480c60b7_MIT16_07F09_Lec32.pdf from 16.07 Dynamics.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Aerospace Engineering",
+      "topic": "particles",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-16-07-dynamics-m02-l01-q01",
+      "question": "According to the source lesson '66b42ce6c35f2757ad11dc0a6e2b2896 07F09 Lec03', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 66b42ce6c35f2757ad11dc0a6e2b2896_MIT16_07F09_Lec03.pdf from 16.07 Dynamics.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Aerospace Engineering",
+      "topic": "particles",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-16-07-dynamics-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from '66b42ce6c35f2757ad11dc0a6e2b2896 07F09 Lec03'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 66b42ce6c35f2757ad11dc0a6e2b2896 07F09 Lec03.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Aerospace Engineering",
+      "topic": "particles",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-16-07-dynamics-m02-l01-q03",
+      "question": "When applying concepts from '66b42ce6c35f2757ad11dc0a6e2b2896 07F09 Lec03', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Aerospace Engineering",
+      "topic": "particles",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-16-07-dynamics-m02-l02-q01",
+      "question": "According to the source lesson 'e2c57643d3d1634d23d8eb1ebd77800b 07F09 Lec04', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource e2c57643d3d1634d23d8eb1ebd77800b_MIT16_07F09_Lec04.pdf from 16.07 Dynamics.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Aerospace Engineering",
+      "topic": "particles",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-16-07-dynamics-m03-l01-q01",
+      "question": "According to the source lesson '2d73fa40b6226120aa190632c1c18a1d 07F09 Lec07', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 2d73fa40b6226120aa190632c1c18a1d_MIT16_07F09_Lec07.pdf from 16.07 Dynamics.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Aerospace Engineering",
+      "topic": "particles",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-16-07-dynamics-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from '2d73fa40b6226120aa190632c1c18a1d 07F09 Lec07'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2d73fa40b6226120aa190632c1c18a1d 07F09 Lec07.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Aerospace Engineering",
+      "topic": "particles",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-16-07-dynamics-m03-l01-q03",
+      "question": "When applying concepts from '2d73fa40b6226120aa190632c1c18a1d 07F09 Lec07', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Aerospace Engineering",
+      "topic": "particles",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-16-07-dynamics-m03-l02-q01",
+      "question": "According to the source lesson '1b1825352e94d42461eb576b540b2f23 07F09 Lec08', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 1b1825352e94d42461eb576b540b2f23_MIT16_07F09_Lec08.pdf from 16.07 Dynamics.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Aerospace Engineering",
+      "topic": "particles",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

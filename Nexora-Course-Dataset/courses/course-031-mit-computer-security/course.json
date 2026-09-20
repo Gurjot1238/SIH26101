@@ -1,0 +1,266 @@
+{
+  "course_id": "mit-6-858-security",
+  "title": "6.858 Computer Systems Security",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Cybersecurity",
+  "level": "Advanced",
+  "description": "MIT OpenCourseWare 6.858 Computer Systems Security (Fall 2014). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Cybersecurity",
+    "Operating Systems",
+    "Software Security"
+  ],
+  "topics": [
+    "control hijacking",
+    "web security",
+    "isolation"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/6-858-computer-systems-security-fall-2014/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Fall 2014",
+  "duration": {
+    "estimated_hours": 6.2,
+    "estimated_minutes": 372
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 10,
+    "practice_questions": 30
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-6-858-security-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Cybersecurity",
+        "Operating Systems",
+        "Software Security"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-858-security-m01-l01",
+          "title": "f98bcda36fdba59627cb14dbb8800bc9 MIT6 858F14 lec1",
+          "type": "pdf",
+          "content_file": "content/module-01/f98bcda36fdba59627cb14dbb8800bc9_MIT6_858F14_lec1.pdf",
+          "practice_file": "practice/mit-6-858-security-m01-l01.json",
+          "estimated_minutes": 76,
+          "objectives": [],
+          "competencies": [
+            "Cybersecurity",
+            "Operating Systems"
+          ],
+          "topics": [
+            "control hijacking",
+            "web security",
+            "isolation"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-858-security-m01-l02",
+          "title": "76e4b3b4cd463e82c7c58361ed93fd29 MIT6 858F14 lec2",
+          "type": "pdf",
+          "content_file": "content/module-01/76e4b3b4cd463e82c7c58361ed93fd29_MIT6_858F14_lec2.pdf",
+          "practice_file": "practice/mit-6-858-security-m01-l02.json",
+          "estimated_minutes": 37,
+          "objectives": [],
+          "competencies": [
+            "Cybersecurity",
+            "Operating Systems"
+          ],
+          "topics": [
+            "control hijacking",
+            "web security",
+            "isolation"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-858-security-m01-l03",
+          "title": "8cee7fe9db0bf87fccc332570b7d11ef MIT6 858F14 lec3",
+          "type": "pdf",
+          "content_file": "content/module-01/8cee7fe9db0bf87fccc332570b7d11ef_MIT6_858F14_lec3.pdf",
+          "practice_file": "practice/mit-6-858-security-m01-l03.json",
+          "estimated_minutes": 29,
+          "objectives": [],
+          "competencies": [
+            "Cybersecurity",
+            "Operating Systems"
+          ],
+          "topics": [
+            "control hijacking",
+            "web security",
+            "isolation"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-858-security-m01-l04",
+          "title": "f6502464629d8fc5f03c157bd3c03fbd MIT6 858F14 lec4",
+          "type": "pdf",
+          "content_file": "content/module-01/f6502464629d8fc5f03c157bd3c03fbd_MIT6_858F14_lec4.pdf",
+          "practice_file": "practice/mit-6-858-security-m01-l04.json",
+          "estimated_minutes": 30,
+          "objectives": [],
+          "competencies": [
+            "Cybersecurity",
+            "Operating Systems"
+          ],
+          "topics": [
+            "control hijacking",
+            "web security",
+            "isolation"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-858-security-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Cybersecurity",
+        "Operating Systems",
+        "Software Security"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-858-security-m02-l01",
+          "title": "0f397e7b504aa9b146763705619d49ba MIT6 858F14 lec6",
+          "type": "pdf",
+          "content_file": "content/module-02/0f397e7b504aa9b146763705619d49ba_MIT6_858F14_lec6.pdf",
+          "practice_file": "practice/mit-6-858-security-m02-l01.json",
+          "estimated_minutes": 40,
+          "objectives": [],
+          "competencies": [
+            "Cybersecurity",
+            "Operating Systems"
+          ],
+          "topics": [
+            "control hijacking",
+            "web security",
+            "isolation"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-858-security-m02-l02",
+          "title": "fae7e5f49a2aac3030eb1c8fab2731da MIT6 858F14 lec7",
+          "type": "pdf",
+          "content_file": "content/module-02/fae7e5f49a2aac3030eb1c8fab2731da_MIT6_858F14_lec7.pdf",
+          "practice_file": "practice/mit-6-858-security-m02-l02.json",
+          "estimated_minutes": 35,
+          "objectives": [],
+          "competencies": [
+            "Cybersecurity",
+            "Operating Systems"
+          ],
+          "topics": [
+            "control hijacking",
+            "web security",
+            "isolation"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-858-security-m02-l03",
+          "title": "e59ea1c3e94bd1fb73e362ceabb8d7f9 MIT6 858F14 lec8",
+          "type": "pdf",
+          "content_file": "content/module-02/e59ea1c3e94bd1fb73e362ceabb8d7f9_MIT6_858F14_lec8.pdf",
+          "practice_file": "practice/mit-6-858-security-m02-l03.json",
+          "estimated_minutes": 32,
+          "objectives": [],
+          "competencies": [
+            "Cybersecurity",
+            "Operating Systems"
+          ],
+          "topics": [
+            "control hijacking",
+            "web security",
+            "isolation"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-858-security-m02-l04",
+          "title": "fa42d95747fd5e97ebd57c247f0c6d2a MIT6 858F14 lec9",
+          "type": "pdf",
+          "content_file": "content/module-02/fa42d95747fd5e97ebd57c247f0c6d2a_MIT6_858F14_lec9.pdf",
+          "practice_file": "practice/mit-6-858-security-m02-l04.json",
+          "estimated_minutes": 42,
+          "objectives": [],
+          "competencies": [
+            "Cybersecurity",
+            "Operating Systems"
+          ],
+          "topics": [
+            "control hijacking",
+            "web security",
+            "isolation"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-858-security-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Cybersecurity",
+        "Operating Systems",
+        "Software Security"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-858-security-m03-l01",
+          "title": "b3c3ad23c29b4381e41b619e081cce13 MIT6 858F14 lec12",
+          "type": "pdf",
+          "content_file": "content/module-03/b3c3ad23c29b4381e41b619e081cce13_MIT6_858F14_lec12.pdf",
+          "practice_file": "practice/mit-6-858-security-m03-l01.json",
+          "estimated_minutes": 26,
+          "objectives": [],
+          "competencies": [
+            "Cybersecurity",
+            "Operating Systems"
+          ],
+          "topics": [
+            "control hijacking",
+            "web security",
+            "isolation"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-858-security-m03-l02",
+          "title": "1812c0fe15b67c5b73b983475243e19d MIT6 858F14 lec13",
+          "type": "pdf",
+          "content_file": "content/module-03/1812c0fe15b67c5b73b983475243e19d_MIT6_858F14_lec13.pdf",
+          "practice_file": "practice/mit-6-858-security-m03-l02.json",
+          "estimated_minutes": 25,
+          "objectives": [],
+          "competencies": [
+            "Cybersecurity",
+            "Operating Systems"
+          ],
+          "topics": [
+            "control hijacking",
+            "web security",
+            "isolation"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

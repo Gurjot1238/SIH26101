@@ -1,0 +1,197 @@
+{
+  "module_id": "mit-6-864-nlp-m01",
+  "questions": [
+    {
+      "question_id": "mit-6-864-nlp-m01-l01-q01",
+      "question": "According to the source lesson '81725d832203435ff8ae517b3f649e7f lec01', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 81725d832203435ff8ae517b3f649e7f_lec01.pdf from 6.864 Advanced Natural Language Processing.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Natural Language Processing",
+      "topic": "parsing",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-864-nlp-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from '81725d832203435ff8ae517b3f649e7f lec01'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 81725d832203435ff8ae517b3f649e7f lec01.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Natural Language Processing",
+      "topic": "parsing",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-864-nlp-m01-l01-q03",
+      "question": "When applying concepts from '81725d832203435ff8ae517b3f649e7f lec01', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Natural Language Processing",
+      "topic": "parsing",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-864-nlp-m01-l02-q01",
+      "question": "According to the source lesson '87a7c15d21927542083d3a46a16868ef lec2', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 87a7c15d21927542083d3a46a16868ef_lec2.pdf from 6.864 Advanced Natural Language Processing.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Natural Language Processing",
+      "topic": "parsing",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-864-nlp-m01-l02-q02",
+      "question": "What is a reasonable learning takeaway from '87a7c15d21927542083d3a46a16868ef lec2'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 87a7c15d21927542083d3a46a16868ef lec2.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Natural Language Processing",
+      "topic": "parsing",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-864-nlp-m01-l02-q03",
+      "question": "When applying concepts from '87a7c15d21927542083d3a46a16868ef lec2', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Natural Language Processing",
+      "topic": "parsing",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-864-nlp-m01-l03-q01",
+      "question": "According to the source lesson '56a788aee71d6c78c483d3b7596e9477 lec3', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 56a788aee71d6c78c483d3b7596e9477_lec3.pdf from 6.864 Advanced Natural Language Processing.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Natural Language Processing",
+      "topic": "parsing",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-864-nlp-m01-l03-q02",
+      "question": "What is a reasonable learning takeaway from '56a788aee71d6c78c483d3b7596e9477 lec3'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 56a788aee71d6c78c483d3b7596e9477 lec3.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Natural Language Processing",
+      "topic": "parsing",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-864-nlp-m01-l03-q03",
+      "question": "When applying concepts from '56a788aee71d6c78c483d3b7596e9477 lec3', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Natural Language Processing",
+      "topic": "parsing",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-864-nlp-m01-l04-q01",
+      "question": "According to the source lesson '2fcb90c84d2859c5292fdebfad49b464 lec4', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 2fcb90c84d2859c5292fdebfad49b464_lec4.pdf from 6.864 Advanced Natural Language Processing.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Natural Language Processing",
+      "topic": "parsing",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-864-nlp-m01-l04-q02",
+      "question": "What is a reasonable learning takeaway from '2fcb90c84d2859c5292fdebfad49b464 lec4'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2fcb90c84d2859c5292fdebfad49b464 lec4.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Natural Language Processing",
+      "topic": "parsing",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-864-nlp-m01-l04-q03",
+      "question": "When applying concepts from '2fcb90c84d2859c5292fdebfad49b464 lec4', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Natural Language Processing",
+      "topic": "parsing",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

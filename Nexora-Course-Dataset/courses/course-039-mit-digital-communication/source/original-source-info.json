@@ -1,0 +1,16 @@
+{
+  "course_id": "mit-6-02-digital-comm",
+  "provider": "Massachusetts Institute of Technology",
+  "source_url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/",
+  "download_url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/download/",
+  "license": "CC BY-NC-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+  "date_collected": "2026-09-20",
+  "reuse_permissions": "CC BY-NC-SA 4.0 permits non-commercial sharing and adaptation with attribution and share-alike.",
+  "changes_made": [
+    "Downloaded official OCW PDF resources",
+    "Grouped lecture PDFs into sequential modules",
+    "Added Nexora-generated practice questions grounded in course titles/topics"
+  ],
+  "notes": "Do not use MIT name or logo to imply endorsement. Non-commercial reuse only."
+}

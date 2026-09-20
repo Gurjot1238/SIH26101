@@ -1,0 +1,267 @@
+{
+  "course_id": "mit-6-02-digital-comm",
+  "title": "6.02 Introduction to EECS II: Digital Communication Systems",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Computer Networks",
+  "level": "Intermediate",
+  "description": "MIT OpenCourseWare 6.02 Introduction to EECS II: Digital Communication Systems (Fall 2012). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Computer Networks",
+    "Digital Communications",
+    "Electrical Engineering"
+  ],
+  "topics": [
+    "bits",
+    "noise",
+    "coding",
+    "packets"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Fall 2012",
+  "duration": {
+    "estimated_hours": 13.0,
+    "estimated_minutes": 782
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 10,
+    "practice_questions": 30
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-6-02-digital-comm-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Computer Networks",
+        "Digital Communications",
+        "Electrical Engineering"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-02-digital-comm-m01-l01",
+          "title": "21637440fda8bd0e28d06a9eac518b03 MIT6 02F12 lec01",
+          "type": "pdf",
+          "content_file": "content/module-01/21637440fda8bd0e28d06a9eac518b03_MIT6_02F12_lec01.pdf",
+          "practice_file": "practice/mit-6-02-digital-comm-m01-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Computer Networks",
+            "Digital Communications"
+          ],
+          "topics": [
+            "bits",
+            "noise",
+            "coding"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-02-digital-comm-m01-l02",
+          "title": "49242956b17f47b9c85bd6784aa5d6b8 MIT6 02F12 lec10",
+          "type": "pdf",
+          "content_file": "content/module-01/49242956b17f47b9c85bd6784aa5d6b8_MIT6_02F12_lec10.pdf",
+          "practice_file": "practice/mit-6-02-digital-comm-m01-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Computer Networks",
+            "Digital Communications"
+          ],
+          "topics": [
+            "bits",
+            "noise",
+            "coding"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-02-digital-comm-m01-l03",
+          "title": "8989d3b33e177b9a2e373223c62c5b13 MIT6 02F12 lec11",
+          "type": "pdf",
+          "content_file": "content/module-01/8989d3b33e177b9a2e373223c62c5b13_MIT6_02F12_lec11.pdf",
+          "practice_file": "practice/mit-6-02-digital-comm-m01-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Computer Networks",
+            "Digital Communications"
+          ],
+          "topics": [
+            "bits",
+            "noise",
+            "coding"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-02-digital-comm-m01-l04",
+          "title": "c609f44097dd5b8ebc46ba1e6ca6d754 MIT6 02F12 lec12",
+          "type": "pdf",
+          "content_file": "content/module-01/c609f44097dd5b8ebc46ba1e6ca6d754_MIT6_02F12_lec12.pdf",
+          "practice_file": "practice/mit-6-02-digital-comm-m01-l04.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Computer Networks",
+            "Digital Communications"
+          ],
+          "topics": [
+            "bits",
+            "noise",
+            "coding"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-02-digital-comm-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Computer Networks",
+        "Digital Communications",
+        "Electrical Engineering"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-02-digital-comm-m02-l01",
+          "title": "e755e873f0d98d5f9b9cb31d6c5ca6ec MIT6 02F12 lec13",
+          "type": "pdf",
+          "content_file": "content/module-02/e755e873f0d98d5f9b9cb31d6c5ca6ec_MIT6_02F12_lec13.pdf",
+          "practice_file": "practice/mit-6-02-digital-comm-m02-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Computer Networks",
+            "Digital Communications"
+          ],
+          "topics": [
+            "bits",
+            "noise",
+            "coding"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-02-digital-comm-m02-l02",
+          "title": "3d71e96b6e7942d74c15fb2f99244985 MIT6 02F12 lec14",
+          "type": "pdf",
+          "content_file": "content/module-02/3d71e96b6e7942d74c15fb2f99244985_MIT6_02F12_lec14.pdf",
+          "practice_file": "practice/mit-6-02-digital-comm-m02-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Computer Networks",
+            "Digital Communications"
+          ],
+          "topics": [
+            "bits",
+            "noise",
+            "coding"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-02-digital-comm-m02-l03",
+          "title": "7c65224293acae2b1ec17d2563845bff MIT6 02F12 lec15",
+          "type": "pdf",
+          "content_file": "content/module-02/7c65224293acae2b1ec17d2563845bff_MIT6_02F12_lec15.pdf",
+          "practice_file": "practice/mit-6-02-digital-comm-m02-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Computer Networks",
+            "Digital Communications"
+          ],
+          "topics": [
+            "bits",
+            "noise",
+            "coding"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-02-digital-comm-m02-l04",
+          "title": "48f208ee650147f6c3d6f7bcc602cc66 MIT6 02F12 lec16",
+          "type": "pdf",
+          "content_file": "content/module-02/48f208ee650147f6c3d6f7bcc602cc66_MIT6_02F12_lec16.pdf",
+          "practice_file": "practice/mit-6-02-digital-comm-m02-l04.json",
+          "estimated_minutes": 77,
+          "objectives": [],
+          "competencies": [
+            "Computer Networks",
+            "Digital Communications"
+          ],
+          "topics": [
+            "bits",
+            "noise",
+            "coding"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-02-digital-comm-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Computer Networks",
+        "Digital Communications",
+        "Electrical Engineering"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-02-digital-comm-m03-l01",
+          "title": "8f332043eaaa2d41028991a442dd4fb6 MIT6 02F12 lec17",
+          "type": "pdf",
+          "content_file": "content/module-03/8f332043eaaa2d41028991a442dd4fb6_MIT6_02F12_lec17.pdf",
+          "practice_file": "practice/mit-6-02-digital-comm-m03-l01.json",
+          "estimated_minutes": 74,
+          "objectives": [],
+          "competencies": [
+            "Computer Networks",
+            "Digital Communications"
+          ],
+          "topics": [
+            "bits",
+            "noise",
+            "coding"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-02-digital-comm-m03-l02",
+          "title": "a352bb61a321060b1a821e145f394196 MIT6 02F12 lec18",
+          "type": "pdf",
+          "content_file": "content/module-03/a352bb61a321060b1a821e145f394196_MIT6_02F12_lec18.pdf",
+          "practice_file": "practice/mit-6-02-digital-comm-m03-l02.json",
+          "estimated_minutes": 71,
+          "objectives": [],
+          "competencies": [
+            "Computer Networks",
+            "Digital Communications"
+          ],
+          "topics": [
+            "bits",
+            "noise",
+            "coding"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

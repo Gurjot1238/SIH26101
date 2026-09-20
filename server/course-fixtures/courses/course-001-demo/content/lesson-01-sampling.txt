@@ -1,0 +1,6 @@
+Lesson 1 — What sampling can and cannot tell you
+
+A sample is a subset of a population chosen so that measuring the few can stand in
+for measuring the many. This fixture file exists so the course file-streaming route
+has a real, non-empty file to return. Its contents are not asserted on beyond the
+fact that it is served with the right content type and a non-zero length.

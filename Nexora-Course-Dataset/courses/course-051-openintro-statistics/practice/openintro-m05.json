@@ -1,0 +1,197 @@
+{
+  "module_id": "openintro-m05",
+  "questions": [
+    {
+      "question_id": "openintro-m05-l01-q01",
+      "question": "According to the source lesson 'Confidence Intervals', which statement is most accurate?",
+      "options": [
+        "Chronic illness, Part I In 2013, the Pew Research Foundation reported that ``45\\ that they live with one or more chronic conditions''.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m05-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Confidence Intervals'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Confidence Intervals.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m05-l01-q03",
+      "question": "When applying concepts from 'Confidence Intervals', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m05-l02-q01",
+      "question": "According to the source lesson 'Hypothesis Testing', which statement is most accurate?",
+      "options": [
+        "Identify hypotheses, Part I Write the null and alternative hypotheses in words and then symbols for each of the following situations.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m05-l02-q02",
+      "question": "What is a reasonable learning takeaway from 'Hypothesis Testing'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Hypothesis Testing.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m05-l02-q03",
+      "question": "When applying concepts from 'Hypothesis Testing', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m05-l03-q01",
+      "question": "According to the source lesson 'One Sided Tests', which statement is most accurate?",
+      "options": [
+        "## One-sided hypothesis tests (special topic) This section needs a lot of work.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m05-l03-q02",
+      "question": "What is a reasonable learning takeaway from 'One Sided Tests'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in One Sided Tests.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m05-l03-q03",
+      "question": "When applying concepts from 'One Sided Tests', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m05-l04-q01",
+      "question": "According to the source lesson 'Variability In Estimates', which statement is most accurate?",
+      "options": [
+        "Identify the parameter, Part I For each of the following situations, state whether the parameter of interest is a mean or a proportion.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m05-l04-q02",
+      "question": "What is a reasonable learning takeaway from 'Variability In Estimates'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Variability In Estimates.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m05-l04-q03",
+      "question": "When applying concepts from 'Variability In Estimates', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

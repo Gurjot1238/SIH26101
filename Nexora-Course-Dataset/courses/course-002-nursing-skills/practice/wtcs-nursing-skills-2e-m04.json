@@ -1,0 +1,197 @@
+{
+  "module_id": "wtcs-nursing-skills-2e-m04",
+  "questions": [
+    {
+      "question_id": "wtcs-nursing-skills-2e-m04-l01-q01",
+      "question": "According to the source lesson '4.1 Aseptic Technique Introduction', which statement is most accurate?",
+      "options": [
+        "## Learning Objectives * Perform appropriate hand hygiene * Use standard precautions * Use category-specific, transmission-based precautions * Maintain a sterile field and equipment * Apply and safely remove sterile gloves and personal prot",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m04-l01-q02",
+      "question": "What is a reasonable learning takeaway from '4.1 Aseptic Technique Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 4.1 Aseptic Technique Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m04-l01-q03",
+      "question": "When applying concepts from '4.1 Aseptic Technique Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m04-l02-q01",
+      "question": "According to the source lesson '4.2 Aseptic Technique Basic Concepts', which statement is most accurate?",
+      "options": [
+        "## Standard Versus Transmission-Based Precautions ### Standard Precautions Standard precautions are used when caring for all patients to prevent health care associated infections.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m04-l02-q02",
+      "question": "What is a reasonable learning takeaway from '4.2 Aseptic Technique Basic Concepts'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 4.2 Aseptic Technique Basic Concepts.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m04-l02-q03",
+      "question": "When applying concepts from '4.2 Aseptic Technique Basic Concepts', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m04-l03-q01",
+      "question": "According to the source lesson '4.3 Aseptic Technique', which statement is most accurate?",
+      "options": [
+        "In addition to using standard precautions and transmission-based precautions, **aseptic technique** (also called medical asepsis) is the purposeful reduction of pathogens to prevent the transfer of microorganisms from one person or object t",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m04-l03-q02",
+      "question": "What is a reasonable learning takeaway from '4.3 Aseptic Technique'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 4.3 Aseptic Technique.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m04-l03-q03",
+      "question": "When applying concepts from '4.3 Aseptic Technique', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m04-l04-q01",
+      "question": "According to the source lesson '4.4 Sterile Fields', which statement is most accurate?",
+      "options": [
+        "A sterile field is established whenever a patient’s skin is intentionally punctured or incised, during procedures involving entry into a body cavity, or when contact with nonintact skin is possible (e.g., surgery or trauma).",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m04-l04-q02",
+      "question": "What is a reasonable learning takeaway from '4.4 Sterile Fields'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 4.4 Sterile Fields.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m04-l04-q03",
+      "question": "When applying concepts from '4.4 Sterile Fields', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "module_id": "uta-human-anatomy-lab-m05",
+  "questions": [
+    {
+      "question_id": "uta-human-anatomy-lab-m05-l01-q01",
+      "question": "According to the source lesson 'Lab 5: Special Senses', which statement is most accurate?",
+      "options": [
+        "Measurable Outcomes * Explain the function of each special sense.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "anatomical language",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "uta-human-anatomy-lab-m05-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Lab 5: Special Senses'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Lab 5: Special Senses.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "anatomical language",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "uta-human-anatomy-lab-m05-l01-q03",
+      "question": "When applying concepts from 'Lab 5: Special Senses', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "anatomical language",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "uta-human-anatomy-lab-m05-l02-q01",
+      "question": "According to the source lesson 'Pre-lab 5', which statement is most accurate?",
+      "options": [
+        "**(5 points)** Last Name: _______________________ First Name: _______________________ **Instructions:** Fill in the table below with the appropriate terms.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "anatomical language",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "uta-human-anatomy-lab-m05-l02-q02",
+      "question": "What is a reasonable learning takeaway from 'Pre-lab 5'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Pre-lab 5.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "anatomical language",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "uta-human-anatomy-lab-m05-l02-q03",
+      "question": "When applying concepts from 'Pre-lab 5', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "anatomical language",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "uta-human-anatomy-lab-m05-l03-q01",
+      "question": "According to the source lesson 'Lab Activities', which statement is most accurate?",
+      "options": [
+        "A list of words is provided below that you are expected to identify, learn, and label on the models provided.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "anatomical language",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "uta-human-anatomy-lab-m05-l03-q02",
+      "question": "What is a reasonable learning takeaway from 'Lab Activities'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Lab Activities.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "anatomical language",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "uta-human-anatomy-lab-m05-l03-q03",
+      "question": "When applying concepts from 'Lab Activities', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "anatomical language",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "uta-human-anatomy-lab-m05-l04-q01",
+      "question": "According to the source lesson 'Post-Lab 5 Questions', which statement is most accurate?",
+      "options": [
+        "**(3 point)** Last Name: _______________________ First Name: _______________________ 1.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "anatomical language",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "uta-human-anatomy-lab-m05-l04-q02",
+      "question": "What is a reasonable learning takeaway from 'Post-Lab 5 Questions'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Post-Lab 5 Questions.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "anatomical language",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "uta-human-anatomy-lab-m05-l04-q03",
+      "question": "When applying concepts from 'Post-Lab 5 Questions', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "anatomical language",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

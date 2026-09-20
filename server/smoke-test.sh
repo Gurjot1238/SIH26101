@@ -98,6 +98,7 @@ AUTH_DATA_DIR="$DATA_DIR" \
 SESSION_SECRET="smoke_test_secret_not_used_anywhere_real_0123456789abc" \
 AI_PROVIDER=gemini \
 GEMINI_API_KEY= \
+NEXORA_DATASET_DIR="$PWD/server/course-fixtures" \
 node server/index.mjs > "$LOG" 2>&1 &
 SERVER_PID=$!
 
@@ -285,6 +286,56 @@ check 'the second account clears its own history' 200 -b "$JAR2" -X DELETE "$ATT
 expect_in_body 'exactly one attempt removed' '"removed":1'
 check 'the first account still has both attempts' 200 -b "$JAR" "$ATTEMPTS"
 expect_in_body 'clearing is per account' '"total":2'
+
+printf '\n  --- course catalogue: served from disk, and public ---\n'
+# The main server was started with NEXORA_DATASET_DIR pointing at server/course-fixtures,
+# a two-lesson course that ships in the repo. So these assertions run against a real
+# reader over real files, not a mock. Course content is reference material, not user
+# data, so unlike everything else in this file it is readable with no session.
+COURSES="${BASE}/api/courses"
+CONTENT="${BASE}/api/courses/content"
+check 'the catalogue is readable without a session' 200 "$COURSES"
+expect_in_body 'the dataset is reported present' '"available":true'
+expect_in_body 'the fixture course is listed' '"courseId":"demo-open-stats"'
+expect_in_body 'the lesson count is the completion denominator' '"lessons":2'
+expect_in_body 'it is counted under Technology' '"technology":1'
+check 'one course is fetched by id' 200 "${COURSES}?id=demo-open-stats"
+expect_in_body 'and carries its module tree' '"moduleId":"mod-01-foundations"'
+expect_in_body 'with both lessons in order' '"lessonId":"les-01-sampling"'
+expect_in_body 'each lesson says whether its file exists' '"hasContent":true'
+expect_in_body 'and the progress model is lesson-level' '"unit":"lesson"'
+check 'an unknown course id is 404' 404 "${COURSES}?id=no-such-course"
+check 'a non-slug course id is 400' 400 "${COURSES}?id=Not%20A%20Slug"
+check 'the catalogue is read-only' 405 -X POST "$COURSES" -H "$JSON" -H "$ORIGIN" -d '{}'
+
+printf '\n  --- course content: real files stream, traversal cannot ---\n'
+check 'a real lesson file streams' 200 "${CONTENT}?id=demo-open-stats&file=content/lesson-01-sampling.txt"
+expect_in_body 'and it is the file on disk' 'A sample is a subset of a population'
+# The whole point of fileWithin(): a crafted ?file= must not escape the course dir.
+check 'a ../ traversal is refused' 404 "${CONTENT}?id=demo-open-stats&file=../../../etc/passwd"
+check 'an encoded ../ traversal is refused' 404 "${CONTENT}?id=demo-open-stats&file=..%2F..%2Fcourse.json"
+check 'an absolute path is refused' 404 "${CONTENT}?id=demo-open-stats&file=/etc/passwd"
+check 'a file that does not exist is 404' 404 "${CONTENT}?id=demo-open-stats&file=content/missing.txt"
+check 'content with no file param is 400' 400 "${CONTENT}?id=demo-open-stats"
+check 'content for an unknown course is 404' 404 "${CONTENT}?id=no-such-course&file=content/lesson-01-sampling.txt"
+
+printf '\n  --- lesson progress: measured, deduplicated, per account ---\n'
+# Ananya (JAR) marks lessons done. This is the number the course card and the donut show.
+check 'lessons can be marked complete' 200 -b "$JAR" -X POST "${BASE}/api/progress/courses" -H "$JSON" -H "$ORIGIN" \
+  -d '{"courseId":"demo-open-stats","started":true,"completedLessons":["les-02-quality","les-01-sampling","les-01-sampling"]}'
+expect_in_body 'stored as a sorted, de-duplicated set' '"completedLessons":\["les-01-sampling","les-02-quality"\]'
+expect_in_body 'and marking a lesson sets startedAt' '"startedAt":"20'
+check 'unmarking is a full-set write' 200 -b "$JAR" -X POST "${BASE}/api/progress/courses" -H "$JSON" -H "$ORIGIN" \
+  -d '{"courseId":"demo-open-stats","completedLessons":["les-01-sampling"]}'
+expect_in_body 'the set now holds only what was sent' '"completedLessons":\["les-01-sampling"\]'
+check 'a non-slug lesson id is rejected' 400 -b "$JAR" -X POST "${BASE}/api/progress/courses" -H "$JSON" -H "$ORIGIN" \
+  -d '{"courseId":"demo-open-stats","completedLessons":["Not A Lesson"]}'
+check 'completedLessons that is not a list is rejected' 400 -b "$JAR" -X POST "${BASE}/api/progress/courses" -H "$JSON" -H "$ORIGIN" \
+  -d '{"courseId":"demo-open-stats","completedLessons":"les-01-sampling"}'
+check 'lesson progress persists on the next read' 200 -b "$JAR" "${BASE}/api/progress"
+expect_in_body 'the completed lesson survived' '"completedLessons":\["les-01-sampling"\]'
+check 'a second account sees none of it' 200 -b "$JAR2" "${BASE}/api/progress"
+expect_not_in_body "the other learner's lesson progress is invisible" 'les-01-sampling'
 
 printf '\n  --- saved question sets ---\n'
 PAPERS="${BASE}/api/papers"

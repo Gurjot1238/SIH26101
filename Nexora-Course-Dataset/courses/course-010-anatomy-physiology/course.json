@@ -1,0 +1,770 @@
+{
+  "course_id": "openstax-anatomy-physiology",
+  "title": "Anatomy and Physiology",
+  "provider": "OpenStax / Rice University",
+  "category": "Medical / Healthcare",
+  "subcategory": "Anatomy and Physiology",
+  "level": "Beginner",
+  "description": "OpenStax Anatomy and Physiology (CC BY 4.0). Section HTML was downloaded from the official OpenStax webview.",
+  "competencies": [
+    "Human Anatomy",
+    "Human Physiology",
+    "Biomedical Engineering"
+  ],
+  "topics": [
+    "cells",
+    "tissues",
+    "organ systems",
+    "homeostasis"
+  ],
+  "source": {
+    "name": "OpenStax",
+    "official_url": "https://openstax.org/books/anatomy-and-physiology/pages/1-introduction",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 9.3,
+    "estimated_minutes": 559
+  },
+  "totals": {
+    "modules": 5,
+    "lessons": 32,
+    "practice_questions": 96
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "openstax-anatomy-physiology-m01",
+      "title": "Chapter 1: 1.1 Overview of Anatomy and Physiology",
+      "competencies": [
+        "Human Anatomy",
+        "Human Physiology",
+        "Biomedical Engineering"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-anatomy-physiology-m01-l01",
+          "title": "1.1 Overview of Anatomy and Physiology",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m01-l01.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m01-l02",
+          "title": "Chapter Objectives",
+          "type": "text",
+          "content_file": "content/module-01/lesson-02.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m01-l02.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "After studying this chapter, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m01-l03",
+          "title": "1.2 Structural Organization of the Human Body",
+          "type": "text",
+          "content_file": "content/module-01/lesson-03.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m01-l03.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m01-l04",
+          "title": "1.3 Functions of Human Life",
+          "type": "text",
+          "content_file": "content/module-01/lesson-04.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m01-l04.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m01-l05",
+          "title": "1.4 Requirements for Human Life",
+          "type": "text",
+          "content_file": "content/module-01/lesson-05.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m01-l05.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m01-l06",
+          "title": "1.5 Homeostasis",
+          "type": "text",
+          "content_file": "content/module-01/lesson-06.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m01-l06.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m01-l07",
+          "title": "1.6 Anatomical Terminology",
+          "type": "text",
+          "content_file": "content/module-01/lesson-07.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m01-l07.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m01-l08",
+          "title": "1.7 Medical Imaging",
+          "type": "text",
+          "content_file": "content/module-01/lesson-08.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m01-l08.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openstax-anatomy-physiology-m02",
+      "title": "Chapter 2: Chapter Objectives",
+      "competencies": [
+        "Human Anatomy",
+        "Human Physiology",
+        "Biomedical Engineering"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-anatomy-physiology-m02-l01",
+          "title": "Chapter Objectives",
+          "type": "text",
+          "content_file": "content/module-02/lesson-01.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m02-l01.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "After studying this chapter, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m02-l02",
+          "title": "2.1 Elements and Atoms: The Building Blocks of Matter",
+          "type": "text",
+          "content_file": "content/module-02/lesson-02.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m02-l02.json",
+          "estimated_minutes": 18,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m02-l03",
+          "title": "2.2 Chemical Bonds",
+          "type": "text",
+          "content_file": "content/module-02/lesson-03.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m02-l03.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m02-l04",
+          "title": "2.3 Chemical Reactions",
+          "type": "text",
+          "content_file": "content/module-02/lesson-04.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m02-l04.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m02-l05",
+          "title": "2.4 Inorganic Compounds Essential to Human Functioning",
+          "type": "text",
+          "content_file": "content/module-02/lesson-05.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m02-l05.json",
+          "estimated_minutes": 17,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m02-l06",
+          "title": "2.5 Organic Compounds Essential to Human Functioning",
+          "type": "text",
+          "content_file": "content/module-02/lesson-06.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m02-l06.json",
+          "estimated_minutes": 32,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openstax-anatomy-physiology-m03",
+      "title": "Chapter 3: Chapter Objectives",
+      "competencies": [
+        "Human Anatomy",
+        "Human Physiology",
+        "Biomedical Engineering"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-anatomy-physiology-m03-l01",
+          "title": "Chapter Objectives",
+          "type": "text",
+          "content_file": "content/module-03/lesson-01.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m03-l01.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "After studying this chapter, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m03-l02",
+          "title": "3.1 The Cell Membrane",
+          "type": "text",
+          "content_file": "content/module-03/lesson-02.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m03-l02.json",
+          "estimated_minutes": 29,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m03-l03",
+          "title": "3.2 The Cytoplasm and Cellular Organelles",
+          "type": "text",
+          "content_file": "content/module-03/lesson-03.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m03-l03.json",
+          "estimated_minutes": 19,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m03-l04",
+          "title": "3.3 The Nucleus and DNA Replication",
+          "type": "text",
+          "content_file": "content/module-03/lesson-04.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m03-l04.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m03-l05",
+          "title": "3.4 Protein Synthesis",
+          "type": "text",
+          "content_file": "content/module-03/lesson-05.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m03-l05.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m03-l06",
+          "title": "3.5 Cell Growth and Division",
+          "type": "text",
+          "content_file": "content/module-03/lesson-06.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m03-l06.json",
+          "estimated_minutes": 16,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m03-l07",
+          "title": "3.6 Cellular Differentiation",
+          "type": "text",
+          "content_file": "content/module-03/lesson-07.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m03-l07.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openstax-anatomy-physiology-m04",
+      "title": "Chapter 4: Chapter Objectives",
+      "competencies": [
+        "Human Anatomy",
+        "Human Physiology",
+        "Biomedical Engineering"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-anatomy-physiology-m04-l01",
+          "title": "Chapter Objectives",
+          "type": "text",
+          "content_file": "content/module-04/lesson-01.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m04-l01.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "After studying this chapter, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m04-l02",
+          "title": "4.1 Types of Tissues",
+          "type": "text",
+          "content_file": "content/module-04/lesson-02.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m04-l02.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m04-l03",
+          "title": "4.2 Epithelial Tissue",
+          "type": "text",
+          "content_file": "content/module-04/lesson-03.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m04-l03.json",
+          "estimated_minutes": 29,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m04-l04",
+          "title": "4.3 Connective Tissue Supports and Protects",
+          "type": "text",
+          "content_file": "content/module-04/lesson-04.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m04-l04.json",
+          "estimated_minutes": 24,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m04-l05",
+          "title": "4.4 Muscle Tissue and Motion",
+          "type": "text",
+          "content_file": "content/module-04/lesson-05.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m04-l05.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m04-l06",
+          "title": "4.5 Nervous Tissue Mediates Perception and Response",
+          "type": "text",
+          "content_file": "content/module-04/lesson-06.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m04-l06.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m04-l07",
+          "title": "4.6 Tissue Injury and Aging",
+          "type": "text",
+          "content_file": "content/module-04/lesson-07.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m04-l07.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openstax-anatomy-physiology-m05",
+      "title": "Chapter 5: Chapter Objectives",
+      "competencies": [
+        "Human Anatomy",
+        "Human Physiology",
+        "Biomedical Engineering"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-anatomy-physiology-m05-l01",
+          "title": "Chapter Objectives",
+          "type": "text",
+          "content_file": "content/module-05/lesson-01.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m05-l01.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "After studying the chapter, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m05-l02",
+          "title": "5.1 Layers of the Skin",
+          "type": "text",
+          "content_file": "content/module-05/lesson-02.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m05-l02.json",
+          "estimated_minutes": 25,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m05-l03",
+          "title": "5.2 Accessory Structures of the Skin",
+          "type": "text",
+          "content_file": "content/module-05/lesson-03.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m05-l03.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-anatomy-physiology-m05-l04",
+          "title": "5.3 Functions of the Integumentary System",
+          "type": "text",
+          "content_file": "content/module-05/lesson-04.md",
+          "practice_file": "practice/openstax-anatomy-physiology-m05-l04.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Human Physiology"
+          ],
+          "topics": [
+            "cells",
+            "tissues",
+            "organ systems"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

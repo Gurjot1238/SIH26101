@@ -1,0 +1,197 @@
+{
+  "module_id": "mit-6-034-ai-m04",
+  "questions": [
+    {
+      "question_id": "mit-6-034-ai-m04-l01-q01",
+      "question": "According to the source lesson 'e09aa2ccc53799b6c312c3b927dc6841 MIT6 034F10 lab2', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource e09aa2ccc53799b6c312c3b927dc6841_MIT6_034F10_lab2.pdf from 6.034 Artificial Intelligence.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Artificial Intelligence",
+      "topic": "search",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-034-ai-m04-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'e09aa2ccc53799b6c312c3b927dc6841 MIT6 034F10 lab2'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in e09aa2ccc53799b6c312c3b927dc6841 MIT6 034F10 lab2.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Artificial Intelligence",
+      "topic": "search",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-034-ai-m04-l01-q03",
+      "question": "When applying concepts from 'e09aa2ccc53799b6c312c3b927dc6841 MIT6 034F10 lab2', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Artificial Intelligence",
+      "topic": "search",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-034-ai-m04-l02-q01",
+      "question": "According to the source lesson '1d5b4401805f7ca7adc73c7482d832c7 MIT6 034F10 lab3', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 1d5b4401805f7ca7adc73c7482d832c7_MIT6_034F10_lab3.pdf from 6.034 Artificial Intelligence.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Artificial Intelligence",
+      "topic": "search",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-034-ai-m04-l02-q02",
+      "question": "What is a reasonable learning takeaway from '1d5b4401805f7ca7adc73c7482d832c7 MIT6 034F10 lab3'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 1d5b4401805f7ca7adc73c7482d832c7 MIT6 034F10 lab3.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Artificial Intelligence",
+      "topic": "search",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-034-ai-m04-l02-q03",
+      "question": "When applying concepts from '1d5b4401805f7ca7adc73c7482d832c7 MIT6 034F10 lab3', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Artificial Intelligence",
+      "topic": "search",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-034-ai-m04-l03-q01",
+      "question": "According to the source lesson '31626ed3de1893e8af73abce65cd4d7f MIT6 034F10 lab4', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 31626ed3de1893e8af73abce65cd4d7f_MIT6_034F10_lab4.pdf from 6.034 Artificial Intelligence.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Artificial Intelligence",
+      "topic": "search",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-034-ai-m04-l03-q02",
+      "question": "What is a reasonable learning takeaway from '31626ed3de1893e8af73abce65cd4d7f MIT6 034F10 lab4'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 31626ed3de1893e8af73abce65cd4d7f MIT6 034F10 lab4.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Artificial Intelligence",
+      "topic": "search",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-034-ai-m04-l03-q03",
+      "question": "When applying concepts from '31626ed3de1893e8af73abce65cd4d7f MIT6 034F10 lab4', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Artificial Intelligence",
+      "topic": "search",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-034-ai-m04-l04-q01",
+      "question": "According to the source lesson '6f12118abb4d06b7fe816142e59dc883 MIT6 034F10 boosting', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 6f12118abb4d06b7fe816142e59dc883_MIT6_034F10_boosting.pdf from 6.034 Artificial Intelligence.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Artificial Intelligence",
+      "topic": "search",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-034-ai-m04-l04-q02",
+      "question": "What is a reasonable learning takeaway from '6f12118abb4d06b7fe816142e59dc883 MIT6 034F10 boosting'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 6f12118abb4d06b7fe816142e59dc883 MIT6 034F10 boosting.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Artificial Intelligence",
+      "topic": "search",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-034-ai-m04-l04-q03",
+      "question": "When applying concepts from '6f12118abb4d06b7fe816142e59dc883 MIT6 034F10 boosting', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Artificial Intelligence",
+      "topic": "search",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

@@ -1,0 +1,229 @@
+{
+  "course_id": "mit-6-0001-python",
+  "title": "6.0001 Introduction to Computer Science and Programming in Python",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Python Programming",
+  "level": "Beginner",
+  "description": "MIT OpenCourseWare 6.0001 Introduction to Computer Science and Programming in Python (Fall 2016). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Python Programming",
+    "Computer Science",
+    "Programming Fundamentals"
+  ],
+  "topics": [
+    "Python",
+    "functions",
+    "objects",
+    "complexity"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Fall 2016",
+  "duration": {
+    "estimated_hours": 9.7,
+    "estimated_minutes": 582
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 8,
+    "practice_questions": 24
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-6-0001-python-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Python Programming",
+        "Computer Science",
+        "Programming Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-0001-python-m01-l01",
+          "title": "e921a690079369751bcce3e34da6c6ee MIT6 0001F16 Lec1",
+          "type": "pdf",
+          "content_file": "content/module-01/e921a690079369751bcce3e34da6c6ee_MIT6_0001F16_Lec1.pdf",
+          "practice_file": "practice/mit-6-0001-python-m01-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Python Programming",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "functions",
+            "objects"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-0001-python-m01-l02",
+          "title": "ba2947b25b1580e4a84df0ec5dbe5cdd MIT6 0001F16 Lec2",
+          "type": "pdf",
+          "content_file": "content/module-01/ba2947b25b1580e4a84df0ec5dbe5cdd_MIT6_0001F16_Lec2.pdf",
+          "practice_file": "practice/mit-6-0001-python-m01-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Python Programming",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "functions",
+            "objects"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-0001-python-m01-l03",
+          "title": "b9b9a82a29e8746db1facfbd30c07940 MIT6 0001F16 Lec3",
+          "type": "pdf",
+          "content_file": "content/module-01/b9b9a82a29e8746db1facfbd30c07940_MIT6_0001F16_Lec3.pdf",
+          "practice_file": "practice/mit-6-0001-python-m01-l03.json",
+          "estimated_minutes": 74,
+          "objectives": [],
+          "competencies": [
+            "Python Programming",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "functions",
+            "objects"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-0001-python-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Python Programming",
+        "Computer Science",
+        "Programming Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-0001-python-m02-l01",
+          "title": "6ba59859535f1566dd57a7279aeba5d1 MIT6 0001F16 Lec4",
+          "type": "pdf",
+          "content_file": "content/module-02/6ba59859535f1566dd57a7279aeba5d1_MIT6_0001F16_Lec4.pdf",
+          "practice_file": "practice/mit-6-0001-python-m02-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Python Programming",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "functions",
+            "objects"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-0001-python-m02-l02",
+          "title": "1776670e271578eeb99fc25975f20586 MIT6 0001F16 Lec5",
+          "type": "pdf",
+          "content_file": "content/module-02/1776670e271578eeb99fc25975f20586_MIT6_0001F16_Lec5.pdf",
+          "practice_file": "practice/mit-6-0001-python-m02-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Python Programming",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "functions",
+            "objects"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-0001-python-m02-l03",
+          "title": "8cf75481d7047180c386de3e485bd050 MIT6 0001F16 ps1",
+          "type": "pdf",
+          "content_file": "content/module-02/8cf75481d7047180c386de3e485bd050_MIT6_0001F16_ps1.pdf",
+          "practice_file": "practice/mit-6-0001-python-m02-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Python Programming",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "functions",
+            "objects"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-0001-python-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Python Programming",
+        "Computer Science",
+        "Programming Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-0001-python-m03-l01",
+          "title": "5dbf3131e472f4f013b1896c05b9f7a3 MIT6 0001F16 additional",
+          "type": "pdf",
+          "content_file": "content/module-03/5dbf3131e472f4f013b1896c05b9f7a3_MIT6_0001F16_additional.pdf",
+          "practice_file": "practice/mit-6-0001-python-m03-l01.json",
+          "estimated_minutes": 28,
+          "objectives": [],
+          "competencies": [
+            "Python Programming",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "functions",
+            "objects"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-0001-python-m03-l02",
+          "title": "f79b87104b0a0f787f6a43413e8eafd0 MIT6 0001F16 StyleGuide",
+          "type": "pdf",
+          "content_file": "content/module-03/f79b87104b0a0f787f6a43413e8eafd0_MIT6_0001F16_StyleGuide.pdf",
+          "practice_file": "practice/mit-6-0001-python-m03-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Python Programming",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "functions",
+            "objects"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

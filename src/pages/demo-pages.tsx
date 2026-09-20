@@ -2,7 +2,7 @@ import { type DragEvent, type ReactNode, useEffect, useMemo, useState } from 're
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Award, BarChart3, Briefcase, Calendar, Camera, Check, CheckCircle2, Clock3, Download, Edit3, FileCheck2, Filter, Globe, Lightbulb, ListChecks, LockKeyhole, Mail, MapPin, Minus, Phone, Play, Plus, RefreshCw, Shield, ShieldCheck, Sparkles, Target, TrendingDown, TrendingUp, TriangleAlert, UploadCloud, Users, X } from 'lucide-react';
 import { Link, useLocation, useParams } from 'wouter';
-import { ActionButton, Badge, Card, ProgressBar, SectionHeading, ToastMessage } from '@/components/ui';
+import { ActionButton, Badge, Card, EmptyState, LoadingBlock, ProgressBar, SectionHeading, ToastMessage } from '@/components/ui';
 import { initials, useSession } from '@/components/session-provider';
 import {
   MAX_MATERIAL_BYTES,
@@ -34,9 +34,19 @@ import {
   toChoices,
 } from '@/lib/assessment';
 import { type CompetencyId, MIN_QUESTIONS_FOR_BAND, bandColors, bandLabels, bandTones, competencyName } from '@/lib/topics';
-import { type Choice, describeAttempt, gradeAttempt, toAttemptPayload } from '@/lib/scoring';
+import { type AttemptResult, type Choice, describeAttempt, gradeAttempt, toAttemptPayload } from '@/lib/scoring';
 import { buildRetryPaper, buildStudyPlan, summarizePlan } from '@/lib/recommendations';
 import { catalogueNote, courseMinutes, formatMinutes } from '@/lib/courses';
+import {
+  type CatalogueCourse,
+  type CourseDetail as DatasetCourseDetail,
+  type CourseLesson,
+  completedCount,
+  completionPercent,
+  fetchCatalogue,
+  fetchCourse,
+} from '@/lib/course-content';
+import { LessonReader } from '@/components/lesson-reader';
 import {
   type CourseCategory,
   categoryCounts,
@@ -70,6 +80,7 @@ import {
 import { useProgress } from '@/components/progress-provider';
 import { type AnswerAnalysis } from '@/lib/analytics';
 import { CompetencyGapSection } from '@/components/competency-gap';
+import { GapCourseRecommendations } from '@/components/gap-course-recommendations';
 
 const competencyData = [{ name: 'Data quality', score: 82 }, { name: 'Inference', score: 68 }, { name: 'Dissemination', score: 74 }, { name: 'Leadership', score: 54 }, { name: 'Digital tools', score: 61 }];
 const weeklyData = [{ name: 'Mon', hours: 0.8 }, { name: 'Tue', hours: 1.4 }, { name: 'Wed', hours: 0.3 }, { name: 'Thu', hours: 1.7 }, { name: 'Fri', hours: 1.1 }, { name: 'Sat', hours: 2.2 }, { name: 'Sun', hours: 1.6 }];
@@ -167,6 +178,7 @@ export function Dashboard() {
       * rendering it leaves the demo view exactly as it was.
       */}
     {live && <CompetencyGapSection />}
+    {live && <GapCourseRecommendations />}
     <div className="mt-8"><SectionHeading eyebrow="Curated for your role" title="Recommended next" description={sample ? 'Signals from your profile, current role, and recent assessment.' : 'Ordered by the competency your answers scored lowest.'} action={<button data-testid="button-show-all-recommendations" onClick={() => setShowAll(!showAll)} className="text-xs font-semibold text-primary hover:underline">{showAll ? 'Show less' : 'See all recommendations'} <ArrowRight className="ml-1 inline size-3.5" /></button>} /><div className="grid gap-4 md:grid-cols-3">{cards.slice(0, showAll ? 3 : 2).map((course) => <Card key={course.id} interactive className="overflow-hidden"><div className={`flex h-20 items-center justify-between px-5 ${course.color}`}><course.icon className="size-8 text-[#296b6b]/60" /><Badge tone={course.tag === 'Recommended' ? 'teal' : 'amber'}>{course.tag}</Badge></div><div className="p-5"><p className="text-[11px] font-semibold uppercase tracking-[.08em] text-muted-foreground">{course.type}</p><h3 className="mt-2 min-h-[48px] font-semibold leading-6">{course.title}</h3>{course.why && <p className="text-xs leading-5 text-muted-foreground">{course.why}</p>}<div className="mt-4 flex items-center justify-between text-xs text-muted-foreground"><span className="flex items-center gap-1"><Clock3 className="size-3.5" />{course.duration}</span><span>{course.progress ? `${course.progress}% complete` : course.level}</span></div>{course.progress > 0 && <ProgressBar value={course.progress} className="mt-3" />}<button data-testid={`button-open-course-${course.id}`} onClick={() => setLocation(`/courses/${course.id}`)} className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg border border-border py-2 text-xs font-semibold text-primary hover:bg-secondary">{course.progress ? 'Resume learning' : 'View course'}<ArrowRight className="size-3.5" /></button></div></Card>)}</div></div>
     <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_.9fr]"><Card className="p-5"><SectionHeading eyebrow="Recent activity" title="A short record of progress" action={<button data-testid="button-view-activity" onClick={sample ? () => setToast('Sign in to see your own history') : moreActivity ? () => setFullActivity(!fullActivity) : () => setToast(history.length === 0 ? 'Nothing is recorded yet' : 'That is everything recorded so far')} className="text-xs font-semibold text-primary">{moreActivity ? (fullActivity ? 'Show less' : `View all ${history.length}`) : 'View history'}</button>} /><div className="space-y-4">{rows.length === 0 ? <p className="text-sm leading-6 text-muted-foreground">Nothing recorded yet. Assessments and knowledge checks appear here with the score each one earned.</p> : rows.map((row) => <div key={row.id} className="flex items-center gap-3"><div className={`size-2 rounded-full ${row.tone === 'teal' ? 'bg-primary' : row.tone === 'amber' ? 'bg-accent' : 'bg-[#9db5c5]'}`} /><div className="flex-1"><p className="text-sm font-semibold">{row.title}</p><p className="text-xs text-muted-foreground">{row.detail}</p></div><span className="font-mono text-[10px] text-muted-foreground">{row.date}</span></div>)}</div></Card><Card className="relative overflow-hidden bg-sidebar p-6 text-sidebar-foreground"><div className="absolute -right-8 -top-10 size-40 rounded-full border border-accent/20" /><div className="absolute -right-3 -top-5 size-28 rounded-full border border-accent/15" /><Award className="mb-5 size-6 text-accent" /><p className="font-mono text-[10px] uppercase tracking-[.16em] text-accent">Signal worth noticing</p><h3 className="mt-2 max-w-[290px] font-serif text-2xl text-white">{sample ? 'Your strongest and weakest competency, side by side.' : view.signal ? view.signal.headline : 'Your profile starts with one sitting.'}</h3><p className="mt-3 max-w-[300px] text-sm leading-6 text-sidebar-foreground/70">{sample ? 'This card is showing demonstration copy. With your own results it names your strongest and weakest competency, and the gap between them.' : view.signal ? view.signal.detail : 'Sit the assessment or upload your own material, and this card names your strongest and weakest competency with the counts behind them.'}</p><button data-testid="button-view-insight" onClick={sample ? () => setToast('Sign in to keep this in your learning brief') : () => setLocation(view.signal ? view.signal.href : '/assessment')} className="mt-5 text-sm font-semibold text-accent hover:underline">{sample ? 'Save to brief' : view.signal ? view.signal.actionLabel : 'Take the assessment'} <ArrowRight className="ml-1 inline size-4" /></button></Card></div>
     {toast && <ToastMessage message={toast} onClose={() => setToast('')} />}
@@ -521,6 +533,227 @@ export function CourseLibrary() {
     ...categoryOrder.map((category) => ({ id: category, label: categoryLabels[category], count: counts[category] })),
   ];
   return <div className="mx-auto max-w-[1440px] animate-rise-in"><PageIntro eyebrow="Course library" title="Courses worth your evening, from across the web." description="A hand-picked catalogue of real online courses — engineering, medicine, data science and business — every one at least an hour, linking straight to the provider." action={<ActionButton variant="outline" onClick={() => setFilter('all')} icon={<RefreshCw className="size-4" />}>Reset filters</ActionButton>} /><div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><div className="flex flex-wrap gap-1 rounded-lg bg-secondary p-1">{chips.map((chip) => <button key={chip.id} data-testid={`button-library-filter-${chip.id}`} onClick={() => setFilter(chip.id)} className={`inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-xs font-semibold ${filter === chip.id ? 'bg-card text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}>{chip.id === 'trending' && <TrendingUp className="size-3.5" />}{chip.label}<span className="font-mono text-[10px] text-muted-foreground">{chip.count}</span></button>)}</div><span className="text-xs text-muted-foreground">{shown.length} {shown.length === 1 ? 'course' : 'courses'}</span></div><div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">{shown.map((course) => <Card key={course.id} interactive className="flex flex-col gap-3 p-5"><div className="flex items-start justify-between gap-2"><div className="flex flex-wrap items-center gap-2"><Badge tone="navy">{categoryLabels[course.category]}</Badge>{course.trending && <Badge tone="amber"><TrendingUp className="size-3" /> Trending</Badge>}</div><span className="shrink-0 font-mono text-[10px] uppercase tracking-[.12em] text-muted-foreground">{course.level}</span></div><div className="min-w-0 flex-1"><h3 className="font-semibold leading-snug">{course.title}</h3><p className="mt-1 text-xs text-muted-foreground">{course.provider} · {course.partner}</p><p className="mt-3 text-sm leading-6 text-muted-foreground">{course.blurb}</p></div><div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground"><span className="flex items-center gap-1"><Clock3 className="size-3.5" />{courseHoursLabel(course.hours)}</span><Badge tone={costTone(course.cost)}>{course.cost}</Badge>{course.certificate && <span className="flex items-center gap-1"><Award className="size-3.5" />Certificate</span>}</div><a href={course.url} target="_blank" rel="noopener noreferrer" data-testid={`link-library-course-${course.id}`} className="mt-1 inline-flex items-center justify-center gap-1.5 rounded-lg bg-primary px-3 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-primary/90">View course <ArrowUpRight className="size-3.5" /></a></Card>)}</div><p className="mt-6 max-w-3xl text-xs leading-5 text-muted-foreground">{libraryNote}</p></div>;
+}
+
+/**
+ * The course catalogue: the real, openly-licensed courses the dataset builder
+ * downloaded to disk, each one openable and each one tracking how far this learner
+ * has actually got through it.
+ *
+ * This is a different thing from `CourseLibrary` above, and the difference is the
+ * whole point. That page links out to courses on the web; this one serves content
+ * that is on the server, keyed on the same `course_id` the progress store records
+ * completed lessons against. So the percentage on each card is measured, not
+ * decorative — it is `completed lessons / total lessons` for this account, and it
+ * reads 0% until the learner marks a lesson done on the detail page.
+ *
+ * When no dataset is present the page says so plainly rather than inventing a
+ * catalogue. Everything it shows comes from `GET /api/courses`; it invents no field
+ * and reuses the same Card, Badge and chip styling as every other screen.
+ */
+type CatalogueFilter = 'all' | 'technology' | 'medical';
+
+/** A category maps to one of the badge tones the app already uses. */
+function categoryTone(category: string): 'navy' | 'coral' | 'neutral' {
+  const key = category.toLowerCase();
+  if (key.startsWith('tech')) return 'navy';
+  if (key.startsWith('med')) return 'coral';
+  return 'neutral';
+}
+
+export function CourseCatalog() {
+  const { courses: records } = useProgress();
+  const [state, setState] = useState<{ status: 'loading' | 'ready' | 'error'; problem: string; courses: CatalogueCourse[]; available: boolean; technology: number; medical: number }>(
+    { status: 'loading', problem: '', courses: [], available: false, technology: 0, medical: 0 },
+  );
+  const [filter, setFilter] = useState<CatalogueFilter>('all');
+
+  useEffect(() => {
+    let live = true;
+    setState((s) => ({ ...s, status: 'loading', problem: '' }));
+    fetchCatalogue()
+      .then((data) => {
+        if (!live) return;
+        setState({ status: 'ready', problem: '', courses: data.courses, available: data.available, technology: data.technology, medical: data.medical });
+      })
+      .catch((error: unknown) => {
+        if (!live) return;
+        setState({ status: 'error', problem: error instanceof Error ? error.message : 'The course service did not answer.', courses: [], available: false, technology: 0, medical: 0 });
+      });
+    return () => { live = false; };
+  }, []);
+
+  // Completed-lesson counts keyed by courseId, so a card can show "3 / 40" without
+  // fetching each course's full tree. A record only ever holds this course's own
+  // lesson ids, so count / total is the honest figure the detail page also computes.
+  const doneByCourse = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const record of records) map.set(record.courseId, record.completedLessons.length);
+    return map;
+  }, [records]);
+
+  const shown = useMemo(() => {
+    if (filter === 'technology') return state.courses.filter((c) => c.category.toLowerCase().startsWith('tech'));
+    if (filter === 'medical') return state.courses.filter((c) => c.category.toLowerCase().startsWith('med'));
+    return state.courses;
+  }, [state.courses, filter]);
+
+  const chips: { id: CatalogueFilter; label: string; count: number }[] = [
+    { id: 'all', label: 'All courses', count: state.courses.length },
+    { id: 'technology', label: 'Technology', count: state.technology },
+    { id: 'medical', label: 'Medical & health', count: state.medical },
+  ];
+
+  return <div className="mx-auto max-w-[1440px] animate-rise-in">
+    <PageIntro eyebrow="Course catalogue" title="Real courses you can open and finish here." description="Openly-licensed course content downloaded to your platform — open a lesson, mark it done, and your completion is tracked against your account." action={<ActionButton variant="outline" onClick={() => setFilter('all')} icon={<RefreshCw className="size-4" />}>Show all</ActionButton>} />
+    {state.status === 'loading' && <LoadingBlock label="Loading the course catalogue" />}
+    {state.status === 'error' && <EmptyState title="The course service is not answering" description={state.problem} />}
+    {state.status === 'ready' && !state.available && <EmptyState title="No course dataset found" description="The downloaded course content is not on this machine yet. Once the Nexora course dataset sits beside the app and the server is restarted, every course appears here." />}
+    {state.status === 'ready' && state.available && <>
+      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-wrap gap-1 rounded-lg bg-secondary p-1">{chips.map((chip) => <button key={chip.id} data-testid={`button-catalog-filter-${chip.id}`} onClick={() => setFilter(chip.id)} className={`inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-xs font-semibold ${filter === chip.id ? 'bg-card text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}>{chip.label}<span className="font-mono text-[10px] text-muted-foreground">{chip.count}</span></button>)}</div>
+        <span className="text-xs text-muted-foreground">{shown.length} {shown.length === 1 ? 'course' : 'courses'}</span>
+      </div>
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">{shown.map((course) => {
+        const done = doneByCourse.get(course.courseId) ?? 0;
+        const percent = course.lessons > 0 ? Math.min(100, Math.round((done / course.lessons) * 100)) : 0;
+        return <Card key={course.courseId} interactive className="flex flex-col gap-3 p-5">
+          <div className="flex items-start justify-between gap-2">
+            <div className="flex flex-wrap items-center gap-2"><Badge tone={categoryTone(course.category)}>{course.category || 'Course'}</Badge>{percent === 100 && <Badge tone="teal"><Check className="size-3" /> Complete</Badge>}</div>
+            <span className="shrink-0 font-mono text-[10px] uppercase tracking-[.12em] text-muted-foreground">{course.level}</span>
+          </div>
+          <div className="min-w-0 flex-1">
+            <h3 className="font-semibold leading-snug">{course.title}</h3>
+            <p className="mt-1 text-xs text-muted-foreground">{course.provider}</p>
+            {course.description && <p className="mt-3 line-clamp-3 text-sm leading-6 text-muted-foreground">{course.description}</p>}
+          </div>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
+            {course.estimatedHours ? <span className="flex items-center gap-1"><Clock3 className="size-3.5" />{course.estimatedHours} hrs</span> : null}
+            <span className="flex items-center gap-1"><ListChecks className="size-3.5" />{course.lessons} {course.lessons === 1 ? 'lesson' : 'lessons'}</span>
+          </div>
+          <div className="flex items-center gap-2"><ProgressBar value={percent} className="flex-1" /><span className="font-mono text-[10px] text-muted-foreground">{done}/{course.lessons}</span></div>
+          <Link href={`/catalog/${course.courseId}`} data-testid={`link-catalog-course-${course.courseId}`} className="mt-1 inline-flex items-center justify-center gap-1.5 rounded-lg bg-primary px-3 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-[#245b62]">{percent > 0 ? 'Resume course' : 'Open course'} <ArrowRight className="size-3.5" /></Link>
+        </Card>;
+      })}</div>
+      <p className="mt-6 max-w-3xl text-xs leading-5 text-muted-foreground">Every course here is real content downloaded under an open licence. NEXORA AI hosts the files it was allowed to redistribute and links to the source for the rest; your completion percentage is measured from the lessons you mark done.</p>
+    </>}
+  </div>;
+}
+
+/**
+ * One dataset course, opened.
+ *
+ * The layout is the internal `CourseDetail` above, kept deliberately: a header, a
+ * sticky progress card, and the module/lesson outline down the middle. What is
+ * different is that all of it is real. The modules and lessons come from the
+ * course's own `course.json`; "Open" streams the actual file from the server; and
+ * the checkbox against each lesson writes to this account's `completedLessons`, so
+ * the donut is this learner's measured progress, not a number the page chose.
+ *
+ * Marking is a full-set write: the page sends the whole list of completed lesson
+ * ids, and the provider adopts what the server stored. There is no optimistic
+ * update, so the box reflects what was actually saved. In demo mode (no session)
+ * the save declines and the page says to sign in, exactly like every other mutator.
+ */
+export function CatalogCourse() {
+  const { id } = useParams<{ id: string }>();
+  const { courseFor, markCourse, live } = useProgress();
+  const [course, setCourse] = useState<DatasetCourseDetail | null>(null);
+  const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
+  const [problem, setProblem] = useState('');
+  const [toast, setToast] = useState('');
+  /** The lesson currently open in the in-app reader, or null when nothing is open. */
+  const [reading, setReading] = useState<CourseLesson | null>(null);
+
+  useEffect(() => {
+    let alive = true;
+    setStatus('loading');
+    setProblem('');
+    fetchCourse(id)
+      .then((data) => { if (alive) { setCourse(data); setStatus('ready'); } })
+      .catch((error: unknown) => { if (alive) { setStatus('error'); setProblem(error instanceof Error ? error.message : 'This course could not be loaded.'); } });
+    return () => { alive = false; };
+  }, [id]);
+
+  const record = course ? courseFor(course.courseId) : null;
+  const completed = record?.completedLessons ?? [];
+  const percent = course ? completionPercent(course.lessonIds, completed) : 0;
+  const doneCount = course ? completedCount(course.lessonIds, completed) : 0;
+  const doneSet = useMemo(() => new Set(completed), [completed]);
+
+  /**
+   * Mark a lesson done because it was *read* — the reader calls this once the learner has
+   * scrolled to the end of it. There is no un-mark: completion is earned by reading, and a
+   * lesson already done stays done. The next set is rebuilt from the course's real lessons,
+   * so a stale id from an older version of the course can never ride along to the server.
+   */
+  async function completeLesson(lessonId: string) {
+    if (!course || doneSet.has(lessonId)) return;
+    const next = new Set(course.lessonIds.filter((lid) => doneSet.has(lid)));
+    next.add(lessonId);
+    const outcome = await markCourse({ courseId: course.courseId, started: true, completedLessons: [...next] });
+    if (!outcome.saved) setToast(outcome.reason);
+  }
+
+  if (status === 'loading') return <div className="mx-auto max-w-5xl animate-rise-in"><Link href="/catalog" data-testid="link-back-catalog" className="mb-6 inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground hover:text-primary"><ArrowLeft className="size-3.5" /> Back to catalogue</Link><LoadingBlock label="Opening course" /></div>;
+  if (status === 'error' || !course) return <div className="mx-auto max-w-5xl animate-rise-in"><Link href="/catalog" data-testid="link-back-catalog" className="mb-6 inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground hover:text-primary"><ArrowLeft className="size-3.5" /> Back to catalogue</Link><EmptyState title="Course unavailable" description={problem || 'No such course.'} /></div>;
+
+  return <div className="mx-auto max-w-5xl animate-rise-in">
+    <Link href="/catalog" data-testid="link-back-catalog" className="mb-6 inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground hover:text-primary"><ArrowLeft className="size-3.5" /> Back to catalogue</Link>
+    <Card className="overflow-hidden">
+      <div className="relative bg-secondary px-6 py-12 sm:px-12">
+        <div className="flex flex-wrap items-center gap-2"><Badge tone={categoryTone(course.category)}>{course.category || 'Course'}</Badge>{course.level && <Badge tone="neutral">{course.level}</Badge>}{percent === 100 && <Badge tone="teal"><Check className="size-3" /> Complete</Badge>}</div>
+        <h1 className="mt-4 max-w-2xl font-serif text-3xl leading-tight sm:text-5xl">{course.title}</h1>
+        {course.description && <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground">{course.description}</p>}
+        <div className="mt-6 flex flex-wrap gap-4 text-xs font-medium text-muted-foreground">
+          <span className="flex items-center gap-1"><Globe className="size-4" />{course.provider}</span>
+          {course.estimatedHours ? <span className="flex items-center gap-1"><Clock3 className="size-4" />{course.estimatedHours} hrs</span> : null}
+          <span className="flex items-center gap-1"><ListChecks className="size-4" />{course.lessons} lessons · {course.modules.length} modules</span>
+        </div>
+      </div>
+      <div className="grid gap-8 p-6 sm:p-10 lg:grid-cols-[1fr_280px]">
+        <div>
+          <h2 className="font-serif text-2xl">Course outline</h2>
+          <p className="mt-2 text-sm leading-6 text-muted-foreground">Open a lesson to read the real material in the app. Each one marks itself done once you have read to the end — your completion below is measured from the lessons you have actually read.</p>
+          <div className="mt-5 space-y-6">{course.modules.map((module, mi) => <div key={module.moduleId || mi}>
+            <div className="flex items-center gap-2"><span className="font-mono text-xs text-muted-foreground">{String(mi + 1).padStart(2, '0')}</span><h3 className="text-sm font-semibold">{module.title || `Module ${mi + 1}`}</h3></div>
+            <div className="mt-3 divide-y divide-border rounded-xl border border-border">{module.lessons.map((lesson) => {
+              const isDone = doneSet.has(lesson.lessonId);
+              // A lesson with content opens in the reader (which is what completes it when
+              // read). A lesson with only a source link falls back to that; there is nothing
+              // to read in-app, so it can't auto-complete, and that is the honest state.
+              return <div key={lesson.lessonId} className="flex items-center gap-3 p-3.5">
+                <span aria-hidden className={`flex size-6 shrink-0 items-center justify-center rounded-md border ${isDone ? 'border-primary bg-primary text-white' : 'border-border text-transparent'}`}><Check className="size-3.5" /></span>
+                <div className="min-w-0 flex-1"><p className={`truncate text-sm font-semibold ${isDone ? 'text-muted-foreground' : ''}`}>{lesson.title || lesson.lessonId}</p><p className="text-[11px] text-muted-foreground">{lesson.estimatedMinutes ? `${lesson.estimatedMinutes} min · ` : ''}{lesson.type}{isDone ? ' · Read' : ''}</p></div>
+                {lesson.hasContent ? <button onClick={() => setReading(lesson)} data-testid={`button-lesson-open-${lesson.lessonId}`} className="inline-flex shrink-0 items-center gap-1 rounded-lg border border-border px-3 py-1.5 text-xs font-semibold text-primary hover:bg-secondary">{isDone ? 'Re-read' : 'Read'} <ArrowRight className="size-3.5" /></button> : lesson.sourceUrl ? <a href={lesson.sourceUrl} target="_blank" rel="noopener noreferrer" data-testid={`link-lesson-source-${lesson.lessonId}`} className="inline-flex shrink-0 items-center gap-1 rounded-lg border border-border px-3 py-1.5 text-xs font-semibold text-muted-foreground hover:bg-secondary">Source <ArrowUpRight className="size-3.5" /></a> : <span className="shrink-0 text-[11px] text-muted-foreground">No file</span>}
+              </div>;
+            })}</div>
+          </div>)}</div>
+        </div>
+        <aside>
+          <div className="sticky top-24 rounded-xl border border-border bg-secondary p-5">
+            <p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Your progress</p>
+            <div className="mt-4 flex items-center gap-4"><Donut value={percent} size={74} /><div><p className="font-semibold">{percent}% complete</p><p className="mt-1 text-xs text-muted-foreground">{doneCount} of {course.lessonIds.length} lessons</p></div></div>
+            <ProgressBar value={percent} className="mt-5" />
+            {!live && <p className="mt-4 text-xs leading-5 text-muted-foreground">Sign in with the server running to save your progress. You can still open every lesson.</p>}
+            {course.officialUrl && <a href={course.officialUrl} target="_blank" rel="noopener noreferrer" data-testid="link-course-source" className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg border border-border py-2 text-xs font-semibold text-primary hover:bg-card"><Globe className="size-3.5" /> Source & licence</a>}
+            {course.license && <p className="mt-3 text-center text-[10px] text-muted-foreground">Licence: {course.license}</p>}
+          </div>
+        </aside>
+      </div>
+    </Card>
+    {reading && <LessonReader
+      courseId={course.courseId}
+      lessonId={reading.lessonId}
+      title={reading.title || reading.lessonId}
+      contentFile={reading.contentFile}
+      sourceUrl={reading.sourceUrl}
+      alreadyDone={doneSet.has(reading.lessonId)}
+      onComplete={(lessonId) => { void completeLesson(lessonId); }}
+      onClose={() => setReading(null)}
+    />}
+    {toast && <ToastMessage message={toast} onClose={() => setToast('')} />}
+  </div>;
 }
 
 const stageOrder = ['reading', 'classifying', 'topics', 'questions', 'checking'] as const;
@@ -955,6 +1188,121 @@ function AnswerReveal({ question, pick, className = '' }: { question: MaterialQu
 }
 
 /**
+ * A graph-rich analytics report of a single paper, built entirely from the local
+ * `AttemptResult` that `gradeAttempt` already produced — no server call, so it is exactly
+ * the sitting just finished and nothing else. Three views: how the questions broke down
+ * (correct / wrong / unanswered), how each topic scored, and how each framework competency
+ * the paper touched scored. Every number here is one the score card above also shows; this
+ * is the same truth, drawn, so a learner sees the shape of the result and not just a ratio.
+ *
+ * Recharts is already the app's chart library (see the imports at the top of this file), so
+ * nothing new is pulled in. Bars are coloured by band with the same `bandColors` the rest of
+ * the report uses, so "strong" is the same green everywhere.
+ */
+function QuizAnalytics({ graded }: { graded: AttemptResult }) {
+  const wrong = Math.max(0, graded.answered - graded.correct);
+  const outcome = [
+    { name: 'Correct', value: graded.correct, fill: bandColors.strong },
+    { name: 'Incorrect', value: wrong, fill: bandColors['needs-work'] },
+    { name: 'Unanswered', value: graded.skipped, fill: '#9aa8b0' },
+  ].filter((slice) => slice.value > 0);
+
+  // Recharts wants a plain row per bar. Topics keep the report's worst-first order; the
+  // label is trimmed so a long topic name does not blow out the axis gutter.
+  const topicData = graded.topics.map((score) => ({
+    label: score.topic.length > 22 ? `${score.topic.slice(0, 21)}…` : score.topic,
+    percent: score.percent,
+    fill: bandColors[score.band],
+    correct: score.correct,
+    total: score.total,
+  }));
+  const competencyData = graded.competencies.map((entry) => ({
+    label: entry.short,
+    percent: entry.percent,
+    fill: bandColors[entry.band],
+    correct: entry.correct,
+    total: entry.total,
+  }));
+
+  // Height grows with the number of bars so labels never overlap on a long paper.
+  const topicHeight = Math.max(160, topicData.length * 46);
+  const competencyHeight = Math.max(140, competencyData.length * 46);
+
+  return (
+    <Card className="mt-6 p-6 sm:p-8" data-testid="quiz-analytics">
+      <SectionHeading
+        eyebrow="This paper, in charts"
+        title="A closer look at how this sitting went"
+        description="Drawn from this attempt alone — the same numbers as the report above, shown as the shape of the result."
+      />
+
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,260px)_1fr]">
+        {/* Outcome breakdown: correct vs wrong vs left blank. */}
+        <div>
+          <p className="font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground">Question outcomes</p>
+          <div className="mt-3 h-[200px]" data-testid="quiz-analytics-outcome">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie data={outcome} dataKey="value" nameKey="name" innerRadius={52} outerRadius={82} paddingAngle={2} strokeWidth={0}>
+                  {outcome.map((slice) => <Cell key={slice.name} fill={slice.fill} />)}
+                </Pie>
+                <Tooltip contentStyle={{ borderRadius: 8, border: '1px solid #dfe9ea', fontSize: 12 }} formatter={(value: number, name: string) => [`${value} ${value === 1 ? 'question' : 'questions'}`, name]} />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="mt-3 space-y-1.5">
+            {outcome.map((slice) => (
+              <div key={slice.name} className="flex items-center justify-between text-xs">
+                <span className="flex items-center gap-2 text-foreground"><span className="size-2.5 rounded-full" style={{ backgroundColor: slice.fill }} />{slice.name}</span>
+                <span className="font-mono text-muted-foreground">{slice.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Per-topic score, worst first, each bar coloured by its band. */}
+        <div>
+          <p className="font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground">Score by topic</p>
+          <div className="mt-3" style={{ height: topicHeight }} data-testid="quiz-analytics-topics">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={topicData} layout="vertical" margin={{ top: 4, right: 40, left: 8, bottom: 4 }}>
+                <CartesianGrid horizontal={false} stroke="#e1e9ea" />
+                <XAxis type="number" domain={[0, 100]} axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#718189' }} tickFormatter={(value: number) => `${value}%`} />
+                <YAxis type="category" dataKey="label" width={130} axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#41525a' }} />
+                <Tooltip cursor={{ fill: '#f1f5f6' }} contentStyle={{ borderRadius: 8, border: '1px solid #dfe9ea', fontSize: 12 }} formatter={(value: number, _name: string, entry: { payload?: { correct: number; total: number } }) => [`${value}% · ${entry.payload?.correct ?? 0}/${entry.payload?.total ?? 0} correct`, 'Score']} />
+                <Bar dataKey="percent" radius={[0, 4, 4, 0]} barSize={18}>
+                  {topicData.map((row, i) => <Cell key={`${row.label}-${i}`} fill={row.fill} />)}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      </div>
+
+      {competencyData.length > 0 && (
+        <div className="mt-8 border-t border-border pt-6">
+          <p className="font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground">Framework competencies this paper touched</p>
+          <div className="mt-3" style={{ height: competencyHeight }} data-testid="quiz-analytics-competencies">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={competencyData} layout="vertical" margin={{ top: 4, right: 40, left: 8, bottom: 4 }}>
+                <CartesianGrid horizontal={false} stroke="#e1e9ea" />
+                <XAxis type="number" domain={[0, 100]} axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#718189' }} tickFormatter={(value: number) => `${value}%`} />
+                <YAxis type="category" dataKey="label" width={130} axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#41525a' }} />
+                <Tooltip cursor={{ fill: '#f1f5f6' }} contentStyle={{ borderRadius: 8, border: '1px solid #dfe9ea', fontSize: 12 }} formatter={(value: number, _name: string, entry: { payload?: { correct: number; total: number } }) => [`${value}% · ${entry.payload?.correct ?? 0}/${entry.payload?.total ?? 0} correct`, 'Score']} />
+                <Bar dataKey="percent" radius={[0, 4, 4, 0]} barSize={18}>
+                  {competencyData.map((row, i) => <Cell key={`${row.label}-${i}`} fill={row.fill} />)}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+          <p className="mt-3 text-xs leading-5 text-muted-foreground">Competencies this material never asked about are left out rather than shown as zero.</p>
+        </div>
+      )}
+    </Card>
+  );
+}
+
+/**
  * The knowledge check, and the report that is the whole point of it.
  *
  * Two things were wrong with the old version. It printed the source sentence in a
@@ -1068,6 +1416,9 @@ export function Quiz() {
     );
     setSaving(false);
     setSaveNote(outcome.saved ? 'Saved to your account.' : outcome.reason);
+    // The save is what lets the Dashboard's cross-attempt gap analysis and course
+    // recommendations include this sitting the next time it is opened. The on-screen
+    // charts below need no refetch — they are drawn from this tab's own graded result.
   };
 
   const advance = () => {
@@ -1158,6 +1509,18 @@ export function Quiz() {
         </div>
         <p className="mt-4 text-xs leading-5 text-muted-foreground">{catalogueNote}</p>
       </Card>}
+
+      {/**
+        * A graph-rich analytics report of the paper just taken — built entirely from the
+        * local `graded` result, so it is exactly this sitting and nothing else. The gaps
+        * across every attempt and the real-course recommendations that follow from them
+        * live on the Dashboard now; this screen is the single-test picture, drawn.
+        */}
+      <QuizAnalytics graded={graded} />
+      <p className="mt-4 text-center text-xs leading-5 text-muted-foreground">
+        Want the bigger picture across every paper you have taken — and real courses matched to your gaps?{' '}
+        <Link href="/dashboard" className="font-semibold text-primary hover:underline" data-testid="link-quiz-to-dashboard">Open your dashboard <ArrowRight className="inline size-3.5" /></Link>
+      </p>
 
       <Card className="mt-6 p-6 sm:p-8">
         <SectionHeading eyebrow="Answer review" title="Question by question" description="Every question with your answer, the key, and the sentence it was built from." action={<ActionButton variant="outline" onClick={() => setShowReview(!showReview)}>{showReview ? 'Hide review' : 'Show review'}</ActionButton>} />

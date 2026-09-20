@@ -1,0 +1,197 @@
+{
+  "module_id": "wtcs-nursing-health-promotion-m02",
+  "questions": [
+    {
+      "question_id": "wtcs-nursing-health-promotion-m02-l01-q01",
+      "question": "According to the source lesson '2.2 Health, Wellness, and Disease Prevention', which statement is most accurate?",
+      "options": [
+        "Health and Wellness The World Health Organization (WHO) defines **health** as a state of complete physical, mental, and social well-being and not merely the absence of disease.[1] **Holistic health** is an approach to wellness that recogniz",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-health-promotion-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from '2.2 Health, Wellness, and Disease Prevention'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.2 Health, Wellness, and Disease Prevention.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-health-promotion-m02-l01-q03",
+      "question": "When applying concepts from '2.2 Health, Wellness, and Disease Prevention', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-health-promotion-m02-l02-q01",
+      "question": "According to the source lesson '2.3 Primary Prevention: Teaching Elements of a Healthy Lifestyle', which statement is most accurate?",
+      "options": [
+        "As discussed in the previous section, **primary prevention** refers to interventions to prevent illness and injury that are implemented before health disorders develop.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-health-promotion-m02-l02-q02",
+      "question": "What is a reasonable learning takeaway from '2.3 Primary Prevention: Teaching Elements of a Healthy Lifestyle'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.3 Primary Prevention: Teaching Elements of a Healthy Lifestyle.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-health-promotion-m02-l02-q03",
+      "question": "When applying concepts from '2.3 Primary Prevention: Teaching Elements of a Healthy Lifestyle', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-health-promotion-m02-l03-q01",
+      "question": "According to the source lesson '2.4 Secondary Prevention', which statement is most accurate?",
+      "options": [
+        "**Secondary prevention** interventions focus on screening to identify early stages of disease, often before the client experiences signs or symptoms of the disease.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-health-promotion-m02-l03-q02",
+      "question": "What is a reasonable learning takeaway from '2.4 Secondary Prevention'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.4 Secondary Prevention.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-health-promotion-m02-l03-q03",
+      "question": "When applying concepts from '2.4 Secondary Prevention', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-health-promotion-m02-l04-q01",
+      "question": "According to the source lesson '2.5 Tertiary Prevention', which statement is most accurate?",
+      "options": [
+        "**Tertiary prevention **helps clients reduce the severity of disease and/or altered functioning and is also referred to as “rehabilitation.” These interventions may include things such as cardiac rehabilitation following coronary artery byp",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-health-promotion-m02-l04-q02",
+      "question": "What is a reasonable learning takeaway from '2.5 Tertiary Prevention'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.5 Tertiary Prevention.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-health-promotion-m02-l04-q03",
+      "question": "When applying concepts from '2.5 Tertiary Prevention', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

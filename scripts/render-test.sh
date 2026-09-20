@@ -53,6 +53,21 @@ src_lacks() { # src_lacks <file> <literal> <description>
   fi
 }
 
+# The course catalogue is wired into the app: a nav item, both routes, and the page
+# marking lessons through the progress store rather than local state.
+src_has src/components/shell.tsx "{ href: '/catalog', label: 'Course catalogue', icon: Library }" 'the course catalogue has a nav item'
+src_has src/App.tsx '<Route path="/catalog" component={CourseCatalog} />' 'the catalogue list route is registered'
+src_has src/App.tsx '<Route path="/catalog/:id" component={CatalogCourse} />' 'the catalogue detail route is registered'
+src_has src/pages/demo-pages.tsx 'markCourse({ courseId: course.courseId, started: true, completedLessons:' 'marking a lesson writes lesson completion to the account'
+src_has src/pages/demo-pages.tsx 'completionPercent(course.lessonIds, completed)' 'the donut is measured from the account, not chosen'
+# A lesson now opens in the in-app reader, which is what completes it once read — the old
+# manual checkbox and open-in-a-new-tab link are gone.
+src_has src/pages/demo-pages.tsx 'onClick={() => setReading(lesson)}' 'a lesson opens in the in-app reader'
+src_has src/pages/demo-pages.tsx 'onComplete={(lessonId) => { void completeLesson(lessonId); }}' 'the reader completes the lesson it was reading'
+src_lacks src/pages/demo-pages.tsx 'button-lesson-toggle-' 'the manual mark-done checkbox is gone'
+src_has src/components/lesson-reader.tsx 'contentUrl(courseId, contentFile)' 'the reader streams the real lesson file for PDFs'
+src_has src/components/lesson-reader.tsx 'el.scrollHeight - el.scrollTop - el.clientHeight <= BOTTOM_SLACK' 'a text lesson completes only when scrolled to the end'
+
 src_has src/components/shell.tsx 'data-testid="button-signout-demo"' 'sign-out button keeps its test id'
 src_has src/components/shell.tsx 'await signOut()' 'sign-out button calls signOut()'
 src_has src/components/shell.tsx "setLocation('/login')" 'signing out lands on /login'

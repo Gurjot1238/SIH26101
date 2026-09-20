@@ -1,0 +1,325 @@
+{
+  "course_id": "openintro-statistics",
+  "questions": [
+    {
+      "question_id": "openintro-m01-l01-q01",
+      "question": "According to the source lesson 'Case Study Using Stents To Prevent Strokes', which statement is most accurate?",
+      "options": [
+        "Migraine and acupuncture, Part I A migraine is a particularly painful type of headache, which patients sometimes wish to treat with acupuncture.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Case Study Using Stents To Prevent Strokes'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Case Study Using Stents To Prevent Strokes.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m01-l01-q03",
+      "question": "When applying concepts from 'Case Study Using Stents To Prevent Strokes', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m01-l02-q01",
+      "question": "According to the source lesson 'Data Basics', which statement is most accurate?",
+      "options": [
+        "Air pollution and birth outcomes, study components Researchers collected data to examine the relationship between air pollutants and preterm births in Southern California.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m02-l01-q01",
+      "question": "According to the source lesson 'Case Study Malaria Vaccine', which statement is most accurate?",
+      "options": [
+        "Side effects of Avandia Rosiglitazone is the active ingredient in the controversial type~2 diabetes medicine Avandia and has been linked to an increased risk of serious cardiovascular problems such as stroke, heart failure, and death.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Case Study Malaria Vaccine'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Case Study Malaria Vaccine.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m02-l01-q03",
+      "question": "When applying concepts from 'Case Study Malaria Vaccine', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m02-l02-q01",
+      "question": "According to the source lesson 'Considering Categorical Data', which statement is most accurate?",
+      "options": [
+        "Antibiotic use in children The bar plot and the pie chart below show the distribution of pre-existing medical conditions of children involved in a study on the optimal duration of antibiotic use in treatment of tracheitis, which is an upper",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m03-l01-q01",
+      "question": "According to the source lesson 'Conditional Probability', which statement is most accurate?",
+      "options": [
+        "Joint and conditional probabilities P(A) = 0.3, P(B) = 0.7 parts - Can you compute P(A and B) if you only know P(A) and P(B)?",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Conditional Probability'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Conditional Probability.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m03-l01-q03",
+      "question": "When applying concepts from 'Conditional Probability', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m03-l02-q01",
+      "question": "According to the source lesson 'Continuous Distributions', which statement is most accurate?",
+      "options": [
+        "Cat weights The histogram shown below represents the weights (in kg) of 47 female and 97 male cats.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m04-l01-q01",
+      "question": "According to the source lesson 'Binomial Distribution', which statement is most accurate?",
+      "options": [
+        "Underage drinking, Part I Data collected by the Substance Abuse and Mental Health Services Administration (SAMSHA) suggests that 69.7\\ 18-20 year olds consumed alcoholic beverages in any given year.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m04-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Binomial Distribution'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Binomial Distribution.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m04-l01-q03",
+      "question": "When applying concepts from 'Binomial Distribution', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m04-l02-q01",
+      "question": "According to the source lesson 'Geometric Distribution', which statement is most accurate?",
+      "options": [
+        "Is it Bernoulli Determine if each trial can be considered an independent Bernoulli trial for the following situations.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m05-l01-q01",
+      "question": "According to the source lesson 'Confidence Intervals', which statement is most accurate?",
+      "options": [
+        "Chronic illness, Part I In 2013, the Pew Research Foundation reported that ``45\\ that they live with one or more chronic conditions''.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m05-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Confidence Intervals'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Confidence Intervals.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m05-l01-q03",
+      "question": "When applying concepts from 'Confidence Intervals', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m05-l02-q01",
+      "question": "According to the source lesson 'Hypothesis Testing', which statement is most accurate?",
+      "options": [
+        "Identify hypotheses, Part I Write the null and alternative hypotheses in words and then symbols for each of the following situations.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

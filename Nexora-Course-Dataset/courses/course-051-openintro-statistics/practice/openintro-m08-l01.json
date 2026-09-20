@@ -1,0 +1,53 @@
+{
+  "lesson_id": "openintro-m08-l01",
+  "questions": [
+    {
+      "question_id": "openintro-m08-l01-q01",
+      "question": "According to the source lesson 'Fitting A Line By Least Squares Regression', which statement is most accurate?",
+      "options": [
+        "Units of regression Consider a regression predicting weight (kg) from height (cm) for a sample of adult males.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m08-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Fitting A Line By Least Squares Regression'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Fitting A Line By Least Squares Regression.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m08-l01-q03",
+      "question": "When applying concepts from 'Fitting A Line By Least Squares Regression', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

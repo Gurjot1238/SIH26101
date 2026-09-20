@@ -1,0 +1,197 @@
+{
+  "module_id": "wtcs-nursing-management-m02",
+  "questions": [
+    {
+      "question_id": "wtcs-nursing-management-m02-l01-q01",
+      "question": "According to the source lesson '2.1  Prioritization Introduction', which statement is most accurate?",
+      "options": [
+        "Learning Objectives * Prioritize nursing care based on client acuity * Use principles of time management to organize work * Analyze effectiveness of time management strategies * Incorporate clinical judgment to prioritize nursing care * App",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from '2.1  Prioritization Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.1  Prioritization Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m02-l01-q03",
+      "question": "When applying concepts from '2.1  Prioritization Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m02-l02-q01",
+      "question": "According to the source lesson '2.2 Tenets of Prioritization', which statement is most accurate?",
+      "options": [
+        "Prioritization As new nurses begin their career, they look forward to caring for others, promoting health, and saving lives.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m02-l02-q02",
+      "question": "What is a reasonable learning takeaway from '2.2 Tenets of Prioritization'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.2 Tenets of Prioritization.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m02-l02-q03",
+      "question": "When applying concepts from '2.2 Tenets of Prioritization', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m02-l03-q01",
+      "question": "According to the source lesson '2.3 Tools for Prioritizing', which statement is most accurate?",
+      "options": [
+        "Prioritization of care for multiple clients while also performing daily nursing tasks can feel overwhelming in today's fast-paced health care system.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m02-l03-q02",
+      "question": "What is a reasonable learning takeaway from '2.3 Tools for Prioritizing'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.3 Tools for Prioritizing.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m02-l03-q03",
+      "question": "When applying concepts from '2.3 Tools for Prioritizing', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m02-l04-q01",
+      "question": "According to the source lesson '2.4 Critical Thinking and Clinical Reasoning', which statement is most accurate?",
+      "options": [
+        "Prioritization of client care should be grounded in critical thinking rather than just a checklist of items to be done.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m02-l04-q02",
+      "question": "What is a reasonable learning takeaway from '2.4 Critical Thinking and Clinical Reasoning'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.4 Critical Thinking and Clinical Reasoning.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m02-l04-q03",
+      "question": "When applying concepts from '2.4 Critical Thinking and Clinical Reasoning', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

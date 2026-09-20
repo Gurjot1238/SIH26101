@@ -1,0 +1,266 @@
+{
+  "course_id": "mit-6-046-algorithms",
+  "title": "6.046J Design and Analysis of Algorithms",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Algorithms",
+  "level": "Advanced",
+  "description": "MIT OpenCourseWare 6.046J Design and Analysis of Algorithms (Spring 2015). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Algorithms",
+    "Complexity",
+    "Computer Science"
+  ],
+  "topics": [
+    "amortized analysis",
+    "network flow",
+    "NP-completeness"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Spring 2015",
+  "duration": {
+    "estimated_hours": 8.4,
+    "estimated_minutes": 503
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 10,
+    "practice_questions": 30
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-6-046-algorithms-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Algorithms",
+        "Complexity",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-046-algorithms-m01-l01",
+          "title": "ff2a7015ff913fc01f0381d8f5126a9a MIT6 046JS15 lec01",
+          "type": "pdf",
+          "content_file": "content/module-01/ff2a7015ff913fc01f0381d8f5126a9a_MIT6_046JS15_lec01.pdf",
+          "practice_file": "practice/mit-6-046-algorithms-m01-l01.json",
+          "estimated_minutes": 26,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Complexity"
+          ],
+          "topics": [
+            "amortized analysis",
+            "network flow",
+            "NP-completeness"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-046-algorithms-m01-l02",
+          "title": "009c51db8900141fb181971f2bb826f3 MIT6 046JS15 writtenlec1",
+          "type": "pdf",
+          "content_file": "content/module-01/009c51db8900141fb181971f2bb826f3_MIT6_046JS15_writtenlec1.pdf",
+          "practice_file": "practice/mit-6-046-algorithms-m01-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Complexity"
+          ],
+          "topics": [
+            "amortized analysis",
+            "network flow",
+            "NP-completeness"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-046-algorithms-m01-l03",
+          "title": "5c6cf10a900ea288d97dce247a9a5a9d MIT6 046JS15 writtenlec2",
+          "type": "pdf",
+          "content_file": "content/module-01/5c6cf10a900ea288d97dce247a9a5a9d_MIT6_046JS15_writtenlec2.pdf",
+          "practice_file": "practice/mit-6-046-algorithms-m01-l03.json",
+          "estimated_minutes": 77,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Complexity"
+          ],
+          "topics": [
+            "amortized analysis",
+            "network flow",
+            "NP-completeness"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-046-algorithms-m01-l04",
+          "title": "7463c413c944ed72b46a3c3d02b49448 MIT6 046JS15 lec02",
+          "type": "pdf",
+          "content_file": "content/module-01/7463c413c944ed72b46a3c3d02b49448_MIT6_046JS15_lec02.pdf",
+          "practice_file": "practice/mit-6-046-algorithms-m01-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Complexity"
+          ],
+          "topics": [
+            "amortized analysis",
+            "network flow",
+            "NP-completeness"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-046-algorithms-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Algorithms",
+        "Complexity",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-046-algorithms-m02-l01",
+          "title": "3dc84e78914f226665357234d6f4e25c MIT6 046JS15 lec03",
+          "type": "pdf",
+          "content_file": "content/module-02/3dc84e78914f226665357234d6f4e25c_MIT6_046JS15_lec03.pdf",
+          "practice_file": "practice/mit-6-046-algorithms-m02-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Complexity"
+          ],
+          "topics": [
+            "amortized analysis",
+            "network flow",
+            "NP-completeness"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-046-algorithms-m02-l02",
+          "title": "da0bca8839760018d580ccab98f3e3e1 MIT6 046JS15 writtenlec3",
+          "type": "pdf",
+          "content_file": "content/module-02/da0bca8839760018d580ccab98f3e3e1_MIT6_046JS15_writtenlec3.pdf",
+          "practice_file": "practice/mit-6-046-algorithms-m02-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Complexity"
+          ],
+          "topics": [
+            "amortized analysis",
+            "network flow",
+            "NP-completeness"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-046-algorithms-m02-l03",
+          "title": "49c8fa24dffce58052c90d46ac800387 MIT6 046JS15 lec04",
+          "type": "pdf",
+          "content_file": "content/module-02/49c8fa24dffce58052c90d46ac800387_MIT6_046JS15_lec04.pdf",
+          "practice_file": "practice/mit-6-046-algorithms-m02-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Complexity"
+          ],
+          "topics": [
+            "amortized analysis",
+            "network flow",
+            "NP-completeness"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-046-algorithms-m02-l04",
+          "title": "a10b0c190edb4ebc21e732a62c4f3767 MIT6 046JS15 writtenlec4",
+          "type": "pdf",
+          "content_file": "content/module-02/a10b0c190edb4ebc21e732a62c4f3767_MIT6_046JS15_writtenlec4.pdf",
+          "practice_file": "practice/mit-6-046-algorithms-m02-l04.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Complexity"
+          ],
+          "topics": [
+            "amortized analysis",
+            "network flow",
+            "NP-completeness"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-046-algorithms-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Algorithms",
+        "Complexity",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-046-algorithms-m03-l01",
+          "title": "13e2c7d165259712327af0af312a068e MIT6 046JS15 lec05",
+          "type": "pdf",
+          "content_file": "content/module-03/13e2c7d165259712327af0af312a068e_MIT6_046JS15_lec05.pdf",
+          "practice_file": "practice/mit-6-046-algorithms-m03-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Complexity"
+          ],
+          "topics": [
+            "amortized analysis",
+            "network flow",
+            "NP-completeness"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-046-algorithms-m03-l02",
+          "title": "c4f64b6049a576654cc89f8449b8b6ea MIT6 046JS15 writtenlec5",
+          "type": "pdf",
+          "content_file": "content/module-03/c4f64b6049a576654cc89f8449b8b6ea_MIT6_046JS15_writtenlec5.pdf",
+          "practice_file": "practice/mit-6-046-algorithms-m03-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Complexity"
+          ],
+          "topics": [
+            "amortized analysis",
+            "network flow",
+            "NP-completeness"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,266 @@
+{
+  "course_id": "mit-6-830-databases",
+  "title": "6.830 Database Systems",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Database Systems",
+  "level": "Advanced",
+  "description": "MIT OpenCourseWare 6.830 Database Systems (Fall 2010). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Database Systems",
+    "SQL",
+    "Data Engineering"
+  ],
+  "topics": [
+    "query processing",
+    "transactions",
+    "indexing"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/6-830-database-systems-fall-2010/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Fall 2010",
+  "duration": {
+    "estimated_hours": 4.3,
+    "estimated_minutes": 259
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 10,
+    "practice_questions": 30
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-6-830-databases-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Database Systems",
+        "SQL",
+        "Data Engineering"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-830-databases-m01-l01",
+          "title": "ce269ab3b1fe758df40aec6cad51371e MIT6 830F10 lec01",
+          "type": "pdf",
+          "content_file": "content/module-01/ce269ab3b1fe758df40aec6cad51371e_MIT6_830F10_lec01.pdf",
+          "practice_file": "practice/mit-6-830-databases-m01-l01.json",
+          "estimated_minutes": 51,
+          "objectives": [],
+          "competencies": [
+            "Database Systems",
+            "SQL"
+          ],
+          "topics": [
+            "query processing",
+            "transactions",
+            "indexing"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-830-databases-m01-l02",
+          "title": "8d7652b95f032eab2dcd6320d8a9f1c7 MIT6 830F10 lec02",
+          "type": "pdf",
+          "content_file": "content/module-01/8d7652b95f032eab2dcd6320d8a9f1c7_MIT6_830F10_lec02.pdf",
+          "practice_file": "practice/mit-6-830-databases-m01-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Database Systems",
+            "SQL"
+          ],
+          "topics": [
+            "query processing",
+            "transactions",
+            "indexing"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-830-databases-m01-l03",
+          "title": "a9c47ed7d80c1bfc51d0baf7ac545398 MIT6 830F10 lec03",
+          "type": "pdf",
+          "content_file": "content/module-01/a9c47ed7d80c1bfc51d0baf7ac545398_MIT6_830F10_lec03.pdf",
+          "practice_file": "practice/mit-6-830-databases-m01-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Database Systems",
+            "SQL"
+          ],
+          "topics": [
+            "query processing",
+            "transactions",
+            "indexing"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-830-databases-m01-l04",
+          "title": "8d820170818e123c0f078729a6712bc1 MIT6 830F10 lec04",
+          "type": "pdf",
+          "content_file": "content/module-01/8d820170818e123c0f078729a6712bc1_MIT6_830F10_lec04.pdf",
+          "practice_file": "practice/mit-6-830-databases-m01-l04.json",
+          "estimated_minutes": 29,
+          "objectives": [],
+          "competencies": [
+            "Database Systems",
+            "SQL"
+          ],
+          "topics": [
+            "query processing",
+            "transactions",
+            "indexing"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-830-databases-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Database Systems",
+        "SQL",
+        "Data Engineering"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-830-databases-m02-l01",
+          "title": "3dde7e38f73479c8486a579c760881f7 MIT6 830F10 lec05",
+          "type": "pdf",
+          "content_file": "content/module-02/3dde7e38f73479c8486a579c760881f7_MIT6_830F10_lec05.pdf",
+          "practice_file": "practice/mit-6-830-databases-m02-l01.json",
+          "estimated_minutes": 33,
+          "objectives": [],
+          "competencies": [
+            "Database Systems",
+            "SQL"
+          ],
+          "topics": [
+            "query processing",
+            "transactions",
+            "indexing"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-830-databases-m02-l02",
+          "title": "1343b2699f7d4c76a768b8f45b1674b1 MIT6 830F10 lec06",
+          "type": "pdf",
+          "content_file": "content/module-02/1343b2699f7d4c76a768b8f45b1674b1_MIT6_830F10_lec06.pdf",
+          "practice_file": "practice/mit-6-830-databases-m02-l02.json",
+          "estimated_minutes": 26,
+          "objectives": [],
+          "competencies": [
+            "Database Systems",
+            "SQL"
+          ],
+          "topics": [
+            "query processing",
+            "transactions",
+            "indexing"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-830-databases-m02-l03",
+          "title": "a8f0c23af21fc07f3c696ce4df4e4582 MIT6 830F10 lec07",
+          "type": "pdf",
+          "content_file": "content/module-02/a8f0c23af21fc07f3c696ce4df4e4582_MIT6_830F10_lec07.pdf",
+          "practice_file": "practice/mit-6-830-databases-m02-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Database Systems",
+            "SQL"
+          ],
+          "topics": [
+            "query processing",
+            "transactions",
+            "indexing"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-830-databases-m02-l04",
+          "title": "cbab1dd746579df2cf20fe5027fbf95a MIT6 830F10 lec07b",
+          "type": "pdf",
+          "content_file": "content/module-02/cbab1dd746579df2cf20fe5027fbf95a_MIT6_830F10_lec07b.pdf",
+          "practice_file": "practice/mit-6-830-databases-m02-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Database Systems",
+            "SQL"
+          ],
+          "topics": [
+            "query processing",
+            "transactions",
+            "indexing"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-830-databases-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Database Systems",
+        "SQL",
+        "Data Engineering"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-830-databases-m03-l01",
+          "title": "7b28a2ebf609323f8ac6783cae73beb5 MIT6 830F10 lec09 selinger",
+          "type": "pdf",
+          "content_file": "content/module-03/7b28a2ebf609323f8ac6783cae73beb5_MIT6_830F10_lec09_selinger.pdf",
+          "practice_file": "practice/mit-6-830-databases-m03-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Database Systems",
+            "SQL"
+          ],
+          "topics": [
+            "query processing",
+            "transactions",
+            "indexing"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-830-databases-m03-l02",
+          "title": "cf3d2f95cf16fa717f571771c3792d38 MIT6 830F10 lec09",
+          "type": "pdf",
+          "content_file": "content/module-03/cf3d2f95cf16fa717f571771c3792d38_MIT6_830F10_lec09.pdf",
+          "practice_file": "practice/mit-6-830-databases-m03-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Database Systems",
+            "SQL"
+          ],
+          "topics": [
+            "query processing",
+            "transactions",
+            "indexing"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

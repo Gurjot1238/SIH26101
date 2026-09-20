@@ -1,0 +1,765 @@
+{
+  "course_id": "openstax-college-physics",
+  "title": "College Physics",
+  "provider": "OpenStax / Rice University",
+  "category": "Technology",
+  "subcategory": "Physics",
+  "level": "Beginner",
+  "description": "OpenStax College Physics (CC BY 4.0). Section HTML was downloaded from the official OpenStax webview.",
+  "competencies": [
+    "Physics",
+    "Engineering Fundamentals",
+    "Mechanics"
+  ],
+  "topics": [
+    "kinematics",
+    "Newton's laws",
+    "energy",
+    "electricity"
+  ],
+  "source": {
+    "name": "OpenStax",
+    "official_url": "https://openstax.org/books/college-physics/pages/1-introduction-to-science-and-the-realm-of-physics-physical-quantities-and-units",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 10.7,
+    "estimated_minutes": 644
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 32,
+    "practice_questions": 96
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "openstax-college-physics-m01",
+      "title": "Chapter 1: 1.1 Physics: An Introduction",
+      "competencies": [
+        "Physics",
+        "Engineering Fundamentals",
+        "Mechanics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-college-physics-m01-l01",
+          "title": "1.1 Physics: An Introduction",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/openstax-college-physics-m01-l01.json",
+          "estimated_minutes": 23,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m01-l02",
+          "title": "1.2 Physical Quantities and Units",
+          "type": "text",
+          "content_file": "content/module-01/lesson-02.md",
+          "practice_file": "practice/openstax-college-physics-m01-l02.json",
+          "estimated_minutes": 28,
+          "objectives": [
+            "We define a physical quantity either by _specifying how it is measured_ or by __stating how it is calculated__ from other measurements. For example, we define distance and ti"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m01-l03",
+          "title": "1.3 Accuracy, Precision, and Significant Figures",
+          "type": "text",
+          "content_file": "content/module-01/lesson-03.md",
+          "practice_file": "practice/openstax-college-physics-m01-l03.json",
+          "estimated_minutes": 19,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m01-l04",
+          "title": "1.4 Approximation",
+          "type": "text",
+          "content_file": "content/module-01/lesson-04.md",
+          "practice_file": "practice/openstax-college-physics-m01-l04.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Think about the average height of an adult male. We can approximate the height of the building by scaling up from the height of a person",
+            "Based on information in the example,"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m01-l05",
+          "title": "Chapter Outline",
+          "type": "text",
+          "content_file": "content/module-01/lesson-05.md",
+          "practice_file": "practice/openstax-college-physics-m01-l05.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Explain the difference between a principle and a law",
+            "Explain the difference between a model and a theory",
+            "Perform unit conversions both in the SI and English units",
+            "Explain the most common prefixes in the SI units and be able to write them in scientific notation",
+            "Determine the appropriate number of significant figures in both addition and subtraction, as well as multiplication and division calculations",
+            "Calculate the percent uncertainty of a measurement"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m01-l06",
+          "title": "Glossary",
+          "type": "text",
+          "content_file": "content/module-01/lesson-06.md",
+          "practice_file": "practice/openstax-college-physics-m01-l06.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m01-l07",
+          "title": "Section Summary",
+          "type": "text",
+          "content_file": "content/module-01/lesson-07.md",
+          "practice_file": "practice/openstax-college-physics-m01-l07.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Science seeks to discover and describe the underlying order and simplicity in nature",
+            "Physics is the most basic of the sciences, concerning itself with energy, matter, space and time, and their interactions",
+            "Scientific laws and theories express the general truths of nature and the body of knowledge they encompass. These laws of nature are rules that all natural processes appear to follow",
+            "Physical quantities are a characteristic or property of an object that can be measured or calculated from other measurements",
+            "Units are standards for expressing and comparing the measurement of physical quantities. All units can be expressed as combinations of four fundamental units",
+            "Unit conversions involve changing a value expressed in one type of uni"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m01-l08",
+          "title": "Conceptual Questions",
+          "type": "text",
+          "content_file": "content/module-01/lesson-08.md",
+          "practice_file": "practice/openstax-college-physics-m01-l08.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Models are particularly useful in relativity and quantum mechanics, where conditions are outside those normally encountered by humans. What is a model?",
+            "How does a model differ from a theory?",
+            "If two different theories describe experimental observations equally well, can one be said to be more valid than the other (assuming both use accepted rules of logic)?",
+            "What determines the validity of a theory?",
+            "Certain criteria must be satisfied if a measurement or observation is to be believed. Will the criteria necessarily be as strict for an expected result as for an unexpected result?",
+            "Can the validity of a model be limited, or must it be universally valid? How does this compare to the required validity of a theory or a law?"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m01-l09",
+          "title": "Problems & Exercises",
+          "type": "text",
+          "content_file": "content/module-01/lesson-09.md",
+          "practice_file": "practice/openstax-college-physics-m01-l09.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "The speed limit on some interstate highways is roughly 100 km/h. (a) What is this in meters per second? (b) How many miles per hour is this?",
+            "A car is traveling at a speed of 33 m/s33 m/s size 12{\"33\"\" m/s\"} {}. (a) What is its speed in kilometers per hour? (b) Is it exceeding the 90 km/h90 km/h size 12{\"90\"\" km/h\"} {} speed limit?",
+            "Show that 1.0 m/s=3.6 km/h1.0 m/s=3.6 km/h size 12{1 \".\" 0`\"m/s\"=3 \".\" \"6 km/h\"} {}. Hint: Show the explicit steps involved in converting 1.0 m/s=3.6 km/h.1.0 m/s=3.6 km/h. size 12{1 \".\" 0`\"m/s\"=3 \".\" \"6 km/h\"} {}",
+            "American football is played on a 100-yd-long field, excluding the end zones. How long is the field in meters? (Assume that 1 meter equals 3.281 feet.)",
+            "Soccer fields vary in size. A large soccer field is 115 m long and 85 m wide. What are its dimensions in feet and inches? (Assume that 1 meter equals 3.281 feet.)",
+            "What is the height in meters of a person who is 6 ft 1.0 in. tall? (Assume that 1 meter equals 39.37 in.)"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openstax-college-physics-m02",
+      "title": "Chapter 2: Chapter Outline",
+      "competencies": [
+        "Physics",
+        "Engineering Fundamentals",
+        "Mechanics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-college-physics-m02-l01",
+          "title": "Chapter Outline",
+          "type": "text",
+          "content_file": "content/module-02/lesson-01.md",
+          "practice_file": "practice/openstax-college-physics-m02-l01.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Define position, displacement, distance, and distance traveled",
+            "Explain the relationship between position and displacement",
+            "Distinguish between displacement and distance traveled",
+            "Calculate displacement and distance given initial position, final position, and the path between the two",
+            "Define and distinguish between scalar and vector quantities",
+            "Assign a coordinate system for a scenario involving one-dimensional motion"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m02-l02",
+          "title": "2.1 Displacement",
+          "type": "text",
+          "content_file": "content/module-02/lesson-02.md",
+          "practice_file": "practice/openstax-college-physics-m02-l02.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m02-l03",
+          "title": "2.2 Vectors, Scalars, and Coordinate Systems",
+          "type": "text",
+          "content_file": "content/module-02/lesson-03.md",
+          "practice_file": "practice/openstax-college-physics-m02-l03.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m02-l04",
+          "title": "2.3 Time, Velocity, and Speed",
+          "type": "text",
+          "content_file": "content/module-02/lesson-04.md",
+          "practice_file": "practice/openstax-college-physics-m02-l04.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m02-l05",
+          "title": "2.4 Acceleration",
+          "type": "text",
+          "content_file": "content/module-02/lesson-05.md",
+          "practice_file": "practice/openstax-college-physics-m02-l05.json",
+          "estimated_minutes": 27,
+          "objectives": [
+            "Average Acceleration is _the rate at which velocity changes_ ,"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m02-l06",
+          "title": "2.5 Motion Equations for Constant Acceleration in One Dimension",
+          "type": "text",
+          "content_file": "content/module-02/lesson-06.md",
+          "practice_file": "practice/openstax-college-physics-m02-l06.json",
+          "estimated_minutes": 36,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m02-l07",
+          "title": "2.6 Problem-Solving Basics for One-Dimensional Kinematics",
+          "type": "text",
+          "content_file": "content/module-02/lesson-07.md",
+          "practice_file": "practice/openstax-college-physics-m02-l07.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m02-l08",
+          "title": "2.7 Falling Objects",
+          "type": "text",
+          "content_file": "content/module-02/lesson-08.md",
+          "practice_file": "practice/openstax-college-physics-m02-l08.json",
+          "estimated_minutes": 28,
+          "objectives": [
+            "In the real world, air resistance can ca"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m02-l09",
+          "title": "2.8 Graphical Analysis of One-Dimensional Motion",
+          "type": "text",
+          "content_file": "content/module-02/lesson-09.md",
+          "practice_file": "practice/openstax-college-physics-m02-l09.json",
+          "estimated_minutes": 19,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m02-l10",
+          "title": "Glossary",
+          "type": "text",
+          "content_file": "content/module-02/lesson-10.md",
+          "practice_file": "practice/openstax-college-physics-m02-l10.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m02-l11",
+          "title": "Section Summary",
+          "type": "text",
+          "content_file": "content/module-02/lesson-11.md",
+          "practice_file": "practice/openstax-college-physics-m02-l11.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Kinematics is the study of motion without considering its causes. In this chapter, it is limited to motion along a straight line, called one-dimensional motion",
+            "Displacement is the change in position of an object",
+            "In symbols, displacement ΔxΔx is defined to be",
+            "When you start a problem, assign which direction will be positive",
+            "Distance is the magnitude of displacement between two positions",
+            "Distance traveled is the total length of the path traveled between two positions"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m02-l12",
+          "title": "Conceptual Questions",
+          "type": "text",
+          "content_file": "content/module-02/lesson-12.md",
+          "practice_file": "practice/openstax-college-physics-m02-l12.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Give an example in which there are clear distinctions among distance traveled, displacement, and magnitude of displacement. Specifically identify each quantity in your example",
+            "Under what circumstances does distance traveled equal magnitude of displacement? What is the only case in which magnitude of displacement and displacement are exactly the same?",
+            "A student writes, “ _A bird that is diving for prey has a speed of_ − 10 m / s − 10 m / s size 12{ - \"10\"m/s} {} .” What is wrong with the student’s statement? What has the student actually described? Explain",
+            "What is the speed of the bird in [Exercise 2.4](<2-conceptual-questions#fs-id1364975>)?",
+            "Acceleration is the change in velocity over time. Given this information, is acceleration a vector or a scalar quantity? Explain",
+            "A weather forecast states that the temperature is predicted to be −5ºC−5ºC the following day. Is this temperature a vector or a scalar q"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m02-l13",
+          "title": "Problems & Exercises",
+          "type": "text",
+          "content_file": "content/module-02/lesson-13.md",
+          "practice_file": "practice/openstax-college-physics-m02-l13.json",
+          "estimated_minutes": 30,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openstax-college-physics-m03",
+      "title": "Chapter 3: Chapter Outline",
+      "competencies": [
+        "Physics",
+        "Engineering Fundamentals",
+        "Mechanics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-college-physics-m03-l01",
+          "title": "Chapter Outline",
+          "type": "text",
+          "content_file": "content/module-03/lesson-01.md",
+          "practice_file": "practice/openstax-college-physics-m03-l01.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Observe that motion in two dimensions consists of horizontal and vertical components",
+            "Understand the independence of horizontal and vertical vectors in two-dimensional motion",
+            "Understand the rules of vector addition, subtraction, and multiplication",
+            "Apply graphical methods of vector addition and subtraction to determine the displacement of moving objects"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m03-l02",
+          "title": "3.1 Kinematics in Two Dimensions: An Introduction",
+          "type": "text",
+          "content_file": "content/module-03/lesson-02.md",
+          "practice_file": "practice/openstax-college-physics-m03-l02.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Suppose you want to walk from one point to another in a city with uniform square blocks, as pictured in [Figure 3.3](<3-1-kinematics-in-two-dimensions-an-introduction#import-auto-id1165296250183>)",
+            "An old adage states that the shortes"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m03-l03",
+          "title": "3.2 Vector Addition and Subtraction: Graphical Methods",
+          "type": "text",
+          "content_file": "content/module-03/lesson-03.md",
+          "practice_file": "practice/openstax-college-physics-m03-l03.json",
+          "estimated_minutes": 24,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m03-l04",
+          "title": "3.3 Vector Addition and Subtraction: Analytical Methods",
+          "type": "text",
+          "content_file": "content/module-03/lesson-04.md",
+          "practice_file": "practice/openstax-college-physics-m03-l04.json",
+          "estimated_minutes": 27,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m03-l05",
+          "title": "3.4 Projectile Motion",
+          "type": "text",
+          "content_file": "content/module-03/lesson-05.md",
+          "practice_file": "practice/openstax-college-physics-m03-l05.json",
+          "estimated_minutes": 33,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m03-l06",
+          "title": "3.5 Addition of Velocities",
+          "type": "text",
+          "content_file": "content/module-03/lesson-06.md",
+          "practice_file": "practice/openstax-college-physics-m03-l06.json",
+          "estimated_minutes": 26,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m03-l07",
+          "title": "Glossary",
+          "type": "text",
+          "content_file": "content/module-03/lesson-07.md",
+          "practice_file": "practice/openstax-college-physics-m03-l07.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m03-l08",
+          "title": "Section Summary",
+          "type": "text",
+          "content_file": "content/module-03/lesson-08.md",
+          "practice_file": "practice/openstax-college-physics-m03-l08.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "The shortest path between any two points is a straight line. In two dimensions, this path can be represented by a vector with horizontal and vertical components",
+            "The horizontal and vertical components of a vector are independent of one another. Motion in the horizontal direction does not affect motion in the vertical direction, and vice versa",
+            "Addition of vectors is commutative such that A+B=B+AA+B=B+A size 12{\"A + B = B + A\"} {} ",
+            "The head-to-tail method of adding vectors involves drawing the first vector on a graph and then placing the tail of each subsequent vector at the he"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m03-l09",
+          "title": "Conceptual Questions",
+          "type": "text",
+          "content_file": "content/module-03/lesson-09.md",
+          "practice_file": "practice/openstax-college-physics-m03-l09.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Which of the following is a vector: a person’s height, the altitude on Mt. Everest, the age of the Earth, the boiling point of water, the cost of this book, the Earth’s population, the acceleration of gravity?",
+            "Give a specific example of a vector, stating its magnitude, units, and direction",
+            "What do vectors and scalars have in common? How do they differ?"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-college-physics-m03-l10",
+          "title": "Problems & Exercises",
+          "type": "text",
+          "content_file": "content/module-03/lesson-10.md",
+          "practice_file": "practice/openstax-college-physics-m03-l10.json",
+          "estimated_minutes": 39,
+          "objectives": [
+            "Use graphical methods to solve these problems. You may assume data taken from graphs is accurate to three digits",
+            "Find the following for path A in [Figure 3.52](<3-problems-exercises#import-auto-id1165298872310>): (a) the total distance traveled, and (b) the magnitude and direction of the displacement from start to finish",
+            "Find the following for path B in [Figure 3.52](<3-problems-exercises#import-auto-id1165298872310>): (a) the total distance traveled, and (b) the magnitude and direction of the displacement from start to finish",
+            "Find the north and east components of the displacement for the hikers shown in [Figure 3.50](<3-conceptual-questions>)",
+            "Suppose you walk 18.0 m straight west and then 25.0 m straight north. How far are you from your starting point, and"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

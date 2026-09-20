@@ -1,0 +1,267 @@
+{
+  "course_id": "mit-6-006-algorithms-2011",
+  "title": "6.006 Introduction to Algorithms (Fall 2011)",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Algorithms",
+  "level": "Intermediate",
+  "description": "MIT OpenCourseWare 6.006 Introduction to Algorithms (Fall 2011) (Fall 2011). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Algorithms",
+    "Data Structures",
+    "Computer Science"
+  ],
+  "topics": [
+    "hashing",
+    "trees",
+    "graphs",
+    "shortest paths"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Fall 2011",
+  "duration": {
+    "estimated_hours": 12.6,
+    "estimated_minutes": 754
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 10,
+    "practice_questions": 30
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-6-006-algorithms-2011-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Algorithms",
+        "Data Structures",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-006-algorithms-2011-m01-l01",
+          "title": "c32185c7158955425455159a8455298b MIT6 006F11 lec01",
+          "type": "pdf",
+          "content_file": "content/module-01/c32185c7158955425455159a8455298b_MIT6_006F11_lec01.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-2011-m01-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "hashing",
+            "trees",
+            "graphs"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-006-algorithms-2011-m01-l02",
+          "title": "976b77eb1187593cabf5f06aaada8bd4 MIT6 006F11 lec02 orig",
+          "type": "pdf",
+          "content_file": "content/module-01/976b77eb1187593cabf5f06aaada8bd4_MIT6_006F11_lec02_orig.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-2011-m01-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "hashing",
+            "trees",
+            "graphs"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-006-algorithms-2011-m01-l03",
+          "title": "6b9b20992d8c6a0f3f10a34ff7878aa9 MIT6 006F11 lec02",
+          "type": "pdf",
+          "content_file": "content/module-01/6b9b20992d8c6a0f3f10a34ff7878aa9_MIT6_006F11_lec02.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-2011-m01-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "hashing",
+            "trees",
+            "graphs"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-006-algorithms-2011-m01-l04",
+          "title": "90a37c49b07b105ea7a027abc67eddc6 MIT6 006F11 lec03",
+          "type": "pdf",
+          "content_file": "content/module-01/90a37c49b07b105ea7a027abc67eddc6_MIT6_006F11_lec03.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-2011-m01-l04.json",
+          "estimated_minutes": 35,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "hashing",
+            "trees",
+            "graphs"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-006-algorithms-2011-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Algorithms",
+        "Data Structures",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-006-algorithms-2011-m02-l01",
+          "title": "8ebfeb1c645b10b3709919603e7d51be MIT6 006F11 lec04",
+          "type": "pdf",
+          "content_file": "content/module-02/8ebfeb1c645b10b3709919603e7d51be_MIT6_006F11_lec04.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-2011-m02-l01.json",
+          "estimated_minutes": 79,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "hashing",
+            "trees",
+            "graphs"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-006-algorithms-2011-m02-l02",
+          "title": "d9c745bbfb610e9e53f6aef4261f3805 MIT6 006F11 lec05",
+          "type": "pdf",
+          "content_file": "content/module-02/d9c745bbfb610e9e53f6aef4261f3805_MIT6_006F11_lec05.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-2011-m02-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "hashing",
+            "trees",
+            "graphs"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-006-algorithms-2011-m02-l03",
+          "title": "ff2c1cde338a7ad7792a3d2a5fafd3c5 MIT6 006F11 lec06 orig",
+          "type": "pdf",
+          "content_file": "content/module-02/ff2c1cde338a7ad7792a3d2a5fafd3c5_MIT6_006F11_lec06_orig.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-2011-m02-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "hashing",
+            "trees",
+            "graphs"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-006-algorithms-2011-m02-l04",
+          "title": "83cdd705cd418d10d9769b741e34a2b8 MIT6 006F11 lec06",
+          "type": "pdf",
+          "content_file": "content/module-02/83cdd705cd418d10d9769b741e34a2b8_MIT6_006F11_lec06.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-2011-m02-l04.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "hashing",
+            "trees",
+            "graphs"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-006-algorithms-2011-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Algorithms",
+        "Data Structures",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-006-algorithms-2011-m03-l01",
+          "title": "47a412008dc74679e9072891be09f351 MIT6 006F11 lec07 orig",
+          "type": "pdf",
+          "content_file": "content/module-03/47a412008dc74679e9072891be09f351_MIT6_006F11_lec07_orig.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-2011-m03-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "hashing",
+            "trees",
+            "graphs"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-006-algorithms-2011-m03-l02",
+          "title": "bf7d79105762bf79bbc0925438e1468a MIT6 006F11 lec07",
+          "type": "pdf",
+          "content_file": "content/module-03/bf7d79105762bf79bbc0925438e1468a_MIT6_006F11_lec07.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-2011-m03-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "hashing",
+            "trees",
+            "graphs"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

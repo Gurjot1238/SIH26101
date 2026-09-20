@@ -1,0 +1,261 @@
+{
+  "course_id": "wtcs-nursing-advanced-skills",
+  "questions": [
+    {
+      "question_id": "wtcs-nursing-advanced-skills-m01-l01-q01",
+      "question": "According to the source lesson '1.1 Introduction', which statement is most accurate?",
+      "options": [
+        "Learning Objectives * Discuss methods for blood sampling * Compare/contrast management of peripheral venous access devices and central venous access devices * Review infection control principles associated with peripheral venous access devi",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "advanced procedures",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-advanced-skills-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from '1.1 Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 1.1 Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "advanced procedures",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-advanced-skills-m01-l01-q03",
+      "question": "When applying concepts from '1.1 Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "advanced procedures",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-advanced-skills-m01-l02-q01",
+      "question": "According to the source lesson '1.2 Basic Concepts of Venipuncture and Intravenous Therapy', which statement is most accurate?",
+      "options": [
+        "Nurses access clients' veins to collect blood (i.e., perform phlebotomy) and to administer intravenous (IV) therapy.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "advanced procedures",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-advanced-skills-m02-l01-q01",
+      "question": "According to the source lesson '2.1 Introduction', which statement is most accurate?",
+      "options": [
+        "Learning Objectives * Explain the advantages, disadvantages, and precautions associated with IV medication administration * Identify information that must be checked before an IV push medication is administered * Define \"speed shock\" and me",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "advanced procedures",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-advanced-skills-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from '2.1 Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.1 Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "advanced procedures",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-advanced-skills-m02-l01-q03",
+      "question": "When applying concepts from '2.1 Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "advanced procedures",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-advanced-skills-m02-l02-q01",
+      "question": "According to the source lesson '2.2 Basic Concepts of IV Push Medication', which statement is most accurate?",
+      "options": [
+        "There are several advantages, disadvantages, and potential complications that can occur when administering IV push medication, requiring the nurse to implement many safety considerations.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "advanced procedures",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-advanced-skills-m03-l01-q01",
+      "question": "According to the source lesson '3.1 Introduction', which statement is most accurate?",
+      "options": [
+        "Learning Objectives * Describe the types of blood products prescribed for common conditions * Explain how a person’s ABO blood type and Rh factor impact blood product compatibility * Describe transfusion reactions and their treatments * App",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "advanced procedures",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-advanced-skills-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from '3.1 Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.1 Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "advanced procedures",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-advanced-skills-m03-l01-q03",
+      "question": "When applying concepts from '3.1 Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "advanced procedures",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-advanced-skills-m03-l02-q01",
+      "question": "According to the source lesson '3.2 Basic Concepts', which statement is most accurate?",
+      "options": [
+        "Compatibility and Blood Types ABO Antigen Markers There are four main types of blood groups based on antigens on the surface of red blood cells.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "advanced procedures",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-advanced-skills-m04-l01-q01",
+      "question": "According to the source lesson '4.1 Introduction', which statement is most accurate?",
+      "options": [
+        "Learning Objectives * Outline indications for insertion of a central venous access device (CVAD) * Compare and contrast the various types of CVADs and where they are inserted * Describe the processes of verifying placement and securing a CV",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "advanced procedures",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-advanced-skills-m04-l01-q02",
+      "question": "What is a reasonable learning takeaway from '4.1 Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 4.1 Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "advanced procedures",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-advanced-skills-m04-l01-q03",
+      "question": "When applying concepts from '4.1 Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "advanced procedures",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-advanced-skills-m04-l02-q01",
+      "question": "According to the source lesson '4.2 Basic Concepts', which statement is most accurate?",
+      "options": [
+        "Indications for CVAD Common indications for CVAD placement include delivery of medication, fluids, and nutrition, especially for clients requiring long-term therapy.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "advanced procedures",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

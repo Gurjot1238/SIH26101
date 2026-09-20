@@ -1,0 +1,15 @@
+{
+  "course_id": "openintro-statistics",
+  "source_url": "https://github.com/OpenIntroStat/openintro-statistics",
+  "license": "CC BY-SA 3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "date_collected": "2026-09-20",
+  "reuse_permissions": "CC BY-SA 3.0 permits share and adapt with attribution and share-alike.",
+  "changes_made": [
+    "Converted chapter TeX source to Markdown lessons",
+    "Omitted review-exercise dump files and figures",
+    "Added generated practice questions",
+    "Title does not include a confusing OpenIntro derivative product name beyond attribution"
+  ],
+  "notes": "Do not use the OpenIntro trademark/logo except for attribution of the original."
+}

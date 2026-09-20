@@ -1,0 +1,778 @@
+{
+  "course_id": "openstax-algebra-trigonometry",
+  "title": "Algebra and Trigonometry",
+  "provider": "OpenStax / Rice University",
+  "category": "Technology",
+  "subcategory": "Mathematics",
+  "level": "Beginner",
+  "description": "OpenStax Algebra and Trigonometry (CC BY 4.0). Section HTML was downloaded from the official OpenStax webview.",
+  "competencies": [
+    "Mathematics",
+    "Trigonometry",
+    "Algebra"
+  ],
+  "topics": [
+    "algebra",
+    "trig identities",
+    "functions"
+  ],
+  "source": {
+    "name": "OpenStax",
+    "official_url": "https://openstax.org/books/algebra-and-trigonometry/pages/1-introduction-to-prerequisites",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 14.2,
+    "estimated_minutes": 854
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 32,
+    "practice_questions": 96
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "openstax-algebra-trigonometry-m01",
+      "title": "Chapter 1: 1.1 Real Numbers: Algebra Essentials",
+      "competencies": [
+        "Mathematics",
+        "Trigonometry",
+        "Algebra"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m01-l01",
+          "title": "1.1 Real Numbers: Algebra Essentials",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m01-l01.json",
+          "estimated_minutes": 44,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m01-l02",
+          "title": "1.2 Exponents and Scientific Notation",
+          "type": "text",
+          "content_file": "content/module-01/lesson-02.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m01-l02.json",
+          "estimated_minutes": 46,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m01-l03",
+          "title": "1.3 Radicals and Rational Exponents",
+          "type": "text",
+          "content_file": "content/module-01/lesson-03.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m01-l03.json",
+          "estimated_minutes": 24,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m01-l04",
+          "title": "1.4 Polynomials",
+          "type": "text",
+          "content_file": "content/module-01/lesson-04.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m01-l04.json",
+          "estimated_minutes": 25,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m01-l05",
+          "title": "1.5 Factoring Polynomials",
+          "type": "text",
+          "content_file": "content/module-01/lesson-05.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m01-l05.json",
+          "estimated_minutes": 26,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m01-l06",
+          "title": "1.6 Rational Expressions",
+          "type": "text",
+          "content_file": "content/module-01/lesson-06.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m01-l06.json",
+          "estimated_minutes": 21,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m01-l07",
+          "title": "Chapter Outline",
+          "type": "text",
+          "content_file": "content/module-01/lesson-07.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m01-l07.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m01-l08",
+          "title": "1 Key Equations",
+          "type": "text",
+          "content_file": "content/module-01/lesson-08.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m01-l08.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "For nonzero real numbers  a a and  b b and integers  m m and  n n",
+            "Product rule |  a m ⋅ a n = a m+n a m ⋅ a n = a m+n",
+            "Quotient rule |  a m a n = a m−n a m a n = a m−n",
+            "Power rule |  ( a m ) n = a m⋅n ( a m ) n = a m⋅n",
+            "Zero exponent rule |  a 0 =1 a 0 =1",
+            "Negative rule |  a −n = 1 a n a −n = 1 a n"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m01-l09",
+          "title": "1 Key Concepts",
+          "type": "text",
+          "content_file": "content/module-01/lesson-09.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m01-l09.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Rational numbers may be written as fractions or terminating or repeating decimals. See [Example 1](<1-1-real-numbers-algebra-essentials>) and [Example 2](<1-1-real-numbers-algebra-essentials>)",
+            "Determine whether a number is rational or irrational by writing it as a decimal. See [Example 3](<1-1-real-numbers-algebra-essentials>)",
+            "The order of operations is used to evaluate expressions. See [Example 6](<1-1-real-numbers-algebra-essentials>)"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m01-l10",
+          "title": "1 Review Exercises",
+          "type": "text",
+          "content_file": "content/module-01/lesson-10.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m01-l10.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "For the following exercises, perform the given operations",
+            "For the following exercises, solve the equation",
+            "For the following exercises, simplify the expression",
+            "For the following exercises, identify the number as rational, irrational, whole, or natural. Choose the most descriptive answer",
+            "For the following exercises, simplify the expression",
+            "Write the number in standard notation:  2.1314× 10 −6 2.1314× 10 −6"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m01-l11",
+          "title": "1 Practice Test",
+          "type": "text",
+          "content_file": "content/module-01/lesson-11.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m01-l11.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "For the following exercises, identify the number as rational, irrational, whole, or natural. Choose the most descriptive answer",
+            "For the following exercises, evaluate the expression",
+            "Write the number in standard notation:  3.1415× 10 6 3.1415× 10 6",
+            "Write the number in scientific notation: 0.0000000212",
+            "For the following exercises, simplify the expression",
+            "For the following exercises, factor the polynomial"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openstax-algebra-trigonometry-m02",
+      "title": "Chapter 2: Chapter Outline",
+      "competencies": [
+        "Mathematics",
+        "Trigonometry",
+        "Algebra"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m02-l01",
+          "title": "Chapter Outline",
+          "type": "text",
+          "content_file": "content/module-02/lesson-01.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m02-l01.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m02-l02",
+          "title": "2.1 The Rectangular Coordinate Systems and Graphs",
+          "type": "text",
+          "content_file": "content/module-02/lesson-02.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m02-l02.json",
+          "estimated_minutes": 38,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m02-l03",
+          "title": "2.2 Linear Equations in One Variable",
+          "type": "text",
+          "content_file": "content/module-02/lesson-03.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m02-l03.json",
+          "estimated_minutes": 42,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m02-l04",
+          "title": "2.3 Models and Applications",
+          "type": "text",
+          "content_file": "content/module-02/lesson-04.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m02-l04.json",
+          "estimated_minutes": 26,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m02-l05",
+          "title": "2.4 Complex Numbers",
+          "type": "text",
+          "content_file": "content/module-02/lesson-05.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m02-l05.json",
+          "estimated_minutes": 23,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m02-l06",
+          "title": "2.5 Quadratic Equations",
+          "type": "text",
+          "content_file": "content/module-02/lesson-06.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m02-l06.json",
+          "estimated_minutes": 35,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m02-l07",
+          "title": "2.6 Other Types of Equations",
+          "type": "text",
+          "content_file": "content/module-02/lesson-07.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m02-l07.json",
+          "estimated_minutes": 29,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m02-l08",
+          "title": "2.7 Linear Inequalities and Absolute Value Inequalities",
+          "type": "text",
+          "content_file": "content/module-02/lesson-08.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m02-l08.json",
+          "estimated_minutes": 25,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m02-l09",
+          "title": "2 Key Concepts",
+          "type": "text",
+          "content_file": "content/module-02/lesson-09.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m02-l09.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "An equation can be graphed in the plane by creating a table of values and plotting points. See [Example 2](<2-1-the-rectangular-coordinate-systems-and-graphs>)**",
+            "Finding the _x-_ and _y-_ intercepts can define the graph of a line. These are the points where the graph crosses the axes. See [Example 4](<2-1-the-rectangular-coordinate-systems-and-graphs>)"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m02-l10",
+          "title": "2 Review Exercises",
+          "type": "text",
+          "content_file": "content/module-02/lesson-10.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m02-l10.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "For the following exercises, find the _x_ -intercept and the _y_ -intercept without graphing",
+            "For the following exercises, solve for _y_ in terms of _x_ , putting the equation in slope–intercept form",
+            "For the following exercises, find the distance between the two points",
+            "Find the distance between the two points  (−71,432) (−71,432) and  (511,218) (511,218) using your calculator, and round your answer to the nearest thousandth",
+            "For the following exercises, find the coordinates of the midpoint of the line segment that joins the two given points",
+            "For the following exercises, construct a table and graph the equation by plotting at least three points"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m02-l11",
+          "title": "2 Practice Test",
+          "type": "text",
+          "content_file": "content/module-02/lesson-11.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m02-l11.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Graph the following:  2y=3x+4. 2y=3x+4",
+            "Find the _x-_ and _y_ -intercepts for the following:  2x−5y=6 2x−5y=6",
+            "Find the _x-_ and _y_ -intercepts of this equation, and sketch the graph of the line using just the intercepts plotted",
+            "Find the exact distance between  ( 5,−3 ) ( 5,−3 ) and  ( −2,8 ). ( −2,8 ). Find the coordinates of the midpoint of the line segment joining the two points",
+            "Write the interval notation for the set of numbers represented by  { x| x≤9 }. { x| x≤9 }",
+            "Solve for _x_ :  5x+8=3x−10. 5x+8=3x−10"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openstax-algebra-trigonometry-m03",
+      "title": "Chapter 3: Chapter Outline",
+      "competencies": [
+        "Mathematics",
+        "Trigonometry",
+        "Algebra"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m03-l01",
+          "title": "Chapter Outline",
+          "type": "text",
+          "content_file": "content/module-03/lesson-01.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m03-l01.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m03-l02",
+          "title": "3.1 Functions and Function Notation",
+          "type": "text",
+          "content_file": "content/module-03/lesson-02.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m03-l02.json",
+          "estimated_minutes": 50,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m03-l03",
+          "title": "3.2 Domain and Range",
+          "type": "text",
+          "content_file": "content/module-03/lesson-03.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m03-l03.json",
+          "estimated_minutes": 39,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m03-l04",
+          "title": "3.3 Rates of Change and Behavior of Graphs",
+          "type": "text",
+          "content_file": "content/module-03/lesson-04.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m03-l04.json",
+          "estimated_minutes": 31,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m03-l05",
+          "title": "3.4 Composition of Functions",
+          "type": "text",
+          "content_file": "content/module-03/lesson-05.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m03-l05.json",
+          "estimated_minutes": 41,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m03-l06",
+          "title": "3.5 Transformation of Functions",
+          "type": "text",
+          "content_file": "content/module-03/lesson-06.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m03-l06.json",
+          "estimated_minutes": 61,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m03-l07",
+          "title": "3.6 Absolute Value Functions",
+          "type": "text",
+          "content_file": "content/module-03/lesson-07.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m03-l07.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m03-l08",
+          "title": "3.7 Inverse Functions",
+          "type": "text",
+          "content_file": "content/module-03/lesson-08.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m03-l08.json",
+          "estimated_minutes": 33,
+          "objectives": [
+            "In this section, you will:"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m03-l09",
+          "title": "3 Key Equations",
+          "type": "text",
+          "content_file": "content/module-03/lesson-09.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m03-l09.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Constant function |  f( x )=c, f( x )=c, where  c c is a constant",
+            "Identity function |  f( x )=x f( x )=x",
+            "Absolute value function  |  f( x )=| x | f( x )=| x |",
+            "Quadratic function  |  f( x )= x 2 f( x )= x 2",
+            "Cubic function  |  f( x )= x 3 f( x )= x 3",
+            "Reciprocal function  |  f( x )= 1 x f( x )= 1 x"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-algebra-trigonometry-m03-l10",
+          "title": "3 Key Concepts",
+          "type": "text",
+          "content_file": "content/module-03/lesson-10.md",
+          "practice_file": "practice/openstax-algebra-trigonometry-m03-l10.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Function notation is a shorthand method for relating the input to the output in the form  y=f( x ).y=f( x ). See [Example 3](<3-1-functions-and-function-notation>) and [Example 4](<3-1-functions-and-function-notation>)",
+            "In tabular form, a function can be represented by rows or columns that relate to input and output values. See [Example 5](<3-1-functions-and-function-notation>)",
+            "To solve for a specific function value, we determine the input values that yield the specific output value. See [Example 8](<3-1-functions-and-function-notation>)",
+            "An algebraic form of a function can be written from an equation. See [Example 9](<3-1-functions-and-function-notation>) and [Example 10](<3-1-functions-and-function-notation>)",
+            "Input and output values of a function can be identified from a table. Se"
+          ],
+          "competencies": [
+            "Mathematics",
+            "Trigonometry"
+          ],
+          "topics": [
+            "algebra",
+            "trig identities",
+            "functions"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

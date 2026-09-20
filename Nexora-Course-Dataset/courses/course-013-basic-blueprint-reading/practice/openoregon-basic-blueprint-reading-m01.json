@@ -1,0 +1,197 @@
+{
+  "module_id": "openoregon-basic-blueprint-reading-m01",
+  "questions": [
+    {
+      "question_id": "openoregon-basic-blueprint-reading-m01-l01-q01",
+      "question": "According to the source lesson 'The Language of Lines', which statement is most accurate?",
+      "options": [
+        "* OBJECTLINE * HIDDEN LINE * SECTION LINE * CENTER LINE * DIMENSION LINE * EXTENSION LINE * LEADER LINE * CUTTING PLANE LINE * BREAK LINES * PHANTOM LINES * BORDER LINE You have heard the saying, \"A picture is worth a thousand words\".",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Engineering Graphics",
+      "topic": "views",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openoregon-basic-blueprint-reading-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'The Language of Lines'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in The Language of Lines.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Engineering Graphics",
+      "topic": "views",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openoregon-basic-blueprint-reading-m01-l01-q03",
+      "question": "When applying concepts from 'The Language of Lines', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Engineering Graphics",
+      "topic": "views",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openoregon-basic-blueprint-reading-m01-l02-q01",
+      "question": "According to the source lesson 'Visualization', which statement is most accurate?",
+      "options": [
+        "**Visualization** * PERSPECTIVE * OBLIQUE DRAWING * ISOMETRIC DRAWING * ONE-VIEW DRAWING * TWO-VIEW DRAWING * ORTHOGRAPHIC PROJECTION * HIDDEN SURFACES * CURVED SURFACES * INCLINED SURFACES Now that you have learned about the kinds of lines",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Engineering Graphics",
+      "topic": "views",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openoregon-basic-blueprint-reading-m01-l02-q02",
+      "question": "What is a reasonable learning takeaway from 'Visualization'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Visualization.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Engineering Graphics",
+      "topic": "views",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openoregon-basic-blueprint-reading-m01-l02-q03",
+      "question": "When applying concepts from 'Visualization', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Engineering Graphics",
+      "topic": "views",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openoregon-basic-blueprint-reading-m01-l03-q01",
+      "question": "According to the source lesson 'Technical Sketching', which statement is most accurate?",
+      "options": [
+        "Technical Sketching * SKETCHING TECHNIQUES * LETTERING * OBLIQUE SKETCHING * ISOMETRIC SKETCHING * ORTHOGRAPHIC SKETCHING * ON-THE-SPOT SKETCHING On many occasions in your work it will most likely be necessary for you to make a sketch.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Engineering Graphics",
+      "topic": "views",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openoregon-basic-blueprint-reading-m01-l03-q02",
+      "question": "What is a reasonable learning takeaway from 'Technical Sketching'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Technical Sketching.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Engineering Graphics",
+      "topic": "views",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openoregon-basic-blueprint-reading-m01-l03-q03",
+      "question": "When applying concepts from 'Technical Sketching', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Engineering Graphics",
+      "topic": "views",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openoregon-basic-blueprint-reading-m01-l04-q01",
+      "question": "According to the source lesson 'Scaling', which statement is most accurate?",
+      "options": [
+        "**Scaling** * SCALE MEASUREMENT * FULL SIZE * HALF SIZE * QUARTER SIZE The ability to make accurate measurements is a basic skill needed by everyone who reads and uses blueprints.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Engineering Graphics",
+      "topic": "views",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openoregon-basic-blueprint-reading-m01-l04-q02",
+      "question": "What is a reasonable learning takeaway from 'Scaling'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Scaling.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Engineering Graphics",
+      "topic": "views",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openoregon-basic-blueprint-reading-m01-l04-q03",
+      "question": "When applying concepts from 'Scaling', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Engineering Graphics",
+      "topic": "views",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

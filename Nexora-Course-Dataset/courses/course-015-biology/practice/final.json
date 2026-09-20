@@ -1,0 +1,325 @@
+{
+  "course_id": "openstax-biology",
+  "questions": [
+    {
+      "question_id": "openstax-biology-m01-l01-q01",
+      "question": "According to the source lesson '1.1 The Science of Biology', which statement is most accurate?",
+      "options": [
+        "## 1.1 The Science of Biology ### Learning Objectives By the end of this section, you will be able to: * Identify the shared characteristics of the natural sciences * Summarize the steps of the scientific method * Compare inductive reasonin",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from '1.1 The Science of Biology'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 1.1 The Science of Biology.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m01-l01-q03",
+      "question": "When applying concepts from '1.1 The Science of Biology', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m01-l02-q01",
+      "question": "According to the source lesson '1.2 Themes and Concepts of Biology', which statement is most accurate?",
+      "options": [
+        "## 1.2 Themes and Concepts of Biology ### Learning Objectives By the end of this section, you will be able to: * Identify and describe the properties of life * Describe the levels of organization among living things * Recognize and interpre",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m02-l01-q01",
+      "question": "According to the source lesson 'Chapter Outline', which statement is most accurate?",
+      "options": [
+        "![A molecular model shows hundreds of atoms, represented by yellow, red, black, blue and white balls, connected together by rods to form a molecule.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Chapter Outline'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Chapter Outline.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m02-l01-q03",
+      "question": "When applying concepts from 'Chapter Outline', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m02-l02-q01",
+      "question": "According to the source lesson '2.1 Atoms, Isotopes, Ions, and Molecules: The Building Blocks', which statement is most accurate?",
+      "options": [
+        "## 2.1 Atoms, Isotopes, Ions, and Molecules: The Building Blocks ### Learning Objectives By the end of this section, you will be able to: * Define matter and elements * Describe the interrelationship between protons, neutrons, and electrons",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m03-l01-q01",
+      "question": "According to the source lesson 'Chapter Outline', which statement is most accurate?",
+      "options": [
+        "![Photo shows a variety of cheeses, fruits, and breads served on a tray.](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/00fa77069e018c888377b40a686c0221cd9e2a8d) Figure 3.1 Foods such as bread, fruit, and cheese are rich ",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Chapter Outline'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Chapter Outline.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m03-l01-q03",
+      "question": "When applying concepts from 'Chapter Outline', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m03-l02-q01",
+      "question": "According to the source lesson '3.1 Synthesis of Biological Macromolecules', which statement is most accurate?",
+      "options": [
+        "## 3.1 Synthesis of Biological Macromolecules ### Learning Objectives By the end of this section, you will be able to: * Understand the synthesis of macromolecules * Explain dehydration (or condensation) and hydrolysis reactions As you’ve l",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m04-l01-q01",
+      "question": "According to the source lesson 'Chapter Outline', which statement is most accurate?",
+      "options": [
+        "![Part a: Human cheek cells as viewed by light microscopy have an irregular round shape and a well-defined nucleus that takes up about one-half of the cell.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m04-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Chapter Outline'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Chapter Outline.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m04-l01-q03",
+      "question": "When applying concepts from 'Chapter Outline', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m04-l02-q01",
+      "question": "According to the source lesson '4.1 Studying Cells', which statement is most accurate?",
+      "options": [
+        "## 4.1 Studying Cells ### Learning Objectives By the end of this section, you will be able to: * Describe the role of cells in organisms * Compare and contrast light microscopy and electron microscopy * Summarize cell theory A cell is the s",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m05-l01-q01",
+      "question": "According to the source lesson 'Chapter Outline', which statement is most accurate?",
+      "options": [
+        "![This photo shows the hustle and bustle of Grand Central Station.](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/c33d01251b06d2f8e2beed647f35321a6f2915a9) Figure 5.1 Despite its seeming hustle and bustle, Grand Central S",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m05-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Chapter Outline'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Chapter Outline.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m05-l01-q03",
+      "question": "When applying concepts from 'Chapter Outline', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-biology-m05-l02-q01",
+      "question": "According to the source lesson '5.1 Components and Structure', which statement is most accurate?",
+      "options": [
+        "## 5.1 Components and Structure ### Learning Objectives By the end of this section, you will be able to: * Understand the fluid mosaic model of cell membranes * Describe the functions of phospholipids, proteins, and carbohydrates in membran",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Biology",
+      "topic": "cells",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

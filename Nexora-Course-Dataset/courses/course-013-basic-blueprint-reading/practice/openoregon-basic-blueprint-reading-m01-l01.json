@@ -1,0 +1,53 @@
+{
+  "lesson_id": "openoregon-basic-blueprint-reading-m01-l01",
+  "questions": [
+    {
+      "question_id": "openoregon-basic-blueprint-reading-m01-l01-q01",
+      "question": "According to the source lesson 'The Language of Lines', which statement is most accurate?",
+      "options": [
+        "* OBJECTLINE * HIDDEN LINE * SECTION LINE * CENTER LINE * DIMENSION LINE * EXTENSION LINE * LEADER LINE * CUTTING PLANE LINE * BREAK LINES * PHANTOM LINES * BORDER LINE You have heard the saying, \"A picture is worth a thousand words\".",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Engineering Graphics",
+      "topic": "views",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openoregon-basic-blueprint-reading-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'The Language of Lines'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in The Language of Lines.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Engineering Graphics",
+      "topic": "views",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openoregon-basic-blueprint-reading-m01-l01-q03",
+      "question": "When applying concepts from 'The Language of Lines', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Engineering Graphics",
+      "topic": "views",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

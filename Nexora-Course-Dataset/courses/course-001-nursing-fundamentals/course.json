@@ -1,0 +1,695 @@
+{
+  "course_id": "wtcs-nursing-fundamentals-2e",
+  "title": "Nursing Fundamentals 2e",
+  "provider": "Wisconsin Technical College System / Open RN",
+  "category": "Medical / Healthcare",
+  "subcategory": "Nursing",
+  "level": "Beginner",
+  "description": "Open textbook / course 'Nursing Fundamentals 2e' from Wisconsin Technical College System / Open RN. Chapters were downloaded from the openly licensed Pressbooks edition.",
+  "competencies": [
+    "Nursing Fundamentals",
+    "Healthcare Informatics",
+    "Patient Safety"
+  ],
+  "topics": [
+    "scope of practice",
+    "nursing process",
+    "communication",
+    "safety"
+  ],
+  "source": {
+    "name": "Wisconsin Technical College System / Open RN",
+    "official_url": "https://wtcs.pressbooks.pub/nursingfundamentals/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 6.9,
+    "estimated_minutes": 412
+  },
+  "totals": {
+    "modules": 4,
+    "lessons": 28,
+    "practice_questions": 84
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "wtcs-nursing-fundamentals-2e-m01",
+      "title": "Chapter 1: Scope of Practice",
+      "competencies": [
+        "Nursing Fundamentals",
+        "Healthcare Informatics",
+        "Patient Safety"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m01-l01",
+          "title": "1.1 Scope of Practice Introduction",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m01-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Distinguish among the different levels of nursing education",
+            "Specify the ethical and legal boundaries of the student nurse as presented in the Code of Ethics and the Nurse Practice Act",
+            "Detail responsibility for maintaining client confidentiality",
+            "Describe the contribution of all members of the health care team",
+            "Identify the role of evidence-based practice in nursing",
+            "Identify the concept of quality in client care"
+          ],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m01-l02",
+          "title": "1.2 History and Foundation",
+          "type": "text",
+          "content_file": "content/module-01/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m01-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Florence Nightingale's contri"
+          ],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m01-l03",
+          "title": "1.3 Licensure, Regulations &amp; Standards",
+          "type": "text",
+          "content_file": "content/module-01/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m01-l03.json",
+          "estimated_minutes": 22,
+          "objectives": [
+            "Each state has their own Nurse Practice Act. To read more about the the Wisconsin Board of Nursing, Standards of Practice, and Rules of Conduct, use the information provided below.[1]",
+            "Learn more about the Wisconsin Board of Nursing, nursing standards of practice, and professional conduct requirements that guide safe and ethical nursing practice in Wisconsin"
+          ],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m01-l04",
+          "title": "1.4 Health Care Settings &amp; Team",
+          "type": "text",
+          "content_file": "content/module-01/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m01-l04.json",
+          "estimated_minutes": 23,
+          "objectives": [
+            "There are several levels of health care including primary, secondary, and tertiary care. Each of these levels focuses on different aspects of health care and is typically provided in different settings",
+            "Tertiary care** addresses the long-term effects from chronic illnesses or conditions with the purpose to restore a client's maximum physical and mental"
+          ],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m01-l05",
+          "title": "1.5 Nursing Education and the NCLEX",
+          "type": "text",
+          "content_file": "content/module-01/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m01-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Now that we have discussed various settings where nurses work and various nursing roles, let's review levels of nursing education and the national licensure exam (NCLEX)"
+          ],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m01-l06",
+          "title": "1.6 Legal &amp; Ethical Considerations",
+          "type": "text",
+          "content_file": "content/module-01/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m01-l06.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "To prove negligence or malpractice, the following elements must be established in a court of law[3]:",
+            "Duty owed the client",
+            "Breach of duty owed the client",
+            "Failure to Assess: Nurses should assess for all potential nursing problems/diagnoses, not just those directly affected by the medical di"
+          ],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m01-l07",
+          "title": "1.7 Professional Organizations",
+          "type": "text",
+          "content_file": "content/module-01/lesson-07.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m01-l07.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Read more information about the [ANA](<https://www.nursingworld.org/ana/>)",
+            "Read more about the [American Nurses Credentialing Center](<https://www.nursingworld.org/a"
+          ],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m01-l08",
+          "title": "1.8 Quality and Evidence-Based Practice",
+          "type": "text",
+          "content_file": "content/module-01/lesson-08.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m01-l08.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m01-l09",
+          "title": "1.9 Learning Activities",
+          "type": "text",
+          "content_file": "content/module-01/lesson-09.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m01-l09.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Apply what you have learned from this chapter by completing the following learning activities:"
+          ],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-fundamentals-2e-m02",
+      "title": "Chapter 2: Communication",
+      "competencies": [
+        "Nursing Fundamentals",
+        "Healthcare Informatics",
+        "Patient Safety"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m02-l01",
+          "title": "2.1 Communication Introduction",
+          "type": "text",
+          "content_file": "content/module-02/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m02-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Assess one's own communication skills and effectiveness[1]",
+            "Demonstrate cultural humility, professionalism, and respect when communicating[2]",
+            "Use communication styles and methods that demonstrate caring, respect, active listening, authenticity, and trust[3]",
+            "Maintain communication with interprofessional team members and others to facilitate safe transitions and continuity in care delivery[4]",
+            "Confirm the recipient of the communication heard and understands the message[5]",
+            "Use therapeutic communication techniques"
+          ],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m02-l02",
+          "title": "2.2 Basic Communication Concepts",
+          "type": "text",
+          "content_file": "content/module-02/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m02-l02.json",
+          "estimated_minutes": 18,
+          "objectives": [],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m02-l03",
+          "title": "2.3 Communicating With Patients",
+          "type": "text",
+          "content_file": "content/module-02/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m02-l03.json",
+          "estimated_minutes": 37,
+          "objectives": [],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m02-l04",
+          "title": "2.4 Communicating With Health Care Team Members",
+          "type": "text",
+          "content_file": "content/module-02/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m02-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Nurses routinely report information to other nurses and health care team members, as well as urgently contact health care providers to report changes in client status",
+            "Introduction:** Introduce your name, role, and the agency from which you are cal"
+          ],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m02-l05",
+          "title": "2.5 Documentation",
+          "type": "text",
+          "content_file": "content/module-02/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m02-l05.json",
+          "estimated_minutes": 17,
+          "objectives": [
+            "The EHR for each client contains a great deal of information. The most frequent pieces of information that nurses access include the following:"
+          ],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m02-l06",
+          "title": "2.6 Putting It All Together",
+          "type": "text",
+          "content_file": "content/module-02/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m02-l06.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "The nurse notes that the client’s jaw is wired, and he is unable to offer a verbal response. He does understand English well, has appropriate visual acuity, and is able to move his right hand and arm",
+            "Based on the assessment information that has been gathered, the nurse plans several actions to enhance communication. Adaptive communication devices such as communication boards, symbol cards, or electronic messaging"
+          ],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m02-l07",
+          "title": "2.7 Learning Activities",
+          "type": "text",
+          "content_file": "content/module-02/lesson-07.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m02-l07.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Practice what you have learned in this chapter by completing these learning activities. When accessing the online activities that contain videos, it is best to use Google Chrome or Firefox browsers",
+            "Based on the described scenario, what actions might be implemented to aid in your communication with Mr. Curtis?"
+          ],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-fundamentals-2e-m03",
+      "title": "Chapter 3: Diverse Patients",
+      "competencies": [
+        "Nursing Fundamentals",
+        "Healthcare Informatics",
+        "Patient Safety"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m03-l01",
+          "title": "3.1 Diverse Patients Introduction",
+          "type": "text",
+          "content_file": "content/module-03/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m03-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Reflect upon personal and cultural values, beliefs, biases, and heritage[1]",
+            "Embrace diversity, equity, inclusivity, health promotion, and health care for individuals of diverse geographic, cultural, ethnic, racial, gender, and spiritual backgrounds across the life span[2]",
+            "Demonstrate respect, equity, and empathy in actions and interactions with all health care consumers[3]",
+            "Participate in life-long learning to understand cultural preferences, worldviews, choices, and decision-making processes of diverse clients[4]",
+            "Adapt care considering all aspects of diversity",
+            "Identify principles of protecting client dignity"
+          ],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m03-l02",
+          "title": "3.2 Diverse Patients Basic Concepts",
+          "type": "text",
+          "content_file": "content/module-03/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m03-l02.json",
+          "estimated_minutes": 21,
+          "objectives": [
+            "Let's begin the journey of developing cultural competency by exploring basic concepts related to culture"
+          ],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m03-l03",
+          "title": "3.3 Patient's Bill of Rights",
+          "type": "text",
+          "content_file": "content/module-03/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m03-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m03-l04",
+          "title": "3.4 Cultural Competence",
+          "type": "text",
+          "content_file": "content/module-03/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m03-l04.json",
+          "estimated_minutes": 14,
+          "objectives": [],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m03-l05",
+          "title": "3.5 Health Disparities",
+          "type": "text",
+          "content_file": "content/module-03/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m03-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m03-l06",
+          "title": "3.6 Culturally Sensitive Care",
+          "type": "text",
+          "content_file": "content/module-03/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m03-l06.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Providing culturally responsive care integrates an individual’s cultural beliefs into their health care. Begin by conveying cultural sensitivity to clients and their family members with these suggestions[1]:",
+            "Begin by standing or sitting at least arm’s length from the client",
+            "Observe the client and family members in regards to eye contact, space orientation, touch, and other nonverbal communication behaviors and follow their lead",
+            "Use inclusive language that is culturally sensitive and appropriate. For example, do not refer to someone as “wheelchair bound”; instead say “a person who uses a wheelchair.”[2]",
+            "Be open and honest about the extent of your knowledge of their culture. It is acceptable to politely ask questions about their beliefs and seek clarification to avoid misunderstandings"
+          ],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m03-l07",
+          "title": "3.7 Cultural Assessment",
+          "type": "text",
+          "content_file": "content/module-03/lesson-07.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m03-l07.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "What does the client**Consider** to be the problem and what they **Call** it. (In other words, \"What do you think is wrong? What is worrying you?\")",
+            "For example, a client diagnosed with pneumonia believes his body is \"unbalanced.\"",
+            "What does the client think **Caused** this problem?",
+            "For example, the client believes this illness is a punishment for a misdeed. The client avoids eating certain foods to treat the illness while also using home remedies such as herbal tea",
+            "How **C****oncerned** is the client about this problem. (In other words, how serious is this problem?)",
+            "For example, a client views the illness as being “God’s will” and states, “It’s in God’s hands.”"
+          ],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m03-l08",
+          "title": "3.8 Culturally Responsive Care",
+          "type": "text",
+          "content_file": "content/module-03/lesson-08.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m03-l08.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m03-l09",
+          "title": "3.9 Putting It All Together",
+          "type": "text",
+          "content_file": "content/module-03/lesson-09.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m03-l09.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Based on the assessment information that has been gathered, the nurse plans the following care for Mrs. Rosas:",
+            "The nurse will eliminate distractions such as the television, hallway noise, etc., to decrease sources of additional stimuli in the communication experience",
+            "The nurse will communicate directly with the client, utilizing appropriate eye contact, and nonverbal cues to enhance the communication experience"
+          ],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m03-l10",
+          "title": "3.10 Learning Activities",
+          "type": "text",
+          "content_file": "content/module-03/lesson-10.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m03-l10.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m03-l11",
+          "title": "3.11 Supplementary Videos",
+          "type": "text",
+          "content_file": "content/module-03/lesson-11.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m03-l11.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-fundamentals-2e-m04",
+      "title": "Chapter 4: Nursing Process",
+      "competencies": [
+        "Nursing Fundamentals",
+        "Healthcare Informatics",
+        "Patient Safety"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-fundamentals-2e-m04-l01",
+          "title": "4.1 Nursing Process Introduction",
+          "type": "text",
+          "content_file": "content/module-04/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-fundamentals-2e-m04-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Use the nursing process to provide client care",
+            "Describe components of a client-centered plan of care",
+            "Differentiate priorities of client care",
+            "Describe the roles of the RN, LPN/VN, and UAP in providing client care"
+          ],
+          "competencies": [
+            "Nursing Fundamentals",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "scope of practice",
+            "nursing process",
+            "communication"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "module_id": "mit-6-002-circuits-m04",
+  "questions": [
+    {
+      "question_id": "mit-6-002-circuits-m04-l01-q01",
+      "question": "According to the source lesson '8bb4e0f80644d9414bb7cd3b1364e8e3 lab0', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 8bb4e0f80644d9414bb7cd3b1364e8e3_lab0.pdf from 6.002 Circuits and Electronics.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "resistive networks",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-002-circuits-m04-l01-q02",
+      "question": "What is a reasonable learning takeaway from '8bb4e0f80644d9414bb7cd3b1364e8e3 lab0'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 8bb4e0f80644d9414bb7cd3b1364e8e3 lab0.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "resistive networks",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-002-circuits-m04-l01-q03",
+      "question": "When applying concepts from '8bb4e0f80644d9414bb7cd3b1364e8e3 lab0', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "resistive networks",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-002-circuits-m04-l02-q01",
+      "question": "According to the source lesson '8d05b0f4d4ce5dab988346463658efa7 labpractices', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 8d05b0f4d4ce5dab988346463658efa7_labpractices.pdf from 6.002 Circuits and Electronics.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "resistive networks",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-002-circuits-m04-l02-q02",
+      "question": "What is a reasonable learning takeaway from '8d05b0f4d4ce5dab988346463658efa7 labpractices'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 8d05b0f4d4ce5dab988346463658efa7 labpractices.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "resistive networks",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-002-circuits-m04-l02-q03",
+      "question": "When applying concepts from '8d05b0f4d4ce5dab988346463658efa7 labpractices', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "resistive networks",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-002-circuits-m04-l03-q01",
+      "question": "According to the source lesson '56c767318f89cccd7448ac5e8af375bf lab2', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 56c767318f89cccd7448ac5e8af375bf_lab2.pdf from 6.002 Circuits and Electronics.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "resistive networks",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-002-circuits-m04-l03-q02",
+      "question": "What is a reasonable learning takeaway from '56c767318f89cccd7448ac5e8af375bf lab2'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 56c767318f89cccd7448ac5e8af375bf lab2.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "resistive networks",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-002-circuits-m04-l03-q03",
+      "question": "When applying concepts from '56c767318f89cccd7448ac5e8af375bf lab2', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "resistive networks",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-002-circuits-m04-l04-q01",
+      "question": "According to the source lesson 'd96ecf98f18cefe60249e8aec9a387ec lab3', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource d96ecf98f18cefe60249e8aec9a387ec_lab3.pdf from 6.002 Circuits and Electronics.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "resistive networks",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-002-circuits-m04-l04-q02",
+      "question": "What is a reasonable learning takeaway from 'd96ecf98f18cefe60249e8aec9a387ec lab3'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in d96ecf98f18cefe60249e8aec9a387ec lab3.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "resistive networks",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-002-circuits-m04-l04-q03",
+      "question": "When applying concepts from 'd96ecf98f18cefe60249e8aec9a387ec lab3', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "resistive networks",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

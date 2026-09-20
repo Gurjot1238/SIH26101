@@ -1,0 +1,149 @@
+{
+  "module_id": "wtcs-nursing-health-promotion-m04",
+  "questions": [
+    {
+      "question_id": "wtcs-nursing-health-promotion-m04-l01-q01",
+      "question": "According to the source lesson '4.1 Introduction', which statement is most accurate?",
+      "options": [
+        "Learning Objectives * Identify family roles, structure, and functions * Examine family dynamics * Identify various factors that can lead to actual and potential family health problems * Compare and contrast parenting styles and behaviors * ",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-health-promotion-m04-l01-q02",
+      "question": "What is a reasonable learning takeaway from '4.1 Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 4.1 Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-health-promotion-m04-l01-q03",
+      "question": "When applying concepts from '4.1 Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-health-promotion-m04-l02-q01",
+      "question": "According to the source lesson '4.2 Family Structures, Cultural Practices, Roles, and Functions', which statement is most accurate?",
+      "options": [
+        "Family Structures In the United States, a family was traditionally defined as a heterosexual male married to a heterosexual female who raised their children together in one household.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-health-promotion-m04-l02-q02",
+      "question": "What is a reasonable learning takeaway from '4.2 Family Structures, Cultural Practices, Roles, and Functions'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 4.2 Family Structures, Cultural Practices, Roles, and Functions.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-health-promotion-m04-l02-q03",
+      "question": "When applying concepts from '4.2 Family Structures, Cultural Practices, Roles, and Functions', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-health-promotion-m04-l03-q01",
+      "question": "According to the source lesson '4.3 Family Dynamics', which statement is most accurate?",
+      "options": [
+        "Family dynamics refers to many characteristics of a family, such as roles and relationships, communication patterns, and various factors that shape family members' interactions.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-health-promotion-m04-l03-q02",
+      "question": "What is a reasonable learning takeaway from '4.3 Family Dynamics'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 4.3 Family Dynamics.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-health-promotion-m04-l03-q03",
+      "question": "When applying concepts from '4.3 Family Dynamics', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Public Health",
+      "topic": "health promotion",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

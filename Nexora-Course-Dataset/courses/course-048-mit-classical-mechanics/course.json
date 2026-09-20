@@ -1,0 +1,267 @@
+{
+  "course_id": "mit-8-01-mechanics",
+  "title": "8.01SC Classical Mechanics",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Physics",
+  "level": "Beginner",
+  "description": "MIT OpenCourseWare 8.01SC Classical Mechanics (Fall 2016). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Physics",
+    "Mechanics",
+    "Engineering Fundamentals"
+  ],
+  "topics": [
+    "kinematics",
+    "Newton's laws",
+    "energy",
+    "momentum"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Fall 2016",
+  "duration": {
+    "estimated_hours": 7.3,
+    "estimated_minutes": 437
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 10,
+    "practice_questions": 30
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-8-01-mechanics-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Physics",
+        "Mechanics",
+        "Engineering Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-8-01-mechanics-m01-l01",
+          "title": "96231b21bccffc0c17c7d98629a52eb2 MIT8 01F16 pset1 new",
+          "type": "pdf",
+          "content_file": "content/module-01/96231b21bccffc0c17c7d98629a52eb2_MIT8_01F16_pset1_new.pdf",
+          "practice_file": "practice/mit-8-01-mechanics-m01-l01.json",
+          "estimated_minutes": 34,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Mechanics"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-8-01-mechanics-m01-l02",
+          "title": "878cc2b018e6280e47318e3659631d4b MIT8 01F16 pset10",
+          "type": "pdf",
+          "content_file": "content/module-01/878cc2b018e6280e47318e3659631d4b_MIT8_01F16_pset10.pdf",
+          "practice_file": "practice/mit-8-01-mechanics-m01-l02.json",
+          "estimated_minutes": 46,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Mechanics"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-8-01-mechanics-m01-l03",
+          "title": "8a7ebab932f259be07c4462d5fbc1a92 MIT8 01F16 pset11",
+          "type": "pdf",
+          "content_file": "content/module-01/8a7ebab932f259be07c4462d5fbc1a92_MIT8_01F16_pset11.pdf",
+          "practice_file": "practice/mit-8-01-mechanics-m01-l03.json",
+          "estimated_minutes": 58,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Mechanics"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-8-01-mechanics-m01-l04",
+          "title": "4f3af212f682f52a6151aef53415d5b2 MIT8 01F16 pset12",
+          "type": "pdf",
+          "content_file": "content/module-01/4f3af212f682f52a6151aef53415d5b2_MIT8_01F16_pset12.pdf",
+          "practice_file": "practice/mit-8-01-mechanics-m01-l04.json",
+          "estimated_minutes": 34,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Mechanics"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-8-01-mechanics-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Physics",
+        "Mechanics",
+        "Engineering Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-8-01-mechanics-m02-l01",
+          "title": "1ebafbf9c9cca8e1ab191ad5ad9026e0 MIT8 01F16 pset2",
+          "type": "pdf",
+          "content_file": "content/module-02/1ebafbf9c9cca8e1ab191ad5ad9026e0_MIT8_01F16_pset2.pdf",
+          "practice_file": "practice/mit-8-01-mechanics-m02-l01.json",
+          "estimated_minutes": 49,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Mechanics"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-8-01-mechanics-m02-l02",
+          "title": "4b332aab1695e67fdcbc0f4c3924134e MIT8 01F16 pset3",
+          "type": "pdf",
+          "content_file": "content/module-02/4b332aab1695e67fdcbc0f4c3924134e_MIT8_01F16_pset3.pdf",
+          "practice_file": "practice/mit-8-01-mechanics-m02-l02.json",
+          "estimated_minutes": 51,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Mechanics"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-8-01-mechanics-m02-l03",
+          "title": "ff43aae2332b3882ac4a4727301cec56 MIT8 01F16 pset4",
+          "type": "pdf",
+          "content_file": "content/module-02/ff43aae2332b3882ac4a4727301cec56_MIT8_01F16_pset4.pdf",
+          "practice_file": "practice/mit-8-01-mechanics-m02-l03.json",
+          "estimated_minutes": 62,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Mechanics"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-8-01-mechanics-m02-l04",
+          "title": "ebe813c4c1e0a146933380112612a58f MIT8 01F16 pset5",
+          "type": "pdf",
+          "content_file": "content/module-02/ebe813c4c1e0a146933380112612a58f_MIT8_01F16_pset5.pdf",
+          "practice_file": "practice/mit-8-01-mechanics-m02-l04.json",
+          "estimated_minutes": 33,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Mechanics"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-8-01-mechanics-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Physics",
+        "Mechanics",
+        "Engineering Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-8-01-mechanics-m03-l01",
+          "title": "44b46fb9ae75796759884a9a7f7bd167 MIT8 01F16 pset6",
+          "type": "pdf",
+          "content_file": "content/module-03/44b46fb9ae75796759884a9a7f7bd167_MIT8_01F16_pset6.pdf",
+          "practice_file": "practice/mit-8-01-mechanics-m03-l01.json",
+          "estimated_minutes": 41,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Mechanics"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-8-01-mechanics-m03-l02",
+          "title": "15aa14b5647ea989a352a972dc4b3dfe MIT8 01F16 pset7",
+          "type": "pdf",
+          "content_file": "content/module-03/15aa14b5647ea989a352a972dc4b3dfe_MIT8_01F16_pset7.pdf",
+          "practice_file": "practice/mit-8-01-mechanics-m03-l02.json",
+          "estimated_minutes": 29,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Mechanics"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton's laws",
+            "energy"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

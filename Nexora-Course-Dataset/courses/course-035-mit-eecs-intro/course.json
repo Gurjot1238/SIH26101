@@ -1,0 +1,392 @@
+{
+  "course_id": "mit-6-01sc-eecs",
+  "title": "6.01SC Introduction to Electrical Engineering and Computer Science I",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Electrical Engineering",
+  "level": "Beginner",
+  "description": "MIT OpenCourseWare 6.01SC Introduction to Electrical Engineering and Computer Science I (Spring 2011). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Electrical Engineering",
+    "Computer Science",
+    "Robotics"
+  ],
+  "topics": [
+    "Python",
+    "circuits",
+    "feedback",
+    "state machines"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Spring 2011",
+  "duration": {
+    "estimated_hours": 13.0,
+    "estimated_minutes": 778
+  },
+  "totals": {
+    "modules": 4,
+    "lessons": 16,
+    "practice_questions": 48
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-6-01sc-eecs-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Electrical Engineering",
+        "Computer Science",
+        "Robotics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-01sc-eecs-m01-l01",
+          "title": "71fa1d5eca0302926b8805ca19b0678e MIT6 01SCS11 final F09 sol",
+          "type": "pdf",
+          "content_file": "content/module-01/71fa1d5eca0302926b8805ca19b0678e_MIT6_01SCS11_final_F09_sol.pdf",
+          "practice_file": "practice/mit-6-01sc-eecs-m01-l01.json",
+          "estimated_minutes": 52,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "circuits",
+            "feedback"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-01sc-eecs-m01-l02",
+          "title": "b24855ae002756667941f91464e487b9 MIT6 01SCS11 final F10 sol",
+          "type": "pdf",
+          "content_file": "content/module-01/b24855ae002756667941f91464e487b9_MIT6_01SCS11_final_F10_sol.pdf",
+          "practice_file": "practice/mit-6-01sc-eecs-m01-l02.json",
+          "estimated_minutes": 38,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "circuits",
+            "feedback"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-01sc-eecs-m01-l03",
+          "title": "a7d3311193cd710a7e886590d44ae83e MIT6 01SCS11 final S09 sol",
+          "type": "pdf",
+          "content_file": "content/module-01/a7d3311193cd710a7e886590d44ae83e_MIT6_01SCS11_final_S09_sol.pdf",
+          "practice_file": "practice/mit-6-01sc-eecs-m01-l03.json",
+          "estimated_minutes": 54,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "circuits",
+            "feedback"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-01sc-eecs-m01-l04",
+          "title": "0ba9a1083ba2e6058f411b091874d4b5 MIT6 01SCS11 final S10 sol",
+          "type": "pdf",
+          "content_file": "content/module-01/0ba9a1083ba2e6058f411b091874d4b5_MIT6_01SCS11_final_S10_sol.pdf",
+          "practice_file": "practice/mit-6-01sc-eecs-m01-l04.json",
+          "estimated_minutes": 49,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "circuits",
+            "feedback"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-01sc-eecs-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Electrical Engineering",
+        "Computer Science",
+        "Robotics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-01sc-eecs-m02-l01",
+          "title": "d4e866df24474de69e2f6e0ed5f1dc4b MIT6 01SCS11 final S11 sol",
+          "type": "pdf",
+          "content_file": "content/module-02/d4e866df24474de69e2f6e0ed5f1dc4b_MIT6_01SCS11_final_S11_sol.pdf",
+          "practice_file": "practice/mit-6-01sc-eecs-m02-l01.json",
+          "estimated_minutes": 58,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "circuits",
+            "feedback"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-01sc-eecs-m02-l02",
+          "title": "9c1e8568c5a6c60d4a5f81aa96d7d421 MIT6 01SCS11 mid01 F09 sol",
+          "type": "pdf",
+          "content_file": "content/module-02/9c1e8568c5a6c60d4a5f81aa96d7d421_MIT6_01SCS11_mid01_F09_sol.pdf",
+          "practice_file": "practice/mit-6-01sc-eecs-m02-l02.json",
+          "estimated_minutes": 23,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "circuits",
+            "feedback"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-01sc-eecs-m02-l03",
+          "title": "df24ab953dad12be20474e0181f8fc58 MIT6 01SCS11 mid01 F10 sol",
+          "type": "pdf",
+          "content_file": "content/module-02/df24ab953dad12be20474e0181f8fc58_MIT6_01SCS11_mid01_F10_sol.pdf",
+          "practice_file": "practice/mit-6-01sc-eecs-m02-l03.json",
+          "estimated_minutes": 31,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "circuits",
+            "feedback"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-01sc-eecs-m02-l04",
+          "title": "0782f4b59a6ccb4ef56c781fa4081d7d MIT6 01SCS11 mid01 S10 sol",
+          "type": "pdf",
+          "content_file": "content/module-02/0782f4b59a6ccb4ef56c781fa4081d7d_MIT6_01SCS11_mid01_S10_sol.pdf",
+          "practice_file": "practice/mit-6-01sc-eecs-m02-l04.json",
+          "estimated_minutes": 42,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "circuits",
+            "feedback"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-01sc-eecs-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Electrical Engineering",
+        "Computer Science",
+        "Robotics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-01sc-eecs-m03-l01",
+          "title": "976e11ed2fa08bacf0a7587bfa037672 MIT6 01SCS11 mid01 S11 sol",
+          "type": "pdf",
+          "content_file": "content/module-03/976e11ed2fa08bacf0a7587bfa037672_MIT6_01SCS11_mid01_S11_sol.pdf",
+          "practice_file": "practice/mit-6-01sc-eecs-m03-l01.json",
+          "estimated_minutes": 53,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "circuits",
+            "feedback"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-01sc-eecs-m03-l02",
+          "title": "cf18baa007f2c3cb2c67af27e15d074d MIT6 01SCS11 mid02 F10 sol",
+          "type": "pdf",
+          "content_file": "content/module-03/cf18baa007f2c3cb2c67af27e15d074d_MIT6_01SCS11_mid02_F10_sol.pdf",
+          "practice_file": "practice/mit-6-01sc-eecs-m03-l02.json",
+          "estimated_minutes": 54,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "circuits",
+            "feedback"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-01sc-eecs-m03-l03",
+          "title": "13808c783e26a1bee3456dd98ec3f1f7 MIT6 01SCS11 final F09",
+          "type": "pdf",
+          "content_file": "content/module-03/13808c783e26a1bee3456dd98ec3f1f7_MIT6_01SCS11_final_F09.pdf",
+          "practice_file": "practice/mit-6-01sc-eecs-m03-l03.json",
+          "estimated_minutes": 52,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "circuits",
+            "feedback"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-01sc-eecs-m03-l04",
+          "title": "ecb60f4eccf35a1926594c069e426a96 MIT6 01SCS11 final F10",
+          "type": "pdf",
+          "content_file": "content/module-03/ecb60f4eccf35a1926594c069e426a96_MIT6_01SCS11_final_F10.pdf",
+          "practice_file": "practice/mit-6-01sc-eecs-m03-l04.json",
+          "estimated_minutes": 39,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "circuits",
+            "feedback"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-01sc-eecs-m04",
+      "title": "Module 4",
+      "competencies": [
+        "Electrical Engineering",
+        "Computer Science",
+        "Robotics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-01sc-eecs-m04-l01",
+          "title": "17352857b0a91e64e1ad0e03c8d0c82b MIT6 01SCS11 final S09",
+          "type": "pdf",
+          "content_file": "content/module-04/17352857b0a91e64e1ad0e03c8d0c82b_MIT6_01SCS11_final_S09.pdf",
+          "practice_file": "practice/mit-6-01sc-eecs-m04-l01.json",
+          "estimated_minutes": 51,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "circuits",
+            "feedback"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-01sc-eecs-m04-l02",
+          "title": "1c438acf29eb5f4040cd69738217864d MIT6 01SCS11 final S10",
+          "type": "pdf",
+          "content_file": "content/module-04/1c438acf29eb5f4040cd69738217864d_MIT6_01SCS11_final_S10.pdf",
+          "practice_file": "practice/mit-6-01sc-eecs-m04-l02.json",
+          "estimated_minutes": 47,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "circuits",
+            "feedback"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-01sc-eecs-m04-l03",
+          "title": "85d4b79c7353265160b42a040d6008a8 MIT6 01SCS11 final S11",
+          "type": "pdf",
+          "content_file": "content/module-04/85d4b79c7353265160b42a040d6008a8_MIT6_01SCS11_final_S11.pdf",
+          "practice_file": "practice/mit-6-01sc-eecs-m04-l03.json",
+          "estimated_minutes": 55,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "circuits",
+            "feedback"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-01sc-eecs-m04-l04",
+          "title": "b2d8cb0bb07414a21f5ec444fd00d608 MIT6 01SCS11 textbook",
+          "type": "pdf",
+          "content_file": "content/module-04/b2d8cb0bb07414a21f5ec444fd00d608_MIT6_01SCS11_textbook.pdf",
+          "practice_file": "practice/mit-6-01sc-eecs-m04-l04.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Computer Science"
+          ],
+          "topics": [
+            "Python",
+            "circuits",
+            "feedback"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

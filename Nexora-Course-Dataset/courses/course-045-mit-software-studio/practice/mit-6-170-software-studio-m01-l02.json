@@ -1,0 +1,53 @@
+{
+  "lesson_id": "mit-6-170-software-studio-m01-l02",
+  "questions": [
+    {
+      "question_id": "mit-6-170-software-studio-m01-l02-q01",
+      "question": "According to the source lesson '23728628acd5486841f72e85b02ef24c MIT6 170S13 48 asyn exam', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 23728628acd5486841f72e85b02ef24c_MIT6_170S13_48-asyn-exam.pdf from 6.170 Software Studio.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Software Engineering",
+      "topic": "design",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-170-software-studio-m01-l02-q02",
+      "question": "What is a reasonable learning takeaway from '23728628acd5486841f72e85b02ef24c MIT6 170S13 48 asyn exam'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 23728628acd5486841f72e85b02ef24c MIT6 170S13 48 asyn exam.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Software Engineering",
+      "topic": "design",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-170-software-studio-m01-l02-q03",
+      "question": "When applying concepts from '23728628acd5486841f72e85b02ef24c MIT6 170S13 48 asyn exam', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Software Engineering",
+      "topic": "design",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

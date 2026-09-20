@@ -1,0 +1,697 @@
+{
+  "course_id": "wtcs-nursing-health-promotion",
+  "title": "Nursing Health Promotion",
+  "provider": "Wisconsin Technical College System / Open RN",
+  "category": "Medical / Healthcare",
+  "subcategory": "Public Health",
+  "level": "Beginner",
+  "description": "Open textbook / course 'Nursing Health Promotion' from Wisconsin Technical College System / Open RN. Chapters were downloaded from the openly licensed Pressbooks edition.",
+  "competencies": [
+    "Public Health",
+    "Health Promotion",
+    "Digital Health"
+  ],
+  "topics": [
+    "health promotion",
+    "prevention",
+    "community assessment"
+  ],
+  "source": {
+    "name": "Wisconsin Technical College System / Open RN",
+    "official_url": "https://wtcs.pressbooks.pub/healthpromo/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 7.3,
+    "estimated_minutes": 436
+  },
+  "totals": {
+    "modules": 4,
+    "lessons": 28,
+    "practice_questions": 84
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "wtcs-nursing-health-promotion-m01",
+      "title": "Chapter 1 Teaching &amp; Learning",
+      "competencies": [
+        "Public Health",
+        "Health Promotion",
+        "Digital Health"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m01-l01",
+          "title": "1.1 Introduction",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m01-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Identify client learning needs and potential barriers",
+            "Contribute to a teaching plan",
+            "Choose the appropriate teaching method",
+            "Apply principles of teaching and learning",
+            "Determine if learning was achieved"
+          ],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m01-l02",
+          "title": "1.2 Health Literacy",
+          "type": "text",
+          "content_file": "content/module-01/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m01-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Use evidence-based strategies, such as answering questions in simple, nonmedical language and providing written materials tailored to the client's literacy, language, and comprehension levels"
+          ],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m01-l03",
+          "title": "1.3 Standards Related to Health Teaching and Health Promotion",
+          "type": "text",
+          "content_file": "content/module-01/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m01-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Respect, protect, and promote client rights",
+            "Respect the client’s right to receive information in a ma"
+          ],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m01-l04",
+          "title": "1.4 Learning Theories",
+          "type": "text",
+          "content_file": "content/module-01/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m01-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Adults are more self-directed learners and take responsibility for their own learning",
+            "Nurses can work with clients to determine the order in which information is presented",
+            "Life experiences are valuable resources for learning",
+            "Nurses can connect information clients already know to the new information they are learning",
+            "Adults are better able to learn a concept if there is immediate relevance to life circumstances",
+            "Nurses can show clients how this information can help them manage and be responsible for their own health"
+          ],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m01-l05",
+          "title": "1.5 Learner Assessment",
+          "type": "text",
+          "content_file": "content/module-01/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m01-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "If the client is anxious, the nurse should create a calm environment and use therapeutic communication to help the client express their feelings and cope with their concerns",
+            "If the client is experiencing grief due to a new life-threatening diagnosis such as cancer, the nurse may need to postpone teaching until the client reaches a stage of acceptance",
+            "Barriers to learning and strategies for addressing them will be explored in more detail later in this chapter.  Readiness to Learn A client's **readiness to lea"
+          ],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m01-l06",
+          "title": "1.6 Health Teaching",
+          "type": "text",
+          "content_file": "content/module-01/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m01-l06.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Relevancy:** Adults learn best when they perceive the information to be relevant to their current life circumstances",
+            "Currency:** Learners are more likely to be interested in learning the information if it can be used immediately",
+            "Timing:** The best timing for providing health teaching depends on the client's readiness for learning and their preferences. The client should be involved in deciding the best time"
+          ],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m01-l07",
+          "title": "1.7 The Teaching/Learning Process",
+          "type": "text",
+          "content_file": "content/module-01/lesson-07.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m01-l07.json",
+          "estimated_minutes": 13,
+          "objectives": [
+            "Assessment:** Data is collected about the client, their readiness to learn, and their current knowledge on the topic",
+            "Nursing Diagnosis:** Learning needs are identified collaboratively by the nurse and the client. Educational nursing diagnoses are established, such as \"Readiness for Enhanced Learning.\"",
+            "Implementation:** Implementation refers to actually teaching the client and providing r"
+          ],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m01-l08",
+          "title": "1.8 Spotlight Application",
+          "type": "text",
+          "content_file": "content/module-01/lesson-08.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m01-l08.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "The client will accurately describe three signs of hypo"
+          ],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m01-l09",
+          "title": "1.9 Learning Activities",
+          "type": "text",
+          "content_file": "content/module-01/lesson-09.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m01-l09.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-health-promotion-m02",
+      "title": "Chapter 2 Healthy Lifestyle",
+      "competencies": [
+        "Public Health",
+        "Health Promotion",
+        "Digital Health"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m02-l01",
+          "title": "2.2 Health, Wellness, and Disease Prevention",
+          "type": "text",
+          "content_file": "content/module-02/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m02-l01.json",
+          "estimated_minutes": 14,
+          "objectives": [
+            "Mental health:** How well does the client cope with the normal stresses of life, work productively, and contribute to their community?[5]",
+            "Emotional health:** Emotional health is one aspect of mental health. How well does the client use positive coping mechanisms and stress management strategies to manage negative emotions?[6]",
+            "Social health:** How is the client connected to others? In what ways can ties with family, friends, loved ones, and neighbors be strengthened or repaired?[8]",
+            "Spiritual health:** Spirituality"
+          ],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m02-l02",
+          "title": "2.3 Primary Prevention: Teaching Elements of a Healthy Lifestyle",
+          "type": "text",
+          "content_file": "content/module-02/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m02-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m02-l03",
+          "title": "2.4 Secondary Prevention",
+          "type": "text",
+          "content_file": "content/module-02/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m02-l03.json",
+          "estimated_minutes": 22,
+          "objectives": [],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m02-l04",
+          "title": "2.5 Tertiary Prevention",
+          "type": "text",
+          "content_file": "content/module-02/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m02-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m02-l05",
+          "title": "2.6 Risk Reduction",
+          "type": "text",
+          "content_file": "content/module-02/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m02-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Modifiable Risk Factors",
+            "Being overweight or obese",
+            "Nonmodifiable Risk Factors",
+            "Family history of early atherosclerotic cardiovascular disease (men less than age 55, women less than age 65)",
+            "Ethnicity (African American, Hispanic or Latino, and Asian Americans)",
+            "History of early menopause or preeclampsia"
+          ],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m02-l06",
+          "title": "2.7 Behaviorial Change",
+          "type": "text",
+          "content_file": "content/module-02/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m02-l06.json",
+          "estimated_minutes": 13,
+          "objectives": [],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m02-l07",
+          "title": "2.8 Applying the Nursing Process and Clinical Judgment Model to Promoting Healthy Lifestyles",
+          "type": "text",
+          "content_file": "content/module-02/lesson-07.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m02-l07.json",
+          "estimated_minutes": 13,
+          "objectives": [],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m02-l08",
+          "title": "2.9 Spotlight Application",
+          "type": "text",
+          "content_file": "content/module-02/lesson-08.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m02-l08.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Analyzing Cues:** The nurse interprets these findings in the context of Sarah's medical history, including her hypertension, obesity, prediabetes, and family history of heart disease",
+            "Prioritizing Hypotheses:** The nurse recognizes that these risk factors suggest a need for further assessment and"
+          ],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m02-l09",
+          "title": "2.10 Learning Activities",
+          "type": "text",
+          "content_file": "content/module-02/lesson-09.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m02-l09.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-health-promotion-m03",
+      "title": "Chapter 3 Healthy Diets",
+      "competencies": [
+        "Public Health",
+        "Health Promotion",
+        "Digital Health"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m03-l01",
+          "title": "3.1 Introduction",
+          "type": "text",
+          "content_file": "content/module-03/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m03-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Identify assessment components of the client’s current diet",
+            "Identify current recommendations regarding diet for the client according to developmental needs",
+            "Adapt recommendations based on individual patient health conditions",
+            "Identify different food groups and food sources for vitamins and minerals",
+            "Identify factors influencing client’s individual choices, such as culture, values, and religion",
+            "Use food safety guidelines to prevent contamination and food-borne illnesses"
+          ],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m03-l02",
+          "title": "3.2 Basic Concepts Related to Nutrition",
+          "type": "text",
+          "content_file": "content/module-03/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m03-l02.json",
+          "estimated_minutes": 35,
+          "objectives": [],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m03-l03",
+          "title": "3.3 Dietary Recommendations According to Age and Developmental Level",
+          "type": "text",
+          "content_file": "content/module-03/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m03-l03.json",
+          "estimated_minutes": 34,
+          "objectives": [
+            "Follow a healthy dietary pattern at every life stage",
+            "Customize and enjoy nutrient-dense food and beverage choices to reflect personal preferences, cultural beliefs, and budgetary considerations",
+            "Focus on meeting food group needs with nutrient-dense foods and beverages, and stay within calorie limits",
+            "Limit foods and beverages higher in added sugars, saturated fat, and sodium, and limit alcoholic beverages",
+            "Vegetables of all types"
+          ],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m03-l04",
+          "title": "3.4 Specific Dietary Recommendations Based on Health Conditions",
+          "type": "text",
+          "content_file": "content/module-03/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m03-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m03-l05",
+          "title": "3.5 Applying the Nursing Process and the Clinical Judgment Model to Healthy Diets",
+          "type": "text",
+          "content_file": "content/module-03/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m03-l05.json",
+          "estimated_minutes": 28,
+          "objectives": [],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m03-l06",
+          "title": "3.6 Spotlight Application",
+          "type": "text",
+          "content_file": "content/module-03/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m03-l06.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Carbohydrate awareness: Understand how different foods affect blood sugar levels, focusing on balancing carbohydrate intake with proteins and healthy fats",
+            "Portion control: Learn about approp"
+          ],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m03-l07",
+          "title": "3.7 Learning Activities",
+          "type": "text",
+          "content_file": "content/module-03/lesson-07.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m03-l07.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Case Study Healthy Diets Patient Information Name | Age | Gender | DOB | Code | Allergies | Weight | BMI",
+            "Fatima Khan | 86 | Female | 2/12/1937 | Full Code | Penicillin | 45 kg | 17.5 kg/m²",
+            "Mrs. Fatima Khan is an 86-year-old female hospitalized with generalized weakness and signs of malnutrition. She has a history of coronary artery disease"
+          ],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-health-promotion-m04",
+      "title": "Chapter 4 Family Dynamics",
+      "competencies": [
+        "Public Health",
+        "Health Promotion",
+        "Digital Health"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m04-l01",
+          "title": "4.1 Introduction",
+          "type": "text",
+          "content_file": "content/module-04/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m04-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Identify family roles, structure, and functions",
+            "Examine family dynamics",
+            "Identify various factors that can lead to actual and potential family health problems",
+            "Compare and contrast parenting styles and behaviors",
+            "Consider the influence of family cultural practices related to health",
+            "Identify the psychosocial effect of illness on a client and their family’s health"
+          ],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m04-l02",
+          "title": "4.2 Family Structures, Cultural Practices, Roles, and Functions",
+          "type": "text",
+          "content_file": "content/module-04/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m04-l02.json",
+          "estimated_minutes": 25,
+          "objectives": [
+            "Dual-Parent, Also Called Nuclear Family | Two parents raise children. Parents may be the children's biological mother and father who are married or unmarried, adoptive parents, or same-sex caregivers"
+          ],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-health-promotion-m04-l03",
+          "title": "4.3 Family Dynamics",
+          "type": "text",
+          "content_file": "content/module-04/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-health-promotion-m04-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Family members use clear communication. | Family members use unclear, limited, or hurtful communication",
+            "Family members take responsibility for their own behavior and adequately fulfill their family roles. | Individuals take responsibility for other"
+          ],
+          "competencies": [
+            "Public Health",
+            "Health Promotion"
+          ],
+          "topics": [
+            "health promotion",
+            "prevention",
+            "community assessment"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

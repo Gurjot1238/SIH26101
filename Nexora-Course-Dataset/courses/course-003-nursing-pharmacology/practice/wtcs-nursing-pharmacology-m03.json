@@ -1,0 +1,197 @@
+{
+  "module_id": "wtcs-nursing-pharmacology-m03",
+  "questions": [
+    {
+      "question_id": "wtcs-nursing-pharmacology-m03-l01-q01",
+      "question": "According to the source lesson '2.1 Legal/Ethical Introduction', which statement is most accurate?",
+      "options": [
+        "## Learning Objectives * Identify drug administration guidelines within the State Nurse Practice Act * Identify nursing responsibilities to prevent and respond to medication errors * Identify nursing responsibilities associated with control",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from '2.1 Legal/Ethical Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.1 Legal/Ethical Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m03-l01-q03",
+      "question": "When applying concepts from '2.1 Legal/Ethical Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m03-l02-q01",
+      "question": "According to the source lesson '2.2 Ethical and Professional Foundations of Safe Medication Administration by Nurses', which statement is most accurate?",
+      "options": [
+        "## ANA Code of Ethics for Nurses The [American Nurses Association (ANA)](<https://www.nursingworld.org/ana/about-ana/>) is a professional organization that represents the interests of the nation's 4 million registered nurses and is at the f",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m03-l02-q02",
+      "question": "What is a reasonable learning takeaway from '2.2 Ethical and Professional Foundations of Safe Medication Administration by Nurses'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.2 Ethical and Professional Foundations of Safe Medication Administration by Nurses.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m03-l02-q03",
+      "question": "When applying concepts from '2.2 Ethical and Professional Foundations of Safe Medication Administration by Nurses', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m03-l03-q01",
+      "question": "According to the source lesson '2.3 Legal Foundations and National Guidelines for Safe Medication Administration', which statement is most accurate?",
+      "options": [
+        "There are many federal and state laws, as well as national guidelines, that have been established to protect public health and safety.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m03-l03-q02",
+      "question": "What is a reasonable learning takeaway from '2.3 Legal Foundations and National Guidelines for Safe Medication Administration'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.3 Legal Foundations and National Guidelines for Safe Medication Administration.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m03-l03-q03",
+      "question": "When applying concepts from '2.3 Legal Foundations and National Guidelines for Safe Medication Administration', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m03-l04-q01",
+      "question": "According to the source lesson '2.4  Cultural and Social Determinants Related to Medication Administration', which statement is most accurate?",
+      "options": [
+        "Critical Thinking Activity ![Image of lightbulb in a circle](https://wtcs.pressbooks.pub/app/uploads/sites/22/2019/09/ORN-Icons_lightbulb-300x300.png) A nurse is providing patient education to a mother regarding a liquid antibiotic prescrib",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m03-l04-q02",
+      "question": "What is a reasonable learning takeaway from '2.4  Cultural and Social Determinants Related to Medication Administration'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.4  Cultural and Social Determinants Related to Medication Administration.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m03-l04-q03",
+      "question": "When applying concepts from '2.4  Cultural and Social Determinants Related to Medication Administration', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

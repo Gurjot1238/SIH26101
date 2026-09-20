@@ -1,0 +1,197 @@
+{
+  "module_id": "mit-3-091-ssc-m04",
+  "questions": [
+    {
+      "question_id": "mit-3-091-ssc-m04-l01-q01",
+      "question": "According to the source lesson 'f1ea41b638b861b0bbfef4b9135d0b10 MIT3 091F18 Exam2', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource f1ea41b638b861b0bbfef4b9135d0b10_MIT3_091F18_Exam2.pdf from 3.091 Introduction to Solid State Chemistry.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Materials Science",
+      "topic": "bonding",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-3-091-ssc-m04-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'f1ea41b638b861b0bbfef4b9135d0b10 MIT3 091F18 Exam2'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in f1ea41b638b861b0bbfef4b9135d0b10 MIT3 091F18 Exam2.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Materials Science",
+      "topic": "bonding",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-3-091-ssc-m04-l01-q03",
+      "question": "When applying concepts from 'f1ea41b638b861b0bbfef4b9135d0b10 MIT3 091F18 Exam2', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Materials Science",
+      "topic": "bonding",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-3-091-ssc-m04-l02-q01",
+      "question": "According to the source lesson '122daa2de21eb75279c410b6ebff876a MIT3 091F18 Exam3', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 122daa2de21eb75279c410b6ebff876a_MIT3_091F18_Exam3.pdf from 3.091 Introduction to Solid State Chemistry.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Materials Science",
+      "topic": "bonding",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-3-091-ssc-m04-l02-q02",
+      "question": "What is a reasonable learning takeaway from '122daa2de21eb75279c410b6ebff876a MIT3 091F18 Exam3'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 122daa2de21eb75279c410b6ebff876a MIT3 091F18 Exam3.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Materials Science",
+      "topic": "bonding",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-3-091-ssc-m04-l02-q03",
+      "question": "When applying concepts from '122daa2de21eb75279c410b6ebff876a MIT3 091F18 Exam3', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Materials Science",
+      "topic": "bonding",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-3-091-ssc-m04-l03-q01",
+      "question": "According to the source lesson 'b31b4596f5c2458c69047aeecd92a875 MIT3 091F18 Final', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource b31b4596f5c2458c69047aeecd92a875_MIT3_091F18_Final.pdf from 3.091 Introduction to Solid State Chemistry.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Materials Science",
+      "topic": "bonding",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-3-091-ssc-m04-l03-q02",
+      "question": "What is a reasonable learning takeaway from 'b31b4596f5c2458c69047aeecd92a875 MIT3 091F18 Final'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in b31b4596f5c2458c69047aeecd92a875 MIT3 091F18 Final.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Materials Science",
+      "topic": "bonding",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-3-091-ssc-m04-l03-q03",
+      "question": "When applying concepts from 'b31b4596f5c2458c69047aeecd92a875 MIT3 091F18 Final', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Materials Science",
+      "topic": "bonding",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-3-091-ssc-m04-l04-q01",
+      "question": "According to the source lesson 'ab0f0813d6cd633af1e09b49f26d0942 MIT3 091F18 Q03', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource ab0f0813d6cd633af1e09b49f26d0942_MIT3_091F18_Q03.pdf from 3.091 Introduction to Solid State Chemistry.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Materials Science",
+      "topic": "bonding",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-3-091-ssc-m04-l04-q02",
+      "question": "What is a reasonable learning takeaway from 'ab0f0813d6cd633af1e09b49f26d0942 MIT3 091F18 Q03'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in ab0f0813d6cd633af1e09b49f26d0942 MIT3 091F18 Q03.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Materials Science",
+      "topic": "bonding",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-3-091-ssc-m04-l04-q03",
+      "question": "When applying concepts from 'ab0f0813d6cd633af1e09b49f26d0942 MIT3 091F18 Q03', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Materials Science",
+      "topic": "bonding",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

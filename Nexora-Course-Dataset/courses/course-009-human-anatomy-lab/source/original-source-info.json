@@ -1,0 +1,15 @@
+{
+  "course_id": "uta-human-anatomy-lab",
+  "provider": "University of Texas at Arlington",
+  "source_url": "https://uta.pressbooks.pub/anatomylab/",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "date_collected": "2026-09-20",
+  "reuse_permissions": "CC BY 4.0 permits copy and redistribution with attribution.",
+  "changes_made": [
+    "Downloaded Pressbooks chapter HTML and converted to Markdown lessons",
+    "Grouped original book parts as modules",
+    "Added Nexora-generated practice questions grounded in chapter text",
+    "Omitted glossary/preface/index pages"
+  ]
+}

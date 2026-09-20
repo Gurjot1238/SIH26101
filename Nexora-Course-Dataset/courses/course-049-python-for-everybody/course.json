@@ -1,0 +1,462 @@
+{
+  "course_id": "py4e-python-for-everybody",
+  "title": "Python for Everybody",
+  "provider": "Charles R. Severance / University of Michigan",
+  "category": "Technology",
+  "subcategory": "Python Programming",
+  "level": "Beginner",
+  "description": "Python for Everybody is a CC BY 4.0 textbook/course on programming, data, and the web.",
+  "competencies": [
+    "Python Programming",
+    "SQL",
+    "Programming Fundamentals"
+  ],
+  "topics": [
+    "Python",
+    "files",
+    "HTTP",
+    "SQL"
+  ],
+  "source": {
+    "name": "Python for Everybody",
+    "official_url": "https://www.py4e.com/book.php",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 5.9,
+    "estimated_minutes": 355
+  },
+  "totals": {
+    "modules": 4,
+    "lessons": 16,
+    "practice_questions": 48
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "py4e-m01",
+      "title": "Why Program?",
+      "competencies": [
+        "Python Programming",
+        "SQL",
+        "Programming Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "py4e-m01-l01",
+          "title": "Why Program?",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/py4e-m01-l01.json",
+          "estimated_minutes": 39,
+          "objectives": [
+            "Exploring Data Using Python 3",
+            "Dr. Charles R. Severance",
+            "Programmers add an operating system and a set of applications to the hardware and we end up with a Personal Digital Assistant that is quite helpful and capab"
+          ],
+          "competencies": [
+            "Python Programming",
+            "SQL"
+          ],
+          "topics": [
+            "Python",
+            "files",
+            "HTTP"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "py4e-m01-l02",
+          "title": "Variables, expressions, and statements",
+          "type": "text",
+          "content_file": "content/module-01/lesson-02.md",
+          "practice_file": "practice/py4e-m01-l02.json",
+          "estimated_minutes": 19,
+          "objectives": [
+            "A _value_ is one of the basic things a program works with, like a letter or a number. The values we have seen so far are 1, 2, and “Hello, World!”",
+            "The `print` statement also works for integers. We use the `python` command to start the interpreter",
+            "If you are not sure what type a value has, the interpreter can tell you",
+            "What about values like “17” and “3.2”? They look like nu"
+          ],
+          "competencies": [
+            "Python Programming",
+            "SQL"
+          ],
+          "topics": [
+            "Python",
+            "files",
+            "HTTP"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "py4e-m01-l03",
+          "title": "Conditional execution",
+          "type": "text",
+          "content_file": "content/module-01/lesson-03.md",
+          "practice_file": "practice/py4e-m01-l03.json",
+          "estimated_minutes": 16,
+          "objectives": [
+            "A _boolean expression_ is an expression that is either true or false. The following examples use the operator `==`, which compares two operands and produces `True` if they are equal and `False` otherwise:",
+            "The `==` operator is one of the _comparison operators_ ; the others are:",
+            "Although these operations are probably familiar to you, the Python symbols are different from the mathematical symbols for the same operations. A common error is to use a single equal sig"
+          ],
+          "competencies": [
+            "Python Programming",
+            "SQL"
+          ],
+          "topics": [
+            "Python",
+            "files",
+            "HTTP"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "py4e-m01-l04",
+          "title": "Functions",
+          "type": "text",
+          "content_file": "content/module-01/lesson-04.md",
+          "practice_file": "practice/py4e-m01-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "It is common to say that a function “takes” an argument and “returns” a result. The result is called the _return value_",
+            "The `max` and `min` functions give us the largest and smallest values in a list, respec"
+          ],
+          "competencies": [
+            "Python Programming",
+            "SQL"
+          ],
+          "topics": [
+            "Python",
+            "files",
+            "HTTP"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "py4e-m02",
+      "title": "Iteration",
+      "competencies": [
+        "Python Programming",
+        "SQL",
+        "Programming Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "py4e-m02-l01",
+          "title": "Iteration",
+          "type": "text",
+          "content_file": "content/module-02/lesson-01.md",
+          "practice_file": "practice/py4e-m02-l01.json",
+          "estimated_minutes": 16,
+          "objectives": [
+            "A common pattern in assignment statements is an assignment statement that updates a variable, where the new value of the variable depends on the old",
+            "This means “get the current value of `x`, add 1, and then update `x` with the new value.”",
+            "If you try to update a variable that doesn’t exist, you get an error, because Python evaluates the right side before it assigns a value to `x`:",
+            "NameError: name 'x' is not defined",
+            "Before you can update a variable, you have to _initialize_ it, usually with a simple assignment:",
+            "Updating a variable by adding 1 is called an _increment_ ; subtracting 1 is called a _decrement_"
+          ],
+          "competencies": [
+            "Python Programming",
+            "SQL"
+          ],
+          "topics": [
+            "Python",
+            "files",
+            "HTTP"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "py4e-m02-l02",
+          "title": "Strings",
+          "type": "text",
+          "content_file": "content/module-02/lesson-02.md",
+          "practice_file": "practice/py4e-m02-l02.json",
+          "estimated_minutes": 16,
+          "objectives": [
+            "A string is a _sequence_ of characters. You can access the characters one at a time with the bracket operator:",
+            "The second statement extracts the character at index position 1 from the `fruit` variable and assigns it to the `letter` variable",
+            "The expression in brackets is called an _index_. The index indicates which character in the sequence you want (hence the name)",
+            "But you might not get what you expect:",
+            "For most people, the first letter of “banana” is “b”, not “a”. But in Python, the index is an offset from the beginning of the string, and the offset of the first letter is zero",
+            "So “b” is the 0th letter (“zero-th”) of “banana”, “a” is the 1th letter (“one-th”), and “n” is the 2th (“two-th”) letter"
+          ],
+          "competencies": [
+            "Python Programming",
+            "SQL"
+          ],
+          "topics": [
+            "Python",
+            "files",
+            "HTTP"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "py4e-m02-l03",
+          "title": "Files",
+          "type": "text",
+          "content_file": "content/module-02/lesson-03.md",
+          "practice_file": "practice/py4e-m02-l03.json",
+          "estimated_minutes": 22,
+          "objectives": [
+            "We will primarily focus on reading and writing text files such as those we create in a text editor. Later we will see how to work with database files which are binary files, specif"
+          ],
+          "competencies": [
+            "Python Programming",
+            "SQL"
+          ],
+          "topics": [
+            "Python",
+            "files",
+            "HTTP"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "py4e-m02-l04",
+          "title": "Lists",
+          "type": "text",
+          "content_file": "content/module-02/lesson-04.md",
+          "practice_file": "practice/py4e-m02-l04.json",
+          "estimated_minutes": 26,
+          "objectives": [
+            "Like a string, a _list_ is a sequence of values. In a string, the values are characters; in a list, they can be any type. The values in lists are called _elements_ or sometimes _items_",
+            "There are several ways to create a new list; the simplest is to enclose the elements in square brackets (“[” and ”]”):",
+            "A list within another list is _nested_",
+            "A list that contains no elements is called an empty list; you can create one with empty brackets, `[]`",
+            "As you might expect, you can assign list values to variables:"
+          ],
+          "competencies": [
+            "Python Programming",
+            "SQL"
+          ],
+          "topics": [
+            "Python",
+            "files",
+            "HTTP"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "py4e-m03",
+      "title": "Dictionaries",
+      "competencies": [
+        "Python Programming",
+        "SQL",
+        "Programming Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "py4e-m03-l01",
+          "title": "Dictionaries",
+          "type": "text",
+          "content_file": "content/module-03/lesson-01.md",
+          "practice_file": "practice/py4e-m03-l01.json",
+          "estimated_minutes": 19,
+          "objectives": [
+            "A _dictionary_ is like a list, but more general. In a list, the index positions have to be integers; in a dictionary, the indices can be (almost) any type",
+            "As an example, we’ll build a dictionary that maps from English to Spanish words, so the keys and the values are all strings",
+            "The function `dict` creates a new dictionary with no items. Because `dict` is the name of a built-in function, you should avoid using it as a variable name",
+            "The curly brackets, `{}`, represent an empty dictionary. To add items to the dictionary, you can use square brackets:",
+            "This line creates an item that maps from the key `'one'` to the value “uno”. If we print the dictionary again, we see a key-value pair with a colon between the key and value:"
+          ],
+          "competencies": [
+            "Python Programming",
+            "SQL"
+          ],
+          "topics": [
+            "Python",
+            "files",
+            "HTTP"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "py4e-m03-l02",
+          "title": "Tuples",
+          "type": "text",
+          "content_file": "content/module-03/lesson-02.md",
+          "practice_file": "practice/py4e-m03-l02.json",
+          "estimated_minutes": 17,
+          "objectives": [
+            "Syntactically, a tuple is a comma-separated list of values:",
+            "Although it is not necessary, it is common to enclose tuples in parentheses to help us quickly identify tuples when we look at Python code:",
+            "To create a tuple with a single element, you have to include the final comma:",
+            "Without the comma Python treats `('a')` as an expression with a string in parentheses that evaluates to a string:",
+            "Another way to construct a tuple is the built-in function `tuple`. With no argument, it creates an empty tuple:"
+          ],
+          "competencies": [
+            "Python Programming",
+            "SQL"
+          ],
+          "topics": [
+            "Python",
+            "files",
+            "HTTP"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "py4e-m03-l03",
+          "title": "Regular expressions",
+          "type": "text",
+          "content_file": "content/module-03/lesson-03.md",
+          "practice_file": "practice/py4e-m03-l03.json",
+          "estimated_minutes": 25,
+          "objectives": [
+            "You can also bookmark the following page to experiment with regular expr"
+          ],
+          "competencies": [
+            "Python Programming",
+            "SQL"
+          ],
+          "topics": [
+            "Python",
+            "files",
+            "HTTP"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "py4e-m03-l04",
+          "title": "Networked programs",
+          "type": "text",
+          "content_file": "content/module-03/lesson-04.md",
+          "practice_file": "practice/py4e-m03-l04.json",
+          "estimated_minutes": 25,
+          "objectives": [
+            "While many of the examples in this book have focused on reading files and looking for data in those files, there are many different sources of information when one considers the Internet",
+            "In this chapter we will pretend to be a web browser and retrieve web pages using the Hypertext Transfer Protocol (HTTP). Then we will read through the web page data and parse it",
+            "But if you try to read a socket1 when the program on the other end of the socket has not sent an"
+          ],
+          "competencies": [
+            "Python Programming",
+            "SQL"
+          ],
+          "topics": [
+            "Python",
+            "files",
+            "HTTP"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "py4e-m04",
+      "title": "Using Web Services",
+      "competencies": [
+        "Python Programming",
+        "SQL",
+        "Programming Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "py4e-m04-l01",
+          "title": "Using Web Services",
+          "type": "text",
+          "content_file": "content/module-04/lesson-01.md",
+          "practice_file": "practice/py4e-m04-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "XML looks very similar to HTML, but XML is more structured than HTML. Here is a sample of an XML document:",
+            "Each pair of opening (e.g., `<person>`) and closing tags (e.g., `</person>`) represent"
+          ],
+          "competencies": [
+            "Python Programming",
+            "SQL"
+          ],
+          "topics": [
+            "Python",
+            "files",
+            "HTTP"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "py4e-m04-l02",
+          "title": "Object-oriented programming",
+          "type": "text",
+          "content_file": "content/module-04/lesson-02.md",
+          "practice_file": "practice/py4e-m04-l02.json",
+          "estimated_minutes": 22,
+          "objectives": [
+            "At the beginning of this book, we came up with four basic programming patterns which we use to construct programs:",
+            "Conditional code (if statements)",
+            "Repetitive code (loops)",
+            "Store and reuse (functions)",
+            "In later chapters, we explored simple variables as well as collection data structures like lists, tuples, and dictionaries"
+          ],
+          "competencies": [
+            "Python Programming",
+            "SQL"
+          ],
+          "topics": [
+            "Python",
+            "files",
+            "HTTP"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "py4e-m04-l03",
+          "title": "Using Databases and SQL",
+          "type": "text",
+          "content_file": "content/module-04/lesson-03.md",
+          "practice_file": "practice/py4e-m04-l03.json",
+          "estimated_minutes": 41,
+          "objectives": [],
+          "competencies": [
+            "Python Programming",
+            "SQL"
+          ],
+          "topics": [
+            "Python",
+            "files",
+            "HTTP"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "py4e-m04-l04",
+          "title": "Visualizing data",
+          "type": "text",
+          "content_file": "content/module-04/lesson-04.md",
+          "practice_file": "practice/py4e-m04-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "So far we have been learning the Python language and then learning how to use Python, the network, and databases to manipulate data",
+            "Each of the applications is a ZIP file that you can download and extract onto your computer and execute",
+            "In this project, we are using the OpenStreetMap geocoding API to clean up some user-entered geographic locations of university names and then placing the data on an actual OpenStreetMap",
+            "To get started, download the application from:",
+            "The first problem to solve is that these geocoding APIs are rate-limited to a certain number of requests per day. If you have a lot of data, you might need to stop and restart the lookup p"
+          ],
+          "competencies": [
+            "Python Programming",
+            "SQL"
+          ],
+          "topics": [
+            "Python",
+            "files",
+            "HTTP"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

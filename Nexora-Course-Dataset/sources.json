@@ -1,0 +1,418 @@
+[
+  {
+    "course_id": "wtcs-nursing-fundamentals-2e",
+    "provider": "Wisconsin Technical College System / Open RN",
+    "official_url": "https://wtcs.pressbooks.pub/nursingfundamentals/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "Wisconsin Technical College System / Open RN"
+  },
+  {
+    "course_id": "wtcs-nursing-skills-2e",
+    "provider": "Wisconsin Technical College System / Open RN",
+    "official_url": "https://wtcs.pressbooks.pub/nursingskills/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "Wisconsin Technical College System / Open RN"
+  },
+  {
+    "course_id": "wtcs-nursing-pharmacology",
+    "provider": "Wisconsin Technical College System / Open RN",
+    "official_url": "https://wtcs.pressbooks.pub/pharmacology/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "Wisconsin Technical College System / Open RN"
+  },
+  {
+    "course_id": "wtcs-nursing-mental-health",
+    "provider": "Wisconsin Technical College System / Open RN",
+    "official_url": "https://wtcs.pressbooks.pub/nursingmhcc/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "Wisconsin Technical College System / Open RN"
+  },
+  {
+    "course_id": "wtcs-nursing-management",
+    "provider": "Wisconsin Technical College System / Open RN",
+    "official_url": "https://wtcs.pressbooks.pub/nursingmpc/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "Wisconsin Technical College System / Open RN"
+  },
+  {
+    "course_id": "wtcs-nursing-advanced-skills",
+    "provider": "Wisconsin Technical College System / Open RN",
+    "official_url": "https://wtcs.pressbooks.pub/nursingadvancedskills/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "Wisconsin Technical College System / Open RN"
+  },
+  {
+    "course_id": "wtcs-nursing-health-promotion",
+    "provider": "Wisconsin Technical College System / Open RN",
+    "official_url": "https://wtcs.pressbooks.pub/healthpromo/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "Wisconsin Technical College System / Open RN"
+  },
+  {
+    "course_id": "uwf-medical-terminology",
+    "provider": "University of West Florida",
+    "official_url": "https://pressbooks.uwf.edu/medicalterminology/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "University of West Florida"
+  },
+  {
+    "course_id": "uta-human-anatomy-lab",
+    "provider": "University of Texas at Arlington",
+    "official_url": "https://uta.pressbooks.pub/anatomylab/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "University of Texas at Arlington"
+  },
+  {
+    "course_id": "openstax-anatomy-physiology",
+    "provider": "OpenStax / Rice University",
+    "official_url": "https://openstax.org/books/anatomy-and-physiology/pages/1-introduction",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "OpenStax"
+  },
+  {
+    "course_id": "vt-aerodynamics-aircraft-performance",
+    "provider": "Virginia Tech",
+    "official_url": "https://pressbooks.lib.vt.edu/aerodynamics/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "Virginia Tech"
+  },
+  {
+    "course_id": "isu-mechanical-engineering-design",
+    "provider": "Iowa State University",
+    "official_url": "https://iastate.pressbooks.pub/me270baughman/",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "name": "Iowa State University"
+  },
+  {
+    "course_id": "openoregon-basic-blueprint-reading",
+    "provider": "Open Oregon Educational Resources",
+    "official_url": "https://openoregon.pressbooks.pub/blueprint/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "Open Oregon Educational Resources"
+  },
+  {
+    "course_id": "openstax-college-physics",
+    "provider": "OpenStax / Rice University",
+    "official_url": "https://openstax.org/books/college-physics/pages/1-introduction-to-science-and-the-realm-of-physics-physical-quantities-and-units",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "OpenStax"
+  },
+  {
+    "course_id": "openstax-biology",
+    "provider": "OpenStax / Rice University",
+    "official_url": "https://openstax.org/books/biology/pages/1-introduction",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "OpenStax"
+  },
+  {
+    "course_id": "openstax-college-algebra",
+    "provider": "OpenStax / Rice University",
+    "official_url": "https://openstax.org/books/college-algebra/pages/1-introduction-to-prerequisites",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "OpenStax"
+  },
+  {
+    "course_id": "openstax-precalculus",
+    "provider": "OpenStax / Rice University",
+    "official_url": "https://openstax.org/books/precalculus/pages/1-introduction-to-functions",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "OpenStax"
+  },
+  {
+    "course_id": "openstax-algebra-trigonometry",
+    "provider": "OpenStax / Rice University",
+    "official_url": "https://openstax.org/books/algebra-and-trigonometry/pages/1-introduction-to-prerequisites",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "OpenStax"
+  },
+  {
+    "course_id": "openstax-introductory-statistics",
+    "provider": "OpenStax / Rice University",
+    "official_url": "https://openstax.org/books/introductory-statistics/pages/1-introduction",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "OpenStax"
+  },
+  {
+    "course_id": "openstax-physics",
+    "provider": "OpenStax / Rice University",
+    "official_url": "https://openstax.org/books/physics/pages/1-introduction",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "OpenStax"
+  },
+  {
+    "course_id": "openstax-statistics",
+    "provider": "OpenStax / Rice University",
+    "official_url": "https://openstax.org/books/statistics/pages/1-introduction",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "OpenStax"
+  },
+  {
+    "course_id": "mit-6-0001-python",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-6-0002-data-science",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-6-006-algorithms",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-6-034-ai",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-034-artificial-intelligence-fall-2010/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-6-867-ml",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-867-machine-learning-fall-2006/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-6-046-algorithms",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-6-004-computation-structures",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-6-033-systems",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-033-computer-system-engineering-spring-2018/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-6-830-databases",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-830-database-systems-fall-2010/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-6-858-security",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-858-computer-systems-security-fall-2014/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-6-002-circuits",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-6-003-signals",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-18-06-linear-algebra",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-6-01sc-eecs",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-2-003-dynamics",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/2-003sc-engineering-dynamics-fall-2011/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-6-045-automata",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-045j-automata-computability-and-complexity-spring-2011/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-6-006-algorithms-2011",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-6-02-digital-comm",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-16-07-dynamics",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/16-07-dynamics-fall-2009/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-2-007-design-manufacturing",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/2-007-design-and-manufacturing-i-spring-2009/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-3-091-ssc",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/3-091-introduction-to-solid-state-chemistry-fall-2018/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-6-864-nlp",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-864-advanced-natural-language-processing-fall-2005/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-6-801-vision",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-801-machine-vision-fall-2004/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-6-170-software-studio",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-170-software-studio-spring-2013/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-1-00-problem-solving",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/1-00-introduction-to-computers-and-engineering-problem-solving-spring-2012/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-6-042-math-cs",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "mit-8-01-mechanics",
+    "provider": "Massachusetts Institute of Technology",
+    "official_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "name": "MIT OpenCourseWare"
+  },
+  {
+    "course_id": "py4e-python-for-everybody",
+    "provider": "Charles R. Severance / University of Michigan",
+    "official_url": "https://www.py4e.com/book.php",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "Python for Everybody"
+  },
+  {
+    "course_id": "thinkcspy-learning-with-python",
+    "provider": "Green Tea Press / Allen Downey, Jeffrey Elkner, Chris Meyers",
+    "official_url": "https://www.greenteapress.com/thinkpython/thinkCSpy/html/",
+    "license": "CC BY",
+    "license_url": "https://creativecommons.org/licenses/by/3.0/",
+    "name": "Green Tea Press"
+  },
+  {
+    "course_id": "openintro-statistics",
+    "provider": "OpenIntro",
+    "official_url": "https://www.openintro.org/book/os/",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "name": "OpenIntro"
+  },
+  {
+    "course_id": "illinois-algorithms-erickson",
+    "provider": "Jeff Erickson / University of Illinois Urbana-Champaign",
+    "official_url": "https://jeffe.cs.illinois.edu/teaching/algorithms/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "Jeff Erickson"
+  }
+]

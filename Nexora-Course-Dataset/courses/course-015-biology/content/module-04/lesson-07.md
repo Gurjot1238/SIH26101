@@ -1,0 +1,69 @@
+# 4.6 Connections between Cells and Cellular Activities
+
+> Source: Biology. OpenStax / Rice University.
+> Official URL: https://openstax.org/books/biology/pages/4-6-connections-between-cells-and-cellular-activities
+> License: CC BY 4.0
+> Reused without endorsement. Original copyright notices retained.
+
+## 4.6 Connections between Cells and Cellular Activities
+
+### Learning Objectives
+
+By the end of this section, you will be able to: 
+
+  * Describe the extracellular matrix
+  * List examples of the ways that plant cells and animal cells communicate with adjacent cells
+  * Summarize the roles of tight junctions, desmosomes, gap junctions, and plasmodesmata
+
+You already know that a group of similar cells working together is called a tissue. As you might expect, if cells are to work together, they must communicate with each other, just as you need to communicate with others if you work on a group project. Let’s take a look at how cells communicate with each other.
+
+### Extracellular Matrix of Animal Cells
+
+Most animal cells release materials into the extracellular space. The primary components of these materials are proteins, and the most abundant protein is collagen. Collagen fibers are interwoven with carbohydrate-containing protein molecules called proteoglycans. Collectively, these materials are called the extracellular matrix ([Figure 4.27](<4-6-connections-between-cells-and-cellular-activities#fig-ch04-06-01>)). Not only does the extracellular matrix hold the cells together to form a tissue, but it also allows the cells within the tissue to communicate with each other. How can this happen?
+
+![This illustration shows the plasma membrane. Embedded in the plasma membrane are integral membrane proteins called integrins. On the exterior of the cell is a vast network of collagen fibers. The fibers are attached to the integrins via a protein called fibronectin. Proteoglycan complexes also extend from the plasma membrane to the extracellular matrix. A close-up view shows that each proteoglycan complex is composed of a polysaccharide core. Proteins branch from this core, and carbohydrates branch from the proteins. The inside of the cytoplasmic membrane is lined with microfilaments of the cytoskeleton.](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/30c274bac43bc92cb931179a5dca98df89379412) Figure  4.27 The extracellular matrix consists of a network of proteins and carbohydrates.
+
+Cells have protein receptors on the extracellular surfaces of their plasma membranes. When a molecule within the matrix binds to the receptor, it changes the molecular structure of the receptor. The receptor, in turn, changes the conformation of the microfilaments positioned just inside the plasma membrane. These conformational changes induce chemical signals inside the cell that reach the nucleus and turn “on” or “off” the transcription of specific sections of DNA, which affects the production of associated proteins, thus changing the activities within the cell.
+
+Blood clotting provides an example of the role of the extracellular matrix in cell communication. When the cells lining a blood vessel are damaged, they display a protein receptor called tissue factor. When tissue factor binds with another factor in the extracellular matrix, it causes platelets to adhere to the wall of the damaged blood vessel, stimulates the adjacent smooth muscle cells in the blood vessel to contract (thus constricting the blood vessel), and initiates a series of steps that stimulate the platelets to produce clotting factors.
+
+### Intercellular Junctions
+
+Cells can also communicate with each other via direct contact, referred to as intercellular junctions. There are some differences in the ways that plant and animal cells do this. Plasmodesmata are junctions between plant cells, whereas animal cell contacts include tight junctions, gap junctions, and desmosomes.
+
+#### Plasmodesmata
+
+In general, long stretches of the plasma membranes of neighboring plant cells cannot touch one another because they are separated by the cell wall that surrounds each cell ([Figure 4.8](<4-3-eukaryotic-cells>)**b**). How then, can a plant transfer water and other soil nutrients from its roots, through its stems, and to its leaves? Such transport uses the vascular tissues (xylem and phloem) primarily. There also exist structural modifications called plasmodesmata (singular = plasmodesma), numerous channels that pass between cell walls of adjacent plant cells, connect their cytoplasm, and enable materials to be transported from cell to cell, and thus throughout the plant ([Figure 4.28](<4-6-connections-between-cells-and-cellular-activities#fig-ch04-06-02>)).
+
+![This illustration shows two plant cells side-by-side. A gap in the cell wall, a plasmodesma, allows fluid and small molecules to pass from the cytoplasm of one cell to the cytoplasm of the other.](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/4784fcae3723b67f3972bd374799d5b07d47d3ea) Figure  4.28 A plasmodesma is a channel between the cell walls of two adjacent plant cells. Plasmodesmata allow materials to pass from the cytoplasm of one plant cell to the cytoplasm of an adjacent cell.
+
+#### Tight Junctions
+
+A tight junction is a watertight seal between two adjacent animal cells ([Figure 4.29](<4-6-connections-between-cells-and-cellular-activities#fig-ch04-06-03>)). The cells are held tightly against each other by proteins (predominantly two proteins called claudins and occludins).
+
+![This illustration shows two cell membranes joined together by a matrix of tight junctions.](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/0e7f7d1b10f755c549af47f238f1f2d2c5eb06f5) Figure  4.29 Tight junctions form watertight connections between adjacent animal cells. Proteins create tight junction adherence. (credit: modification of work by Mariana Ruiz Villareal)
+
+This tight adherence prevents materials from leaking between the cells; tight junctions are typically found in epithelial tissues that line internal organs and cavities, and comprise most of the skin. For example, the tight junctions of the epithelial cells lining your urinary bladder prevent urine from leaking out into the extracellular space.
+
+#### Desmosomes
+
+Also found only in animal cells are desmosomes, which act like spot welds between adjacent epithelial cells ([Figure 4.30](<4-6-connections-between-cells-and-cellular-activities#fig-ch04-06-04>)). Short proteins called cadherins in the plasma membrane connect to intermediate filaments to create desmosomes. The cadherins join two adjacent cells together and maintain the cells in a sheet-like formation in organs and tissues that stretch, like the skin, heart, and muscles.
+
+![This illustration shows two cells fused together by a desmosome. Cadherins extend from each cell and join the two cells together. Intermediate filaments connect to cadherins on the inside of the cell.](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/2f12e5a1bafdc0e00fd1b43c9958d9a75979f160) Figure  4.30 A desmosome forms a very strong spot weld between cells. It is created by the linkage of cadherins and intermediate filaments. (credit: modification of work by Mariana Ruiz Villareal)
+
+#### Gap Junctions
+
+Gap junctions in animal cells are like plasmodesmata in plant cells in that they are channels between adjacent cells that allow for the transport of ions, nutrients, and other substances that enable cells to communicate ([Figure 4.31](<4-6-connections-between-cells-and-cellular-activities#fig-ch04-06-05>)). Structurally, however, gap junctions and plasmodesmata differ.
+
+![This illustration shows two cells joined together with protein pores called gap junctions that allow water and small molecules to pass through.](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/2175481dc09e1d9e7b5a8a3a11bab952d4fffeb8) Figure  4.31 A gap junction is a protein-lined pore that allows water and small molecules to pass between adjacent animal cells. (credit: modification of work by Mariana Ruiz Villareal)
+
+Gap junctions develop when a set of six proteins (called connexins) in the plasma membrane arrange themselves in an elongated donut-like configuration called a connexon. When the pores (“doughnut holes”) of connexons in adjacent animal cells align, a channel between the two cells forms. Gap junctions are particularly important in cardiac muscle: The electrical signal for the muscle to contract is passed efficiently through gap junctions, allowing the heart muscle cells to contract in tandem.
+
+###  Link to Learning
+
+####  Link to Learning
+
+![QR Code representing a URL](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/4ffb492eb1ff088de53cfdb9fa4d2d9ef462534d)
+
+To conduct a virtual microscopy lab and review the parts of a cell, work through the steps of this [interactive assignment](<http://openstaxcollege.org/l/microscopy_lab>).
+

@@ -1,0 +1,53 @@
+{
+  "lesson_id": "openstax-precalculus-m01-l03",
+  "questions": [
+    {
+      "question_id": "openstax-precalculus-m01-l03-q01",
+      "question": "According to the source lesson '1.3 Rates of Change and Behavior of Graphs', which statement is most accurate?",
+      "options": [
+        "## 1.3 Rates of Change and Behavior of Graphs ### Learning Objectives In this section, you will: * Find the average rate of change of a function.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-precalculus-m01-l03-q02",
+      "question": "What is a reasonable learning takeaway from '1.3 Rates of Change and Behavior of Graphs'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 1.3 Rates of Change and Behavior of Graphs.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-precalculus-m01-l03-q03",
+      "question": "When applying concepts from '1.3 Rates of Change and Behavior of Graphs', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

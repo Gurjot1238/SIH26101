@@ -1,0 +1,23 @@
+# 2.2 Tenets of Prioritization
+
+> Source: Nursing Management and Professional Concepts 2e. Wisconsin Technical College System / Open RN.
+> Official URL: https://wtcs.pressbooks.pub/nursingmpc/
+> License: CC BY 4.0
+> Reused without endorsement. Original copyright notices retained.
+
+Prioritization As new nurses begin their career, they look forward to caring for others, promoting health, and saving lives. However, when entering the health care environment, they often discover there are numerous and competing demands for their time and attention. Client care is often interrupted by call lights, rounding physicians, and phone calls from the laboratory department or other interprofessional team members. Even individuals who are strategic and energized in their planning can feel frustrated as their task lists and planned client-care activities build into a long collection of “to dos.” Without utilization of appropriate prioritization strategies, nurses can experience **time scarcity** , a feeling of racing against a clock that is continually working against them. Functioning under the burden of time scarcity can cause feelings of frustration, inadequacy, and eventually burnout. Time scarcity can also impact client safety, resulting in adverse events and increased mortality.[1] Additionally, missed or rushed nursing activities can negatively impact client satisfaction scores that ultimately affect an institution's reimbursement levels. It is vital for nurses to plan client care and implement their task lists while ensuring that critical interventions are safely implemented first. Identifying priority client problems and implementing priority interventions are skills that require ongoing cultivation as one gains experience in the practice environment.[2] To develop these skills, students must develop an understanding of organizing frameworks and prioritization processes for delineating care needs. These frameworks provide structure and guidance for meeting the multiple and ever-changing demands in the complex health care environment. Let’s consider a clinical scenario in the following box to better understand the implications of prioritization and outcomes. **Scenario A** Imagine you are beginning your shift on a busy medical-surgical unit. You receive a handoff report on four medical-surgical clients from the night shift nurse:
+
+  * Client A is a 34-year-old client post-op Day 1 from a total knee replacement who had an uneventful night. It is anticipated that she will be discharged today and needs health teaching for self-care at home.
+  * Client B is a 67-year-old male admitted with weakness, confusion, and a suspected urinary tract infection. He has been restless and attempting to get out of bed throughout the night. He has a bed alarm in place.
+  * Client C is a 49-year-old male, post-op Day 1 for a total hip replacement. He has been frequently using his patient-controlled analgesia (PCA) pump and last rated his pain as a "6."
+  * Client D is a 73-year-old male admitted for pneumonia. He has been hospitalized for three days and receiving intravenous (IV) antibiotics. His next dose is due in an hour. His oxygen requirements have decreased from 4 L/minute of oxygen by nasal cannula to 2 L/minute by nasal cannula.
+
+Based on the handoff report you received, you ask the nursing assistant to check on Client B while you do an initial assessment on Client D. As you are assessing Client D's oxygenation status, you receive a phone call from the laboratory department relating a critical lab value on Client C, indicating his hemoglobin is low. The provider calls and orders a STAT blood transfusion for Client C. Client A rings the call light and states she and her husband have questions about her discharge and are ready to go home. The nursing assistant finds you and reports that Client B got out of bed and experienced a fall during the handoff reports. It is common for nurses to manage multiple and ever-changing tasks and activities like this scenario, illustrating the importance of self-organization and priority setting. This chapter will further discuss the tools nurses can use for prioritization.
+
+* * *
+
+  1. Cho, S., Lee, J., You, S. J., Song, K. J., & Hong, K. J. (2020). Nurse staffing, nurses prioritization, missed care, quality of nursing care, and nurse outcomes._International Journal of Nursing Practice, 26_(1), e12803. <https://doi.org/10.1111/ijn.12803> ↵
+  2. Jessee, M. A. (2019). Teaching prioritization: “Who, what, & why?” _Journal of Nursing Education, 58_(5), 302-305. <https://doi.org/10.3928/01484834-20190422-10> ↵
+
+definitionA feeling of racing against a clock that is continually working against you. ×Close definition
+

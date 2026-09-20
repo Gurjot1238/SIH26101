@@ -1,0 +1,210 @@
+{
+  "course_id": "mit-6-033-systems",
+  "title": "6.033 Computer System Engineering",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Operating Systems",
+  "level": "Intermediate",
+  "description": "MIT OpenCourseWare 6.033 Computer System Engineering (Spring 2018). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Operating Systems",
+    "Distributed Systems",
+    "Computer Networks"
+  ],
+  "topics": [
+    "complexity",
+    "naming",
+    "reliability",
+    "security"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/6-033-computer-system-engineering-spring-2018/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Spring 2018",
+  "duration": {
+    "estimated_hours": 4.4,
+    "estimated_minutes": 263
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 7,
+    "practice_questions": 21
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-6-033-systems-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Operating Systems",
+        "Distributed Systems",
+        "Computer Networks"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-033-systems-m01-l01",
+          "title": "aff13f0f0cef504f9e6af139d166d0b1 MIT6 033S18lec1",
+          "type": "pdf",
+          "content_file": "content/module-01/aff13f0f0cef504f9e6af139d166d0b1_MIT6_033S18lec1.pdf",
+          "practice_file": "practice/mit-6-033-systems-m01-l01.json",
+          "estimated_minutes": 38,
+          "objectives": [],
+          "competencies": [
+            "Operating Systems",
+            "Distributed Systems"
+          ],
+          "topics": [
+            "complexity",
+            "naming",
+            "reliability"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-033-systems-m01-l02",
+          "title": "953fdb7104378ebb0b69e49f591282f9 MIT6 033S18lec2",
+          "type": "pdf",
+          "content_file": "content/module-01/953fdb7104378ebb0b69e49f591282f9_MIT6_033S18lec2.pdf",
+          "practice_file": "practice/mit-6-033-systems-m01-l02.json",
+          "estimated_minutes": 34,
+          "objectives": [],
+          "competencies": [
+            "Operating Systems",
+            "Distributed Systems"
+          ],
+          "topics": [
+            "complexity",
+            "naming",
+            "reliability"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-033-systems-m01-l03",
+          "title": "a73b44311a419a65a9d0b8d04c29495f MIT6 033S18lec3",
+          "type": "pdf",
+          "content_file": "content/module-01/a73b44311a419a65a9d0b8d04c29495f_MIT6_033S18lec3.pdf",
+          "practice_file": "practice/mit-6-033-systems-m01-l03.json",
+          "estimated_minutes": 41,
+          "objectives": [],
+          "competencies": [
+            "Operating Systems",
+            "Distributed Systems"
+          ],
+          "topics": [
+            "complexity",
+            "naming",
+            "reliability"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-033-systems-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Operating Systems",
+        "Distributed Systems",
+        "Computer Networks"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-033-systems-m02-l01",
+          "title": "6c21c6d50181dc3406c1e988f60b8e24 MIT6 033S18lec4",
+          "type": "pdf",
+          "content_file": "content/module-02/6c21c6d50181dc3406c1e988f60b8e24_MIT6_033S18lec4.pdf",
+          "practice_file": "practice/mit-6-033-systems-m02-l01.json",
+          "estimated_minutes": 38,
+          "objectives": [],
+          "competencies": [
+            "Operating Systems",
+            "Distributed Systems"
+          ],
+          "topics": [
+            "complexity",
+            "naming",
+            "reliability"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-033-systems-m02-l02",
+          "title": "d536852c8694227d8a220b4f55905207 MIT6 033S18lec5",
+          "type": "pdf",
+          "content_file": "content/module-02/d536852c8694227d8a220b4f55905207_MIT6_033S18lec5.pdf",
+          "practice_file": "practice/mit-6-033-systems-m02-l02.json",
+          "estimated_minutes": 41,
+          "objectives": [],
+          "competencies": [
+            "Operating Systems",
+            "Distributed Systems"
+          ],
+          "topics": [
+            "complexity",
+            "naming",
+            "reliability"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-033-systems-m02-l03",
+          "title": "d52fbcc8c6c3d30c6272c3d414618111 MIT6 033S18lec6",
+          "type": "pdf",
+          "content_file": "content/module-02/d52fbcc8c6c3d30c6272c3d414618111_MIT6_033S18lec6.pdf",
+          "practice_file": "practice/mit-6-033-systems-m02-l03.json",
+          "estimated_minutes": 44,
+          "objectives": [],
+          "competencies": [
+            "Operating Systems",
+            "Distributed Systems"
+          ],
+          "topics": [
+            "complexity",
+            "naming",
+            "reliability"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-033-systems-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Operating Systems",
+        "Distributed Systems",
+        "Computer Networks"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-033-systems-m03-l01",
+          "title": "8b4a97276b4d8408a95798f794d9ac16 MIT6 033S18lec7",
+          "type": "pdf",
+          "content_file": "content/module-03/8b4a97276b4d8408a95798f794d9ac16_MIT6_033S18lec7.pdf",
+          "practice_file": "practice/mit-6-033-systems-m03-l01.json",
+          "estimated_minutes": 27,
+          "objectives": [],
+          "competencies": [
+            "Operating Systems",
+            "Distributed Systems"
+          ],
+          "topics": [
+            "complexity",
+            "naming",
+            "reliability"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

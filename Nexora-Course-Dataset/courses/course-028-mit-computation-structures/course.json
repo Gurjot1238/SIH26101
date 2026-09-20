@@ -1,0 +1,392 @@
+{
+  "course_id": "mit-6-004-computation-structures",
+  "title": "6.004 Computation Structures",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Computer Architecture",
+  "level": "Intermediate",
+  "description": "MIT OpenCourseWare 6.004 Computation Structures (Spring 2017). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Computer Architecture",
+    "Digital Logic",
+    "Computer Engineering"
+  ],
+  "topics": [
+    "CMOS",
+    "assembly",
+    "processors",
+    "caches"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Spring 2017",
+  "duration": {
+    "estimated_hours": 15.3,
+    "estimated_minutes": 920
+  },
+  "totals": {
+    "modules": 4,
+    "lessons": 16,
+    "practice_questions": 48
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-6-004-computation-structures-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Computer Architecture",
+        "Digital Logic",
+        "Computer Engineering"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-004-computation-structures-m01-l01",
+          "title": "a90106bf60ae4647445e2176f1d93dc1 beta answers",
+          "type": "pdf",
+          "content_file": "content/module-01/a90106bf60ae4647445e2176f1d93dc1_beta_answers.pdf",
+          "practice_file": "practice/mit-6-004-computation-structures-m01-l01.json",
+          "estimated_minutes": 59,
+          "objectives": [],
+          "competencies": [
+            "Computer Architecture",
+            "Digital Logic"
+          ],
+          "topics": [
+            "CMOS",
+            "assembly",
+            "processors"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-004-computation-structures-m01-l02",
+          "title": "b71446c5273c385dfcc4e50f00a26b6a caches answers",
+          "type": "pdf",
+          "content_file": "content/module-01/b71446c5273c385dfcc4e50f00a26b6a_caches_answers.pdf",
+          "practice_file": "practice/mit-6-004-computation-structures-m01-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Computer Architecture",
+            "Digital Logic"
+          ],
+          "topics": [
+            "CMOS",
+            "assembly",
+            "processors"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-004-computation-structures-m01-l03",
+          "title": "f2146024a9ac6773c8a6a8d884aef113 cmos answers",
+          "type": "pdf",
+          "content_file": "content/module-01/f2146024a9ac6773c8a6a8d884aef113_cmos_answers.pdf",
+          "practice_file": "practice/mit-6-004-computation-structures-m01-l03.json",
+          "estimated_minutes": 42,
+          "objectives": [],
+          "competencies": [
+            "Computer Architecture",
+            "Digital Logic"
+          ],
+          "topics": [
+            "CMOS",
+            "assembly",
+            "processors"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-004-computation-structures-m01-l04",
+          "title": "fab2a7e9e7c19e93ea73d7c7241ade7f combinational answers",
+          "type": "pdf",
+          "content_file": "content/module-01/fab2a7e9e7c19e93ea73d7c7241ade7f_combinational_answers.pdf",
+          "practice_file": "practice/mit-6-004-computation-structures-m01-l04.json",
+          "estimated_minutes": 55,
+          "objectives": [],
+          "competencies": [
+            "Computer Architecture",
+            "Digital Logic"
+          ],
+          "topics": [
+            "CMOS",
+            "assembly",
+            "processors"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-004-computation-structures-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Computer Architecture",
+        "Digital Logic",
+        "Computer Engineering"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-004-computation-structures-m02-l01",
+          "title": "97fc8d99b83bba6747db963df8585531 compilation answers",
+          "type": "pdf",
+          "content_file": "content/module-02/97fc8d99b83bba6747db963df8585531_compilation_answers.pdf",
+          "practice_file": "practice/mit-6-004-computation-structures-m02-l01.json",
+          "estimated_minutes": 34,
+          "objectives": [],
+          "competencies": [
+            "Computer Architecture",
+            "Digital Logic"
+          ],
+          "topics": [
+            "CMOS",
+            "assembly",
+            "processors"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-004-computation-structures-m02-l02",
+          "title": "9476106a935f9b65e095c3972990f946 digital answers",
+          "type": "pdf",
+          "content_file": "content/module-02/9476106a935f9b65e095c3972990f946_digital_answers.pdf",
+          "practice_file": "practice/mit-6-004-computation-structures-m02-l02.json",
+          "estimated_minutes": 60,
+          "objectives": [],
+          "competencies": [
+            "Computer Architecture",
+            "Digital Logic"
+          ],
+          "topics": [
+            "CMOS",
+            "assembly",
+            "processors"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-004-computation-structures-m02-l03",
+          "title": "560b3f7afaf7aab61c31d3763c4b6670 fsm answers",
+          "type": "pdf",
+          "content_file": "content/module-02/560b3f7afaf7aab61c31d3763c4b6670_fsm_answers.pdf",
+          "practice_file": "practice/mit-6-004-computation-structures-m02-l03.json",
+          "estimated_minutes": 61,
+          "objectives": [],
+          "competencies": [
+            "Computer Architecture",
+            "Digital Logic"
+          ],
+          "topics": [
+            "CMOS",
+            "assembly",
+            "processors"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-004-computation-structures-m02-l04",
+          "title": "2ad8dd9c7ad17f3801fcba36bf2bd57b information answers",
+          "type": "pdf",
+          "content_file": "content/module-02/2ad8dd9c7ad17f3801fcba36bf2bd57b_information_answers.pdf",
+          "practice_file": "practice/mit-6-004-computation-structures-m02-l04.json",
+          "estimated_minutes": 59,
+          "objectives": [],
+          "competencies": [
+            "Computer Architecture",
+            "Digital Logic"
+          ],
+          "topics": [
+            "CMOS",
+            "assembly",
+            "processors"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-004-computation-structures-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Computer Architecture",
+        "Digital Logic",
+        "Computer Engineering"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-004-computation-structures-m03-l01",
+          "title": "adbde33502e9159816b1bd73893f95fa interrupts answers",
+          "type": "pdf",
+          "content_file": "content/module-03/adbde33502e9159816b1bd73893f95fa_interrupts_answers.pdf",
+          "practice_file": "practice/mit-6-004-computation-structures-m03-l01.json",
+          "estimated_minutes": 42,
+          "objectives": [],
+          "competencies": [
+            "Computer Architecture",
+            "Digital Logic"
+          ],
+          "topics": [
+            "CMOS",
+            "assembly",
+            "processors"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-004-computation-structures-m03-l02",
+          "title": "2b2334e54010ecf566b50fe28a1fd24c isa answers",
+          "type": "pdf",
+          "content_file": "content/module-03/2b2334e54010ecf566b50fe28a1fd24c_isa_answers.pdf",
+          "practice_file": "practice/mit-6-004-computation-structures-m03-l02.json",
+          "estimated_minutes": 48,
+          "objectives": [],
+          "competencies": [
+            "Computer Architecture",
+            "Digital Logic"
+          ],
+          "topics": [
+            "CMOS",
+            "assembly",
+            "processors"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-004-computation-structures-m03-l03",
+          "title": "c69095b89507a8e9042ea8bbf5b30aff beta worksheet",
+          "type": "pdf",
+          "content_file": "content/module-03/c69095b89507a8e9042ea8bbf5b30aff_beta_worksheet.pdf",
+          "practice_file": "practice/mit-6-004-computation-structures-m03-l03.json",
+          "estimated_minutes": 71,
+          "objectives": [],
+          "competencies": [
+            "Computer Architecture",
+            "Digital Logic"
+          ],
+          "topics": [
+            "CMOS",
+            "assembly",
+            "processors"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-004-computation-structures-m03-l04",
+          "title": "e3780374f88b6201126fccda717635f7 caches worksheet",
+          "type": "pdf",
+          "content_file": "content/module-03/e3780374f88b6201126fccda717635f7_caches_worksheet.pdf",
+          "practice_file": "practice/mit-6-004-computation-structures-m03-l04.json",
+          "estimated_minutes": 65,
+          "objectives": [],
+          "competencies": [
+            "Computer Architecture",
+            "Digital Logic"
+          ],
+          "topics": [
+            "CMOS",
+            "assembly",
+            "processors"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-004-computation-structures-m04",
+      "title": "Module 4",
+      "competencies": [
+        "Computer Architecture",
+        "Digital Logic",
+        "Computer Engineering"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-004-computation-structures-m04-l01",
+          "title": "7f73434b676116a3df813718c685a42d cmos worksheet",
+          "type": "pdf",
+          "content_file": "content/module-04/7f73434b676116a3df813718c685a42d_cmos_worksheet.pdf",
+          "practice_file": "practice/mit-6-004-computation-structures-m04-l01.json",
+          "estimated_minutes": 69,
+          "objectives": [],
+          "competencies": [
+            "Computer Architecture",
+            "Digital Logic"
+          ],
+          "topics": [
+            "CMOS",
+            "assembly",
+            "processors"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-004-computation-structures-m04-l02",
+          "title": "a6ebd5243315913900601c535cdb7a52 combinational worksheet",
+          "type": "pdf",
+          "content_file": "content/module-04/a6ebd5243315913900601c535cdb7a52_combinational_worksheet.pdf",
+          "practice_file": "practice/mit-6-004-computation-structures-m04-l02.json",
+          "estimated_minutes": 74,
+          "objectives": [],
+          "competencies": [
+            "Computer Architecture",
+            "Digital Logic"
+          ],
+          "topics": [
+            "CMOS",
+            "assembly",
+            "processors"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-004-computation-structures-m04-l03",
+          "title": "7f51703034dafcfc85cd4300d5792e64 compilation worksheet",
+          "type": "pdf",
+          "content_file": "content/module-04/7f51703034dafcfc85cd4300d5792e64_compilation_worksheet.pdf",
+          "practice_file": "practice/mit-6-004-computation-structures-m04-l03.json",
+          "estimated_minutes": 21,
+          "objectives": [],
+          "competencies": [
+            "Computer Architecture",
+            "Digital Logic"
+          ],
+          "topics": [
+            "CMOS",
+            "assembly",
+            "processors"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-004-computation-structures-m04-l04",
+          "title": "210fd9514f01b2791eba384f2e2ca366 digital worksheet",
+          "type": "pdf",
+          "content_file": "content/module-04/210fd9514f01b2791eba384f2e2ca366_digital_worksheet.pdf",
+          "practice_file": "practice/mit-6-004-computation-structures-m04-l04.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Computer Architecture",
+            "Digital Logic"
+          ],
+          "topics": [
+            "CMOS",
+            "assembly",
+            "processors"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

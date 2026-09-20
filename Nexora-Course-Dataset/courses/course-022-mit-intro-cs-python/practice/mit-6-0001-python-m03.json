@@ -1,0 +1,101 @@
+{
+  "module_id": "mit-6-0001-python-m03",
+  "questions": [
+    {
+      "question_id": "mit-6-0001-python-m03-l01-q01",
+      "question": "According to the source lesson '5dbf3131e472f4f013b1896c05b9f7a3 MIT6 0001F16 additional', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 5dbf3131e472f4f013b1896c05b9f7a3_MIT6_0001F16_additional.pdf from 6.0001 Introduction to Computer Science and Programming in Python.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "Python",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-0001-python-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from '5dbf3131e472f4f013b1896c05b9f7a3 MIT6 0001F16 additional'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 5dbf3131e472f4f013b1896c05b9f7a3 MIT6 0001F16 additional.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "Python",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-0001-python-m03-l01-q03",
+      "question": "When applying concepts from '5dbf3131e472f4f013b1896c05b9f7a3 MIT6 0001F16 additional', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "Python",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-0001-python-m03-l02-q01",
+      "question": "According to the source lesson 'f79b87104b0a0f787f6a43413e8eafd0 MIT6 0001F16 StyleGuide', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource f79b87104b0a0f787f6a43413e8eafd0_MIT6_0001F16_StyleGuide.pdf from 6.0001 Introduction to Computer Science and Programming in Python.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "Python",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-0001-python-m03-l02-q02",
+      "question": "What is a reasonable learning takeaway from 'f79b87104b0a0f787f6a43413e8eafd0 MIT6 0001F16 StyleGuide'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in f79b87104b0a0f787f6a43413e8eafd0 MIT6 0001F16 StyleGuide.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "Python",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-0001-python-m03-l02-q03",
+      "question": "When applying concepts from 'f79b87104b0a0f787f6a43413e8eafd0 MIT6 0001F16 StyleGuide', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "Python",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

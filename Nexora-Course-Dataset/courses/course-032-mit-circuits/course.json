@@ -1,0 +1,392 @@
+{
+  "course_id": "mit-6-002-circuits",
+  "title": "6.002 Circuits and Electronics",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Electrical Engineering",
+  "level": "Beginner",
+  "description": "MIT OpenCourseWare 6.002 Circuits and Electronics (Spring 2007). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Electrical Engineering",
+    "Circuits",
+    "Electronics"
+  ],
+  "topics": [
+    "resistive networks",
+    "MOSFET",
+    "amplifiers",
+    "digital circuits"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Spring 2007",
+  "duration": {
+    "estimated_hours": 8.7,
+    "estimated_minutes": 523
+  },
+  "totals": {
+    "modules": 4,
+    "lessons": 16,
+    "practice_questions": 48
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-6-002-circuits-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Electrical Engineering",
+        "Circuits",
+        "Electronics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-002-circuits-m01-l01",
+          "title": "3e44f02d4dbcd4063cf27d23558ccbeb quiz1 f03",
+          "type": "pdf",
+          "content_file": "content/module-01/3e44f02d4dbcd4063cf27d23558ccbeb_quiz1_f03.pdf",
+          "practice_file": "practice/mit-6-002-circuits-m01-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Circuits"
+          ],
+          "topics": [
+            "resistive networks",
+            "MOSFET",
+            "amplifiers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-002-circuits-m01-l02",
+          "title": "30af3faaaae25b7115141a1f7fcf9434 quiz1 f06",
+          "type": "pdf",
+          "content_file": "content/module-01/30af3faaaae25b7115141a1f7fcf9434_quiz1_f06.pdf",
+          "practice_file": "practice/mit-6-002-circuits-m01-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Circuits"
+          ],
+          "topics": [
+            "resistive networks",
+            "MOSFET",
+            "amplifiers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-002-circuits-m01-l03",
+          "title": "28043bafdafaa71572ec5ccd4fe73c89 quiz1 s04",
+          "type": "pdf",
+          "content_file": "content/module-01/28043bafdafaa71572ec5ccd4fe73c89_quiz1_s04.pdf",
+          "practice_file": "practice/mit-6-002-circuits-m01-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Circuits"
+          ],
+          "topics": [
+            "resistive networks",
+            "MOSFET",
+            "amplifiers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-002-circuits-m01-l04",
+          "title": "88927b3163eee7d5f232367a897a081d quiz1 s07",
+          "type": "pdf",
+          "content_file": "content/module-01/88927b3163eee7d5f232367a897a081d_quiz1_s07.pdf",
+          "practice_file": "practice/mit-6-002-circuits-m01-l04.json",
+          "estimated_minutes": 34,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Circuits"
+          ],
+          "topics": [
+            "resistive networks",
+            "MOSFET",
+            "amplifiers"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-002-circuits-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Electrical Engineering",
+        "Circuits",
+        "Electronics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-002-circuits-m02-l01",
+          "title": "33673c004dd0259cb16a2a50bbb83636 quiz2 f04",
+          "type": "pdf",
+          "content_file": "content/module-02/33673c004dd0259cb16a2a50bbb83636_quiz2_f04.pdf",
+          "practice_file": "practice/mit-6-002-circuits-m02-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Circuits"
+          ],
+          "topics": [
+            "resistive networks",
+            "MOSFET",
+            "amplifiers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-002-circuits-m02-l02",
+          "title": "3f3668c71e80478edb84cc2130fda230 quiz2 s04",
+          "type": "pdf",
+          "content_file": "content/module-02/3f3668c71e80478edb84cc2130fda230_quiz2_s04.pdf",
+          "practice_file": "practice/mit-6-002-circuits-m02-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Circuits"
+          ],
+          "topics": [
+            "resistive networks",
+            "MOSFET",
+            "amplifiers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-002-circuits-m02-l03",
+          "title": "c402cfea3b68444521e9f012d88b7006 quiz2 s07",
+          "type": "pdf",
+          "content_file": "content/module-02/c402cfea3b68444521e9f012d88b7006_quiz2_s07.pdf",
+          "practice_file": "practice/mit-6-002-circuits-m02-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Circuits"
+          ],
+          "topics": [
+            "resistive networks",
+            "MOSFET",
+            "amplifiers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-002-circuits-m02-l04",
+          "title": "0cb29e28115d9dfa9c44c2545111ce84 final f00",
+          "type": "pdf",
+          "content_file": "content/module-02/0cb29e28115d9dfa9c44c2545111ce84_final_f00.pdf",
+          "practice_file": "practice/mit-6-002-circuits-m02-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Circuits"
+          ],
+          "topics": [
+            "resistive networks",
+            "MOSFET",
+            "amplifiers"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-002-circuits-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Electrical Engineering",
+        "Circuits",
+        "Electronics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-002-circuits-m03-l01",
+          "title": "b5b3536f01475af4d877751c82f785d1 final s07",
+          "type": "pdf",
+          "content_file": "content/module-03/b5b3536f01475af4d877751c82f785d1_final_s07.pdf",
+          "practice_file": "practice/mit-6-002-circuits-m03-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Circuits"
+          ],
+          "topics": [
+            "resistive networks",
+            "MOSFET",
+            "amplifiers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-002-circuits-m03-l02",
+          "title": "33d6731c206313c3addd121084d9f3b1 lab4",
+          "type": "pdf",
+          "content_file": "content/module-03/33d6731c206313c3addd121084d9f3b1_lab4.pdf",
+          "practice_file": "practice/mit-6-002-circuits-m03-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Circuits"
+          ],
+          "topics": [
+            "resistive networks",
+            "MOSFET",
+            "amplifiers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-002-circuits-m03-l03",
+          "title": "4232f38c3f2a88558a44f62beb490698 eesafety",
+          "type": "pdf",
+          "content_file": "content/module-03/4232f38c3f2a88558a44f62beb490698_eesafety.pdf",
+          "practice_file": "practice/mit-6-002-circuits-m03-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Circuits"
+          ],
+          "topics": [
+            "resistive networks",
+            "MOSFET",
+            "amplifiers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-002-circuits-m03-l04",
+          "title": "992c85451e40984a2b3a6f4878bb1a76 lab handout",
+          "type": "pdf",
+          "content_file": "content/module-03/992c85451e40984a2b3a6f4878bb1a76_lab_handout.pdf",
+          "practice_file": "practice/mit-6-002-circuits-m03-l04.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Circuits"
+          ],
+          "topics": [
+            "resistive networks",
+            "MOSFET",
+            "amplifiers"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-002-circuits-m04",
+      "title": "Module 4",
+      "competencies": [
+        "Electrical Engineering",
+        "Circuits",
+        "Electronics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-002-circuits-m04-l01",
+          "title": "8bb4e0f80644d9414bb7cd3b1364e8e3 lab0",
+          "type": "pdf",
+          "content_file": "content/module-04/8bb4e0f80644d9414bb7cd3b1364e8e3_lab0.pdf",
+          "practice_file": "practice/mit-6-002-circuits-m04-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Circuits"
+          ],
+          "topics": [
+            "resistive networks",
+            "MOSFET",
+            "amplifiers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-002-circuits-m04-l02",
+          "title": "8d05b0f4d4ce5dab988346463658efa7 labpractices",
+          "type": "pdf",
+          "content_file": "content/module-04/8d05b0f4d4ce5dab988346463658efa7_labpractices.pdf",
+          "practice_file": "practice/mit-6-002-circuits-m04-l02.json",
+          "estimated_minutes": 23,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Circuits"
+          ],
+          "topics": [
+            "resistive networks",
+            "MOSFET",
+            "amplifiers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-002-circuits-m04-l03",
+          "title": "56c767318f89cccd7448ac5e8af375bf lab2",
+          "type": "pdf",
+          "content_file": "content/module-04/56c767318f89cccd7448ac5e8af375bf_lab2.pdf",
+          "practice_file": "practice/mit-6-002-circuits-m04-l03.json",
+          "estimated_minutes": 24,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Circuits"
+          ],
+          "topics": [
+            "resistive networks",
+            "MOSFET",
+            "amplifiers"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-002-circuits-m04-l04",
+          "title": "d96ecf98f18cefe60249e8aec9a387ec lab3",
+          "type": "pdf",
+          "content_file": "content/module-04/d96ecf98f18cefe60249e8aec9a387ec_lab3.pdf",
+          "practice_file": "practice/mit-6-002-circuits-m04-l04.json",
+          "estimated_minutes": 22,
+          "objectives": [],
+          "competencies": [
+            "Electrical Engineering",
+            "Circuits"
+          ],
+          "topics": [
+            "resistive networks",
+            "MOSFET",
+            "amplifiers"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

@@ -94,6 +94,7 @@ export type ProgressStore = {
     saved?: boolean;
     started?: boolean;
     completedModules?: number[];
+    completedLessons?: string[];
   }) => Promise<SaveOutcome<CourseRecord>>;
   courseFor: (courseId: string) => CourseRecord | null;
 };

@@ -1,0 +1,53 @@
+{
+  "lesson_id": "py4e-m01-l04",
+  "questions": [
+    {
+      "question_id": "py4e-m01-l04-q01",
+      "question": "According to the source lesson 'Functions', which statement is most accurate?",
+      "options": [
+        "Chapter 1: Introduction Chapter 2: Variables Chapter 3: Conditionals Chapter 4: Functions Chapter 5: Iterations Chapter 6: Strings Chapter 7: Files Chapter 8: Lists Chapter 9: Dictionaries Chapter 10: Tuples Chapter 11: Regex Chapter 12: Ne",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "Python",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "py4e-m01-l04-q02",
+      "question": "What is a reasonable learning takeaway from 'Functions'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Functions.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "Python",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "py4e-m01-l04-q03",
+      "question": "When applying concepts from 'Functions', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "Python",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

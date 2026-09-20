@@ -1,0 +1,181 @@
+{
+  "course_id": "mit-6-033-systems",
+  "questions": [
+    {
+      "question_id": "mit-6-033-systems-m01-l01-q01",
+      "question": "According to the source lesson 'aff13f0f0cef504f9e6af139d166d0b1 MIT6 033S18lec1', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource aff13f0f0cef504f9e6af139d166d0b1_MIT6_033S18lec1.pdf from 6.033 Computer System Engineering.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Operating Systems",
+      "topic": "complexity",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-033-systems-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'aff13f0f0cef504f9e6af139d166d0b1 MIT6 033S18lec1'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in aff13f0f0cef504f9e6af139d166d0b1 MIT6 033S18lec1.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Operating Systems",
+      "topic": "complexity",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-033-systems-m01-l01-q03",
+      "question": "When applying concepts from 'aff13f0f0cef504f9e6af139d166d0b1 MIT6 033S18lec1', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Operating Systems",
+      "topic": "complexity",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-033-systems-m01-l02-q01",
+      "question": "According to the source lesson '953fdb7104378ebb0b69e49f591282f9 MIT6 033S18lec2', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 953fdb7104378ebb0b69e49f591282f9_MIT6_033S18lec2.pdf from 6.033 Computer System Engineering.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Operating Systems",
+      "topic": "complexity",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-033-systems-m02-l01-q01",
+      "question": "According to the source lesson '6c21c6d50181dc3406c1e988f60b8e24 MIT6 033S18lec4', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 6c21c6d50181dc3406c1e988f60b8e24_MIT6_033S18lec4.pdf from 6.033 Computer System Engineering.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Operating Systems",
+      "topic": "complexity",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-033-systems-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from '6c21c6d50181dc3406c1e988f60b8e24 MIT6 033S18lec4'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 6c21c6d50181dc3406c1e988f60b8e24 MIT6 033S18lec4.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Operating Systems",
+      "topic": "complexity",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-033-systems-m02-l01-q03",
+      "question": "When applying concepts from '6c21c6d50181dc3406c1e988f60b8e24 MIT6 033S18lec4', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Operating Systems",
+      "topic": "complexity",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-033-systems-m02-l02-q01",
+      "question": "According to the source lesson 'd536852c8694227d8a220b4f55905207 MIT6 033S18lec5', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource d536852c8694227d8a220b4f55905207_MIT6_033S18lec5.pdf from 6.033 Computer System Engineering.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Operating Systems",
+      "topic": "complexity",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-033-systems-m03-l01-q01",
+      "question": "According to the source lesson '8b4a97276b4d8408a95798f794d9ac16 MIT6 033S18lec7', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 8b4a97276b4d8408a95798f794d9ac16_MIT6_033S18lec7.pdf from 6.033 Computer System Engineering.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Operating Systems",
+      "topic": "complexity",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-033-systems-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from '8b4a97276b4d8408a95798f794d9ac16 MIT6 033S18lec7'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 8b4a97276b4d8408a95798f794d9ac16 MIT6 033S18lec7.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Operating Systems",
+      "topic": "complexity",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-033-systems-m03-l01-q03",
+      "question": "When applying concepts from '8b4a97276b4d8408a95798f794d9ac16 MIT6 033S18lec7', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Operating Systems",
+      "topic": "complexity",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

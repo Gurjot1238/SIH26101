@@ -1,0 +1,53 @@
+{
+  "lesson_id": "openoregon-basic-blueprint-reading-m01-l06",
+  "questions": [
+    {
+      "question_id": "openoregon-basic-blueprint-reading-m01-l06-q01",
+      "question": "According to the source lesson 'Auxiliary Views', which statement is most accurate?",
+      "options": [
+        "* FRONT VIEW AUXILIARIES * TOP VIEW AUXILIARIES * SIDE VIEW AUXILIARIES * SKETCHING AUXILIARY VIEWS When an object has a slanted or inclined surface, it usually is not possible to show the inclined surface in an orthographic drawing without",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Engineering Graphics",
+      "topic": "views",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openoregon-basic-blueprint-reading-m01-l06-q02",
+      "question": "What is a reasonable learning takeaway from 'Auxiliary Views'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Auxiliary Views.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Engineering Graphics",
+      "topic": "views",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openoregon-basic-blueprint-reading-m01-l06-q03",
+      "question": "When applying concepts from 'Auxiliary Views', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Engineering Graphics",
+      "topic": "views",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

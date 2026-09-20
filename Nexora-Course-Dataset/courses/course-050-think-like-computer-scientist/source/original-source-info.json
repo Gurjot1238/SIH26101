@@ -1,0 +1,13 @@
+{
+  "course_id": "thinkcspy-learning-with-python",
+  "source_url": "https://www.greenteapress.com/thinkpython/thinkCSpy/html/",
+  "license": "CC BY",
+  "license_url": "https://creativecommons.org/licenses/by/3.0/",
+  "date_collected": "2026-09-20",
+  "reuse_permissions": "CC BY permits copy and redistribution with attribution.",
+  "changes_made": [
+    "Downloaded HTML chapters",
+    "Converted to Markdown",
+    "Added generated practice questions"
+  ]
+}

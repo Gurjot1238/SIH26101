@@ -1,0 +1,267 @@
+{
+  "course_id": "mit-1-00-problem-solving",
+  "title": "1.00 Introduction to Computers and Engineering Problem Solving",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Programming Fundamentals",
+  "level": "Beginner",
+  "description": "MIT OpenCourseWare 1.00 Introduction to Computers and Engineering Problem Solving (Spring 2012). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Programming Fundamentals",
+    "Java",
+    "Engineering Computation"
+  ],
+  "topics": [
+    "Java",
+    "objects",
+    "data structures",
+    "simulation"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/1-00-introduction-to-computers-and-engineering-problem-solving-spring-2012/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Spring 2012",
+  "duration": {
+    "estimated_hours": 3.3,
+    "estimated_minutes": 200
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 10,
+    "practice_questions": 30
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-1-00-problem-solving-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Programming Fundamentals",
+        "Java",
+        "Engineering Computation"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-1-00-problem-solving-m01-l01",
+          "title": "0c1897fc7374a00343175ca331e2a75f MIT1 00S12 Lec 11",
+          "type": "pdf",
+          "content_file": "content/module-01/0c1897fc7374a00343175ca331e2a75f_MIT1_00S12_Lec_11.pdf",
+          "practice_file": "practice/mit-1-00-problem-solving-m01-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Programming Fundamentals",
+            "Java"
+          ],
+          "topics": [
+            "Java",
+            "objects",
+            "data structures"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-1-00-problem-solving-m01-l02",
+          "title": "800d897a4db6f41aed47b37f77b66520 MIT1 00S12 Lec 7",
+          "type": "pdf",
+          "content_file": "content/module-01/800d897a4db6f41aed47b37f77b66520_MIT1_00S12_Lec_7.pdf",
+          "practice_file": "practice/mit-1-00-problem-solving-m01-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Programming Fundamentals",
+            "Java"
+          ],
+          "topics": [
+            "Java",
+            "objects",
+            "data structures"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-1-00-problem-solving-m01-l03",
+          "title": "8979eefe96625266c98826edb07536c7 MIT1 00S12 Lec 8",
+          "type": "pdf",
+          "content_file": "content/module-01/8979eefe96625266c98826edb07536c7_MIT1_00S12_Lec_8.pdf",
+          "practice_file": "practice/mit-1-00-problem-solving-m01-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Programming Fundamentals",
+            "Java"
+          ],
+          "topics": [
+            "Java",
+            "objects",
+            "data structures"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-1-00-problem-solving-m01-l04",
+          "title": "1fd7b5cd647dac3dafd25a70bab14fb9 MIT1 00S12 Lec 4",
+          "type": "pdf",
+          "content_file": "content/module-01/1fd7b5cd647dac3dafd25a70bab14fb9_MIT1_00S12_Lec_4.pdf",
+          "practice_file": "practice/mit-1-00-problem-solving-m01-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Programming Fundamentals",
+            "Java"
+          ],
+          "topics": [
+            "Java",
+            "objects",
+            "data structures"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-1-00-problem-solving-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Programming Fundamentals",
+        "Java",
+        "Engineering Computation"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-1-00-problem-solving-m02-l01",
+          "title": "5d0d1cc6110d63ae6491835d50cbb7a7 MIT1 00S12 Lec 16",
+          "type": "pdf",
+          "content_file": "content/module-02/5d0d1cc6110d63ae6491835d50cbb7a7_MIT1_00S12_Lec_16.pdf",
+          "practice_file": "practice/mit-1-00-problem-solving-m02-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Programming Fundamentals",
+            "Java"
+          ],
+          "topics": [
+            "Java",
+            "objects",
+            "data structures"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-1-00-problem-solving-m02-l02",
+          "title": "5c7ac64e4599de6f0dc1b1082e5bf58a MIT1 00S12 Lec 22",
+          "type": "pdf",
+          "content_file": "content/module-02/5c7ac64e4599de6f0dc1b1082e5bf58a_MIT1_00S12_Lec_22.pdf",
+          "practice_file": "practice/mit-1-00-problem-solving-m02-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Programming Fundamentals",
+            "Java"
+          ],
+          "topics": [
+            "Java",
+            "objects",
+            "data structures"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-1-00-problem-solving-m02-l03",
+          "title": "0f29b7c86bd518742650ff0ddcc2decd MIT1 00S12 Lec 27",
+          "type": "pdf",
+          "content_file": "content/module-02/0f29b7c86bd518742650ff0ddcc2decd_MIT1_00S12_Lec_27.pdf",
+          "practice_file": "practice/mit-1-00-problem-solving-m02-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Programming Fundamentals",
+            "Java"
+          ],
+          "topics": [
+            "Java",
+            "objects",
+            "data structures"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-1-00-problem-solving-m02-l04",
+          "title": "c180189647d5d99c2a2120c61c263aa3 MIT1 00S12 Lec 14",
+          "type": "pdf",
+          "content_file": "content/module-02/c180189647d5d99c2a2120c61c263aa3_MIT1_00S12_Lec_14.pdf",
+          "practice_file": "practice/mit-1-00-problem-solving-m02-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Programming Fundamentals",
+            "Java"
+          ],
+          "topics": [
+            "Java",
+            "objects",
+            "data structures"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-1-00-problem-solving-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Programming Fundamentals",
+        "Java",
+        "Engineering Computation"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-1-00-problem-solving-m03-l01",
+          "title": "8ee550c82306ea4b562387c15d21db3d MIT1 00S12 Lec 15",
+          "type": "pdf",
+          "content_file": "content/module-03/8ee550c82306ea4b562387c15d21db3d_MIT1_00S12_Lec_15.pdf",
+          "practice_file": "practice/mit-1-00-problem-solving-m03-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Programming Fundamentals",
+            "Java"
+          ],
+          "topics": [
+            "Java",
+            "objects",
+            "data structures"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-1-00-problem-solving-m03-l02",
+          "title": "eab7ad6a45bf372d481365e3db7582ee MIT1 00S12 Lec 13",
+          "type": "pdf",
+          "content_file": "content/module-03/eab7ad6a45bf372d481365e3db7582ee_MIT1_00S12_Lec_13.pdf",
+          "practice_file": "practice/mit-1-00-problem-solving-m03-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Programming Fundamentals",
+            "Java"
+          ],
+          "topics": [
+            "Java",
+            "objects",
+            "data structures"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

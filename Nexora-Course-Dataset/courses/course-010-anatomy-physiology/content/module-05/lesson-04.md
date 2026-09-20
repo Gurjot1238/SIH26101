@@ -1,0 +1,70 @@
+# 5.3 Functions of the Integumentary System
+
+> Source: Anatomy and Physiology. OpenStax / Rice University.
+> Official URL: https://openstax.org/books/anatomy-and-physiology/pages/5-3-functions-of-the-integumentary-system
+> License: CC BY 4.0
+> Reused without endorsement. Original copyright notices retained.
+
+## 5.3 Functions of the Integumentary System 
+
+### Learning Objectives
+
+By the end of this section, you will be able to:
+
+  * Describe the different functions of the skin and the structures that enable them
+  * Explain how the skin helps maintain body temperature
+
+The skin and accessory structures perform a variety of essential functions, such as protecting the body from invasion by microorganisms, chemicals, and other environmental factors; preventing dehydration; acting as a sensory organ; modulating body temperature and electrolyte balance; and synthesizing vitamin D. The underlying hypodermis has important roles in storing fats, forming a “cushion” over underlying structures, and providing insulation from cold temperatures.
+
+### Protection
+
+The skin protects the rest of the body from the basic elements of nature such as wind, water, and UV sunlight. It acts as a protective barrier against water loss, due to the presence of layers of keratin and glycolipids in the stratum corneum. It also is the first line of defense against abrasive activity due to contact with grit, microbes, or harmful chemicals. Sweat excreted from sweat glands deters microbes from over-colonizing the skin surface by generating dermicidin, which has antibiotic properties.
+
+###  Everyday Connection
+
+####  Tattoos and Piercings
+
+The word “armor” evokes several images. You might think of a Roman centurion or a medieval knight in a suit of armor. The skin, in its own way, functions as a form of armor—body armor. It provides a barrier between your vital, life-sustaining organs and the influence of outside elements that could potentially damage them.
+
+For any form of armor, a breach in the protective barrier poses a danger. The skin can be breached when a child skins a knee or an adult has blood drawn—one is accidental and the other medically necessary. However, you also breach this barrier when you choose to “accessorize” your skin with a tattoo or body piercing. Because the needles involved in producing body art and piercings must penetrate the skin, there are dangers associated with the practice. These include allergic reactions; skin infections; blood-borne diseases, such as tetanus, hepatitis C, and hepatitis D; and the growth of scar tissue. Despite the risk, the practice of piercing the skin for decorative purposes has become increasingly popular. According to the American Academy of Dermatology, 24 percent of people from ages 18 to 50 have a tattoo.
+
+###  Interactive Link
+
+Tattooing has a long history, dating back thousands of years ago. The dyes used in tattooing typically derive from metals. A person with tattoos should be cautious when having a magnetic resonance imaging (MRI) scan because an MRI machine uses powerful magnets to create images of the soft tissues of the body, which could react with the metals contained in the tattoo dyes. Watch this [video](<http://openstax.org/l/tattoo>) to learn more about tattooing.
+
+### Sensory Function
+
+The fact that you can feel an ant crawling on your skin, allowing you to flick it off before it bites, is because the skin, and especially the hairs projecting from hair follicles in the skin, can sense changes in the environment. The hair root plexus surrounding the base of the hair follicle senses a disturbance, and then transmits the information to the central nervous system (brain and spinal cord), which can then respond by activating the skeletal muscles of your eyes to see the ant and the skeletal muscles of the body to act against the ant.
+
+The skin acts as a sense organ because the epidermis, dermis, and the hypodermis contain specialized sensory nerve structures that detect touch, surface temperature, and pain. These receptors are more concentrated on the tips of the fingers, which are most sensitive to touch, especially the Meissner corpuscle (tactile corpuscle) ([Figure 5.15](<5-3-functions-of-the-integumentary-system#fig-ch05_03_01>)), which responds to light touch, and the Pacinian corpuscle (lamellated corpuscle), which responds to vibration. Merkel cells, seen scattered in the stratum basale, are also touch receptors. In addition to these specialized receptors, there are sensory nerves connected to each hair follicle, pain and temperature receptors scattered throughout the skin, and motor nerves innervate the arrector pili muscles and glands. This rich innervation helps us sense our environment and react accordingly.
+
+![This micrograph shows a skin cross section at low magnification. The Meissner’s corpuscle is a large, oval-shaped structure located in the papillary layer of the dermis, under the lowest deepest layer of the epidermis. The corpuscle contains a dark staining oval within the outer, light staining oval. Several horizontal bars are arranged vertically within the inner oval. Also, several cells with dark purple nuclei can be seen scattered throughout the corpuscle.](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/4accd8e1e5674fc568ff118220d6782d1d95b505) Figure  5.15 Light Micrograph of a Meissner Corpuscle In this micrograph of a skin cross-section, you can see a Meissner corpuscle (arrow), a type of touch receptor located in a dermal papilla adjacent to the basement membrane and stratum basale of the overlying epidermis. LM × 100. (credit: “Wbensmith”/Wikimedia Commons)
+
+### Thermoregulation
+
+The integumentary system helps regulate body temperature through its tight association with the sympathetic nervous system, the division of the nervous system involved in our fight-or-flight responses. The sympathetic nervous system is continuously monitoring body temperature and initiating appropriate motor responses. Recall that sweat glands, accessory structures to the skin, secrete water, salt, and other substances to cool the body when it becomes warm. Even when the body does not appear to be noticeably sweating, approximately 500 mL of sweat (insensible perspiration) are secreted a day. If the body becomes excessively warm due to high temperatures, vigorous activity ([Figure 5.16](<5-3-functions-of-the-integumentary-system#fig-ch05_03_02>)**ac**), or a combination of the two, sweat glands will be stimulated by the sympathetic nervous system to produce large amounts of sweat, as much as 0.7 to 1.5 L per hour for an active person. When the sweat evaporates from the skin surface, the body is cooled as body heat is dissipated.
+
+In addition to sweating, arterioles in the dermis dilate so that excess heat carried by the blood can dissipate through the skin and into the surrounding environment ([Figure 5.16](<5-3-functions-of-the-integumentary-system#fig-ch05_03_02>)**b**). This accounts for the skin redness that many people experience when exercising.
+
+![Part A is a photo of a man skiing with several snow-covered trees in the background. Part B is a diagram with a right and left half. The left half is titled “ Heat is retained by the body,” while the right half is titled “Heat loss through radiation and convection.” Both show blood flowing from an artery through three capillary beds within the skin. The beds are arranged vertically, with the topmost bed located along the boundary of the dermis and epidermis. The bottommost bed is located deep in the hypodermis. The middle bed is evenly spaced between the topmost and bottommost beds. In each bed, oxygenated blood \(red\) enters the bed on the left and deoxygenated blood \(blue\) leaves the bed on the right. The left diagram shows a picture of snowflakes above the capillary beds, indicating that the weather is cold. Blood is only flowing through the deepest of the three capillary beds, as the upper beds are closed off to reduce heat loss from the outer layers of the skin. The right diagram shows a picture of the sun above the capillary beds, indicating that the weather is hot. Blood is flowing through all three capillary beds, allowing heat to radiate out of the blood, increasing heat loss. Part C is a photo of a man running through a forested trail on a summer day.](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/e8efcaa47aa2aa6222925720058d49686cd3eecd) Figure  5.16 Thermoregulation During strenuous physical activities, such as skiing (a) or running (c), the dermal blood vessels dilate and sweat secretion increases (b). These mechanisms prevent the body from overheating. In contrast, the dermal blood vessels constrict to minimize heat loss in response to low temperatures (b). (credit a: “Trysil”/flickr; credit c: Ralph Daily)
+
+When body temperatures drop, the arterioles constrict to minimize heat loss, particularly in the ends of the digits and tip of the nose. This reduced circulation can result in the skin taking on a whitish hue. Although the temperature of the skin drops as a result, passive heat loss is prevented, and internal organs and structures remain warm. If the temperature of the skin drops too much (such as environmental temperatures below freezing), the conservation of body core heat can result in the skin actually freezing, a condition called frostbite.
+
+###  Aging and the...
+
+####  Integumentary System
+
+All systems in the body accumulate subtle and some not-so-subtle changes as a person ages. Among these changes are reductions in cell division, metabolic activity, blood circulation, hormonal levels, and muscle strength ([Figure 5.17](<5-3-functions-of-the-integumentary-system#fig-ch05_03_03>)). In the skin, these changes are reflected in decreased mitosis in the stratum basale, leading to a thinner epidermis. The dermis, which is responsible for the elasticity and resilience of the skin, exhibits a reduced ability to regenerate, which leads to slower wound healing. The hypodermis, with its fat stores, loses structure due to the reduction and redistribution of fat, which in turn contributes to the thinning and sagging of skin.
+
+![This figure consists of two photos. One photo shows a young woman on the phone. Her skin is smooth and unwrinkled. The other photo shows an elderly women in the same posture while on the phone. The skin of her hands and forearms is wrinkled.](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/a9600b0ae306e47cd6011da02b13da8fad81d755) Figure  5.17 Aging Generally, skin, especially on the face and hands, starts to display the first noticeable signs of aging, as it loses its elasticity over time. (credit: Janet Ramsden)
+
+The accessory structures also have lowered activity, generating thinner hair and nails, and reduced amounts of sebum and sweat. A reduced sweating ability can cause some elderly to be intolerant to extreme heat. Other cells in the skin, such as melanocytes and dendritic cells, also become less active, leading to a paler skin tone and lowered immunity. Wrinkling of the skin occurs due to breakdown of its structure, which results from decreased collagen and elastin production in the dermis, weakening of muscles lying under the skin, and the inability of the skin to retain adequate moisture.
+
+Many anti-aging products can be found in stores today. In general, these products try to rehydrate the skin and thereby fill out the wrinkles, and some stimulate skin growth using hormones and growth factors. Additionally, invasive techniques include collagen injections to plump the tissue and injections of BOTOX® (the name brand of the botulinum neurotoxin) that paralyze the muscles that crease the skin and cause wrinkling.
+
+### Vitamin D Synthesis
+
+The epidermal layer of human skin synthesizes vitamin D when exposed to UV radiation. In the presence of sunlight, a form of vitamin D3 called cholecalciferol is synthesized from a derivative of the steroid cholesterol in the skin. The liver converts cholecalciferol to calcidiol, which is then converted to calcitriol (the active chemical form of the vitamin) in the kidneys. Vitamin D is essential for normal absorption of calcium and phosphorous, which are required for healthy bones. The absence of sun exposure can lead to a lack of vitamin D in the body, leading to a condition called rickets, a painful condition in children where the bones are misshapen due to a lack of calcium, causing bowleggedness. Elderly individuals who suffer from vitamin D deficiency can develop a condition called osteomalacia, a softening of the bones. In present day society, vitamin D is added as a supplement to many foods, including milk and orange juice, compensating for the need for sun exposure.
+
+In addition to its essential role in bone health, vitamin D is essential for general immunity against bacterial, viral, and fungal infections. Recent studies are also finding a link between insufficient vitamin D and cancer.
+

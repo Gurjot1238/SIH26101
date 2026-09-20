@@ -1,0 +1,197 @@
+{
+  "module_id": "openintro-m08",
+  "questions": [
+    {
+      "question_id": "openintro-m08-l01-q01",
+      "question": "According to the source lesson 'Fitting A Line By Least Squares Regression', which statement is most accurate?",
+      "options": [
+        "Units of regression Consider a regression predicting weight (kg) from height (cm) for a sample of adult males.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m08-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Fitting A Line By Least Squares Regression'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Fitting A Line By Least Squares Regression.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m08-l01-q03",
+      "question": "When applying concepts from 'Fitting A Line By Least Squares Regression', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m08-l02-q01",
+      "question": "According to the source lesson 'Inference For Linear Regression', which statement is most accurate?",
+      "options": [
+        "In the following exercises, visually check the conditions for fitting a least squares regression line.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m08-l02-q02",
+      "question": "What is a reasonable learning takeaway from 'Inference For Linear Regression'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Inference For Linear Regression.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m08-l02-q03",
+      "question": "When applying concepts from 'Inference For Linear Regression', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m08-l03-q01",
+      "question": "According to the source lesson 'Line Fitting Residuals And Correlation', which statement is most accurate?",
+      "options": [
+        "Visualize the residuals The scatterplots shown below each have a superimposed regression line.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m08-l03-q02",
+      "question": "What is a reasonable learning takeaway from 'Line Fitting Residuals And Correlation'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Line Fitting Residuals And Correlation.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m08-l03-q03",
+      "question": "When applying concepts from 'Line Fitting Residuals And Correlation', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m08-l04-q01",
+      "question": "According to the source lesson 'Types Of Outliers In Linear Regression', which statement is most accurate?",
+      "options": [
+        "Outliers, Part I Identify the outliers in the scatterplots shown below, and determine what type of outliers they are.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m08-l04-q02",
+      "question": "What is a reasonable learning takeaway from 'Types Of Outliers In Linear Regression'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Types Of Outliers In Linear Regression.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m08-l04-q03",
+      "question": "When applying concepts from 'Types Of Outliers In Linear Regression', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

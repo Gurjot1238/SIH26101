@@ -1,0 +1,266 @@
+{
+  "course_id": "mit-6-045-automata",
+  "title": "6.045J Automata, Computability, and Complexity",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Theory of Computation",
+  "level": "Advanced",
+  "description": "MIT OpenCourseWare 6.045J Automata, Computability, and Complexity (Spring 2011). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Theory of Computation",
+    "Algorithms",
+    "Computer Science"
+  ],
+  "topics": [
+    "automata",
+    "computability",
+    "complexity"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/6-045j-automata-computability-and-complexity-spring-2011/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Spring 2011",
+  "duration": {
+    "estimated_hours": 3.9,
+    "estimated_minutes": 234
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 10,
+    "practice_questions": 30
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-6-045-automata-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Theory of Computation",
+        "Algorithms",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-045-automata-m01-l01",
+          "title": "f8bd1e6b44d84dad58f4a5c6a427a1e6 MIT6 045JS11 lec01",
+          "type": "pdf",
+          "content_file": "content/module-01/f8bd1e6b44d84dad58f4a5c6a427a1e6_MIT6_045JS11_lec01.pdf",
+          "practice_file": "practice/mit-6-045-automata-m01-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Theory of Computation",
+            "Algorithms"
+          ],
+          "topics": [
+            "automata",
+            "computability",
+            "complexity"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-045-automata-m01-l02",
+          "title": "83b3afc5b32d8c4b239534d423cd7023 MIT6 045JS11 lec02",
+          "type": "pdf",
+          "content_file": "content/module-01/83b3afc5b32d8c4b239534d423cd7023_MIT6_045JS11_lec02.pdf",
+          "practice_file": "practice/mit-6-045-automata-m01-l02.json",
+          "estimated_minutes": 29,
+          "objectives": [],
+          "competencies": [
+            "Theory of Computation",
+            "Algorithms"
+          ],
+          "topics": [
+            "automata",
+            "computability",
+            "complexity"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-045-automata-m01-l03",
+          "title": "a8b9bb8d5d9c1f7a6b4a85056b8dcbde MIT6 045JS11 lec03",
+          "type": "pdf",
+          "content_file": "content/module-01/a8b9bb8d5d9c1f7a6b4a85056b8dcbde_MIT6_045JS11_lec03.pdf",
+          "practice_file": "practice/mit-6-045-automata-m01-l03.json",
+          "estimated_minutes": 27,
+          "objectives": [],
+          "competencies": [
+            "Theory of Computation",
+            "Algorithms"
+          ],
+          "topics": [
+            "automata",
+            "computability",
+            "complexity"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-045-automata-m01-l04",
+          "title": "5b6d125bc94344e53285a1cdbdb33371 MIT6 045JS11 lec04",
+          "type": "pdf",
+          "content_file": "content/module-01/5b6d125bc94344e53285a1cdbdb33371_MIT6_045JS11_lec04.pdf",
+          "practice_file": "practice/mit-6-045-automata-m01-l04.json",
+          "estimated_minutes": 38,
+          "objectives": [],
+          "competencies": [
+            "Theory of Computation",
+            "Algorithms"
+          ],
+          "topics": [
+            "automata",
+            "computability",
+            "complexity"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-045-automata-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Theory of Computation",
+        "Algorithms",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-045-automata-m02-l01",
+          "title": "92a359d37025e9b216256bba46a4eee1 MIT6 045JS11 lec05",
+          "type": "pdf",
+          "content_file": "content/module-02/92a359d37025e9b216256bba46a4eee1_MIT6_045JS11_lec05.pdf",
+          "practice_file": "practice/mit-6-045-automata-m02-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Theory of Computation",
+            "Algorithms"
+          ],
+          "topics": [
+            "automata",
+            "computability",
+            "complexity"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-045-automata-m02-l02",
+          "title": "d6c18e634cdf3363ecac909bd2958b8b MIT6 045JS11 lec06",
+          "type": "pdf",
+          "content_file": "content/module-02/d6c18e634cdf3363ecac909bd2958b8b_MIT6_045JS11_lec06.pdf",
+          "practice_file": "practice/mit-6-045-automata-m02-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Theory of Computation",
+            "Algorithms"
+          ],
+          "topics": [
+            "automata",
+            "computability",
+            "complexity"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-045-automata-m02-l03",
+          "title": "5b9f68b5081985b135f6ad521a93d81d MIT6 045JS11 lec07",
+          "type": "pdf",
+          "content_file": "content/module-02/5b9f68b5081985b135f6ad521a93d81d_MIT6_045JS11_lec07.pdf",
+          "practice_file": "practice/mit-6-045-automata-m02-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Theory of Computation",
+            "Algorithms"
+          ],
+          "topics": [
+            "automata",
+            "computability",
+            "complexity"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-045-automata-m02-l04",
+          "title": "74af17e846c343364d77ed14ccf9d188 MIT6 045JS11 lec08",
+          "type": "pdf",
+          "content_file": "content/module-02/74af17e846c343364d77ed14ccf9d188_MIT6_045JS11_lec08.pdf",
+          "practice_file": "practice/mit-6-045-automata-m02-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Theory of Computation",
+            "Algorithms"
+          ],
+          "topics": [
+            "automata",
+            "computability",
+            "complexity"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-045-automata-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Theory of Computation",
+        "Algorithms",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-045-automata-m03-l01",
+          "title": "7aead2c728dd3d5a737d832811ef97e6 MIT6 045JS11 lec09",
+          "type": "pdf",
+          "content_file": "content/module-03/7aead2c728dd3d5a737d832811ef97e6_MIT6_045JS11_lec09.pdf",
+          "practice_file": "practice/mit-6-045-automata-m03-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Theory of Computation",
+            "Algorithms"
+          ],
+          "topics": [
+            "automata",
+            "computability",
+            "complexity"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-045-automata-m03-l02",
+          "title": "2fe1aea3ab4dd67aff81f2a04fc010ef MIT6 045JS11 lec10",
+          "type": "pdf",
+          "content_file": "content/module-03/2fe1aea3ab4dd67aff81f2a04fc010ef_MIT6_045JS11_lec10.pdf",
+          "practice_file": "practice/mit-6-045-automata-m03-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Theory of Computation",
+            "Algorithms"
+          ],
+          "topics": [
+            "automata",
+            "computability",
+            "complexity"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

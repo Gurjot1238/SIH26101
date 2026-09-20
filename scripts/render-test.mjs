@@ -142,6 +142,8 @@ const ROUTES = [
   ['/assessment', 'Assessment, without the anxiety.'],
   ['/learning', 'A pathway built around your work.'],
   ['/course-library', 'Courses worth your evening'],
+  ['/catalog', 'Real courses you can open and finish here.'],
+  ['/catalog/wtcs-nursing-fundamentals-2e', 'data-testid="link-back-catalog"'],
   ['/courses/time-series', 'data-testid="link-back-learning"'],
   ['/materials', 'Turn a brief into a knowledge check.'],
   ['/quiz', 'Generate a quiz from your material.'],

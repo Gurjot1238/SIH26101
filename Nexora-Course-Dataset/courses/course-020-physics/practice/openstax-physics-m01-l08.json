@@ -1,0 +1,53 @@
+{
+  "lesson_id": "openstax-physics-m01-l08",
+  "questions": [
+    {
+      "question_id": "openstax-physics-m01-l08-q01",
+      "question": "According to the source lesson '1 Problems', which statement is most accurate?",
+      "options": [
+        "### Problems #### [ 1.3 The Language of Physics: Physical Quantities and Units ](<1-3-the-language-of-physics-physical-quantities-and-units>) 34.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "motion",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-physics-m01-l08-q02",
+      "question": "What is a reasonable learning takeaway from '1 Problems'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 1 Problems.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "motion",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-physics-m01-l08-q03",
+      "question": "When applying concepts from '1 Problems', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "motion",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

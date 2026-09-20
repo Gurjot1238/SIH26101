@@ -1,0 +1,784 @@
+{
+  "course_id": "openstax-physics",
+  "title": "Physics",
+  "provider": "OpenStax / Rice University",
+  "category": "Technology",
+  "subcategory": "Physics",
+  "level": "Beginner",
+  "description": "OpenStax Physics (CC BY 4.0). Section HTML was downloaded from the official OpenStax webview.",
+  "competencies": [
+    "Physics",
+    "Engineering Fundamentals",
+    "Mechanics"
+  ],
+  "topics": [
+    "motion",
+    "forces",
+    "energy",
+    "waves"
+  ],
+  "source": {
+    "name": "OpenStax",
+    "official_url": "https://openstax.org/books/physics/pages/1-introduction",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 9.5,
+    "estimated_minutes": 568
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 32,
+    "practice_questions": 96
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "openstax-physics-m01",
+      "title": "Chapter 1: 1.1 Physics: Definitions and Applications",
+      "competencies": [
+        "Physics",
+        "Engineering Fundamentals",
+        "Mechanics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-physics-m01-l01",
+          "title": "1.1 Physics: Definitions and Applications",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/openstax-physics-m01-l01.json",
+          "estimated_minutes": 24,
+          "objectives": [
+            "By the end of this section, you will be able to do the following:"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m01-l02",
+          "title": "1.2 The Scientific Methods",
+          "type": "text",
+          "content_file": "content/module-01/lesson-02.md",
+          "practice_file": "practice/openstax-physics-m01-l02.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to do the following:"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m01-l03",
+          "title": "1.3 The Language of Physics: Physical Quantities and Units",
+          "type": "text",
+          "content_file": "content/module-01/lesson-03.md",
+          "practice_file": "practice/openstax-physics-m01-l03.json",
+          "estimated_minutes": 68,
+          "objectives": [
+            "By the end of this section, you will be able to do the following:"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m01-l04",
+          "title": "Chapter Outline",
+          "type": "text",
+          "content_file": "content/module-01/lesson-04.md",
+          "practice_file": "practice/openstax-physics-m01-l04.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "You may soon realize that physics plays a much larger role in your life than you thought. This section introduces you to the realm of physics, and discus"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m01-l05",
+          "title": "Section Summary",
+          "type": "text",
+          "content_file": "content/module-01/lesson-05.md",
+          "practice_file": "practice/openstax-physics-m01-l05.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Physics is the most fundamental of the sciences, concerning itself with energy, matter, space and time, and their interactions",
+            "Physics is the basis for all other sciences, such as chemistry, biology and geology, because physics describes the fundamental way in which the universe functions",
+            "Science seeks to discover and describe the underlying order and simplicity in nature",
+            "The processes of science include observation, hypothesis, experiment, and conclusion",
+            "Theories are scientific explanations that are supported by a large body experimental results",
+            "Scientific laws are concise descriptions of the universe that are universally true"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m01-l06",
+          "title": "1 Concept Items",
+          "type": "text",
+          "content_file": "content/module-01/lesson-06.md",
+          "practice_file": "practice/openstax-physics-m01-l06.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Which statement best compares and contrasts the aims and topics of natural philosophy had versus physics?",
+            "Which of the following is _not_ an underlying assumption essential to scientific understanding?",
+            "Which of the following questions regarding a strain of genetically modified rice is _not_ one that can be answered by science?"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m01-l07",
+          "title": "1 Critical Thinking Items",
+          "type": "text",
+          "content_file": "content/module-01/lesson-07.md",
+          "practice_file": "practice/openstax-physics-m01-l07.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "In what sense does Einstein’s theory of relativity illustrate that physics describes fundamental aspects of our universe?",
+            "Can classical physics be used to accurately describe a satellite moving at a speed of 7500 m/s? Explain why or why not",
+            "What would be some ways in which physics was involved in building the features of the room you are in right now?"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m01-l08",
+          "title": "1 Problems",
+          "type": "text",
+          "content_file": "content/module-01/lesson-08.md",
+          "practice_file": "practice/openstax-physics-m01-l08.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "A commemorative coin that sells for $40 is advertised to be plated with 15 mg of gold. Suppose gold is worth about $1,300 per ounce. Which of the following best represents the value of the gold in the coin?",
+            "The speed limit on some interstate highways is roughly  80 km/h . What is this in meters per second? How many miles per hour is this?",
+            "The length and width of a rectangular room are measured to be  3.955 ± 0.005 m by  3.050 ± 0.005 m . Calculate the area of the room and its uncertainty in square meters"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m01-l09",
+          "title": "1 Multiple Choice",
+          "type": "text",
+          "content_file": "content/module-01/lesson-09.md",
+          "practice_file": "practice/openstax-physics-m01-l09.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Modern physics could best be described as the combination of which theories?",
+            "Which of the following could be studied accurately using classical physics?",
+            "Which of the following best describes why knowledge of physics is necessary to understand all other sciences?",
+            "What does radiation therapy, used to treat cancer patients, have to do with physics?"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m01-l10",
+          "title": "1 Short Answer",
+          "type": "text",
+          "content_file": "content/module-01/lesson-10.md",
+          "practice_file": "practice/openstax-physics-m01-l10.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Describe the aims of physics",
+            "Define the fields of magnetism and electricity and state how are they are related"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m01-l11",
+          "title": "1 Extended Response",
+          "type": "text",
+          "content_file": "content/module-01/lesson-11.md",
+          "practice_file": "practice/openstax-physics-m01-l11.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "You wish to perform an experiment on the stopping distance of your new car. Create a specific experiment to measure the distance. Be sure to specifically state how you will set up and take data during your experiment"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openstax-physics-m02",
+      "title": "Chapter 2: Chapter Outline",
+      "competencies": [
+        "Physics",
+        "Engineering Fundamentals",
+        "Mechanics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-physics-m02-l01",
+          "title": "Chapter Outline",
+          "type": "text",
+          "content_file": "content/module-02/lesson-01.md",
+          "practice_file": "practice/openstax-physics-m02-l01.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m02-l02",
+          "title": "2.1 Relative Motion, Distance, and Displacement",
+          "type": "text",
+          "content_file": "content/module-02/lesson-02.md",
+          "practice_file": "practice/openstax-physics-m02-l02.json",
+          "estimated_minutes": 25,
+          "objectives": [
+            "By the end of this section, you will be able to do the following:"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m02-l03",
+          "title": "2.2 Speed and Velocity",
+          "type": "text",
+          "content_file": "content/module-02/lesson-03.md",
+          "practice_file": "practice/openstax-physics-m02-l03.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to do the following:"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m02-l04",
+          "title": "2.3 Position vs. Time Graphs",
+          "type": "text",
+          "content_file": "content/module-02/lesson-04.md",
+          "practice_file": "practice/openstax-physics-m02-l04.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to do the following:"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m02-l05",
+          "title": "2.4 Velocity vs. Time Graphs",
+          "type": "text",
+          "content_file": "content/module-02/lesson-05.md",
+          "practice_file": "practice/openstax-physics-m02-l05.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "By the end of this section, you will be able to do the following:"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m02-l06",
+          "title": "Section Summary",
+          "type": "text",
+          "content_file": "content/module-02/lesson-06.md",
+          "practice_file": "practice/openstax-physics-m02-l06.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "A description of motion depends on the reference frame from which it is described",
+            "The distance an object moves is the length of the path along which it moves",
+            "Displacement is the difference in the initial and final positions of an object",
+            "Average speed is a scalar quantity that describes distance traveled divided by the time during which the motion occurs",
+            "Velocity is a vector quantity that describes the speed and direction of an object",
+            "Average velocity is displacement over the time period during which the displacement occurs. If the velocity is constant, then average velocity and instantaneous velocity are the same"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m02-l07",
+          "title": "2 Concept Items",
+          "type": "text",
+          "content_file": "content/module-02/lesson-07.md",
+          "practice_file": "practice/openstax-physics-m02-l07.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Can one-dimensional motion be described with a zero distance traveled but nonzero displacement. Conversely, can it be described with zero displacement but a nonzero distance traveled?",
+            "In which example would you be correct in describing an object in motion while your friend would also be correct in describing that same object as being at"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m02-l08",
+          "title": "2 Critical Thinking Items",
+          "type": "text",
+          "content_file": "content/module-02/lesson-08.md",
+          "practice_file": "practice/openstax-physics-m02-l08.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Two boats are traveling at equal and opposite velocities when they pass each other. How would the captain of each boat describe the motion of the other boat?",
+            "Passenger A sits inside a moving train and throws a ball vertically upward. How would the motion of the ball be described by a fellow train passenger B and an observer C who is standing on the platform outside the train?"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m02-l09",
+          "title": "2 Problems",
+          "type": "text",
+          "content_file": "content/module-02/lesson-09.md",
+          "practice_file": "practice/openstax-physics-m02-l09.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "In a coordinate system in which the direction to the right is positive, what are the distance and displacement of a person who walks  35 meters to the left,  18 meters to the right, and then  26 meters to the left?",
+            "You sit in a car that is moving at an average speed of 86.4 km/h. During the 3.3 s that you glance out the window, how far has the car traveled?"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m02-l10",
+          "title": "2 Performance Task",
+          "type": "text",
+          "content_file": "content/module-02/lesson-10.md",
+          "practice_file": "practice/openstax-physics-m02-l10.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m02-l11",
+          "title": "2 Multiple Choice",
+          "type": "text",
+          "content_file": "content/module-02/lesson-11.md",
+          "practice_file": "practice/openstax-physics-m02-l11.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Why should you specify a reference frame when describing motion?",
+            "Which of the following is true for the displacement of an object?",
+            "If a biker rides west for 50 miles from his starting position, then turns and bikes back east 80 miles. What is his net displacement?",
+            "Suppose a train is moving along a track. Is there a single, correct reference frame from which to describe the train’s motion?"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m02-l12",
+          "title": "2 Short Answer",
+          "type": "text",
+          "content_file": "content/module-02/lesson-12.md",
+          "practice_file": "practice/openstax-physics-m02-l12.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "While standing on a sidewalk facing the road, you see a bicyclist passing by toward your right. In the reference frame of the bicyclist, in which direction are you moving?",
+            "Maud sends her bowling ball straight down the center of the lane, getting a strike. The ball is brought back to the holder mechanically. What are the ball’s net displacement and distance traveled?"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m02-l13",
+          "title": "2 Extended Response",
+          "type": "text",
+          "content_file": "content/module-02/lesson-13.md",
+          "practice_file": "practice/openstax-physics-m02-l13.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Find the distance traveled from the starting point for each path",
+            "Which path has the maximum distance?"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openstax-physics-m03",
+      "title": "Chapter 3: Chapter Outline",
+      "competencies": [
+        "Physics",
+        "Engineering Fundamentals",
+        "Mechanics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-physics-m03-l01",
+          "title": "Chapter Outline",
+          "type": "text",
+          "content_file": "content/module-03/lesson-01.md",
+          "practice_file": "practice/openstax-physics-m03-l01.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "In fact, any change in velocity—whether positive, negative, directional, or any combination of these—is called an"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m03-l02",
+          "title": "3.1 Acceleration",
+          "type": "text",
+          "content_file": "content/module-03/lesson-02.md",
+          "practice_file": "practice/openstax-physics-m03-l02.json",
+          "estimated_minutes": 16,
+          "objectives": [
+            "By the end of this section, you will be able to do the following:"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m03-l03",
+          "title": "3.2 Representing Acceleration with Equations and Graphs",
+          "type": "text",
+          "content_file": "content/module-03/lesson-03.md",
+          "practice_file": "practice/openstax-physics-m03-l03.json",
+          "estimated_minutes": 25,
+          "objectives": [
+            "By the end of this section, you will be able to do the following:"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m03-l04",
+          "title": "Key Equations",
+          "type": "text",
+          "content_file": "content/module-03/lesson-04.md",
+          "practice_file": "practice/openstax-physics-m03-l04.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Average acceleration |  a ¯ = Δv Δt = v f − v 0 t f − t o a ¯ = Δv Δt = v f − v 0 t f − t o",
+            "Average velocity |  d= d 0 + v ¯ t d= d 0 + v ¯ t , or  v ¯ = d t v ¯ = d t when _d_ 0 = 0",
+            "Average velocity |  v ¯ = v 0 + v f 2 v ¯ = v 0 + v f 2",
+            "Velocity with constant acceleration |  v= v 0 +at v= v 0 +at , or  v=at v=at when _v_ 0 = 0",
+            "Displacement with constant acceleration |  d= d 0 + v 0 t+ 1 2 a t 2 d= d 0 + v 0 t+ 1 2 a t 2 , or  a= 2d t 2 a= 2d t 2 when _d_ 0 = 0 and _v_ 0 = 0",
+            "Constant acceleration |  v 2 = v 0 2 +2a( d− d 0 ) v 2 = v 0 2 +2a( d− d 0 ) , or  a= v 2 2d a= v 2 2d when _d_ 0 = 0 and _v_ 0 = 0"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m03-l05",
+          "title": "3 Concept Items",
+          "type": "text",
+          "content_file": "content/module-03/lesson-05.md",
+          "practice_file": "practice/openstax-physics-m03-l05.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "How can you use the definition of acceleration to explain the units in which acceleration is measured?",
+            "What are the SI units of acceleration?",
+            "Which of the following statements explains why a racecar going around a curve is accelerating, even if the speed is constant?",
+            "A student calculated the final velocity of a train that decelerated from 30.5 m/s and got an answer of −43.34 m/s. Which of the following might indicate that he made a mistake in his calculation?"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m03-l06",
+          "title": "3 Critical Thinking Items",
+          "type": "text",
+          "content_file": "content/module-03/lesson-06.md",
+          "practice_file": "practice/openstax-physics-m03-l06.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "A motorcycle moving at a constant velocity suddenly accelerates at a rate of  4.0 m/s 2 to a speed of  35 m/s in  5.0 s . What was the initial speed of the motorcycle?",
+            "A student is asked to solve a problem:",
+            "An object falls from a height for 2.0 s, at which point it is still 60 m above the ground. What will be the velocity of the object when it hits the ground?",
+            "Which of the following provides the correct order of kinematic equations that can be used to solve the problem?"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m03-l07",
+          "title": "3 Problems",
+          "type": "text",
+          "content_file": "content/module-03/lesson-07.md",
+          "practice_file": "practice/openstax-physics-m03-l07.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "The driver of a sports car traveling at 10.0 m/s steps down hard on the accelerator for 5.0 s and the velocity increases to 30.0 m/s. What was the average acceleration of the car during the 5.0 s time interval?",
+            "A swimmer bounces straight up from a diving board and falls feet first into a pool. She starts with a velocity of  4.00 m/s and her takeoff point is  8 m above the pool. How long are her feet in the air?"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-physics-m03-l08",
+          "title": "3 Performance Task",
+          "type": "text",
+          "content_file": "content/module-03/lesson-08.md",
+          "practice_file": "practice/openstax-physics-m03-l08.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Design an experiment to measure displacement and elapsed time. Use the data to calculate final velocity, average velocity, acceleration, and acceleration"
+          ],
+          "competencies": [
+            "Physics",
+            "Engineering Fundamentals"
+          ],
+          "topics": [
+            "motion",
+            "forces",
+            "energy"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

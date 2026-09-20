@@ -1,0 +1,53 @@
+{
+  "lesson_id": "mit-6-01sc-eecs-m03-l01",
+  "questions": [
+    {
+      "question_id": "mit-6-01sc-eecs-m03-l01-q01",
+      "question": "According to the source lesson '976e11ed2fa08bacf0a7587bfa037672 MIT6 01SCS11 mid01 S11 sol', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 976e11ed2fa08bacf0a7587bfa037672_MIT6_01SCS11_mid01_S11_sol.pdf from 6.01SC Introduction to Electrical Engineering and Computer Science I.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "Python",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-01sc-eecs-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from '976e11ed2fa08bacf0a7587bfa037672 MIT6 01SCS11 mid01 S11 sol'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 976e11ed2fa08bacf0a7587bfa037672 MIT6 01SCS11 mid01 S11 sol.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "Python",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-01sc-eecs-m03-l01-q03",
+      "question": "When applying concepts from '976e11ed2fa08bacf0a7587bfa037672 MIT6 01SCS11 mid01 S11 sol', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Electrical Engineering",
+      "topic": "Python",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

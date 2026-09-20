@@ -1,0 +1,53 @@
+{
+  "lesson_id": "mit-2-003-dynamics-m03-l01",
+  "questions": [
+    {
+      "question_id": "mit-2-003-dynamics-m03-l01-q01",
+      "question": "According to the source lesson '180785b4c12d502ff69d08f46f0d9302 MIT2 003SCF11 rec8notes1', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 180785b4c12d502ff69d08f46f0d9302_MIT2_003SCF11_rec8notes1.pdf from 2.003SC Engineering Dynamics.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "kinematics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-003-dynamics-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from '180785b4c12d502ff69d08f46f0d9302 MIT2 003SCF11 rec8notes1'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 180785b4c12d502ff69d08f46f0d9302 MIT2 003SCF11 rec8notes1.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-003-dynamics-m03-l01-q03",
+      "question": "When applying concepts from '180785b4c12d502ff69d08f46f0d9302 MIT2 003SCF11 rec8notes1', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

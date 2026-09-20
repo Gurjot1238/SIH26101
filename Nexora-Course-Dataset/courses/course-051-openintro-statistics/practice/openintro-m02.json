@@ -1,0 +1,149 @@
+{
+  "module_id": "openintro-m02",
+  "questions": [
+    {
+      "question_id": "openintro-m02-l01-q01",
+      "question": "According to the source lesson 'Case Study Malaria Vaccine', which statement is most accurate?",
+      "options": [
+        "Side effects of Avandia Rosiglitazone is the active ingredient in the controversial type~2 diabetes medicine Avandia and has been linked to an increased risk of serious cardiovascular problems such as stroke, heart failure, and death.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Case Study Malaria Vaccine'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Case Study Malaria Vaccine.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m02-l01-q03",
+      "question": "When applying concepts from 'Case Study Malaria Vaccine', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m02-l02-q01",
+      "question": "According to the source lesson 'Considering Categorical Data', which statement is most accurate?",
+      "options": [
+        "Antibiotic use in children The bar plot and the pie chart below show the distribution of pre-existing medical conditions of children involved in a study on the optimal duration of antibiotic use in treatment of tracheitis, which is an upper",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m02-l02-q02",
+      "question": "What is a reasonable learning takeaway from 'Considering Categorical Data'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Considering Categorical Data.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m02-l02-q03",
+      "question": "When applying concepts from 'Considering Categorical Data', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m02-l03-q01",
+      "question": "According to the source lesson 'Examining Numerical Data', which statement is most accurate?",
+      "options": [
+        "Mammal life spans Data were collected on life spans (in years) and gestation lengths (in days) for 62 mammals.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m02-l03-q02",
+      "question": "What is a reasonable learning takeaway from 'Examining Numerical Data'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Examining Numerical Data.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m02-l03-q03",
+      "question": "When applying concepts from 'Examining Numerical Data', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

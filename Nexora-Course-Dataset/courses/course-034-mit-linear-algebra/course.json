@@ -1,0 +1,392 @@
+{
+  "course_id": "mit-18-06-linear-algebra",
+  "title": "18.06 Linear Algebra",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Mathematics",
+  "level": "Intermediate",
+  "description": "MIT OpenCourseWare 18.06 Linear Algebra (Spring 2010). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Linear Algebra",
+    "Mathematics",
+    "Engineering Fundamentals"
+  ],
+  "topics": [
+    "matrices",
+    "vector spaces",
+    "eigenvalues",
+    "least squares"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Spring 2010",
+  "duration": {
+    "estimated_hours": 6.4,
+    "estimated_minutes": 384
+  },
+  "totals": {
+    "modules": 4,
+    "lessons": 16,
+    "practice_questions": 48
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-18-06-linear-algebra-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Linear Algebra",
+        "Mathematics",
+        "Engineering Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-18-06-linear-algebra-m01-l01",
+          "title": "45790724487e46dcc02f55d0fc092ab7 06S10 Final Answers",
+          "type": "pdf",
+          "content_file": "content/module-01/45790724487e46dcc02f55d0fc092ab7_MIT18_06S10_Final_Answers.pdf",
+          "practice_file": "practice/mit-18-06-linear-algebra-m01-l01.json",
+          "estimated_minutes": 45,
+          "objectives": [],
+          "competencies": [
+            "Linear Algebra",
+            "Mathematics"
+          ],
+          "topics": [
+            "matrices",
+            "vector spaces",
+            "eigenvalues"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-18-06-linear-algebra-m01-l02",
+          "title": "b7efef974f7a2c8b5c925f5ea8fc9152 06S10 exam1 s10 sol",
+          "type": "pdf",
+          "content_file": "content/module-01/b7efef974f7a2c8b5c925f5ea8fc9152_MIT18_06S10_exam1_s10_sol.pdf",
+          "practice_file": "practice/mit-18-06-linear-algebra-m01-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Linear Algebra",
+            "Mathematics"
+          ],
+          "topics": [
+            "matrices",
+            "vector spaces",
+            "eigenvalues"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-18-06-linear-algebra-m01-l03",
+          "title": "d669bf89c103559d51427d0916c5db61 06S10 exam2 s10 soln",
+          "type": "pdf",
+          "content_file": "content/module-01/d669bf89c103559d51427d0916c5db61_MIT18_06S10_exam2_s10_soln.pdf",
+          "practice_file": "practice/mit-18-06-linear-algebra-m01-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Linear Algebra",
+            "Mathematics"
+          ],
+          "topics": [
+            "matrices",
+            "vector spaces",
+            "eigenvalues"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-18-06-linear-algebra-m01-l04",
+          "title": "edf08929f3b2b435c7d8ca85e8d5118d 06S10 exam3 s10 soln",
+          "type": "pdf",
+          "content_file": "content/module-01/edf08929f3b2b435c7d8ca85e8d5118d_MIT18_06S10_exam3_s10_soln.pdf",
+          "practice_file": "practice/mit-18-06-linear-algebra-m01-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Linear Algebra",
+            "Mathematics"
+          ],
+          "topics": [
+            "matrices",
+            "vector spaces",
+            "eigenvalues"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-18-06-linear-algebra-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Linear Algebra",
+        "Mathematics",
+        "Engineering Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-18-06-linear-algebra-m02-l01",
+          "title": "b799045edd80df18879088bcf872b214 06S10 Final Exam",
+          "type": "pdf",
+          "content_file": "content/module-02/b799045edd80df18879088bcf872b214_MIT18_06S10_Final_Exam.pdf",
+          "practice_file": "practice/mit-18-06-linear-algebra-m02-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Linear Algebra",
+            "Mathematics"
+          ],
+          "topics": [
+            "matrices",
+            "vector spaces",
+            "eigenvalues"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-18-06-linear-algebra-m02-l02",
+          "title": "e9bbec7a9a25a87715e8edd75e21d7b9 06S10 exam1 s10",
+          "type": "pdf",
+          "content_file": "content/module-02/e9bbec7a9a25a87715e8edd75e21d7b9_MIT18_06S10_exam1_s10.pdf",
+          "practice_file": "practice/mit-18-06-linear-algebra-m02-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Linear Algebra",
+            "Mathematics"
+          ],
+          "topics": [
+            "matrices",
+            "vector spaces",
+            "eigenvalues"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-18-06-linear-algebra-m02-l03",
+          "title": "892238e7e16a658abd5813bea8399170 06S10 exam2 s10",
+          "type": "pdf",
+          "content_file": "content/module-02/892238e7e16a658abd5813bea8399170_MIT18_06S10_exam2_s10.pdf",
+          "practice_file": "practice/mit-18-06-linear-algebra-m02-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Linear Algebra",
+            "Mathematics"
+          ],
+          "topics": [
+            "matrices",
+            "vector spaces",
+            "eigenvalues"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-18-06-linear-algebra-m02-l04",
+          "title": "c72789c2ac2ccaf5568a024c662882d2 06S10 exam3 s10",
+          "type": "pdf",
+          "content_file": "content/module-02/c72789c2ac2ccaf5568a024c662882d2_MIT18_06S10_exam3_s10.pdf",
+          "practice_file": "practice/mit-18-06-linear-algebra-m02-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Linear Algebra",
+            "Mathematics"
+          ],
+          "topics": [
+            "matrices",
+            "vector spaces",
+            "eigenvalues"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-18-06-linear-algebra-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Linear Algebra",
+        "Mathematics",
+        "Engineering Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-18-06-linear-algebra-m03-l01",
+          "title": "22297c2a6dcf06d82e93ee4af115e91a 06S10 pset1 s10 soln",
+          "type": "pdf",
+          "content_file": "content/module-03/22297c2a6dcf06d82e93ee4af115e91a_MIT18_06S10_pset1_s10_soln.pdf",
+          "practice_file": "practice/mit-18-06-linear-algebra-m03-l01.json",
+          "estimated_minutes": 28,
+          "objectives": [],
+          "competencies": [
+            "Linear Algebra",
+            "Mathematics"
+          ],
+          "topics": [
+            "matrices",
+            "vector spaces",
+            "eigenvalues"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-18-06-linear-algebra-m03-l02",
+          "title": "d039352aaa83a27f11bb2b3778ecfa96 06S10 pset2 s10 soln",
+          "type": "pdf",
+          "content_file": "content/module-03/d039352aaa83a27f11bb2b3778ecfa96_MIT18_06S10_pset2_s10_soln.pdf",
+          "practice_file": "practice/mit-18-06-linear-algebra-m03-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Linear Algebra",
+            "Mathematics"
+          ],
+          "topics": [
+            "matrices",
+            "vector spaces",
+            "eigenvalues"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-18-06-linear-algebra-m03-l03",
+          "title": "99823819ffda7c97ddee8abd68ca8764 06S10 pset3 s10 soln",
+          "type": "pdf",
+          "content_file": "content/module-03/99823819ffda7c97ddee8abd68ca8764_MIT18_06S10_pset3_s10_soln.pdf",
+          "practice_file": "practice/mit-18-06-linear-algebra-m03-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Linear Algebra",
+            "Mathematics"
+          ],
+          "topics": [
+            "matrices",
+            "vector spaces",
+            "eigenvalues"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-18-06-linear-algebra-m03-l04",
+          "title": "4ece22f9c707878e1e57b9840469490e 06S10 pset4 s10 soln",
+          "type": "pdf",
+          "content_file": "content/module-03/4ece22f9c707878e1e57b9840469490e_MIT18_06S10_pset4_s10_soln.pdf",
+          "practice_file": "practice/mit-18-06-linear-algebra-m03-l04.json",
+          "estimated_minutes": 25,
+          "objectives": [],
+          "competencies": [
+            "Linear Algebra",
+            "Mathematics"
+          ],
+          "topics": [
+            "matrices",
+            "vector spaces",
+            "eigenvalues"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-18-06-linear-algebra-m04",
+      "title": "Module 4",
+      "competencies": [
+        "Linear Algebra",
+        "Mathematics",
+        "Engineering Fundamentals"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-18-06-linear-algebra-m04-l01",
+          "title": "ef8cf047287bc629eb243a691340c823 06S10 pset5 s10 soln",
+          "type": "pdf",
+          "content_file": "content/module-04/ef8cf047287bc629eb243a691340c823_MIT18_06S10_pset5_s10_soln.pdf",
+          "practice_file": "practice/mit-18-06-linear-algebra-m04-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Linear Algebra",
+            "Mathematics"
+          ],
+          "topics": [
+            "matrices",
+            "vector spaces",
+            "eigenvalues"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-18-06-linear-algebra-m04-l02",
+          "title": "ace08d2d5a7b321229f191765c5ff2e3 06S10 pset6 s10 soln",
+          "type": "pdf",
+          "content_file": "content/module-04/ace08d2d5a7b321229f191765c5ff2e3_MIT18_06S10_pset6_s10_soln.pdf",
+          "practice_file": "practice/mit-18-06-linear-algebra-m04-l02.json",
+          "estimated_minutes": 44,
+          "objectives": [],
+          "competencies": [
+            "Linear Algebra",
+            "Mathematics"
+          ],
+          "topics": [
+            "matrices",
+            "vector spaces",
+            "eigenvalues"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-18-06-linear-algebra-m04-l03",
+          "title": "4d1ef28c0836e81caec9122a69c7b931 06S10 pset7 s10 soln",
+          "type": "pdf",
+          "content_file": "content/module-04/4d1ef28c0836e81caec9122a69c7b931_MIT18_06S10_pset7_s10_soln.pdf",
+          "practice_file": "practice/mit-18-06-linear-algebra-m04-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Linear Algebra",
+            "Mathematics"
+          ],
+          "topics": [
+            "matrices",
+            "vector spaces",
+            "eigenvalues"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-18-06-linear-algebra-m04-l04",
+          "title": "6e0208c1241f197797f2757d680740c0 06S10 pset8 s10 soln",
+          "type": "pdf",
+          "content_file": "content/module-04/6e0208c1241f197797f2757d680740c0_MIT18_06S10_pset8_s10_soln.pdf",
+          "practice_file": "practice/mit-18-06-linear-algebra-m04-l04.json",
+          "estimated_minutes": 22,
+          "objectives": [],
+          "competencies": [
+            "Linear Algebra",
+            "Mathematics"
+          ],
+          "topics": [
+            "matrices",
+            "vector spaces",
+            "eigenvalues"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

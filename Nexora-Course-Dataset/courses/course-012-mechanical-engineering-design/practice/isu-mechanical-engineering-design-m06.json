@@ -1,0 +1,149 @@
+{
+  "module_id": "isu-mechanical-engineering-design-m06",
+  "questions": [
+    {
+      "question_id": "isu-mechanical-engineering-design-m06-l01-q01",
+      "question": "According to the source lesson 'Module 4B: Overview', which statement is most accurate?",
+      "options": [
+        "**Module Objective 1** : Students will be able to prepare engineering drawings using engineering graphics/CAD software for the final design (CLO1) 2.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m06-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Module 4B: Overview'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Module 4B: Overview.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m06-l01-q03",
+      "question": "When applying concepts from 'Module 4B: Overview', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m06-l02-q01",
+      "question": "According to the source lesson 'Design Phase Cont'd', which statement is most accurate?",
+      "options": [
+        "This portion of the Design phase will be focused on using estimated costs to develop a Profit/Loss statement (P&L statement).",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m06-l02-q02",
+      "question": "What is a reasonable learning takeaway from 'Design Phase Cont'd'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Design Phase Cont'd.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m06-l02-q03",
+      "question": "When applying concepts from 'Design Phase Cont'd', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m06-l03-q01",
+      "question": "According to the source lesson 'Chapter 4: BOM, Purchase Order and Part Cost', which statement is most accurate?",
+      "options": [
+        "**Prototype Costing Analysis Accuracy** **In order to develop an accurate parts cost for the prototype, all parts MUST be accounted for on the BOM:** 1.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m06-l03-q02",
+      "question": "What is a reasonable learning takeaway from 'Chapter 4: BOM, Purchase Order and Part Cost'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Chapter 4: BOM, Purchase Order and Part Cost.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m06-l03-q03",
+      "question": "When applying concepts from 'Chapter 4: BOM, Purchase Order and Part Cost', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

@@ -69,6 +69,7 @@ const materials = await import(`${OUT}/lib/materials.js`);
 const scoring = await import(`${OUT}/lib/scoring.js`);
 const assessment = await import(`${OUT}/lib/assessment.js`);
 const papers = await import(`${OUT}/lib/papers.js`);
+const courseContent = await import(`${OUT}/lib/course-content.js`);
 console.warn = realWarn;
 
 /**
@@ -663,6 +664,76 @@ await check('signing back in returns the same account, with its records', async 
   // between storage on the server and state in a tab.
   must(bundle.progress.attempts === 2, `attempts was ${bundle.progress.attempts}`);
   must(bundle.history.every((row) => row.source === 'assessment'), 'a stored row came back as something else');
+  return true;
+});
+
+section('dataset courses: catalogue, content and lesson completion');
+
+/*
+ * The other half of the courses feature: the read-only dataset client
+ * (src/lib/course-content.ts) and the completion percentage the course page shows.
+ * The server was started with NEXORA_DATASET_DIR pointing at server/course-fixtures,
+ * so fetchCatalogue and fetchCourse run against a real reader over real files. This
+ * account is signed in again from the section above, so saveCourse can record which
+ * lessons are done — the number the donut divides into the course's real lessons.
+ *
+ * server/smoke-test.sh proves the endpoints; what this adds is that the exact module
+ * the page imports parses those responses and computes the same percentage.
+ */
+
+let datasetDetail = null;
+await check('fetchCatalogue lists the fixture course served from disk', async () => {
+  const cat = await courseContent.fetchCatalogue();
+  must(cat.available === true, 'the catalogue reports no dataset present');
+  must(cat.total >= 1, `catalogue held ${cat.total} courses`);
+  const row = cat.courses.find((course) => course.courseId === 'demo-open-stats');
+  must(row, 'the fixture course is not in the catalogue');
+  must(row.lessons === 2, `the course reported ${row.lessons} lessons`);
+  return true;
+});
+
+await check('fetchCourse returns the module tree, in order, with content flags', async () => {
+  datasetDetail = await courseContent.fetchCourse('demo-open-stats');
+  must(datasetDetail.modules.length === 1, `got ${datasetDetail.modules.length} modules`);
+  must(
+    JSON.stringify(datasetDetail.lessonIds) === '["les-01-sampling","les-02-quality"]',
+    `lessonIds were ${JSON.stringify(datasetDetail.lessonIds)}`,
+  );
+  must(datasetDetail.modules[0].lessons.every((lesson) => lesson.hasContent === true), 'a lesson reported no file on disk');
+  return true;
+});
+
+await check('completionPercent is 0 before any lesson is marked', () => {
+  must(courseContent.completionPercent(datasetDetail.lessonIds, []) === 0, 'an untouched course was not 0%');
+  must(courseContent.completionPercent(datasetDetail.lessonIds, undefined) === 0, 'undefined completed was not 0%');
+  return true;
+});
+
+await check('marking one of two lessons round-trips and measures 50%', async () => {
+  const { course } = await progress.saveCourse({ courseId: 'demo-open-stats', started: true, completedLessons: ['les-01-sampling'] });
+  must(JSON.stringify(course.completedLessons) === '["les-01-sampling"]', `stored ${JSON.stringify(course.completedLessons)}`);
+  must(courseContent.completionPercent(datasetDetail.lessonIds, course.completedLessons) === 50, 'one of two lessons was not 50%');
+  must(courseContent.completedCount(datasetDetail.lessonIds, course.completedLessons) === 1, 'completedCount was not 1');
+  return true;
+});
+
+await check('marking both is 100%, and a stale lesson id cannot exceed it', async () => {
+  const { course } = await progress.saveCourse({ courseId: 'demo-open-stats', completedLessons: ['les-02-quality', 'les-01-sampling', 'les-01-sampling'] });
+  must(JSON.stringify(course.completedLessons) === '["les-01-sampling","les-02-quality"]', `stored ${JSON.stringify(course.completedLessons)}`);
+  must(courseContent.completionPercent(datasetDetail.lessonIds, course.completedLessons) === 100, 'both lessons was not 100%');
+  // The guard that matters: an id left over from a rebuilt course must not count.
+  must(
+    courseContent.completionPercent(datasetDetail.lessonIds, [...course.completedLessons, 'les-99-ghost']) === 100,
+    'a stale id pushed the percentage past 100',
+  );
+  return true;
+});
+
+await check('contentUrl addresses the streaming route for a lesson file', () => {
+  const url = courseContent.contentUrl('demo-open-stats', 'content/lesson-01-sampling.txt');
+  must(url.includes('/api/courses/content'), `url was ${url}`);
+  must(url.includes('id=demo-open-stats'), 'the url does not carry the course id');
+  must(url.includes('file=content'), 'the url does not carry the file path');
   return true;
 });
 

@@ -1,0 +1,197 @@
+{
+  "module_id": "wtcs-nursing-fundamentals-2e-m03",
+  "questions": [
+    {
+      "question_id": "wtcs-nursing-fundamentals-2e-m03-l01-q01",
+      "question": "According to the source lesson '3.1 Diverse Patients Introduction', which statement is most accurate?",
+      "options": [
+        "## Learning Objectives * Reflect upon personal and cultural values, beliefs, biases, and heritage[1] * Embrace diversity, equity, inclusivity, health promotion, and health care for individuals of diverse geographic, cultural, ethnic, racial",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Nursing Fundamentals",
+      "topic": "scope of practice",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-fundamentals-2e-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from '3.1 Diverse Patients Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.1 Diverse Patients Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Nursing Fundamentals",
+      "topic": "scope of practice",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-fundamentals-2e-m03-l01-q03",
+      "question": "When applying concepts from '3.1 Diverse Patients Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Nursing Fundamentals",
+      "topic": "scope of practice",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-fundamentals-2e-m03-l02-q01",
+      "question": "According to the source lesson '3.2 Diverse Patients Basic Concepts', which statement is most accurate?",
+      "options": [
+        "Let's begin the journey of developing cultural competency by exploring basic concepts related to culture.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Nursing Fundamentals",
+      "topic": "scope of practice",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-fundamentals-2e-m03-l02-q02",
+      "question": "What is a reasonable learning takeaway from '3.2 Diverse Patients Basic Concepts'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.2 Diverse Patients Basic Concepts.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Nursing Fundamentals",
+      "topic": "scope of practice",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-fundamentals-2e-m03-l02-q03",
+      "question": "When applying concepts from '3.2 Diverse Patients Basic Concepts', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Nursing Fundamentals",
+      "topic": "scope of practice",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-fundamentals-2e-m03-l03-q01",
+      "question": "According to the source lesson '3.3 Patient's Bill of Rights', which statement is most accurate?",
+      "options": [
+        "The Patient's Bill of Rights is an evolving document related to providing culturally competent care.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Nursing Fundamentals",
+      "topic": "scope of practice",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-fundamentals-2e-m03-l03-q02",
+      "question": "What is a reasonable learning takeaway from '3.3 Patient's Bill of Rights'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.3 Patient's Bill of Rights.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Nursing Fundamentals",
+      "topic": "scope of practice",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-fundamentals-2e-m03-l03-q03",
+      "question": "When applying concepts from '3.3 Patient's Bill of Rights', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Nursing Fundamentals",
+      "topic": "scope of practice",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-fundamentals-2e-m03-l04-q01",
+      "question": "According to the source lesson '3.4 Cultural Competence', which statement is most accurate?",
+      "options": [
+        "The freedom to express one’s cultural beliefs is a fundamental right of all people.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Nursing Fundamentals",
+      "topic": "scope of practice",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-fundamentals-2e-m03-l04-q02",
+      "question": "What is a reasonable learning takeaway from '3.4 Cultural Competence'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.4 Cultural Competence.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Nursing Fundamentals",
+      "topic": "scope of practice",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-fundamentals-2e-m03-l04-q03",
+      "question": "When applying concepts from '3.4 Cultural Competence', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Nursing Fundamentals",
+      "topic": "scope of practice",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

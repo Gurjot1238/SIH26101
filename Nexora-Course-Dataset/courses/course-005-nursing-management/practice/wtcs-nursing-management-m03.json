@@ -1,0 +1,197 @@
+{
+  "module_id": "wtcs-nursing-management-m03",
+  "questions": [
+    {
+      "question_id": "wtcs-nursing-management-m03-l01-q01",
+      "question": "According to the source lesson '3.1 Delegation &amp; Supervision Introduction', which statement is most accurate?",
+      "options": [
+        "Learning Objectives * Explain principles of delegation * Evaluate the criteria used for delegation * Apply effective communication techniques when delegating care * Determine specific barriers to delegation * Evaluate team members' performa",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from '3.1 Delegation &amp; Supervision Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.1 Delegation &amp; Supervision Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m03-l01-q03",
+      "question": "When applying concepts from '3.1 Delegation &amp; Supervision Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m03-l02-q01",
+      "question": "According to the source lesson '3.2 Communication', which statement is most accurate?",
+      "options": [
+        "Effective communication is a vital component of proper assignment, delegation, and supervision.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m03-l02-q02",
+      "question": "What is a reasonable learning takeaway from '3.2 Communication'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.2 Communication.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m03-l02-q03",
+      "question": "When applying concepts from '3.2 Communication', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m03-l03-q01",
+      "question": "According to the source lesson '3.3 Assignment', which statement is most accurate?",
+      "options": [
+        "Nursing team members working in inpatient or long-term care settings receive client assignments at the start of their shift.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m03-l03-q02",
+      "question": "What is a reasonable learning takeaway from '3.3 Assignment'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.3 Assignment.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m03-l03-q03",
+      "question": "When applying concepts from '3.3 Assignment', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m03-l04-q01",
+      "question": "According to the source lesson '3.4 Delegation', which statement is most accurate?",
+      "options": [
+        "There has been significant national debate over the difference between assignment and delegation over the past few decades.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m03-l04-q02",
+      "question": "What is a reasonable learning takeaway from '3.4 Delegation'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.4 Delegation.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m03-l04-q03",
+      "question": "When applying concepts from '3.4 Delegation', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

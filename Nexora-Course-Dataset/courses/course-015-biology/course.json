@@ -1,0 +1,748 @@
+{
+  "course_id": "openstax-biology",
+  "title": "Biology",
+  "provider": "OpenStax / Rice University",
+  "category": "Technology",
+  "subcategory": "Biology",
+  "level": "Beginner",
+  "description": "OpenStax Biology (CC BY 4.0). Section HTML was downloaded from the official OpenStax webview.",
+  "competencies": [
+    "Biology",
+    "Bioinformatics",
+    "Cell Biology"
+  ],
+  "topics": [
+    "cells",
+    "genetics",
+    "evolution",
+    "physiology"
+  ],
+  "source": {
+    "name": "OpenStax",
+    "official_url": "https://openstax.org/books/biology/pages/1-introduction",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 9.4,
+    "estimated_minutes": 562
+  },
+  "totals": {
+    "modules": 5,
+    "lessons": 32,
+    "practice_questions": 96
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "openstax-biology-m01",
+      "title": "Chapter 1: 1.1 The Science of Biology",
+      "competencies": [
+        "Biology",
+        "Bioinformatics",
+        "Cell Biology"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-biology-m01-l01",
+          "title": "1.1 The Science of Biology",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/openstax-biology-m01-l01.json",
+          "estimated_minutes": 26,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m01-l02",
+          "title": "1.2 Themes and Concepts of Biology",
+          "type": "text",
+          "content_file": "content/module-01/lesson-02.md",
+          "practice_file": "practice/openstax-biology-m01-l02.json",
+          "estimated_minutes": 19,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m01-l03",
+          "title": "Chapter Outline",
+          "type": "text",
+          "content_file": "content/module-01/lesson-03.md",
+          "practice_file": "practice/openstax-biology-m01-l03.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m01-l04",
+          "title": "Chapter Summary",
+          "type": "text",
+          "content_file": "content/module-01/lesson-04.md",
+          "practice_file": "practice/openstax-biology-m01-l04.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m01-l05",
+          "title": "Visual Connection Questions",
+          "type": "text",
+          "content_file": "content/module-01/lesson-05.md",
+          "practice_file": "practice/openstax-biology-m01-l05.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openstax-biology-m02",
+      "title": "Chapter 2: Chapter Outline",
+      "competencies": [
+        "Biology",
+        "Bioinformatics",
+        "Cell Biology"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-biology-m02-l01",
+          "title": "Chapter Outline",
+          "type": "text",
+          "content_file": "content/module-02/lesson-01.md",
+          "practice_file": "practice/openstax-biology-m02-l01.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m02-l02",
+          "title": "2.1 Atoms, Isotopes, Ions, and Molecules: The Building Blocks",
+          "type": "text",
+          "content_file": "content/module-02/lesson-02.md",
+          "practice_file": "practice/openstax-biology-m02-l02.json",
+          "estimated_minutes": 45,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m02-l03",
+          "title": "2.2 Water",
+          "type": "text",
+          "content_file": "content/module-02/lesson-03.md",
+          "practice_file": "practice/openstax-biology-m02-l03.json",
+          "estimated_minutes": 22,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m02-l04",
+          "title": "2.3 Carbon",
+          "type": "text",
+          "content_file": "content/module-02/lesson-04.md",
+          "practice_file": "practice/openstax-biology-m02-l04.json",
+          "estimated_minutes": 16,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m02-l05",
+          "title": "Chapter Summary",
+          "type": "text",
+          "content_file": "content/module-02/lesson-05.md",
+          "practice_file": "practice/openstax-biology-m02-l05.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m02-l06",
+          "title": "Visual Connection Questions",
+          "type": "text",
+          "content_file": "content/module-02/lesson-06.md",
+          "practice_file": "practice/openstax-biology-m02-l06.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openstax-biology-m03",
+      "title": "Chapter 3: Chapter Outline",
+      "competencies": [
+        "Biology",
+        "Bioinformatics",
+        "Cell Biology"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-biology-m03-l01",
+          "title": "Chapter Outline",
+          "type": "text",
+          "content_file": "content/module-03/lesson-01.md",
+          "practice_file": "practice/openstax-biology-m03-l01.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m03-l02",
+          "title": "3.1 Synthesis of Biological Macromolecules",
+          "type": "text",
+          "content_file": "content/module-03/lesson-02.md",
+          "practice_file": "practice/openstax-biology-m03-l02.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m03-l03",
+          "title": "3.2 Carbohydrates",
+          "type": "text",
+          "content_file": "content/module-03/lesson-03.md",
+          "practice_file": "practice/openstax-biology-m03-l03.json",
+          "estimated_minutes": 16,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m03-l04",
+          "title": "3.3 Lipids",
+          "type": "text",
+          "content_file": "content/module-03/lesson-04.md",
+          "practice_file": "practice/openstax-biology-m03-l04.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m03-l05",
+          "title": "3.4 Proteins",
+          "type": "text",
+          "content_file": "content/module-03/lesson-05.md",
+          "practice_file": "practice/openstax-biology-m03-l05.json",
+          "estimated_minutes": 21,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m03-l06",
+          "title": "3.5 Nucleic Acids",
+          "type": "text",
+          "content_file": "content/module-03/lesson-06.md",
+          "practice_file": "practice/openstax-biology-m03-l06.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m03-l07",
+          "title": "Chapter Summary",
+          "type": "text",
+          "content_file": "content/module-03/lesson-07.md",
+          "practice_file": "practice/openstax-biology-m03-l07.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Carbohydrates are a group of macromolecules that are a vital energy source for the cell and provide"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openstax-biology-m04",
+      "title": "Chapter 4: Chapter Outline",
+      "competencies": [
+        "Biology",
+        "Bioinformatics",
+        "Cell Biology"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-biology-m04-l01",
+          "title": "Chapter Outline",
+          "type": "text",
+          "content_file": "content/module-04/lesson-01.md",
+          "practice_file": "practice/openstax-biology-m04-l01.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m04-l02",
+          "title": "4.1 Studying Cells",
+          "type": "text",
+          "content_file": "content/module-04/lesson-02.md",
+          "practice_file": "practice/openstax-biology-m04-l02.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m04-l03",
+          "title": "4.2 Prokaryotic Cells",
+          "type": "text",
+          "content_file": "content/module-04/lesson-03.md",
+          "practice_file": "practice/openstax-biology-m04-l03.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m04-l04",
+          "title": "4.3 Eukaryotic Cells",
+          "type": "text",
+          "content_file": "content/module-04/lesson-04.md",
+          "practice_file": "practice/openstax-biology-m04-l04.json",
+          "estimated_minutes": 23,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m04-l05",
+          "title": "4.4 The Endomembrane System and Proteins",
+          "type": "text",
+          "content_file": "content/module-04/lesson-05.md",
+          "practice_file": "practice/openstax-biology-m04-l05.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m04-l06",
+          "title": "4.5 The Cytoskeleton",
+          "type": "text",
+          "content_file": "content/module-04/lesson-06.md",
+          "practice_file": "practice/openstax-biology-m04-l06.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m04-l07",
+          "title": "4.6 Connections between Cells and Cellular Activities",
+          "type": "text",
+          "content_file": "content/module-04/lesson-07.md",
+          "practice_file": "practice/openstax-biology-m04-l07.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m04-l08",
+          "title": "Chapter Summary",
+          "type": "text",
+          "content_file": "content/module-04/lesson-08.md",
+          "practice_file": "practice/openstax-biology-m04-l08.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openstax-biology-m05",
+      "title": "Chapter 5: Chapter Outline",
+      "competencies": [
+        "Biology",
+        "Bioinformatics",
+        "Cell Biology"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openstax-biology-m05-l01",
+          "title": "Chapter Outline",
+          "type": "text",
+          "content_file": "content/module-05/lesson-01.md",
+          "practice_file": "practice/openstax-biology-m05-l01.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m05-l02",
+          "title": "5.1 Components and Structure",
+          "type": "text",
+          "content_file": "content/module-05/lesson-02.md",
+          "practice_file": "practice/openstax-biology-m05-l02.json",
+          "estimated_minutes": 19,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m05-l03",
+          "title": "5.2 Passive Transport",
+          "type": "text",
+          "content_file": "content/module-05/lesson-03.md",
+          "practice_file": "practice/openstax-biology-m05-l03.json",
+          "estimated_minutes": 25,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m05-l04",
+          "title": "5.3 Active Transport",
+          "type": "text",
+          "content_file": "content/module-05/lesson-04.md",
+          "practice_file": "practice/openstax-biology-m05-l04.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m05-l05",
+          "title": "5.4 Bulk Transport",
+          "type": "text",
+          "content_file": "content/module-05/lesson-05.md",
+          "practice_file": "practice/openstax-biology-m05-l05.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "By the end of this section, you will be able to:"
+          ],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openstax-biology-m05-l06",
+          "title": "Chapter Summary",
+          "type": "text",
+          "content_file": "content/module-05/lesson-06.md",
+          "practice_file": "practice/openstax-biology-m05-l06.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Biology",
+            "Bioinformatics"
+          ],
+          "topics": [
+            "cells",
+            "genetics",
+            "evolution"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

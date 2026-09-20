@@ -1,0 +1,15 @@
+{
+  "course_id": "isu-mechanical-engineering-design",
+  "provider": "Iowa State University",
+  "source_url": "https://iastate.pressbooks.pub/me270baughman/",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "date_collected": "2026-09-20",
+  "reuse_permissions": "CC BY-SA 4.0 permits copy and redistribution with attribution.",
+  "changes_made": [
+    "Downloaded Pressbooks chapter HTML and converted to Markdown lessons",
+    "Grouped original book parts as modules",
+    "Added Nexora-generated practice questions grounded in chapter text",
+    "Omitted glossary/preface/index pages"
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "module_id": "openstax-anatomy-physiology-m03",
+  "questions": [
+    {
+      "question_id": "openstax-anatomy-physiology-m03-l01-q01",
+      "question": "According to the source lesson 'Chapter Objectives', which statement is most accurate?",
+      "options": [
+        "![In this image, a fluorescently stained cell is shown undergoing mitosis.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "cells",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-anatomy-physiology-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Chapter Objectives'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Chapter Objectives.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-anatomy-physiology-m03-l01-q03",
+      "question": "When applying concepts from 'Chapter Objectives', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-anatomy-physiology-m03-l02-q01",
+      "question": "According to the source lesson '3.1 The Cell Membrane', which statement is most accurate?",
+      "options": [
+        "## 3.1 The Cell Membrane ### Learning Objectives By the end of this section, you will be able to: * Describe the molecular components that make up the cell membrane * Explain the major features and properties of the cell membrane * Differen",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "cells",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-anatomy-physiology-m03-l02-q02",
+      "question": "What is a reasonable learning takeaway from '3.1 The Cell Membrane'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.1 The Cell Membrane.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-anatomy-physiology-m03-l02-q03",
+      "question": "When applying concepts from '3.1 The Cell Membrane', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-anatomy-physiology-m03-l03-q01",
+      "question": "According to the source lesson '3.2 The Cytoplasm and Cellular Organelles', which statement is most accurate?",
+      "options": [
+        "## 3.2 The Cytoplasm and Cellular Organelles ### Learning Objectives By the end of this section, you will be able to: * Describe the structure and function of the cellular organelles associated with the endomembrane system, including the en",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "cells",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-anatomy-physiology-m03-l03-q02",
+      "question": "What is a reasonable learning takeaway from '3.2 The Cytoplasm and Cellular Organelles'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.2 The Cytoplasm and Cellular Organelles.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-anatomy-physiology-m03-l03-q03",
+      "question": "When applying concepts from '3.2 The Cytoplasm and Cellular Organelles', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-anatomy-physiology-m03-l04-q01",
+      "question": "According to the source lesson '3.3 The Nucleus and DNA Replication', which statement is most accurate?",
+      "options": [
+        "## 3.3 The Nucleus and DNA Replication ### Learning Objectives By the end of this section, you will be able to: * Describe the structure and features of the nuclear membrane * List the contents of the nucleus * Explain the organization of t",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "cells",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-anatomy-physiology-m03-l04-q02",
+      "question": "What is a reasonable learning takeaway from '3.3 The Nucleus and DNA Replication'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.3 The Nucleus and DNA Replication.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-anatomy-physiology-m03-l04-q03",
+      "question": "When applying concepts from '3.3 The Nucleus and DNA Replication', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

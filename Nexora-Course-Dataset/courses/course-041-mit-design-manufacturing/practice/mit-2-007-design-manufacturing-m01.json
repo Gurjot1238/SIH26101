@@ -1,0 +1,197 @@
+{
+  "module_id": "mit-2-007-design-manufacturing-m01",
+  "questions": [
+    {
+      "question_id": "mit-2-007-design-manufacturing-m01-l01-q01",
+      "question": "According to the source lesson 'd28a5f0aa61c74a01e83861fc2d618ea MIT2 007s09 lec01 EVT', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource d28a5f0aa61c74a01e83861fc2d618ea_MIT2_007s09_lec01_EVT.pdf from 2.007 Design and Manufacturing I.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "design process",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-007-design-manufacturing-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'd28a5f0aa61c74a01e83861fc2d618ea MIT2 007s09 lec01 EVT'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in d28a5f0aa61c74a01e83861fc2d618ea MIT2 007s09 lec01 EVT.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "design process",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-007-design-manufacturing-m01-l01-q03",
+      "question": "When applying concepts from 'd28a5f0aa61c74a01e83861fc2d618ea MIT2 007s09 lec01 EVT', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "design process",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-007-design-manufacturing-m01-l02-q01",
+      "question": "According to the source lesson '95532fc1350920a78ff28af515ad4d1d MIT2 007s09 lec01 FSAE', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 95532fc1350920a78ff28af515ad4d1d_MIT2_007s09_lec01_FSAE.pdf from 2.007 Design and Manufacturing I.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "design process",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-007-design-manufacturing-m01-l02-q02",
+      "question": "What is a reasonable learning takeaway from '95532fc1350920a78ff28af515ad4d1d MIT2 007s09 lec01 FSAE'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 95532fc1350920a78ff28af515ad4d1d MIT2 007s09 lec01 FSAE.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "design process",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-007-design-manufacturing-m01-l02-q03",
+      "question": "When applying concepts from '95532fc1350920a78ff28af515ad4d1d MIT2 007s09 lec01 FSAE', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "design process",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-007-design-manufacturing-m01-l03-q01",
+      "question": "According to the source lesson '29b95c6d8570f9aeb140c151747c96e3 MIT2 007s09 lec01', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 29b95c6d8570f9aeb140c151747c96e3_MIT2_007s09_lec01.pdf from 2.007 Design and Manufacturing I.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "design process",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-007-design-manufacturing-m01-l03-q02",
+      "question": "What is a reasonable learning takeaway from '29b95c6d8570f9aeb140c151747c96e3 MIT2 007s09 lec01'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 29b95c6d8570f9aeb140c151747c96e3 MIT2 007s09 lec01.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "design process",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-007-design-manufacturing-m01-l03-q03",
+      "question": "When applying concepts from '29b95c6d8570f9aeb140c151747c96e3 MIT2 007s09 lec01', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "design process",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-007-design-manufacturing-m01-l04-q01",
+      "question": "According to the source lesson 'c6d6a35a25a46a42735735e67b7d4002 MIT2 007s09 lec02', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource c6d6a35a25a46a42735735e67b7d4002_MIT2_007s09_lec02.pdf from 2.007 Design and Manufacturing I.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "design process",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-007-design-manufacturing-m01-l04-q02",
+      "question": "What is a reasonable learning takeaway from 'c6d6a35a25a46a42735735e67b7d4002 MIT2 007s09 lec02'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in c6d6a35a25a46a42735735e67b7d4002 MIT2 007s09 lec02.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "design process",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-007-design-manufacturing-m01-l04-q03",
+      "question": "When applying concepts from 'c6d6a35a25a46a42735735e67b7d4002 MIT2 007s09 lec02', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "design process",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

@@ -1,0 +1,729 @@
+{
+  "course_id": "wtcs-nursing-mental-health",
+  "title": "Nursing Mental Health and Community Concepts 2e",
+  "provider": "Wisconsin Technical College System / Open RN",
+  "category": "Medical / Healthcare",
+  "subcategory": "Mental Health Nursing",
+  "level": "Intermediate",
+  "description": "Open textbook / course 'Nursing Mental Health and Community Concepts 2e' from Wisconsin Technical College System / Open RN. Chapters were downloaded from the openly licensed Pressbooks edition.",
+  "competencies": [
+    "Psychiatric-Mental Health Nursing",
+    "Public Health",
+    "Patient Safety"
+  ],
+  "topics": [
+    "mental health",
+    "community nursing",
+    "therapeutic communication"
+  ],
+  "source": {
+    "name": "Wisconsin Technical College System / Open RN",
+    "official_url": "https://wtcs.pressbooks.pub/nursingmhcc/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 7.8,
+    "estimated_minutes": 465
+  },
+  "totals": {
+    "modules": 5,
+    "lessons": 28,
+    "practice_questions": 84
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "wtcs-nursing-mental-health-m01",
+      "title": "Chapter 1 Foundational Mental Health Concepts",
+      "competencies": [
+        "Psychiatric-Mental Health Nursing",
+        "Public Health",
+        "Patient Safety"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m01-l01",
+          "title": "1.1 Introduction",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m01-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Identify safety/protective interventions for the client and others",
+            "Identify safety/protective concerns for the nurse",
+            "Explain various mental health treatment approaches",
+            "Support diversity across the life span in client-centered care"
+          ],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m01-l02",
+          "title": "1.2 Mental Health and Mental Illness",
+          "type": "text",
+          "content_file": "content/module-01/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m01-l02.json",
+          "estimated_minutes": 36,
+          "objectives": [],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m01-l03",
+          "title": "1.3 Introduction to Trauma-Informed Care",
+          "type": "text",
+          "content_file": "content/module-01/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m01-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m01-l04",
+          "title": "1.4 Stigma",
+          "type": "text",
+          "content_file": "content/module-01/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m01-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "However, stigma and negative attitudes toward mental illness can still be found among nurses. A review of nursing literature by Ross and Golder explored negative attitudes and discrimination towards"
+          ],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m01-l05",
+          "title": "1.5 Boundaries",
+          "type": "text",
+          "content_file": "content/module-01/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m01-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Sexual:** Sexual boundaries refer to one's comfort level with intimacy and attention of a sexual nature. This can include sexual comments and touch, not just sexual acts",
+            "Intellectual:** Intellectual boundaries refer to one’s thoughts and beliefs. Intellectual boundaries are not respected when someone dismisses another person’s ideas and opinions",
+            "Emotional:** Emotional boundaries refer to a person’s feelings. For example, an individual might not feel comfortable sharing feelings with another person and prefer to share information gr"
+          ],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m01-l06",
+          "title": "1.6 Establishing Safety",
+          "type": "text",
+          "content_file": "content/module-01/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m01-l06.json",
+          "estimated_minutes": 21,
+          "objectives": [
+            "Previous suicide attempt(s)",
+            "History of depression or other mental illness",
+            "Serious illness or chronic pain",
+            "Criminal/legal problems",
+            "Job/financial problems or loss",
+            "Impulsive or aggressive tendencies"
+          ],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m01-l07",
+          "title": "1.7 Psychiatric-Mental Health Nursing",
+          "type": "text",
+          "content_file": "content/module-01/lesson-07.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m01-l07.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Partner with individuals to achieve their recovery goals",
+            "Provide health promotion and maintenance",
+            "Conduct intake screening, evaluation, and triage",
+            "Provide case management",
+            "Teach self-care activities",
+            "Administer and monitor mental functioning and behavior treatment regimens"
+          ],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-mental-health-m02",
+      "title": "Chapter 2 Therapeutic Communication and the Nurse-Client Relationship",
+      "competencies": [
+        "Psychiatric-Mental Health Nursing",
+        "Public Health",
+        "Patient Safety"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m02-l01",
+          "title": "2.2 Basic Concepts of Communication",
+          "type": "text",
+          "content_file": "content/module-02/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m02-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Assesses one’s own communication skills and effectiveness",
+            "Demonstrates cultural humility, professionalism, and respect when communicating",
+            "Assesses communication ability, health literacy, resources, and preferences of health care consumers to inform the interprofessional team and others",
+            "Uses language translation resources to ensure effective communication",
+            "Incorporates appropriate alternative strategies to communicate effectively with health care consumers who have visual, speech, language, or communication difficulties",
+            "Uses communication styles and methods that demonstrate caring, respect, active listening, authenticity, and trust"
+          ],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m02-l02",
+          "title": "2.3 Therapeutic Communication",
+          "type": "text",
+          "content_file": "content/module-02/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m02-l02.json",
+          "estimated_minutes": 21,
+          "objectives": [],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m02-l03",
+          "title": "2.4 Motivational Interviewing",
+          "type": "text",
+          "content_file": "content/module-02/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m02-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Express empathy.** Use reflective listening to convey acceptance and a nonjudgmental attitude. Rephrase client comments to convey active listening and let clients know they are being heard",
+            "Adjust to resistance.** Adjust to a client’s resistance and do not argue. The client may demonstrate resistance by a"
+          ],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m02-l04",
+          "title": "2.5 Teletherapy and Telehealth",
+          "type": "text",
+          "content_file": "content/module-02/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m02-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m02-l05",
+          "title": "2.11 Learning Activity: Virtual Scenario",
+          "type": "text",
+          "content_file": "content/module-02/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m02-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Virtual Scenario **Instructions:** Read the information below before beginning the activity. Then select the assigned client and complete all three virtual telehealth visits in order"
+          ],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-mental-health-m03",
+      "title": "Chapter 3 Stress, Coping, and Crisis Intervention",
+      "competencies": [
+        "Psychiatric-Mental Health Nursing",
+        "Public Health",
+        "Patient Safety"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m03-l01",
+          "title": "3.2 Stress",
+          "type": "text",
+          "content_file": "content/module-03/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m03-l01.json",
+          "estimated_minutes": 26,
+          "objectives": [
+            "The respiratory, cardiovascular, and musculoskeletal systems activate to increase breathing, heart rate, and blood pressure, ensuring oxygenated blood reaches the muscles"
+          ],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m03-l02",
+          "title": "3.3 Coping",
+          "type": "text",
+          "content_file": "content/module-03/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m03-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m03-l03",
+          "title": "3.4 Defense Mechanisms",
+          "type": "text",
+          "content_file": "content/module-03/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m03-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m03-l04",
+          "title": "3.5 Crisis and Crisis Intervention",
+          "type": "text",
+          "content_file": "content/module-03/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m03-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m03-l05",
+          "title": "3.6 Applying the Nursing Process to Stress and Coping",
+          "type": "text",
+          "content_file": "content/module-03/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m03-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Recognize nonverbal cues of physical or psychological stress",
+            "Assess for environmental stressors affecting client care",
+            "Assess for signs of abuse or neglect",
+            "Assess client's ability to cope with life changes",
+            "Assess family dynamics",
+            "Assess the potential for violence"
+          ],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-mental-health-m04",
+      "title": "Chapter 4 Application of the Nursing Process to Mental Health Care",
+      "competencies": [
+        "Psychiatric-Mental Health Nursing",
+        "Public Health",
+        "Patient Safety"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m04-l01",
+          "title": "4.1 Introduction",
+          "type": "text",
+          "content_file": "content/module-04/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m04-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Apply the nursing process to mental health care",
+            "Apply the subcategories of the _Implementation_ standard of care to mental health care",
+            "Explain various mental health treatment approaches",
+            "Promote a therapeutic environment",
+            "Compare NCLEX Next Generation terminology to the nursing process"
+          ],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m04-l02",
+          "title": "4.2 Applying the Nursing Process",
+          "type": "text",
+          "content_file": "content/module-04/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m04-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m04-l03",
+          "title": "4.3 Assessment",
+          "type": "text",
+          "content_file": "content/module-04/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m04-l03.json",
+          "estimated_minutes": 74,
+          "objectives": [
+            "Creates the safest environment possible for conducting assessments",
+            "Utilizes a health and wellness model of assessment that incorporates integrative approaches to data collection and honors the whole person",
+            "Recognizes the health care consumer or designated person as the decision-maker regarding their own health",
+            "Explores the health care consumer's culture, values, preferences, expressed and unexpressed needs, and knowledge of the heath care situation",
+            "Assesses the impact of family dynamics on the health care consumer's health and wellne"
+          ],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m04-l04",
+          "title": "4.4 Diagnosis",
+          "type": "text",
+          "content_file": "content/module-04/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m04-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Uses assessment data, standardized classification systems, technology, and clinical decision support tools to articulate actual or potential diagnoses, problems, and issues",
+            "Identifies the health care consumer's strengths and abilities, including, but not limited to, support systems, health literacy, and engagement in self-care",
+            "Verifies the diagnoses, problems, and issues with the health care consumer and interprofessional colleagues",
+            "Prioritizes diagnoses, problems, and issues based on mutually established goals to meet the needs of the health care consumer across the health-illness continuum and the care continuum",
+            "Documents diagnoses, problems, strengths, and issues in a manner that facilitates the development of the expected outcomes and collaborative plan",
+            "Review how to analyze assessment data, make hypotheses, and create nursing diagnoses statements in the \"["
+          ],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m04-l05",
+          "title": "4.5 Outcome Identification",
+          "type": "text",
+          "content_file": "content/module-04/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m04-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Engages with the health care consumer, interprofessional team, and others to identify expected outcomes",
+            "Collaborates with the health care consumer to define expected outcomes integrating the health care consumer’s culture, values, and ethical considerations",
+            "Formulates expected outcomes derived from assessments and diagnoses",
+            "Integrates evidence and best practices to identify expected outcomes",
+            "Develops expected outcomes that facilitate coordination of care",
+            "Identifies a time frame for the attainment of expected outcomes"
+          ],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m04-l06",
+          "title": "4.6 Planning",
+          "type": "text",
+          "content_file": "content/module-04/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m04-l06.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Develops an individualized, holistic, evidence-based plan in partnership with the health care consumer, family, significant others, and interprofessional team",
+            "Designs innovative nursing practices that can be incorporated into the plan",
+            "Prioritizes elements of the plan based on the assessment of the health care consumer's level of safety needs to include risks, benefits, and alternatives",
+            "Establishes the plan priorities with the health care consumer, family, significant others, and interprofessional team",
+            "Advocates for compassionate, responsible, and appropriate use of interventions to minimize unwarranted or unwanted treatment, health care consumer suffering, or both"
+          ],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m04-l07",
+          "title": "4.7 Implementation",
+          "type": "text",
+          "content_file": "content/module-04/lesson-07.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m04-l07.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "Demonstrates caring behaviors to develop therapeutic relationships",
+            "Provides care that focuses on the health care consumer",
+            "Advocates for the needs of diverse populations across the life span",
+            "Partners with the health care consumer to implement the plan in a safe, effective, efficient, timely, and equitable manner",
+            "Engages interprofessional team partners with implementation of the plan through collaboration and communication across the continuum of care",
+            "Uses evidence-based interventions and strategies to achieve mutually identified goals and outcomes specific to the problem or needs"
+          ],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m04-l08",
+          "title": "4.8 Evaluation",
+          "type": "text",
+          "content_file": "content/module-04/lesson-08.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m04-l08.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Uses applicable standards and defined criteria (e.g., Quality and Safety Education for Nurses [QSEN], Quadruple Aim, Institute for Healthcare Improvement [IHI])",
+            "Conducts a systematic, ongoing, and criterion-based evaluation of the goals and outcomes in relation to the structure, processes, and timelines prescribed in the plan",
+            "Collaborates with the health care consumer, stakeholders, interprofessional team, and others involved in the care or situation in the evaluation process",
+            "Documents the results of the evaluation",
+            "Reports evaluation data in a timely fashion",
+            "Shares evaluation data and conclusions with the health care consumer"
+          ],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m04-l09",
+          "title": "4.9 NCLEX Next Generation",
+          "type": "text",
+          "content_file": "content/module-04/lesson-09.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m04-l09.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Recognize Cues | What data is clinically significant? Determining what client findings are significant, most important, and of"
+          ],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m04-l10",
+          "title": "4.10 Spotlight Application",
+          "type": "text",
+          "content_file": "content/module-04/lesson-10.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m04-l10.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-mental-health-m05",
+      "title": "Chapter 5 Legal and Ethical Considerations in Mental Health Care",
+      "competencies": [
+        "Psychiatric-Mental Health Nursing",
+        "Public Health",
+        "Patient Safety"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-mental-health-m05-l01",
+          "title": "5.1 Introduction",
+          "type": "text",
+          "content_file": "content/module-05/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-mental-health-m05-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Identify safety/protective interventions for the client and others",
+            "Identify safety/protective concerns for the nurse",
+            "Explain the nurse role as a collaborative advocate for the health needs of the community",
+            "Support diversity across the life span in client-centered care",
+            "Explore the nurse’s role and legal and ethical responsibilities when providing care to clients with mental health disorders"
+          ],
+          "competencies": [
+            "Psychiatric-Mental Health Nursing",
+            "Public Health"
+          ],
+          "topics": [
+            "mental health",
+            "community nursing",
+            "therapeutic communication"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

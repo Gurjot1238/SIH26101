@@ -1,0 +1,732 @@
+{
+  "course_id": "wtcs-nursing-skills-2e",
+  "title": "Nursing Skills 2e",
+  "provider": "Wisconsin Technical College System / Open RN",
+  "category": "Medical / Healthcare",
+  "subcategory": "Clinical Skills",
+  "level": "Beginner",
+  "description": "Open textbook / course 'Nursing Skills 2e' from Wisconsin Technical College System / Open RN. Chapters were downloaded from the openly licensed Pressbooks edition.",
+  "competencies": [
+    "Clinical Nursing Skills",
+    "Patient Safety",
+    "Healthcare Informatics"
+  ],
+  "topics": [
+    "vital signs",
+    "infection control",
+    "medication administration"
+  ],
+  "source": {
+    "name": "Wisconsin Technical College System / Open RN",
+    "official_url": "https://wtcs.pressbooks.pub/nursingskills/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 6.9,
+    "estimated_minutes": 412
+  },
+  "totals": {
+    "modules": 4,
+    "lessons": 28,
+    "practice_questions": 84
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "wtcs-nursing-skills-2e-m01",
+      "title": "Chapter 1 General Survey",
+      "competencies": [
+        "Clinical Nursing Skills",
+        "Patient Safety",
+        "Healthcare Informatics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m01-l01",
+          "title": "1.1 General Survey Introduction",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m01-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Perform a general survey assessment, including vital signs, ability to communicate, appropriateness of behaviors and responses, general mobility, and basic nutritional and fluid status",
+            "Modify assessment techniques to reflect variations across the life span, cultural values and beliefs, and gender expression",
+            "Document actions and observations",
+            "Recognize and report significant deviations from norms"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m01-l02",
+          "title": "1.2 Initiating Patient Interaction",
+          "type": "text",
+          "content_file": "content/module-01/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m01-l02.json",
+          "estimated_minutes": 19,
+          "objectives": [
+            "Key points from the CDC about hand hygiene include the following[3]:",
+            "Be sure to wash with soap and water if your hands are visibly soiled or the patient h"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m01-l03",
+          "title": "1.3 Vital Signs",
+          "type": "text",
+          "content_file": "content/module-01/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m01-l03.json",
+          "estimated_minutes": 32,
+          "objectives": [],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m01-l04",
+          "title": "1.4 Basic Concepts",
+          "type": "text",
+          "content_file": "content/module-01/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m01-l04.json",
+          "estimated_minutes": 15,
+          "objectives": [],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m01-l05",
+          "title": "1.5 Expected Versus Unexpected Findings",
+          "type": "text",
+          "content_file": "content/module-01/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m01-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Table 1.5 compares expected and unexpected findings when performing a general survey assessment. These findings are included in documentation regarding the general survey assessment",
+            "Table 1.5 Expected Versus Unexpected Findings on General Survey Assessment",
+            "Assessment** | **Expected Findings** | **Unexpected Findings (notify provider if a new finding*)",
+            "Signs of distress | No signs of distress | Unresponsive, difficulty breathing, confused, moaning, or grimacing",
+            "Orientation | Alert and oriented to person, place, and time | Unable to provide name, location, or day",
+            "Hygiene | Well groomed. Clothing is appropriate for weather | Unkempt appearance or inappropriate clothing according to the weather"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m01-l06",
+          "title": "1.6 Sample Documentation",
+          "type": "text",
+          "content_file": "content/module-01/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m01-l06.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m01-l07",
+          "title": "1.7 Checklist for General Survey",
+          "type": "text",
+          "content_file": "content/module-01/lesson-07.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m01-l07.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Use this checklist to perform a \"General Survey.\" Checklists for hand washing, using hand sanitizer, and obtaining vital signs are included in Appendix A",
+            "Disclaimer: Always review and follow agency policy regarding this specific skill",
+            "Compare name/DOB to MAR",
+            "Ask staff to verify patient (in settings where wristbands are not worn)",
+            "Compare picture on MAR to patient"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m01-l08",
+          "title": "1.8 Learning Activities",
+          "type": "text",
+          "content_file": "content/module-01/lesson-08.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m01-l08.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Test your clinical judgment with an NCLEX Next Generation-style question: [Chapter 1, Assignment 1.](<https://adapt.libretexts.org/students/assignments/26123/init-formative>)",
+            "Test your clinical judgment with an NCLEX Next Generation-style question: [Chapter 1, Assignment 2.](<https://adapt.libretexts.org/students/assignments/26170/in"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-skills-2e-m02",
+      "title": "Chapter 2 Health History",
+      "competencies": [
+        "Clinical Nursing Skills",
+        "Patient Safety",
+        "Healthcare Informatics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m02-l01",
+          "title": "2.1 Health History Introduction",
+          "type": "text",
+          "content_file": "content/module-02/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m02-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Establish a therapeutic nurse-patient relationship",
+            "Use effective verbal and nonverbal communication techniques",
+            "Collect health history data",
+            "Modify assessment techniques to reflect variations across the life span and cultural variations",
+            "Document actions and observations",
+            "Recognize and report significant deviations from norms"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m02-l02",
+          "title": "2.2 Health History Basic Concepts",
+          "type": "text",
+          "content_file": "content/module-02/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m02-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m02-l03",
+          "title": "2.3 Components of a Health History",
+          "type": "text",
+          "content_file": "content/module-02/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m02-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "A comprehensive health history investigates several areas:",
+            "Demographic and biological data",
+            "Reason for seeking health care",
+            "Current and past medical history",
+            "Family health history",
+            "Functional health and activities of daily living"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m02-l04",
+          "title": "2.4 Demographic and Biological Data",
+          "type": "text",
+          "content_file": "content/module-02/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m02-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Table 2.4a Demographic and Biological Data",
+            "Data** | **Focused Interview Questions",
+            "Birthdate** **Age** | What is your birthdate? What is your current age?",
+            "Gender** | What is your biological gender? With what gender do you identify? What are your preferred pronouns (he/him/his, she/her/hers, them/they/theirs, etc.)?",
+            "Allergies** | Do you have any allergies (i.e. food, drug, environmental)? How do you react to each allergen?",
+            "Preferred Language** | What is your primary language that you prefer to speak? Note: If English is not their primary language, offer to obtain a medical interpreter as needed"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m02-l05",
+          "title": "2.5 Reason for Seeking Health Care",
+          "type": "text",
+          "content_file": "content/module-02/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m02-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Table 2.5a Focused Questions for Reasons for Seeking Health Care by Setting[2]"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m02-l06",
+          "title": "2.6 Current and Past Medical History",
+          "type": "text",
+          "content_file": "content/module-02/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m02-l06.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Table 2.6 Sample Focused Questions for Current and Past Health History",
+            "Category** | **Focused Questions",
+            "Current health | What are your current"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m02-l07",
+          "title": "2.8 Functional Health and Activities of Daily Living",
+          "type": "text",
+          "content_file": "content/module-02/lesson-07.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m02-l07.json",
+          "estimated_minutes": 33,
+          "objectives": [
+            "Information obtained when assessing functional health provides the nurse a holistic view of"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m02-l08",
+          "title": "2.11 Checklist for Obtaining a Health History",
+          "type": "text",
+          "content_file": "content/module-02/lesson-08.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m02-l08.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Use the checklist below to review the steps for completion of \"Obtaining a Health History.\"",
+            "Disclaimer: Always review and follow agency policy regarding this specific skill",
+            "Perform hand hygiene",
+            "Check the room for transmission-based precautions",
+            "Introduce yourself, your role, the purpose of your visit, and an estimate of the time it will take",
+            "Confirm patient ID using two patient identifiers (e.g., name and date of birth)"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m02-l09",
+          "title": "2.12 Learning Activities",
+          "type": "text",
+          "content_file": "content/module-02/lesson-09.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m02-l09.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Test your clinical judgment with an NCLEX Next Generation-style question: [Chapter 2, Assignment 1.](<https://adapt.libretexts.org/students/assignments/26176/init-formative>)"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-skills-2e-m03",
+      "title": "Chapter 3 Blood Pressure",
+      "competencies": [
+        "Clinical Nursing Skills",
+        "Patient Safety",
+        "Healthcare Informatics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m03-l01",
+          "title": "3.1 Blood Pressure Introduction",
+          "type": "text",
+          "content_file": "content/module-03/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m03-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Accurately measure and document blood pressure using American Heart Association standards",
+            "Adapt the procedure to reflect variations across the life span",
+            "Recognize and report significant deviations from blood pressure norms"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m03-l02",
+          "title": "3.2 Blood Pressure Basics",
+          "type": "text",
+          "content_file": "content/module-03/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m03-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m03-l03",
+          "title": "3.3 Blood Pressure Assessment",
+          "type": "text",
+          "content_file": "content/module-03/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m03-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Table 3.3a Interview Questions for Subjective Assessment of Blood Pressure",
+            "Have you ever been diagnosed with an elevated blood pressure?",
+            "Please describe the treatment",
+            "Are you currently taking any medications, herbs, or supplements for your blood pressure?",
+            "Please identify what you are taking",
+            "Do you have any restrictions on taking blood pressure in your arms such as those due to a fistula or mastectomy?"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m03-l04",
+          "title": "3.5 Checklist for Manual Blood Pressure",
+          "type": "text",
+          "content_file": "content/module-03/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m03-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Use the checklist below to review the steps for obtaining a \"Manual Blood Pressure.\"",
+            "Disclaimer: Always review and follow agency policy regarding this specific skill",
+            "The width of the cuff should be 40% of the person's arm circumference, and the length of the cuff's bladder should be 80–100% of the person's arm circumference",
+            "Perform hand hygiene",
+            "Check the room for transmission-based precautions",
+            "Introduce yourself, your role, the purpose of your visit, and an estimate of the time it will take"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m03-l05",
+          "title": "3.7 Learning Activities",
+          "type": "text",
+          "content_file": "content/module-03/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m03-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "You are a nurse assigned to help with blood pressure screenings at the local senior center. **What elements must be considered when selecting equipment and location of blood pressure assessment?",
+            "Test your clinical judgment with an NCLEX Next Generation-style question: [Chapter 3, Assignment 1.](<https://adapt.libretexts.org/students/assignments/26180/init-formative>)",
+            "Test your clinical judgment with an NCLEX Next Generation-style question: [Chapter 3, Assignment 2.](<https://adapt.libretexts.org/students/assignments/26181/init-formative>)",
+            "Test your clinical judgment with a"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-skills-2e-m04",
+      "title": "Chapter 4 Aseptic Technique",
+      "competencies": [
+        "Clinical Nursing Skills",
+        "Patient Safety",
+        "Healthcare Informatics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m04-l01",
+          "title": "4.1 Aseptic Technique Introduction",
+          "type": "text",
+          "content_file": "content/module-04/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m04-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Perform appropriate hand hygiene",
+            "Use standard precautions",
+            "Use category-specific, transmission-based precautions",
+            "Maintain a sterile field and equipment",
+            "Apply and safely remove sterile gloves and personal protective equipment",
+            "Dispose of contaminated wastes appropriately"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m04-l02",
+          "title": "4.2 Aseptic Technique Basic Concepts",
+          "type": "text",
+          "content_file": "content/module-04/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m04-l02.json",
+          "estimated_minutes": 37,
+          "objectives": [
+            "Current standard precautions according to the CDC (2019) include the following:",
+            "Each of these standard precautions is described in more detail in the"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m04-l03",
+          "title": "4.3 Aseptic Technique",
+          "type": "text",
+          "content_file": "content/module-04/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m04-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m04-l04",
+          "title": "4.4 Sterile Fields",
+          "type": "text",
+          "content_file": "content/module-04/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m04-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Using sterile barriers, including drapes and appropriate personal protective equipment",
+            "Preparing the patient using an approved antimicrobial product",
+            "Maintaining a sterile field",
+            "Using aseptically safe techniques"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m04-l05",
+          "title": "4.5 Checklist for Hand Hygiene With Soap and Water",
+          "type": "text",
+          "content_file": "content/module-04/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m04-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Use the checklist below to review the steps for completion of \"Hand Hygiene With Soap and Water.\"",
+            "Disclaimer: Always review and follow agency policy regarding this specific skill",
+            "Rub hands palm to palm",
+            "Back of right and left hand (fingers interlaced)",
+            "Palm to palm with fingers interlaced",
+            "Rotational rubbing of left and right thumbs"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-skills-2e-m04-l06",
+          "title": "4.6 Checklist for Hand Hygiene With Alcohol-Based Hand Sanitizer",
+          "type": "text",
+          "content_file": "content/module-04/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-skills-2e-m04-l06.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Use the checklist below to review the steps for completion of \"Hand Hygiene With Alcohol-Based Hand Sanitizer.\"",
+            "Disclaimer: Always review and follow agency policy regarding this specific skill",
+            "Rub hands palm to palm",
+            "Back of right and left hand (fingers interlaced)",
+            "Palm to palm with fingers interlaced",
+            "Rotational rubbing of left and right thumbs"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "vital signs",
+            "infection control",
+            "medication administration"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

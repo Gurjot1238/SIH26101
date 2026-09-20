@@ -1,0 +1,231 @@
+{
+  "course_id": "vt-aerodynamics-aircraft-performance",
+  "title": "Aerodynamics and Aircraft Performance, 3rd edition",
+  "provider": "Virginia Tech",
+  "category": "Technology",
+  "subcategory": "Aerospace Engineering",
+  "level": "Intermediate",
+  "description": "Open textbook / course 'Aerodynamics and Aircraft Performance, 3rd edition' from Virginia Tech. Chapters were downloaded from the openly licensed Pressbooks edition.",
+  "competencies": [
+    "Aerospace Engineering",
+    "Fluid Mechanics",
+    "Aircraft Performance"
+  ],
+  "topics": [
+    "lift",
+    "drag",
+    "airfoils",
+    "performance"
+  ],
+  "source": {
+    "name": "Virginia Tech",
+    "official_url": "https://pressbooks.lib.vt.edu/aerodynamics/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 8.9,
+    "estimated_minutes": 534
+  },
+  "totals": {
+    "modules": 1,
+    "lessons": 9,
+    "practice_questions": 27
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "vt-aerodynamics-aircraft-performance-m01",
+      "title": "Aerodynamics and Aircraft Performance",
+      "competencies": [
+        "Aerospace Engineering",
+        "Fluid Mechanics",
+        "Aircraft Performance"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "vt-aerodynamics-aircraft-performance-m01-l01",
+          "title": "Chapter 1. Introduction to Aerodynamics",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/vt-aerodynamics-aircraft-performance-m01-l01.json",
+          "estimated_minutes": 154,
+          "objectives": [],
+          "competencies": [
+            "Aerospace Engineering",
+            "Fluid Mechanics"
+          ],
+          "topics": [
+            "lift",
+            "drag",
+            "airfoils"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "vt-aerodynamics-aircraft-performance-m01-l02",
+          "title": "Chapter 2. Propulsion",
+          "type": "text",
+          "content_file": "content/module-01/lesson-02.md",
+          "practice_file": "practice/vt-aerodynamics-aircraft-performance-m01-l02.json",
+          "estimated_minutes": 58,
+          "objectives": [],
+          "competencies": [
+            "Aerospace Engineering",
+            "Fluid Mechanics"
+          ],
+          "topics": [
+            "lift",
+            "drag",
+            "airfoils"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "vt-aerodynamics-aircraft-performance-m01-l03",
+          "title": "Chapter 3. Additional Aerodynamics Tools",
+          "type": "text",
+          "content_file": "content/module-01/lesson-03.md",
+          "practice_file": "practice/vt-aerodynamics-aircraft-performance-m01-l03.json",
+          "estimated_minutes": 55,
+          "objectives": [
+            "Incompressible or subsonic aerodynamics",
+            "Transonic aerodynamics",
+            "Supersonic aerodynamics",
+            "Hypersonic aerodynamics",
+            "Boundary layer theory"
+          ],
+          "competencies": [
+            "Aerospace Engineering",
+            "Fluid Mechanics"
+          ],
+          "topics": [
+            "lift",
+            "drag",
+            "airfoils"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "vt-aerodynamics-aircraft-performance-m01-l04",
+          "title": "Chapter 4. Performance in Straight and Level Flight",
+          "type": "text",
+          "content_file": "content/module-01/lesson-04.md",
+          "practice_file": "practice/vt-aerodynamics-aircraft-performance-m01-l04.json",
+          "estimated_minutes": 68,
+          "objectives": [],
+          "competencies": [
+            "Aerospace Engineering",
+            "Fluid Mechanics"
+          ],
+          "topics": [
+            "lift",
+            "drag",
+            "airfoils"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "vt-aerodynamics-aircraft-performance-m01-l05",
+          "title": "Chapter 5. Altitude Change: Climb and Glide",
+          "type": "text",
+          "content_file": "content/module-01/lesson-05.md",
+          "practice_file": "practice/vt-aerodynamics-aircraft-performance-m01-l05.json",
+          "estimated_minutes": 48,
+          "objectives": [],
+          "competencies": [
+            "Aerospace Engineering",
+            "Fluid Mechanics"
+          ],
+          "topics": [
+            "lift",
+            "drag",
+            "airfoils"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "vt-aerodynamics-aircraft-performance-m01-l06",
+          "title": "Chapter 6. Range and Endurance",
+          "type": "text",
+          "content_file": "content/module-01/lesson-06.md",
+          "practice_file": "practice/vt-aerodynamics-aircraft-performance-m01-l06.json",
+          "estimated_minutes": 38,
+          "objectives": [],
+          "competencies": [
+            "Aerospace Engineering",
+            "Fluid Mechanics"
+          ],
+          "topics": [
+            "lift",
+            "drag",
+            "airfoils"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "vt-aerodynamics-aircraft-performance-m01-l07",
+          "title": "Chapter 7. Accelerated Performance: Takeoff and Landing",
+          "type": "text",
+          "content_file": "content/module-01/lesson-07.md",
+          "practice_file": "practice/vt-aerodynamics-aircraft-performance-m01-l07.json",
+          "estimated_minutes": 43,
+          "objectives": [],
+          "competencies": [
+            "Aerospace Engineering",
+            "Fluid Mechanics"
+          ],
+          "topics": [
+            "lift",
+            "drag",
+            "airfoils"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "vt-aerodynamics-aircraft-performance-m01-l08",
+          "title": "Chapter 8. Accelerated Performance: Turns",
+          "type": "text",
+          "content_file": "content/module-01/lesson-08.md",
+          "practice_file": "practice/vt-aerodynamics-aircraft-performance-m01-l08.json",
+          "estimated_minutes": 37,
+          "objectives": [],
+          "competencies": [
+            "Aerospace Engineering",
+            "Fluid Mechanics"
+          ],
+          "topics": [
+            "lift",
+            "drag",
+            "airfoils"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "vt-aerodynamics-aircraft-performance-m01-l09",
+          "title": "Chapter 9. The Role of Performance in Aircraft Design: Constraint Analysis",
+          "type": "text",
+          "content_file": "content/module-01/lesson-09.md",
+          "practice_file": "practice/vt-aerodynamics-aircraft-performance-m01-l09.json",
+          "estimated_minutes": 33,
+          "objectives": [],
+          "competencies": [
+            "Aerospace Engineering",
+            "Fluid Mechanics"
+          ],
+          "topics": [
+            "lift",
+            "drag",
+            "airfoils"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

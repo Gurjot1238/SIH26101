@@ -1,0 +1,197 @@
+{
+  "module_id": "mit-6-867-ml-m01",
+  "questions": [
+    {
+      "question_id": "mit-6-867-ml-m01-l01-q01",
+      "question": "According to the source lesson 'd26f49e758fa83b40c8f22496c857f14 lec1', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource d26f49e758fa83b40c8f22496c857f14_lec1.pdf from 6.867 Machine Learning.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Machine Learning",
+      "topic": "supervised learning",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-867-ml-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'd26f49e758fa83b40c8f22496c857f14 lec1'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in d26f49e758fa83b40c8f22496c857f14 lec1.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Machine Learning",
+      "topic": "supervised learning",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-867-ml-m01-l01-q03",
+      "question": "When applying concepts from 'd26f49e758fa83b40c8f22496c857f14 lec1', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Machine Learning",
+      "topic": "supervised learning",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-867-ml-m01-l02-q01",
+      "question": "According to the source lesson 'df535ce359aad52f48c203db64558fe8 lec2', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource df535ce359aad52f48c203db64558fe8_lec2.pdf from 6.867 Machine Learning.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Machine Learning",
+      "topic": "supervised learning",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-867-ml-m01-l02-q02",
+      "question": "What is a reasonable learning takeaway from 'df535ce359aad52f48c203db64558fe8 lec2'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in df535ce359aad52f48c203db64558fe8 lec2.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Machine Learning",
+      "topic": "supervised learning",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-867-ml-m01-l02-q03",
+      "question": "When applying concepts from 'df535ce359aad52f48c203db64558fe8 lec2', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Machine Learning",
+      "topic": "supervised learning",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-867-ml-m01-l03-q01",
+      "question": "According to the source lesson 'c8442240a87cdacbb2b90f8b53393e9d lec3', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource c8442240a87cdacbb2b90f8b53393e9d_lec3.pdf from 6.867 Machine Learning.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Machine Learning",
+      "topic": "supervised learning",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-867-ml-m01-l03-q02",
+      "question": "What is a reasonable learning takeaway from 'c8442240a87cdacbb2b90f8b53393e9d lec3'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in c8442240a87cdacbb2b90f8b53393e9d lec3.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Machine Learning",
+      "topic": "supervised learning",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-867-ml-m01-l03-q03",
+      "question": "When applying concepts from 'c8442240a87cdacbb2b90f8b53393e9d lec3', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Machine Learning",
+      "topic": "supervised learning",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-867-ml-m01-l04-q01",
+      "question": "According to the source lesson '59a63d2efbe8aa01041937ff539a449a lec4', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 59a63d2efbe8aa01041937ff539a449a_lec4.pdf from 6.867 Machine Learning.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Machine Learning",
+      "topic": "supervised learning",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-867-ml-m01-l04-q02",
+      "question": "What is a reasonable learning takeaway from '59a63d2efbe8aa01041937ff539a449a lec4'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 59a63d2efbe8aa01041937ff539a449a lec4.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Machine Learning",
+      "topic": "supervised learning",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-867-ml-m01-l04-q03",
+      "question": "When applying concepts from '59a63d2efbe8aa01041937ff539a449a lec4', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Machine Learning",
+      "topic": "supervised learning",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

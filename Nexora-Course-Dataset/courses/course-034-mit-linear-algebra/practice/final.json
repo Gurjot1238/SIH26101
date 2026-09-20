@@ -1,0 +1,261 @@
+{
+  "course_id": "mit-18-06-linear-algebra",
+  "questions": [
+    {
+      "question_id": "mit-18-06-linear-algebra-m01-l01-q01",
+      "question": "According to the source lesson '45790724487e46dcc02f55d0fc092ab7 06S10 Final Answers', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 45790724487e46dcc02f55d0fc092ab7_MIT18_06S10_Final_Answers.pdf from 18.06 Linear Algebra.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Linear Algebra",
+      "topic": "matrices",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-18-06-linear-algebra-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from '45790724487e46dcc02f55d0fc092ab7 06S10 Final Answers'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 45790724487e46dcc02f55d0fc092ab7 06S10 Final Answers.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Linear Algebra",
+      "topic": "matrices",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-18-06-linear-algebra-m01-l01-q03",
+      "question": "When applying concepts from '45790724487e46dcc02f55d0fc092ab7 06S10 Final Answers', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Linear Algebra",
+      "topic": "matrices",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-18-06-linear-algebra-m01-l02-q01",
+      "question": "According to the source lesson 'b7efef974f7a2c8b5c925f5ea8fc9152 06S10 exam1 s10 sol', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource b7efef974f7a2c8b5c925f5ea8fc9152_MIT18_06S10_exam1_s10_sol.pdf from 18.06 Linear Algebra.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Linear Algebra",
+      "topic": "matrices",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-18-06-linear-algebra-m02-l01-q01",
+      "question": "According to the source lesson 'b799045edd80df18879088bcf872b214 06S10 Final Exam', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource b799045edd80df18879088bcf872b214_MIT18_06S10_Final_Exam.pdf from 18.06 Linear Algebra.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Linear Algebra",
+      "topic": "matrices",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-18-06-linear-algebra-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'b799045edd80df18879088bcf872b214 06S10 Final Exam'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in b799045edd80df18879088bcf872b214 06S10 Final Exam.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Linear Algebra",
+      "topic": "matrices",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-18-06-linear-algebra-m02-l01-q03",
+      "question": "When applying concepts from 'b799045edd80df18879088bcf872b214 06S10 Final Exam', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Linear Algebra",
+      "topic": "matrices",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-18-06-linear-algebra-m02-l02-q01",
+      "question": "According to the source lesson 'e9bbec7a9a25a87715e8edd75e21d7b9 06S10 exam1 s10', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource e9bbec7a9a25a87715e8edd75e21d7b9_MIT18_06S10_exam1_s10.pdf from 18.06 Linear Algebra.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Linear Algebra",
+      "topic": "matrices",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-18-06-linear-algebra-m03-l01-q01",
+      "question": "According to the source lesson '22297c2a6dcf06d82e93ee4af115e91a 06S10 pset1 s10 soln', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 22297c2a6dcf06d82e93ee4af115e91a_MIT18_06S10_pset1_s10_soln.pdf from 18.06 Linear Algebra.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Linear Algebra",
+      "topic": "matrices",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-18-06-linear-algebra-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from '22297c2a6dcf06d82e93ee4af115e91a 06S10 pset1 s10 soln'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 22297c2a6dcf06d82e93ee4af115e91a 06S10 pset1 s10 soln.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Linear Algebra",
+      "topic": "matrices",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-18-06-linear-algebra-m03-l01-q03",
+      "question": "When applying concepts from '22297c2a6dcf06d82e93ee4af115e91a 06S10 pset1 s10 soln', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Linear Algebra",
+      "topic": "matrices",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-18-06-linear-algebra-m03-l02-q01",
+      "question": "According to the source lesson 'd039352aaa83a27f11bb2b3778ecfa96 06S10 pset2 s10 soln', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource d039352aaa83a27f11bb2b3778ecfa96_MIT18_06S10_pset2_s10_soln.pdf from 18.06 Linear Algebra.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Linear Algebra",
+      "topic": "matrices",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-18-06-linear-algebra-m04-l01-q01",
+      "question": "According to the source lesson 'ef8cf047287bc629eb243a691340c823 06S10 pset5 s10 soln', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource ef8cf047287bc629eb243a691340c823_MIT18_06S10_pset5_s10_soln.pdf from 18.06 Linear Algebra.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Linear Algebra",
+      "topic": "matrices",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-18-06-linear-algebra-m04-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'ef8cf047287bc629eb243a691340c823 06S10 pset5 s10 soln'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in ef8cf047287bc629eb243a691340c823 06S10 pset5 s10 soln.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Linear Algebra",
+      "topic": "matrices",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-18-06-linear-algebra-m04-l01-q03",
+      "question": "When applying concepts from 'ef8cf047287bc629eb243a691340c823 06S10 pset5 s10 soln', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Linear Algebra",
+      "topic": "matrices",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-18-06-linear-algebra-m04-l02-q01",
+      "question": "According to the source lesson 'ace08d2d5a7b321229f191765c5ff2e3 06S10 pset6 s10 soln', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource ace08d2d5a7b321229f191765c5ff2e3_MIT18_06S10_pset6_s10_soln.pdf from 18.06 Linear Algebra.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Linear Algebra",
+      "topic": "matrices",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

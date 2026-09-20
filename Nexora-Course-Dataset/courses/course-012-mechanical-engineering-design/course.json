@@ -1,0 +1,724 @@
+{
+  "course_id": "isu-mechanical-engineering-design",
+  "title": "Introduction to Mechanical Engineering Design",
+  "provider": "Iowa State University",
+  "category": "Technology",
+  "subcategory": "Mechanical Engineering",
+  "level": "Intermediate",
+  "description": "Open textbook / course 'Introduction to Mechanical Engineering Design' from Iowa State University. Chapters were downloaded from the openly licensed Pressbooks edition.",
+  "competencies": [
+    "Mechanical Engineering",
+    "Engineering Design",
+    "System Design"
+  ],
+  "topics": [
+    "define",
+    "measure",
+    "analyze",
+    "design process"
+  ],
+  "source": {
+    "name": "Iowa State University",
+    "official_url": "https://iastate.pressbooks.pub/me270baughman/",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 5.6,
+    "estimated_minutes": 336
+  },
+  "totals": {
+    "modules": 7,
+    "lessons": 28,
+    "practice_questions": 84
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "isu-mechanical-engineering-design-m01",
+      "title": "Module 00- Micro-economy Kit",
+      "competencies": [
+        "Mechanical Engineering",
+        "Engineering Design",
+        "System Design"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m01-l01",
+          "title": "Module 00: Overview",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m01-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m01-l02",
+          "title": "Micro-economy Kit Overview",
+          "type": "text",
+          "content_file": "content/module-01/lesson-02.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m01-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Will allow them to redirect time and resources** to a different activity that positively impacts quality of life",
+            "Meets** a basic need in a developing/underdeveloped nation",
+            "Will** **improve**  **or**  **create** a self-sustaining economic activity",
+            "Will be made from** a low cost kit, maximizing \"local content/materials\"",
+            "Can be** sold and serviced by local artisans",
+            "Promotes and integrates** sustainability"
+          ],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m01-l03",
+          "title": "Chapter 1: Developing Nations: Problems and Solutions",
+          "type": "text",
+          "content_file": "content/module-01/lesson-03.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m01-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m01-l04",
+          "title": "Chapter 2: Sustainability",
+          "type": "text",
+          "content_file": "content/module-01/lesson-04.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m01-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "isu-mechanical-engineering-design-m02",
+      "title": "Module 1 - Define",
+      "competencies": [
+        "Mechanical Engineering",
+        "Engineering Design",
+        "System Design"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m02-l01",
+          "title": "Module 1: Overview",
+          "type": "text",
+          "content_file": "content/module-02/lesson-01.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m02-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m02-l02",
+          "title": "Define Phase",
+          "type": "text",
+          "content_file": "content/module-02/lesson-02.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m02-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m02-l03",
+          "title": "Chapter 2: Project Plan Development",
+          "type": "text",
+          "content_file": "content/module-02/lesson-03.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m02-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "The project phases are:",
+            "The details of tasks/activities are commonly referred to as the work break down structure (WBS), to ensure responsibilities and deadlines are identified",
+            "In MS project the WBS drives Gantt chart development",
+            "In developing a full project plan:",
+            "The WBS is determined",
+            "The GANTT chart is developed (as a result of WBS inputs)"
+          ],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "isu-mechanical-engineering-design-m03",
+      "title": "Module 2 - Measure",
+      "competencies": [
+        "Mechanical Engineering",
+        "Engineering Design",
+        "System Design"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m03-l01",
+          "title": "Module 2: Overview",
+          "type": "text",
+          "content_file": "content/module-03/lesson-01.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m03-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m03-l02",
+          "title": "Measure Phase",
+          "type": "text",
+          "content_file": "content/module-03/lesson-02.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m03-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m03-l03",
+          "title": "Chapter 1: Customer Requirements",
+          "type": "text",
+          "content_file": "content/module-03/lesson-03.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m03-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "The Voice of the Customer  Watch Amos Winter's video below on the Leveraged Freedom Chair. The engineering design team's research revealed that:",
+            "By listening to the Voice of The Customer (VOC), design team identified customer wants/needs. These \"raw\" needs/wants were translated into Customer Requirements (CRs)",
+            "Technical or non-technical descriptions of what a customer wants, needs, and/or desires",
+            "Not meeting customer requirements leads to market failure"
+          ],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m03-l04",
+          "title": "Chapter 2: Market Analysis",
+          "type": "text",
+          "content_file": "content/module-03/lesson-04.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m03-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Table 1. Stove Reviews **Chitetezo mbaula** | **Weber-741001 Grill"
+          ],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m03-l05",
+          "title": "Chapter 3: Engineering Characteristics/Specifications and Benchmarking",
+          "type": "text",
+          "content_file": "content/module-03/lesson-05.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m03-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Suitable \"metrics\" might be:",
+            "A corresponding feature might be:"
+          ],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "isu-mechanical-engineering-design-m04",
+      "title": "Module 3- Analyze",
+      "competencies": [
+        "Mechanical Engineering",
+        "Engineering Design",
+        "System Design"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m04-l01",
+          "title": "Module 3: Overview",
+          "type": "text",
+          "content_file": "content/module-04/lesson-01.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m04-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m04-l02",
+          "title": "Chapter 1: Introduction to Form (Morphology) in Engineering Concept Generation",
+          "type": "text",
+          "content_file": "content/module-04/lesson-02.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m04-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "What if the product form is appealing, yet the form does not function?",
+            "Who would buy them or be impressed by them?",
+            "They look good, but do they perform the way you expect them to?"
+          ],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m04-l03",
+          "title": "Chapter 2: Functional Analysis and Concept Generation",
+          "type": "text",
+          "content_file": "content/module-04/lesson-03.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m04-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "On the left side of the chart, the functions are listed",
+            "On the right side, different mechanisms that can be used to perform the functions listed are drawn",
+            "The chart is a visual aid used to come up with different ideas",
+            "Idea generation is accomplished by creating single systems from different mechanisms illustrated in the morphological chart",
+            "It is advised to generate several feasible designs using different mechanisms for each function for each concept"
+          ],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m04-l04",
+          "title": "Chapter 3: QFD (House of Quality w/Decision Matrix) - HoQ w/DM",
+          "type": "text",
+          "content_file": "content/module-04/lesson-04.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m04-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Evaluating Generated Concepts: How to pick the best option",
+            "Utilize the House of Quality Decision Matrix - Engineering Specifications: features, functions, and characteristics, directly linked to Customer Requirements",
+            "Evaluate only your top 3-4 concepts (review assignment requirements)"
+          ],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m04-l05",
+          "title": "Chapter 4: Final Project Plan and Concept Presentation",
+          "type": "text",
+          "content_file": "content/module-04/lesson-05.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m04-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Update the initial project plan developed and submitted with the Project Charter using MS Project!",
+            "The final project plan will reflect more of the team's roles and allocation of team resources to design, build, test, and report out regarding the team's prototype"
+          ],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "isu-mechanical-engineering-design-m05",
+      "title": "Module 4A - Design",
+      "competencies": [
+        "Mechanical Engineering",
+        "Engineering Design",
+        "System Design"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m05-l01",
+          "title": "Module 4A: Overview",
+          "type": "text",
+          "content_file": "content/module-05/lesson-01.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m05-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m05-l02",
+          "title": "Design Phase",
+          "type": "text",
+          "content_file": "content/module-05/lesson-02.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m05-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Begin detailed design work for selected Final Design  **This includes:",
+            "Definition of a prototype",
+            "An original module on which something is patterned; archetype",
+            "An individual that exhibits the essential features of a later type",
+            "A standard or typical example",
+            "A first full-scale and usually functional form of a new type or design of a construction"
+          ],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m05-l03",
+          "title": "Chapter 1: Modeling",
+          "type": "text",
+          "content_file": "content/module-05/lesson-03.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m05-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Modeling** Now that your design team has selected a product concept:",
+            "Developed a function tree tree, and ensured sub-functions are broken down via a function block diagram",
+            "Continue work from functional analysis to develop a math model to accomplish these functions"
+          ],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m05-l04",
+          "title": "Chapter 2: Design Failure Mode &amp; Effects Analysis (DFMEA)",
+          "type": "text",
+          "content_file": "content/module-05/lesson-04.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m05-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Headlines on Product Failures:** **XBOX 360"
+          ],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m05-l05",
+          "title": "Chapter 3: Engineering Drawings and MPIs",
+          "type": "text",
+          "content_file": "content/module-05/lesson-05.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m05-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Subassembly & MPIs The Process for Assigning Part Numbers",
+            "Assemblies start with AN",
+            "Part numbers are not Item numbers (balloon callouts)",
+            "Part numbers are not Part descriptions",
+            "A formal and precise way of communicating information about the shape, size, features, and precision of the item to be manufactured",
+            "Drawings are the universal language of engineering"
+          ],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "isu-mechanical-engineering-design-m06",
+      "title": "Module 4B - Design Continued",
+      "competencies": [
+        "Mechanical Engineering",
+        "Engineering Design",
+        "System Design"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m06-l01",
+          "title": "Module 4B: Overview",
+          "type": "text",
+          "content_file": "content/module-06/lesson-01.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m06-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m06-l02",
+          "title": "Design Phase Cont'd",
+          "type": "text",
+          "content_file": "content/module-06/lesson-02.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m06-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Cost of Goods Sold (or Cost of Sales)",
+            "Selling, General & Administrative (SG&A) Expenses",
+            "Marketing and Advertising",
+            "Technology/Research & Development"
+          ],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m06-l03",
+          "title": "Chapter 4: BOM, Purchase Order and Part Cost",
+          "type": "text",
+          "content_file": "content/module-06/lesson-03.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m06-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Prototype Costing Analysis Accuracy** **In order to develop an accurate parts cost for the prototype, all parts MUST be accounted for on the BOM:",
+            "Review CANVAS Assignments 08A and 08B to see what is needed for a Subassembly and Assembly review:"
+          ],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "isu-mechanical-engineering-design-m07",
+      "title": "Module 5 - Verify",
+      "competencies": [
+        "Mechanical Engineering",
+        "Engineering Design",
+        "System Design"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m07-l01",
+          "title": "Module 5: Overview",
+          "type": "text",
+          "content_file": "content/module-07/lesson-01.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m07-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m07-l02",
+          "title": "Verify Phase",
+          "type": "text",
+          "content_file": "content/module-07/lesson-02.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m07-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "isu-mechanical-engineering-design-m07-l03",
+          "title": "Chapter 1: Test Planning and Results",
+          "type": "text",
+          "content_file": "content/module-07/lesson-03.md",
+          "practice_file": "practice/isu-mechanical-engineering-design-m07-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "What happens to  _B_ when  _A_ is changed?",
+            "What happens to  _B_ when  _A_ is **not** changed?"
+          ],
+          "competencies": [
+            "Mechanical Engineering",
+            "Engineering Design"
+          ],
+          "topics": [
+            "define",
+            "measure",
+            "analyze"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

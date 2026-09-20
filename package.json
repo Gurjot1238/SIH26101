@@ -12,11 +12,13 @@
     "auth": "node server/index.mjs",
     "auth:test": "./server/smoke-test.sh",
     "ui:test": "./scripts/render-test.sh",
+    "catalog:test": "./scripts/catalog-ready-test.sh",
     "engine:test": "./scripts/engine-test.sh",
     "competency:test": "./scripts/competency-test.sh",
+    "recommend:test": "./scripts/recommend-test.sh",
     "client:test": "./scripts/client-test.sh",
     "ai:test": "./scripts/ai-test.sh",
-    "test": "./scripts/engine-test.sh && ./scripts/competency-test.sh && ./server/smoke-test.sh && ./scripts/client-test.sh && ./scripts/ai-test.sh && ./scripts/render-test.sh",
+    "test": "./scripts/engine-test.sh && ./scripts/competency-test.sh && ./scripts/recommend-test.sh && ./server/smoke-test.sh && ./scripts/client-test.sh && ./scripts/ai-test.sh && ./scripts/render-test.sh && ./scripts/catalog-ready-test.sh",
     "auth:secret": "node -e \"console.log(require('node:crypto').randomBytes(48).toString('base64url'))\""
   },
   "dependencies": {

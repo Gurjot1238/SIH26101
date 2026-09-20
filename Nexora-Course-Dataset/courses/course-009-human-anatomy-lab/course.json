@@ -1,0 +1,744 @@
+{
+  "course_id": "uta-human-anatomy-lab",
+  "title": "Human Anatomy Lab Manual",
+  "provider": "University of Texas at Arlington",
+  "category": "Medical / Healthcare",
+  "subcategory": "Anatomy",
+  "level": "Beginner",
+  "description": "Open textbook / course 'Human Anatomy Lab Manual' from University of Texas at Arlington. Chapters were downloaded from the openly licensed Pressbooks edition.",
+  "competencies": [
+    "Human Anatomy",
+    "Biomedical Engineering",
+    "Clinical Skills"
+  ],
+  "topics": [
+    "anatomical language",
+    "organ systems",
+    "laboratory identification"
+  ],
+  "source": {
+    "name": "University of Texas at Arlington",
+    "official_url": "https://uta.pressbooks.pub/anatomylab/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 5.6,
+    "estimated_minutes": 336
+  },
+  "totals": {
+    "modules": 8,
+    "lessons": 28,
+    "practice_questions": 84
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "uta-human-anatomy-lab-m01",
+      "title": "Lab 1: Anatomical Language",
+      "competencies": [
+        "Human Anatomy",
+        "Biomedical Engineering",
+        "Clinical Skills"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "uta-human-anatomy-lab-m01-l01",
+          "title": "Lab 1: Anatomical Language",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m01-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Understand what the standard anatomical position is",
+            "Correctly identify a given plane by its correct name",
+            "Relate different structures of the body using the directional terms provided",
+            "Correctly identify the anatomical regions of the body",
+            "Demonstrate how to properly focus histology slides and identify key structures",
+            "Demonstrate an adequate understand of the material in this section"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m01-l02",
+          "title": "Pre-Lab 1",
+          "type": "text",
+          "content_file": "content/module-01/lesson-02.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m01-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m01-l03",
+          "title": "Lab Activities",
+          "type": "text",
+          "content_file": "content/module-01/lesson-03.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m01-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Note: Do not simply label the models, it is crucial that you understand how to apply all of these terms in each system, for the rest of the semester!",
+            "Turn on the microscope. Move he stage down to its lowest setting and adjust the iris diaphragm until it allows the least amount of light in"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m01-l04",
+          "title": "Post-Lab 1 Questions",
+          "type": "text",
+          "content_file": "content/module-01/lesson-04.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m01-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "uta-human-anatomy-lab-m02",
+      "title": "Lab 2: Bones and Bone Markings",
+      "competencies": [
+        "Human Anatomy",
+        "Biomedical Engineering",
+        "Clinical Skills"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "uta-human-anatomy-lab-m02-l01",
+          "title": "Lab 2: Bones and Bone Markings",
+          "type": "text",
+          "content_file": "content/module-02/lesson-01.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m02-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Determine if a given bone is part of the axial or appendicular skeleton",
+            "Ascertain the major bones of the skull, as well as any markings or unique features, the regions of the vertebral column, parts of a typical vertebra, along with the other bones and features of the axial skeleton",
+            "Identify the bones of the appendicular skeleton and their unique features",
+            "Designate bones as either left or right when applicable. Examples include the ulna, humerus, femurs, scapulas, and clavicles",
+            "Understand how different bones fit together and articulate. Demonstrate this by assembling different regions of the body using the bones provided",
+            "Differentiate compact, spongy and dry bone histology slides. This includes identifying the unique characteristics of each"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m02-l02",
+          "title": "Pre-Lab 2",
+          "type": "text",
+          "content_file": "content/module-02/lesson-02.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m02-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m02-l03",
+          "title": "Lab Activities",
+          "type": "text",
+          "content_file": "content/module-02/lesson-03.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m02-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Skull Bone Markings** #18 external auditory meatus |  #20 styloid process |  #22 cribriform plate of ethmoid bone |  #24 zygomatic process of temporal bone"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m02-l04",
+          "title": "Post-Lab 2 Questions",
+          "type": "text",
+          "content_file": "content/module-02/lesson-04.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m02-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "uta-human-anatomy-lab-m03",
+      "title": "Lab 3: Spinal Cord and Spinal Nerves",
+      "competencies": [
+        "Human Anatomy",
+        "Biomedical Engineering",
+        "Clinical Skills"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "uta-human-anatomy-lab-m03-l01",
+          "title": "Lab 3: Spinal Cord and Spinal Nerves",
+          "type": "text",
+          "content_file": "content/module-03/lesson-01.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m03-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Correctly identify the structures which constitute comprise the spinal cord and its extensions",
+            "Explain the differences between the meninges",
+            "Differentiate the spinal plexuses",
+            "Determine the origin, pathway and target organs of the spinal nerves",
+            "Classify the structures of the spinal cord on the given histology slides",
+            "Demonstrate an adequate understand of the material in this section"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m03-l02",
+          "title": "Lab Activities",
+          "type": "text",
+          "content_file": "content/module-03/lesson-02.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m03-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Spinal Cord** #15 anterior median fissure |  #19 posterior white columns |  #23 anterior white commissure |  #27 thoracic innervation segment |  #31 lumbar enlargement"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "uta-human-anatomy-lab-m04",
+      "title": "Lab 4: Brain and Cranial Nerves",
+      "competencies": [
+        "Human Anatomy",
+        "Biomedical Engineering",
+        "Clinical Skills"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "uta-human-anatomy-lab-m04-l01",
+          "title": "Lab 4: Brain and Cranial Nerves",
+          "type": "text",
+          "content_file": "content/module-04/lesson-01.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m04-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Complete the dissection of the sheep brain and identify (with a pin) all of the structures of the brain using the corresponding vocabulary list",
+            "Locate structures of the brain and cranial nerves on the various models in the lab",
+            "Identify the 12 cranial nerves as well as their target organs",
+            "Determine the composition of the of the brain from dissections",
+            "Determine/trace the path of cerebrospinal fluid through the brain",
+            "Differentiate histology from different regions of the brain"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m04-l02",
+          "title": "Pre-lab 4",
+          "type": "text",
+          "content_file": "content/module-04/lesson-02.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m04-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m04-l03",
+          "title": "Lab Activities",
+          "type": "text",
+          "content_file": "content/module-04/lesson-03.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m04-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Diencephalon** #7 thalamus |  #9 mammillary bodies |  #11 pineal glands",
+            "Brainstem** #12 midbrain |  #14 superior colliculi |  #16 cerebral peduncles |  #18 medulla oblongata",
+            "Cerebellum** #19 arbor vitae |  #21 vermis"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m04-l04",
+          "title": "Post-Lab 4 Questions",
+          "type": "text",
+          "content_file": "content/module-04/lesson-04.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m04-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "uta-human-anatomy-lab-m05",
+      "title": "Lab 5: Special Senses",
+      "competencies": [
+        "Human Anatomy",
+        "Biomedical Engineering",
+        "Clinical Skills"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "uta-human-anatomy-lab-m05-l01",
+          "title": "Lab 5: Special Senses",
+          "type": "text",
+          "content_file": "content/module-05/lesson-01.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m05-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Explain the function of each special sense",
+            "Identify all of the provided anatomical structures of the special senses on available models",
+            "Determine the pathways of vision, hearing, balance, taste, and olfaction",
+            "Correctly identify the histology slides and the structures that can be differentiated on each",
+            "Determine the structures of the dissected eye",
+            "Demonstrate the ability to count the taste buds of a lab partner using the experiment provided"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m05-l02",
+          "title": "Pre-lab 5",
+          "type": "text",
+          "content_file": "content/module-05/lesson-02.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m05-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m05-l03",
+          "title": "Lab Activities",
+          "type": "text",
+          "content_file": "content/module-05/lesson-03.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m05-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "For this exercise, it is recommended that you use dark food coloring for maximum effect",
+            "Using the spoon, use a small amount of the food coloring or powder on the tongue. Do NOT use a full spoon or pour a mound on the subject’s tongue!",
+            "Paper squares will be provided which have a 1cm in diameter hole in them. Have the volunteer place the paper on their tongue and make sure that the hole aligns with the area highlighted by the food coloring",
+            "Use a camera phone (or other devices), to take a closeup still photo of the circle",
+            "The papilla will contrast against the color of the food coloring. Count the number of the papilla in the circle and record it below"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m05-l04",
+          "title": "Post-Lab 5 Questions",
+          "type": "text",
+          "content_file": "content/module-05/lesson-04.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m05-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "uta-human-anatomy-lab-m06",
+      "title": "Lab 6: Respiratory System",
+      "competencies": [
+        "Human Anatomy",
+        "Biomedical Engineering",
+        "Clinical Skills"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "uta-human-anatomy-lab-m06-l01",
+          "title": "Lab 6: Respiratory System",
+          "type": "text",
+          "content_file": "content/module-06/lesson-01.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m06-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Understand and identify the anatomical structures of the respiratory system on available models",
+            "Deduce the pathway of air through the respiratory system",
+            "Determine the pathway of pulmonary circulation",
+            "Identify the various muscles involved in respiration",
+            "Recognize the hallmarks of lung histology",
+            "Demonstrate an adequate understand of the material in this section"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m06-l02",
+          "title": "Pre-Lab 6",
+          "type": "text",
+          "content_file": "content/module-06/lesson-02.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m06-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Epiglottis*  | is | Superior | to | Vocal cords",
+            "Hyoid bone | is | Anterior | to |",
+            "Carina | is | Medial | to |"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m06-l03",
+          "title": "Lab Activities",
+          "type": "text",
+          "content_file": "content/module-06/lesson-03.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m06-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "There are Superior, Middle, and Inferior parts to these structures.   **Station Two: Lower Respiratory** Label the models of this station with the number that corresponds to the appropriate stru"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m06-l04",
+          "title": "Post-Lab 6 Questions",
+          "type": "text",
+          "content_file": "content/module-06/lesson-04.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m06-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "uta-human-anatomy-lab-m07",
+      "title": "Lab 7: The Cardiovascular system",
+      "competencies": [
+        "Human Anatomy",
+        "Biomedical Engineering",
+        "Clinical Skills"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "uta-human-anatomy-lab-m07-l01",
+          "title": "Lab 7: The Cardiovascular system",
+          "type": "text",
+          "content_file": "content/module-07/lesson-01.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m07-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Visually identify major components, vessels, and structures of a dissected heart",
+            "Determine the anatomical structures of the heart on available models",
+            "Determine the pathway of blood flow through the heart",
+            "List and accurately classify the distinct types of blood cells from histological slides",
+            "Recognize the features of cardiac tissue under a microscope",
+            "Identify the major blood vessels required for this lab"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m07-l02",
+          "title": "Pre-lab 7",
+          "type": "text",
+          "content_file": "content/module-07/lesson-02.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m07-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m07-l03",
+          "title": "Lab Activities",
+          "type": "text",
+          "content_file": "content/module-07/lesson-03.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m07-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Layers** #3 pericardium |  #4 epicardium |  #5 endocardium |  #6 myocardium",
+            "Surface Features** #7 superior vena cava |  #10 left pulmonary artery |  #13 ascending aorta |  #16 posterior interventricular sulcus",
+            "Internal Structures** #19 papillary muscles |  #23 tricuspid"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m07-l04",
+          "title": "Post-Lab 7 Questions",
+          "type": "text",
+          "content_file": "content/module-07/lesson-04.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m07-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "uta-human-anatomy-lab-m08",
+      "title": "Lab 8: Digestive System",
+      "competencies": [
+        "Human Anatomy",
+        "Biomedical Engineering",
+        "Clinical Skills"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "uta-human-anatomy-lab-m08-l01",
+          "title": "Lab 8: Digestive System",
+          "type": "text",
+          "content_file": "content/module-08/lesson-01.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m08-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Label the anatomical structures of the digestive system on available models",
+            "Explain the pathway of food from the mouth to the anus, identifying major landmarks along the way",
+            "Deduce the pathway of major arteries and veins that supply the organs of the digestive system",
+            "Identify the histology of the digestive organs on microscope slides",
+            "Demonstrate an adequate understand of the material in this section"
+          ],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uta-human-anatomy-lab-m08-l02",
+          "title": "Pre-Lab 8",
+          "type": "text",
+          "content_file": "content/module-08/lesson-02.md",
+          "practice_file": "practice/uta-human-anatomy-lab-m08-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Human Anatomy",
+            "Biomedical Engineering"
+          ],
+          "topics": [
+            "anatomical language",
+            "organ systems",
+            "laboratory identification"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

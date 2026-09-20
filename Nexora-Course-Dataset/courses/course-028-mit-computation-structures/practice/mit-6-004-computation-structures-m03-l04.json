@@ -1,0 +1,53 @@
+{
+  "lesson_id": "mit-6-004-computation-structures-m03-l04",
+  "questions": [
+    {
+      "question_id": "mit-6-004-computation-structures-m03-l04-q01",
+      "question": "According to the source lesson 'e3780374f88b6201126fccda717635f7 caches worksheet', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource e3780374f88b6201126fccda717635f7_caches_worksheet.pdf from 6.004 Computation Structures.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Architecture",
+      "topic": "CMOS",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-004-computation-structures-m03-l04-q02",
+      "question": "What is a reasonable learning takeaway from 'e3780374f88b6201126fccda717635f7 caches worksheet'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in e3780374f88b6201126fccda717635f7 caches worksheet.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Architecture",
+      "topic": "CMOS",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-004-computation-structures-m03-l04-q03",
+      "question": "When applying concepts from 'e3780374f88b6201126fccda717635f7 caches worksheet', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Architecture",
+      "topic": "CMOS",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

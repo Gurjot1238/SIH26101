@@ -1,0 +1,197 @@
+{
+  "module_id": "wtcs-nursing-skills-2e-m03",
+  "questions": [
+    {
+      "question_id": "wtcs-nursing-skills-2e-m03-l01-q01",
+      "question": "According to the source lesson '3.1 Blood Pressure Introduction', which statement is most accurate?",
+      "options": [
+        "# 3.1 Blood Pressure Introduction ## Learning Objectives * Accurately measure and document blood pressure using American Heart Association standards * Adapt the procedure to reflect variations across the life span * Recognize and report sig",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from '3.1 Blood Pressure Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.1 Blood Pressure Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m03-l01-q03",
+      "question": "When applying concepts from '3.1 Blood Pressure Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m03-l02-q01",
+      "question": "According to the source lesson '3.2 Blood Pressure Basics', which statement is most accurate?",
+      "options": [
+        "A blood pressure reading is the measurement of the force of blood against the walls of the arteries as the heart pumps blood through the body.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m03-l02-q02",
+      "question": "What is a reasonable learning takeaway from '3.2 Blood Pressure Basics'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.2 Blood Pressure Basics.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m03-l02-q03",
+      "question": "When applying concepts from '3.2 Blood Pressure Basics', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m03-l03-q01",
+      "question": "According to the source lesson '3.3 Blood Pressure Assessment', which statement is most accurate?",
+      "options": [
+        "## Subjective Assessment Before taking a person’s blood pressure, it is important to determine if they have a history of elevated blood pressure or if they are taking any blood pressure medication.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m03-l03-q02",
+      "question": "What is a reasonable learning takeaway from '3.3 Blood Pressure Assessment'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.3 Blood Pressure Assessment.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m03-l03-q03",
+      "question": "When applying concepts from '3.3 Blood Pressure Assessment', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m03-l04-q01",
+      "question": "According to the source lesson '3.5 Checklist for Manual Blood Pressure', which statement is most accurate?",
+      "options": [
+        "Use the checklist below to review the steps for obtaining a \"Manual Blood Pressure.\" Note: The two-step method includes the first step of inflating the cuff and palpating the radial pulse to estimate the systolic blood pressure before obtai",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m03-l04-q02",
+      "question": "What is a reasonable learning takeaway from '3.5 Checklist for Manual Blood Pressure'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.5 Checklist for Manual Blood Pressure.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m03-l04-q03",
+      "question": "When applying concepts from '3.5 Checklist for Manual Blood Pressure', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "course_id": "demo-open-stats",
+  "title": "Open Foundations of Official Statistics",
+  "provider": "OpenStax",
+  "category": "Technology",
+  "subcategory": "Data Science",
+  "level": "Foundational",
+  "description": "A tiny fixture course used by the test suite. Two real lesson files sit on disk beside this file so the reader and the file-streaming route can be exercised without the full dataset.",
+  "competencies": ["data-quality", "inference"],
+  "topics": ["Sampling", "Data quality"],
+  "source": {
+    "name": "OpenStax",
+    "official_url": "https://openstax.org/details/books/introductory-statistics",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "duration": { "estimated_hours": 2, "estimated_minutes": 120 },
+  "totals": { "modules": 1, "lessons": 2, "practice_questions": 0 },
+  "progress_model": { "unit": "lesson", "formula": "completed_lessons / total_lessons * 100" },
+  "modules": [
+    {
+      "module_id": "mod-01-foundations",
+      "title": "Foundations",
+      "competencies": ["data-quality"],
+      "lessons": [
+        {
+          "lesson_id": "les-01-sampling",
+          "title": "What sampling can and cannot tell you",
+          "type": "reading",
+          "content_file": "content/lesson-01-sampling.txt",
+          "estimated_minutes": 60,
+          "objectives": ["Describe a sampling frame"],
+          "competencies": ["inference"],
+          "topics": ["Sampling"],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "les-02-quality",
+          "title": "Reading a data-quality report",
+          "type": "reading",
+          "content_file": "content/lesson-02-quality.md",
+          "estimated_minutes": 60,
+          "objectives": ["Interpret a coverage rate"],
+          "competencies": ["data-quality"],
+          "topics": ["Data quality"],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "module_id": "mit-6-042-math-cs-m04",
+  "questions": [
+    {
+      "question_id": "mit-6-042-math-cs-m04-l01-q01",
+      "question": "According to the source lesson 'ada5226b2986f45a03ce10a46137d8ee MIT6 042JF10 fnl 2004 sol', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource ada5226b2986f45a03ce10a46137d8ee_MIT6_042JF10_fnl_2004_sol.pdf from 6.042J Mathematics for Computer Science.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Discrete Mathematics",
+      "topic": "proofs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-042-math-cs-m04-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'ada5226b2986f45a03ce10a46137d8ee MIT6 042JF10 fnl 2004 sol'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in ada5226b2986f45a03ce10a46137d8ee MIT6 042JF10 fnl 2004 sol.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Discrete Mathematics",
+      "topic": "proofs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-042-math-cs-m04-l01-q03",
+      "question": "When applying concepts from 'ada5226b2986f45a03ce10a46137d8ee MIT6 042JF10 fnl 2004 sol', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Discrete Mathematics",
+      "topic": "proofs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-042-math-cs-m04-l02-q01",
+      "question": "According to the source lesson '0784229be9fefe9bd73ae0f320995412 MIT6 042JF10 fnl 2006 sol', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 0784229be9fefe9bd73ae0f320995412_MIT6_042JF10_fnl_2006_sol.pdf from 6.042J Mathematics for Computer Science.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Discrete Mathematics",
+      "topic": "proofs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-042-math-cs-m04-l02-q02",
+      "question": "What is a reasonable learning takeaway from '0784229be9fefe9bd73ae0f320995412 MIT6 042JF10 fnl 2006 sol'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 0784229be9fefe9bd73ae0f320995412 MIT6 042JF10 fnl 2006 sol.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Discrete Mathematics",
+      "topic": "proofs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-042-math-cs-m04-l02-q03",
+      "question": "When applying concepts from '0784229be9fefe9bd73ae0f320995412 MIT6 042JF10 fnl 2006 sol', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Discrete Mathematics",
+      "topic": "proofs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-042-math-cs-m04-l03-q01",
+      "question": "According to the source lesson 'f2742c4fd6fcac9d60a74ee610e126f1 MIT6 042JF10 fnl 2008 sol', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource f2742c4fd6fcac9d60a74ee610e126f1_MIT6_042JF10_fnl_2008_sol.pdf from 6.042J Mathematics for Computer Science.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Discrete Mathematics",
+      "topic": "proofs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-042-math-cs-m04-l03-q02",
+      "question": "What is a reasonable learning takeaway from 'f2742c4fd6fcac9d60a74ee610e126f1 MIT6 042JF10 fnl 2008 sol'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in f2742c4fd6fcac9d60a74ee610e126f1 MIT6 042JF10 fnl 2008 sol.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Discrete Mathematics",
+      "topic": "proofs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-042-math-cs-m04-l03-q03",
+      "question": "When applying concepts from 'f2742c4fd6fcac9d60a74ee610e126f1 MIT6 042JF10 fnl 2008 sol', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Discrete Mathematics",
+      "topic": "proofs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-042-math-cs-m04-l04-q01",
+      "question": "According to the source lesson '23dc3226199eb8825acea5e7590f7caf MIT6 042JF10 final', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 23dc3226199eb8825acea5e7590f7caf_MIT6_042JF10_final.pdf from 6.042J Mathematics for Computer Science.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Discrete Mathematics",
+      "topic": "proofs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-042-math-cs-m04-l04-q02",
+      "question": "What is a reasonable learning takeaway from '23dc3226199eb8825acea5e7590f7caf MIT6 042JF10 final'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 23dc3226199eb8825acea5e7590f7caf MIT6 042JF10 final.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Discrete Mathematics",
+      "topic": "proofs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-042-math-cs-m04-l04-q03",
+      "question": "When applying concepts from '23dc3226199eb8825acea5e7590f7caf MIT6 042JF10 final', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Discrete Mathematics",
+      "topic": "proofs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

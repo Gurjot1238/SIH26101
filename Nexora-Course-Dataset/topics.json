@@ -1,0 +1,1151 @@
+[
+  {
+    "id": "scope-of-practice",
+    "name": "scope of practice",
+    "courses": [
+      "wtcs-nursing-fundamentals-2e"
+    ]
+  },
+  {
+    "id": "nursing-process",
+    "name": "nursing process",
+    "courses": [
+      "wtcs-nursing-fundamentals-2e"
+    ]
+  },
+  {
+    "id": "communication",
+    "name": "communication",
+    "courses": [
+      "wtcs-nursing-fundamentals-2e"
+    ]
+  },
+  {
+    "id": "safety",
+    "name": "safety",
+    "courses": [
+      "wtcs-nursing-fundamentals-2e"
+    ]
+  },
+  {
+    "id": "vital-signs",
+    "name": "vital signs",
+    "courses": [
+      "wtcs-nursing-skills-2e"
+    ]
+  },
+  {
+    "id": "infection-control",
+    "name": "infection control",
+    "courses": [
+      "wtcs-nursing-skills-2e"
+    ]
+  },
+  {
+    "id": "medication-administration",
+    "name": "medication administration",
+    "courses": [
+      "wtcs-nursing-skills-2e"
+    ]
+  },
+  {
+    "id": "pharmacokinetics",
+    "name": "pharmacokinetics",
+    "courses": [
+      "wtcs-nursing-pharmacology"
+    ]
+  },
+  {
+    "id": "drug-classes",
+    "name": "drug classes",
+    "courses": [
+      "wtcs-nursing-pharmacology"
+    ]
+  },
+  {
+    "id": "medication-safety",
+    "name": "medication safety",
+    "courses": [
+      "wtcs-nursing-pharmacology"
+    ]
+  },
+  {
+    "id": "mental-health",
+    "name": "mental health",
+    "courses": [
+      "wtcs-nursing-mental-health"
+    ]
+  },
+  {
+    "id": "community-nursing",
+    "name": "community nursing",
+    "courses": [
+      "wtcs-nursing-mental-health"
+    ]
+  },
+  {
+    "id": "therapeutic-communication",
+    "name": "therapeutic communication",
+    "courses": [
+      "wtcs-nursing-mental-health"
+    ]
+  },
+  {
+    "id": "leadership",
+    "name": "leadership",
+    "courses": [
+      "wtcs-nursing-management"
+    ]
+  },
+  {
+    "id": "delegation",
+    "name": "delegation",
+    "courses": [
+      "wtcs-nursing-management"
+    ]
+  },
+  {
+    "id": "quality-improvement",
+    "name": "quality improvement",
+    "courses": [
+      "wtcs-nursing-management"
+    ]
+  },
+  {
+    "id": "advanced-procedures",
+    "name": "advanced procedures",
+    "courses": [
+      "wtcs-nursing-advanced-skills"
+    ]
+  },
+  {
+    "id": "infusion-therapy",
+    "name": "infusion therapy",
+    "courses": [
+      "wtcs-nursing-advanced-skills"
+    ]
+  },
+  {
+    "id": "airway-management",
+    "name": "airway management",
+    "courses": [
+      "wtcs-nursing-advanced-skills"
+    ]
+  },
+  {
+    "id": "health-promotion",
+    "name": "health promotion",
+    "courses": [
+      "wtcs-nursing-health-promotion"
+    ]
+  },
+  {
+    "id": "prevention",
+    "name": "prevention",
+    "courses": [
+      "wtcs-nursing-health-promotion"
+    ]
+  },
+  {
+    "id": "community-assessment",
+    "name": "community assessment",
+    "courses": [
+      "wtcs-nursing-health-promotion"
+    ]
+  },
+  {
+    "id": "word-roots",
+    "name": "word roots",
+    "courses": [
+      "uwf-medical-terminology"
+    ]
+  },
+  {
+    "id": "body-systems",
+    "name": "body systems",
+    "courses": [
+      "uwf-medical-terminology"
+    ]
+  },
+  {
+    "id": "clinical-language",
+    "name": "clinical language",
+    "courses": [
+      "uwf-medical-terminology"
+    ]
+  },
+  {
+    "id": "anatomical-language",
+    "name": "anatomical language",
+    "courses": [
+      "uta-human-anatomy-lab"
+    ]
+  },
+  {
+    "id": "organ-systems",
+    "name": "organ systems",
+    "courses": [
+      "uta-human-anatomy-lab",
+      "openstax-anatomy-physiology"
+    ]
+  },
+  {
+    "id": "laboratory-identification",
+    "name": "laboratory identification",
+    "courses": [
+      "uta-human-anatomy-lab"
+    ]
+  },
+  {
+    "id": "cells",
+    "name": "cells",
+    "courses": [
+      "openstax-anatomy-physiology",
+      "openstax-biology"
+    ]
+  },
+  {
+    "id": "tissues",
+    "name": "tissues",
+    "courses": [
+      "openstax-anatomy-physiology"
+    ]
+  },
+  {
+    "id": "homeostasis",
+    "name": "homeostasis",
+    "courses": [
+      "openstax-anatomy-physiology"
+    ]
+  },
+  {
+    "id": "lift",
+    "name": "lift",
+    "courses": [
+      "vt-aerodynamics-aircraft-performance"
+    ]
+  },
+  {
+    "id": "drag",
+    "name": "drag",
+    "courses": [
+      "vt-aerodynamics-aircraft-performance"
+    ]
+  },
+  {
+    "id": "airfoils",
+    "name": "airfoils",
+    "courses": [
+      "vt-aerodynamics-aircraft-performance"
+    ]
+  },
+  {
+    "id": "performance",
+    "name": "performance",
+    "courses": [
+      "vt-aerodynamics-aircraft-performance"
+    ]
+  },
+  {
+    "id": "define",
+    "name": "define",
+    "courses": [
+      "isu-mechanical-engineering-design"
+    ]
+  },
+  {
+    "id": "measure",
+    "name": "measure",
+    "courses": [
+      "isu-mechanical-engineering-design"
+    ]
+  },
+  {
+    "id": "analyze",
+    "name": "analyze",
+    "courses": [
+      "isu-mechanical-engineering-design"
+    ]
+  },
+  {
+    "id": "design-process",
+    "name": "design process",
+    "courses": [
+      "isu-mechanical-engineering-design",
+      "mit-2-007-design-manufacturing"
+    ]
+  },
+  {
+    "id": "views",
+    "name": "views",
+    "courses": [
+      "openoregon-basic-blueprint-reading"
+    ]
+  },
+  {
+    "id": "dimensions",
+    "name": "dimensions",
+    "courses": [
+      "openoregon-basic-blueprint-reading"
+    ]
+  },
+  {
+    "id": "tolerances",
+    "name": "tolerances",
+    "courses": [
+      "openoregon-basic-blueprint-reading"
+    ]
+  },
+  {
+    "id": "blueprints",
+    "name": "blueprints",
+    "courses": [
+      "openoregon-basic-blueprint-reading"
+    ]
+  },
+  {
+    "id": "kinematics",
+    "name": "kinematics",
+    "courses": [
+      "openstax-college-physics",
+      "mit-2-003-dynamics",
+      "mit-8-01-mechanics"
+    ]
+  },
+  {
+    "id": "newton-s-laws",
+    "name": "Newton's laws",
+    "courses": [
+      "openstax-college-physics",
+      "mit-8-01-mechanics"
+    ]
+  },
+  {
+    "id": "energy",
+    "name": "energy",
+    "courses": [
+      "openstax-college-physics",
+      "openstax-physics",
+      "mit-8-01-mechanics"
+    ]
+  },
+  {
+    "id": "electricity",
+    "name": "electricity",
+    "courses": [
+      "openstax-college-physics"
+    ]
+  },
+  {
+    "id": "genetics",
+    "name": "genetics",
+    "courses": [
+      "openstax-biology"
+    ]
+  },
+  {
+    "id": "evolution",
+    "name": "evolution",
+    "courses": [
+      "openstax-biology"
+    ]
+  },
+  {
+    "id": "physiology",
+    "name": "physiology",
+    "courses": [
+      "openstax-biology"
+    ]
+  },
+  {
+    "id": "functions",
+    "name": "functions",
+    "courses": [
+      "openstax-college-algebra",
+      "openstax-precalculus",
+      "openstax-algebra-trigonometry",
+      "mit-6-0001-python",
+      "thinkcspy-learning-with-python"
+    ]
+  },
+  {
+    "id": "equations",
+    "name": "equations",
+    "courses": [
+      "openstax-college-algebra"
+    ]
+  },
+  {
+    "id": "polynomials",
+    "name": "polynomials",
+    "courses": [
+      "openstax-college-algebra"
+    ]
+  },
+  {
+    "id": "exponentials",
+    "name": "exponentials",
+    "courses": [
+      "openstax-college-algebra"
+    ]
+  },
+  {
+    "id": "trigonometry",
+    "name": "trigonometry",
+    "courses": [
+      "openstax-precalculus"
+    ]
+  },
+  {
+    "id": "analytic-geometry",
+    "name": "analytic geometry",
+    "courses": [
+      "openstax-precalculus"
+    ]
+  },
+  {
+    "id": "algebra",
+    "name": "algebra",
+    "courses": [
+      "openstax-algebra-trigonometry"
+    ]
+  },
+  {
+    "id": "trig-identities",
+    "name": "trig identities",
+    "courses": [
+      "openstax-algebra-trigonometry"
+    ]
+  },
+  {
+    "id": "descriptive-statistics",
+    "name": "descriptive statistics",
+    "courses": [
+      "openstax-introductory-statistics"
+    ]
+  },
+  {
+    "id": "probability",
+    "name": "probability",
+    "courses": [
+      "openstax-introductory-statistics",
+      "mit-6-042-math-cs",
+      "openintro-statistics"
+    ]
+  },
+  {
+    "id": "inference",
+    "name": "inference",
+    "courses": [
+      "openstax-introductory-statistics",
+      "openintro-statistics"
+    ]
+  },
+  {
+    "id": "motion",
+    "name": "motion",
+    "courses": [
+      "openstax-physics",
+      "mit-6-801-vision"
+    ]
+  },
+  {
+    "id": "forces",
+    "name": "forces",
+    "courses": [
+      "openstax-physics"
+    ]
+  },
+  {
+    "id": "waves",
+    "name": "waves",
+    "courses": [
+      "openstax-physics"
+    ]
+  },
+  {
+    "id": "sampling",
+    "name": "sampling",
+    "courses": [
+      "openstax-statistics",
+      "mit-6-003-signals"
+    ]
+  },
+  {
+    "id": "regression",
+    "name": "regression",
+    "courses": [
+      "openstax-statistics",
+      "openintro-statistics"
+    ]
+  },
+  {
+    "id": "hypothesis-testing",
+    "name": "hypothesis testing",
+    "courses": [
+      "openstax-statistics"
+    ]
+  },
+  {
+    "id": "python",
+    "name": "Python",
+    "courses": [
+      "mit-6-0001-python",
+      "mit-6-01sc-eecs",
+      "py4e-python-for-everybody"
+    ]
+  },
+  {
+    "id": "objects",
+    "name": "objects",
+    "courses": [
+      "mit-6-0001-python",
+      "mit-1-00-problem-solving"
+    ]
+  },
+  {
+    "id": "complexity",
+    "name": "complexity",
+    "courses": [
+      "mit-6-0001-python",
+      "mit-6-033-systems",
+      "mit-6-045-automata"
+    ]
+  },
+  {
+    "id": "simulation",
+    "name": "simulation",
+    "courses": [
+      "mit-6-0002-data-science",
+      "mit-1-00-problem-solving"
+    ]
+  },
+  {
+    "id": "optimization",
+    "name": "optimization",
+    "courses": [
+      "mit-6-0002-data-science"
+    ]
+  },
+  {
+    "id": "machine-learning-intro",
+    "name": "machine learning intro",
+    "courses": [
+      "mit-6-0002-data-science"
+    ]
+  },
+  {
+    "id": "plotting",
+    "name": "plotting",
+    "courses": [
+      "mit-6-0002-data-science"
+    ]
+  },
+  {
+    "id": "graphs",
+    "name": "graphs",
+    "courses": [
+      "mit-6-006-algorithms",
+      "mit-6-006-algorithms-2011",
+      "mit-6-042-math-cs",
+      "illinois-algorithms-erickson"
+    ]
+  },
+  {
+    "id": "sorting",
+    "name": "sorting",
+    "courses": [
+      "mit-6-006-algorithms"
+    ]
+  },
+  {
+    "id": "dynamic-programming",
+    "name": "dynamic programming",
+    "courses": [
+      "mit-6-006-algorithms",
+      "illinois-algorithms-erickson"
+    ]
+  },
+  {
+    "id": "shortest-paths",
+    "name": "shortest paths",
+    "courses": [
+      "mit-6-006-algorithms",
+      "mit-6-006-algorithms-2011"
+    ]
+  },
+  {
+    "id": "search",
+    "name": "search",
+    "courses": [
+      "mit-6-034-ai"
+    ]
+  },
+  {
+    "id": "constraints",
+    "name": "constraints",
+    "courses": [
+      "mit-6-034-ai"
+    ]
+  },
+  {
+    "id": "neural-nets",
+    "name": "neural nets",
+    "courses": [
+      "mit-6-034-ai"
+    ]
+  },
+  {
+    "id": "learning",
+    "name": "learning",
+    "courses": [
+      "mit-6-034-ai"
+    ]
+  },
+  {
+    "id": "supervised-learning",
+    "name": "supervised learning",
+    "courses": [
+      "mit-6-867-ml"
+    ]
+  },
+  {
+    "id": "kernels",
+    "name": "kernels",
+    "courses": [
+      "mit-6-867-ml"
+    ]
+  },
+  {
+    "id": "graphical-models",
+    "name": "graphical models",
+    "courses": [
+      "mit-6-867-ml"
+    ]
+  },
+  {
+    "id": "amortized-analysis",
+    "name": "amortized analysis",
+    "courses": [
+      "mit-6-046-algorithms"
+    ]
+  },
+  {
+    "id": "network-flow",
+    "name": "network flow",
+    "courses": [
+      "mit-6-046-algorithms"
+    ]
+  },
+  {
+    "id": "np-completeness",
+    "name": "NP-completeness",
+    "courses": [
+      "mit-6-046-algorithms"
+    ]
+  },
+  {
+    "id": "cmos",
+    "name": "CMOS",
+    "courses": [
+      "mit-6-004-computation-structures"
+    ]
+  },
+  {
+    "id": "assembly",
+    "name": "assembly",
+    "courses": [
+      "mit-6-004-computation-structures"
+    ]
+  },
+  {
+    "id": "processors",
+    "name": "processors",
+    "courses": [
+      "mit-6-004-computation-structures"
+    ]
+  },
+  {
+    "id": "caches",
+    "name": "caches",
+    "courses": [
+      "mit-6-004-computation-structures"
+    ]
+  },
+  {
+    "id": "naming",
+    "name": "naming",
+    "courses": [
+      "mit-6-033-systems"
+    ]
+  },
+  {
+    "id": "reliability",
+    "name": "reliability",
+    "courses": [
+      "mit-6-033-systems"
+    ]
+  },
+  {
+    "id": "security",
+    "name": "security",
+    "courses": [
+      "mit-6-033-systems"
+    ]
+  },
+  {
+    "id": "query-processing",
+    "name": "query processing",
+    "courses": [
+      "mit-6-830-databases"
+    ]
+  },
+  {
+    "id": "transactions",
+    "name": "transactions",
+    "courses": [
+      "mit-6-830-databases"
+    ]
+  },
+  {
+    "id": "indexing",
+    "name": "indexing",
+    "courses": [
+      "mit-6-830-databases"
+    ]
+  },
+  {
+    "id": "control-hijacking",
+    "name": "control hijacking",
+    "courses": [
+      "mit-6-858-security"
+    ]
+  },
+  {
+    "id": "web-security",
+    "name": "web security",
+    "courses": [
+      "mit-6-858-security"
+    ]
+  },
+  {
+    "id": "isolation",
+    "name": "isolation",
+    "courses": [
+      "mit-6-858-security"
+    ]
+  },
+  {
+    "id": "resistive-networks",
+    "name": "resistive networks",
+    "courses": [
+      "mit-6-002-circuits"
+    ]
+  },
+  {
+    "id": "mosfet",
+    "name": "MOSFET",
+    "courses": [
+      "mit-6-002-circuits"
+    ]
+  },
+  {
+    "id": "amplifiers",
+    "name": "amplifiers",
+    "courses": [
+      "mit-6-002-circuits"
+    ]
+  },
+  {
+    "id": "digital-circuits",
+    "name": "digital circuits",
+    "courses": [
+      "mit-6-002-circuits"
+    ]
+  },
+  {
+    "id": "lti-systems",
+    "name": "LTI systems",
+    "courses": [
+      "mit-6-003-signals"
+    ]
+  },
+  {
+    "id": "fourier",
+    "name": "Fourier",
+    "courses": [
+      "mit-6-003-signals"
+    ]
+  },
+  {
+    "id": "laplace",
+    "name": "Laplace",
+    "courses": [
+      "mit-6-003-signals"
+    ]
+  },
+  {
+    "id": "matrices",
+    "name": "matrices",
+    "courses": [
+      "mit-18-06-linear-algebra"
+    ]
+  },
+  {
+    "id": "vector-spaces",
+    "name": "vector spaces",
+    "courses": [
+      "mit-18-06-linear-algebra"
+    ]
+  },
+  {
+    "id": "eigenvalues",
+    "name": "eigenvalues",
+    "courses": [
+      "mit-18-06-linear-algebra"
+    ]
+  },
+  {
+    "id": "least-squares",
+    "name": "least squares",
+    "courses": [
+      "mit-18-06-linear-algebra"
+    ]
+  },
+  {
+    "id": "circuits",
+    "name": "circuits",
+    "courses": [
+      "mit-6-01sc-eecs"
+    ]
+  },
+  {
+    "id": "feedback",
+    "name": "feedback",
+    "courses": [
+      "mit-6-01sc-eecs"
+    ]
+  },
+  {
+    "id": "state-machines",
+    "name": "state machines",
+    "courses": [
+      "mit-6-01sc-eecs"
+    ]
+  },
+  {
+    "id": "newton-euler",
+    "name": "Newton-Euler",
+    "courses": [
+      "mit-2-003-dynamics"
+    ]
+  },
+  {
+    "id": "lagrangian",
+    "name": "Lagrangian",
+    "courses": [
+      "mit-2-003-dynamics"
+    ]
+  },
+  {
+    "id": "vibration",
+    "name": "vibration",
+    "courses": [
+      "mit-2-003-dynamics"
+    ]
+  },
+  {
+    "id": "automata",
+    "name": "automata",
+    "courses": [
+      "mit-6-045-automata"
+    ]
+  },
+  {
+    "id": "computability",
+    "name": "computability",
+    "courses": [
+      "mit-6-045-automata"
+    ]
+  },
+  {
+    "id": "hashing",
+    "name": "hashing",
+    "courses": [
+      "mit-6-006-algorithms-2011"
+    ]
+  },
+  {
+    "id": "trees",
+    "name": "trees",
+    "courses": [
+      "mit-6-006-algorithms-2011"
+    ]
+  },
+  {
+    "id": "bits",
+    "name": "bits",
+    "courses": [
+      "mit-6-02-digital-comm"
+    ]
+  },
+  {
+    "id": "noise",
+    "name": "noise",
+    "courses": [
+      "mit-6-02-digital-comm"
+    ]
+  },
+  {
+    "id": "coding",
+    "name": "coding",
+    "courses": [
+      "mit-6-02-digital-comm"
+    ]
+  },
+  {
+    "id": "packets",
+    "name": "packets",
+    "courses": [
+      "mit-6-02-digital-comm"
+    ]
+  },
+  {
+    "id": "particles",
+    "name": "particles",
+    "courses": [
+      "mit-16-07-dynamics"
+    ]
+  },
+  {
+    "id": "rigid-bodies",
+    "name": "rigid bodies",
+    "courses": [
+      "mit-16-07-dynamics"
+    ]
+  },
+  {
+    "id": "orbital-mechanics",
+    "name": "orbital mechanics",
+    "courses": [
+      "mit-16-07-dynamics"
+    ]
+  },
+  {
+    "id": "mechanisms",
+    "name": "mechanisms",
+    "courses": [
+      "mit-2-007-design-manufacturing"
+    ]
+  },
+  {
+    "id": "fabrication",
+    "name": "fabrication",
+    "courses": [
+      "mit-2-007-design-manufacturing"
+    ]
+  },
+  {
+    "id": "bonding",
+    "name": "bonding",
+    "courses": [
+      "mit-3-091-ssc"
+    ]
+  },
+  {
+    "id": "crystals",
+    "name": "crystals",
+    "courses": [
+      "mit-3-091-ssc"
+    ]
+  },
+  {
+    "id": "polymers",
+    "name": "polymers",
+    "courses": [
+      "mit-3-091-ssc"
+    ]
+  },
+  {
+    "id": "metals",
+    "name": "metals",
+    "courses": [
+      "mit-3-091-ssc"
+    ]
+  },
+  {
+    "id": "parsing",
+    "name": "parsing",
+    "courses": [
+      "mit-6-864-nlp"
+    ]
+  },
+  {
+    "id": "tagging",
+    "name": "tagging",
+    "courses": [
+      "mit-6-864-nlp"
+    ]
+  },
+  {
+    "id": "translation",
+    "name": "translation",
+    "courses": [
+      "mit-6-864-nlp"
+    ]
+  },
+  {
+    "id": "language-models",
+    "name": "language models",
+    "courses": [
+      "mit-6-864-nlp"
+    ]
+  },
+  {
+    "id": "image-formation",
+    "name": "image formation",
+    "courses": [
+      "mit-6-801-vision"
+    ]
+  },
+  {
+    "id": "stereo",
+    "name": "stereo",
+    "courses": [
+      "mit-6-801-vision"
+    ]
+  },
+  {
+    "id": "recognition",
+    "name": "recognition",
+    "courses": [
+      "mit-6-801-vision"
+    ]
+  },
+  {
+    "id": "design",
+    "name": "design",
+    "courses": [
+      "mit-6-170-software-studio"
+    ]
+  },
+  {
+    "id": "testing",
+    "name": "testing",
+    "courses": [
+      "mit-6-170-software-studio"
+    ]
+  },
+  {
+    "id": "web-apps",
+    "name": "web apps",
+    "courses": [
+      "mit-6-170-software-studio"
+    ]
+  },
+  {
+    "id": "code-review",
+    "name": "code review",
+    "courses": [
+      "mit-6-170-software-studio"
+    ]
+  },
+  {
+    "id": "java",
+    "name": "Java",
+    "courses": [
+      "mit-1-00-problem-solving"
+    ]
+  },
+  {
+    "id": "data-structures",
+    "name": "data structures",
+    "courses": [
+      "mit-1-00-problem-solving"
+    ]
+  },
+  {
+    "id": "proofs",
+    "name": "proofs",
+    "courses": [
+      "mit-6-042-math-cs"
+    ]
+  },
+  {
+    "id": "counting",
+    "name": "counting",
+    "courses": [
+      "mit-6-042-math-cs"
+    ]
+  },
+  {
+    "id": "momentum",
+    "name": "momentum",
+    "courses": [
+      "mit-8-01-mechanics"
+    ]
+  },
+  {
+    "id": "files",
+    "name": "files",
+    "courses": [
+      "py4e-python-for-everybody"
+    ]
+  },
+  {
+    "id": "http",
+    "name": "HTTP",
+    "courses": [
+      "py4e-python-for-everybody"
+    ]
+  },
+  {
+    "id": "sql",
+    "name": "SQL",
+    "courses": [
+      "py4e-python-for-everybody"
+    ]
+  },
+  {
+    "id": "variables",
+    "name": "variables",
+    "courses": [
+      "thinkcspy-learning-with-python"
+    ]
+  },
+  {
+    "id": "classes",
+    "name": "classes",
+    "courses": [
+      "thinkcspy-learning-with-python"
+    ]
+  },
+  {
+    "id": "algorithms",
+    "name": "algorithms",
+    "courses": [
+      "thinkcspy-learning-with-python"
+    ]
+  },
+  {
+    "id": "data",
+    "name": "data",
+    "courses": [
+      "openintro-statistics"
+    ]
+  },
+  {
+    "id": "recursion",
+    "name": "recursion",
+    "courses": [
+      "illinois-algorithms-erickson"
+    ]
+  },
+  {
+    "id": "backtracking",
+    "name": "backtracking",
+    "courses": [
+      "illinois-algorithms-erickson"
+    ]
+  }
+]

@@ -1,0 +1,197 @@
+{
+  "module_id": "wtcs-nursing-skills-2e-m02",
+  "questions": [
+    {
+      "question_id": "wtcs-nursing-skills-2e-m02-l01-q01",
+      "question": "According to the source lesson '2.1 Health History Introduction', which statement is most accurate?",
+      "options": [
+        "## Learning Objectives * Establish a therapeutic nurse-patient relationship * Use effective verbal and nonverbal communication techniques * Collect health history data * Modify assessment techniques to reflect variations across the life spa",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from '2.1 Health History Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.1 Health History Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m02-l01-q03",
+      "question": "When applying concepts from '2.1 Health History Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m02-l02-q01",
+      "question": "According to the source lesson '2.2 Health History Basic Concepts', which statement is most accurate?",
+      "options": [
+        "During a health history, the nurse collects subjective data from the patient, their caregivers, and/or family members using focused and open-ended questions.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m02-l02-q02",
+      "question": "What is a reasonable learning takeaway from '2.2 Health History Basic Concepts'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.2 Health History Basic Concepts.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m02-l02-q03",
+      "question": "When applying concepts from '2.2 Health History Basic Concepts', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m02-l03-q01",
+      "question": "According to the source lesson '2.3 Components of a Health History', which statement is most accurate?",
+      "options": [
+        "The purpose of obtaining a health history is to gather subjective data from the patient and/or their care partners to collaboratively create a nursing care plan that will promote health and maximize functioning.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m02-l03-q02",
+      "question": "What is a reasonable learning takeaway from '2.3 Components of a Health History'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.3 Components of a Health History.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m02-l03-q03",
+      "question": "When applying concepts from '2.3 Components of a Health History', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m02-l04-q01",
+      "question": "According to the source lesson '2.4 Demographic and Biological Data', which statement is most accurate?",
+      "options": [
+        "Demographic and biographic data includes basic characteristics about the patient, such as their name, contact information, birthdate, age, gender and preferred pronouns, allergies, languages spoken and preferred language, relationship statu",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m02-l04-q02",
+      "question": "What is a reasonable learning takeaway from '2.4 Demographic and Biological Data'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.4 Demographic and Biological Data.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m02-l04-q03",
+      "question": "When applying concepts from '2.4 Demographic and Biological Data', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

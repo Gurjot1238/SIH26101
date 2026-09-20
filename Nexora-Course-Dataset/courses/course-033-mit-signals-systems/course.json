@@ -1,0 +1,267 @@
+{
+  "course_id": "mit-6-003-signals",
+  "title": "6.003 Signals and Systems",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Electrical Engineering",
+  "level": "Intermediate",
+  "description": "MIT OpenCourseWare 6.003 Signals and Systems (Fall 2011). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Signals and Systems",
+    "Electrical Engineering",
+    "DSP"
+  ],
+  "topics": [
+    "LTI systems",
+    "Fourier",
+    "Laplace",
+    "sampling"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Fall 2011",
+  "duration": {
+    "estimated_hours": 13.3,
+    "estimated_minutes": 800
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 10,
+    "practice_questions": 30
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-6-003-signals-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Signals and Systems",
+        "Electrical Engineering",
+        "DSP"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-003-signals-m01-l01",
+          "title": "012675925c0f652bb179b6a33cd3d13b MIT6 003F11 lec01",
+          "type": "pdf",
+          "content_file": "content/module-01/012675925c0f652bb179b6a33cd3d13b_MIT6_003F11_lec01.pdf",
+          "practice_file": "practice/mit-6-003-signals-m01-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Signals and Systems",
+            "Electrical Engineering"
+          ],
+          "topics": [
+            "LTI systems",
+            "Fourier",
+            "Laplace"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-003-signals-m01-l02",
+          "title": "64cf552631f0f5fdba1913309f3639e8 MIT6 003F11 lec02",
+          "type": "pdf",
+          "content_file": "content/module-01/64cf552631f0f5fdba1913309f3639e8_MIT6_003F11_lec02.pdf",
+          "practice_file": "practice/mit-6-003-signals-m01-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Signals and Systems",
+            "Electrical Engineering"
+          ],
+          "topics": [
+            "LTI systems",
+            "Fourier",
+            "Laplace"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-003-signals-m01-l03",
+          "title": "a65484c58642de196c089e74434a7ed8 MIT6 003F11 lec03",
+          "type": "pdf",
+          "content_file": "content/module-01/a65484c58642de196c089e74434a7ed8_MIT6_003F11_lec03.pdf",
+          "practice_file": "practice/mit-6-003-signals-m01-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Signals and Systems",
+            "Electrical Engineering"
+          ],
+          "topics": [
+            "LTI systems",
+            "Fourier",
+            "Laplace"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-003-signals-m01-l04",
+          "title": "8482ac0d52b5259be5394f2fe14dd3e6 MIT6 003F11 lec04",
+          "type": "pdf",
+          "content_file": "content/module-01/8482ac0d52b5259be5394f2fe14dd3e6_MIT6_003F11_lec04.pdf",
+          "practice_file": "practice/mit-6-003-signals-m01-l04.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Signals and Systems",
+            "Electrical Engineering"
+          ],
+          "topics": [
+            "LTI systems",
+            "Fourier",
+            "Laplace"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-003-signals-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Signals and Systems",
+        "Electrical Engineering",
+        "DSP"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-003-signals-m02-l01",
+          "title": "64490a008c1c5c25c86044351465abf7 MIT6 003F11 lec05",
+          "type": "pdf",
+          "content_file": "content/module-02/64490a008c1c5c25c86044351465abf7_MIT6_003F11_lec05.pdf",
+          "practice_file": "practice/mit-6-003-signals-m02-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Signals and Systems",
+            "Electrical Engineering"
+          ],
+          "topics": [
+            "LTI systems",
+            "Fourier",
+            "Laplace"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-003-signals-m02-l02",
+          "title": "84b35cc755ccd722ddbdbba00fd41e8f MIT6 003F11 lec06",
+          "type": "pdf",
+          "content_file": "content/module-02/84b35cc755ccd722ddbdbba00fd41e8f_MIT6_003F11_lec06.pdf",
+          "practice_file": "practice/mit-6-003-signals-m02-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Signals and Systems",
+            "Electrical Engineering"
+          ],
+          "topics": [
+            "LTI systems",
+            "Fourier",
+            "Laplace"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-003-signals-m02-l03",
+          "title": "c154cd595a824a6c1b7b4d1d1a6c3ada MIT6 003F11 lec07",
+          "type": "pdf",
+          "content_file": "content/module-02/c154cd595a824a6c1b7b4d1d1a6c3ada_MIT6_003F11_lec07.pdf",
+          "practice_file": "practice/mit-6-003-signals-m02-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Signals and Systems",
+            "Electrical Engineering"
+          ],
+          "topics": [
+            "LTI systems",
+            "Fourier",
+            "Laplace"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-003-signals-m02-l04",
+          "title": "3c5d1ec5efbca4bcf46cdf5a1cca3518 MIT6 003F11 lec08",
+          "type": "pdf",
+          "content_file": "content/module-02/3c5d1ec5efbca4bcf46cdf5a1cca3518_MIT6_003F11_lec08.pdf",
+          "practice_file": "practice/mit-6-003-signals-m02-l04.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Signals and Systems",
+            "Electrical Engineering"
+          ],
+          "topics": [
+            "LTI systems",
+            "Fourier",
+            "Laplace"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-003-signals-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Signals and Systems",
+        "Electrical Engineering",
+        "DSP"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-003-signals-m03-l01",
+          "title": "ae0f6535cd4c67454ac3cf1a70c85934 MIT6 003F11 lec09",
+          "type": "pdf",
+          "content_file": "content/module-03/ae0f6535cd4c67454ac3cf1a70c85934_MIT6_003F11_lec09.pdf",
+          "practice_file": "practice/mit-6-003-signals-m03-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Signals and Systems",
+            "Electrical Engineering"
+          ],
+          "topics": [
+            "LTI systems",
+            "Fourier",
+            "Laplace"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-003-signals-m03-l02",
+          "title": "05005fd58267b483b50d145b8e23e085 MIT6 003F11 lec10",
+          "type": "pdf",
+          "content_file": "content/module-03/05005fd58267b483b50d145b8e23e085_MIT6_003F11_lec10.pdf",
+          "practice_file": "practice/mit-6-003-signals-m03-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Signals and Systems",
+            "Electrical Engineering"
+          ],
+          "topics": [
+            "LTI systems",
+            "Fourier",
+            "Laplace"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

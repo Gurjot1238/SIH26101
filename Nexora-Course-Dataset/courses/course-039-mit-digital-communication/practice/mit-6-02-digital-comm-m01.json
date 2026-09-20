@@ -1,0 +1,197 @@
+{
+  "module_id": "mit-6-02-digital-comm-m01",
+  "questions": [
+    {
+      "question_id": "mit-6-02-digital-comm-m01-l01-q01",
+      "question": "According to the source lesson '21637440fda8bd0e28d06a9eac518b03 MIT6 02F12 lec01', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 21637440fda8bd0e28d06a9eac518b03_MIT6_02F12_lec01.pdf from 6.02 Introduction to EECS II: Digital Communication Systems.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Networks",
+      "topic": "bits",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-02-digital-comm-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from '21637440fda8bd0e28d06a9eac518b03 MIT6 02F12 lec01'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 21637440fda8bd0e28d06a9eac518b03 MIT6 02F12 lec01.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Networks",
+      "topic": "bits",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-02-digital-comm-m01-l01-q03",
+      "question": "When applying concepts from '21637440fda8bd0e28d06a9eac518b03 MIT6 02F12 lec01', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Networks",
+      "topic": "bits",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-02-digital-comm-m01-l02-q01",
+      "question": "According to the source lesson '49242956b17f47b9c85bd6784aa5d6b8 MIT6 02F12 lec10', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 49242956b17f47b9c85bd6784aa5d6b8_MIT6_02F12_lec10.pdf from 6.02 Introduction to EECS II: Digital Communication Systems.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Networks",
+      "topic": "bits",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-02-digital-comm-m01-l02-q02",
+      "question": "What is a reasonable learning takeaway from '49242956b17f47b9c85bd6784aa5d6b8 MIT6 02F12 lec10'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 49242956b17f47b9c85bd6784aa5d6b8 MIT6 02F12 lec10.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Networks",
+      "topic": "bits",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-02-digital-comm-m01-l02-q03",
+      "question": "When applying concepts from '49242956b17f47b9c85bd6784aa5d6b8 MIT6 02F12 lec10', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Networks",
+      "topic": "bits",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-02-digital-comm-m01-l03-q01",
+      "question": "According to the source lesson '8989d3b33e177b9a2e373223c62c5b13 MIT6 02F12 lec11', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 8989d3b33e177b9a2e373223c62c5b13_MIT6_02F12_lec11.pdf from 6.02 Introduction to EECS II: Digital Communication Systems.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Networks",
+      "topic": "bits",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-02-digital-comm-m01-l03-q02",
+      "question": "What is a reasonable learning takeaway from '8989d3b33e177b9a2e373223c62c5b13 MIT6 02F12 lec11'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 8989d3b33e177b9a2e373223c62c5b13 MIT6 02F12 lec11.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Networks",
+      "topic": "bits",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-02-digital-comm-m01-l03-q03",
+      "question": "When applying concepts from '8989d3b33e177b9a2e373223c62c5b13 MIT6 02F12 lec11', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Networks",
+      "topic": "bits",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-02-digital-comm-m01-l04-q01",
+      "question": "According to the source lesson 'c609f44097dd5b8ebc46ba1e6ca6d754 MIT6 02F12 lec12', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource c609f44097dd5b8ebc46ba1e6ca6d754_MIT6_02F12_lec12.pdf from 6.02 Introduction to EECS II: Digital Communication Systems.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Networks",
+      "topic": "bits",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-02-digital-comm-m01-l04-q02",
+      "question": "What is a reasonable learning takeaway from 'c609f44097dd5b8ebc46ba1e6ca6d754 MIT6 02F12 lec12'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in c609f44097dd5b8ebc46ba1e6ca6d754 MIT6 02F12 lec12.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Networks",
+      "topic": "bits",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-02-digital-comm-m01-l04-q03",
+      "question": "When applying concepts from 'c609f44097dd5b8ebc46ba1e6ca6d754 MIT6 02F12 lec12', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Networks",
+      "topic": "bits",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

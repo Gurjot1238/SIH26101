@@ -1,0 +1,197 @@
+{
+  "module_id": "wtcs-nursing-mental-health-m04",
+  "questions": [
+    {
+      "question_id": "wtcs-nursing-mental-health-m04-l01-q01",
+      "question": "According to the source lesson '4.1 Introduction', which statement is most accurate?",
+      "options": [
+        "Learning Objectives * Apply the nursing process to mental health care * Apply the subcategories of the _Implementation_ standard of care to mental health care * Explain various mental health treatment approaches * Promote a therapeutic envi",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Psychiatric-Mental Health Nursing",
+      "topic": "mental health",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-mental-health-m04-l01-q02",
+      "question": "What is a reasonable learning takeaway from '4.1 Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 4.1 Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Psychiatric-Mental Health Nursing",
+      "topic": "mental health",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-mental-health-m04-l01-q03",
+      "question": "When applying concepts from '4.1 Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Psychiatric-Mental Health Nursing",
+      "topic": "mental health",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-mental-health-m04-l02-q01",
+      "question": "According to the source lesson '4.2 Applying the Nursing Process', which statement is most accurate?",
+      "options": [
+        "The nursing process is a critical thinking model based on a systematic approach to client-centered care.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Psychiatric-Mental Health Nursing",
+      "topic": "mental health",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-mental-health-m04-l02-q02",
+      "question": "What is a reasonable learning takeaway from '4.2 Applying the Nursing Process'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 4.2 Applying the Nursing Process.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Psychiatric-Mental Health Nursing",
+      "topic": "mental health",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-mental-health-m04-l02-q03",
+      "question": "When applying concepts from '4.2 Applying the Nursing Process', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Psychiatric-Mental Health Nursing",
+      "topic": "mental health",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-mental-health-m04-l03-q01",
+      "question": "According to the source lesson '4.3 Assessment', which statement is most accurate?",
+      "options": [
+        "The _Assessment_ Standard of Practice established by the American Nurses Association (ANA) states, \"The registered nurse collects pertinent data to the health care and information relative to the health care consumer's health or the situati",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Psychiatric-Mental Health Nursing",
+      "topic": "mental health",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-mental-health-m04-l03-q02",
+      "question": "What is a reasonable learning takeaway from '4.3 Assessment'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 4.3 Assessment.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Psychiatric-Mental Health Nursing",
+      "topic": "mental health",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-mental-health-m04-l03-q03",
+      "question": "When applying concepts from '4.3 Assessment', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Psychiatric-Mental Health Nursing",
+      "topic": "mental health",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-mental-health-m04-l04-q01",
+      "question": "According to the source lesson '4.4 Diagnosis', which statement is most accurate?",
+      "options": [
+        "The _Diagnosis_ Standard of Practice by the American Nurses Association states, \"The registered nurse analyzes assessment data to determine actual or potential diagnoses, problems, and issues.\"[1] Review the competencies for the _Diagnosis_",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Psychiatric-Mental Health Nursing",
+      "topic": "mental health",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-mental-health-m04-l04-q02",
+      "question": "What is a reasonable learning takeaway from '4.4 Diagnosis'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 4.4 Diagnosis.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Psychiatric-Mental Health Nursing",
+      "topic": "mental health",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-mental-health-m04-l04-q03",
+      "question": "When applying concepts from '4.4 Diagnosis', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Psychiatric-Mental Health Nursing",
+      "topic": "mental health",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "lesson_id": "openstax-anatomy-physiology-m03-l06",
+  "questions": [
+    {
+      "question_id": "openstax-anatomy-physiology-m03-l06-q01",
+      "question": "According to the source lesson '3.5 Cell Growth and Division', which statement is most accurate?",
+      "options": [
+        "## 3.5 Cell Growth and Division ### Learning Objectives By the end of this section, you will be able to: * Describe the stages of the cell cycle * Discuss how the cell cycle is regulated * Describe the implications of losing control over th",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "cells",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-anatomy-physiology-m03-l06-q02",
+      "question": "What is a reasonable learning takeaway from '3.5 Cell Growth and Division'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.5 Cell Growth and Division.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-anatomy-physiology-m03-l06-q03",
+      "question": "When applying concepts from '3.5 Cell Growth and Division', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Human Anatomy",
+      "topic": "cells",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

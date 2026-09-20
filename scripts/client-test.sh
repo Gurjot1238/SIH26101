@@ -29,6 +29,7 @@ printf '\n'
 AUTH_PORT="$PORT" \
 AUTH_DATA_DIR="$DATA_DIR" \
 SESSION_SECRET="client_test_secret_not_used_anywhere_real_0123456789" \
+NEXORA_DATASET_DIR="$APP/server/course-fixtures" \
 node server/index.mjs > "${DATA_DIR}/server.log" 2>&1 &
 SERVER_PID=$!
 

@@ -1,0 +1,267 @@
+{
+  "course_id": "mit-6-006-algorithms",
+  "title": "6.006 Introduction to Algorithms",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Algorithms",
+  "level": "Intermediate",
+  "description": "MIT OpenCourseWare 6.006 Introduction to Algorithms (Spring 2020). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Algorithms",
+    "Data Structures",
+    "Computer Science"
+  ],
+  "topics": [
+    "graphs",
+    "sorting",
+    "dynamic programming",
+    "shortest paths"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Spring 2020",
+  "duration": {
+    "estimated_hours": 4.7,
+    "estimated_minutes": 283
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 10,
+    "practice_questions": 30
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-6-006-algorithms-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Algorithms",
+        "Data Structures",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-006-algorithms-m01-l01",
+          "title": "477c78e0af2df61fa205bcc6cb613ceb MIT6 006S20 lec1",
+          "type": "pdf",
+          "content_file": "content/module-01/477c78e0af2df61fa205bcc6cb613ceb_MIT6_006S20_lec1.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-m01-l01.json",
+          "estimated_minutes": 29,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "graphs",
+            "sorting",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-006-algorithms-m01-l02",
+          "title": "79a07dc1cb47d76dae2ffedc701e3d2b MIT6 006S20 lec2",
+          "type": "pdf",
+          "content_file": "content/module-01/79a07dc1cb47d76dae2ffedc701e3d2b_MIT6_006S20_lec2.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-m01-l02.json",
+          "estimated_minutes": 27,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "graphs",
+            "sorting",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-006-algorithms-m01-l03",
+          "title": "6d1ae5278d02bbecb5c4428928b24194 MIT6 006S20 lec3",
+          "type": "pdf",
+          "content_file": "content/module-01/6d1ae5278d02bbecb5c4428928b24194_MIT6_006S20_lec3.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-m01-l03.json",
+          "estimated_minutes": 28,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "graphs",
+            "sorting",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-006-algorithms-m01-l04",
+          "title": "ce9e94705b914598ce78a00a70a1f734 MIT6 006S20 lec4",
+          "type": "pdf",
+          "content_file": "content/module-01/ce9e94705b914598ce78a00a70a1f734_MIT6_006S20_lec4.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-m01-l04.json",
+          "estimated_minutes": 28,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "graphs",
+            "sorting",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-006-algorithms-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Algorithms",
+        "Data Structures",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-006-algorithms-m02-l01",
+          "title": "78a3c3444de1ff837f81e52991c24a86 MIT6 006S20 lec5",
+          "type": "pdf",
+          "content_file": "content/module-02/78a3c3444de1ff837f81e52991c24a86_MIT6_006S20_lec5.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-m02-l01.json",
+          "estimated_minutes": 26,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "graphs",
+            "sorting",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-006-algorithms-m02-l02",
+          "title": "376714cc85c6c784d90eec9c575ec027 MIT6 006S20 lec6",
+          "type": "pdf",
+          "content_file": "content/module-02/376714cc85c6c784d90eec9c575ec027_MIT6_006S20_lec6.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-m02-l02.json",
+          "estimated_minutes": 28,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "graphs",
+            "sorting",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-006-algorithms-m02-l03",
+          "title": "a2c80596cf4a2b5fbc854afdd2f23dcb MIT6 006S20 lec7",
+          "type": "pdf",
+          "content_file": "content/module-02/a2c80596cf4a2b5fbc854afdd2f23dcb_MIT6_006S20_lec7.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-m02-l03.json",
+          "estimated_minutes": 26,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "graphs",
+            "sorting",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-006-algorithms-m02-l04",
+          "title": "40d4851e550507ca14dc778b9b2266cc MIT6 006S20 lec8",
+          "type": "pdf",
+          "content_file": "content/module-02/40d4851e550507ca14dc778b9b2266cc_MIT6_006S20_lec8.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-m02-l04.json",
+          "estimated_minutes": 29,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "graphs",
+            "sorting",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-006-algorithms-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Algorithms",
+        "Data Structures",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-006-algorithms-m03-l01",
+          "title": "196a95604877d326c6586e60477b59d4 MIT6 006S20 lec9",
+          "type": "pdf",
+          "content_file": "content/module-03/196a95604877d326c6586e60477b59d4_MIT6_006S20_lec9.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-m03-l01.json",
+          "estimated_minutes": 32,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "graphs",
+            "sorting",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-006-algorithms-m03-l02",
+          "title": "f3e349e0eb3288592289d2c81e0c4f4d MIT6 006S20 lec10",
+          "type": "pdf",
+          "content_file": "content/module-03/f3e349e0eb3288592289d2c81e0c4f4d_MIT6_006S20_lec10.pdf",
+          "practice_file": "practice/mit-6-006-algorithms-m03-l02.json",
+          "estimated_minutes": 30,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "graphs",
+            "sorting",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

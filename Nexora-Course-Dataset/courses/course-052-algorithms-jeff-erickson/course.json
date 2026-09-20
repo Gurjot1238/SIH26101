@@ -1,0 +1,364 @@
+{
+  "course_id": "illinois-algorithms-erickson",
+  "title": "Algorithms",
+  "provider": "Jeff Erickson / University of Illinois Urbana-Champaign",
+  "category": "Technology",
+  "subcategory": "Algorithms",
+  "level": "Intermediate",
+  "description": "Jeff Erickson's Algorithms textbook, reused under CC BY 4.0.",
+  "competencies": [
+    "Algorithms",
+    "Data Structures",
+    "Computer Science"
+  ],
+  "topics": [
+    "recursion",
+    "backtracking",
+    "dynamic programming",
+    "graphs"
+  ],
+  "source": {
+    "name": "Jeff Erickson",
+    "official_url": "https://jeffe.cs.illinois.edu/teaching/algorithms/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 18.7,
+    "estimated_minutes": 1120
+  },
+  "totals": {
+    "modules": 5,
+    "lessons": 14,
+    "practice_questions": 42
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "erickson-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Algorithms",
+        "Data Structures",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "erickson-m01-l01",
+          "title": "00 intro",
+          "type": "pdf",
+          "content_file": "content/module-01/00-intro.pdf",
+          "practice_file": "practice/erickson-m01-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "recursion",
+            "backtracking",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "erickson-m01-l02",
+          "title": "01 recursion",
+          "type": "pdf",
+          "content_file": "content/module-01/01-recursion.pdf",
+          "practice_file": "practice/erickson-m01-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "recursion",
+            "backtracking",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "erickson-m01-l03",
+          "title": "02 backtracking",
+          "type": "pdf",
+          "content_file": "content/module-01/02-backtracking.pdf",
+          "practice_file": "practice/erickson-m01-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "recursion",
+            "backtracking",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "erickson-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Algorithms",
+        "Data Structures",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "erickson-m02-l01",
+          "title": "03 dynprog",
+          "type": "pdf",
+          "content_file": "content/module-02/03-dynprog.pdf",
+          "practice_file": "practice/erickson-m02-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "recursion",
+            "backtracking",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "erickson-m02-l02",
+          "title": "04 greedy",
+          "type": "pdf",
+          "content_file": "content/module-02/04-greedy.pdf",
+          "practice_file": "practice/erickson-m02-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "recursion",
+            "backtracking",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "erickson-m02-l03",
+          "title": "05 graphs",
+          "type": "pdf",
+          "content_file": "content/module-02/05-graphs.pdf",
+          "practice_file": "practice/erickson-m02-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "recursion",
+            "backtracking",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "erickson-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Algorithms",
+        "Data Structures",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "erickson-m03-l01",
+          "title": "06 dfs",
+          "type": "pdf",
+          "content_file": "content/module-03/06-dfs.pdf",
+          "practice_file": "practice/erickson-m03-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "recursion",
+            "backtracking",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "erickson-m03-l02",
+          "title": "07 mst",
+          "type": "pdf",
+          "content_file": "content/module-03/07-mst.pdf",
+          "practice_file": "practice/erickson-m03-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "recursion",
+            "backtracking",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "erickson-m03-l03",
+          "title": "08 sssp",
+          "type": "pdf",
+          "content_file": "content/module-03/08-sssp.pdf",
+          "practice_file": "practice/erickson-m03-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "recursion",
+            "backtracking",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "erickson-m04",
+      "title": "Module 4",
+      "competencies": [
+        "Algorithms",
+        "Data Structures",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "erickson-m04-l01",
+          "title": "09 apsp",
+          "type": "pdf",
+          "content_file": "content/module-04/09-apsp.pdf",
+          "practice_file": "practice/erickson-m04-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "recursion",
+            "backtracking",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "erickson-m04-l02",
+          "title": "10 maxflow",
+          "type": "pdf",
+          "content_file": "content/module-04/10-maxflow.pdf",
+          "practice_file": "practice/erickson-m04-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "recursion",
+            "backtracking",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "erickson-m04-l03",
+          "title": "11 maxflowapps",
+          "type": "pdf",
+          "content_file": "content/module-04/11-maxflowapps.pdf",
+          "practice_file": "practice/erickson-m04-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "recursion",
+            "backtracking",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "erickson-m05",
+      "title": "Module 5",
+      "competencies": [
+        "Algorithms",
+        "Data Structures",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "erickson-m05-l01",
+          "title": "12 nphard",
+          "type": "pdf",
+          "content_file": "content/module-05/12-nphard.pdf",
+          "practice_file": "practice/erickson-m05-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "recursion",
+            "backtracking",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "erickson-m05-l02",
+          "title": "99 backmatter",
+          "type": "pdf",
+          "content_file": "content/module-05/99-backmatter.pdf",
+          "practice_file": "practice/erickson-m05-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Algorithms",
+            "Data Structures"
+          ],
+          "topics": [
+            "recursion",
+            "backtracking",
+            "dynamic programming"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

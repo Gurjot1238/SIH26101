@@ -91,7 +91,10 @@ export type CourseRecord = {
   courseId: string;
   saved: boolean;
   startedAt: string | null;
+  /** Legacy module-index completion, kept for the internal pathways. */
   completedModules: number[];
+  /** Lesson-id completion for the dataset courses; the % divides into this. */
+  completedLessons: string[];
   updatedAt: string | null;
 };
 
@@ -256,6 +259,7 @@ export function saveCourse(update: {
   saved?: boolean;
   started?: boolean;
   completedModules?: number[];
+  completedLessons?: string[];
 }): Promise<{ course: CourseRecord; courses: CourseRecord[] }> {
   return request('POST', '/api/progress/courses', update);
 }

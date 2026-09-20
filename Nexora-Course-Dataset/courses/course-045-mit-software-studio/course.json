@@ -1,0 +1,392 @@
+{
+  "course_id": "mit-6-170-software-studio",
+  "title": "6.170 Software Studio",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Software Engineering",
+  "level": "Intermediate",
+  "description": "MIT OpenCourseWare 6.170 Software Studio (Spring 2013). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Software Engineering",
+    "Programming Fundamentals",
+    "System Design"
+  ],
+  "topics": [
+    "design",
+    "testing",
+    "web apps",
+    "code review"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/6-170-software-studio-spring-2013/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Spring 2013",
+  "duration": {
+    "estimated_hours": 18.9,
+    "estimated_minutes": 1134
+  },
+  "totals": {
+    "modules": 4,
+    "lessons": 16,
+    "practice_questions": 48
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-6-170-software-studio-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Software Engineering",
+        "Programming Fundamentals",
+        "System Design"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-170-software-studio-m01-l01",
+          "title": "cf2a80ea30ab612907a23a981d5e7f27 MIT6 170S13 49 asyn app",
+          "type": "pdf",
+          "content_file": "content/module-01/cf2a80ea30ab612907a23a981d5e7f27_MIT6_170S13_49-asyn-app.pdf",
+          "practice_file": "practice/mit-6-170-software-studio-m01-l01.json",
+          "estimated_minutes": 77,
+          "objectives": [],
+          "competencies": [
+            "Software Engineering",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "design",
+            "testing",
+            "web apps"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-170-software-studio-m01-l02",
+          "title": "23728628acd5486841f72e85b02ef24c MIT6 170S13 48 asyn exam",
+          "type": "pdf",
+          "content_file": "content/module-01/23728628acd5486841f72e85b02ef24c_MIT6_170S13_48-asyn-exam.pdf",
+          "practice_file": "practice/mit-6-170-software-studio-m01-l02.json",
+          "estimated_minutes": 74,
+          "objectives": [],
+          "competencies": [
+            "Software Engineering",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "design",
+            "testing",
+            "web apps"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-170-software-studio-m01-l03",
+          "title": "2e772463eebb035f1b5d38accee189ed MIT6 170S13 47 asyn intro",
+          "type": "pdf",
+          "content_file": "content/module-01/2e772463eebb035f1b5d38accee189ed_MIT6_170S13_47-asyn-intro.pdf",
+          "practice_file": "practice/mit-6-170-software-studio-m01-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Software Engineering",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "design",
+            "testing",
+            "web apps"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-170-software-studio-m01-l04",
+          "title": "41673afb1ac2f91f3724fd7d28c5da14 MIT6 170S13 10 rails ovrvw",
+          "type": "pdf",
+          "content_file": "content/module-01/41673afb1ac2f91f3724fd7d28c5da14_MIT6_170S13_10-rails-ovrvw.pdf",
+          "practice_file": "practice/mit-6-170-software-studio-m01-l04.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Software Engineering",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "design",
+            "testing",
+            "web apps"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-170-software-studio-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Software Engineering",
+        "Programming Fundamentals",
+        "System Design"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-170-software-studio-m02-l01",
+          "title": "a2acea2dbfdf2cce822ab7253509eaa0 MIT6 170S13 58 anal ogn",
+          "type": "pdf",
+          "content_file": "content/module-02/a2acea2dbfdf2cce822ab7253509eaa0_MIT6_170S13_58-anal-ogn.pdf",
+          "practice_file": "practice/mit-6-170-software-studio-m02-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Software Engineering",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "design",
+            "testing",
+            "web apps"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-170-software-studio-m02-l02",
+          "title": "5442e3fc42355088ec9b137f8afaf699 MIT6 170S13 56 sec rev",
+          "type": "pdf",
+          "content_file": "content/module-02/5442e3fc42355088ec9b137f8afaf699_MIT6_170S13_56-sec-rev.pdf",
+          "practice_file": "practice/mit-6-170-software-studio-m02-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Software Engineering",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "design",
+            "testing",
+            "web apps"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-170-software-studio-m02-l03",
+          "title": "fba964ce0817bed1cb666febfce5f26f MIT6 170S13 28 con design",
+          "type": "pdf",
+          "content_file": "content/module-02/fba964ce0817bed1cb666febfce5f26f_MIT6_170S13_28-con-design.pdf",
+          "practice_file": "practice/mit-6-170-software-studio-m02-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Software Engineering",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "design",
+            "testing",
+            "web apps"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-170-software-studio-m02-l04",
+          "title": "baa905f1c077ffb1c8c2f2e03e4a5100 MIT6 170S13 27 con idntfyg",
+          "type": "pdf",
+          "content_file": "content/module-02/baa905f1c077ffb1c8c2f2e03e4a5100_MIT6_170S13_27-con-idntfyg.pdf",
+          "practice_file": "practice/mit-6-170-software-studio-m02-l04.json",
+          "estimated_minutes": 32,
+          "objectives": [],
+          "competencies": [
+            "Software Engineering",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "design",
+            "testing",
+            "web apps"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-170-software-studio-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Software Engineering",
+        "Programming Fundamentals",
+        "System Design"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-170-software-studio-m03-l01",
+          "title": "e27f5e7ca6cd3bf503ade9041fbcf2fa MIT6 170S13 29 con idioms",
+          "type": "pdf",
+          "content_file": "content/module-03/e27f5e7ca6cd3bf503ade9041fbcf2fa_MIT6_170S13_29-con-idioms.pdf",
+          "practice_file": "practice/mit-6-170-software-studio-m03-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Software Engineering",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "design",
+            "testing",
+            "web apps"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-170-software-studio-m03-l02",
+          "title": "7673900e3f0c778ef27f274ccb541a6a MIT6 170S13 26 con intro",
+          "type": "pdf",
+          "content_file": "content/module-03/7673900e3f0c778ef27f274ccb541a6a_MIT6_170S13_26-con-intro.pdf",
+          "practice_file": "practice/mit-6-170-software-studio-m03-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Software Engineering",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "design",
+            "testing",
+            "web apps"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-170-software-studio-m03-l03",
+          "title": "b58bfbc30c9ff12e806f9e1742cc3e77 MIT6 170S13 rec0DevEnvSet",
+          "type": "pdf",
+          "content_file": "content/module-03/b58bfbc30c9ff12e806f9e1742cc3e77_MIT6_170S13_rec0DevEnvSet.pdf",
+          "practice_file": "practice/mit-6-170-software-studio-m03-l03.json",
+          "estimated_minutes": 29,
+          "objectives": [],
+          "competencies": [
+            "Software Engineering",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "design",
+            "testing",
+            "web apps"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-170-software-studio-m03-l04",
+          "title": "9395cd5506f95fee592ddadfa920b0ee MIT6 170S13 rec1 Git",
+          "type": "pdf",
+          "content_file": "content/module-03/9395cd5506f95fee592ddadfa920b0ee_MIT6_170S13_rec1-Git.pdf",
+          "practice_file": "practice/mit-6-170-software-studio-m03-l04.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Software Engineering",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "design",
+            "testing",
+            "web apps"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-170-software-studio-m04",
+      "title": "Module 4",
+      "competencies": [
+        "Software Engineering",
+        "Programming Fundamentals",
+        "System Design"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-170-software-studio-m04-l01",
+          "title": "9b49a7257c007519d7b8475f1b3da140 MIT6 170S13 rec2 RailsBas",
+          "type": "pdf",
+          "content_file": "content/module-04/9b49a7257c007519d7b8475f1b3da140_MIT6_170S13_rec2-RailsBas.pdf",
+          "practice_file": "practice/mit-6-170-software-studio-m04-l01.json",
+          "estimated_minutes": 42,
+          "objectives": [],
+          "competencies": [
+            "Software Engineering",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "design",
+            "testing",
+            "web apps"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-170-software-studio-m04-l02",
+          "title": "2e69ee44f007cdd7bdc84e476cda97f9 MIT6 170S13 rec3 Ruby",
+          "type": "pdf",
+          "content_file": "content/module-04/2e69ee44f007cdd7bdc84e476cda97f9_MIT6_170S13_rec3-Ruby.pdf",
+          "practice_file": "practice/mit-6-170-software-studio-m04-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Software Engineering",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "design",
+            "testing",
+            "web apps"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-170-software-studio-m04-l03",
+          "title": "7e69522ad48df4bbbd8e019add74c8de MIT6 170S13 rec4 SessAuth",
+          "type": "pdf",
+          "content_file": "content/module-04/7e69522ad48df4bbbd8e019add74c8de_MIT6_170S13_rec4-SessAuth.pdf",
+          "practice_file": "practice/mit-6-170-software-studio-m04-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Software Engineering",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "design",
+            "testing",
+            "web apps"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-170-software-studio-m04-l04",
+          "title": "060eff858447665987324630ccc42026 MIT6 170S13 rec4 SessAuthen",
+          "type": "pdf",
+          "content_file": "content/module-04/060eff858447665987324630ccc42026_MIT6_170S13_rec4-SessAuthen.pdf",
+          "practice_file": "practice/mit-6-170-software-studio-m04-l04.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Software Engineering",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "design",
+            "testing",
+            "web apps"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

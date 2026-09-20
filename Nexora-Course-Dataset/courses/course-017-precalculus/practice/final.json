@@ -1,0 +1,197 @@
+{
+  "course_id": "openstax-precalculus",
+  "questions": [
+    {
+      "question_id": "openstax-precalculus-m01-l01-q01",
+      "question": "According to the source lesson '1.1 Functions and Function Notation', which statement is most accurate?",
+      "options": [
+        "## 1.1 Functions and Function Notation ### Learning Objectives In this section, you will: * Determine whether a relation represents a function.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-precalculus-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from '1.1 Functions and Function Notation'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 1.1 Functions and Function Notation.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-precalculus-m01-l01-q03",
+      "question": "When applying concepts from '1.1 Functions and Function Notation', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-precalculus-m01-l02-q01",
+      "question": "According to the source lesson '1.2 Domain and Range', which statement is most accurate?",
+      "options": [
+        "## 1.2 Domain and Range ### Learning Objectives In this section, you will: * Find the domain of a function defined by an equation.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-precalculus-m02-l01-q01",
+      "question": "According to the source lesson 'Chapter Outline', which statement is most accurate?",
+      "options": [
+        "![An upward view of bamboo trees.](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/ab9ae8c1baf04f88efa903c8786123d977e38f06) A bamboo forest in China (credit: “JFXie”/Flickr) ## Chapter Outline * [ 2.1 Linear Functions ](<2",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-precalculus-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Chapter Outline'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Chapter Outline.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-precalculus-m02-l01-q03",
+      "question": "When applying concepts from 'Chapter Outline', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-precalculus-m02-l02-q01",
+      "question": "According to the source lesson '2.1 Linear Functions', which statement is most accurate?",
+      "options": [
+        "## 2.1 Linear Functions ### Learning Objectives In this section, you will: * Represent a linear function.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-precalculus-m03-l01-q01",
+      "question": "According to the source lesson 'Chapter Outline', which statement is most accurate?",
+      "options": [
+        "![35-mm film and SD cards](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/bd2092ef2d424e10eadd3ccc7c035bbff606c03b) 35-mm film, once the standard for capturing photographic images, has been made largely obsolete by digital",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-precalculus-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Chapter Outline'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Chapter Outline.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-precalculus-m03-l01-q03",
+      "question": "When applying concepts from 'Chapter Outline', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-precalculus-m03-l02-q01",
+      "question": "According to the source lesson '3.1 Complex Numbers', which statement is most accurate?",
+      "options": [
+        "## 3.1 Complex Numbers ### Learning Objectives In this section, you will: * Express square roots of negative numbers as multiples of ii.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

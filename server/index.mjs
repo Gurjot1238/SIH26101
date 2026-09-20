@@ -46,7 +46,7 @@
  */
 
 import { createServer } from 'node:http';
-import { readFileSync } from 'node:fs';
+import { readFileSync, createReadStream, statSync } from 'node:fs';
 import { randomBytes } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -80,6 +80,8 @@ import {
   warmUp,
 } from './auth.mjs';
 import { openStore } from './store.mjs';
+import { catalogue, getCourse, resolveContent, coursesStatus } from './courses.mjs';
+import { recommendCoursesForGaps } from './course-recommendations.mjs';
 import {
   ASSESSMENT_LENGTH,
   ASSESSMENT_SOURCE,
@@ -734,6 +736,24 @@ async function handleAnalytics(req, res, cors) {
 }
 
 /**
+ * Real dataset courses to open next, chosen from the signed-in account's competency
+ * gaps.
+ *
+ * The gap ranking is the analytics engine's own (gap x weakness x confidence), and the
+ * courses are whatever the dataset holds — this endpoint only bridges the two
+ * vocabularies (see course-recommendations.mjs) and never invents a score or a course.
+ * Session-guarded because it reads the learner's private results, unlike the public
+ * course catalogue. A brand-new account, or one with no matchable gap, gets a valid
+ * empty payload with a `note`, not an error.
+ */
+async function handleRecommendedCourses(req, res, cors) {
+  const { user } = await requireSession(req);
+  const analytics = buildAnalyticsSummary(store.attemptsForUser(user.id), { scope: 'all' });
+  const recommendations = recommendCoursesForGaps(analytics, catalogue());
+  sendJson(res, 200, { ok: true, recommendations }, cors);
+}
+
+/**
  * Ask the model to put that analysis into sentences.
  *
  * The payload is rebuilt here from stored attempts and is not read from the request at
@@ -995,6 +1015,59 @@ async function handleClassifyMaterial(req, res, cors) {
   }, cors);
 }
 
+/* --------------------------------------------------------------- courses */
+
+/**
+ * The dataset courses are public reference content, not a learner's private data,
+ * so these three reads do not require a session — the same way a course catalogue
+ * on a website is browsable before you log in. Progress *through* a course is
+ * private and still goes through the session-guarded /api/progress/courses write.
+ */
+function queryParam(req, name) {
+  return new URL(req.url ?? '/', 'http://internal').searchParams.get(name);
+}
+
+async function handleCoursesCatalogue(req, res, cors) {
+  const id = queryParam(req, 'id');
+  if (id !== null) {
+    // ?id= returns one course's full module/lesson tree.
+    sendJson(res, 200, { ok: true, course: getCourse(id) }, cors);
+    return;
+  }
+  sendJson(res, 200, { ok: true, ...catalogue() }, cors);
+}
+
+/**
+ * Stream one lesson file. `resolveContent` has already proven the path sits inside
+ * that course's own folder, so nothing here can read outside the dataset. The file
+ * is sent with its real content type and a length; it is cacheable because dataset
+ * content does not change without a server restart.
+ */
+async function handleCourseContent(req, res, cors) {
+  const id = queryParam(req, 'id');
+  const file = queryParam(req, 'file');
+  if (id === null || file === null) {
+    throw new HttpError(400, 'invalid_input', 'Both id and file are required.');
+  }
+  const { path, contentType } = resolveContent(id, file);
+  const size = statSync(path).size;
+  res.writeHead(200, {
+    ...cors,
+    'Content-Type': contentType,
+    'Content-Length': size,
+    'Cache-Control': 'private, max-age=3600',
+    // Inline for things a browser renders (PDF, text, images); the UI opens these in a new tab.
+    'Content-Disposition': 'inline',
+    'X-Content-Type-Options': 'nosniff',
+  });
+  const stream = createReadStream(path);
+  stream.on('error', () => {
+    if (!res.headersSent) sendJson(res, 500, { ok: false, error: { code: 'read_failed', message: 'Could not read the file.' } }, cors);
+    else res.end();
+  });
+  stream.pipe(res);
+}
+
 /* ------------------------------------------------------------------- routing */
 
 const ROUTES = new Map([
@@ -1012,12 +1085,15 @@ const ROUTES = new Map([
   ['POST /api/progress/preferences', handlePreferences],
   ['POST /api/progress/courses', handleCourseProgress],
   ['GET /api/analytics/competencies', handleAnalytics],
+  ['GET /api/analytics/recommended-courses', handleRecommendedCourses],
   ['POST /api/analytics/explain', handleExplainAnalytics],
   ['POST /api/ai/generate-mcqs', handleGenerateMcqs],
   ['POST /api/ai/classify-material', handleClassifyMaterial],
   ['POST /api/papers', handleSavePaper],
   ['GET /api/papers', handlePapersGet],
   ['DELETE /api/papers', handleDeletePaper],
+  ['GET /api/courses', handleCoursesCatalogue],
+  ['GET /api/courses/content', handleCourseContent],
 ]);
 
 const server = createServer(async (req, res) => {
@@ -1103,6 +1179,7 @@ server.listen(PORT, HOST, () => {
   Attempts   ${counts.attempts}
   Saved sets ${counts.papers}
   Data       ${DATA_DIR} (users, sessions, attempts, profiles, papers)
+  Courses    ${coursesStatus().root ? `${coursesStatus().count} from ${coursesStatus().root}` : 'no dataset found (set NEXORA_DATASET_DIR) — /api/courses returns an empty catalogue'}
   Assessment ${ASSESSMENT_LENGTH} questions, graded here (the browser never sees the key)
   AI         ${ai.ok ? `${ai.provider} ready (${describeModel(process.env)})${describeTarget(process.env) ? ` at ${describeTarget(process.env)}` : ''}` : `${ai.provider} NOT configured — question generation will return an honest error`}
   Hashing    scrypt (Node built-in), min ${PASSWORD_POLICY.min} character password

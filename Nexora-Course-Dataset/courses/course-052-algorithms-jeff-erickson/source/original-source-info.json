@@ -1,0 +1,13 @@
+{
+  "course_id": "illinois-algorithms-erickson",
+  "source_url": "https://jeffe.cs.illinois.edu/teaching/algorithms/",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "date_collected": "2026-09-20",
+  "reuse_permissions": "CC BY 4.0 permits copy and redistribution with attribution.",
+  "changes_made": [
+    "Downloaded chapter PDFs",
+    "Grouped into modules",
+    "Added generated practice questions"
+  ]
+}

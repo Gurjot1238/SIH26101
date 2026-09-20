@@ -1,0 +1,261 @@
+{
+  "course_id": "wtcs-nursing-skills-2e",
+  "questions": [
+    {
+      "question_id": "wtcs-nursing-skills-2e-m01-l01-q01",
+      "question": "According to the source lesson '1.1 General Survey Introduction', which statement is most accurate?",
+      "options": [
+        "## Learning Objectives * Perform a general survey assessment, including vital signs, ability to communicate, appropriateness of behaviors and responses, general mobility, and basic nutritional and fluid status * Modify assessment techniques",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from '1.1 General Survey Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 1.1 General Survey Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m01-l01-q03",
+      "question": "When applying concepts from '1.1 General Survey Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m01-l02-q01",
+      "question": "According to the source lesson '1.2 Initiating Patient Interaction', which statement is most accurate?",
+      "options": [
+        "Before every patient interaction, the nurse must perform hand hygiene and consider the use of additional personal protective equipment, introduce themselves, and identify the patient using two different identifiers.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m02-l01-q01",
+      "question": "According to the source lesson '2.1 Health History Introduction', which statement is most accurate?",
+      "options": [
+        "## Learning Objectives * Establish a therapeutic nurse-patient relationship * Use effective verbal and nonverbal communication techniques * Collect health history data * Modify assessment techniques to reflect variations across the life spa",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from '2.1 Health History Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.1 Health History Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m02-l01-q03",
+      "question": "When applying concepts from '2.1 Health History Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m02-l02-q01",
+      "question": "According to the source lesson '2.2 Health History Basic Concepts', which statement is most accurate?",
+      "options": [
+        "During a health history, the nurse collects subjective data from the patient, their caregivers, and/or family members using focused and open-ended questions.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m03-l01-q01",
+      "question": "According to the source lesson '3.1 Blood Pressure Introduction', which statement is most accurate?",
+      "options": [
+        "# 3.1 Blood Pressure Introduction ## Learning Objectives * Accurately measure and document blood pressure using American Heart Association standards * Adapt the procedure to reflect variations across the life span * Recognize and report sig",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from '3.1 Blood Pressure Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.1 Blood Pressure Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m03-l01-q03",
+      "question": "When applying concepts from '3.1 Blood Pressure Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m03-l02-q01",
+      "question": "According to the source lesson '3.2 Blood Pressure Basics', which statement is most accurate?",
+      "options": [
+        "A blood pressure reading is the measurement of the force of blood against the walls of the arteries as the heart pumps blood through the body.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m04-l01-q01",
+      "question": "According to the source lesson '4.1 Aseptic Technique Introduction', which statement is most accurate?",
+      "options": [
+        "## Learning Objectives * Perform appropriate hand hygiene * Use standard precautions * Use category-specific, transmission-based precautions * Maintain a sterile field and equipment * Apply and safely remove sterile gloves and personal prot",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m04-l01-q02",
+      "question": "What is a reasonable learning takeaway from '4.1 Aseptic Technique Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 4.1 Aseptic Technique Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m04-l01-q03",
+      "question": "When applying concepts from '4.1 Aseptic Technique Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m04-l02-q01",
+      "question": "According to the source lesson '4.2 Aseptic Technique Basic Concepts', which statement is most accurate?",
+      "options": [
+        "## Standard Versus Transmission-Based Precautions ### Standard Precautions Standard precautions are used when caring for all patients to prevent health care associated infections.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

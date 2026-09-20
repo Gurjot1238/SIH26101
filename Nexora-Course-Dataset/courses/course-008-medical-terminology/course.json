@@ -1,0 +1,505 @@
+{
+  "course_id": "uwf-medical-terminology",
+  "title": "Medical Terminology for Healthcare Professions",
+  "provider": "University of West Florida",
+  "category": "Medical / Healthcare",
+  "subcategory": "Medical Terminology",
+  "level": "Beginner",
+  "description": "Open textbook / course 'Medical Terminology for Healthcare Professions' from University of West Florida. Chapters were downloaded from the openly licensed Pressbooks edition.",
+  "competencies": [
+    "Medical Terminology",
+    "Healthcare Informatics",
+    "Anatomy"
+  ],
+  "topics": [
+    "word roots",
+    "body systems",
+    "clinical language"
+  ],
+  "source": {
+    "name": "University of West Florida",
+    "official_url": "https://pressbooks.uwf.edu/medicalterminology/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 13.3,
+    "estimated_minutes": 797
+  },
+  "totals": {
+    "modules": 1,
+    "lessons": 18,
+    "practice_questions": 54
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "uwf-medical-terminology-m01",
+      "title": "Main Body",
+      "competencies": [
+        "Medical Terminology",
+        "Healthcare Informatics",
+        "Anatomy"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "uwf-medical-terminology-m01-l01",
+          "title": "Word Parts and Rules",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/uwf-medical-terminology-m01-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Identify word parts in medical terms",
+            "Examine the rules for building medical terms",
+            "Oste/o/arthr/itis - Inflammation of bone and joint",
+            "Oste/o is a combining form that means bone",
+            "Intra/ven/ous - Pertaining to within a vein",
+            "Intra- is a prefix  that means within"
+          ],
+          "competencies": [
+            "Medical Terminology",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "word roots",
+            "body systems",
+            "clinical language"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uwf-medical-terminology-m01-l02",
+          "title": "Prefixes and Suffixes",
+          "type": "text",
+          "content_file": "content/module-01/lesson-02.md",
+          "practice_file": "practice/uwf-medical-terminology-m01-l02.json",
+          "estimated_minutes": 30,
+          "objectives": [
+            "Understand the difference between a prefix and a suffix",
+            "Differentiate prefixes that deal with body parts, color, and direction",
+            "Distinguish suffixes that deal with procedures",
+            "Start by reviewing the most common prefixes",
+            "Consider common English language words that begin with the same prefixes",
+            "Compare them to the examples of use in medical terms"
+          ],
+          "competencies": [
+            "Medical Terminology",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "word roots",
+            "body systems",
+            "clinical language"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uwf-medical-terminology-m01-l03",
+          "title": "Body Terminology",
+          "type": "text",
+          "content_file": "content/module-01/lesson-03.md",
+          "practice_file": "practice/uwf-medical-terminology-m01-l03.json",
+          "estimated_minutes": 31,
+          "objectives": [
+            "Assess medical language learning to the context of anatomy and physiology",
+            "Investigate the basic architecture and levels of organization of the human body",
+            "Evaluate the anatomical position, regional terms, directional terms, body planes, and body quadrants for anatomical positioning",
+            "Recall body cavities and the functions of associated membranes"
+          ],
+          "competencies": [
+            "Medical Terminology",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "word roots",
+            "body systems",
+            "clinical language"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uwf-medical-terminology-m01-l04",
+          "title": "Sensory Systems",
+          "type": "text",
+          "content_file": "content/module-01/lesson-04.md",
+          "practice_file": "practice/uwf-medical-terminology-m01-l04.json",
+          "estimated_minutes": 36,
+          "objectives": [
+            "Examine the anatomy of the sensory systems",
+            "Determine the main functions of the sensory systems",
+            "Differentiate the medical terms of the sensory systems and common abbreviations",
+            "Discover the medical specialties associated with the sensory systems",
+            "Recognize common diseases, disorders, and procedures related to the sensory systems"
+          ],
+          "competencies": [
+            "Medical Terminology",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "word roots",
+            "body systems",
+            "clinical language"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uwf-medical-terminology-m01-l05",
+          "title": "Integumentary System",
+          "type": "text",
+          "content_file": "content/module-01/lesson-05.md",
+          "practice_file": "practice/uwf-medical-terminology-m01-l05.json",
+          "estimated_minutes": 58,
+          "objectives": [
+            "Examine the anatomy of the integumentary system",
+            "Determine the main functions of the integumentary system",
+            "Differentiate integumentary system medical terms and common abbreviations",
+            "Discover medical specialties associated with the integumentary system",
+            "Recognize common diseases, disorders, and procedures related to the integumentary system"
+          ],
+          "competencies": [
+            "Medical Terminology",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "word roots",
+            "body systems",
+            "clinical language"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uwf-medical-terminology-m01-l06",
+          "title": "Skeletal System",
+          "type": "text",
+          "content_file": "content/module-01/lesson-06.md",
+          "practice_file": "practice/uwf-medical-terminology-m01-l06.json",
+          "estimated_minutes": 48,
+          "objectives": [
+            "Examine the anatomy of the skeletal system",
+            "Determine the main functions of the skeletal system",
+            "Differentiate the medical terms of the skeletal system",
+            "Discover common diseases, disorders, and procedures related to the skeletal system",
+            "Recognize common medical specialties associated with the skeletal system"
+          ],
+          "competencies": [
+            "Medical Terminology",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "word roots",
+            "body systems",
+            "clinical language"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uwf-medical-terminology-m01-l07",
+          "title": "Muscular System",
+          "type": "text",
+          "content_file": "content/module-01/lesson-07.md",
+          "practice_file": "practice/uwf-medical-terminology-m01-l07.json",
+          "estimated_minutes": 17,
+          "objectives": [
+            "Examine the anatomy of the muscular system",
+            "Determine the main functions of the muscular system",
+            "Differentiate the medical terms of the muscular system and common abbreviations",
+            "Discover common diseases, disorders, and procedures related to the muscular system",
+            "Recognize the medical specialties associated with the muscular system"
+          ],
+          "competencies": [
+            "Medical Terminology",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "word roots",
+            "body systems",
+            "clinical language"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uwf-medical-terminology-m01-l08",
+          "title": "Nervous System",
+          "type": "text",
+          "content_file": "content/module-01/lesson-08.md",
+          "practice_file": "practice/uwf-medical-terminology-m01-l08.json",
+          "estimated_minutes": 80,
+          "objectives": [
+            "Examine the anatomy of the nervous system",
+            "Determine the main functions of the nervous system",
+            "Differentiate the medical terms of the nervous system and common abbreviations",
+            "Recognize the medical specialties associated with the nervous system",
+            "Discover common diseases, disorders, and procedures related to the nervous system"
+          ],
+          "competencies": [
+            "Medical Terminology",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "word roots",
+            "body systems",
+            "clinical language"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uwf-medical-terminology-m01-l09",
+          "title": "Cardiovascular System",
+          "type": "text",
+          "content_file": "content/module-01/lesson-09.md",
+          "practice_file": "practice/uwf-medical-terminology-m01-l09.json",
+          "estimated_minutes": 51,
+          "objectives": [
+            "Examine the anatomy of the heart",
+            "Determine the main functions of the cardiovascular system",
+            "Differentiate cardiovascular system medical terms and common abbreviations",
+            "Recognize the medical specialties associated with the cardiovascular system",
+            "Discover common diseases, disorders, and procedures related to the cardiovascular system"
+          ],
+          "competencies": [
+            "Medical Terminology",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "word roots",
+            "body systems",
+            "clinical language"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uwf-medical-terminology-m01-l10",
+          "title": "Blood Vessels and Blood",
+          "type": "text",
+          "content_file": "content/module-01/lesson-10.md",
+          "practice_file": "practice/uwf-medical-terminology-m01-l10.json",
+          "estimated_minutes": 82,
+          "objectives": [
+            "Examine the anatomy of the blood vessels and the composition of blood",
+            "Determine the main functions of the blood vessels and of the components of blood",
+            "Differentiate medical terms of the blood vessels and blood and common abbreviations",
+            "Recognize the medical specialties associated with the blood vessels and blood",
+            "Discover common diseases, disorders, and procedures related to the blood vessels and blood"
+          ],
+          "competencies": [
+            "Medical Terminology",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "word roots",
+            "body systems",
+            "clinical language"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uwf-medical-terminology-m01-l11",
+          "title": "Lymphatic and Immune Systems",
+          "type": "text",
+          "content_file": "content/module-01/lesson-11.md",
+          "practice_file": "practice/uwf-medical-terminology-m01-l11.json",
+          "estimated_minutes": 66,
+          "objectives": [
+            "Examine the anatomy of the lymphatic and immune systems",
+            "Determine the main functions of lymphatic and immune systems",
+            "Differentiate lymphatic and immune systems medical terms and common abbreviations",
+            "Recognize the medical specialties associated with lymphatic and immune systems",
+            "Discover common diseases, disorders, and procedures related to lymphatic and immune systems"
+          ],
+          "competencies": [
+            "Medical Terminology",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "word roots",
+            "body systems",
+            "clinical language"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uwf-medical-terminology-m01-l12",
+          "title": "Respiratory System",
+          "type": "text",
+          "content_file": "content/module-01/lesson-12.md",
+          "practice_file": "practice/uwf-medical-terminology-m01-l12.json",
+          "estimated_minutes": 47,
+          "objectives": [
+            "Examine the anatomy of the respiratory system",
+            "Determine the main functions of the respiratory system",
+            "Differentiate respiratory system medical terms and common abbreviations",
+            "Recognize the medical specialties associated with the respiratory system",
+            "Discover common diseases, disorders, and procedures related to the respiratory system"
+          ],
+          "competencies": [
+            "Medical Terminology",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "word roots",
+            "body systems",
+            "clinical language"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uwf-medical-terminology-m01-l13",
+          "title": "Digestive System",
+          "type": "text",
+          "content_file": "content/module-01/lesson-13.md",
+          "practice_file": "practice/uwf-medical-terminology-m01-l13.json",
+          "estimated_minutes": 55,
+          "objectives": [
+            "Examine the anatomy of the digestive system",
+            "Determine the main functions of the digestive system",
+            "Differentiate the medical terms of the digestive system and common abbreviations",
+            "Recognize the medical specialties associated with the digestive system",
+            "Discover common diseases, disorders, and procedures related to the digestive system"
+          ],
+          "competencies": [
+            "Medical Terminology",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "word roots",
+            "body systems",
+            "clinical language"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uwf-medical-terminology-m01-l14",
+          "title": "Endocrine System",
+          "type": "text",
+          "content_file": "content/module-01/lesson-14.md",
+          "practice_file": "practice/uwf-medical-terminology-m01-l14.json",
+          "estimated_minutes": 70,
+          "objectives": [
+            "Examine the anatomy of the endocrine system",
+            "Determine the main functions of the endocrine system",
+            "Differentiate the medical terms of the endocrine system and common abbreviations",
+            "Recognize the medical specialties associated with the endocrine system",
+            "Discover common diseases, disorders, and procedures related to the endocrine system"
+          ],
+          "competencies": [
+            "Medical Terminology",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "word roots",
+            "body systems",
+            "clinical language"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uwf-medical-terminology-m01-l15",
+          "title": "Urinary System",
+          "type": "text",
+          "content_file": "content/module-01/lesson-15.md",
+          "practice_file": "practice/uwf-medical-terminology-m01-l15.json",
+          "estimated_minutes": 46,
+          "objectives": [
+            "Examine the anatomy of the urinary system",
+            "Determine the main functions of the urinary system",
+            "Differentiate urinary system medical terms and common abbreviations",
+            "Recognize the medical specialties associated with the urinary system",
+            "Discover common diseases, disorders, and procedures related to the urinary system"
+          ],
+          "competencies": [
+            "Medical Terminology",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "word roots",
+            "body systems",
+            "clinical language"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uwf-medical-terminology-m01-l16",
+          "title": "Male Reproductive System",
+          "type": "text",
+          "content_file": "content/module-01/lesson-16.md",
+          "practice_file": "practice/uwf-medical-terminology-m01-l16.json",
+          "estimated_minutes": 21,
+          "objectives": [
+            "Examine the anatomy of the male reproductive system",
+            "Determine the main functions of the male reproductive system",
+            "Differentiate male reproductive system medical terms and common abbreviations",
+            "Recognize the medical specialties associated with the male reproductive system",
+            "Discover common diseases, disorders, and procedures related to the male reproductive system"
+          ],
+          "competencies": [
+            "Medical Terminology",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "word roots",
+            "body systems",
+            "clinical language"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uwf-medical-terminology-m01-l17",
+          "title": "Female Reproductive System",
+          "type": "text",
+          "content_file": "content/module-01/lesson-17.md",
+          "practice_file": "practice/uwf-medical-terminology-m01-l17.json",
+          "estimated_minutes": 30,
+          "objectives": [
+            "Examine the anatomy of the female reproductive system",
+            "Determine the main functions of the female reproductive system",
+            "Differentiate the medical terms of the female reproductive system and common abbreviations",
+            "Recognize the medical specialties associated with the female reproductive system",
+            "Discover common diseases, disorders, and procedures related to the female reproductive system"
+          ],
+          "competencies": [
+            "Medical Terminology",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "word roots",
+            "body systems",
+            "clinical language"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "uwf-medical-terminology-m01-l18",
+          "title": "Obstetrics",
+          "type": "text",
+          "content_file": "content/module-01/lesson-18.md",
+          "practice_file": "practice/uwf-medical-terminology-m01-l18.json",
+          "estimated_minutes": 17,
+          "objectives": [
+            "Identify the processes involved in human reproduction and childbirth",
+            "Evaluate the specialty of obstetrics",
+            "Differentiate the medical terms used in obstetrics and use correct abbreviations",
+            "Recognize the medical specialties associated with obstetrics",
+            "Discover common complications and procedures related to obstetrics",
+            "In approximately 1% pof ovulation cycles, two eggs are released and both are fertiliz"
+          ],
+          "competencies": [
+            "Medical Terminology",
+            "Healthcare Informatics"
+          ],
+          "topics": [
+            "word roots",
+            "body systems",
+            "clinical language"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "module_id": "mit-6-006-algorithms-m02",
+  "questions": [
+    {
+      "question_id": "mit-6-006-algorithms-m02-l01-q01",
+      "question": "According to the source lesson '78a3c3444de1ff837f81e52991c24a86 MIT6 006S20 lec5', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 78a3c3444de1ff837f81e52991c24a86_MIT6_006S20_lec5.pdf from 6.006 Introduction to Algorithms.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "graphs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-006-algorithms-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from '78a3c3444de1ff837f81e52991c24a86 MIT6 006S20 lec5'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 78a3c3444de1ff837f81e52991c24a86 MIT6 006S20 lec5.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "graphs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-006-algorithms-m02-l01-q03",
+      "question": "When applying concepts from '78a3c3444de1ff837f81e52991c24a86 MIT6 006S20 lec5', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "graphs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-006-algorithms-m02-l02-q01",
+      "question": "According to the source lesson '376714cc85c6c784d90eec9c575ec027 MIT6 006S20 lec6', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 376714cc85c6c784d90eec9c575ec027_MIT6_006S20_lec6.pdf from 6.006 Introduction to Algorithms.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "graphs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-006-algorithms-m02-l02-q02",
+      "question": "What is a reasonable learning takeaway from '376714cc85c6c784d90eec9c575ec027 MIT6 006S20 lec6'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 376714cc85c6c784d90eec9c575ec027 MIT6 006S20 lec6.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "graphs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-006-algorithms-m02-l02-q03",
+      "question": "When applying concepts from '376714cc85c6c784d90eec9c575ec027 MIT6 006S20 lec6', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "graphs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-006-algorithms-m02-l03-q01",
+      "question": "According to the source lesson 'a2c80596cf4a2b5fbc854afdd2f23dcb MIT6 006S20 lec7', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource a2c80596cf4a2b5fbc854afdd2f23dcb_MIT6_006S20_lec7.pdf from 6.006 Introduction to Algorithms.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "graphs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-006-algorithms-m02-l03-q02",
+      "question": "What is a reasonable learning takeaway from 'a2c80596cf4a2b5fbc854afdd2f23dcb MIT6 006S20 lec7'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in a2c80596cf4a2b5fbc854afdd2f23dcb MIT6 006S20 lec7.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "graphs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-006-algorithms-m02-l03-q03",
+      "question": "When applying concepts from 'a2c80596cf4a2b5fbc854afdd2f23dcb MIT6 006S20 lec7', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "graphs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-006-algorithms-m02-l04-q01",
+      "question": "According to the source lesson '40d4851e550507ca14dc778b9b2266cc MIT6 006S20 lec8', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 40d4851e550507ca14dc778b9b2266cc_MIT6_006S20_lec8.pdf from 6.006 Introduction to Algorithms.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "graphs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-006-algorithms-m02-l04-q02",
+      "question": "What is a reasonable learning takeaway from '40d4851e550507ca14dc778b9b2266cc MIT6 006S20 lec8'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 40d4851e550507ca14dc778b9b2266cc MIT6 006S20 lec8.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "graphs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-006-algorithms-m02-l04-q03",
+      "question": "When applying concepts from '40d4851e550507ca14dc778b9b2266cc MIT6 006S20 lec8', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "graphs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

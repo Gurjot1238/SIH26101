@@ -1,0 +1,578 @@
+{
+  "course_id": "thinkcspy-learning-with-python",
+  "title": "How to Think Like a Computer Scientist: Learning with Python",
+  "provider": "Green Tea Press / Allen Downey, Jeffrey Elkner, Chris Meyers",
+  "category": "Technology",
+  "subcategory": "Python Programming",
+  "level": "Beginner",
+  "description": "An openly licensed introduction to computer science using Python.",
+  "competencies": [
+    "Python Programming",
+    "Programming Fundamentals",
+    "Computer Science"
+  ],
+  "topics": [
+    "variables",
+    "functions",
+    "classes",
+    "algorithms"
+  ],
+  "source": {
+    "name": "Green Tea Press",
+    "official_url": "https://www.greenteapress.com/thinkpython/thinkCSpy/html/",
+    "license": "CC BY",
+    "license_url": "https://creativecommons.org/licenses/by/3.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 5.0,
+    "estimated_minutes": 297
+  },
+  "totals": {
+    "modules": 5,
+    "lessons": 20,
+    "practice_questions": 60
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "thinkcspy-m01",
+      "title": "The way of the program",
+      "competencies": [
+        "Python Programming",
+        "Programming Fundamentals",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "thinkcspy-m01-l01",
+          "title": "The way of the program",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/thinkcspy-m01-l01.json",
+          "estimated_minutes": 17,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)",
+            "On one level, you will be learning to program, a useful skill by itself. On another level, you will use programming as a means to an"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "thinkcspy-m01-l02",
+          "title": "Variables, expressions and statements",
+          "type": "text",
+          "content_file": "content/module-01/lesson-02.md",
+          "practice_file": "practice/thinkcspy-m01-l02.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)",
+            "A **value** is one of the fundamental things ~~~~ like a letter or a number ~~~~ that a program manipulates. The values we have seen so far are `2` (the result when we added `1 + 1`), and `'Hello, World!'`",
+            "The print statement also works for integers",
+            "If you are not sure what type a value has, the interpreter can tell you"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "thinkcspy-m01-l03",
+          "title": "Functions",
+          "type": "text",
+          "content_file": "content/module-01/lesson-03.md",
+          "practice_file": "practice/thinkcspy-m01-l03.json",
+          "estimated_minutes": 19,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)",
+            "You have already seen one example of a **function call** :",
+            "Instead of printing the return value, we could assign it to a variable:",
+            "As another example, the `id` function takes a value or a variable and returns an integer that acts as a unique identifier for the value:",
+            "Every value has an `id`, which is a unique number related to where it is stored in the memory of the computer. The `id` of a variable is the `id` of the value to which it refers",
+            "Python provides a collection of built-in func"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "thinkcspy-m01-l04",
+          "title": "Conditionals and recursion",
+          "type": "text",
+          "content_file": "content/module-01/lesson-04.md",
+          "practice_file": "practice/thinkcspy-m01-l04.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)",
+            "So 7 divided by 3 is 2 with 1 left over",
+            "The modulus operator turns out to be surprisingly useful. For example, you can check whether one number is divisible by another ~~~~ if `x % y` is zero, then `x` is divisible by `y`",
+            "Also, you can extract the right-most digit or digits from a number. For example, `x % 10` yields the right-most digit of `x` (in base 10). Similarly `x % 100` yields the last two digits",
+            "A **boolean expression** is an expression that is either true or false. One way to write a boolean expression is to use the operator `==`, which compares two values and produces a boolean value:"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "thinkcspy-m02",
+      "title": "Fruitful functions",
+      "competencies": [
+        "Python Programming",
+        "Programming Fundamentals",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "thinkcspy-m02-l01",
+          "title": "Fruitful functions",
+          "type": "text",
+          "content_file": "content/module-02/lesson-01.md",
+          "practice_file": "practice/thinkcspy-m02-l01.json",
+          "estimated_minutes": 18,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)",
+            "Some of the built-in functions we have used, such as the math functions, have produced results. Calling the function generates a new value, which we usually assign to a variable or use as part of an expression",
+            "But so far, none of the functions we have written has returned a value"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "thinkcspy-m02-l02",
+          "title": "Iteration",
+          "type": "text",
+          "content_file": "content/module-02/lesson-02.md",
+          "practice_file": "practice/thinkcspy-m02-l02.json",
+          "estimated_minutes": 19,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)",
+            "As you may have discovered, it is legal to make more than one assignment to the same variable. A new assignment makes an existing variable refer to a new value (and stop referring to the old value)",
+            "Here is what **multiple assignment** looks like in a state diagram:",
+            "First, equality is commutative and assignment is not. For example, in mathematics, if `a = 7` th"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "thinkcspy-m02-l03",
+          "title": "Strings",
+          "type": "text",
+          "content_file": "content/module-02/lesson-03.md",
+          "practice_file": "practice/thinkcspy-m02-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)",
+            "So far we have seen three types: `int`, `float`, and `string`. Strings are qualitatively different from the other two because they are made up of smaller pieces ~~~~ characters",
+            "The bracket operator selects a single character from a string",
+            "The expression `fruit[1]` selects character number 1 from `fruit`. The variable `letter` refers to the result. When we display `letter`, we get a surprise:"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "thinkcspy-m02-l04",
+          "title": "Lists",
+          "type": "text",
+          "content_file": "content/module-02/lesson-04.md",
+          "practice_file": "practice/thinkcspy-m02-l04.json",
+          "estimated_minutes": 16,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)",
+            "There are several ways to create a new list; the simplest is to enclose the elements in square brackets (`[` and `]`):",
+            "A list within another list is said to be **nested**",
+            "Lists that contain consecutive integers are common, so Python provides a simple way to create them:"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "thinkcspy-m03",
+      "title": "Tuples",
+      "competencies": [
+        "Python Programming",
+        "Programming Fundamentals",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "thinkcspy-m03-l01",
+          "title": "Tuples",
+          "type": "text",
+          "content_file": "content/module-03/lesson-01.md",
+          "practice_file": "practice/thinkcspy-m03-l01.json",
+          "estimated_minutes": 13,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)",
+            "There is another type in Python called a **tuple** that is similar to a list except that it is immutable. Syntactically, a tuple is a comma-separated list of values:",
+            "Although it is not necessary, it is conventional to enclose tuples in parentheses:",
+            "To create a tuple with a single element, we have to include the final comma:",
+            "Without the comma, Python treats `('a')` as a string in parentheses:",
+            "Syntax issues aside, the operations on tuples are the same as the operations on lists. Th"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "thinkcspy-m03-l02",
+          "title": "Dictionaries",
+          "type": "text",
+          "content_file": "content/module-03/lesson-02.md",
+          "practice_file": "practice/thinkcspy-m03-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)",
+            "The compound types you have learned about ~~~~ strings, lists, and tuples ~~~~ use integers as indices. If you try to use any other type as an index, you get an error",
+            "One way to create a dictionary is to start with the empty dictionary and add elements. The empty dictionary is denoted `{}`:",
+            "The first assignment creates a dictionary named `eng2sp`; the other assignments add new elements to the dictionary. We can print the current value of the dictionary in the usual way:",
+            "The elements of a dictionary appear in a comma-separated list. Each entry contains an index and a value separated by a colon. In a dictionary, the indices are called **keys** , so"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "thinkcspy-m03-l03",
+          "title": "Files and exceptions",
+          "type": "text",
+          "content_file": "content/module-03/lesson-03.md",
+          "practice_file": "practice/thinkcspy-m03-l03.json",
+          "estimated_minutes": 15,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)",
+            "When there are a large number of files, they are often organized into **directories** (also called \"folders\"). Each file is identified by a unique name, or a combination of a file name and a directory name",
+            "By reading and writing files, programs can exchange information with each other and generate printable formats like PDF",
+            "All of this applies to files as well. To open a file, you specify its name and indicate whether you"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "thinkcspy-m03-l04",
+          "title": "Classes and objects",
+          "type": "text",
+          "content_file": "content/module-03/lesson-04.md",
+          "practice_file": "practice/thinkcspy-m03-l04.json",
+          "estimated_minutes": 13,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)",
+            "Having used some of Python's built-in types, we are ready to create a user-defined type: the `Point`",
+            "An alternative is to define a new user-defined compound type, also called a **class**. This approach involves a bit more effort, but it has advantages that will be apparent soon",
+            "A class definition looks like this:"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "thinkcspy-m04",
+      "title": "Classes and functions",
+      "competencies": [
+        "Python Programming",
+        "Programming Fundamentals",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "thinkcspy-m04-l01",
+          "title": "Classes and functions",
+          "type": "text",
+          "content_file": "content/module-04/lesson-01.md",
+          "practice_file": "practice/thinkcspy-m04-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)",
+            "As another example of a user-defined type, we'll define a class called `Time` that records the time of day. The class definition looks like this:",
+            "We can create a new `Time` object and assign attributes for hours, minutes, and seconds:",
+            "The state diagram for the `Time` object looks like this:",
+            "In the next few sections, we'll write two versions of a function called `addTime`, which calculates the sum of two `Time`s. They will demonstrate two kinds of functions: pure functions and modifiers"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "thinkcspy-m04-l02",
+          "title": "Classes and methods",
+          "type": "text",
+          "content_file": "content/module-04/lesson-02.md",
+          "practice_file": "practice/thinkcspy-m04-l02.json",
+          "estimated_minutes": 16,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)",
+            "Python is an **object-oriented programming language** , which means that it provides features that support **object-oriented programming**",
+            "It is not easy to define object-oriented programming, but we have already seen some of its characteristics:",
+            "Programs are made up of object definitions and function definitions, and most of the computation is expressed in terms of operations on objects",
+            "Each object definition corresponds to some object or concept in the real world, and the functions that operate on that object correspond to the ways real-world objects interact",
+            "So far, we have not taken advantage of the features Python provides to support object-orient"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "thinkcspy-m04-l03",
+          "title": "Sets of objects",
+          "type": "text",
+          "content_file": "content/module-04/lesson-03.md",
+          "practice_file": "practice/thinkcspy-m04-l03.json",
+          "estimated_minutes": 14,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)",
+            "In this chapter and the next, we will look at some examples of these combinations, using `Card` objects as an example"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "thinkcspy-m04-l04",
+          "title": "Inheritance",
+          "type": "text",
+          "content_file": "content/module-04/lesson-04.md",
+          "practice_file": "practice/thinkcspy-m04-l04.json",
+          "estimated_minutes": 16,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)",
+            "The language feature most often associated with object-oriented programming is **inheritance**. Inheritance is the ability to define a new class that is a modified version of an existing class",
+            "On the other hand, inheritance can make"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "thinkcspy-m05",
+      "title": "Linked lists",
+      "competencies": [
+        "Python Programming",
+        "Programming Fundamentals",
+        "Computer Science"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "thinkcspy-m05-l01",
+          "title": "Linked lists",
+          "type": "text",
+          "content_file": "content/module-05/lesson-01.md",
+          "practice_file": "practice/thinkcspy-m05-l01.json",
+          "estimated_minutes": 14,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)",
+            "Linked lists are made up of **nodes** , where each node contains a reference to the next node in the list. In addition, each node contains a unit of data called the **cargo**",
+            "A linked list is considered a **recursive data structure** because it has a recursive definition",
+            "Recursive data structures lend themselves to recursive methods",
+            "As usual when writing a new class, we'll start with the initialization and `__str__` methods so that we can test the basic mechanism of creating and displaying the new type:"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "thinkcspy-m05-l02",
+          "title": "Stacks",
+          "type": "text",
+          "content_file": "content/module-05/lesson-02.md",
+          "practice_file": "practice/thinkcspy-m05-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)",
+            "It simplifies the task of specifying an algorithm if you can denote the operations you need without having to think at the same time about how the operations are performed",
+            "Since there are usually many ways to implement an ADT, it might be useful to write an algorithm that can be used with any of the possible implementations",
+            "Well-known ADTs, such as the Stack ADT in this chapter, are often implemented in standard libraries so they can be"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "thinkcspy-m05-l03",
+          "title": "Queues",
+          "type": "text",
+          "content_file": "content/module-05/lesson-03.md",
+          "practice_file": "practice/thinkcspy-m05-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "thinkcspy-m05-l04",
+          "title": "Trees",
+          "type": "text",
+          "content_file": "content/module-05/lesson-04.md",
+          "practice_file": "practice/thinkcspy-m05-l04.json",
+          "estimated_minutes": 17,
+          "objectives": [
+            "This is an older version of the book now known as _Think Python_. You might prefer to [read a more recent version](<http://greenteapress.com/wp/think-python-2e/>)",
+            "To avoid cluttering up the picture, we often omit the `Nones`",
+            "Finally, there is a geometric vocabulary for"
+          ],
+          "competencies": [
+            "Python Programming",
+            "Programming Fundamentals"
+          ],
+          "topics": [
+            "variables",
+            "functions",
+            "classes"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

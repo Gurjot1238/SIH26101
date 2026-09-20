@@ -1,0 +1,392 @@
+{
+  "course_id": "mit-6-042-math-cs",
+  "title": "6.042J Mathematics for Computer Science",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Discrete Mathematics",
+  "level": "Intermediate",
+  "description": "MIT OpenCourseWare 6.042J Mathematics for Computer Science (Fall 2010). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Discrete Mathematics",
+    "Computer Science",
+    "Proofs"
+  ],
+  "topics": [
+    "proofs",
+    "graphs",
+    "counting",
+    "probability"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Fall 2010",
+  "duration": {
+    "estimated_hours": 7.1,
+    "estimated_minutes": 425
+  },
+  "totals": {
+    "modules": 4,
+    "lessons": 16,
+    "practice_questions": 48
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-6-042-math-cs-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Discrete Mathematics",
+        "Computer Science",
+        "Proofs"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-042-math-cs-m01-l01",
+          "title": "52e4d5a499a39c41c129e1eb4e831e20 MIT6 042JF10 assn01",
+          "type": "pdf",
+          "content_file": "content/module-01/52e4d5a499a39c41c129e1eb4e831e20_MIT6_042JF10_assn01.pdf",
+          "practice_file": "practice/mit-6-042-math-cs-m01-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Discrete Mathematics",
+            "Computer Science"
+          ],
+          "topics": [
+            "proofs",
+            "graphs",
+            "counting"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-042-math-cs-m01-l02",
+          "title": "97ea9acefba52424851e51ff82d5a146 MIT6 042JF10 assn02",
+          "type": "pdf",
+          "content_file": "content/module-01/97ea9acefba52424851e51ff82d5a146_MIT6_042JF10_assn02.pdf",
+          "practice_file": "practice/mit-6-042-math-cs-m01-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Discrete Mathematics",
+            "Computer Science"
+          ],
+          "topics": [
+            "proofs",
+            "graphs",
+            "counting"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-042-math-cs-m01-l03",
+          "title": "043253c5913ecd1d5753cc879ea4d4d5 MIT6 042JF10 assn03",
+          "type": "pdf",
+          "content_file": "content/module-01/043253c5913ecd1d5753cc879ea4d4d5_MIT6_042JF10_assn03.pdf",
+          "practice_file": "practice/mit-6-042-math-cs-m01-l03.json",
+          "estimated_minutes": 23,
+          "objectives": [],
+          "competencies": [
+            "Discrete Mathematics",
+            "Computer Science"
+          ],
+          "topics": [
+            "proofs",
+            "graphs",
+            "counting"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-042-math-cs-m01-l04",
+          "title": "b133dea8b5dfab40bc290a49b54ff034 MIT6 042JF10 assn04",
+          "type": "pdf",
+          "content_file": "content/module-01/b133dea8b5dfab40bc290a49b54ff034_MIT6_042JF10_assn04.pdf",
+          "practice_file": "practice/mit-6-042-math-cs-m01-l04.json",
+          "estimated_minutes": 26,
+          "objectives": [],
+          "competencies": [
+            "Discrete Mathematics",
+            "Computer Science"
+          ],
+          "topics": [
+            "proofs",
+            "graphs",
+            "counting"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-042-math-cs-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Discrete Mathematics",
+        "Computer Science",
+        "Proofs"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-042-math-cs-m02-l01",
+          "title": "44fd2e90818a53b953534eac92690060 MIT6 042JF10 assn05",
+          "type": "pdf",
+          "content_file": "content/module-02/44fd2e90818a53b953534eac92690060_MIT6_042JF10_assn05.pdf",
+          "practice_file": "practice/mit-6-042-math-cs-m02-l01.json",
+          "estimated_minutes": 24,
+          "objectives": [],
+          "competencies": [
+            "Discrete Mathematics",
+            "Computer Science"
+          ],
+          "topics": [
+            "proofs",
+            "graphs",
+            "counting"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-042-math-cs-m02-l02",
+          "title": "1d18940fa4fce94e50adb0b2c9757ecd MIT6 042JF10 assn06",
+          "type": "pdf",
+          "content_file": "content/module-02/1d18940fa4fce94e50adb0b2c9757ecd_MIT6_042JF10_assn06.pdf",
+          "practice_file": "practice/mit-6-042-math-cs-m02-l02.json",
+          "estimated_minutes": 21,
+          "objectives": [],
+          "competencies": [
+            "Discrete Mathematics",
+            "Computer Science"
+          ],
+          "topics": [
+            "proofs",
+            "graphs",
+            "counting"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-042-math-cs-m02-l03",
+          "title": "41ee8661082630bb68c9d3babffeefbd MIT6 042JF10 assn07",
+          "type": "pdf",
+          "content_file": "content/module-02/41ee8661082630bb68c9d3babffeefbd_MIT6_042JF10_assn07.pdf",
+          "practice_file": "practice/mit-6-042-math-cs-m02-l03.json",
+          "estimated_minutes": 24,
+          "objectives": [],
+          "competencies": [
+            "Discrete Mathematics",
+            "Computer Science"
+          ],
+          "topics": [
+            "proofs",
+            "graphs",
+            "counting"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-042-math-cs-m02-l04",
+          "title": "f1c8291c19f0b0636e4f11522014c44f MIT6 042JF10 assn08",
+          "type": "pdf",
+          "content_file": "content/module-02/f1c8291c19f0b0636e4f11522014c44f_MIT6_042JF10_assn08.pdf",
+          "practice_file": "practice/mit-6-042-math-cs-m02-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Discrete Mathematics",
+            "Computer Science"
+          ],
+          "topics": [
+            "proofs",
+            "graphs",
+            "counting"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-042-math-cs-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Discrete Mathematics",
+        "Computer Science",
+        "Proofs"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-042-math-cs-m03-l01",
+          "title": "634ff37bc1a5139ccdd58dc7494193f9 MIT6 042JF10 assn09",
+          "type": "pdf",
+          "content_file": "content/module-03/634ff37bc1a5139ccdd58dc7494193f9_MIT6_042JF10_assn09.pdf",
+          "practice_file": "practice/mit-6-042-math-cs-m03-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Discrete Mathematics",
+            "Computer Science"
+          ],
+          "topics": [
+            "proofs",
+            "graphs",
+            "counting"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-042-math-cs-m03-l02",
+          "title": "2c8325cfcd72647ed39997c314411367 MIT6 042JF10 assn10",
+          "type": "pdf",
+          "content_file": "content/module-03/2c8325cfcd72647ed39997c314411367_MIT6_042JF10_assn10.pdf",
+          "practice_file": "practice/mit-6-042-math-cs-m03-l02.json",
+          "estimated_minutes": 24,
+          "objectives": [],
+          "competencies": [
+            "Discrete Mathematics",
+            "Computer Science"
+          ],
+          "topics": [
+            "proofs",
+            "graphs",
+            "counting"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-042-math-cs-m03-l03",
+          "title": "b7bffa977868220bb3c262f4cb8875eb MIT6 042JF10 mid pctce sol",
+          "type": "pdf",
+          "content_file": "content/module-03/b7bffa977868220bb3c262f4cb8875eb_MIT6_042JF10_mid_pctce_sol.pdf",
+          "practice_file": "practice/mit-6-042-math-cs-m03-l03.json",
+          "estimated_minutes": 32,
+          "objectives": [],
+          "competencies": [
+            "Discrete Mathematics",
+            "Computer Science"
+          ],
+          "topics": [
+            "proofs",
+            "graphs",
+            "counting"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-042-math-cs-m03-l04",
+          "title": "6ed3117782fbe0bdacb11d65476a21f6 MIT6 042JF10 midterm sol",
+          "type": "pdf",
+          "content_file": "content/module-03/6ed3117782fbe0bdacb11d65476a21f6_MIT6_042JF10_midterm_sol.pdf",
+          "practice_file": "practice/mit-6-042-math-cs-m03-l04.json",
+          "estimated_minutes": 32,
+          "objectives": [],
+          "competencies": [
+            "Discrete Mathematics",
+            "Computer Science"
+          ],
+          "topics": [
+            "proofs",
+            "graphs",
+            "counting"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-042-math-cs-m04",
+      "title": "Module 4",
+      "competencies": [
+        "Discrete Mathematics",
+        "Computer Science",
+        "Proofs"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-042-math-cs-m04-l01",
+          "title": "ada5226b2986f45a03ce10a46137d8ee MIT6 042JF10 fnl 2004 sol",
+          "type": "pdf",
+          "content_file": "content/module-04/ada5226b2986f45a03ce10a46137d8ee_MIT6_042JF10_fnl_2004_sol.pdf",
+          "practice_file": "practice/mit-6-042-math-cs-m04-l01.json",
+          "estimated_minutes": 33,
+          "objectives": [],
+          "competencies": [
+            "Discrete Mathematics",
+            "Computer Science"
+          ],
+          "topics": [
+            "proofs",
+            "graphs",
+            "counting"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-042-math-cs-m04-l02",
+          "title": "0784229be9fefe9bd73ae0f320995412 MIT6 042JF10 fnl 2006 sol",
+          "type": "pdf",
+          "content_file": "content/module-04/0784229be9fefe9bd73ae0f320995412_MIT6_042JF10_fnl_2006_sol.pdf",
+          "practice_file": "practice/mit-6-042-math-cs-m04-l02.json",
+          "estimated_minutes": 40,
+          "objectives": [],
+          "competencies": [
+            "Discrete Mathematics",
+            "Computer Science"
+          ],
+          "topics": [
+            "proofs",
+            "graphs",
+            "counting"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-042-math-cs-m04-l03",
+          "title": "f2742c4fd6fcac9d60a74ee610e126f1 MIT6 042JF10 fnl 2008 sol",
+          "type": "pdf",
+          "content_file": "content/module-04/f2742c4fd6fcac9d60a74ee610e126f1_MIT6_042JF10_fnl_2008_sol.pdf",
+          "practice_file": "practice/mit-6-042-math-cs-m04-l03.json",
+          "estimated_minutes": 41,
+          "objectives": [],
+          "competencies": [
+            "Discrete Mathematics",
+            "Computer Science"
+          ],
+          "topics": [
+            "proofs",
+            "graphs",
+            "counting"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-042-math-cs-m04-l04",
+          "title": "23dc3226199eb8825acea5e7590f7caf MIT6 042JF10 final",
+          "type": "pdf",
+          "content_file": "content/module-04/23dc3226199eb8825acea5e7590f7caf_MIT6_042JF10_final.pdf",
+          "practice_file": "practice/mit-6-042-math-cs-m04-l04.json",
+          "estimated_minutes": 25,
+          "objectives": [],
+          "competencies": [
+            "Discrete Mathematics",
+            "Computer Science"
+          ],
+          "topics": [
+            "proofs",
+            "graphs",
+            "counting"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,229 @@
+{
+  "course_id": "mit-2-003-dynamics",
+  "title": "2.003SC Engineering Dynamics",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Mechanical Engineering",
+  "level": "Intermediate",
+  "description": "MIT OpenCourseWare 2.003SC Engineering Dynamics (Fall 2011). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Mechanical Engineering",
+    "Dynamics",
+    "Mechanics"
+  ],
+  "topics": [
+    "kinematics",
+    "Newton-Euler",
+    "Lagrangian",
+    "vibration"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/2-003sc-engineering-dynamics-fall-2011/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Fall 2011",
+  "duration": {
+    "estimated_hours": 10.7,
+    "estimated_minutes": 640
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 8,
+    "practice_questions": 24
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-2-003-dynamics-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Mechanical Engineering",
+        "Dynamics",
+        "Mechanics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-2-003-dynamics-m01-l01",
+          "title": "51ec27ed0d21aac1f260738be50ff564 MIT2 003SCF11 rec2notes1",
+          "type": "pdf",
+          "content_file": "content/module-01/51ec27ed0d21aac1f260738be50ff564_MIT2_003SCF11_rec2notes1.pdf",
+          "practice_file": "practice/mit-2-003-dynamics-m01-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Dynamics"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton-Euler",
+            "Lagrangian"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-2-003-dynamics-m01-l02",
+          "title": "d3178189fed77902219c478d784c6541 MIT2 003SCF11 rec3notes",
+          "type": "pdf",
+          "content_file": "content/module-01/d3178189fed77902219c478d784c6541_MIT2_003SCF11_rec3notes.pdf",
+          "practice_file": "practice/mit-2-003-dynamics-m01-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Dynamics"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton-Euler",
+            "Lagrangian"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-2-003-dynamics-m01-l03",
+          "title": "4c2665fb93f4a3e1e725c675a5afa793 MIT2 003SCF11 rec4notes1",
+          "type": "pdf",
+          "content_file": "content/module-01/4c2665fb93f4a3e1e725c675a5afa793_MIT2_003SCF11_rec4notes1.pdf",
+          "practice_file": "practice/mit-2-003-dynamics-m01-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Dynamics"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton-Euler",
+            "Lagrangian"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-2-003-dynamics-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Mechanical Engineering",
+        "Dynamics",
+        "Mechanics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-2-003-dynamics-m02-l01",
+          "title": "8d9fdd741cadfa3df00b0466fb196b60 MIT2 003SCF11 rec5notes1",
+          "type": "pdf",
+          "content_file": "content/module-02/8d9fdd741cadfa3df00b0466fb196b60_MIT2_003SCF11_rec5notes1.pdf",
+          "practice_file": "practice/mit-2-003-dynamics-m02-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Dynamics"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton-Euler",
+            "Lagrangian"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-2-003-dynamics-m02-l02",
+          "title": "669dfa489877b32a6d586af648065a22 MIT2 003SCF11 rec6notes1",
+          "type": "pdf",
+          "content_file": "content/module-02/669dfa489877b32a6d586af648065a22_MIT2_003SCF11_rec6notes1.pdf",
+          "practice_file": "practice/mit-2-003-dynamics-m02-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Dynamics"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton-Euler",
+            "Lagrangian"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-2-003-dynamics-m02-l03",
+          "title": "b937cb799870918bcf20b4043f046b80 MIT2 003SCF11 rec7notes1",
+          "type": "pdf",
+          "content_file": "content/module-02/b937cb799870918bcf20b4043f046b80_MIT2_003SCF11_rec7notes1.pdf",
+          "practice_file": "practice/mit-2-003-dynamics-m02-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Dynamics"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton-Euler",
+            "Lagrangian"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-2-003-dynamics-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Mechanical Engineering",
+        "Dynamics",
+        "Mechanics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-2-003-dynamics-m03-l01",
+          "title": "180785b4c12d502ff69d08f46f0d9302 MIT2 003SCF11 rec8notes1",
+          "type": "pdf",
+          "content_file": "content/module-03/180785b4c12d502ff69d08f46f0d9302_MIT2_003SCF11_rec8notes1.pdf",
+          "practice_file": "practice/mit-2-003-dynamics-m03-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Dynamics"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton-Euler",
+            "Lagrangian"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-2-003-dynamics-m03-l02",
+          "title": "359081aa42b42d21425785fa151c89f6 MIT2 003SCF11 rec9notes1",
+          "type": "pdf",
+          "content_file": "content/module-03/359081aa42b42d21425785fa151c89f6_MIT2_003SCF11_rec9notes1.pdf",
+          "practice_file": "practice/mit-2-003-dynamics-m03-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Mechanical Engineering",
+            "Dynamics"
+          ],
+          "topics": [
+            "kinematics",
+            "Newton-Euler",
+            "Lagrangian"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

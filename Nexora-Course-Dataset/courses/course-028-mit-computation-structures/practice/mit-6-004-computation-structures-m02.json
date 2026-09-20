@@ -1,0 +1,197 @@
+{
+  "module_id": "mit-6-004-computation-structures-m02",
+  "questions": [
+    {
+      "question_id": "mit-6-004-computation-structures-m02-l01-q01",
+      "question": "According to the source lesson '97fc8d99b83bba6747db963df8585531 compilation answers', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 97fc8d99b83bba6747db963df8585531_compilation_answers.pdf from 6.004 Computation Structures.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Architecture",
+      "topic": "CMOS",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-004-computation-structures-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from '97fc8d99b83bba6747db963df8585531 compilation answers'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 97fc8d99b83bba6747db963df8585531 compilation answers.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Architecture",
+      "topic": "CMOS",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-004-computation-structures-m02-l01-q03",
+      "question": "When applying concepts from '97fc8d99b83bba6747db963df8585531 compilation answers', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Architecture",
+      "topic": "CMOS",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-004-computation-structures-m02-l02-q01",
+      "question": "According to the source lesson '9476106a935f9b65e095c3972990f946 digital answers', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 9476106a935f9b65e095c3972990f946_digital_answers.pdf from 6.004 Computation Structures.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Architecture",
+      "topic": "CMOS",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-004-computation-structures-m02-l02-q02",
+      "question": "What is a reasonable learning takeaway from '9476106a935f9b65e095c3972990f946 digital answers'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 9476106a935f9b65e095c3972990f946 digital answers.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Architecture",
+      "topic": "CMOS",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-004-computation-structures-m02-l02-q03",
+      "question": "When applying concepts from '9476106a935f9b65e095c3972990f946 digital answers', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Architecture",
+      "topic": "CMOS",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-004-computation-structures-m02-l03-q01",
+      "question": "According to the source lesson '560b3f7afaf7aab61c31d3763c4b6670 fsm answers', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 560b3f7afaf7aab61c31d3763c4b6670_fsm_answers.pdf from 6.004 Computation Structures.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Architecture",
+      "topic": "CMOS",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-004-computation-structures-m02-l03-q02",
+      "question": "What is a reasonable learning takeaway from '560b3f7afaf7aab61c31d3763c4b6670 fsm answers'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 560b3f7afaf7aab61c31d3763c4b6670 fsm answers.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Architecture",
+      "topic": "CMOS",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-004-computation-structures-m02-l03-q03",
+      "question": "When applying concepts from '560b3f7afaf7aab61c31d3763c4b6670 fsm answers', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Architecture",
+      "topic": "CMOS",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-004-computation-structures-m02-l04-q01",
+      "question": "According to the source lesson '2ad8dd9c7ad17f3801fcba36bf2bd57b information answers', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 2ad8dd9c7ad17f3801fcba36bf2bd57b_information_answers.pdf from 6.004 Computation Structures.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Architecture",
+      "topic": "CMOS",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-004-computation-structures-m02-l04-q02",
+      "question": "What is a reasonable learning takeaway from '2ad8dd9c7ad17f3801fcba36bf2bd57b information answers'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2ad8dd9c7ad17f3801fcba36bf2bd57b information answers.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Architecture",
+      "topic": "CMOS",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-004-computation-structures-m02-l04-q03",
+      "question": "When applying concepts from '2ad8dd9c7ad17f3801fcba36bf2bd57b information answers', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Computer Architecture",
+      "topic": "CMOS",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

@@ -1,0 +1,266 @@
+{
+  "course_id": "mit-6-867-ml",
+  "title": "6.867 Machine Learning",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Machine Learning",
+  "level": "Advanced",
+  "description": "MIT OpenCourseWare 6.867 Machine Learning (Fall 2006). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Machine Learning",
+    "Artificial Intelligence",
+    "Statistical Learning"
+  ],
+  "topics": [
+    "supervised learning",
+    "kernels",
+    "graphical models"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/6-867-machine-learning-fall-2006/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Fall 2006",
+  "duration": {
+    "estimated_hours": 3.6,
+    "estimated_minutes": 217
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 10,
+    "practice_questions": 30
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-6-867-ml-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Machine Learning",
+        "Artificial Intelligence",
+        "Statistical Learning"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-867-ml-m01-l01",
+          "title": "d26f49e758fa83b40c8f22496c857f14 lec1",
+          "type": "pdf",
+          "content_file": "content/module-01/d26f49e758fa83b40c8f22496c857f14_lec1.pdf",
+          "practice_file": "practice/mit-6-867-ml-m01-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Machine Learning",
+            "Artificial Intelligence"
+          ],
+          "topics": [
+            "supervised learning",
+            "kernels",
+            "graphical models"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-867-ml-m01-l02",
+          "title": "df535ce359aad52f48c203db64558fe8 lec2",
+          "type": "pdf",
+          "content_file": "content/module-01/df535ce359aad52f48c203db64558fe8_lec2.pdf",
+          "practice_file": "practice/mit-6-867-ml-m01-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Machine Learning",
+            "Artificial Intelligence"
+          ],
+          "topics": [
+            "supervised learning",
+            "kernels",
+            "graphical models"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-867-ml-m01-l03",
+          "title": "c8442240a87cdacbb2b90f8b53393e9d lec3",
+          "type": "pdf",
+          "content_file": "content/module-01/c8442240a87cdacbb2b90f8b53393e9d_lec3.pdf",
+          "practice_file": "practice/mit-6-867-ml-m01-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Machine Learning",
+            "Artificial Intelligence"
+          ],
+          "topics": [
+            "supervised learning",
+            "kernels",
+            "graphical models"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-867-ml-m01-l04",
+          "title": "59a63d2efbe8aa01041937ff539a449a lec4",
+          "type": "pdf",
+          "content_file": "content/module-01/59a63d2efbe8aa01041937ff539a449a_lec4.pdf",
+          "practice_file": "practice/mit-6-867-ml-m01-l04.json",
+          "estimated_minutes": 21,
+          "objectives": [],
+          "competencies": [
+            "Machine Learning",
+            "Artificial Intelligence"
+          ],
+          "topics": [
+            "supervised learning",
+            "kernels",
+            "graphical models"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-867-ml-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Machine Learning",
+        "Artificial Intelligence",
+        "Statistical Learning"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-867-ml-m02-l01",
+          "title": "9e7f8fb89d65d7572980907fd6d12315 lec5",
+          "type": "pdf",
+          "content_file": "content/module-02/9e7f8fb89d65d7572980907fd6d12315_lec5.pdf",
+          "practice_file": "practice/mit-6-867-ml-m02-l01.json",
+          "estimated_minutes": 27,
+          "objectives": [],
+          "competencies": [
+            "Machine Learning",
+            "Artificial Intelligence"
+          ],
+          "topics": [
+            "supervised learning",
+            "kernels",
+            "graphical models"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-867-ml-m02-l02",
+          "title": "1eedc5b3427ca3eef198d707f016f295 lec6",
+          "type": "pdf",
+          "content_file": "content/module-02/1eedc5b3427ca3eef198d707f016f295_lec6.pdf",
+          "practice_file": "practice/mit-6-867-ml-m02-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Machine Learning",
+            "Artificial Intelligence"
+          ],
+          "topics": [
+            "supervised learning",
+            "kernels",
+            "graphical models"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-867-ml-m02-l03",
+          "title": "1b55295adbca700abfa7356a4f832e33 lec7",
+          "type": "pdf",
+          "content_file": "content/module-02/1b55295adbca700abfa7356a4f832e33_lec7.pdf",
+          "practice_file": "practice/mit-6-867-ml-m02-l03.json",
+          "estimated_minutes": 23,
+          "objectives": [],
+          "competencies": [
+            "Machine Learning",
+            "Artificial Intelligence"
+          ],
+          "topics": [
+            "supervised learning",
+            "kernels",
+            "graphical models"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-867-ml-m02-l04",
+          "title": "33a6c8e66c62602f9f03ab6a2c632eed lec8",
+          "type": "pdf",
+          "content_file": "content/module-02/33a6c8e66c62602f9f03ab6a2c632eed_lec8.pdf",
+          "practice_file": "practice/mit-6-867-ml-m02-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Machine Learning",
+            "Artificial Intelligence"
+          ],
+          "topics": [
+            "supervised learning",
+            "kernels",
+            "graphical models"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-867-ml-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Machine Learning",
+        "Artificial Intelligence",
+        "Statistical Learning"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-867-ml-m03-l01",
+          "title": "2051efc0159bf145f2050469b7589fc5 lec9",
+          "type": "pdf",
+          "content_file": "content/module-03/2051efc0159bf145f2050469b7589fc5_lec9.pdf",
+          "practice_file": "practice/mit-6-867-ml-m03-l01.json",
+          "estimated_minutes": 22,
+          "objectives": [],
+          "competencies": [
+            "Machine Learning",
+            "Artificial Intelligence"
+          ],
+          "topics": [
+            "supervised learning",
+            "kernels",
+            "graphical models"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-867-ml-m03-l02",
+          "title": "d5a30e80d0ae7a6796186f40640d3b7d lec10",
+          "type": "pdf",
+          "content_file": "content/module-03/d5a30e80d0ae7a6796186f40640d3b7d_lec10.pdf",
+          "practice_file": "practice/mit-6-867-ml-m03-l02.json",
+          "estimated_minutes": 24,
+          "objectives": [],
+          "competencies": [
+            "Machine Learning",
+            "Artificial Intelligence"
+          ],
+          "topics": [
+            "supervised learning",
+            "kernels",
+            "graphical models"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

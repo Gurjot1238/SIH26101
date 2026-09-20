@@ -1,0 +1,53 @@
+{
+  "lesson_id": "isu-mechanical-engineering-design-m05-l03",
+  "questions": [
+    {
+      "question_id": "isu-mechanical-engineering-design-m05-l03-q01",
+      "question": "According to the source lesson 'Chapter 1: Modeling', which statement is most accurate?",
+      "options": [
+        "**Modeling** Now that your design team has selected a product concept: * Developed a function tree tree, and ensured sub-functions are broken down via a function block diagram * Continue work from functional analysis to develop a math model",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m05-l03-q02",
+      "question": "What is a reasonable learning takeaway from 'Chapter 1: Modeling'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Chapter 1: Modeling.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m05-l03-q03",
+      "question": "When applying concepts from 'Chapter 1: Modeling', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "lesson_id": "wtcs-nursing-pharmacology-m03-l01",
+  "questions": [
+    {
+      "question_id": "wtcs-nursing-pharmacology-m03-l01-q01",
+      "question": "According to the source lesson '2.1 Legal/Ethical Introduction', which statement is most accurate?",
+      "options": [
+        "## Learning Objectives * Identify drug administration guidelines within the State Nurse Practice Act * Identify nursing responsibilities to prevent and respond to medication errors * Identify nursing responsibilities associated with control",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from '2.1 Legal/Ethical Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.1 Legal/Ethical Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m03-l01-q03",
+      "question": "When applying concepts from '2.1 Legal/Ethical Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

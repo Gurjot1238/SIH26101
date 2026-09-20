@@ -1,0 +1,325 @@
+{
+  "course_id": "isu-mechanical-engineering-design",
+  "questions": [
+    {
+      "question_id": "isu-mechanical-engineering-design-m01-l01-q01",
+      "question": "According to the source lesson 'Module 00: Overview', which statement is most accurate?",
+      "options": [
+        "**Module Objective 1:** Students will be able to describe an engineering problem (CLO1) 2.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Module 00: Overview'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Module 00: Overview.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m01-l01-q03",
+      "question": "When applying concepts from 'Module 00: Overview', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m01-l02-q01",
+      "question": "According to the source lesson 'Micro-economy Kit Overview', which statement is most accurate?",
+      "options": [
+        "**Student Design Team Goal in ME 2700: Create a micro-economy kit (design project)** As an engineer, you directly touch people's lives by being instrumental in designing products!",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m02-l01-q01",
+      "question": "According to the source lesson 'Module 1: Overview', which statement is most accurate?",
+      "options": [
+        "**Module Objective 1** : Students will be able to identify an engineering problem (CLO1) 2.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Module 1: Overview'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Module 1: Overview.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m02-l01-q03",
+      "question": "When applying concepts from 'Module 1: Overview', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m02-l02-q01",
+      "question": "According to the source lesson 'Define Phase', which statement is most accurate?",
+      "options": [
+        "Understand the voice of the customer (VOC) to identify their needs.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m03-l01-q01",
+      "question": "According to the source lesson 'Module 2: Overview', which statement is most accurate?",
+      "options": [
+        "**Module Objective 1:** Students will be able to define customer requirements (CLO1) 2.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Module 2: Overview'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Module 2: Overview.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m03-l01-q03",
+      "question": "When applying concepts from 'Module 2: Overview', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m03-l02-q01",
+      "question": "According to the source lesson 'Measure Phase', which statement is most accurate?",
+      "options": [
+        "Measure Phase The second process step in Design for Six Sigma process, DMADVR, it is used to determine the definition of what the customer wants to create a specification.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m04-l01-q01",
+      "question": "According to the source lesson 'Module 3: Overview', which statement is most accurate?",
+      "options": [
+        "**Module Objective 1:** Students will be able to prepare a functional analysis by decomposing key functions required for the engineering design prototype (CLO1) 2.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m04-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Module 3: Overview'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Module 3: Overview.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m04-l01-q03",
+      "question": "When applying concepts from 'Module 3: Overview', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m04-l02-q01",
+      "question": "According to the source lesson 'Chapter 1: Introduction to Form (Morphology) in Engineering Concept Generation', which statement is most accurate?",
+      "options": [
+        "**In Engineering, function takes the stage before form!",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m05-l01-q01",
+      "question": "According to the source lesson 'Module 4A: Overview', which statement is most accurate?",
+      "options": [
+        "**Module Objective 1:** Students will be able to create a math model representing the engineering design functionality (CLO1) 2.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m05-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Module 4A: Overview'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Module 4A: Overview.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m05-l01-q03",
+      "question": "When applying concepts from 'Module 4A: Overview', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "isu-mechanical-engineering-design-m05-l02-q01",
+      "question": "According to the source lesson 'Design Phase', which statement is most accurate?",
+      "options": [
+        "Begin detailed design work for selected Final Design **This includes: ** * math modeling * risk assessment & mitigation (DFMEA -design failure mode & effects analysis) * bill of materials (BOM), * purchase order, * part cost determination *",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "define",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

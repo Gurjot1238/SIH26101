@@ -1,0 +1,325 @@
+{
+  "course_id": "thinkcspy-learning-with-python",
+  "questions": [
+    {
+      "question_id": "thinkcspy-m01-l01-q01",
+      "question": "According to the source lesson 'The way of the program', which statement is most accurate?",
+      "options": [
+        "This is an older version of the book now known as _Think Python_.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "thinkcspy-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'The way of the program'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in The way of the program.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "thinkcspy-m01-l01-q03",
+      "question": "When applying concepts from 'The way of the program', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "thinkcspy-m01-l02-q01",
+      "question": "According to the source lesson 'Variables, expressions and statements', which statement is most accurate?",
+      "options": [
+        "This is an older version of the book now known as _Think Python_.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "thinkcspy-m02-l01-q01",
+      "question": "According to the source lesson 'Fruitful functions', which statement is most accurate?",
+      "options": [
+        "This is an older version of the book now known as _Think Python_.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "thinkcspy-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Fruitful functions'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Fruitful functions.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "thinkcspy-m02-l01-q03",
+      "question": "When applying concepts from 'Fruitful functions', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "thinkcspy-m02-l02-q01",
+      "question": "According to the source lesson 'Iteration', which statement is most accurate?",
+      "options": [
+        "This is an older version of the book now known as _Think Python_.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "thinkcspy-m03-l01-q01",
+      "question": "According to the source lesson 'Tuples', which statement is most accurate?",
+      "options": [
+        "This is an older version of the book now known as _Think Python_.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "thinkcspy-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Tuples'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Tuples.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "thinkcspy-m03-l01-q03",
+      "question": "When applying concepts from 'Tuples', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "thinkcspy-m03-l02-q01",
+      "question": "According to the source lesson 'Dictionaries', which statement is most accurate?",
+      "options": [
+        "This is an older version of the book now known as _Think Python_.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "thinkcspy-m04-l01-q01",
+      "question": "According to the source lesson 'Classes and functions', which statement is most accurate?",
+      "options": [
+        "This is an older version of the book now known as _Think Python_.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "thinkcspy-m04-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Classes and functions'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Classes and functions.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "thinkcspy-m04-l01-q03",
+      "question": "When applying concepts from 'Classes and functions', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "thinkcspy-m04-l02-q01",
+      "question": "According to the source lesson 'Classes and methods', which statement is most accurate?",
+      "options": [
+        "This is an older version of the book now known as _Think Python_.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "thinkcspy-m05-l01-q01",
+      "question": "According to the source lesson 'Linked lists', which statement is most accurate?",
+      "options": [
+        "This is an older version of the book now known as _Think Python_.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "thinkcspy-m05-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Linked lists'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Linked lists.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "thinkcspy-m05-l01-q03",
+      "question": "When applying concepts from 'Linked lists', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "thinkcspy-m05-l02-q01",
+      "question": "According to the source lesson 'Stacks', which statement is most accurate?",
+      "options": [
+        "This is an older version of the book now known as _Think Python_.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Python Programming",
+      "topic": "variables",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

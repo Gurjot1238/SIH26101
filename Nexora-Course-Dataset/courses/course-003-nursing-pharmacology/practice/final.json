@@ -1,0 +1,197 @@
+{
+  "course_id": "wtcs-nursing-pharmacology",
+  "questions": [
+    {
+      "question_id": "wtcs-nursing-pharmacology-m02-l01-q01",
+      "question": "According to the source lesson '1.1 Pharmacology Basics Introduction', which statement is most accurate?",
+      "options": [
+        "## Learning Objectives * Discuss the processes of pharmacokinetics * Use multiple professional resources including technology to identify pertinent information related to drugs * Describe the processes of pharmacodynamics * Consider pharmac",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from '1.1 Pharmacology Basics Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 1.1 Pharmacology Basics Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m02-l01-q03",
+      "question": "When applying concepts from '1.1 Pharmacology Basics Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m02-l02-q01",
+      "question": "According to the source lesson '1.2 Pharmacokinetics', which statement is most accurate?",
+      "options": [
+        "## Pharmacokinetics - Examining the Interaction of Body and Drug ### Overview **Pharmacokinetics** is the term that describes the four stages of absorption, distribution, metabolism, and excretion of drugs.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m03-l01-q01",
+      "question": "According to the source lesson '2.1 Legal/Ethical Introduction', which statement is most accurate?",
+      "options": [
+        "## Learning Objectives * Identify drug administration guidelines within the State Nurse Practice Act * Identify nursing responsibilities to prevent and respond to medication errors * Identify nursing responsibilities associated with control",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from '2.1 Legal/Ethical Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.1 Legal/Ethical Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m03-l01-q03",
+      "question": "When applying concepts from '2.1 Legal/Ethical Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m03-l02-q01",
+      "question": "According to the source lesson '2.2 Ethical and Professional Foundations of Safe Medication Administration by Nurses', which statement is most accurate?",
+      "options": [
+        "## ANA Code of Ethics for Nurses The [American Nurses Association (ANA)](<https://www.nursingworld.org/ana/about-ana/>) is a professional organization that represents the interests of the nation's 4 million registered nurses and is at the f",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m04-l01-q01",
+      "question": "According to the source lesson '3.1 Antimicrobials Introduction', which statement is most accurate?",
+      "options": [
+        "Learning Objectives * Identify the classifications and actions of antimicrobial medications * Give examples of when, how, and to whom antimicrobial drugs may be administered * Identify the side effects and special considerations associated ",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m04-l01-q02",
+      "question": "What is a reasonable learning takeaway from '3.1 Antimicrobials Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.1 Antimicrobials Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m04-l01-q03",
+      "question": "When applying concepts from '3.1 Antimicrobials Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-pharmacology-m04-l02-q01",
+      "question": "According to the source lesson '3.2 Antimicrobial Basics', which statement is most accurate?",
+      "options": [
+        "Basic Concepts Related to Antimicrobial Therapy Before we learn about medications that are used to treat infections in our patients, we must first understand the basics of microbiology.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Pharmacology",
+      "topic": "pharmacokinetics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "module_id": "openstax-college-physics-m02",
+  "questions": [
+    {
+      "question_id": "openstax-college-physics-m02-l01-q01",
+      "question": "According to the source lesson 'Chapter Outline', which statement is most accurate?",
+      "options": [
+        "![Photo of a bird in flight.](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/1c7e0c06e55b9b483f719a02e7a3b29670894d88) Figure 2.1 The motion of an American kestrel through the air can be described by the bird’s displacemen",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "kinematics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-physics-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Chapter Outline'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Chapter Outline.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-physics-m02-l01-q03",
+      "question": "When applying concepts from 'Chapter Outline', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-physics-m02-l02-q01",
+      "question": "According to the source lesson '2.1 Displacement', which statement is most accurate?",
+      "options": [
+        "## 2.1 Displacement ![Three people cycling along a canal.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "kinematics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-physics-m02-l02-q02",
+      "question": "What is a reasonable learning takeaway from '2.1 Displacement'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.1 Displacement.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-physics-m02-l02-q03",
+      "question": "When applying concepts from '2.1 Displacement', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-physics-m02-l03-q01",
+      "question": "According to the source lesson '2.2 Vectors, Scalars, and Coordinate Systems', which statement is most accurate?",
+      "options": [
+        "## 2.2 Vectors, Scalars, and Coordinate Systems ![A small jet airplane flying toward the left.](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/2699f169270bd7784a79697989739c0f4a6185cb) Figure 2.6 The motion of this Eclipse",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "kinematics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-physics-m02-l03-q02",
+      "question": "What is a reasonable learning takeaway from '2.2 Vectors, Scalars, and Coordinate Systems'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.2 Vectors, Scalars, and Coordinate Systems.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-physics-m02-l03-q03",
+      "question": "When applying concepts from '2.2 Vectors, Scalars, and Coordinate Systems', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-physics-m02-l04-q01",
+      "question": "According to the source lesson '2.3 Time, Velocity, and Speed', which statement is most accurate?",
+      "options": [
+        "## 2.3 Time, Velocity, and Speed ![Snails leaving slime trails as they race each other along a flat surface.](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/a0a43e6d83a0578129466e46aa6b3b0e4464e3bf) Figure 2.8 The motion o",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "kinematics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-physics-m02-l04-q02",
+      "question": "What is a reasonable learning takeaway from '2.3 Time, Velocity, and Speed'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.3 Time, Velocity, and Speed.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-physics-m02-l04-q03",
+      "question": "When applying concepts from '2.3 Time, Velocity, and Speed', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

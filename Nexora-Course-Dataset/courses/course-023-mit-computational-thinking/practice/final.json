@@ -1,0 +1,197 @@
+{
+  "course_id": "mit-6-0002-data-science",
+  "questions": [
+    {
+      "question_id": "mit-6-0002-data-science-m01-l01-q01",
+      "question": "According to the source lesson '0a353b26f1c6bd161b28b3f249aa05d1 MIT6 0002F16 lec1', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 0a353b26f1c6bd161b28b3f249aa05d1_MIT6_0002F16_lec1.pdf from 6.0002 Introduction to Computational Thinking and Data Science.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Data Science",
+      "topic": "simulation",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-0002-data-science-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from '0a353b26f1c6bd161b28b3f249aa05d1 MIT6 0002F16 lec1'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 0a353b26f1c6bd161b28b3f249aa05d1 MIT6 0002F16 lec1.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Data Science",
+      "topic": "simulation",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-0002-data-science-m01-l01-q03",
+      "question": "When applying concepts from '0a353b26f1c6bd161b28b3f249aa05d1 MIT6 0002F16 lec1', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Data Science",
+      "topic": "simulation",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-0002-data-science-m01-l02-q01",
+      "question": "According to the source lesson '3edc8db04a770f3da51086320c8fe4da MIT6 0002F16 lec2', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 3edc8db04a770f3da51086320c8fe4da_MIT6_0002F16_lec2.pdf from 6.0002 Introduction to Computational Thinking and Data Science.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Data Science",
+      "topic": "simulation",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-0002-data-science-m02-l01-q01",
+      "question": "According to the source lesson '5b4ec0ef29910b74e6a4bbd5ccf4dda5 MIT6 0002F16 lec4', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 5b4ec0ef29910b74e6a4bbd5ccf4dda5_MIT6_0002F16_lec4.pdf from 6.0002 Introduction to Computational Thinking and Data Science.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Data Science",
+      "topic": "simulation",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-0002-data-science-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from '5b4ec0ef29910b74e6a4bbd5ccf4dda5 MIT6 0002F16 lec4'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 5b4ec0ef29910b74e6a4bbd5ccf4dda5 MIT6 0002F16 lec4.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Data Science",
+      "topic": "simulation",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-0002-data-science-m02-l01-q03",
+      "question": "When applying concepts from '5b4ec0ef29910b74e6a4bbd5ccf4dda5 MIT6 0002F16 lec4', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Data Science",
+      "topic": "simulation",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-0002-data-science-m02-l02-q01",
+      "question": "According to the source lesson '508a9076aebfc7d597dde836255182c7 MIT6 0002F16 lec5', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 508a9076aebfc7d597dde836255182c7_MIT6_0002F16_lec5.pdf from 6.0002 Introduction to Computational Thinking and Data Science.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Data Science",
+      "topic": "simulation",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-0002-data-science-m03-l01-q01",
+      "question": "According to the source lesson '3d8b8210a6f919be25369d985b650abf MIT6 0002F16 lec7', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 3d8b8210a6f919be25369d985b650abf_MIT6_0002F16_lec7.pdf from 6.0002 Introduction to Computational Thinking and Data Science.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Data Science",
+      "topic": "simulation",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-0002-data-science-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from '3d8b8210a6f919be25369d985b650abf MIT6 0002F16 lec7'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3d8b8210a6f919be25369d985b650abf MIT6 0002F16 lec7.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Data Science",
+      "topic": "simulation",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-0002-data-science-m03-l01-q03",
+      "question": "When applying concepts from '3d8b8210a6f919be25369d985b650abf MIT6 0002F16 lec7', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Data Science",
+      "topic": "simulation",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-0002-data-science-m03-l02-q01",
+      "question": "According to the source lesson '02f2ed5e44be5415b2cba8175c924092 MIT6 0002F16 lec8', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 02f2ed5e44be5415b2cba8175c924092_MIT6_0002F16_lec8.pdf from 6.0002 Introduction to Computational Thinking and Data Science.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Data Science",
+      "topic": "simulation",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

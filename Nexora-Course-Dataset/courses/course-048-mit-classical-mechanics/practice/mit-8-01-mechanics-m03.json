@@ -1,0 +1,101 @@
+{
+  "module_id": "mit-8-01-mechanics-m03",
+  "questions": [
+    {
+      "question_id": "mit-8-01-mechanics-m03-l01-q01",
+      "question": "According to the source lesson '44b46fb9ae75796759884a9a7f7bd167 MIT8 01F16 pset6', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 44b46fb9ae75796759884a9a7f7bd167_MIT8_01F16_pset6.pdf from 8.01SC Classical Mechanics.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "kinematics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-8-01-mechanics-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from '44b46fb9ae75796759884a9a7f7bd167 MIT8 01F16 pset6'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 44b46fb9ae75796759884a9a7f7bd167 MIT8 01F16 pset6.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-8-01-mechanics-m03-l01-q03",
+      "question": "When applying concepts from '44b46fb9ae75796759884a9a7f7bd167 MIT8 01F16 pset6', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-8-01-mechanics-m03-l02-q01",
+      "question": "According to the source lesson '15aa14b5647ea989a352a972dc4b3dfe MIT8 01F16 pset7', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 15aa14b5647ea989a352a972dc4b3dfe_MIT8_01F16_pset7.pdf from 8.01SC Classical Mechanics.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "kinematics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-8-01-mechanics-m03-l02-q02",
+      "question": "What is a reasonable learning takeaway from '15aa14b5647ea989a352a972dc4b3dfe MIT8 01F16 pset7'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 15aa14b5647ea989a352a972dc4b3dfe MIT8 01F16 pset7.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-8-01-mechanics-m03-l02-q03",
+      "question": "When applying concepts from '15aa14b5647ea989a352a972dc4b3dfe MIT8 01F16 pset7', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Physics",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

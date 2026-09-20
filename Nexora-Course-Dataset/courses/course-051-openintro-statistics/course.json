@@ -1,0 +1,1117 @@
+{
+  "course_id": "openintro-statistics",
+  "title": "OpenIntro Statistics",
+  "provider": "OpenIntro",
+  "category": "Technology",
+  "subcategory": "Statistics",
+  "level": "Beginner",
+  "description": "OpenIntro Statistics is a CC BY-SA college statistics textbook with data, probability, and inference.",
+  "competencies": [
+    "Statistics",
+    "Data Science",
+    "Probability"
+  ],
+  "topics": [
+    "data",
+    "probability",
+    "inference",
+    "regression"
+  ],
+  "source": {
+    "name": "OpenIntro",
+    "official_url": "https://www.openintro.org/book/os/",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 12.7,
+    "estimated_minutes": 760
+  },
+  "totals": {
+    "modules": 9,
+    "lessons": 38,
+    "practice_questions": 114
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "openintro-m01",
+      "title": "Introduction to data",
+      "competencies": [
+        "Statistics",
+        "Data Science",
+        "Probability"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openintro-m01-l01",
+          "title": "Case Study Using Stents To Prevent Strokes",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/openintro-m01-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Migraine and acupuncture,",
+            "A migraine is a particularly painful type of headache,",
+            "To determine whether acupuncture relieves migraine",
+            "Results are summarized in the contingency table",
+            "Figure from the original paper displaying the appropriate area",
+            "What percent of patients in the treatment group were pain free 24 hours"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m01-l02",
+          "title": "Data Basics",
+          "type": "text",
+          "content_file": "content/module-01/lesson-02.md",
+          "practice_file": "practice/openintro-m01-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Air pollution and birth outcomes, study components",
+            "Researchers collected data to examine the relationship between air pollutants",
+            "Length of gestation data were collected on 143,196 births between the years 1989",
+            "Identify the main research question of the study",
+            "Who are the subjects in this study, and how many are included?",
+            "What are the variables in the study? Identify each variable as numerical or"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m01-l03",
+          "title": "Experiments",
+          "type": "text",
+          "content_file": "content/module-01/lesson-03.md",
+          "practice_file": "practice/openintro-m01-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Light and exam performance A study is designed to",
+            "What is the response variable?",
+            "What is the explanatory variable? What are its levels?",
+            "What is the blocking variable? What are its levels?",
+            "To assess the effectiveness of taking large doses",
+            "A~quarter of the patients were assigned a placebo,"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m01-l04",
+          "title": "Sampling Principles And Strategies",
+          "type": "text",
+          "content_file": "content/module-01/lesson-04.md",
+          "practice_file": "practice/openintro-m01-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Air pollution and birth outcomes, scope of inference",
+            "Exercise~ introduces a study where researchers",
+            "Identify the population of interest and the sample in this study",
+            "Comment on whether or not the results of the study can be generalized to the",
+            "Cheaters, scope of inference",
+            "Exercise~ introduces a study where researchers"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openintro-m02",
+      "title": "Summarizing data",
+      "competencies": [
+        "Statistics",
+        "Data Science",
+        "Probability"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openintro-m02-l01",
+          "title": "Case Study Malaria Vaccine",
+          "type": "text",
+          "content_file": "content/module-02/lesson-01.md",
+          "practice_file": "practice/openintro-m02-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Side effects of Avandia Rosiglitazone is the",
+            "Since more patients on pioglitazone had cardiovascular problems (5,386 vs. 2,593), we can conclude that the rate of cardiovascular problems for"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m02-l02",
+          "title": "Considering Categorical Data",
+          "type": "text",
+          "content_file": "content/module-02/lesson-02.md",
+          "practice_file": "practice/openintro-m02-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Antibiotic use in children The bar plot",
+            "What features are apparent in the bar plot but not in the pie chart?",
+            "What features are apparent in the pie chart but not in the bar plot?",
+            "Which graph would you prefer to use for displaying these categorical data?",
+            "Views on immigration 910 randomly sampled registered",
+            "US citizenship, (ii) allowed to keep their jobs as temporary guest workers"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m02-l03",
+          "title": "Examining Numerical Data",
+          "type": "text",
+          "content_file": "content/module-02/lesson-03.md",
+          "practice_file": "practice/openintro-m02-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Mammal life spans Data were collected on life spans (in",
+            "What type of an association is apparent between life span and length of gestation?",
+            "What type of an association would you expect to see if the axes of the plot were reversed, i.e. if we plotted length of gestation versus life span?",
+            "Are life span and length of gestation independent? Explain your reasoning",
+            "Indicate which of the plots show",
+            "Also determine if the positive and negative associations"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openintro-m03",
+      "title": "Probability",
+      "competencies": [
+        "Statistics",
+        "Data Science",
+        "Probability"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openintro-m03-l01",
+          "title": "Conditional Probability",
+          "type": "text",
+          "content_file": "content/module-03/lesson-01.md",
+          "practice_file": "practice/openintro-m03-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Joint and conditional probabilities P(A) = 0.3,",
+            "Can you compute P(A and B) if you only know P(A) and P(B)?",
+            "Assuming that events A and B arise from independent random processes,",
+            "If we are given that P(A and B) = 0.1, are the random variables giving rise",
+            "If we are given that P(A and B) = 0.1, what is P(A$|$B)?",
+            "Global warming A Pew Research poll asked"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m03-l02",
+          "title": "Continuous Distributions",
+          "type": "text",
+          "content_file": "content/module-03/lesson-02.md",
+          "practice_file": "practice/openintro-m03-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Cat weights The histogram shown below represents",
+            "What fraction of these cats weigh less than 2.5 kg?",
+            "What fraction of these cats weigh between 2.5 and 2.75 kg?",
+            "What fraction of these cats weigh between 2.75 and 3.5 kg?",
+            "Income and gender The relative frequency table",
+            "These data come from the American Community Survey for 2005-2009. This sample is"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m03-l03",
+          "title": "Defining Probability",
+          "type": "text",
+          "content_file": "content/module-03/lesson-03.md",
+          "practice_file": "practice/openintro-m03-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "True or false Determine if the statements",
+            "If a fair coin is tossed many times and the last eight tosses are all heads,",
+            "Drawing a face card (jack, queen, or king) and drawing a red card from a",
+            "Drawing a face card and drawing an ace from a full deck of playing cards",
+            "Roulette wheel The game of roulette involves",
+            "You watch a roulette wheel spin 3 consecutive times and the ball lands on a"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m03-l04",
+          "title": "Random Variables",
+          "type": "text",
+          "content_file": "content/module-03/lesson-04.md",
+          "practice_file": "practice/openintro-m03-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "College smokers At a university, 13\\",
+            "Calculate the expected number of smokers in a random sample of 100 students",
+            "The university gym opens at 9 am on Saturday mornings. One Saturday morning",
+            "Ace of clubs wins Consider the following card game",
+            "Create a probability model for the amount you win at this game. Also, find",
+            "What is the maximum amount you would be willing to pay to play this game?"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m03-l05",
+          "title": "Sampling From A Small Population",
+          "type": "text",
+          "content_file": "content/module-03/lesson-05.md",
+          "practice_file": "practice/openintro-m03-l05.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Marbles in an urn Imagine you have an urn",
+            "What is the probability that the first marble you draw is blue?",
+            "Suppose you drew a blue marble in the first draw. If drawing with",
+            "Suppose you instead drew an orange marble in the first draw. If drawing",
+            "If drawing with replacement, what is the probability of drawing two blue",
+            "When drawing with replacement, are the draws independent? Explain"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openintro-m04",
+      "title": "Distributions",
+      "competencies": [
+        "Statistics",
+        "Data Science",
+        "Probability"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openintro-m04-l01",
+          "title": "Binomial Distribution",
+          "type": "text",
+          "content_file": "content/module-04/lesson-01.md",
+          "practice_file": "practice/openintro-m04-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Underage drinking, Part I",
+            "Data collected by the Substance Abuse and Mental Health",
+            "Services Administration (SAMSHA) suggests that 69.7\\",
+            "Suppose a random sample of ten 18-20 year olds is taken. Is the use",
+            "Calculate the probability that exactly 6 out of 10 randomly sampled 18",
+            "What is the probability that exactly four out of ten 18-20 year"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m04-l02",
+          "title": "Geometric Distribution",
+          "type": "text",
+          "content_file": "content/module-04/lesson-02.md",
+          "practice_file": "practice/openintro-m04-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Is it Bernoulli Determine if each trial can be",
+            "Cards dealt in a hand of poker",
+            "Outcome of each roll of a die",
+            "With and without replacement In the",
+            "Suppose you're sampling from a room with 10 people. What is the",
+            "What is the probability when sampling without replacement?"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m04-l03",
+          "title": "Negative Binomial Distribution",
+          "type": "text",
+          "content_file": "content/module-04/lesson-03.md",
+          "practice_file": "practice/openintro-m04-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Rolling a die Calculate the",
+            "Playing darts Calculate the following probabilities",
+            "Sampling at school For a sociology class",
+            "Your dorm is comprised of 45\\",
+            "Which probability model is most appropriate for calculating the",
+            "Compute the probability from part (a)"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m04-l04",
+          "title": "Normal Distribution",
+          "type": "text",
+          "content_file": "content/module-04/lesson-04.md",
+          "practice_file": "practice/openintro-m04-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Area under the curve, Part I What percent of a",
+            "Be sure to draw a graph. -3mm",
+            "Area under the curve, Part II What percent of",
+            "Be sure to draw a graph. -3mm",
+            "GRE scores, Part I Sophia who took the Graduate Record",
+            "Examination (GRE) scored 160 on the Verbal Reasoning section and 157 on the"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m04-l05",
+          "title": "Poisson Distribution",
+          "type": "text",
+          "content_file": "content/module-04/lesson-05.md",
+          "practice_file": "practice/openintro-m04-l05.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Customers at a coffee shop A coffee shop",
+            "Which distribution have we studied that is most appropriate",
+            "What are the mean and the standard deviation of the number of customers",
+            "Would it be considered unusually low if only 60 customers showed up to",
+            "Calculate the probability that this coffee shop serves 70 customers in",
+            "Stenographer's typos A very skilled"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openintro-m05",
+      "title": "Foundations for inference",
+      "competencies": [
+        "Statistics",
+        "Data Science",
+        "Probability"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openintro-m05-l01",
+          "title": "Confidence Intervals",
+          "type": "text",
+          "content_file": "content/module-05/lesson-01.md",
+          "practice_file": "practice/openintro-m05-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Chronic illness, Part I",
+            "In 2013, the Pew Research Foundation reported that ``45\\",
+            "However, this value was based on a sample,",
+            "Twitter users and news, Part I",
+            "A poll conducted in 2013 found that 52\\",
+            "The standard error for this estimate was 2.4\\"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m05-l02",
+          "title": "Hypothesis Testing",
+          "type": "text",
+          "content_file": "content/module-05/lesson-02.md",
+          "practice_file": "practice/openintro-m05-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Identify hypotheses, Part I",
+            "Write the null and alternative hypotheses in words and then symbols",
+            "A tutoring company would like to understand if most",
+            "They sample 200 of the students who used their service",
+            "Employers at a firm are worried about the effect of March Madness,",
+            "They estimate that on a regular business day employees spend on"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m05-l03",
+          "title": "One Sided Tests",
+          "type": "text",
+          "content_file": "content/module-05/lesson-03.md",
+          "practice_file": "practice/openintro-m05-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "This section needs a lot of work. Maybe it shouldn't",
+            "One-sided hypothesis testing is an advanced",
+            "You need only read this section if you are ever asked",
+            "So far we've only considered what are called **two-sided",
+            "There is a second type of hypothesis test called a",
+            "For a one-sided hypothesis test,"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m05-l04",
+          "title": "Variability In Estimates",
+          "type": "text",
+          "content_file": "content/module-05/lesson-04.md",
+          "practice_file": "practice/openintro-m05-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Identify the parameter, Part I For each of the following situations, state",
+            "In a survey, one hundred college students are asked how many hours per",
+            "In a survey, one hundred college students are asked: ``What percentage of",
+            "In a survey, one hundred college students are asked whether or not they",
+            "In a survey, one hundred college students are asked what percentage of",
+            "In a sample of one hundred recent college graduates, it is found that 85"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openintro-m06",
+      "title": "Inference for proportions",
+      "competencies": [
+        "Statistics",
+        "Data Science",
+        "Probability"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openintro-m06-l01",
+          "title": "Difference Of Two Proportions",
+          "type": "text",
+          "content_file": "content/module-06/lesson-01.md",
+          "practice_file": "practice/openintro-m06-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Social experiment, Part I A ``social",
+            "Explain why the sampling distribution of the difference between the",
+            "Heart transplant success The Stanford",
+            "University Heart Transplant Study was conducted to determine whether an"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m06-l02",
+          "title": "Inference For A Single Proportion",
+          "type": "text",
+          "content_file": "content/module-06/lesson-02.md",
+          "practice_file": "practice/openintro-m06-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Vegetarian college students Suppose that 8\\",
+            "The distribution of the sample proportions of vegetarians in random",
+            "The distribution of the sample proportions of vegetarian college",
+            "A random sample of 125 college students where 12\\",
+            "A random sample of 250 college students where 12\\",
+            "The standard error would be reduced by one-half if we increased the"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m06-l03",
+          "title": "Testing For Goodness Of Fit Using Chi-Square",
+          "type": "text",
+          "content_file": "content/module-06/lesson-03.md",
+          "practice_file": "practice/openintro-m06-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "True or false, Part I Determine if the statements below",
+            "The chi-square distribution, just like the normal distribution, has two",
+            "The chi-square distribution is always right skewed, regardless of the",
+            "The chi-square statistic is always positive",
+            "As the degrees of freedom increases, the shape of the chi-square",
+            "True or false, Part II Determine if the statements below"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m06-l04",
+          "title": "Testing For Independence In Two-Way Tables",
+          "type": "text",
+          "content_file": "content/module-06/lesson-04.md",
+          "practice_file": "practice/openintro-m06-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Quitters Does being part of a",
+            "Create a two-way table presenting the results of this study",
+            "Answer each of the following questions under the null hypothesis",
+            "How many subjects in the ``patch + support\" group would you",
+            "How many subjects in the ``patch only\" group would you expect to",
+            "Full body scan, Part II The"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openintro-m07",
+      "title": "Inference for means",
+      "competencies": [
+        "Statistics",
+        "Data Science",
+        "Probability"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openintro-m07-l01",
+          "title": "Comparing Many Means With Anova",
+          "type": "text",
+          "content_file": "content/module-07/lesson-01.md",
+          "practice_file": "practice/openintro-m07-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Fill in the blank When doing an ANOVA, you observe",
+            "Which test We would like to test if",
+            "Residuals   & 65 & 195,556.02   & 3,008.55  &       &  \\\\"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m07-l02",
+          "title": "Difference Of Two Means",
+          "type": "text",
+          "content_file": "content/module-07/lesson-02.md",
+          "practice_file": "practice/openintro-m07-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Friday the 13$^th$, Part I In the",
+            "Are there any underlying structures in these data that should be",
+            "What are the hypotheses for evaluating whether the number of people out",
+            "Check conditions to carry out the hypothesis test from part~(b)",
+            "Calculate the test statistic and the p-value",
+            "What is the conclusion of the hypothesis test?"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m07-l03",
+          "title": "One-Sample Means With The T-Distribution",
+          "type": "text",
+          "content_file": "content/module-07/lesson-03.md",
+          "practice_file": "practice/openintro-m07-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Identify the critical $t$ An independent random",
+            "The figure on the right shows three",
+            "Determine which is which, and explain your reasoning",
+            "Find the p-value, Part I",
+            "An independent random sample",
+            "Find the p-value for the given sample size and test statistic"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m07-l04",
+          "title": "Paired Data",
+          "type": "text",
+          "content_file": "content/module-07/lesson-04.md",
+          "practice_file": "practice/openintro-m07-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Air quality measurements were collected in",
+            "Should we use a paired or non-paired test? Explain your reasoning",
+            "True / False: paired Determine if the following",
+            "In a paired analysis we first take the difference of each pair of observations,",
+            "Two data sets of different sizes cannot be analyzed as paired data",
+            "Consider two sets of data that are paired with each other"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m07-l05",
+          "title": "Power Calculations For A Difference Of Means",
+          "type": "text",
+          "content_file": "content/module-07/lesson-05.md",
+          "practice_file": "practice/openintro-m07-l05.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Increasing corn yield A large farm wants to",
+            "Assume each plot of land gets",
+            "Email outreach efforts A medical research"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openintro-m08",
+      "title": "Simple linear regression",
+      "competencies": [
+        "Statistics",
+        "Data Science",
+        "Probability"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openintro-m08-l01",
+          "title": "Fitting A Line By Least Squares Regression",
+          "type": "text",
+          "content_file": "content/module-08/lesson-01.md",
+          "practice_file": "practice/openintro-m08-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Units of regression Consider a regression",
+            "What are the units of the correlation coefficient, the intercept,",
+            "Which is higher Determine if I or II",
+            "For a regression line, the uncertainty associated with the",
+            "Over-under, Part I Suppose we fit a",
+            "For a particular apple, we predict the shelf life to be 4.6 days. The"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m08-l02",
+          "title": "Inference For Linear Regression",
+          "type": "text",
+          "content_file": "content/module-08/lesson-02.md",
+          "practice_file": "practice/openintro-m08-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "In the following exercises, visually check the conditions",
+            "However, you do not need to report these conditions in",
+            "Body measurements, Part IV",
+            "The scatterplot and least squares summary below show the relationship",
+            "Describe the relationship between height and weight",
+            "Write the equation of the regression line. Interpret the slope"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m08-l03",
+          "title": "Line Fitting Residuals And Correlation",
+          "type": "text",
+          "content_file": "content/module-08/lesson-03.md",
+          "practice_file": "practice/openintro-m08-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Visualize the residuals",
+            "The scatterplots shown below each have a",
+            "Trends in the residuals",
+            "Shown below are two plots of residuals",
+            "Describe important features and determine if a linear model would be",
+            "Identify relationships, Part II"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m08-l04",
+          "title": "Types Of Outliers In Linear Regression",
+          "type": "text",
+          "content_file": "content/module-08/lesson-04.md",
+          "practice_file": "practice/openintro-m08-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Outliers, Part I Identify the outliers in the",
+            "Explain your reasoning",
+            "Outliers, Part II Identify the outliers in the scatterplots",
+            "Urban homeowners, Part I The",
+            "There are 52 observations, each",
+            "Columbia are also included"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "openintro-m09",
+      "title": "Multiple and logistic regression",
+      "competencies": [
+        "Statistics",
+        "Data Science",
+        "Probability"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openintro-m09-l01",
+          "title": "Checking Model Assumptions Using Graphs",
+          "type": "text",
+          "content_file": "content/module-09/lesson-01.md",
+          "practice_file": "practice/openintro-m09-l01.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Baby weights, Part VI",
+            "Exercise~ presents a regression model for predicting the",
+            "Movie returns, Part I",
+            "A FiveThirtyEight.com article reports that",
+            "The return-on-investment potential for horror movies",
+            "To investigate how the return-on-investment compares"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m09-l02",
+          "title": "Introduction To Logistic Regression",
+          "type": "text",
+          "content_file": "content/module-09/lesson-02.md",
+          "practice_file": "practice/openintro-m09-l02.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Possum classification, Part I",
+            "The common brushtail possum of the Australia region is a bit cuter than its",
+            "Victoria, which is in the eastern half of Australia and traverses the southern",
+            "We use logistic regression to differentiate between possums in these two",
+            "Each variable is summarized in a histogram. The full logistic regression model"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m09-l03",
+          "title": "Introduction To Multiple Regression",
+          "type": "text",
+          "content_file": "content/module-09/lesson-03.md",
+          "practice_file": "practice/openintro-m09-l03.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Baby weights, Part I The Child Health",
+            "Kaiser Foundation Health Plan in the San Francisco East Bay area. Here,",
+            "The variability within the smokers and non-smokers are about equal and the",
+            "Write the equation of the regression model",
+            "Interpret the slope in this context, and calculate the predicted birth",
+            "Is there a statistically significant relationship between the average birth"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openintro-m09-l04",
+          "title": "Model Selection",
+          "type": "text",
+          "content_file": "content/module-09/lesson-04.md",
+          "practice_file": "practice/openintro-m09-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [
+            "Baby weights, Part IV",
+            "Exercise~ considers a model that predicts a newborn's",
+            "Which, if any, variable should be removed from the model first?",
+            "Absenteeism, Part II",
+            "Exercise~ considers a model that predicts the number",
+            "Which, if any, variable should be removed from the model first?"
+          ],
+          "competencies": [
+            "Statistics",
+            "Data Science"
+          ],
+          "topics": [
+            "data",
+            "probability",
+            "inference"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

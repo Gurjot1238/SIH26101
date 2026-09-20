@@ -1,0 +1,1491 @@
+[
+  {
+    "course_id": "wtcs-nursing-fundamentals-2e",
+    "slug": "course-001-nursing-fundamentals",
+    "title": "Nursing Fundamentals 2e",
+    "provider": "Wisconsin Technical College System / Open RN",
+    "category": "Medical / Healthcare",
+    "subcategory": "Nursing",
+    "level": "Beginner",
+    "estimated_hours": 6.9,
+    "license": "CC BY 4.0",
+    "official_url": "https://wtcs.pressbooks.pub/nursingfundamentals/",
+    "path": "courses/course-001-nursing-fundamentals/",
+    "totals": {
+      "modules": 4,
+      "lessons": 28,
+      "practice_questions": 84
+    },
+    "competencies": [
+      "Nursing Fundamentals",
+      "Healthcare Informatics",
+      "Patient Safety"
+    ],
+    "topics": [
+      "scope of practice",
+      "nursing process",
+      "communication",
+      "safety"
+    ]
+  },
+  {
+    "course_id": "wtcs-nursing-skills-2e",
+    "slug": "course-002-nursing-skills",
+    "title": "Nursing Skills 2e",
+    "provider": "Wisconsin Technical College System / Open RN",
+    "category": "Medical / Healthcare",
+    "subcategory": "Clinical Skills",
+    "level": "Beginner",
+    "estimated_hours": 6.9,
+    "license": "CC BY 4.0",
+    "official_url": "https://wtcs.pressbooks.pub/nursingskills/",
+    "path": "courses/course-002-nursing-skills/",
+    "totals": {
+      "modules": 4,
+      "lessons": 28,
+      "practice_questions": 84
+    },
+    "competencies": [
+      "Clinical Nursing Skills",
+      "Patient Safety",
+      "Healthcare Informatics"
+    ],
+    "topics": [
+      "vital signs",
+      "infection control",
+      "medication administration"
+    ]
+  },
+  {
+    "course_id": "wtcs-nursing-pharmacology",
+    "slug": "course-003-nursing-pharmacology",
+    "title": "Nursing Pharmacology",
+    "provider": "Wisconsin Technical College System / Open RN",
+    "category": "Medical / Healthcare",
+    "subcategory": "Pharmacology",
+    "level": "Intermediate",
+    "estimated_hours": 6.6,
+    "license": "CC BY 4.0",
+    "official_url": "https://wtcs.pressbooks.pub/pharmacology/",
+    "path": "courses/course-003-nursing-pharmacology/",
+    "totals": {
+      "modules": 3,
+      "lessons": 28,
+      "practice_questions": 84
+    },
+    "competencies": [
+      "Pharmacology",
+      "Patient Safety",
+      "Nursing Fundamentals"
+    ],
+    "topics": [
+      "pharmacokinetics",
+      "drug classes",
+      "medication safety"
+    ]
+  },
+  {
+    "course_id": "wtcs-nursing-mental-health",
+    "slug": "course-004-nursing-mental-health",
+    "title": "Nursing Mental Health and Community Concepts 2e",
+    "provider": "Wisconsin Technical College System / Open RN",
+    "category": "Medical / Healthcare",
+    "subcategory": "Mental Health Nursing",
+    "level": "Intermediate",
+    "estimated_hours": 7.8,
+    "license": "CC BY 4.0",
+    "official_url": "https://wtcs.pressbooks.pub/nursingmhcc/",
+    "path": "courses/course-004-nursing-mental-health/",
+    "totals": {
+      "modules": 5,
+      "lessons": 28,
+      "practice_questions": 84
+    },
+    "competencies": [
+      "Psychiatric-Mental Health Nursing",
+      "Public Health",
+      "Patient Safety"
+    ],
+    "topics": [
+      "mental health",
+      "community nursing",
+      "therapeutic communication"
+    ]
+  },
+  {
+    "course_id": "wtcs-nursing-management",
+    "slug": "course-005-nursing-management",
+    "title": "Nursing Management and Professional Concepts 2e",
+    "provider": "Wisconsin Technical College System / Open RN",
+    "category": "Medical / Healthcare",
+    "subcategory": "Nursing Leadership",
+    "level": "Intermediate",
+    "estimated_hours": 7.2,
+    "license": "CC BY 4.0",
+    "official_url": "https://wtcs.pressbooks.pub/nursingmpc/",
+    "path": "courses/course-005-nursing-management/",
+    "totals": {
+      "modules": 5,
+      "lessons": 28,
+      "practice_questions": 84
+    },
+    "competencies": [
+      "Healthcare Information Systems",
+      "Nursing Leadership",
+      "Patient Safety"
+    ],
+    "topics": [
+      "leadership",
+      "delegation",
+      "quality improvement"
+    ]
+  },
+  {
+    "course_id": "wtcs-nursing-advanced-skills",
+    "slug": "course-006-nursing-advanced-skills",
+    "title": "Nursing Advanced Skills",
+    "provider": "Wisconsin Technical College System / Open RN",
+    "category": "Medical / Healthcare",
+    "subcategory": "Clinical Skills",
+    "level": "Intermediate",
+    "estimated_hours": 7.2,
+    "license": "CC BY 4.0",
+    "official_url": "https://wtcs.pressbooks.pub/nursingadvancedskills/",
+    "path": "courses/course-006-nursing-advanced-skills/",
+    "totals": {
+      "modules": 4,
+      "lessons": 28,
+      "practice_questions": 84
+    },
+    "competencies": [
+      "Clinical Nursing Skills",
+      "Patient Safety",
+      "Biomedical Engineering"
+    ],
+    "topics": [
+      "advanced procedures",
+      "infusion therapy",
+      "airway management"
+    ]
+  },
+  {
+    "course_id": "wtcs-nursing-health-promotion",
+    "slug": "course-007-nursing-health-promotion",
+    "title": "Nursing Health Promotion",
+    "provider": "Wisconsin Technical College System / Open RN",
+    "category": "Medical / Healthcare",
+    "subcategory": "Public Health",
+    "level": "Beginner",
+    "estimated_hours": 7.3,
+    "license": "CC BY 4.0",
+    "official_url": "https://wtcs.pressbooks.pub/healthpromo/",
+    "path": "courses/course-007-nursing-health-promotion/",
+    "totals": {
+      "modules": 4,
+      "lessons": 28,
+      "practice_questions": 84
+    },
+    "competencies": [
+      "Public Health",
+      "Health Promotion",
+      "Digital Health"
+    ],
+    "topics": [
+      "health promotion",
+      "prevention",
+      "community assessment"
+    ]
+  },
+  {
+    "course_id": "uwf-medical-terminology",
+    "slug": "course-008-medical-terminology",
+    "title": "Medical Terminology for Healthcare Professions",
+    "provider": "University of West Florida",
+    "category": "Medical / Healthcare",
+    "subcategory": "Medical Terminology",
+    "level": "Beginner",
+    "estimated_hours": 13.3,
+    "license": "CC BY 4.0",
+    "official_url": "https://pressbooks.uwf.edu/medicalterminology/",
+    "path": "courses/course-008-medical-terminology/",
+    "totals": {
+      "modules": 1,
+      "lessons": 18,
+      "practice_questions": 54
+    },
+    "competencies": [
+      "Medical Terminology",
+      "Healthcare Informatics",
+      "Anatomy"
+    ],
+    "topics": [
+      "word roots",
+      "body systems",
+      "clinical language"
+    ]
+  },
+  {
+    "course_id": "uta-human-anatomy-lab",
+    "slug": "course-009-human-anatomy-lab",
+    "title": "Human Anatomy Lab Manual",
+    "provider": "University of Texas at Arlington",
+    "category": "Medical / Healthcare",
+    "subcategory": "Anatomy",
+    "level": "Beginner",
+    "estimated_hours": 5.6,
+    "license": "CC BY 4.0",
+    "official_url": "https://uta.pressbooks.pub/anatomylab/",
+    "path": "courses/course-009-human-anatomy-lab/",
+    "totals": {
+      "modules": 8,
+      "lessons": 28,
+      "practice_questions": 84
+    },
+    "competencies": [
+      "Human Anatomy",
+      "Biomedical Engineering",
+      "Clinical Skills"
+    ],
+    "topics": [
+      "anatomical language",
+      "organ systems",
+      "laboratory identification"
+    ]
+  },
+  {
+    "course_id": "openstax-anatomy-physiology",
+    "slug": "course-010-anatomy-physiology",
+    "title": "Anatomy and Physiology",
+    "provider": "OpenStax / Rice University",
+    "category": "Medical / Healthcare",
+    "subcategory": "Anatomy and Physiology",
+    "level": "Beginner",
+    "estimated_hours": 9.3,
+    "license": "CC BY 4.0",
+    "official_url": "https://openstax.org/books/anatomy-and-physiology/pages/1-introduction",
+    "path": "courses/course-010-anatomy-physiology/",
+    "totals": {
+      "modules": 5,
+      "lessons": 32,
+      "practice_questions": 96
+    },
+    "competencies": [
+      "Human Anatomy",
+      "Human Physiology",
+      "Biomedical Engineering"
+    ],
+    "topics": [
+      "cells",
+      "tissues",
+      "organ systems",
+      "homeostasis"
+    ]
+  },
+  {
+    "course_id": "vt-aerodynamics-aircraft-performance",
+    "slug": "course-011-aerodynamics",
+    "title": "Aerodynamics and Aircraft Performance, 3rd edition",
+    "provider": "Virginia Tech",
+    "category": "Technology",
+    "subcategory": "Aerospace Engineering",
+    "level": "Intermediate",
+    "estimated_hours": 8.9,
+    "license": "CC BY 4.0",
+    "official_url": "https://pressbooks.lib.vt.edu/aerodynamics/",
+    "path": "courses/course-011-aerodynamics/",
+    "totals": {
+      "modules": 1,
+      "lessons": 9,
+      "practice_questions": 27
+    },
+    "competencies": [
+      "Aerospace Engineering",
+      "Fluid Mechanics",
+      "Aircraft Performance"
+    ],
+    "topics": [
+      "lift",
+      "drag",
+      "airfoils",
+      "performance"
+    ]
+  },
+  {
+    "course_id": "isu-mechanical-engineering-design",
+    "slug": "course-012-mechanical-engineering-design",
+    "title": "Introduction to Mechanical Engineering Design",
+    "provider": "Iowa State University",
+    "category": "Technology",
+    "subcategory": "Mechanical Engineering",
+    "level": "Intermediate",
+    "estimated_hours": 5.6,
+    "license": "CC BY-SA 4.0",
+    "official_url": "https://iastate.pressbooks.pub/me270baughman/",
+    "path": "courses/course-012-mechanical-engineering-design/",
+    "totals": {
+      "modules": 7,
+      "lessons": 28,
+      "practice_questions": 84
+    },
+    "competencies": [
+      "Mechanical Engineering",
+      "Engineering Design",
+      "System Design"
+    ],
+    "topics": [
+      "define",
+      "measure",
+      "analyze",
+      "design process"
+    ]
+  },
+  {
+    "course_id": "openoregon-basic-blueprint-reading",
+    "slug": "course-013-basic-blueprint-reading",
+    "title": "Basic Blueprint Reading",
+    "provider": "Open Oregon Educational Resources",
+    "category": "Technology",
+    "subcategory": "Engineering Graphics",
+    "level": "Beginner",
+    "estimated_hours": 1.8,
+    "license": "CC BY 4.0",
+    "official_url": "https://openoregon.pressbooks.pub/blueprint/",
+    "path": "courses/course-013-basic-blueprint-reading/",
+    "totals": {
+      "modules": 1,
+      "lessons": 9,
+      "practice_questions": 27
+    },
+    "competencies": [
+      "Engineering Graphics",
+      "Manufacturing",
+      "Technical Drawing"
+    ],
+    "topics": [
+      "views",
+      "dimensions",
+      "tolerances",
+      "blueprints"
+    ]
+  },
+  {
+    "course_id": "openstax-college-physics",
+    "slug": "course-014-college-physics",
+    "title": "College Physics",
+    "provider": "OpenStax / Rice University",
+    "category": "Technology",
+    "subcategory": "Physics",
+    "level": "Beginner",
+    "estimated_hours": 10.7,
+    "license": "CC BY 4.0",
+    "official_url": "https://openstax.org/books/college-physics/pages/1-introduction-to-science-and-the-realm-of-physics-physical-quantities-and-units",
+    "path": "courses/course-014-college-physics/",
+    "totals": {
+      "modules": 3,
+      "lessons": 32,
+      "practice_questions": 96
+    },
+    "competencies": [
+      "Physics",
+      "Engineering Fundamentals",
+      "Mechanics"
+    ],
+    "topics": [
+      "kinematics",
+      "Newton's laws",
+      "energy",
+      "electricity"
+    ]
+  },
+  {
+    "course_id": "openstax-biology",
+    "slug": "course-015-biology",
+    "title": "Biology",
+    "provider": "OpenStax / Rice University",
+    "category": "Technology",
+    "subcategory": "Biology",
+    "level": "Beginner",
+    "estimated_hours": 9.4,
+    "license": "CC BY 4.0",
+    "official_url": "https://openstax.org/books/biology/pages/1-introduction",
+    "path": "courses/course-015-biology/",
+    "totals": {
+      "modules": 5,
+      "lessons": 32,
+      "practice_questions": 96
+    },
+    "competencies": [
+      "Biology",
+      "Bioinformatics",
+      "Cell Biology"
+    ],
+    "topics": [
+      "cells",
+      "genetics",
+      "evolution",
+      "physiology"
+    ]
+  },
+  {
+    "course_id": "openstax-college-algebra",
+    "slug": "course-016-college-algebra",
+    "title": "College Algebra",
+    "provider": "OpenStax / Rice University",
+    "category": "Technology",
+    "subcategory": "Mathematics",
+    "level": "Beginner",
+    "estimated_hours": 14.2,
+    "license": "CC BY 4.0",
+    "official_url": "https://openstax.org/books/college-algebra/pages/1-introduction-to-prerequisites",
+    "path": "courses/course-016-college-algebra/",
+    "totals": {
+      "modules": 3,
+      "lessons": 32,
+      "practice_questions": 96
+    },
+    "competencies": [
+      "Mathematics",
+      "Algebra",
+      "Engineering Fundamentals"
+    ],
+    "topics": [
+      "functions",
+      "equations",
+      "polynomials",
+      "exponentials"
+    ]
+  },
+  {
+    "course_id": "openstax-precalculus",
+    "slug": "course-017-precalculus",
+    "title": "Precalculus",
+    "provider": "OpenStax / Rice University",
+    "category": "Technology",
+    "subcategory": "Mathematics",
+    "level": "Beginner",
+    "estimated_hours": 15.8,
+    "license": "CC BY 4.0",
+    "official_url": "https://openstax.org/books/precalculus/pages/1-introduction-to-functions",
+    "path": "courses/course-017-precalculus/",
+    "totals": {
+      "modules": 3,
+      "lessons": 32,
+      "practice_questions": 96
+    },
+    "competencies": [
+      "Mathematics",
+      "Precalculus",
+      "Engineering Fundamentals"
+    ],
+    "topics": [
+      "functions",
+      "trigonometry",
+      "analytic geometry"
+    ]
+  },
+  {
+    "course_id": "openstax-algebra-trigonometry",
+    "slug": "course-018-algebra-trigonometry",
+    "title": "Algebra and Trigonometry",
+    "provider": "OpenStax / Rice University",
+    "category": "Technology",
+    "subcategory": "Mathematics",
+    "level": "Beginner",
+    "estimated_hours": 14.2,
+    "license": "CC BY 4.0",
+    "official_url": "https://openstax.org/books/algebra-and-trigonometry/pages/1-introduction-to-prerequisites",
+    "path": "courses/course-018-algebra-trigonometry/",
+    "totals": {
+      "modules": 3,
+      "lessons": 32,
+      "practice_questions": 96
+    },
+    "competencies": [
+      "Mathematics",
+      "Trigonometry",
+      "Algebra"
+    ],
+    "topics": [
+      "algebra",
+      "trig identities",
+      "functions"
+    ]
+  },
+  {
+    "course_id": "openstax-introductory-statistics",
+    "slug": "course-019-introductory-statistics",
+    "title": "Introductory Statistics",
+    "provider": "OpenStax / Rice University",
+    "category": "Technology",
+    "subcategory": "Statistics",
+    "level": "Beginner",
+    "estimated_hours": 9.2,
+    "license": "CC BY 4.0",
+    "official_url": "https://openstax.org/books/introductory-statistics/pages/1-introduction",
+    "path": "courses/course-019-introductory-statistics/",
+    "totals": {
+      "modules": 3,
+      "lessons": 32,
+      "practice_questions": 96
+    },
+    "competencies": [
+      "Statistics",
+      "Data Science",
+      "Probability"
+    ],
+    "topics": [
+      "descriptive statistics",
+      "probability",
+      "inference"
+    ]
+  },
+  {
+    "course_id": "openstax-physics",
+    "slug": "course-020-physics",
+    "title": "Physics",
+    "provider": "OpenStax / Rice University",
+    "category": "Technology",
+    "subcategory": "Physics",
+    "level": "Beginner",
+    "estimated_hours": 9.5,
+    "license": "CC BY 4.0",
+    "official_url": "https://openstax.org/books/physics/pages/1-introduction",
+    "path": "courses/course-020-physics/",
+    "totals": {
+      "modules": 3,
+      "lessons": 32,
+      "practice_questions": 96
+    },
+    "competencies": [
+      "Physics",
+      "Engineering Fundamentals",
+      "Mechanics"
+    ],
+    "topics": [
+      "motion",
+      "forces",
+      "energy",
+      "waves"
+    ]
+  },
+  {
+    "course_id": "openstax-statistics",
+    "slug": "course-021-statistics",
+    "title": "Statistics",
+    "provider": "OpenStax / Rice University",
+    "category": "Technology",
+    "subcategory": "Statistics",
+    "level": "Beginner",
+    "estimated_hours": 9.7,
+    "license": "CC BY 4.0",
+    "official_url": "https://openstax.org/books/statistics/pages/1-introduction",
+    "path": "courses/course-021-statistics/",
+    "totals": {
+      "modules": 3,
+      "lessons": 32,
+      "practice_questions": 96
+    },
+    "competencies": [
+      "Statistics",
+      "Data Science",
+      "Data Analysis"
+    ],
+    "topics": [
+      "sampling",
+      "regression",
+      "hypothesis testing"
+    ]
+  },
+  {
+    "course_id": "mit-6-0001-python",
+    "slug": "course-022-mit-intro-cs-python",
+    "title": "6.0001 Introduction to Computer Science and Programming in Python",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Python Programming",
+    "level": "Beginner",
+    "estimated_hours": 9.7,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/",
+    "path": "courses/course-022-mit-intro-cs-python/",
+    "totals": {
+      "modules": 3,
+      "lessons": 8,
+      "practice_questions": 24
+    },
+    "competencies": [
+      "Python Programming",
+      "Computer Science",
+      "Programming Fundamentals"
+    ],
+    "topics": [
+      "Python",
+      "functions",
+      "objects",
+      "complexity"
+    ]
+  },
+  {
+    "course_id": "mit-6-0002-data-science",
+    "slug": "course-023-mit-computational-thinking",
+    "title": "6.0002 Introduction to Computational Thinking and Data Science",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Data Science",
+    "level": "Beginner",
+    "estimated_hours": 10.5,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/",
+    "path": "courses/course-023-mit-computational-thinking/",
+    "totals": {
+      "modules": 3,
+      "lessons": 8,
+      "practice_questions": 24
+    },
+    "competencies": [
+      "Data Science",
+      "Python Programming",
+      "Computational Thinking"
+    ],
+    "topics": [
+      "simulation",
+      "optimization",
+      "machine learning intro",
+      "plotting"
+    ]
+  },
+  {
+    "course_id": "mit-6-006-algorithms",
+    "slug": "course-024-mit-algorithms-2020",
+    "title": "6.006 Introduction to Algorithms",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Algorithms",
+    "level": "Intermediate",
+    "estimated_hours": 4.7,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/",
+    "path": "courses/course-024-mit-algorithms-2020/",
+    "totals": {
+      "modules": 3,
+      "lessons": 10,
+      "practice_questions": 30
+    },
+    "competencies": [
+      "Algorithms",
+      "Data Structures",
+      "Computer Science"
+    ],
+    "topics": [
+      "graphs",
+      "sorting",
+      "dynamic programming",
+      "shortest paths"
+    ]
+  },
+  {
+    "course_id": "mit-6-034-ai",
+    "slug": "course-025-mit-artificial-intelligence",
+    "title": "6.034 Artificial Intelligence",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Artificial Intelligence",
+    "level": "Intermediate",
+    "estimated_hours": 13.6,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-034-artificial-intelligence-fall-2010/",
+    "path": "courses/course-025-mit-artificial-intelligence/",
+    "totals": {
+      "modules": 4,
+      "lessons": 16,
+      "practice_questions": 48
+    },
+    "competencies": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Search Algorithms"
+    ],
+    "topics": [
+      "search",
+      "constraints",
+      "neural nets",
+      "learning"
+    ]
+  },
+  {
+    "course_id": "mit-6-867-ml",
+    "slug": "course-026-mit-machine-learning",
+    "title": "6.867 Machine Learning",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Machine Learning",
+    "level": "Advanced",
+    "estimated_hours": 3.6,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-867-machine-learning-fall-2006/",
+    "path": "courses/course-026-mit-machine-learning/",
+    "totals": {
+      "modules": 3,
+      "lessons": 10,
+      "practice_questions": 30
+    },
+    "competencies": [
+      "Machine Learning",
+      "Artificial Intelligence",
+      "Statistical Learning"
+    ],
+    "topics": [
+      "supervised learning",
+      "kernels",
+      "graphical models"
+    ]
+  },
+  {
+    "course_id": "mit-6-046-algorithms",
+    "slug": "course-027-mit-design-algorithms",
+    "title": "6.046J Design and Analysis of Algorithms",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Algorithms",
+    "level": "Advanced",
+    "estimated_hours": 8.4,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/",
+    "path": "courses/course-027-mit-design-algorithms/",
+    "totals": {
+      "modules": 3,
+      "lessons": 10,
+      "practice_questions": 30
+    },
+    "competencies": [
+      "Algorithms",
+      "Complexity",
+      "Computer Science"
+    ],
+    "topics": [
+      "amortized analysis",
+      "network flow",
+      "NP-completeness"
+    ]
+  },
+  {
+    "course_id": "mit-6-004-computation-structures",
+    "slug": "course-028-mit-computation-structures",
+    "title": "6.004 Computation Structures",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Computer Architecture",
+    "level": "Intermediate",
+    "estimated_hours": 15.3,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+    "path": "courses/course-028-mit-computation-structures/",
+    "totals": {
+      "modules": 4,
+      "lessons": 16,
+      "practice_questions": 48
+    },
+    "competencies": [
+      "Computer Architecture",
+      "Digital Logic",
+      "Computer Engineering"
+    ],
+    "topics": [
+      "CMOS",
+      "assembly",
+      "processors",
+      "caches"
+    ]
+  },
+  {
+    "course_id": "mit-6-033-systems",
+    "slug": "course-029-mit-computer-system-engineering",
+    "title": "6.033 Computer System Engineering",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Operating Systems",
+    "level": "Intermediate",
+    "estimated_hours": 4.4,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-033-computer-system-engineering-spring-2018/",
+    "path": "courses/course-029-mit-computer-system-engineering/",
+    "totals": {
+      "modules": 3,
+      "lessons": 7,
+      "practice_questions": 21
+    },
+    "competencies": [
+      "Operating Systems",
+      "Distributed Systems",
+      "Computer Networks"
+    ],
+    "topics": [
+      "complexity",
+      "naming",
+      "reliability",
+      "security"
+    ]
+  },
+  {
+    "course_id": "mit-6-830-databases",
+    "slug": "course-030-mit-database-systems",
+    "title": "6.830 Database Systems",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Database Systems",
+    "level": "Advanced",
+    "estimated_hours": 4.3,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-830-database-systems-fall-2010/",
+    "path": "courses/course-030-mit-database-systems/",
+    "totals": {
+      "modules": 3,
+      "lessons": 10,
+      "practice_questions": 30
+    },
+    "competencies": [
+      "Database Systems",
+      "SQL",
+      "Data Engineering"
+    ],
+    "topics": [
+      "query processing",
+      "transactions",
+      "indexing"
+    ]
+  },
+  {
+    "course_id": "mit-6-858-security",
+    "slug": "course-031-mit-computer-security",
+    "title": "6.858 Computer Systems Security",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Cybersecurity",
+    "level": "Advanced",
+    "estimated_hours": 6.2,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-858-computer-systems-security-fall-2014/",
+    "path": "courses/course-031-mit-computer-security/",
+    "totals": {
+      "modules": 3,
+      "lessons": 10,
+      "practice_questions": 30
+    },
+    "competencies": [
+      "Cybersecurity",
+      "Operating Systems",
+      "Software Security"
+    ],
+    "topics": [
+      "control hijacking",
+      "web security",
+      "isolation"
+    ]
+  },
+  {
+    "course_id": "mit-6-002-circuits",
+    "slug": "course-032-mit-circuits",
+    "title": "6.002 Circuits and Electronics",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Electrical Engineering",
+    "level": "Beginner",
+    "estimated_hours": 8.7,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/",
+    "path": "courses/course-032-mit-circuits/",
+    "totals": {
+      "modules": 4,
+      "lessons": 16,
+      "practice_questions": 48
+    },
+    "competencies": [
+      "Electrical Engineering",
+      "Circuits",
+      "Electronics"
+    ],
+    "topics": [
+      "resistive networks",
+      "MOSFET",
+      "amplifiers",
+      "digital circuits"
+    ]
+  },
+  {
+    "course_id": "mit-6-003-signals",
+    "slug": "course-033-mit-signals-systems",
+    "title": "6.003 Signals and Systems",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Electrical Engineering",
+    "level": "Intermediate",
+    "estimated_hours": 13.3,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/",
+    "path": "courses/course-033-mit-signals-systems/",
+    "totals": {
+      "modules": 3,
+      "lessons": 10,
+      "practice_questions": 30
+    },
+    "competencies": [
+      "Signals and Systems",
+      "Electrical Engineering",
+      "DSP"
+    ],
+    "topics": [
+      "LTI systems",
+      "Fourier",
+      "Laplace",
+      "sampling"
+    ]
+  },
+  {
+    "course_id": "mit-18-06-linear-algebra",
+    "slug": "course-034-mit-linear-algebra",
+    "title": "18.06 Linear Algebra",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Mathematics",
+    "level": "Intermediate",
+    "estimated_hours": 6.4,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/",
+    "path": "courses/course-034-mit-linear-algebra/",
+    "totals": {
+      "modules": 4,
+      "lessons": 16,
+      "practice_questions": 48
+    },
+    "competencies": [
+      "Linear Algebra",
+      "Mathematics",
+      "Engineering Fundamentals"
+    ],
+    "topics": [
+      "matrices",
+      "vector spaces",
+      "eigenvalues",
+      "least squares"
+    ]
+  },
+  {
+    "course_id": "mit-6-01sc-eecs",
+    "slug": "course-035-mit-eecs-intro",
+    "title": "6.01SC Introduction to Electrical Engineering and Computer Science I",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Electrical Engineering",
+    "level": "Beginner",
+    "estimated_hours": 13.0,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/",
+    "path": "courses/course-035-mit-eecs-intro/",
+    "totals": {
+      "modules": 4,
+      "lessons": 16,
+      "practice_questions": 48
+    },
+    "competencies": [
+      "Electrical Engineering",
+      "Computer Science",
+      "Robotics"
+    ],
+    "topics": [
+      "Python",
+      "circuits",
+      "feedback",
+      "state machines"
+    ]
+  },
+  {
+    "course_id": "mit-2-003-dynamics",
+    "slug": "course-036-mit-engineering-dynamics",
+    "title": "2.003SC Engineering Dynamics",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Mechanical Engineering",
+    "level": "Intermediate",
+    "estimated_hours": 10.7,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/2-003sc-engineering-dynamics-fall-2011/",
+    "path": "courses/course-036-mit-engineering-dynamics/",
+    "totals": {
+      "modules": 3,
+      "lessons": 8,
+      "practice_questions": 24
+    },
+    "competencies": [
+      "Mechanical Engineering",
+      "Dynamics",
+      "Mechanics"
+    ],
+    "topics": [
+      "kinematics",
+      "Newton-Euler",
+      "Lagrangian",
+      "vibration"
+    ]
+  },
+  {
+    "course_id": "mit-6-045-automata",
+    "slug": "course-037-mit-automata",
+    "title": "6.045J Automata, Computability, and Complexity",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Theory of Computation",
+    "level": "Advanced",
+    "estimated_hours": 3.9,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-045j-automata-computability-and-complexity-spring-2011/",
+    "path": "courses/course-037-mit-automata/",
+    "totals": {
+      "modules": 3,
+      "lessons": 10,
+      "practice_questions": 30
+    },
+    "competencies": [
+      "Theory of Computation",
+      "Algorithms",
+      "Computer Science"
+    ],
+    "topics": [
+      "automata",
+      "computability",
+      "complexity"
+    ]
+  },
+  {
+    "course_id": "mit-6-006-algorithms-2011",
+    "slug": "course-038-mit-algorithms-2011",
+    "title": "6.006 Introduction to Algorithms (Fall 2011)",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Algorithms",
+    "level": "Intermediate",
+    "estimated_hours": 12.6,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/",
+    "path": "courses/course-038-mit-algorithms-2011/",
+    "totals": {
+      "modules": 3,
+      "lessons": 10,
+      "practice_questions": 30
+    },
+    "competencies": [
+      "Algorithms",
+      "Data Structures",
+      "Computer Science"
+    ],
+    "topics": [
+      "hashing",
+      "trees",
+      "graphs",
+      "shortest paths"
+    ]
+  },
+  {
+    "course_id": "mit-6-02-digital-comm",
+    "slug": "course-039-mit-digital-communication",
+    "title": "6.02 Introduction to EECS II: Digital Communication Systems",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Computer Networks",
+    "level": "Intermediate",
+    "estimated_hours": 13.0,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/",
+    "path": "courses/course-039-mit-digital-communication/",
+    "totals": {
+      "modules": 3,
+      "lessons": 10,
+      "practice_questions": 30
+    },
+    "competencies": [
+      "Computer Networks",
+      "Digital Communications",
+      "Electrical Engineering"
+    ],
+    "topics": [
+      "bits",
+      "noise",
+      "coding",
+      "packets"
+    ]
+  },
+  {
+    "course_id": "mit-16-07-dynamics",
+    "slug": "course-040-mit-dynamics-aero",
+    "title": "16.07 Dynamics",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Aerospace Engineering",
+    "level": "Intermediate",
+    "estimated_hours": 6.5,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/16-07-dynamics-fall-2009/",
+    "path": "courses/course-040-mit-dynamics-aero/",
+    "totals": {
+      "modules": 3,
+      "lessons": 10,
+      "practice_questions": 30
+    },
+    "competencies": [
+      "Aerospace Engineering",
+      "Dynamics",
+      "Mechanics"
+    ],
+    "topics": [
+      "particles",
+      "rigid bodies",
+      "orbital mechanics"
+    ]
+  },
+  {
+    "course_id": "mit-2-007-design-manufacturing",
+    "slug": "course-041-mit-design-manufacturing",
+    "title": "2.007 Design and Manufacturing I",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Mechanical Engineering",
+    "level": "Beginner",
+    "estimated_hours": 10.4,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/2-007-design-and-manufacturing-i-spring-2009/",
+    "path": "courses/course-041-mit-design-manufacturing/",
+    "totals": {
+      "modules": 3,
+      "lessons": 10,
+      "practice_questions": 30
+    },
+    "competencies": [
+      "Mechanical Engineering",
+      "Manufacturing",
+      "Engineering Design"
+    ],
+    "topics": [
+      "design process",
+      "mechanisms",
+      "fabrication"
+    ]
+  },
+  {
+    "course_id": "mit-3-091-ssc",
+    "slug": "course-042-mit-solid-state-chemistry",
+    "title": "3.091 Introduction to Solid State Chemistry",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Materials Science",
+    "level": "Beginner",
+    "estimated_hours": 10.9,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/3-091-introduction-to-solid-state-chemistry-fall-2018/",
+    "path": "courses/course-042-mit-solid-state-chemistry/",
+    "totals": {
+      "modules": 4,
+      "lessons": 16,
+      "practice_questions": 48
+    },
+    "competencies": [
+      "Materials Science",
+      "Chemistry",
+      "Engineering Fundamentals"
+    ],
+    "topics": [
+      "bonding",
+      "crystals",
+      "polymers",
+      "metals"
+    ]
+  },
+  {
+    "course_id": "mit-6-864-nlp",
+    "slug": "course-043-mit-nlp",
+    "title": "6.864 Advanced Natural Language Processing",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Natural Language Processing",
+    "level": "Advanced",
+    "estimated_hours": 6.9,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-864-advanced-natural-language-processing-fall-2005/",
+    "path": "courses/course-043-mit-nlp/",
+    "totals": {
+      "modules": 3,
+      "lessons": 10,
+      "practice_questions": 30
+    },
+    "competencies": [
+      "Natural Language Processing",
+      "Machine Learning",
+      "Artificial Intelligence"
+    ],
+    "topics": [
+      "parsing",
+      "tagging",
+      "translation",
+      "language models"
+    ]
+  },
+  {
+    "course_id": "mit-6-801-vision",
+    "slug": "course-044-mit-machine-vision",
+    "title": "6.801 Machine Vision",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Computer Vision",
+    "level": "Advanced",
+    "estimated_hours": 6.8,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-801-machine-vision-fall-2004/",
+    "path": "courses/course-044-mit-machine-vision/",
+    "totals": {
+      "modules": 4,
+      "lessons": 16,
+      "practice_questions": 48
+    },
+    "competencies": [
+      "Computer Vision",
+      "Artificial Intelligence",
+      "Image Processing"
+    ],
+    "topics": [
+      "image formation",
+      "stereo",
+      "motion",
+      "recognition"
+    ]
+  },
+  {
+    "course_id": "mit-6-170-software-studio",
+    "slug": "course-045-mit-software-studio",
+    "title": "6.170 Software Studio",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Software Engineering",
+    "level": "Intermediate",
+    "estimated_hours": 18.9,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-170-software-studio-spring-2013/",
+    "path": "courses/course-045-mit-software-studio/",
+    "totals": {
+      "modules": 4,
+      "lessons": 16,
+      "practice_questions": 48
+    },
+    "competencies": [
+      "Software Engineering",
+      "Programming Fundamentals",
+      "System Design"
+    ],
+    "topics": [
+      "design",
+      "testing",
+      "web apps",
+      "code review"
+    ]
+  },
+  {
+    "course_id": "mit-1-00-problem-solving",
+    "slug": "course-046-mit-engineering-problem-solving",
+    "title": "1.00 Introduction to Computers and Engineering Problem Solving",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Programming Fundamentals",
+    "level": "Beginner",
+    "estimated_hours": 3.3,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/1-00-introduction-to-computers-and-engineering-problem-solving-spring-2012/",
+    "path": "courses/course-046-mit-engineering-problem-solving/",
+    "totals": {
+      "modules": 3,
+      "lessons": 10,
+      "practice_questions": 30
+    },
+    "competencies": [
+      "Programming Fundamentals",
+      "Java",
+      "Engineering Computation"
+    ],
+    "topics": [
+      "Java",
+      "objects",
+      "data structures",
+      "simulation"
+    ]
+  },
+  {
+    "course_id": "mit-6-042-math-cs",
+    "slug": "course-047-mit-math-for-cs",
+    "title": "6.042J Mathematics for Computer Science",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Discrete Mathematics",
+    "level": "Intermediate",
+    "estimated_hours": 7.1,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/",
+    "path": "courses/course-047-mit-math-for-cs/",
+    "totals": {
+      "modules": 4,
+      "lessons": 16,
+      "practice_questions": 48
+    },
+    "competencies": [
+      "Discrete Mathematics",
+      "Computer Science",
+      "Proofs"
+    ],
+    "topics": [
+      "proofs",
+      "graphs",
+      "counting",
+      "probability"
+    ]
+  },
+  {
+    "course_id": "mit-8-01-mechanics",
+    "slug": "course-048-mit-classical-mechanics",
+    "title": "8.01SC Classical Mechanics",
+    "provider": "Massachusetts Institute of Technology",
+    "category": "Technology",
+    "subcategory": "Physics",
+    "level": "Beginner",
+    "estimated_hours": 7.3,
+    "license": "CC BY-NC-SA 4.0",
+    "official_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/",
+    "path": "courses/course-048-mit-classical-mechanics/",
+    "totals": {
+      "modules": 3,
+      "lessons": 10,
+      "practice_questions": 30
+    },
+    "competencies": [
+      "Physics",
+      "Mechanics",
+      "Engineering Fundamentals"
+    ],
+    "topics": [
+      "kinematics",
+      "Newton's laws",
+      "energy",
+      "momentum"
+    ]
+  },
+  {
+    "course_id": "py4e-python-for-everybody",
+    "slug": "course-049-python-for-everybody",
+    "title": "Python for Everybody",
+    "provider": "Charles R. Severance / University of Michigan",
+    "category": "Technology",
+    "subcategory": "Python Programming",
+    "level": "Beginner",
+    "estimated_hours": 5.9,
+    "license": "CC BY 4.0",
+    "official_url": "https://www.py4e.com/book.php",
+    "path": "courses/course-049-python-for-everybody/",
+    "totals": {
+      "modules": 4,
+      "lessons": 16,
+      "practice_questions": 48
+    },
+    "competencies": [
+      "Python Programming",
+      "SQL",
+      "Programming Fundamentals"
+    ],
+    "topics": [
+      "Python",
+      "files",
+      "HTTP",
+      "SQL"
+    ]
+  },
+  {
+    "course_id": "thinkcspy-learning-with-python",
+    "slug": "course-050-think-like-computer-scientist",
+    "title": "How to Think Like a Computer Scientist: Learning with Python",
+    "provider": "Green Tea Press / Allen Downey, Jeffrey Elkner, Chris Meyers",
+    "category": "Technology",
+    "subcategory": "Python Programming",
+    "level": "Beginner",
+    "estimated_hours": 5.0,
+    "license": "CC BY",
+    "official_url": "https://www.greenteapress.com/thinkpython/thinkCSpy/html/",
+    "path": "courses/course-050-think-like-computer-scientist/",
+    "totals": {
+      "modules": 5,
+      "lessons": 20,
+      "practice_questions": 60
+    },
+    "competencies": [
+      "Python Programming",
+      "Programming Fundamentals",
+      "Computer Science"
+    ],
+    "topics": [
+      "variables",
+      "functions",
+      "classes",
+      "algorithms"
+    ]
+  },
+  {
+    "course_id": "openintro-statistics",
+    "slug": "course-051-openintro-statistics",
+    "title": "OpenIntro Statistics",
+    "provider": "OpenIntro",
+    "category": "Technology",
+    "subcategory": "Statistics",
+    "level": "Beginner",
+    "estimated_hours": 12.7,
+    "license": "CC BY-SA 3.0",
+    "official_url": "https://www.openintro.org/book/os/",
+    "path": "courses/course-051-openintro-statistics/",
+    "totals": {
+      "modules": 9,
+      "lessons": 38,
+      "practice_questions": 114
+    },
+    "competencies": [
+      "Statistics",
+      "Data Science",
+      "Probability"
+    ],
+    "topics": [
+      "data",
+      "probability",
+      "inference",
+      "regression"
+    ]
+  },
+  {
+    "course_id": "illinois-algorithms-erickson",
+    "slug": "course-052-algorithms-jeff-erickson",
+    "title": "Algorithms",
+    "provider": "Jeff Erickson / University of Illinois Urbana-Champaign",
+    "category": "Technology",
+    "subcategory": "Algorithms",
+    "level": "Intermediate",
+    "estimated_hours": 18.7,
+    "license": "CC BY 4.0",
+    "official_url": "https://jeffe.cs.illinois.edu/teaching/algorithms/",
+    "path": "courses/course-052-algorithms-jeff-erickson/",
+    "totals": {
+      "modules": 5,
+      "lessons": 14,
+      "practice_questions": 42
+    },
+    "competencies": [
+      "Algorithms",
+      "Data Structures",
+      "Computer Science"
+    ],
+    "topics": [
+      "recursion",
+      "backtracking",
+      "dynamic programming",
+      "graphs"
+    ]
+  }
+]

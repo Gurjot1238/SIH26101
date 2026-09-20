@@ -1,0 +1,197 @@
+{
+  "module_id": "mit-6-003-signals-m01",
+  "questions": [
+    {
+      "question_id": "mit-6-003-signals-m01-l01-q01",
+      "question": "According to the source lesson '012675925c0f652bb179b6a33cd3d13b MIT6 003F11 lec01', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 012675925c0f652bb179b6a33cd3d13b_MIT6_003F11_lec01.pdf from 6.003 Signals and Systems.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Signals and Systems",
+      "topic": "LTI systems",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-003-signals-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from '012675925c0f652bb179b6a33cd3d13b MIT6 003F11 lec01'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 012675925c0f652bb179b6a33cd3d13b MIT6 003F11 lec01.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Signals and Systems",
+      "topic": "LTI systems",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-003-signals-m01-l01-q03",
+      "question": "When applying concepts from '012675925c0f652bb179b6a33cd3d13b MIT6 003F11 lec01', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Signals and Systems",
+      "topic": "LTI systems",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-003-signals-m01-l02-q01",
+      "question": "According to the source lesson '64cf552631f0f5fdba1913309f3639e8 MIT6 003F11 lec02', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 64cf552631f0f5fdba1913309f3639e8_MIT6_003F11_lec02.pdf from 6.003 Signals and Systems.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Signals and Systems",
+      "topic": "LTI systems",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-003-signals-m01-l02-q02",
+      "question": "What is a reasonable learning takeaway from '64cf552631f0f5fdba1913309f3639e8 MIT6 003F11 lec02'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 64cf552631f0f5fdba1913309f3639e8 MIT6 003F11 lec02.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Signals and Systems",
+      "topic": "LTI systems",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-003-signals-m01-l02-q03",
+      "question": "When applying concepts from '64cf552631f0f5fdba1913309f3639e8 MIT6 003F11 lec02', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Signals and Systems",
+      "topic": "LTI systems",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-003-signals-m01-l03-q01",
+      "question": "According to the source lesson 'a65484c58642de196c089e74434a7ed8 MIT6 003F11 lec03', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource a65484c58642de196c089e74434a7ed8_MIT6_003F11_lec03.pdf from 6.003 Signals and Systems.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Signals and Systems",
+      "topic": "LTI systems",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-003-signals-m01-l03-q02",
+      "question": "What is a reasonable learning takeaway from 'a65484c58642de196c089e74434a7ed8 MIT6 003F11 lec03'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in a65484c58642de196c089e74434a7ed8 MIT6 003F11 lec03.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Signals and Systems",
+      "topic": "LTI systems",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-003-signals-m01-l03-q03",
+      "question": "When applying concepts from 'a65484c58642de196c089e74434a7ed8 MIT6 003F11 lec03', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Signals and Systems",
+      "topic": "LTI systems",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-003-signals-m01-l04-q01",
+      "question": "According to the source lesson '8482ac0d52b5259be5394f2fe14dd3e6 MIT6 003F11 lec04', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 8482ac0d52b5259be5394f2fe14dd3e6_MIT6_003F11_lec04.pdf from 6.003 Signals and Systems.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Signals and Systems",
+      "topic": "LTI systems",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-003-signals-m01-l04-q02",
+      "question": "What is a reasonable learning takeaway from '8482ac0d52b5259be5394f2fe14dd3e6 MIT6 003F11 lec04'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 8482ac0d52b5259be5394f2fe14dd3e6 MIT6 003F11 lec04.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Signals and Systems",
+      "topic": "LTI systems",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-003-signals-m01-l04-q03",
+      "question": "When applying concepts from '8482ac0d52b5259be5394f2fe14dd3e6 MIT6 003F11 lec04', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Signals and Systems",
+      "topic": "LTI systems",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

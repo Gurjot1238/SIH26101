@@ -1,0 +1,665 @@
+{
+  "course_id": "wtcs-nursing-management",
+  "title": "Nursing Management and Professional Concepts 2e",
+  "provider": "Wisconsin Technical College System / Open RN",
+  "category": "Medical / Healthcare",
+  "subcategory": "Nursing Leadership",
+  "level": "Intermediate",
+  "description": "Open textbook / course 'Nursing Management and Professional Concepts 2e' from Wisconsin Technical College System / Open RN. Chapters were downloaded from the openly licensed Pressbooks edition.",
+  "competencies": [
+    "Healthcare Information Systems",
+    "Nursing Leadership",
+    "Patient Safety"
+  ],
+  "topics": [
+    "leadership",
+    "delegation",
+    "quality improvement"
+  ],
+  "source": {
+    "name": "Wisconsin Technical College System / Open RN",
+    "official_url": "https://wtcs.pressbooks.pub/nursingmpc/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 7.2,
+    "estimated_minutes": 434
+  },
+  "totals": {
+    "modules": 5,
+    "lessons": 28,
+    "practice_questions": 84
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "wtcs-nursing-management-m01",
+      "title": "Chapter 1 - Overview of Management and Professional Issues",
+      "competencies": [
+        "Healthcare Information Systems",
+        "Nursing Leadership",
+        "Patient Safety"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-management-m01-l01",
+          "title": "1.1 Overview",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-management-m01-l01.json",
+          "estimated_minutes": 16,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-management-m02",
+      "title": "Chapter 2 - Prioritization",
+      "competencies": [
+        "Healthcare Information Systems",
+        "Nursing Leadership",
+        "Patient Safety"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-management-m02-l01",
+          "title": "2.1  Prioritization Introduction",
+          "type": "text",
+          "content_file": "content/module-02/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-management-m02-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Prioritize nursing care based on client acuity",
+            "Use principles of time management to organize work",
+            "Analyze effectiveness of time management strategies",
+            "Incorporate clinical judgment to prioritize nursing care",
+            "Apply a framework for prioritization"
+          ],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m02-l02",
+          "title": "2.2 Tenets of Prioritization",
+          "type": "text",
+          "content_file": "content/module-02/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-management-m02-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m02-l03",
+          "title": "2.3 Tools for Prioritizing",
+          "type": "text",
+          "content_file": "content/module-02/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-management-m02-l03.json",
+          "estimated_minutes": 32,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m02-l04",
+          "title": "2.4 Critical Thinking and Clinical Reasoning",
+          "type": "text",
+          "content_file": "content/module-02/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-management-m02-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m02-l05",
+          "title": "2.5 Time Management",
+          "type": "text",
+          "content_file": "content/module-02/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-management-m02-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m02-l06",
+          "title": "2.6 Spotlight Application",
+          "type": "text",
+          "content_file": "content/module-02/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-management-m02-l06.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Room 512:** 82-year-old client who is scheduled for coronary artery bypass graft (CABG) surgery today at 0700 and is receiving an insulin infusion",
+            "Room 536:** 72-year-old client who had a negative heart catheterization yesterday but experienced a groin bleed; plans for discharge this morning"
+          ],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m02-l07",
+          "title": "2.7 Learning Activities",
+          "type": "text",
+          "content_file": "content/module-02/lesson-07.md",
+          "practice_file": "practice/wtcs-nursing-management-m02-l07.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-management-m03",
+      "title": "Chapter 3 - Delegation and Supervision",
+      "competencies": [
+        "Healthcare Information Systems",
+        "Nursing Leadership",
+        "Patient Safety"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-management-m03-l01",
+          "title": "3.1 Delegation &amp; Supervision Introduction",
+          "type": "text",
+          "content_file": "content/module-03/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-management-m03-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Explain principles of delegation",
+            "Evaluate the criteria used for delegation",
+            "Apply effective communication techniques when delegating care",
+            "Determine specific barriers to delegation",
+            "Evaluate team members' performance based on delegation and supervision principles",
+            "Incorporate principles of supervision and evaluation in the delegation process"
+          ],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m03-l02",
+          "title": "3.2 Communication",
+          "type": "text",
+          "content_file": "content/module-03/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-management-m03-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m03-l03",
+          "title": "3.3 Assignment",
+          "type": "text",
+          "content_file": "content/module-03/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-management-m03-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m03-l04",
+          "title": "3.4 Delegation",
+          "type": "text",
+          "content_file": "content/module-03/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-management-m03-l04.json",
+          "estimated_minutes": 29,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m03-l05",
+          "title": "3.5 Supervision",
+          "type": "text",
+          "content_file": "content/module-03/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-management-m03-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m03-l06",
+          "title": "3.6 Spotlight Application",
+          "type": "text",
+          "content_file": "content/module-03/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-management-m03-l06.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Client C:** A 78-year-old male recently diagnosed with bladder cancer. He has bright red urine today but re"
+          ],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m03-l07",
+          "title": "3.7 Learning Activities",
+          "type": "text",
+          "content_file": "content/module-03/lesson-07.md",
+          "practice_file": "practice/wtcs-nursing-management-m03-l07.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Case Study Nurse Liability and Delegation Review the following case studies regarding nurse liability associated with inappropriate delegation:",
+            "Reflective Questions What delegation errors occurred in each of these scenarios and what were the repercussions of these errors for the nurses involved? The RN is delegating tasks to the LPN/VN and UAP on a"
+          ],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-management-m04",
+      "title": "Chapter 4 - Leadership and Management",
+      "competencies": [
+        "Healthcare Information Systems",
+        "Nursing Leadership",
+        "Patient Safety"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-management-m04-l01",
+          "title": "4.1 Leadership &amp; Management Introduction",
+          "type": "text",
+          "content_file": "content/module-04/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-management-m04-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Differentiate the role of leader and manager",
+            "Examine the roles of team members",
+            "Identify steps in the management process and activities that managers perform",
+            "Describe the role of the RN as a leader and change agent",
+            "Discuss effects of power, empowerment, and motivation in leading and managing a nursing team"
+          ],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m04-l02",
+          "title": "4.2 Basic Concepts",
+          "type": "text",
+          "content_file": "content/module-04/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-management-m04-l02.json",
+          "estimated_minutes": 38,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m04-l03",
+          "title": "4.3 Implementing Change",
+          "type": "text",
+          "content_file": "content/module-04/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-management-m04-l03.json",
+          "estimated_minutes": 13,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m04-l04",
+          "title": "4.4 Spotlight Application",
+          "type": "text",
+          "content_file": "content/module-04/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-management-m04-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m04-l05",
+          "title": "4.5 Learning Activities",
+          "type": "text",
+          "content_file": "content/module-04/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-management-m04-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-management-m05",
+      "title": "Chapter 5 - Legal Implications",
+      "competencies": [
+        "Healthcare Information Systems",
+        "Nursing Leadership",
+        "Patient Safety"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-management-m05-l01",
+          "title": "5.1 Legal Implications Introduction",
+          "type": "text",
+          "content_file": "content/module-05/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-management-m05-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Examine competent practice within the legal framework of health care",
+            "Analyze legal dilemmas of nursing practice utilizing professional and industry standards",
+            "Examine how negligence and malpractice apply to nursing practice",
+            "Practice within the legal framework of the Nurse Practice Act",
+            "Examine the role of the nurse when observing illegal and/or unsafe practices"
+          ],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m05-l02",
+          "title": "5.2 Understanding the Legal System",
+          "type": "text",
+          "content_file": "content/module-05/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-management-m05-l02.json",
+          "estimated_minutes": 42,
+          "objectives": [
+            "Constitutional law** refers to the rights, privileges, and responsibilities established by the U.S. Constitution.[1] The right to privacy is an example of a client right based on constitutional law",
+            "Administrative law **is law created by government agencies that have been granted the aut"
+          ],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m05-l03",
+          "title": "5.3 Professional Liability and Your Nursing License",
+          "type": "text",
+          "content_file": "content/module-05/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-management-m05-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m05-l04",
+          "title": "5.4 Frequent Allegations and SBON Investigations",
+          "type": "text",
+          "content_file": "content/module-05/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-management-m05-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m05-l05",
+          "title": "5.5 Protecting Your Nursing License",
+          "type": "text",
+          "content_file": "content/module-05/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-management-m05-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m05-l06",
+          "title": "5.6 Other Legal Issues",
+          "type": "text",
+          "content_file": "content/module-05/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-management-m05-l06.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m05-l07",
+          "title": "5.7 Spotlight Application",
+          "type": "text",
+          "content_file": "content/module-05/lesson-07.md",
+          "practice_file": "practice/wtcs-nursing-management-m05-l07.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-management-m05-l08",
+          "title": "5.8 Learning Activities",
+          "type": "text",
+          "content_file": "content/module-05/lesson-08.md",
+          "practice_file": "practice/wtcs-nursing-management-m05-l08.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Healthcare Information Systems",
+            "Nursing Leadership"
+          ],
+          "topics": [
+            "leadership",
+            "delegation",
+            "quality improvement"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

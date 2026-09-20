@@ -263,6 +263,68 @@ export async function explainAnalytics(scope: 'all' | 'latest' = 'all'): Promise
   return body.explanation;
 }
 
+/* ----------------------------------------------- gap-driven recommendations */
+
+/** One recommended course, with the gap it addresses and why it was chosen. */
+export type RecommendedCourse = {
+  courseId: string;
+  title: string;
+  provider: string;
+  category: string;
+  level: string;
+  estimatedHours: number | null;
+  lessons: number;
+  modules: number;
+  matchedTags: string[];
+  forCompetency: string;
+  forCompetencyName: string;
+  reason: string;
+};
+
+/** Recommendations grouped under one gap competency, worst-gap first. */
+export type RecommendationGroup = {
+  competency: string;
+  name: string;
+  gap: number;
+  currentScore: number;
+  requiredScore: number;
+  priority: number;
+  courses: RecommendedCourse[];
+};
+
+/**
+ * Real dataset courses to open next, chosen from the account's measured gaps.
+ *
+ * Always a complete shape, never an error for the empty cases: `available` is false
+ * when no course dataset is loaded, `measured` is false before the first assessment,
+ * and `hasGaps` is false when no open gap can be matched to a course. The `note`
+ * explains which of those it is, so the page draws its empty state from the payload.
+ */
+export type CourseRecommendations = {
+  available: boolean;
+  measured: boolean;
+  hasGaps: boolean;
+  groups: RecommendationGroup[];
+  courses: RecommendedCourse[];
+  note: string | null;
+};
+
+/**
+ * Fetch the account's gap-driven course recommendations.
+ *
+ * Session-guarded server-side (it reads the learner's private results). A signed-out
+ * or brand-new account does not throw here for the "nothing yet" cases — those come
+ * back as a valid payload with `measured: false`; only a real transport or auth
+ * failure raises `AnalyticsError`.
+ */
+export async function fetchRecommendedCourses(): Promise<CourseRecommendations> {
+  const body = await request<{ recommendations: CourseRecommendations }>(
+    '/api/analytics/recommended-courses',
+    { method: 'GET' },
+  );
+  return body.recommendations;
+}
+
 /* --------------------------------------------------------------- presentation */
 
 /**

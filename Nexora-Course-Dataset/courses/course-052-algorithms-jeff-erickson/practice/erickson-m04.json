@@ -1,0 +1,149 @@
+{
+  "module_id": "erickson-m04",
+  "questions": [
+    {
+      "question_id": "erickson-m04-l01-q01",
+      "question": "According to the source lesson '09 apsp', which statement is most accurate?",
+      "options": [
+        "Chapter PDF 09-apsp.pdf from Algorithms by Jeff Erickson.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "recursion",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "erickson-m04-l01-q02",
+      "question": "What is a reasonable learning takeaway from '09 apsp'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 09 apsp.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "recursion",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "erickson-m04-l01-q03",
+      "question": "When applying concepts from '09 apsp', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "recursion",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "erickson-m04-l02-q01",
+      "question": "According to the source lesson '10 maxflow', which statement is most accurate?",
+      "options": [
+        "Chapter PDF 10-maxflow.pdf from Algorithms by Jeff Erickson.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "recursion",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "erickson-m04-l02-q02",
+      "question": "What is a reasonable learning takeaway from '10 maxflow'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 10 maxflow.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "recursion",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "erickson-m04-l02-q03",
+      "question": "When applying concepts from '10 maxflow', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "recursion",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "erickson-m04-l03-q01",
+      "question": "According to the source lesson '11 maxflowapps', which statement is most accurate?",
+      "options": [
+        "Chapter PDF 11-maxflowapps.pdf from Algorithms by Jeff Erickson.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "recursion",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "erickson-m04-l03-q02",
+      "question": "What is a reasonable learning takeaway from '11 maxflowapps'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 11 maxflowapps.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "recursion",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "erickson-m04-l03-q03",
+      "question": "When applying concepts from '11 maxflowapps', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "recursion",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

@@ -1,0 +1,392 @@
+{
+  "course_id": "mit-6-034-ai",
+  "title": "6.034 Artificial Intelligence",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Artificial Intelligence",
+  "level": "Intermediate",
+  "description": "MIT OpenCourseWare 6.034 Artificial Intelligence (Fall 2010). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Artificial Intelligence",
+    "Machine Learning",
+    "Search Algorithms"
+  ],
+  "topics": [
+    "search",
+    "constraints",
+    "neural nets",
+    "learning"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/6-034-artificial-intelligence-fall-2010/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Fall 2010",
+  "duration": {
+    "estimated_hours": 13.6,
+    "estimated_minutes": 817
+  },
+  "totals": {
+    "modules": 4,
+    "lessons": 16,
+    "practice_questions": 48
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-6-034-ai-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Artificial Intelligence",
+        "Machine Learning",
+        "Search Algorithms"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-034-ai-m01-l01",
+          "title": "e9c5633665ce2e4f480bbbe0b23a8d5a MIT6 034F10 quiz1 2007",
+          "type": "pdf",
+          "content_file": "content/module-01/e9c5633665ce2e4f480bbbe0b23a8d5a_MIT6_034F10_quiz1_2007.pdf",
+          "practice_file": "practice/mit-6-034-ai-m01-l01.json",
+          "estimated_minutes": 40,
+          "objectives": [],
+          "competencies": [
+            "Artificial Intelligence",
+            "Machine Learning"
+          ],
+          "topics": [
+            "search",
+            "constraints",
+            "neural nets"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-034-ai-m01-l02",
+          "title": "d9abc0c6a12e6b2dfa4ca2b488c63842 MIT6 034F10 quiz1 2008",
+          "type": "pdf",
+          "content_file": "content/module-01/d9abc0c6a12e6b2dfa4ca2b488c63842_MIT6_034F10_quiz1_2008.pdf",
+          "practice_file": "practice/mit-6-034-ai-m01-l02.json",
+          "estimated_minutes": 29,
+          "objectives": [],
+          "competencies": [
+            "Artificial Intelligence",
+            "Machine Learning"
+          ],
+          "topics": [
+            "search",
+            "constraints",
+            "neural nets"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-034-ai-m01-l03",
+          "title": "0d2ca3adb56d06382bd2bd855beb3d32 MIT6 034F10 quiz1 2009",
+          "type": "pdf",
+          "content_file": "content/module-01/0d2ca3adb56d06382bd2bd855beb3d32_MIT6_034F10_quiz1_2009.pdf",
+          "practice_file": "practice/mit-6-034-ai-m01-l03.json",
+          "estimated_minutes": 36,
+          "objectives": [],
+          "competencies": [
+            "Artificial Intelligence",
+            "Machine Learning"
+          ],
+          "topics": [
+            "search",
+            "constraints",
+            "neural nets"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-034-ai-m01-l04",
+          "title": "375a359db7e33c1ffab2f399e40e09ae MIT6 034F10 quiz1 2010",
+          "type": "pdf",
+          "content_file": "content/module-01/375a359db7e33c1ffab2f399e40e09ae_MIT6_034F10_quiz1_2010.pdf",
+          "practice_file": "practice/mit-6-034-ai-m01-l04.json",
+          "estimated_minutes": 27,
+          "objectives": [],
+          "competencies": [
+            "Artificial Intelligence",
+            "Machine Learning"
+          ],
+          "topics": [
+            "search",
+            "constraints",
+            "neural nets"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-034-ai-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Artificial Intelligence",
+        "Machine Learning",
+        "Search Algorithms"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-034-ai-m02-l01",
+          "title": "152ed05f169a4db08df7ae2b5a81895a MIT6 034F10 quiz2 2007",
+          "type": "pdf",
+          "content_file": "content/module-02/152ed05f169a4db08df7ae2b5a81895a_MIT6_034F10_quiz2_2007.pdf",
+          "practice_file": "practice/mit-6-034-ai-m02-l01.json",
+          "estimated_minutes": 34,
+          "objectives": [],
+          "competencies": [
+            "Artificial Intelligence",
+            "Machine Learning"
+          ],
+          "topics": [
+            "search",
+            "constraints",
+            "neural nets"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-034-ai-m02-l02",
+          "title": "b44d4614a858950c7dfea5e00ed4b1f2 MIT6 034F10 quiz2 2008",
+          "type": "pdf",
+          "content_file": "content/module-02/b44d4614a858950c7dfea5e00ed4b1f2_MIT6_034F10_quiz2_2008.pdf",
+          "practice_file": "practice/mit-6-034-ai-m02-l02.json",
+          "estimated_minutes": 27,
+          "objectives": [],
+          "competencies": [
+            "Artificial Intelligence",
+            "Machine Learning"
+          ],
+          "topics": [
+            "search",
+            "constraints",
+            "neural nets"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-034-ai-m02-l03",
+          "title": "17a402fae61cf21019feb7a44b2419b8 MIT6 034F10 quiz2 2009",
+          "type": "pdf",
+          "content_file": "content/module-02/17a402fae61cf21019feb7a44b2419b8_MIT6_034F10_quiz2_2009.pdf",
+          "practice_file": "practice/mit-6-034-ai-m02-l03.json",
+          "estimated_minutes": 39,
+          "objectives": [],
+          "competencies": [
+            "Artificial Intelligence",
+            "Machine Learning"
+          ],
+          "topics": [
+            "search",
+            "constraints",
+            "neural nets"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-034-ai-m02-l04",
+          "title": "c8a902eca585e29a8d9744f7d3fff95f MIT6 034F10 quiz2 2010",
+          "type": "pdf",
+          "content_file": "content/module-02/c8a902eca585e29a8d9744f7d3fff95f_MIT6_034F10_quiz2_2010.pdf",
+          "practice_file": "practice/mit-6-034-ai-m02-l04.json",
+          "estimated_minutes": 46,
+          "objectives": [],
+          "competencies": [
+            "Artificial Intelligence",
+            "Machine Learning"
+          ],
+          "topics": [
+            "search",
+            "constraints",
+            "neural nets"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-034-ai-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Artificial Intelligence",
+        "Machine Learning",
+        "Search Algorithms"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-034-ai-m03-l01",
+          "title": "5c0e73c065cc8ae4c2a1899e4d4417f7 MIT6 034F10 quiz3 2007",
+          "type": "pdf",
+          "content_file": "content/module-03/5c0e73c065cc8ae4c2a1899e4d4417f7_MIT6_034F10_quiz3_2007.pdf",
+          "practice_file": "practice/mit-6-034-ai-m03-l01.json",
+          "estimated_minutes": 50,
+          "objectives": [],
+          "competencies": [
+            "Artificial Intelligence",
+            "Machine Learning"
+          ],
+          "topics": [
+            "search",
+            "constraints",
+            "neural nets"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-034-ai-m03-l02",
+          "title": "bd67a9fc7d5fd4caf676e7af65d4ad44 MIT6 034F10 quiz3 2008",
+          "type": "pdf",
+          "content_file": "content/module-03/bd67a9fc7d5fd4caf676e7af65d4ad44_MIT6_034F10_quiz3_2008.pdf",
+          "practice_file": "practice/mit-6-034-ai-m03-l02.json",
+          "estimated_minutes": 69,
+          "objectives": [],
+          "competencies": [
+            "Artificial Intelligence",
+            "Machine Learning"
+          ],
+          "topics": [
+            "search",
+            "constraints",
+            "neural nets"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-034-ai-m03-l03",
+          "title": "0ce8f3b6f43d7048e23c6327aa6eb036 MIT6 034F10 lab0",
+          "type": "pdf",
+          "content_file": "content/module-03/0ce8f3b6f43d7048e23c6327aa6eb036_MIT6_034F10_lab0.pdf",
+          "practice_file": "practice/mit-6-034-ai-m03-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Artificial Intelligence",
+            "Machine Learning"
+          ],
+          "topics": [
+            "search",
+            "constraints",
+            "neural nets"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-034-ai-m03-l04",
+          "title": "f272855327328e37baf9f7f61f920e78 MIT6 034F10 lab1",
+          "type": "pdf",
+          "content_file": "content/module-03/f272855327328e37baf9f7f61f920e78_MIT6_034F10_lab1.pdf",
+          "practice_file": "practice/mit-6-034-ai-m03-l04.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Artificial Intelligence",
+            "Machine Learning"
+          ],
+          "topics": [
+            "search",
+            "constraints",
+            "neural nets"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-034-ai-m04",
+      "title": "Module 4",
+      "competencies": [
+        "Artificial Intelligence",
+        "Machine Learning",
+        "Search Algorithms"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-034-ai-m04-l01",
+          "title": "e09aa2ccc53799b6c312c3b927dc6841 MIT6 034F10 lab2",
+          "type": "pdf",
+          "content_file": "content/module-04/e09aa2ccc53799b6c312c3b927dc6841_MIT6_034F10_lab2.pdf",
+          "practice_file": "practice/mit-6-034-ai-m04-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Artificial Intelligence",
+            "Machine Learning"
+          ],
+          "topics": [
+            "search",
+            "constraints",
+            "neural nets"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-034-ai-m04-l02",
+          "title": "1d5b4401805f7ca7adc73c7482d832c7 MIT6 034F10 lab3",
+          "type": "pdf",
+          "content_file": "content/module-04/1d5b4401805f7ca7adc73c7482d832c7_MIT6_034F10_lab3.pdf",
+          "practice_file": "practice/mit-6-034-ai-m04-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Artificial Intelligence",
+            "Machine Learning"
+          ],
+          "topics": [
+            "search",
+            "constraints",
+            "neural nets"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-034-ai-m04-l03",
+          "title": "31626ed3de1893e8af73abce65cd4d7f MIT6 034F10 lab4",
+          "type": "pdf",
+          "content_file": "content/module-04/31626ed3de1893e8af73abce65cd4d7f_MIT6_034F10_lab4.pdf",
+          "practice_file": "practice/mit-6-034-ai-m04-l03.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Artificial Intelligence",
+            "Machine Learning"
+          ],
+          "topics": [
+            "search",
+            "constraints",
+            "neural nets"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-034-ai-m04-l04",
+          "title": "6f12118abb4d06b7fe816142e59dc883 MIT6 034F10 boosting",
+          "type": "pdf",
+          "content_file": "content/module-04/6f12118abb4d06b7fe816142e59dc883_MIT6_034F10_boosting.pdf",
+          "practice_file": "practice/mit-6-034-ai-m04-l04.json",
+          "estimated_minutes": 20,
+          "objectives": [],
+          "competencies": [
+            "Artificial Intelligence",
+            "Machine Learning"
+          ],
+          "topics": [
+            "search",
+            "constraints",
+            "neural nets"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

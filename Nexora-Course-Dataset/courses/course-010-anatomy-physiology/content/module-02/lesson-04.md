@@ -1,0 +1,84 @@
+# 2.3 Chemical Reactions
+
+> Source: Anatomy and Physiology. OpenStax / Rice University.
+> Official URL: https://openstax.org/books/anatomy-and-physiology/pages/2-3-chemical-reactions
+> License: CC BY 4.0
+> Reused without endorsement. Original copyright notices retained.
+
+## 2.3 Chemical Reactions 
+
+### Learning Objectives
+
+By the end of this section, you will be able to:
+
+  * Distinguish between kinetic and potential energy, and between exergonic and endergonic chemical reactions
+  * Identify four forms of energy important in human functioning
+  * Describe the three basic types of chemical reactions
+  * Identify several factors influencing the rate of chemical reactions
+
+One characteristic of a living organism is metabolism, which is the sum total of all of the chemical reactions that go on to maintain that organism’s health and life. The bonding processes you have learned thus far are anabolic chemical reactions; that is, they form larger molecules from smaller molecules or atoms. But recall that metabolism can proceed in another direction: in catabolic chemical reactions, bonds between components of larger molecules break, releasing smaller molecules or atoms. Both types of reaction involve exchanges not only of matter, but of energy.
+
+### The Role of Energy in Chemical Reactions
+
+Chemical reactions require a sufficient amount of energy to cause the matter to collide with enough precision and force that old chemical bonds can be broken and new ones formed. In general, kinetic energy is the form of energy powering any type of matter in motion. Imagine you are building a brick wall. The energy it takes to lift and place one brick atop another is kinetic energy—the energy matter possesses because of its motion. Once the wall is in place, it stores potential energy. Potential energy is the energy of position, or the energy matter possesses because of the positioning or structure of its components. If the brick wall collapses, the stored potential energy is released as kinetic energy as the bricks fall.
+
+In the human body, potential energy is stored in the bonds between atoms and molecules. Chemical energy is the form of potential energy in which energy is stored in chemical bonds. When those bonds are formed, chemical energy is invested, and when they break, chemical energy is released. Notice that chemical energy, like all energy, is neither created nor destroyed; rather, it is converted from one form to another. When you eat an energy bar before heading out the door for a hike, the honey, nuts, and other foods the bar contains are broken down and rearranged by your body into molecules that your muscle cells convert to kinetic energy.
+
+Chemical reactions that release more energy than they absorb are characterized as exergonic. The catabolism of the foods in your energy bar is an example. Some of the chemical energy stored in the bar is absorbed into molecules your body uses for fuel, but some of it is released—for example, as heat. In contrast, chemical reactions that absorb more energy than they release are endergonic. These reactions require energy input, and the resulting molecule stores not only the chemical energy in the original components, but also the energy that fueled the reaction. Because energy is neither created nor destroyed, where does the energy needed for endergonic reactions come from? In many cases, it comes from exergonic reactions.
+
+### Forms of Energy Important in Human Functioning
+
+You have already learned that chemical energy is absorbed, stored, and released by chemical bonds. In addition to chemical energy, mechanical, radiant, and electrical energy are important in human functioning.
+
+  * Mechanical energy, which is stored in physical systems such as machines, engines, or the human body, directly powers the movement of matter. When you lift a brick into place on a wall, your muscles provide the mechanical energy that moves the brick.
+  * Radiant energy is energy emitted and transmitted as waves rather than matter. These waves vary in length from long radio waves and microwaves to short gamma waves emitted from decaying atomic nuclei. The full spectrum of radiant energy is referred to as the electromagnetic spectrum. The body uses the ultraviolet energy of sunlight to convert a compound in skin cells to vitamin D, which is essential to human functioning. The human eye evolved to see the wavelengths that comprise the colors of the rainbow, from red to violet, so that range in the spectrum is called “visible light.”
+  * Electrical energy, supplied by electrolytes in cells and body fluids, contributes to the voltage changes that help transmit impulses in nerve and muscle cells.
+
+### Characteristics of Chemical Reactions
+
+All chemical reactions begin with a reactant, the general term for the one or more substances that enter into the reaction. Sodium and chloride ions, for example, are the reactants in the production of table salt. The one or more substances produced by a chemical reaction are called the product.
+
+In chemical reactions, the components of the reactants—the elements involved and the number of atoms of each—are all present in the product(s). Similarly, there is nothing present in the products that are not present in the reactants. This is because chemical reactions are governed by the law of conservation of mass, which states that matter cannot be created or destroyed in a chemical reaction.
+
+Just as you can express mathematical calculations in equations such as 2 + 7 = 9, you can use chemical equations to show how reactants become products. As in math, chemical equations proceed from left to right, but instead of an equal sign, they employ an arrow or arrows indicating the direction in which the chemical reaction proceeds. For example, the chemical reaction in which one atom of nitrogen and three atoms of hydrogen produce ammonia would be written as  N + 3H→ NH 3 N + 3H→ NH 3 MathType@MTEF@5@5@+=feaagyart1ev2aaatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=xfr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaaeOtaiaabccacaqGRaGaaeiiaiaabodacaqGibGaeyOKH4QaaeOtaiaabIeadaWgaaWcbaGaae4maaqabaaaaa@3EA4@ . Correspondingly, the breakdown of ammonia into its components would be written as  NH 3 →N + 3H. NH 3 →N + 3H.
+
+Notice that, in the first example, a nitrogen (N) atom and three hydrogen (H) atoms bond to form a compound. This anabolic reaction requires energy, which is then stored within the compound’s bonds. Such reactions are referred to as synthesis reactions. A synthesis reaction is a chemical reaction that results in the synthesis (joining) of components that were formerly separate ([Figure 2.12](<2-3-chemical-reactions#fig-ch02_03_01>)**a**). Again, nitrogen and hydrogen are reactants in a synthesis reaction that yields ammonia as the product. The general equation for a synthesis reaction is  A + B→AB. A + B→AB. MathType@MTEF@5@5@+=feaagyart1ev2aaatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=xfr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaqcaauaaiaabgeacaqGGaGaae4kaiaabccacaqGcbGaeyOKH4Qaaeyqaiaabkeaaaa@3D25@
+
+![This figure shows three chemical reactions.](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/eb1bbf0fd60586ef23d90abd620d10f3052ffd51) Figure  2.12 The Three Fundamental Chemical Reactions The atoms and molecules involved in the three fundamental chemical reactions can be imagined as words.
+
+In the second example, ammonia is catabolized into its smaller components, and the potential energy that had been stored in its bonds is released. Such reactions are referred to as decomposition reactions. A decomposition reaction is a chemical reaction that breaks down or “de-composes” something larger into its constituent parts (see [Figure 2.12](<2-3-chemical-reactions#fig-ch02_03_01>)**b**). The general equation for a decomposition reaction is:  AB→A+B AB→A+B MathType@MTEF@5@5@+=feaagyart1ev2aaatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=xfr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaqcaauaaiaabgeacaqGcbGaeyOKH4QaaeyqaiabgUcaRiaabkeaaaa@3C13@ .
+
+An exchange reaction is a chemical reaction in which both synthesis and decomposition occur, chemical bonds are both formed and broken, and chemical energy is absorbed, stored, and released (see [Figure 2.12](<2-3-chemical-reactions#fig-ch02_03_01>)**c**). The simplest form of an exchange reaction might be:  A+BC→AB+C A+BC→AB+C MathType@MTEF@5@5@+=feaagyart1ev2aaatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=xfr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaqcaauaaiaabgeacqGHRaWkcaqGcbGaae4qaiabgkziUkaabgeacaqGcbGaey4kaSIaae4qaaaa@3E81@ . Notice that, to produce these products, B and C had to break apart in a decomposition reaction, whereas A and B had to bond in a synthesis reaction. A more complex exchange reaction might be: AB+CD→AC+BD AB+CD→AC+BD MathType@MTEF@5@5@+=feaagyart1ev2aaatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=xfr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaqcaauaaiaabgeacaqGcbGaey4kaSIaae4qaiaabseacqGHsgIRcaqGbbGaae4qaiabgUcaRiaabkeacaqGebaaaa@400F@ . Another example might be:  AB+CD→AD+BC AB+CD→AD+BC MathType@MTEF@5@5@+=feaagyart1ev2aaatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=xfr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaqcaauaaiaabgeacaqGcbGaey4kaSIaae4qaiaabseacqGHsgIRcaqGbbGaaeiraiabgUcaRiaabkeacaqGdbaaaa@400F@ .
+
+In theory, any chemical reaction can proceed in either direction under the right conditions. Reactants may synthesize into a product that is later decomposed. Reversibility is also a quality of exchange reactions. For instance,  A+BC→AB+C A+BC→AB+C MathType@MTEF@5@5@+=feaagyart1ev2aaatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=xfr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaqcaauaaiaabgeacqGHRaWkcaqGcbGaae4qaiabgkziUkaabgeacaqGcbGaey4kaSIaae4qaaaa@3E81@ could then reverse to  AB+C→A+BC AB+C→A+BC MathType@MTEF@5@5@+=feaagyart1ev2aaatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=xfr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaqcaauaaiaabgeacaqGcbGaey4kaSIaae4qaiabgkziUkaabgeacqGHRaWkcaqGcbGaae4qaaaa@3E81@ . This reversibility of a chemical reaction is indicated with a double arrow:  A+BC⇄AB+C A+BC⇄AB+C MathType@MTEF@5@5@+=feaagyart1ev2aaatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=xfr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaqcaauaaiaabgeacqGHRaWkcaqGcbGaae4qaiablsCiakaabgeacaqGcbGaey4kaSIaae4qaaaa@3E8A@ . Still, in the human body, many chemical reactions do proceed in a predictable direction, either one way or the other. You can think of this more predictable path as the path of least resistance because, typically, the alternate direction requires more energy.
+
+### Factors Influencing the Rate of Chemical Reactions
+
+If you pour vinegar into baking soda, the reaction is instantaneous; the concoction will bubble and fizz. But many chemical reactions take time. A variety of factors influence the rate of chemical reactions. This section, however, will consider only the most important in human functioning.
+
+#### Properties of the Reactants
+
+If chemical reactions are to occur quickly, the atoms in the reactants have to have easy access to one another. Thus, the greater the surface area of the reactants, the more readily they will interact. When you pop a cube of cheese into your mouth, you chew it before you swallow it. Among other things, chewing increases the surface area of the food so that digestive chemicals can more easily get at it. As a general rule, gases tend to react faster than liquids or solids, again because it takes energy to separate particles of a substance, and gases by definition already have space between their particles. Similarly, the larger the molecule, the greater the number of total bonds, so reactions involving smaller molecules, with fewer total bonds, would be expected to proceed faster.
+
+In addition, recall that some elements are more reactive than others. Reactions that involve highly reactive elements like hydrogen proceed more quickly than reactions that involve less reactive elements. Reactions involving stable elements like helium are not likely to happen at all.
+
+#### Temperature
+
+Nearly all chemical reactions occur at a faster rate at higher temperatures. Recall that kinetic energy is the energy of matter in motion. The kinetic energy of subatomic particles increases in response to increases in thermal energy. The higher the temperature, the faster the particles move, and the more likely they are to come in contact and react.
+
+#### Concentration and Pressure
+
+If just a few people are dancing at a club, they are unlikely to step on each other’s toes. But as more and more people get up to dance—especially if the music is fast—collisions are likely to occur. It is the same with chemical reactions: the more particles present within a given space, the more likely those particles are to bump into one another. This means that chemists can speed up chemical reactions not only by increasing the concentration of particles—the number of particles in the space—but also by decreasing the volume of the space, which would correspondingly increase the pressure. If there were 100 dancers in that club, and the manager abruptly moved the party to a room half the size, the concentration of the dancers would double in the new space, and the likelihood of collisions would increase accordingly.
+
+#### Enzymes and Other Catalysts
+
+For two chemicals in nature to react with each other they first have to come into contact, and this occurs through random collisions. Because heat helps increase the kinetic energy of atoms, ions, and molecules, it promotes their collision. But in the body, extremely high heat—such as a very high fever—can damage body cells and be life-threatening. On the other hand, normal body temperature is not high enough to promote the chemical reactions that sustain life. That is where catalysts come in.
+
+In chemistry, a catalyst is a substance that increases the rate of a chemical reaction without itself undergoing any change. You can think of a catalyst as a chemical change agent. They help increase the rate and force at which atoms, ions, and molecules collide, thereby increasing the probability that their valence shell electrons will interact.
+
+The most important catalysts in the human body are enzymes. An enzyme is a catalyst composed of protein or ribonucleic acid (RNA), both of which will be discussed later in this chapter. Like all catalysts, enzymes work by lowering the level of energy that needs to be invested in a chemical reaction. A chemical reaction’s activation energy is the “threshold” level of energy needed to break the bonds in the reactants. Once those bonds are broken, new arrangements can form. Without an enzyme to act as a catalyst, a much larger investment of energy is needed to ignite a chemical reaction ([Figure 2.13](<2-3-chemical-reactions#fig-ch02_03_02>)).
+
+![The left panel shows a graph of energy versus progress of reaction in the absence of enzymes. The right panel shows the graph in the presence of enzymes.](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/77a7e797a22d00222941ae465b25152baf562628) Figure  2.13 Enzymes  Enzymes decrease the activation energy required for a given chemical reaction to occur. (a) Without an enzyme, the energy input needed for a reaction to begin is high. (b) With the help of an enzyme, less energy is needed for a reaction to begin.
+
+Enzymes are critical to the body’s healthy functioning. They assist, for example, with the breakdown of food and its conversion to energy. In fact, most of the chemical reactions in the body are facilitated by enzymes.
+

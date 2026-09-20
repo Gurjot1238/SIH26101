@@ -1,0 +1,197 @@
+{
+  "module_id": "wtcs-nursing-management-m05",
+  "questions": [
+    {
+      "question_id": "wtcs-nursing-management-m05-l01-q01",
+      "question": "According to the source lesson '5.1 Legal Implications Introduction', which statement is most accurate?",
+      "options": [
+        "Learning Objectives * Examine competent practice within the legal framework of health care * Analyze legal dilemmas of nursing practice utilizing professional and industry standards * Examine how negligence and malpractice apply to nursing ",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m05-l01-q02",
+      "question": "What is a reasonable learning takeaway from '5.1 Legal Implications Introduction'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 5.1 Legal Implications Introduction.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m05-l01-q03",
+      "question": "When applying concepts from '5.1 Legal Implications Introduction', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m05-l02-q01",
+      "question": "According to the source lesson '5.2 Understanding the Legal System', which statement is most accurate?",
+      "options": [
+        "Understanding the Legal System There are several types of laws and regulations that affect nursing practice.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m05-l02-q02",
+      "question": "What is a reasonable learning takeaway from '5.2 Understanding the Legal System'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 5.2 Understanding the Legal System.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m05-l02-q03",
+      "question": "When applying concepts from '5.2 Understanding the Legal System', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m05-l03-q01",
+      "question": "According to the source lesson '5.3 Professional Liability and Your Nursing License', which statement is most accurate?",
+      "options": [
+        "As discussed in the previous sections, professional liability occurs when a civil lawsuit compensates clients who allege they have suffered injury or damage as a result of professional negligence.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m05-l03-q02",
+      "question": "What is a reasonable learning takeaway from '5.3 Professional Liability and Your Nursing License'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 5.3 Professional Liability and Your Nursing License.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m05-l03-q03",
+      "question": "When applying concepts from '5.3 Professional Liability and Your Nursing License', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m05-l04-q01",
+      "question": "According to the source lesson '5.4 Frequent Allegations and SBON Investigations', which statement is most accurate?",
+      "options": [
+        "The Nurses Service Organization (NSO) reported the three most common allegations resulting in state board investigations in 2020 were related to the categories of professional conduct, scope of practice, and documentation errors or omission",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m05-l04-q02",
+      "question": "What is a reasonable learning takeaway from '5.4 Frequent Allegations and SBON Investigations'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 5.4 Frequent Allegations and SBON Investigations.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-management-m05-l04-q03",
+      "question": "When applying concepts from '5.4 Frequent Allegations and SBON Investigations', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Healthcare Information Systems",
+      "topic": "leadership",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

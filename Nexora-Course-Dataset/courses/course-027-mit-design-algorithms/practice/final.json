@@ -1,0 +1,197 @@
+{
+  "course_id": "mit-6-046-algorithms",
+  "questions": [
+    {
+      "question_id": "mit-6-046-algorithms-m01-l01-q01",
+      "question": "According to the source lesson 'ff2a7015ff913fc01f0381d8f5126a9a MIT6 046JS15 lec01', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource ff2a7015ff913fc01f0381d8f5126a9a_MIT6_046JS15_lec01.pdf from 6.046J Design and Analysis of Algorithms.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "amortized analysis",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-046-algorithms-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'ff2a7015ff913fc01f0381d8f5126a9a MIT6 046JS15 lec01'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in ff2a7015ff913fc01f0381d8f5126a9a MIT6 046JS15 lec01.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "amortized analysis",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-046-algorithms-m01-l01-q03",
+      "question": "When applying concepts from 'ff2a7015ff913fc01f0381d8f5126a9a MIT6 046JS15 lec01', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "amortized analysis",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-046-algorithms-m01-l02-q01",
+      "question": "According to the source lesson '009c51db8900141fb181971f2bb826f3 MIT6 046JS15 writtenlec1', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 009c51db8900141fb181971f2bb826f3_MIT6_046JS15_writtenlec1.pdf from 6.046J Design and Analysis of Algorithms.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "amortized analysis",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-046-algorithms-m02-l01-q01",
+      "question": "According to the source lesson '3dc84e78914f226665357234d6f4e25c MIT6 046JS15 lec03', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 3dc84e78914f226665357234d6f4e25c_MIT6_046JS15_lec03.pdf from 6.046J Design and Analysis of Algorithms.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "amortized analysis",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-046-algorithms-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from '3dc84e78914f226665357234d6f4e25c MIT6 046JS15 lec03'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3dc84e78914f226665357234d6f4e25c MIT6 046JS15 lec03.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "amortized analysis",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-046-algorithms-m02-l01-q03",
+      "question": "When applying concepts from '3dc84e78914f226665357234d6f4e25c MIT6 046JS15 lec03', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "amortized analysis",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-046-algorithms-m02-l02-q01",
+      "question": "According to the source lesson 'da0bca8839760018d580ccab98f3e3e1 MIT6 046JS15 writtenlec3', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource da0bca8839760018d580ccab98f3e3e1_MIT6_046JS15_writtenlec3.pdf from 6.046J Design and Analysis of Algorithms.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "amortized analysis",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-046-algorithms-m03-l01-q01",
+      "question": "According to the source lesson '13e2c7d165259712327af0af312a068e MIT6 046JS15 lec05', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 13e2c7d165259712327af0af312a068e_MIT6_046JS15_lec05.pdf from 6.046J Design and Analysis of Algorithms.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "amortized analysis",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-046-algorithms-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from '13e2c7d165259712327af0af312a068e MIT6 046JS15 lec05'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 13e2c7d165259712327af0af312a068e MIT6 046JS15 lec05.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "amortized analysis",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-046-algorithms-m03-l01-q03",
+      "question": "When applying concepts from '13e2c7d165259712327af0af312a068e MIT6 046JS15 lec05', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "amortized analysis",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-046-algorithms-m03-l02-q01",
+      "question": "According to the source lesson 'c4f64b6049a576654cc89f8449b8b6ea MIT6 046JS15 writtenlec5', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource c4f64b6049a576654cc89f8449b8b6ea_MIT6_046JS15_writtenlec5.pdf from 6.046J Design and Analysis of Algorithms.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Algorithms",
+      "topic": "amortized analysis",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "course_id": "wtcs-nursing-advanced-skills",
+  "provider": "Wisconsin Technical College System / Open RN",
+  "source_url": "https://wtcs.pressbooks.pub/nursingadvancedskills/",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "date_collected": "2026-09-20",
+  "reuse_permissions": "CC BY 4.0 permits copy and redistribution with attribution.",
+  "changes_made": [
+    "Downloaded Pressbooks chapter HTML and converted to Markdown lessons",
+    "Grouped original book parts as modules",
+    "Added Nexora-generated practice questions grounded in chapter text",
+    "Omitted glossary/preface/index pages"
+  ]
+}

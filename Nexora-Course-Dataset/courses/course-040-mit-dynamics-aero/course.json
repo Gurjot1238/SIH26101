@@ -1,0 +1,266 @@
+{
+  "course_id": "mit-16-07-dynamics",
+  "title": "16.07 Dynamics",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Aerospace Engineering",
+  "level": "Intermediate",
+  "description": "MIT OpenCourseWare 16.07 Dynamics (Fall 2009). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Aerospace Engineering",
+    "Dynamics",
+    "Mechanics"
+  ],
+  "topics": [
+    "particles",
+    "rigid bodies",
+    "orbital mechanics"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/16-07-dynamics-fall-2009/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Fall 2009",
+  "duration": {
+    "estimated_hours": 6.5,
+    "estimated_minutes": 391
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 10,
+    "practice_questions": 30
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-16-07-dynamics-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Aerospace Engineering",
+        "Dynamics",
+        "Mechanics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-16-07-dynamics-m01-l01",
+          "title": "2ebdf0f79724d62c7f183da7db44a0a2 07F09 Lec31",
+          "type": "pdf",
+          "content_file": "content/module-01/2ebdf0f79724d62c7f183da7db44a0a2_MIT16_07F09_Lec31.pdf",
+          "practice_file": "practice/mit-16-07-dynamics-m01-l01.json",
+          "estimated_minutes": 29,
+          "objectives": [],
+          "competencies": [
+            "Aerospace Engineering",
+            "Dynamics"
+          ],
+          "topics": [
+            "particles",
+            "rigid bodies",
+            "orbital mechanics"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-16-07-dynamics-m01-l02",
+          "title": "0d47b4e85e3fe2bd2ea002a2480c60b7 07F09 Lec32",
+          "type": "pdf",
+          "content_file": "content/module-01/0d47b4e85e3fe2bd2ea002a2480c60b7_MIT16_07F09_Lec32.pdf",
+          "practice_file": "practice/mit-16-07-dynamics-m01-l02.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Aerospace Engineering",
+            "Dynamics"
+          ],
+          "topics": [
+            "particles",
+            "rigid bodies",
+            "orbital mechanics"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-16-07-dynamics-m01-l03",
+          "title": "a7d3fdf39ebfc41d620a7c43a8c47afa 07F09 Lec01",
+          "type": "pdf",
+          "content_file": "content/module-01/a7d3fdf39ebfc41d620a7c43a8c47afa_MIT16_07F09_Lec01.pdf",
+          "practice_file": "practice/mit-16-07-dynamics-m01-l03.json",
+          "estimated_minutes": 29,
+          "objectives": [],
+          "competencies": [
+            "Aerospace Engineering",
+            "Dynamics"
+          ],
+          "topics": [
+            "particles",
+            "rigid bodies",
+            "orbital mechanics"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-16-07-dynamics-m01-l04",
+          "title": "dc2d8891fa0c377593b277b49271c00e 07F09 Lec02",
+          "type": "pdf",
+          "content_file": "content/module-01/dc2d8891fa0c377593b277b49271c00e_MIT16_07F09_Lec02.pdf",
+          "practice_file": "practice/mit-16-07-dynamics-m01-l04.json",
+          "estimated_minutes": 43,
+          "objectives": [],
+          "competencies": [
+            "Aerospace Engineering",
+            "Dynamics"
+          ],
+          "topics": [
+            "particles",
+            "rigid bodies",
+            "orbital mechanics"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-16-07-dynamics-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Aerospace Engineering",
+        "Dynamics",
+        "Mechanics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-16-07-dynamics-m02-l01",
+          "title": "66b42ce6c35f2757ad11dc0a6e2b2896 07F09 Lec03",
+          "type": "pdf",
+          "content_file": "content/module-02/66b42ce6c35f2757ad11dc0a6e2b2896_MIT16_07F09_Lec03.pdf",
+          "practice_file": "practice/mit-16-07-dynamics-m02-l01.json",
+          "estimated_minutes": 58,
+          "objectives": [],
+          "competencies": [
+            "Aerospace Engineering",
+            "Dynamics"
+          ],
+          "topics": [
+            "particles",
+            "rigid bodies",
+            "orbital mechanics"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-16-07-dynamics-m02-l02",
+          "title": "e2c57643d3d1634d23d8eb1ebd77800b 07F09 Lec04",
+          "type": "pdf",
+          "content_file": "content/module-02/e2c57643d3d1634d23d8eb1ebd77800b_MIT16_07F09_Lec04.pdf",
+          "practice_file": "practice/mit-16-07-dynamics-m02-l02.json",
+          "estimated_minutes": 23,
+          "objectives": [],
+          "competencies": [
+            "Aerospace Engineering",
+            "Dynamics"
+          ],
+          "topics": [
+            "particles",
+            "rigid bodies",
+            "orbital mechanics"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-16-07-dynamics-m02-l03",
+          "title": "57081b546fff23e6b88dbac0ab859c7d 07F09 Lec05",
+          "type": "pdf",
+          "content_file": "content/module-02/57081b546fff23e6b88dbac0ab859c7d_MIT16_07F09_Lec05.pdf",
+          "practice_file": "practice/mit-16-07-dynamics-m02-l03.json",
+          "estimated_minutes": 31,
+          "objectives": [],
+          "competencies": [
+            "Aerospace Engineering",
+            "Dynamics"
+          ],
+          "topics": [
+            "particles",
+            "rigid bodies",
+            "orbital mechanics"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-16-07-dynamics-m02-l04",
+          "title": "84852a46fa77de9a750245ceb761255a 07F09 Lec06",
+          "type": "pdf",
+          "content_file": "content/module-02/84852a46fa77de9a750245ceb761255a_MIT16_07F09_Lec06.pdf",
+          "practice_file": "practice/mit-16-07-dynamics-m02-l04.json",
+          "estimated_minutes": 33,
+          "objectives": [],
+          "competencies": [
+            "Aerospace Engineering",
+            "Dynamics"
+          ],
+          "topics": [
+            "particles",
+            "rigid bodies",
+            "orbital mechanics"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-16-07-dynamics-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Aerospace Engineering",
+        "Dynamics",
+        "Mechanics"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-16-07-dynamics-m03-l01",
+          "title": "2d73fa40b6226120aa190632c1c18a1d 07F09 Lec07",
+          "type": "pdf",
+          "content_file": "content/module-03/2d73fa40b6226120aa190632c1c18a1d_MIT16_07F09_Lec07.pdf",
+          "practice_file": "practice/mit-16-07-dynamics-m03-l01.json",
+          "estimated_minutes": 34,
+          "objectives": [],
+          "competencies": [
+            "Aerospace Engineering",
+            "Dynamics"
+          ],
+          "topics": [
+            "particles",
+            "rigid bodies",
+            "orbital mechanics"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-16-07-dynamics-m03-l02",
+          "title": "1b1825352e94d42461eb576b540b2f23 07F09 Lec08",
+          "type": "pdf",
+          "content_file": "content/module-03/1b1825352e94d42461eb576b540b2f23_MIT16_07F09_Lec08.pdf",
+          "practice_file": "practice/mit-16-07-dynamics-m03-l02.json",
+          "estimated_minutes": 31,
+          "objectives": [],
+          "competencies": [
+            "Aerospace Engineering",
+            "Dynamics"
+          ],
+          "topics": [
+            "particles",
+            "rigid bodies",
+            "orbital mechanics"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

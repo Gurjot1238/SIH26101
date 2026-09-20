@@ -55,6 +55,8 @@ export const LIMITS = {
   maxAttemptsPerUser: 200,
   maxCoursesPerUser: 50,
   maxModulesPerCourse: 60,
+  /** Dataset courses track completion per lesson; the largest has well under this. */
+  maxLessonsPerCourse: 400,
   defaultHistory: 50,
   /** How many recent attempts GET /api/progress inlines, so one request fills a page. */
   inlineHistory: 20,
@@ -400,9 +402,15 @@ export function validatePreferences(patch, current) {
 
 /* ------------------------------------------------------------ course progress */
 
-const COURSE_KEYS = ['courseId', 'saved', 'started', 'completedModules'];
-/** Slug shape only. The catalogue itself lives in the app, not here. */
-const COURSE_ID = /^[a-z0-9][a-z0-9-]{0,39}$/;
+const COURSE_KEYS = ['courseId', 'saved', 'started', 'completedModules', 'completedLessons'];
+/**
+ * Slug shape only. The catalogue itself lives in the app / dataset, not here.
+ * Widened to 64 chars so dataset course ids (e.g. the longer MIT titles) fit; the
+ * dataset reader in courses.mjs uses the same bound.
+ */
+const COURSE_ID = /^[a-z0-9][a-z0-9-]{0,63}$/;
+/** A lesson id from the dataset, e.g. "mit-6-006-algorithms-m01-l01". */
+const LESSON_ID = /^[a-z0-9][a-z0-9-]{0,79}$/;
 
 /**
  * Merge a patch into one course record. Which courses exist is the app's
@@ -425,6 +433,7 @@ export function validateCourseUpdate(body, current, now) {
     saved: previous.saved === true,
     startedAt: previous.startedAt ?? null,
     completedModules: Array.isArray(previous.completedModules) ? previous.completedModules : [],
+    completedLessons: Array.isArray(previous.completedLessons) ? previous.completedLessons : [],
     updatedAt: now,
   };
 
@@ -437,6 +446,12 @@ export function validateCourseUpdate(body, current, now) {
   if (Object.hasOwn(body, 'completedModules')) {
     next.completedModules = validateModules(body.completedModules);
     if (next.completedModules.length > 0 && !next.startedAt) next.startedAt = now;
+  }
+  if (Object.hasOwn(body, 'completedLessons')) {
+    // The dataset courses track completion per lesson id, which is what the
+    // completion percentage divides into. Marking any lesson done implies started.
+    next.completedLessons = validateLessons(body.completedLessons);
+    if (next.completedLessons.length > 0 && !next.startedAt) next.startedAt = now;
   }
   return next;
 }
@@ -453,17 +468,42 @@ function validateModules(value) {
   return [...out].sort((a, b) => a - b);
 }
 
+/**
+ * Completed lesson ids, de-duplicated and shape-checked. Ids are opaque to the
+ * server — which lessons exist is the dataset's business — so this only enforces
+ * the slug shape (so a hand-edited file cannot smuggle in a `__proto__`-style key
+ * or an unbounded blob) and the per-course cap. Sorted so the stored row is stable.
+ */
+function validateLessons(value) {
+  if (!Array.isArray(value)) throw fieldError('completedLessons', 'Completed lessons must be a list of lesson ids.');
+  if (value.length > LIMITS.maxLessonsPerCourse) {
+    throw fieldError('completedLessons', `A course can track at most ${LIMITS.maxLessonsPerCourse} lessons.`);
+  }
+  const out = new Set();
+  for (const entry of value) {
+    if (typeof entry !== 'string' || !LESSON_ID.test(entry)) {
+      throw fieldError('completedLessons', 'Each lesson id must be a lowercase slug.');
+    }
+    out.add(entry);
+  }
+  return [...out].sort();
+}
+
 /** One stored course record, rebuilt field by field. Same reasoning as preferences. */
 function normalizeCourse(courseId, stored) {
   const raw = stored !== null && typeof stored === 'object' && !Array.isArray(stored) ? stored : {};
   const modules = Array.isArray(raw.completedModules)
     ? [...new Set(raw.completedModules.filter((n) => Number.isInteger(n) && n >= 0 && n < LIMITS.maxModulesPerCourse))]
     : [];
+  const lessons = Array.isArray(raw.completedLessons)
+    ? [...new Set(raw.completedLessons.filter((id) => typeof id === 'string' && LESSON_ID.test(id)))].slice(0, LIMITS.maxLessonsPerCourse)
+    : [];
   return {
     courseId,
     saved: raw.saved === true,
     startedAt: typeof raw.startedAt === 'string' ? raw.startedAt : null,
     completedModules: modules.sort((a, b) => a - b),
+    completedLessons: lessons.sort(),
     updatedAt: typeof raw.updatedAt === 'string' ? raw.updatedAt : null,
   };
 }

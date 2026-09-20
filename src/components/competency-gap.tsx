@@ -52,7 +52,13 @@ function Tally({ label, value, note, tone }: { label: string; value: string; not
   </div>;
 }
 
-export function CompetencyGapSection() {
+/**
+ * `refreshKey` lets a parent force a re-fetch after it knows the data changed — e.g. the
+ * quiz result screen bumps it once the just-finished attempt has been saved, so the gaps
+ * shown include that sitting rather than the state from before it. Omitted on the
+ * Dashboard, where a mount is always fresh.
+ */
+export function CompetencyGapSection({ refreshKey = 0 }: { refreshKey?: number } = {}) {
   const [analytics, setAnalytics] = useState<CompetencyAnalytics | null>(null);
   const [status, setStatus] = useState<'loading' | 'ready' | 'unavailable'>('loading');
   const [problem, setProblem] = useState('');
@@ -78,7 +84,7 @@ export function CompetencyGapSection() {
         setStatus('unavailable');
       });
     return () => { live = false; };
-  }, []);
+  }, [refreshKey]);
 
   const rows = analytics?.competencies ?? [];
   const chosen = useMemo(

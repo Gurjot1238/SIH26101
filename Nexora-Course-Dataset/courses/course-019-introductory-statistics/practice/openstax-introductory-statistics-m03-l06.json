@@ -1,0 +1,53 @@
+{
+  "lesson_id": "openstax-introductory-statistics-m03-l06",
+  "questions": [
+    {
+      "question_id": "openstax-introductory-statistics-m03-l06-q01",
+      "question": "According to the source lesson '3.5 Tree and Venn Diagrams', which statement is most accurate?",
+      "options": [
+        "## 3.5 Tree and Venn Diagrams Sometimes, when the probability problems are complex, it can be helpful to graph the situation.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "descriptive statistics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-introductory-statistics-m03-l06-q02",
+      "question": "What is a reasonable learning takeaway from '3.5 Tree and Venn Diagrams'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.5 Tree and Venn Diagrams.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "descriptive statistics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-introductory-statistics-m03-l06-q03",
+      "question": "When applying concepts from '3.5 Tree and Venn Diagrams', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "descriptive statistics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

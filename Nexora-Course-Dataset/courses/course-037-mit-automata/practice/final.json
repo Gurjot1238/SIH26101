@@ -1,0 +1,197 @@
+{
+  "course_id": "mit-6-045-automata",
+  "questions": [
+    {
+      "question_id": "mit-6-045-automata-m01-l01-q01",
+      "question": "According to the source lesson 'f8bd1e6b44d84dad58f4a5c6a427a1e6 MIT6 045JS11 lec01', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource f8bd1e6b44d84dad58f4a5c6a427a1e6_MIT6_045JS11_lec01.pdf from 6.045J Automata, Computability, and Complexity.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Theory of Computation",
+      "topic": "automata",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-045-automata-m01-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'f8bd1e6b44d84dad58f4a5c6a427a1e6 MIT6 045JS11 lec01'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in f8bd1e6b44d84dad58f4a5c6a427a1e6 MIT6 045JS11 lec01.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Theory of Computation",
+      "topic": "automata",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-045-automata-m01-l01-q03",
+      "question": "When applying concepts from 'f8bd1e6b44d84dad58f4a5c6a427a1e6 MIT6 045JS11 lec01', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Theory of Computation",
+      "topic": "automata",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-045-automata-m01-l02-q01",
+      "question": "According to the source lesson '83b3afc5b32d8c4b239534d423cd7023 MIT6 045JS11 lec02', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 83b3afc5b32d8c4b239534d423cd7023_MIT6_045JS11_lec02.pdf from 6.045J Automata, Computability, and Complexity.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Theory of Computation",
+      "topic": "automata",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-045-automata-m02-l01-q01",
+      "question": "According to the source lesson '92a359d37025e9b216256bba46a4eee1 MIT6 045JS11 lec05', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 92a359d37025e9b216256bba46a4eee1_MIT6_045JS11_lec05.pdf from 6.045J Automata, Computability, and Complexity.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Theory of Computation",
+      "topic": "automata",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-045-automata-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from '92a359d37025e9b216256bba46a4eee1 MIT6 045JS11 lec05'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 92a359d37025e9b216256bba46a4eee1 MIT6 045JS11 lec05.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Theory of Computation",
+      "topic": "automata",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-045-automata-m02-l01-q03",
+      "question": "When applying concepts from '92a359d37025e9b216256bba46a4eee1 MIT6 045JS11 lec05', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Theory of Computation",
+      "topic": "automata",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-045-automata-m02-l02-q01",
+      "question": "According to the source lesson 'd6c18e634cdf3363ecac909bd2958b8b MIT6 045JS11 lec06', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource d6c18e634cdf3363ecac909bd2958b8b_MIT6_045JS11_lec06.pdf from 6.045J Automata, Computability, and Complexity.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Theory of Computation",
+      "topic": "automata",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-045-automata-m03-l01-q01",
+      "question": "According to the source lesson '7aead2c728dd3d5a737d832811ef97e6 MIT6 045JS11 lec09', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 7aead2c728dd3d5a737d832811ef97e6_MIT6_045JS11_lec09.pdf from 6.045J Automata, Computability, and Complexity.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Theory of Computation",
+      "topic": "automata",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-045-automata-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from '7aead2c728dd3d5a737d832811ef97e6 MIT6 045JS11 lec09'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 7aead2c728dd3d5a737d832811ef97e6 MIT6 045JS11 lec09.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Theory of Computation",
+      "topic": "automata",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-045-automata-m03-l01-q03",
+      "question": "When applying concepts from '7aead2c728dd3d5a737d832811ef97e6 MIT6 045JS11 lec09', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Theory of Computation",
+      "topic": "automata",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-6-045-automata-m03-l02-q01",
+      "question": "According to the source lesson '2fe1aea3ab4dd67aff81f2a04fc010ef MIT6 045JS11 lec10', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 2fe1aea3ab4dd67aff81f2a04fc010ef_MIT6_045JS11_lec10.pdf from 6.045J Automata, Computability, and Complexity.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Theory of Computation",
+      "topic": "automata",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

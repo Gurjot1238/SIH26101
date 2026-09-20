@@ -1,0 +1,197 @@
+{
+  "module_id": "openstax-college-algebra-m03",
+  "questions": [
+    {
+      "question_id": "openstax-college-algebra-m03-l01-q01",
+      "question": "According to the source lesson 'Chapter Outline', which statement is most accurate?",
+      "options": [
+        "![Figure of a bull and a graph of market prices.](/apps/image-cdn/v1/f=webp/apps/archive/20260604.144757/resources/be97793ae3e427723869ee41e52cd09a3286f4c1) Standard and Poor’s Index with dividends reinvested (credit \"bull\": modification of",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-algebra-m03-l01-q02",
+      "question": "What is a reasonable learning takeaway from 'Chapter Outline'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Chapter Outline.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-algebra-m03-l01-q03",
+      "question": "When applying concepts from 'Chapter Outline', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-algebra-m03-l02-q01",
+      "question": "According to the source lesson '3.1 Functions and Function Notation', which statement is most accurate?",
+      "options": [
+        "## 3.1 Functions and Function Notation ### Learning Objectives In this section, you will: * Determine whether a relation represents a function.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-algebra-m03-l02-q02",
+      "question": "What is a reasonable learning takeaway from '3.1 Functions and Function Notation'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.1 Functions and Function Notation.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-algebra-m03-l02-q03",
+      "question": "When applying concepts from '3.1 Functions and Function Notation', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-algebra-m03-l03-q01",
+      "question": "According to the source lesson '3.2 Domain and Range', which statement is most accurate?",
+      "options": [
+        "## 3.2 Domain and Range ### Learning Objectives In this section, you will: * Find the domain of a function defined by an equation.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-algebra-m03-l03-q02",
+      "question": "What is a reasonable learning takeaway from '3.2 Domain and Range'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.2 Domain and Range.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-algebra-m03-l03-q03",
+      "question": "When applying concepts from '3.2 Domain and Range', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-algebra-m03-l04-q01",
+      "question": "According to the source lesson '3.3 Rates of Change and Behavior of Graphs', which statement is most accurate?",
+      "options": [
+        "## 3.3 Rates of Change and Behavior of Graphs ### Learning Objectives In this section, you will: * Find the average rate of change of a function.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-algebra-m03-l04-q02",
+      "question": "What is a reasonable learning takeaway from '3.3 Rates of Change and Behavior of Graphs'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 3.3 Rates of Change and Behavior of Graphs.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openstax-college-algebra-m03-l04-q03",
+      "question": "When applying concepts from '3.3 Rates of Change and Behavior of Graphs', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mathematics",
+      "topic": "functions",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

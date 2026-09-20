@@ -1,0 +1,734 @@
+{
+  "course_id": "wtcs-nursing-advanced-skills",
+  "title": "Nursing Advanced Skills",
+  "provider": "Wisconsin Technical College System / Open RN",
+  "category": "Medical / Healthcare",
+  "subcategory": "Clinical Skills",
+  "level": "Intermediate",
+  "description": "Open textbook / course 'Nursing Advanced Skills' from Wisconsin Technical College System / Open RN. Chapters were downloaded from the openly licensed Pressbooks edition.",
+  "competencies": [
+    "Clinical Nursing Skills",
+    "Patient Safety",
+    "Biomedical Engineering"
+  ],
+  "topics": [
+    "advanced procedures",
+    "infusion therapy",
+    "airway management"
+  ],
+  "source": {
+    "name": "Wisconsin Technical College System / Open RN",
+    "official_url": "https://wtcs.pressbooks.pub/nursingadvancedskills/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 7.2,
+    "estimated_minutes": 435
+  },
+  "totals": {
+    "modules": 4,
+    "lessons": 28,
+    "practice_questions": 84
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "wtcs-nursing-advanced-skills-m01",
+      "title": "Chapter 1 Initiate IV Therapy",
+      "competencies": [
+        "Clinical Nursing Skills",
+        "Patient Safety",
+        "Biomedical Engineering"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m01-l01",
+          "title": "1.1 Introduction",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m01-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Discuss methods for blood sampling",
+            "Compare/contrast management of peripheral venous access devices and central venous access devices",
+            "Review infection control principles associated with peripheral venous access devices",
+            "Explain the principles of peripheral intravenous site selection and contraindications",
+            "Discuss appropriate selection of IV catheter type and size",
+            "Explain nurse management of IV therapy and peripheral IV access devices"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m01-l02",
+          "title": "1.2 Basic Concepts of Venipuncture and Intravenous Therapy",
+          "type": "text",
+          "content_file": "content/module-01/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m01-l02.json",
+          "estimated_minutes": 33,
+          "objectives": [],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m01-l03",
+          "title": "1.3 Peripheral IV Access",
+          "type": "text",
+          "content_file": "content/module-01/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m01-l03.json",
+          "estimated_minutes": 32,
+          "objectives": [],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m01-l04",
+          "title": "1.4 Checklist: Perform Venipuncture Blood Draw",
+          "type": "text",
+          "content_file": "content/module-01/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m01-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Verify the provider's order",
+            "Gather the necessary supplies:",
+            "Antiseptic solution/agent (such as an alcohol wipe, chlorhexidine, or povidone-iodine)",
+            "Needleless blood sampling access device (vacutainer) or syringes",
+            "Venipuncture needle or winged collection device",
+            "Single patient-use tourniquet"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m01-l05",
+          "title": "1.5 Checklist: Perform IV Insertion &amp; IV Removal",
+          "type": "text",
+          "content_file": "content/module-01/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m01-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Verify the provider's order",
+            "Review the patient's medical record for allergies to antiseptic solutions, adhesives, latex, and anesthetic agents. Also, review the medical record for factors that may affect peripheral vasculature",
+            "Gather the necessary supplies:",
+            "Clean/nonsterile gloves",
+            "Single-use tourniquet",
+            "Appropriate type and size of peripheral IV catheter based on patient status"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m01-l06",
+          "title": "1.6 Documentation for IV Initiation",
+          "type": "text",
+          "content_file": "content/module-01/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m01-l06.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Documentation Cues:** Accurate and complete documentation regarding IV initiation should include the following:",
+            "Date/Time of procedure",
+            "Manufacturer’s brand name of device",
+            "Gauge and length of device",
+            "Location of the accessed vein",
+            "Use of local anesthetic"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m01-l07",
+          "title": "1.7 Specialized Infusions",
+          "type": "text",
+          "content_file": "content/module-01/lesson-07.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m01-l07.json",
+          "estimated_minutes": 17,
+          "objectives": [],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m01-l08",
+          "title": "1.8 Learning Activities",
+          "type": "text",
+          "content_file": "content/module-01/lesson-08.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m01-l08.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Start a peripheral IV STAT",
+            "Administer diphenhydramine 25 mg IV now and q8h prn for rash"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-advanced-skills-m02",
+      "title": "Chapter 2 Administer IV Push Medications",
+      "competencies": [
+        "Clinical Nursing Skills",
+        "Patient Safety",
+        "Biomedical Engineering"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m02-l01",
+          "title": "2.1 Introduction",
+          "type": "text",
+          "content_file": "content/module-02/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m02-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Explain the advantages, disadvantages, and precautions associated with IV medication administration",
+            "Identify information that must be checked before an IV push medication is administered",
+            "Define \"speed shock\" and measures to prevent it from occurring",
+            "Compare the procedure for administering an IV push medication through a primary IV line versus through a saline lock"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m02-l02",
+          "title": "2.2 Basic Concepts of IV Push Medication",
+          "type": "text",
+          "content_file": "content/module-02/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m02-l02.json",
+          "estimated_minutes": 19,
+          "objectives": [],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m02-l03",
+          "title": "2.3 Equipment",
+          "type": "text",
+          "content_file": "content/module-02/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m02-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m02-l04",
+          "title": "2.4 Applying the Nursing Process",
+          "type": "text",
+          "content_file": "content/module-02/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m02-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m02-l05",
+          "title": "2.5 Checklist: Administer IV Push Medications",
+          "type": "text",
+          "content_file": "content/module-02/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m02-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Verify the provider’s order",
+            "Gather and prepare the necessary equipment: syringe, medication, saline flushes, antiseptic pads, and needle/vial access device",
+            "If medication preparation is required, do so in a designated clean, quiet environment away from sinks using the aseptic non-touch technique (ANTT).[5]",
+            "Check the expiration date on the medication. If it's expired, return it to the pharmacy and obtain new medication. Inspect the medication for discoloration or compromised integrity",
+            "Verify the medication can be given by IV push based on agency policy",
+            "Perform hand hygiene"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m02-l06",
+          "title": "2.6 Documentation",
+          "type": "text",
+          "content_file": "content/module-02/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m02-l06.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "When performing IV push medication administration, documentation must include the following components:",
+            "Date/Time of administration",
+            "Medication amount and dose",
+            "Administration route and rate",
+            "Indication for medication",
+            "Patient assessments related to medication"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m02-l07",
+          "title": "2.7 Learning Activities",
+          "type": "text",
+          "content_file": "content/module-02/lesson-07.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m02-l07.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Start a peripheral IV STAT",
+            "Administer metoprolol 5 mg rapid IV q2min, up to 3 doses for chest pain and MI symptoms",
+            "Indication and action of medication",
+            "Onset, peak, and duration of the medication",
+            "Nursing considerations or special instructions for use"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-advanced-skills-m03",
+      "title": "Chapter 3 Administer Blood Products",
+      "competencies": [
+        "Clinical Nursing Skills",
+        "Patient Safety",
+        "Biomedical Engineering"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m03-l01",
+          "title": "3.1 Introduction",
+          "type": "text",
+          "content_file": "content/module-03/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m03-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Describe the types of blood products prescribed for common conditions",
+            "Explain how a person’s ABO blood type and Rh factor impact blood product compatibility",
+            "Describe transfusion reactions and their treatments",
+            "Apply evidence-based guidelines for the safe administration of blood products",
+            "Apply the nursing process to prevent, identify, and treat potential complications associated with blood administration",
+            "Describe autologous blood donation"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m03-l02",
+          "title": "3.2 Basic Concepts",
+          "type": "text",
+          "content_file": "content/module-03/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m03-l02.json",
+          "estimated_minutes": 29,
+          "objectives": [],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m03-l03",
+          "title": "3.3 Applying the Nursing Process",
+          "type": "text",
+          "content_file": "content/module-03/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m03-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m03-l04",
+          "title": "3.4 Checklist: Administer Blood Products",
+          "type": "text",
+          "content_file": "content/module-03/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m03-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Verify the provider's order. Confirm the order and the medical record are labeled with the client's first and last name and assigned identification number",
+            "Unless the transfusion is an emergency, confirm the provider has obtained written informed consent before initiating transfusion therapy and the consent is in the client's medical record",
+            "Review prescribed medications to be administered before, during, and after the transfusion",
+            "Ensure that a blood sample was obtained for compatibility testing according to agency policy, typically within the past 72 hours. Obtain a blood sample if needed",
+            "Ensure the agency's transfusion services receives a request with the client's first and last name, an identification number, the prescribed blood component and amount ordered, and the name of the provider",
+            "Gather the necessary equipment:"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m03-l05",
+          "title": "3.5 Documentation",
+          "type": "text",
+          "content_file": "content/module-03/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m03-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "All aspects of the administration of blood products are documented. Documentation must minimally include the following components:",
+            "Date and time that the blood transfusion began",
+            "Name of the second nurse who did the two-person verification process",
+            "Name and amount of the specific type of transfusion (for example, 1 unit of packed red blood cells)",
+            "Blood product number",
+            "Confirmation that written informed consent was obtained"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m03-l06",
+          "title": "3.6 Learning Activities",
+          "type": "text",
+          "content_file": "content/module-03/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m03-l06.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Administer 2U PRBCs today",
+            "Type and cross-match now",
+            "Administer furosemide 20 mg IV now and between units of blood"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "wtcs-nursing-advanced-skills-m04",
+      "title": "Chapter 4 Manage Central Lines",
+      "competencies": [
+        "Clinical Nursing Skills",
+        "Patient Safety",
+        "Biomedical Engineering"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m04-l01",
+          "title": "4.1 Introduction",
+          "type": "text",
+          "content_file": "content/module-04/lesson-01.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m04-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Outline indications for insertion of a central venous access device (CVAD)",
+            "Compare and contrast the various types of CVADs and where they are inserted",
+            "Describe the processes of verifying placement and securing a CVAD",
+            "Describe infection control techniques to prevent infections associated with CVADs",
+            "Identify potential complications associated with CVADs, prevention, and related nursing interventions",
+            "Discuss how to safely change CVAD dressings and needleless connectors"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m04-l02",
+          "title": "4.2 Basic Concepts",
+          "type": "text",
+          "content_file": "content/module-04/lesson-02.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m04-l02.json",
+          "estimated_minutes": 24,
+          "objectives": [],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m04-l03",
+          "title": "4.3 Applying the Nursing Process",
+          "type": "text",
+          "content_file": "content/module-04/lesson-03.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m04-l03.json",
+          "estimated_minutes": 29,
+          "objectives": [
+            "Providing for ongoing assessment of the insertion site and the infusion system to ensure it is functioning as expected",
+            "Performing CVAD dressing changes while ensuring catheter stabilization",
+            "Performing intravenous line care and management",
+            "Flushing and locking CVADs",
+            "De-accessing inserted and implanted CVADs",
+            "Performing blood sampling from a CVAD"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m04-l04",
+          "title": "4.4 Checklist: Change a CVAD Dressing and Needleless Connector",
+          "type": "text",
+          "content_file": "content/module-04/lesson-04.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m04-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Review the client's medical record for information related to the central venous access device and indications",
+            "Determine the date of the last dressing change",
+            "Gather the necessary equipment:",
+            "Antiseptic (chlorhexidine preferred)",
+            "Sterile transparent semipermeable dressing (may be chlorhexidine-impregnated) or sterile 4” × 4” (10-cm × 10-cm) gauze pad",
+            "Alcohol-free skin barrier solution"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m04-l05",
+          "title": "4.5 Checklist: Obtain a Blood Sample From a CVAD",
+          "type": "text",
+          "content_file": "content/module-04/lesson-05.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m04-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Verify the provider's order",
+            "Gather the necessary equipment:",
+            "Antiseptic pads or scrubs (chlorhexidine-based, povidone-iodine, or alcohol)",
+            "Appropriately sized syringes or needleless blood collection tube holder",
+            "Blood collection tubes",
+            "Laboratory biohazard transport bag"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m04-l06",
+          "title": "4.6 Checklist: Access an Implanted Venous Access Device",
+          "type": "text",
+          "content_file": "content/module-04/lesson-06.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m04-l06.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Checklist: Access an Implanted Venous Access Device**[1],[2]",
+            "Review the client's medical record for information about the implanted venous access device. Determine if the device is \"power injectable.\"",
+            "Ensure confirmation of catheter tip placement",
+            "Verify the provider’s order if required by the facility",
+            "Determine whether the client has a history of allergies or contraindications to the antiseptic, anesthetic, or prescribed solution",
+            "Gather the necessary equipment:"
+          ],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "wtcs-nursing-advanced-skills-m04-l07",
+          "title": "4.7 Documentation",
+          "type": "text",
+          "content_file": "content/module-04/lesson-07.md",
+          "practice_file": "practice/wtcs-nursing-advanced-skills-m04-l07.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Clinical Nursing Skills",
+            "Patient Safety"
+          ],
+          "topics": [
+            "advanced procedures",
+            "infusion therapy",
+            "airway management"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

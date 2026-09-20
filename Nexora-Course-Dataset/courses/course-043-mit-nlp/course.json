@@ -1,0 +1,267 @@
+{
+  "course_id": "mit-6-864-nlp",
+  "title": "6.864 Advanced Natural Language Processing",
+  "provider": "Massachusetts Institute of Technology",
+  "category": "Technology",
+  "subcategory": "Natural Language Processing",
+  "level": "Advanced",
+  "description": "MIT OpenCourseWare 6.864 Advanced Natural Language Processing (Fall 2005). Lecture notes and course PDFs were downloaded from the official OCW download page.",
+  "competencies": [
+    "Natural Language Processing",
+    "Machine Learning",
+    "Artificial Intelligence"
+  ],
+  "topics": [
+    "parsing",
+    "tagging",
+    "translation",
+    "language models"
+  ],
+  "source": {
+    "name": "MIT OpenCourseWare",
+    "official_url": "https://ocw.mit.edu/courses/6-864-advanced-natural-language-processing-fall-2005/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "language": "en",
+  "format": "university-course",
+  "term": "Fall 2005",
+  "duration": {
+    "estimated_hours": 6.9,
+    "estimated_minutes": 413
+  },
+  "totals": {
+    "modules": 3,
+    "lessons": 10,
+    "practice_questions": 30
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "mit-6-864-nlp-m01",
+      "title": "Module 1",
+      "competencies": [
+        "Natural Language Processing",
+        "Machine Learning",
+        "Artificial Intelligence"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-864-nlp-m01-l01",
+          "title": "81725d832203435ff8ae517b3f649e7f lec01",
+          "type": "pdf",
+          "content_file": "content/module-01/81725d832203435ff8ae517b3f649e7f_lec01.pdf",
+          "practice_file": "practice/mit-6-864-nlp-m01-l01.json",
+          "estimated_minutes": 80,
+          "objectives": [],
+          "competencies": [
+            "Natural Language Processing",
+            "Machine Learning"
+          ],
+          "topics": [
+            "parsing",
+            "tagging",
+            "translation"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-864-nlp-m01-l02",
+          "title": "87a7c15d21927542083d3a46a16868ef lec2",
+          "type": "pdf",
+          "content_file": "content/module-01/87a7c15d21927542083d3a46a16868ef_lec2.pdf",
+          "practice_file": "practice/mit-6-864-nlp-m01-l02.json",
+          "estimated_minutes": 51,
+          "objectives": [],
+          "competencies": [
+            "Natural Language Processing",
+            "Machine Learning"
+          ],
+          "topics": [
+            "parsing",
+            "tagging",
+            "translation"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-864-nlp-m01-l03",
+          "title": "56a788aee71d6c78c483d3b7596e9477 lec3",
+          "type": "pdf",
+          "content_file": "content/module-01/56a788aee71d6c78c483d3b7596e9477_lec3.pdf",
+          "practice_file": "practice/mit-6-864-nlp-m01-l03.json",
+          "estimated_minutes": 33,
+          "objectives": [],
+          "competencies": [
+            "Natural Language Processing",
+            "Machine Learning"
+          ],
+          "topics": [
+            "parsing",
+            "tagging",
+            "translation"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-864-nlp-m01-l04",
+          "title": "2fcb90c84d2859c5292fdebfad49b464 lec4",
+          "type": "pdf",
+          "content_file": "content/module-01/2fcb90c84d2859c5292fdebfad49b464_lec4.pdf",
+          "practice_file": "practice/mit-6-864-nlp-m01-l04.json",
+          "estimated_minutes": 36,
+          "objectives": [],
+          "competencies": [
+            "Natural Language Processing",
+            "Machine Learning"
+          ],
+          "topics": [
+            "parsing",
+            "tagging",
+            "translation"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-864-nlp-m02",
+      "title": "Module 2",
+      "competencies": [
+        "Natural Language Processing",
+        "Machine Learning",
+        "Artificial Intelligence"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-864-nlp-m02-l01",
+          "title": "b2ca6395b1dfb40193bbc675520e7a5f lec5",
+          "type": "pdf",
+          "content_file": "content/module-02/b2ca6395b1dfb40193bbc675520e7a5f_lec5.pdf",
+          "practice_file": "practice/mit-6-864-nlp-m02-l01.json",
+          "estimated_minutes": 45,
+          "objectives": [],
+          "competencies": [
+            "Natural Language Processing",
+            "Machine Learning"
+          ],
+          "topics": [
+            "parsing",
+            "tagging",
+            "translation"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-864-nlp-m02-l02",
+          "title": "a349c5368cb00959e65725e9d4569852 lec6",
+          "type": "pdf",
+          "content_file": "content/module-02/a349c5368cb00959e65725e9d4569852_lec6.pdf",
+          "practice_file": "practice/mit-6-864-nlp-m02-l02.json",
+          "estimated_minutes": 24,
+          "objectives": [],
+          "competencies": [
+            "Natural Language Processing",
+            "Machine Learning"
+          ],
+          "topics": [
+            "parsing",
+            "tagging",
+            "translation"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-864-nlp-m02-l03",
+          "title": "d5c4c4a3d301ef74095a498320e4d504 lec07",
+          "type": "pdf",
+          "content_file": "content/module-02/d5c4c4a3d301ef74095a498320e4d504_lec07.pdf",
+          "practice_file": "practice/mit-6-864-nlp-m02-l03.json",
+          "estimated_minutes": 35,
+          "objectives": [],
+          "competencies": [
+            "Natural Language Processing",
+            "Machine Learning"
+          ],
+          "topics": [
+            "parsing",
+            "tagging",
+            "translation"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-864-nlp-m02-l04",
+          "title": "ff5dffc36625759a279b0ca2a85b00c0 lec08",
+          "type": "pdf",
+          "content_file": "content/module-02/ff5dffc36625759a279b0ca2a85b00c0_lec08.pdf",
+          "practice_file": "practice/mit-6-864-nlp-m02-l04.json",
+          "estimated_minutes": 28,
+          "objectives": [],
+          "competencies": [
+            "Natural Language Processing",
+            "Machine Learning"
+          ],
+          "topics": [
+            "parsing",
+            "tagging",
+            "translation"
+          ],
+          "progress_unit": true
+        }
+      ]
+    },
+    {
+      "module_id": "mit-6-864-nlp-m03",
+      "title": "Module 3",
+      "competencies": [
+        "Natural Language Processing",
+        "Machine Learning",
+        "Artificial Intelligence"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "mit-6-864-nlp-m03-l01",
+          "title": "99b943c303a3b930db8bcd116b10c002 lec09",
+          "type": "pdf",
+          "content_file": "content/module-03/99b943c303a3b930db8bcd116b10c002_lec09.pdf",
+          "practice_file": "practice/mit-6-864-nlp-m03-l01.json",
+          "estimated_minutes": 45,
+          "objectives": [],
+          "competencies": [
+            "Natural Language Processing",
+            "Machine Learning"
+          ],
+          "topics": [
+            "parsing",
+            "tagging",
+            "translation"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "mit-6-864-nlp-m03-l02",
+          "title": "0abc5d7ab6458ec55a14c9f7c300438b lec10",
+          "type": "pdf",
+          "content_file": "content/module-03/0abc5d7ab6458ec55a14c9f7c300438b_lec10.pdf",
+          "practice_file": "practice/mit-6-864-nlp-m03-l02.json",
+          "estimated_minutes": 36,
+          "objectives": [],
+          "competencies": [
+            "Natural Language Processing",
+            "Machine Learning"
+          ],
+          "topics": [
+            "parsing",
+            "tagging",
+            "translation"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

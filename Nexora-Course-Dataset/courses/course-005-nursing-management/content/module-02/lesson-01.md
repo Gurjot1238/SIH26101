@@ -1,0 +1,25 @@
+# 2.1  Prioritization Introduction
+
+> Source: Nursing Management and Professional Concepts 2e. Wisconsin Technical College System / Open RN.
+> Official URL: https://wtcs.pressbooks.pub/nursingmpc/
+> License: CC BY 4.0
+> Reused without endorsement. Original copyright notices retained.
+
+Learning Objectives
+
+  * Prioritize nursing care based on client acuity
+  * Use principles of time management to organize work
+  * Analyze effectiveness of time management strategies
+  * Incorporate clinical judgment to prioritize nursing care
+  * Apply a framework for prioritization
+
+“So much to do, so little time.” This is a common mantra of today’s practicing nurse in various health care settings. Whether practicing in acute inpatient care, long-term care, clinics, home care, or other agencies, nurses may feel there is "not enough of them to go around.” The health care system faces a significant challenge in balancing the ever-expanding task of meeting client care needs with scarce nursing resources that has even worsened as a result of the COVID-19 pandemic. Many health care organizations have seen exacerbation in nurse turnover post-pandemic as nurses struggle with increasing stress, burnout, and feeling of uncertainty within the profession.[1] A recent nursing survey done by the American Nurses Foundation found that 60% of nurses reported extremely stressful, violent, and traumatic events as a result of the COVID-19 pandemic.[2] Additionally, a staggering 89% of nurses reported that their organizations experience significant staffing shortages.[3] With a limited supply of registered nurses, nurse managers are often challenged to implement creative staffing practices such as sending staff to units where they do not normally work (i.e., floating), implementing mandatory staffing and/or overtime, utilizing travel nurses, or using other practices to meet client care demands.[4] Staffing strategies can result in nurses experiencing increased client assignments and workloads, extended shifts, or temporary suspension of paid time off. Nurses may receive a barrage of calls and text messages offering “extra shifts” and bonus pay, and although the extra pay may be welcomed, they often eventually feel burnt out trying to meet the ever-expanding demands of the client-care environment. A novice nurse who is still learning how to navigate the complex health care environment and provide optimal client care may feel overwhelmed by these conditions. Novice nurses frequently report increased levels of stress and disillusionment as they transition to the reality of the nursing role.[5] How can we address this professional dilemma and enhance the novice nurse's successful role transition to practice? The novice nurse must enter the profession with purposeful tools and strategies to help prioritize tasks and manage time so they can confidently address client care needs, balance role demands, and manage day-to-day nursing activities. Let’s take a closer look at the foundational concepts related to prioritization and time management in the nursing profession.
+
+* * *
+
+  1. Kurtzman, E.T., Ghazal, L.V., Girouard,S., Ma, C., Martin, B., McGee, B.T., Pogue, C.A., Riman, K.A., Root, M.C., Schlak, A.E., Smith, J.M., Stolldorf, D.P., Townley, J.N., Turi, E., Germack, H.L. (2022). Nursing workforce challenges in the postpandemic world. _Journal of Nursing Regulation, 13_(2),49-60. [https://doi.org/10.1016/S2155-8256(22)00061-8](<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9299514/>) ↵
+  2. Kurtzman, E.T., Ghazal, L.V., Girouard,S., Ma, C., Martin, B., McGee, B.T., Pogue, C.A., Riman, K.A., Root, M.C., Schlak, A.E., Smith, J.M., Stolldorf, D.P., Townley, J.N., Turi, E., Germack, H.L. (2022). Nursing workforce challenges in the postpandemic world. _Journal of Nursing Regulation, 13_(2),49-60. [https://doi.org/10.1016/S2155-8256(22)00061-8](<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9299514/>) ↵
+  3. Kurtzman, E.T., Ghazal, L.V., Girouard,S., Ma, C., Martin, B., McGee, B.T., Pogue, C.A., Riman, K.A., Root, M.C., Schlak, A.E., Smith, J.M., Stolldorf, D.P., Townley, J.N., Turi, E., Germack, H.L. (2022). Nursing workforce challenges in the postpandemic world. _Journal of Nursing Regulation, 13_(2),49-60. [https://doi.org/10.1016/S2155-8256(22)00061-8](<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9299514/>) ↵
+  4. Rochefort, C. M., Abrahamowicz, M., Biron, A., Bourgault, P., Gaboury, I., Haggerty, J., & McCusker, J. (2021). Nurse staffing practices and adverse events in acute care hospitals: The research protocol of a multisite patient‐level longitudinal study. _Journal of Advanced Nursing, 77_(3), 1567-1577. <https://doi.org/10.1111/jan.14710> ↵
+  5. Hoeve, Y. T., Brouwer, J., Roodbol, P. F., & Kunnen, S. (2018). The importance of contextual, relational and cognitive factors for novice nurses' emotional state and affective commitment to the profession. A multilevel study. _Journal of Advanced Nursing, 74_(9), 2082-2093. <https://doi.org/10.1111/jan.13709> ↵
+

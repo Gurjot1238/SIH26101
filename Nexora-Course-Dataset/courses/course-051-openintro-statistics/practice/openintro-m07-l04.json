@@ -1,0 +1,53 @@
+{
+  "lesson_id": "openintro-m07-l04",
+  "questions": [
+    {
+      "question_id": "openintro-m07-l04-q01",
+      "question": "According to the source lesson 'Paired Data', which statement is most accurate?",
+      "options": [
+        "Air quality Air quality measurements were collected in a random sample of 25 country capitals in 2013, and then again in the same cities in 2014.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m07-l04-q02",
+      "question": "What is a reasonable learning takeaway from 'Paired Data'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in Paired Data.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "openintro-m07-l04-q03",
+      "question": "When applying concepts from 'Paired Data', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Statistics",
+      "topic": "data",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

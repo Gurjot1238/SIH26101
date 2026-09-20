@@ -1,0 +1,149 @@
+{
+  "module_id": "mit-2-003-dynamics-m02",
+  "questions": [
+    {
+      "question_id": "mit-2-003-dynamics-m02-l01-q01",
+      "question": "According to the source lesson '8d9fdd741cadfa3df00b0466fb196b60 MIT2 003SCF11 rec5notes1', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 8d9fdd741cadfa3df00b0466fb196b60_MIT2_003SCF11_rec5notes1.pdf from 2.003SC Engineering Dynamics.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "kinematics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-003-dynamics-m02-l01-q02",
+      "question": "What is a reasonable learning takeaway from '8d9fdd741cadfa3df00b0466fb196b60 MIT2 003SCF11 rec5notes1'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 8d9fdd741cadfa3df00b0466fb196b60 MIT2 003SCF11 rec5notes1.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-003-dynamics-m02-l01-q03",
+      "question": "When applying concepts from '8d9fdd741cadfa3df00b0466fb196b60 MIT2 003SCF11 rec5notes1', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-003-dynamics-m02-l02-q01",
+      "question": "According to the source lesson '669dfa489877b32a6d586af648065a22 MIT2 003SCF11 rec6notes1', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource 669dfa489877b32a6d586af648065a22_MIT2_003SCF11_rec6notes1.pdf from 2.003SC Engineering Dynamics.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "kinematics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-003-dynamics-m02-l02-q02",
+      "question": "What is a reasonable learning takeaway from '669dfa489877b32a6d586af648065a22 MIT2 003SCF11 rec6notes1'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 669dfa489877b32a6d586af648065a22 MIT2 003SCF11 rec6notes1.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-003-dynamics-m02-l02-q03",
+      "question": "When applying concepts from '669dfa489877b32a6d586af648065a22 MIT2 003SCF11 rec6notes1', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-003-dynamics-m02-l03-q01",
+      "question": "According to the source lesson 'b937cb799870918bcf20b4043f046b80 MIT2 003SCF11 rec7notes1', which statement is most accurate?",
+      "options": [
+        "MIT OCW lecture/resource b937cb799870918bcf20b4043f046b80_MIT2_003SCF11_rec7notes1.pdf from 2.003SC Engineering Dynamics.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "kinematics",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-003-dynamics-m02-l03-q02",
+      "question": "What is a reasonable learning takeaway from 'b937cb799870918bcf20b4043f046b80 MIT2 003SCF11 rec7notes1'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in b937cb799870918bcf20b4043f046b80 MIT2 003SCF11 rec7notes1.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "mit-2-003-dynamics-m02-l03-q03",
+      "question": "When applying concepts from 'b937cb799870918bcf20b4043f046b80 MIT2 003SCF11 rec7notes1', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Mechanical Engineering",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

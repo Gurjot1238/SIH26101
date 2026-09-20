@@ -1,0 +1,239 @@
+{
+  "course_id": "openoregon-basic-blueprint-reading",
+  "title": "Basic Blueprint Reading",
+  "provider": "Open Oregon Educational Resources",
+  "category": "Technology",
+  "subcategory": "Engineering Graphics",
+  "level": "Beginner",
+  "description": "Open textbook / course 'Basic Blueprint Reading' from Open Oregon Educational Resources. Chapters were downloaded from the openly licensed Pressbooks edition.",
+  "competencies": [
+    "Engineering Graphics",
+    "Manufacturing",
+    "Technical Drawing"
+  ],
+  "topics": [
+    "views",
+    "dimensions",
+    "tolerances",
+    "blueprints"
+  ],
+  "source": {
+    "name": "Open Oregon Educational Resources",
+    "official_url": "https://openoregon.pressbooks.pub/blueprint/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "language": "en",
+  "format": "self-paced",
+  "duration": {
+    "estimated_hours": 1.8,
+    "estimated_minutes": 108
+  },
+  "totals": {
+    "modules": 1,
+    "lessons": 9,
+    "practice_questions": 27
+  },
+  "progress_model": {
+    "unit": "lesson",
+    "formula": "completed_lessons / total_lessons * 100"
+  },
+  "modules": [
+    {
+      "module_id": "openoregon-basic-blueprint-reading-m01",
+      "title": "Main Body",
+      "competencies": [
+        "Engineering Graphics",
+        "Manufacturing",
+        "Technical Drawing"
+      ],
+      "lessons": [
+        {
+          "lesson_id": "openoregon-basic-blueprint-reading-m01-l01",
+          "title": "The Language of Lines",
+          "type": "text",
+          "content_file": "content/module-01/lesson-01.md",
+          "practice_file": "practice/openoregon-basic-blueprint-reading-m01-l01.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Engineering Graphics",
+            "Manufacturing"
+          ],
+          "topics": [
+            "views",
+            "dimensions",
+            "tolerances"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openoregon-basic-blueprint-reading-m01-l02",
+          "title": "Visualization",
+          "type": "text",
+          "content_file": "content/module-01/lesson-02.md",
+          "practice_file": "practice/openoregon-basic-blueprint-reading-m01-l02.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "ORTHOGRAPHIC PROJECTION"
+          ],
+          "competencies": [
+            "Engineering Graphics",
+            "Manufacturing"
+          ],
+          "topics": [
+            "views",
+            "dimensions",
+            "tolerances"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openoregon-basic-blueprint-reading-m01-l03",
+          "title": "Technical Sketching",
+          "type": "text",
+          "content_file": "content/module-01/lesson-03.md",
+          "practice_file": "practice/openoregon-basic-blueprint-reading-m01-l03.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "SKETCHING TECHNIQUES",
+            "ORTHOGRAPHIC SKETCHING",
+            "ON-THE-SPOT SKETCHING"
+          ],
+          "competencies": [
+            "Engineering Graphics",
+            "Manufacturing"
+          ],
+          "topics": [
+            "views",
+            "dimensions",
+            "tolerances"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openoregon-basic-blueprint-reading-m01-l04",
+          "title": "Scaling",
+          "type": "text",
+          "content_file": "content/module-01/lesson-04.md",
+          "practice_file": "practice/openoregon-basic-blueprint-reading-m01-l04.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Engineering Graphics",
+            "Manufacturing"
+          ],
+          "topics": [
+            "views",
+            "dimensions",
+            "tolerances"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openoregon-basic-blueprint-reading-m01-l05",
+          "title": "Dimensioning",
+          "type": "text",
+          "content_file": "content/module-01/lesson-05.md",
+          "practice_file": "practice/openoregon-basic-blueprint-reading-m01-l05.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "Isometric Dimensioning",
+            "Orthographic Dimensioning"
+          ],
+          "competencies": [
+            "Engineering Graphics",
+            "Manufacturing"
+          ],
+          "topics": [
+            "views",
+            "dimensions",
+            "tolerances"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openoregon-basic-blueprint-reading-m01-l06",
+          "title": "Auxiliary Views",
+          "type": "text",
+          "content_file": "content/module-01/lesson-06.md",
+          "practice_file": "practice/openoregon-basic-blueprint-reading-m01-l06.json",
+          "estimated_minutes": 12,
+          "objectives": [
+            "FRONT VIEW AUXILIARIES",
+            "TOP VIEW AUXILIARIES",
+            "SIDE VIEW AUXILIARIES",
+            "SKETCHING AUXILIARY VIEWS"
+          ],
+          "competencies": [
+            "Engineering Graphics",
+            "Manufacturing"
+          ],
+          "topics": [
+            "views",
+            "dimensions",
+            "tolerances"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openoregon-basic-blueprint-reading-m01-l07",
+          "title": "Sectional Views",
+          "type": "text",
+          "content_file": "content/module-01/lesson-07.md",
+          "practice_file": "practice/openoregon-basic-blueprint-reading-m01-l07.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Engineering Graphics",
+            "Manufacturing"
+          ],
+          "topics": [
+            "views",
+            "dimensions",
+            "tolerances"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openoregon-basic-blueprint-reading-m01-l08",
+          "title": "Machined Features",
+          "type": "text",
+          "content_file": "content/module-01/lesson-08.md",
+          "practice_file": "practice/openoregon-basic-blueprint-reading-m01-l08.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Engineering Graphics",
+            "Manufacturing"
+          ],
+          "topics": [
+            "views",
+            "dimensions",
+            "tolerances"
+          ],
+          "progress_unit": true
+        },
+        {
+          "lesson_id": "openoregon-basic-blueprint-reading-m01-l09",
+          "title": "Print Interpretation",
+          "type": "text",
+          "content_file": "content/module-01/lesson-09.md",
+          "practice_file": "practice/openoregon-basic-blueprint-reading-m01-l09.json",
+          "estimated_minutes": 12,
+          "objectives": [],
+          "competencies": [
+            "Engineering Graphics",
+            "Manufacturing"
+          ],
+          "topics": [
+            "views",
+            "dimensions",
+            "tolerances"
+          ],
+          "progress_unit": true
+        }
+      ]
+    }
+  ]
+}

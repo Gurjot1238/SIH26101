@@ -1,0 +1,53 @@
+{
+  "lesson_id": "wtcs-nursing-skills-2e-m02-l06",
+  "questions": [
+    {
+      "question_id": "wtcs-nursing-skills-2e-m02-l06-q01",
+      "question": "According to the source lesson '2.6 Current and Past Medical History', which statement is most accurate?",
+      "options": [
+        "After exploring a patient’s chief complaint, their current and past medical histories are reviewed to obtain a full understanding of their “human response” to medical conditions and life processes.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "easy",
+      "explanation": "This option restates a claim made in the lesson text.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m02-l06-q02",
+      "question": "What is a reasonable learning takeaway from '2.6 Current and Past Medical History'?",
+      "options": [
+        "Study the definitions, worked examples, and explanations presented in 2.6 Current and Past Medical History.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The lesson is built around those explanations rather than memorizing unrelated trivia.",
+      "generated_by": "Nexora AI"
+    },
+    {
+      "question_id": "wtcs-nursing-skills-2e-m02-l06-q03",
+      "question": "When applying concepts from '2.6 Current and Past Medical History', what should a learner do first?",
+      "options": [
+        "Identify the defined terms and follow the method shown in the source material.",
+        "Ignore the source definitions and invent unrelated rules.",
+        "Assume results without checking the worked examples.",
+        "Replace the method with random trial and error."
+      ],
+      "correct_answer": "A",
+      "competency": "Clinical Nursing Skills",
+      "topic": "vital signs",
+      "difficulty": "medium",
+      "explanation": "The source material introduces terms and methods before later applications.",
+      "generated_by": "Nexora AI"
+    }
+  ]
+}

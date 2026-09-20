@@ -1,0 +1,650 @@
+[
+  {
+    "id": "nursing-fundamentals",
+    "name": "Nursing Fundamentals",
+    "courses": [
+      "wtcs-nursing-fundamentals-2e",
+      "wtcs-nursing-pharmacology"
+    ]
+  },
+  {
+    "id": "healthcare-informatics",
+    "name": "Healthcare Informatics",
+    "courses": [
+      "wtcs-nursing-fundamentals-2e",
+      "wtcs-nursing-skills-2e",
+      "uwf-medical-terminology"
+    ]
+  },
+  {
+    "id": "patient-safety",
+    "name": "Patient Safety",
+    "courses": [
+      "wtcs-nursing-fundamentals-2e",
+      "wtcs-nursing-skills-2e",
+      "wtcs-nursing-pharmacology",
+      "wtcs-nursing-mental-health",
+      "wtcs-nursing-management",
+      "wtcs-nursing-advanced-skills"
+    ]
+  },
+  {
+    "id": "clinical-nursing-skills",
+    "name": "Clinical Nursing Skills",
+    "courses": [
+      "wtcs-nursing-skills-2e",
+      "wtcs-nursing-advanced-skills"
+    ]
+  },
+  {
+    "id": "pharmacology",
+    "name": "Pharmacology",
+    "courses": [
+      "wtcs-nursing-pharmacology"
+    ]
+  },
+  {
+    "id": "psychiatric-mental-health-nursing",
+    "name": "Psychiatric-Mental Health Nursing",
+    "courses": [
+      "wtcs-nursing-mental-health"
+    ]
+  },
+  {
+    "id": "public-health",
+    "name": "Public Health",
+    "courses": [
+      "wtcs-nursing-mental-health",
+      "wtcs-nursing-health-promotion"
+    ]
+  },
+  {
+    "id": "healthcare-information-systems",
+    "name": "Healthcare Information Systems",
+    "courses": [
+      "wtcs-nursing-management"
+    ]
+  },
+  {
+    "id": "nursing-leadership",
+    "name": "Nursing Leadership",
+    "courses": [
+      "wtcs-nursing-management"
+    ]
+  },
+  {
+    "id": "biomedical-engineering",
+    "name": "Biomedical Engineering",
+    "courses": [
+      "wtcs-nursing-advanced-skills",
+      "uta-human-anatomy-lab",
+      "openstax-anatomy-physiology"
+    ]
+  },
+  {
+    "id": "health-promotion",
+    "name": "Health Promotion",
+    "courses": [
+      "wtcs-nursing-health-promotion"
+    ]
+  },
+  {
+    "id": "digital-health",
+    "name": "Digital Health",
+    "courses": [
+      "wtcs-nursing-health-promotion"
+    ]
+  },
+  {
+    "id": "medical-terminology",
+    "name": "Medical Terminology",
+    "courses": [
+      "uwf-medical-terminology"
+    ]
+  },
+  {
+    "id": "anatomy",
+    "name": "Anatomy",
+    "courses": [
+      "uwf-medical-terminology"
+    ]
+  },
+  {
+    "id": "human-anatomy",
+    "name": "Human Anatomy",
+    "courses": [
+      "uta-human-anatomy-lab",
+      "openstax-anatomy-physiology"
+    ]
+  },
+  {
+    "id": "clinical-skills",
+    "name": "Clinical Skills",
+    "courses": [
+      "uta-human-anatomy-lab"
+    ]
+  },
+  {
+    "id": "human-physiology",
+    "name": "Human Physiology",
+    "courses": [
+      "openstax-anatomy-physiology"
+    ]
+  },
+  {
+    "id": "aerospace-engineering",
+    "name": "Aerospace Engineering",
+    "courses": [
+      "vt-aerodynamics-aircraft-performance",
+      "mit-16-07-dynamics"
+    ]
+  },
+  {
+    "id": "fluid-mechanics",
+    "name": "Fluid Mechanics",
+    "courses": [
+      "vt-aerodynamics-aircraft-performance"
+    ]
+  },
+  {
+    "id": "aircraft-performance",
+    "name": "Aircraft Performance",
+    "courses": [
+      "vt-aerodynamics-aircraft-performance"
+    ]
+  },
+  {
+    "id": "mechanical-engineering",
+    "name": "Mechanical Engineering",
+    "courses": [
+      "isu-mechanical-engineering-design",
+      "mit-2-003-dynamics",
+      "mit-2-007-design-manufacturing"
+    ]
+  },
+  {
+    "id": "engineering-design",
+    "name": "Engineering Design",
+    "courses": [
+      "isu-mechanical-engineering-design",
+      "mit-2-007-design-manufacturing"
+    ]
+  },
+  {
+    "id": "system-design",
+    "name": "System Design",
+    "courses": [
+      "isu-mechanical-engineering-design",
+      "mit-6-170-software-studio"
+    ]
+  },
+  {
+    "id": "engineering-graphics",
+    "name": "Engineering Graphics",
+    "courses": [
+      "openoregon-basic-blueprint-reading"
+    ]
+  },
+  {
+    "id": "manufacturing",
+    "name": "Manufacturing",
+    "courses": [
+      "openoregon-basic-blueprint-reading",
+      "mit-2-007-design-manufacturing"
+    ]
+  },
+  {
+    "id": "technical-drawing",
+    "name": "Technical Drawing",
+    "courses": [
+      "openoregon-basic-blueprint-reading"
+    ]
+  },
+  {
+    "id": "physics",
+    "name": "Physics",
+    "courses": [
+      "openstax-college-physics",
+      "openstax-physics",
+      "mit-8-01-mechanics"
+    ]
+  },
+  {
+    "id": "engineering-fundamentals",
+    "name": "Engineering Fundamentals",
+    "courses": [
+      "openstax-college-physics",
+      "openstax-college-algebra",
+      "openstax-precalculus",
+      "openstax-physics",
+      "mit-18-06-linear-algebra",
+      "mit-3-091-ssc",
+      "mit-8-01-mechanics"
+    ]
+  },
+  {
+    "id": "mechanics",
+    "name": "Mechanics",
+    "courses": [
+      "openstax-college-physics",
+      "openstax-physics",
+      "mit-2-003-dynamics",
+      "mit-16-07-dynamics",
+      "mit-8-01-mechanics"
+    ]
+  },
+  {
+    "id": "biology",
+    "name": "Biology",
+    "courses": [
+      "openstax-biology"
+    ]
+  },
+  {
+    "id": "bioinformatics",
+    "name": "Bioinformatics",
+    "courses": [
+      "openstax-biology"
+    ]
+  },
+  {
+    "id": "cell-biology",
+    "name": "Cell Biology",
+    "courses": [
+      "openstax-biology"
+    ]
+  },
+  {
+    "id": "mathematics",
+    "name": "Mathematics",
+    "courses": [
+      "openstax-college-algebra",
+      "openstax-precalculus",
+      "openstax-algebra-trigonometry",
+      "mit-18-06-linear-algebra"
+    ]
+  },
+  {
+    "id": "algebra",
+    "name": "Algebra",
+    "courses": [
+      "openstax-college-algebra",
+      "openstax-algebra-trigonometry"
+    ]
+  },
+  {
+    "id": "precalculus",
+    "name": "Precalculus",
+    "courses": [
+      "openstax-precalculus"
+    ]
+  },
+  {
+    "id": "trigonometry",
+    "name": "Trigonometry",
+    "courses": [
+      "openstax-algebra-trigonometry"
+    ]
+  },
+  {
+    "id": "statistics",
+    "name": "Statistics",
+    "courses": [
+      "openstax-introductory-statistics",
+      "openstax-statistics",
+      "openintro-statistics"
+    ]
+  },
+  {
+    "id": "data-science",
+    "name": "Data Science",
+    "courses": [
+      "openstax-introductory-statistics",
+      "openstax-statistics",
+      "mit-6-0002-data-science",
+      "openintro-statistics"
+    ]
+  },
+  {
+    "id": "probability",
+    "name": "Probability",
+    "courses": [
+      "openstax-introductory-statistics",
+      "openintro-statistics"
+    ]
+  },
+  {
+    "id": "data-analysis",
+    "name": "Data Analysis",
+    "courses": [
+      "openstax-statistics"
+    ]
+  },
+  {
+    "id": "python-programming",
+    "name": "Python Programming",
+    "courses": [
+      "mit-6-0001-python",
+      "mit-6-0002-data-science",
+      "py4e-python-for-everybody",
+      "thinkcspy-learning-with-python"
+    ]
+  },
+  {
+    "id": "computer-science",
+    "name": "Computer Science",
+    "courses": [
+      "mit-6-0001-python",
+      "mit-6-006-algorithms",
+      "mit-6-046-algorithms",
+      "mit-6-01sc-eecs",
+      "mit-6-045-automata",
+      "mit-6-006-algorithms-2011",
+      "mit-6-042-math-cs",
+      "thinkcspy-learning-with-python",
+      "illinois-algorithms-erickson"
+    ]
+  },
+  {
+    "id": "programming-fundamentals",
+    "name": "Programming Fundamentals",
+    "courses": [
+      "mit-6-0001-python",
+      "mit-6-170-software-studio",
+      "mit-1-00-problem-solving",
+      "py4e-python-for-everybody",
+      "thinkcspy-learning-with-python"
+    ]
+  },
+  {
+    "id": "computational-thinking",
+    "name": "Computational Thinking",
+    "courses": [
+      "mit-6-0002-data-science"
+    ]
+  },
+  {
+    "id": "algorithms",
+    "name": "Algorithms",
+    "courses": [
+      "mit-6-006-algorithms",
+      "mit-6-046-algorithms",
+      "mit-6-045-automata",
+      "mit-6-006-algorithms-2011",
+      "illinois-algorithms-erickson"
+    ]
+  },
+  {
+    "id": "data-structures",
+    "name": "Data Structures",
+    "courses": [
+      "mit-6-006-algorithms",
+      "mit-6-006-algorithms-2011",
+      "illinois-algorithms-erickson"
+    ]
+  },
+  {
+    "id": "artificial-intelligence",
+    "name": "Artificial Intelligence",
+    "courses": [
+      "mit-6-034-ai",
+      "mit-6-867-ml",
+      "mit-6-864-nlp",
+      "mit-6-801-vision"
+    ]
+  },
+  {
+    "id": "machine-learning",
+    "name": "Machine Learning",
+    "courses": [
+      "mit-6-034-ai",
+      "mit-6-867-ml",
+      "mit-6-864-nlp"
+    ]
+  },
+  {
+    "id": "search-algorithms",
+    "name": "Search Algorithms",
+    "courses": [
+      "mit-6-034-ai"
+    ]
+  },
+  {
+    "id": "statistical-learning",
+    "name": "Statistical Learning",
+    "courses": [
+      "mit-6-867-ml"
+    ]
+  },
+  {
+    "id": "complexity",
+    "name": "Complexity",
+    "courses": [
+      "mit-6-046-algorithms"
+    ]
+  },
+  {
+    "id": "computer-architecture",
+    "name": "Computer Architecture",
+    "courses": [
+      "mit-6-004-computation-structures"
+    ]
+  },
+  {
+    "id": "digital-logic",
+    "name": "Digital Logic",
+    "courses": [
+      "mit-6-004-computation-structures"
+    ]
+  },
+  {
+    "id": "computer-engineering",
+    "name": "Computer Engineering",
+    "courses": [
+      "mit-6-004-computation-structures"
+    ]
+  },
+  {
+    "id": "operating-systems",
+    "name": "Operating Systems",
+    "courses": [
+      "mit-6-033-systems",
+      "mit-6-858-security"
+    ]
+  },
+  {
+    "id": "distributed-systems",
+    "name": "Distributed Systems",
+    "courses": [
+      "mit-6-033-systems"
+    ]
+  },
+  {
+    "id": "computer-networks",
+    "name": "Computer Networks",
+    "courses": [
+      "mit-6-033-systems",
+      "mit-6-02-digital-comm"
+    ]
+  },
+  {
+    "id": "database-systems",
+    "name": "Database Systems",
+    "courses": [
+      "mit-6-830-databases"
+    ]
+  },
+  {
+    "id": "sql",
+    "name": "SQL",
+    "courses": [
+      "mit-6-830-databases",
+      "py4e-python-for-everybody"
+    ]
+  },
+  {
+    "id": "data-engineering",
+    "name": "Data Engineering",
+    "courses": [
+      "mit-6-830-databases"
+    ]
+  },
+  {
+    "id": "cybersecurity",
+    "name": "Cybersecurity",
+    "courses": [
+      "mit-6-858-security"
+    ]
+  },
+  {
+    "id": "software-security",
+    "name": "Software Security",
+    "courses": [
+      "mit-6-858-security"
+    ]
+  },
+  {
+    "id": "electrical-engineering",
+    "name": "Electrical Engineering",
+    "courses": [
+      "mit-6-002-circuits",
+      "mit-6-003-signals",
+      "mit-6-01sc-eecs",
+      "mit-6-02-digital-comm"
+    ]
+  },
+  {
+    "id": "circuits",
+    "name": "Circuits",
+    "courses": [
+      "mit-6-002-circuits"
+    ]
+  },
+  {
+    "id": "electronics",
+    "name": "Electronics",
+    "courses": [
+      "mit-6-002-circuits"
+    ]
+  },
+  {
+    "id": "signals-and-systems",
+    "name": "Signals and Systems",
+    "courses": [
+      "mit-6-003-signals"
+    ]
+  },
+  {
+    "id": "dsp",
+    "name": "DSP",
+    "courses": [
+      "mit-6-003-signals"
+    ]
+  },
+  {
+    "id": "linear-algebra",
+    "name": "Linear Algebra",
+    "courses": [
+      "mit-18-06-linear-algebra"
+    ]
+  },
+  {
+    "id": "robotics",
+    "name": "Robotics",
+    "courses": [
+      "mit-6-01sc-eecs"
+    ]
+  },
+  {
+    "id": "dynamics",
+    "name": "Dynamics",
+    "courses": [
+      "mit-2-003-dynamics",
+      "mit-16-07-dynamics"
+    ]
+  },
+  {
+    "id": "theory-of-computation",
+    "name": "Theory of Computation",
+    "courses": [
+      "mit-6-045-automata"
+    ]
+  },
+  {
+    "id": "digital-communications",
+    "name": "Digital Communications",
+    "courses": [
+      "mit-6-02-digital-comm"
+    ]
+  },
+  {
+    "id": "materials-science",
+    "name": "Materials Science",
+    "courses": [
+      "mit-3-091-ssc"
+    ]
+  },
+  {
+    "id": "chemistry",
+    "name": "Chemistry",
+    "courses": [
+      "mit-3-091-ssc"
+    ]
+  },
+  {
+    "id": "natural-language-processing",
+    "name": "Natural Language Processing",
+    "courses": [
+      "mit-6-864-nlp"
+    ]
+  },
+  {
+    "id": "computer-vision",
+    "name": "Computer Vision",
+    "courses": [
+      "mit-6-801-vision"
+    ]
+  },
+  {
+    "id": "image-processing",
+    "name": "Image Processing",
+    "courses": [
+      "mit-6-801-vision"
+    ]
+  },
+  {
+    "id": "software-engineering",
+    "name": "Software Engineering",
+    "courses": [
+      "mit-6-170-software-studio"
+    ]
+  },
+  {
+    "id": "java",
+    "name": "Java",
+    "courses": [
+      "mit-1-00-problem-solving"
+    ]
+  },
+  {
+    "id": "engineering-computation",
+    "name": "Engineering Computation",
+    "courses": [
+      "mit-1-00-problem-solving"
+    ]
+  },
+  {
+    "id": "discrete-mathematics",
+    "name": "Discrete Mathematics",
+    "courses": [
+      "mit-6-042-math-cs"
+    ]
+  },
+  {
+    "id": "proofs",
+    "name": "Proofs",
+    "courses": [
+      "mit-6-042-math-cs"
+    ]
+  }
+]
