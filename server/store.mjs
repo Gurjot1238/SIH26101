@@ -5,7 +5,7 @@
  * the only module that knows about storage, so swapping in SQLite or Postgres
  * later means rewriting this file and nothing else.
  *
- * Four files rather than one, because every write rewrites a whole file: saving
+ * Separate files rather than one, because every write rewrites a whole file: saving
  * a quiz attempt should not rewrite the password hashes, and sliding a session
  * expiry should not rewrite the attempt history.
  *
@@ -13,6 +13,8 @@
  *   sessions.json   live sessions, by HMAC fingerprint
  *   attempts.json   quiz attempts: topic names and counts, never document text
  *   profiles.json   preferences and course progress, one record per account
+ *   papers.json     saved MCQ sets: the learner's own questions, answers and
+ *                   explanations, kept by choice and readable only by their account
  *
  * Honest limitation: a single-file JSON store is fine for a prototype, a demo,
  * or a few thousand accounts. It rewrites the whole file on every write, so it
@@ -63,16 +65,19 @@ export async function openStore(dataDir) {
   const sessionsPath = join(dataDir, 'sessions.json');
   const attemptsPath = join(dataDir, 'attempts.json');
   const profilesPath = join(dataDir, 'profiles.json');
+  const papersPath = join(dataDir, 'papers.json');
 
   const userFile = await readJsonFile(usersPath, { version: 1, users: [] });
   const sessionFile = await readJsonFile(sessionsPath, { version: 1, sessions: [] });
   const attemptFile = await readJsonFile(attemptsPath, { version: 1, attempts: [] });
   const profileFile = await readJsonFile(profilesPath, { version: 1, profiles: {} });
+  const paperFile = await readJsonFile(papersPath, { version: 1, papers: [] });
 
   const users = Array.isArray(userFile.users) ? userFile.users : [];
   const sessions = Array.isArray(sessionFile.sessions) ? sessionFile.sessions : [];
   const attempts = Array.isArray(attemptFile.attempts) ? attemptFile.attempts : [];
   const profiles = new Map(Object.entries(profileFile.profiles ?? {}));
+  const papers = Array.isArray(paperFile.papers) ? paperFile.papers : [];
 
   const byEmail = new Map(users.map((user) => [user.email, user]));
   const byId = new Map(users.map((user) => [user.id, user]));
@@ -88,6 +93,19 @@ export async function openStore(dataDir) {
     const list = attemptsByUser.get(attempt.userId) ?? [];
     list.push(attempt);
     attemptsByUser.set(attempt.userId, list);
+  }
+
+  /**
+   * Saved MCQ sets, grouped by account exactly like attempts, so reading one
+   * learner's saved papers never walks another's. Unlike attempts, a paper carries
+   * the full questions, answers and explanations — it is the learner's own document,
+   * saved by choice, to their own account.
+   */
+  const papersByUser = new Map();
+  for (const paper of papers) {
+    const list = papersByUser.get(paper.userId) ?? [];
+    list.push(paper);
+    papersByUser.set(paper.userId, list);
   }
 
   /**
@@ -113,16 +131,23 @@ export async function openStore(dataDir) {
     enqueue(() => writeJsonFile(attemptsPath, { version: 1, attempts: [...attemptsByUser.values()].flat() }));
   const flushProfiles = () =>
     enqueue(() => writeJsonFile(profilesPath, { version: 1, profiles: Object.fromEntries(profiles) }));
+  const flushPapers = () =>
+    enqueue(() => writeJsonFile(papersPath, { version: 1, papers: [...papersByUser.values()].flat() }));
 
   const countAttempts = () => {
     let total = 0;
     for (const list of attemptsByUser.values()) total += list.length;
     return total;
   };
+  const countPapers = () => {
+    let total = 0;
+    for (const list of papersByUser.values()) total += list.length;
+    return total;
+  };
 
   return {
-    paths: { usersPath, sessionsPath, attemptsPath, profilesPath },
-    counts: () => ({ users: users.length, sessions: byFingerprint.size, attempts: countAttempts() }),
+    paths: { usersPath, sessionsPath, attemptsPath, profilesPath, papersPath },
+    counts: () => ({ users: users.length, sessions: byFingerprint.size, attempts: countAttempts(), papers: countPapers() }),
 
     findUserByEmail: (email) => byEmail.get(email) ?? null,
     findUserById: (id) => byId.get(id) ?? null,
@@ -242,6 +267,54 @@ export async function openStore(dataDir) {
       profiles.set(userId, profile);
       await flushProfiles();
       return profile;
+    },
+
+    /* ------------------------------------------------------------ saved papers */
+
+    /** One account's saved MCQ sets, oldest first. The live array — do not mutate. */
+    papersForUser: (userId) => papersByUser.get(userId) ?? [],
+
+    /** One saved paper by id, but only if it belongs to this account. */
+    paperForUser(userId, paperId) {
+      const list = papersByUser.get(userId);
+      if (!list) return null;
+      return list.find((paper) => paper.id === paperId) ?? null;
+    },
+
+    /**
+     * Append a saved paper, dropping the oldest once the per-account cap is hit —
+     * same reasoning as attempts: an unbounded list in a whole-file JSON store makes
+     * every later save slower.
+     */
+    async addPaper(paper, { maxPerUser }) {
+      const list = papersByUser.get(paper.userId) ?? [];
+      list.push(paper);
+      const dropped = Math.max(0, list.length - maxPerUser);
+      if (dropped > 0) list.splice(0, dropped);
+      papersByUser.set(paper.userId, list);
+      await flushPapers();
+      return { paper, dropped };
+    },
+
+    /** Remove one saved paper, but only from its owner's list. Returns true if removed. */
+    async deletePaper(userId, paperId) {
+      const list = papersByUser.get(userId);
+      if (!list) return false;
+      const index = list.findIndex((paper) => paper.id === paperId);
+      if (index === -1) return false;
+      list.splice(index, 1);
+      if (list.length === 0) papersByUser.delete(userId);
+      await flushPapers();
+      return true;
+    },
+
+    /** Clears one account's saved papers. Nobody else's list is touched. */
+    async deletePapersForUser(userId) {
+      const removed = papersByUser.get(userId)?.length ?? 0;
+      if (removed === 0) return 0;
+      papersByUser.delete(userId);
+      await flushPapers();
+      return removed;
     },
 
     /** Waits for any in-flight write so shutdown cannot truncate a file. */

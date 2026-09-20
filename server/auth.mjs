@@ -247,6 +247,13 @@ export function createRateLimiter({ limit, windowMs, name }) {
     name,
     /** Records an attempt. Returns null when allowed, or seconds to wait. */
     take(key) {
+      // A limit of zero (or below) means no limit at all. Only the AI generation
+      // limiter is ever configured this way, and only for a local model, where a
+      // request costs the operator's own machine time and nothing else — so a
+      // person running fifteen documents a day should not be told to wait. The
+      // auth limiters are always given a positive number, so this branch never
+      // weakens login or signup protection.
+      if (limit <= 0) return null;
       const now = Date.now();
       const stamps = prune(key, now);
       if (stamps.length >= limit) {
@@ -263,6 +270,7 @@ export function createRateLimiter({ limit, windowMs, name }) {
      * would lock themselves out for an hour.
      */
     peek(key) {
+      if (limit <= 0) return null;
       const now = Date.now();
       const stamps = prune(key, now);
       if (stamps.length < limit) return null;

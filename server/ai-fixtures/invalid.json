@@ -1,0 +1,145 @@
+{
+ "questions": [
+  {
+   "question": "Which of these is the formula used by the index according to the note?",
+   "options": [
+    "Laspeyres",
+    "Paasche",
+    "Fisher"
+   ],
+   "correctIndex": 0,
+   "topic": "Index methodology",
+   "kind": "identify",
+   "explanation": "Only three options were supplied here.",
+   "source": "A Laspeyres formula is used, which holds the basket fixed at base-year quantities."
+  },
+  {
+   "question": "Which formula does the note say is used to combine price relatives?",
+   "options": [
+    "Laspeyres formula",
+    "Laspeyres Formula.",
+    "Fisher ideal",
+    "Paasche"
+   ],
+   "correctIndex": 0,
+   "topic": "Index methodology",
+   "kind": "identify",
+   "explanation": "Two options are the same once normalised.",
+   "source": "A Laspeyres formula is used, which holds the basket fixed at base-year quantities."
+  },
+  {
+   "question": "Which formula does the note say holds the basket fixed at base-year quantities?",
+   "options": [
+    "Laspeyres",
+    "Paasche",
+    "Fisher",
+    "Tornqvist"
+   ],
+   "correctIndex": 7,
+   "topic": "Index methodology",
+   "kind": "identify",
+   "explanation": "The answer index is out of range.",
+   "source": "A Laspeyres formula is used, which holds the basket fixed at base-year quantities."
+  },
+  {
+   "question": "Which formula does the note describe for combining price relatives across the basket?",
+   "options": [
+    "Laspeyres",
+    "Paasche",
+    "Fisher",
+    "Tornqvist"
+   ],
+   "correctIndex": 0,
+   "topic": "Index methodology",
+   "kind": "identify",
+   "explanation": "",
+   "source": "A Laspeyres formula is used, which holds the basket fixed at base-year quantities."
+  },
+  {
+   "question": "Which formula holds the basket fixed at base-year quantities in this note?",
+   "options": [
+    "Laspeyres",
+    "Paasche",
+    "Fisher",
+    "Tornqvist"
+   ],
+   "correctIndex": 0,
+   "topic": "Index methodology",
+   "kind": "identify",
+   "explanation": "The source field is empty.",
+   "source": ""
+  },
+  {
+   "question": "According to the material, what was the rural Gini coefficient recorded in 2019?",
+   "options": [
+    "0.31",
+    "0.28",
+    "0.42",
+    "0.35"
+   ],
+   "correctIndex": 0,
+   "topic": "Data quality",
+   "kind": "numeric",
+   "explanation": "The document reports a rural Gini of 0.31 for 2019.",
+   "source": "The rural Gini coefficient stood at 0.31 in 2019, reflecting moderate consumption inequality across deciles."
+  },
+  {
+   "question": "Base year?",
+   "options": [
+    "2012",
+    "2004",
+    "2011",
+    "2016"
+   ],
+   "correctIndex": 0,
+   "topic": "Index methodology",
+   "kind": "numeric",
+   "explanation": "The question stem is far too short to be a real question.",
+   "source": "The base year for the current series is 2012."
+  },
+  {
+   "question": "What is the base year for the price index series described in the note?",
+   "options": [
+    "2004",
+    "2012",
+    "2011",
+    "2016"
+   ],
+   "correctIndex": 0,
+   "topic": "Index methodology",
+   "kind": "numeric",
+   "explanation": "The answer key points at a year the source does not contain.",
+   "source": "The base year for the current series is 2012."
+  },
+  {
+   "question": "Which survey supplies the weights, according to the note text?",
+   "options": [
+    "The Consumer Expenditure Survey",
+    "A quarterly business survey",
+    "The Economic Census",
+    "The Annual Survey of Industries"
+   ],
+   "correctIndex": 0,
+   "topic": "Macroeconomic accounting",
+   "kind": "statement",
+   "explanation": "The topic is not one of the topics extracted from this document.",
+   "source": "Weights in the basket are derived from the Consumer Expenditure Survey and are revised when consumption patterns shift materially."
+  },
+  {
+   "question": "Is the Laspeyres formula the one that holds the basket fixed at base-year quantities?",
+   "options": [
+    "Laspeyres",
+    "Paasche",
+    "Fisher",
+    "Tornqvist"
+   ],
+   "correctIndex": 0,
+   "topic": "Index methodology",
+   "kind": "identify",
+   "explanation": "The stem contains its own answer.",
+   "source": "A Laspeyres formula is used, which holds the basket fixed at base-year quantities."
+  },
+  null,
+  "not an object at all"
+ ]
+}

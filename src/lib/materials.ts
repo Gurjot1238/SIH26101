@@ -1,32 +1,114 @@
 /**
- * The document analyser: PDF or text in, topic-tagged multiple-choice questions out.
+ * The document analyser: PDF or text in, sentences, concepts and topics out.
  *
- * Everything here runs in the browser. There is no API key, no network call and no
- * document upload — the file is read with pdf.js in the tab and never leaves the
- * machine. That is why the Materials page can honestly say "No external AI
- * required", and it is the reason the server only ever stores topic-level results
- * rather than the text itself.
+ * Reading still happens entirely in the browser. The file itself is decoded with
+ * pdf.js in the tab and is never uploaded — no multipart POST, no copy on the
+ * server, no temporary file. Everything from `normalizeText` down to
+ * `extractTopics` is local, offline and key-free.
  *
- * What replaced what, and why:
+ *   What is no longer true, and where it went
  *
- * The first version took the first six qualifying sentences, made each sentence
- * the correct answer, and used the same three canned distractors every time
- * ("... should be excluded from the analysis"). That produced at most six
- * questions, put the answer at position `index % 4` so the key ran A, B, C, D, A,
- * and the three wrong options were visibly boilerplate. It also threw the topic
- * away after interpolating it into the question text, so there was nothing to
- * score per topic.
+ * Writing the questions is not local any more. It moved to the server, which calls
+ * a real language model — see `ai-questions.ts` for the browser half and
+ * `server/ai/` for the rest. So the *extracted text* does leave the tab on its way
+ * to that endpoint, while the file does not. Any surface that says otherwise is a
+ * bug: the earlier version of this comment claimed "no network call", and the
+ * Materials page carried a "No external AI required" badge to match, both of which
+ * would now be lies told by the product about itself.
  *
- * This version scores candidate noun phrases to find a handful of real topics,
- * then generates four different kinds of question against them, building wrong
- * options out of the document's own prose — a real figure swapped for a wrong
- * one, a real claim negated, a real term replaced by another term from the same
- * page. Distractors that read like the source are the whole difficulty of a
- * multiple-choice question; boilerplate ones can be spotted without reading.
+ *   Why the generator below still exists
+ *
+ * `generateQuestions` and `analyzeMaterial` are no longer the product's path to a
+ * quiz — the browser does not call them, because a locally assembled question
+ * presented under an "AI generated" label is exactly the deception this feature was
+ * built to remove. They are kept because the test suites need a deterministic way to
+ * manufacture a valid `MaterialQuestion[]` for scoring, study plans, retry papers
+ * and band thresholds, and because the sentence, concept and topic passes they sit on
+ * are still live product code. Deleting them would take real coverage with them.
+ *
+ * How they work, since they are still read: candidate noun phrases are scored to find
+ * a handful of topics, then four kinds of question are built against them with wrong
+ * options made from the document's own prose — a real figure moved, a real claim
+ * negated, a real term swapped for another term on the same page. That is good
+ * enough to exercise a grader. It is not comprehension, which is why a model does the
+ * job now.
  */
 
 import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
-import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
+import pdfWorker from 'pdfjs-dist/legacy/build/pdf.worker.min.mjs?url';
+
+/**
+ * Polyfill: Uint8Array.prototype.toHex — added in ES2024, not in all browsers yet.
+ *
+ * pdfjs-dist v6 calls toHex() when computing file fingerprints. The call happens
+ * inside the Web Worker, which is a separate JS context that cannot see this
+ * polyfill — so we also load the LEGACY worker (which bundles its own polyfill
+ * inside the worker context). This main-thread polyfill covers any toHex calls
+ * that happen outside the worker.
+ */
+if (typeof (Uint8Array.prototype as any).toHex !== 'function') {
+  Object.defineProperty(Uint8Array.prototype, 'toHex', {
+    value: function toHex() {
+      let out = '';
+      for (let i = 0; i < this.length; i++) {
+        out += this[i].toString(16).padStart(2, '0');
+      }
+      return out;
+    },
+    configurable: true,
+    writable: true,
+  });
+}
+
+/**
+ * Polyfill: async iteration over a ReadableStream (`for await (const x of stream)`).
+ *
+ * pdfjs-dist v6 iterates streams this way while parsing a PDF, but WebKit — the engine
+ * this app runs on — does not implement `ReadableStream.prototype[Symbol.asyncIterator]`,
+ * so the call lands on `undefined` and throws "undefined is not a function (near
+ * '...value of readableStream...')" the moment a real PDF is opened. (The sample material
+ * is plain text and never touches pdfjs, which is why it appeared only on a real upload.)
+ * Same story as toHex above: a newer JS API pdfjs assumes, added here so Safari/WebKit
+ * behaves like Chrome. Defined only when missing, so a compliant engine is untouched.
+ */
+if (typeof ReadableStream !== 'undefined' && typeof (ReadableStream.prototype as any)[Symbol.asyncIterator] !== 'function') {
+  const asyncIterator = function (this: ReadableStream, options?: { preventCancel?: boolean }) {
+    const reader = this.getReader();
+    const preventCancel = Boolean(options && options.preventCancel);
+    return {
+      next() {
+        return reader.read().then((result: ReadableStreamReadResult<unknown>) => {
+          if (result.done) reader.releaseLock();
+          return result;
+        });
+      },
+      return(value?: unknown) {
+        if (!preventCancel) {
+          const cancelled = reader.cancel(value);
+          reader.releaseLock();
+          return cancelled.then(() => ({ value, done: true }));
+        }
+        reader.releaseLock();
+        return Promise.resolve({ value, done: true });
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+    };
+  };
+  Object.defineProperty(ReadableStream.prototype, Symbol.asyncIterator, {
+    value: asyncIterator,
+    configurable: true,
+    writable: true,
+  });
+  if (typeof (ReadableStream.prototype as any).values !== 'function') {
+    Object.defineProperty(ReadableStream.prototype, 'values', {
+      value: asyncIterator,
+      configurable: true,
+      writable: true,
+    });
+  }
+}
 import { type CompetencyId } from './topics';
 
 GlobalWorkerOptions.workerSrc = pdfWorker;
@@ -171,8 +253,12 @@ function normalizeText(value: string) {
  * terminator with the sentence and the lookahead requires the next sentence to
  * start with a capital or a digit, which stops "7.2 percent" and "No. 4" from
  * being treated as boundaries.
+ *
+ * Exported because the AI path needs the same list the deterministic path uses: a
+ * question's `sourceIndex` is a position in *this* list, and revision passages are
+ * ordered by it. Two different splitters would order them differently.
  */
-function sentenceList(text: string, minLength = 45, maxLength = 360) {
+export function sentenceList(text: string, minLength = 45, maxLength = 360) {
   return text
     .replace(/\s+/g, ' ')
     .split(/(?<=[.!?])\s+(?=[A-Z0-9])/)
@@ -801,6 +887,13 @@ export const sampleMaterialMeta = {
   pageCount: 1,
 };
 
+/**
+ * Analyse a document with the local generator, end to end.
+ *
+ * Not the product's path any more — the Materials page calls the server AI instead.
+ * This stays as the deterministic fixture builder the engine and client suites use to
+ * produce a real `MaterialQuestion[]` without a network or an API key.
+ */
 export function analyzeMaterial(text: string, pageCount: number): MaterialAnalysis {
   const { questions, sentences, topics } = generateQuestions(text);
   return {

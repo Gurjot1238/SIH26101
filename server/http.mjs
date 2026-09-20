@@ -7,12 +7,21 @@
  */
 
 /**
- * Hard cap on request bodies. Every payload this API accepts is small — an auth
- * form, or a quiz result carrying topic names and counts — so anything larger is
+ * Hard cap on request bodies. Almost every payload this API accepts is small — an
+ * auth form, or a quiz result carrying topic names and counts — so anything larger is
  * either a bug or abuse. Enforced twice below: once on the declared
  * Content-Length, once on the bytes actually read, because the header can lie.
  */
 export const MAX_BODY_BYTES = 8 * 1024;
+
+/**
+ * The one exception: extracted document text on its way to AI question generation.
+ *
+ * Raised for that single route rather than globally, so a bug or an attack against
+ * /api/auth/login still cannot post a megabyte. 256 KB comfortably holds the 60 000
+ * characters the AI service will accept plus JSON escaping, and nothing more.
+ */
+export const MAX_AI_BODY_BYTES = 256 * 1024;
 
 /** An error we are willing to describe to the client. Anything else becomes a 500. */
 export class HttpError extends Error {
@@ -32,7 +41,7 @@ export class HttpError extends Error {
  * HTML <form> cannot produce that content type, and a cross-site fetch that
  * sets it triggers a CORS preflight, which the origin allow-list rejects.
  */
-export async function readJsonBody(req) {
+export async function readJsonBody(req, { maxBytes = MAX_BODY_BYTES } = {}) {
   const contentType = String(req.headers['content-type'] ?? '')
     .split(';')[0]
     .trim()
@@ -47,7 +56,7 @@ export async function readJsonBody(req) {
   }
 
   const declaredLength = Number(req.headers['content-length'] ?? Number.NaN);
-  if (Number.isFinite(declaredLength) && declaredLength > MAX_BODY_BYTES) {
+  if (Number.isFinite(declaredLength) && declaredLength > maxBytes) {
     throw new HttpError(413, 'body_too_large', 'Request body is too large.');
   }
 
@@ -55,7 +64,7 @@ export async function readJsonBody(req) {
   let total = 0;
   for await (const chunk of req) {
     total += chunk.length;
-    if (total > MAX_BODY_BYTES) {
+    if (total > maxBytes) {
       throw new HttpError(413, 'body_too_large', 'Request body is too large.');
     }
     chunks.push(chunk);

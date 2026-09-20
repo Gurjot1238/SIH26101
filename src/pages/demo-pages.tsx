@@ -9,17 +9,21 @@ import {
   MIN_QUESTIONS,
   type MaterialQuestion,
   type PageProgress,
+  TARGET_QUESTIONS,
   extractConcepts,
-  generateQuestions,
+  extractTopics,
   questionKindLabels,
   readMaterial,
   sampleMaterialLabel,
   sampleMaterialMeta,
   sampleMaterialText,
+  sentenceList,
   supportedAccept,
   supportedExtensions,
   supportedFormatsSentence,
 } from '@/lib/materials';
+import { AiGenerationError, generateAiQuestions, classifyDocument, type MaterialClassification, type Difficulty } from '@/lib/ai-questions';
+import { MAX_SAVED_PAPERS, PaperError, type SavedPaperSummary, deletePaper, getPaper, listPapers, savePaper } from '@/lib/papers';
 import { clearMaterial, isDurable, setMaterial, useMaterial } from '@/lib/material-session';
 import {
   type AssessmentResult,
@@ -29,10 +33,21 @@ import {
   sectionOf,
   toChoices,
 } from '@/lib/assessment';
-import { MIN_QUESTIONS_FOR_BAND, bandColors, bandLabels, bandTones, competencyName } from '@/lib/topics';
+import { type CompetencyId, MIN_QUESTIONS_FOR_BAND, bandColors, bandLabels, bandTones, competencyName } from '@/lib/topics';
 import { type Choice, describeAttempt, gradeAttempt, toAttemptPayload } from '@/lib/scoring';
 import { buildRetryPaper, buildStudyPlan, summarizePlan } from '@/lib/recommendations';
 import { catalogueNote, courseMinutes, formatMinutes } from '@/lib/courses';
+import {
+  type CourseCategory,
+  categoryCounts,
+  categoryLabels,
+  categoryOrder,
+  courseHoursLabel,
+  courseLibrary,
+  coursesInCategory,
+  libraryNote,
+  trendingCourses,
+} from '@/lib/course-library';
 import {
   WEEK_DAYS,
   type ActivityRow,
@@ -53,6 +68,8 @@ import {
   weekBuckets,
 } from '@/lib/insights';
 import { useProgress } from '@/components/progress-provider';
+import { type AnswerAnalysis } from '@/lib/analytics';
+import { CompetencyGapSection } from '@/components/competency-gap';
 
 const competencyData = [{ name: 'Data quality', score: 82 }, { name: 'Inference', score: 68 }, { name: 'Dissemination', score: 74 }, { name: 'Leadership', score: 54 }, { name: 'Digital tools', score: 61 }];
 const weeklyData = [{ name: 'Mon', hours: 0.8 }, { name: 'Tue', hours: 1.4 }, { name: 'Wed', hours: 0.3 }, { name: 'Thu', hours: 1.7 }, { name: 'Fri', hours: 1.1 }, { name: 'Sat', hours: 2.2 }, { name: 'Sun', hours: 1.6 }];
@@ -143,6 +160,13 @@ export function Dashboard() {
       <Card className="overflow-hidden"><div className="flex items-start justify-between border-b border-border p-5"><div><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Competency profile</p><h2 className="mt-1 font-serif text-[22px]">Where your practice stands</h2></div><button data-testid="button-view-competencies" onClick={() => setLocation('/assessment')} className="text-xs font-semibold text-primary hover:underline">View assessment <ArrowUpRight className="ml-1 inline size-3" /></button></div><div className="p-5">{sample || view.bars.length > 0 ? <div className="h-[230px] w-full"><ResponsiveContainer width="100%" height="100%"><BarChart data={sample ? competencyData : view.bars} layout="vertical" margin={{ left: 14, right: 20 }} barCategoryGap={13}><CartesianGrid horizontal={false} stroke="#dfe9ea" /><XAxis type="number" domain={[0, 100]} axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#718189' }} /><YAxis type="category" dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#40515a' }} width={92} /><Tooltip cursor={{ fill: '#f2f6f6' }} contentStyle={{ borderRadius: 8, border: '1px solid #dfe9ea', fontSize: 12 }} /><Bar dataKey="score" fill="#2f7880" radius={[0, 4, 4, 0]} barSize={15} /></BarChart></ResponsiveContainer></div> : <div className="flex h-[230px] w-full flex-col items-center justify-center rounded-lg border border-dashed border-border px-6 text-center"><BarChart3 className="size-6 text-muted-foreground" /><p className="mt-3 max-w-sm text-sm leading-6 text-muted-foreground">Take your first assessment to generate your learning profile. Nothing is charted until you have answered something.</p></div>}<div className="mt-2 flex items-center justify-between border-t border-border pt-4 text-xs text-muted-foreground"><span>{sample ? 'Last calibrated 18 Sep 2024' : progress.lastAttemptAt ? `Last measured ${longDate(progress.lastAttemptAt)}` : 'Nothing measured yet'}</span>{sample ? <span className="flex items-center gap-1 text-[#216b67]"><TrendingUp className="size-3.5" /> Trending upward</span> : <span className="flex items-center gap-1 text-[#216b67]">{view.trend.direction === 'up' ? <TrendingUp className="size-3.5" /> : view.trend.direction === 'down' ? <TrendingDown className="size-3.5" /> : <Minus className="size-3.5" />} {view.trend.label}</span>}</div></div></Card>
       <Card className="p-5"><div className="flex items-center justify-between"><div><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">{sample ? 'This week' : 'Last 7 days'}</p><h2 className="mt-1 font-serif text-[22px]">Learning rhythm</h2></div><Badge tone="amber">{sample ? '7.6 hours' : `${bucketHours(view.buckets)} hours`}</Badge></div><div className="mt-5 h-[178px]"><ResponsiveContainer width="100%" height="100%"><AreaChart data={sample ? weeklyData : view.buckets} margin={{ top: 12, right: 4, left: -25, bottom: 0 }}><defs><linearGradient id="rhythmFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#2f7880" stopOpacity=".23" /><stop offset="100%" stopColor="#2f7880" stopOpacity="0" /></linearGradient></defs><CartesianGrid vertical={false} stroke="#e4ecec" /><XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#718189' }} /><YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#718189' }} /><Tooltip contentStyle={{ borderRadius: 8, border: '1px solid #dfe9ea', fontSize: 12 }} /><Area dataKey="hours" stroke="#2f7880" strokeWidth={2} fill="url(#rhythmFill)" /></AreaChart></ResponsiveContainer></div><div className="flex items-center justify-between border-t border-border pt-4"><div className="flex -space-x-1">{faces.length > 0 && <span className="flex size-7 items-center justify-center rounded-full border-2 border-card bg-[#d8e9e6] text-[9px] font-bold text-[#216b67]">{faces[0]}</span>}{faces.length > 1 && <span className="flex size-7 items-center justify-center rounded-full border-2 border-card bg-[#f7dfaa] text-[9px] font-bold text-[#8a6319]">{faces[1]}</span>}{faces.length > 2 && <span className="flex size-7 items-center justify-center rounded-full border-2 border-card bg-[#dce3ec] text-[9px] font-bold text-[#29485a]">{faces[2]}</span>}</div><span className="text-xs text-muted-foreground">{sample ? '5 of 7 days active' : `${activeDays(view.buckets)} of ${WEEK_DAYS} days active`}</span></div></Card>
     </div>
+    {/**
+      * The competency gap analysis. Gated on `live` for the same reason every other
+      * figure on this page is: in sample mode there are no real answers to analyse, and
+      * a chart of invented gaps is the precise thing this section exists to replace. Not
+      * rendering it leaves the demo view exactly as it was.
+      */}
+    {live && <CompetencyGapSection />}
     <div className="mt-8"><SectionHeading eyebrow="Curated for your role" title="Recommended next" description={sample ? 'Signals from your profile, current role, and recent assessment.' : 'Ordered by the competency your answers scored lowest.'} action={<button data-testid="button-show-all-recommendations" onClick={() => setShowAll(!showAll)} className="text-xs font-semibold text-primary hover:underline">{showAll ? 'Show less' : 'See all recommendations'} <ArrowRight className="ml-1 inline size-3.5" /></button>} /><div className="grid gap-4 md:grid-cols-3">{cards.slice(0, showAll ? 3 : 2).map((course) => <Card key={course.id} interactive className="overflow-hidden"><div className={`flex h-20 items-center justify-between px-5 ${course.color}`}><course.icon className="size-8 text-[#296b6b]/60" /><Badge tone={course.tag === 'Recommended' ? 'teal' : 'amber'}>{course.tag}</Badge></div><div className="p-5"><p className="text-[11px] font-semibold uppercase tracking-[.08em] text-muted-foreground">{course.type}</p><h3 className="mt-2 min-h-[48px] font-semibold leading-6">{course.title}</h3>{course.why && <p className="text-xs leading-5 text-muted-foreground">{course.why}</p>}<div className="mt-4 flex items-center justify-between text-xs text-muted-foreground"><span className="flex items-center gap-1"><Clock3 className="size-3.5" />{course.duration}</span><span>{course.progress ? `${course.progress}% complete` : course.level}</span></div>{course.progress > 0 && <ProgressBar value={course.progress} className="mt-3" />}<button data-testid={`button-open-course-${course.id}`} onClick={() => setLocation(`/courses/${course.id}`)} className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg border border-border py-2 text-xs font-semibold text-primary hover:bg-secondary">{course.progress ? 'Resume learning' : 'View course'}<ArrowRight className="size-3.5" /></button></div></Card>)}</div></div>
     <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_.9fr]"><Card className="p-5"><SectionHeading eyebrow="Recent activity" title="A short record of progress" action={<button data-testid="button-view-activity" onClick={sample ? () => setToast('Sign in to see your own history') : moreActivity ? () => setFullActivity(!fullActivity) : () => setToast(history.length === 0 ? 'Nothing is recorded yet' : 'That is everything recorded so far')} className="text-xs font-semibold text-primary">{moreActivity ? (fullActivity ? 'Show less' : `View all ${history.length}`) : 'View history'}</button>} /><div className="space-y-4">{rows.length === 0 ? <p className="text-sm leading-6 text-muted-foreground">Nothing recorded yet. Assessments and knowledge checks appear here with the score each one earned.</p> : rows.map((row) => <div key={row.id} className="flex items-center gap-3"><div className={`size-2 rounded-full ${row.tone === 'teal' ? 'bg-primary' : row.tone === 'amber' ? 'bg-accent' : 'bg-[#9db5c5]'}`} /><div className="flex-1"><p className="text-sm font-semibold">{row.title}</p><p className="text-xs text-muted-foreground">{row.detail}</p></div><span className="font-mono text-[10px] text-muted-foreground">{row.date}</span></div>)}</div></Card><Card className="relative overflow-hidden bg-sidebar p-6 text-sidebar-foreground"><div className="absolute -right-8 -top-10 size-40 rounded-full border border-accent/20" /><div className="absolute -right-3 -top-5 size-28 rounded-full border border-accent/15" /><Award className="mb-5 size-6 text-accent" /><p className="font-mono text-[10px] uppercase tracking-[.16em] text-accent">Signal worth noticing</p><h3 className="mt-2 max-w-[290px] font-serif text-2xl text-white">{sample ? 'Your strongest and weakest competency, side by side.' : view.signal ? view.signal.headline : 'Your profile starts with one sitting.'}</h3><p className="mt-3 max-w-[300px] text-sm leading-6 text-sidebar-foreground/70">{sample ? 'This card is showing demonstration copy. With your own results it names your strongest and weakest competency, and the gap between them.' : view.signal ? view.signal.detail : 'Sit the assessment or upload your own material, and this card names your strongest and weakest competency with the counts behind them.'}</p><button data-testid="button-view-insight" onClick={sample ? () => setToast('Sign in to keep this in your learning brief') : () => setLocation(view.signal ? view.signal.href : '/assessment')} className="mt-5 text-sm font-semibold text-accent hover:underline">{sample ? 'Save to brief' : view.signal ? view.signal.actionLabel : 'Take the assessment'} <ArrowRight className="ml-1 inline size-4" /></button></Card></div>
     {toast && <ToastMessage message={toast} onClose={() => setToast('')} />}
@@ -199,6 +223,13 @@ export function Assessment() {
   const [selected, setSelected] = useState<number | null>(null);
   /** The server's marking. Its arrival is what "submitted" means. */
   const [result, setResult] = useState<AssessmentResult | null>(null);
+  /**
+   * The server's per-question rollup for this sitting: how many were attempted, how many
+   * missed, and which topic accounts for most of the misses. It rides along with the
+   * submission, so the report needs no second round trip, and it is the server's count
+   * rather than a second tally taken from `graded`.
+   */
+  const [answerAnalysis, setAnswerAnalysis] = useState<AnswerAnalysis | null>(null);
   const [showReview, setShowReview] = useState(false);
   const [startedAt, setStartedAt] = useState(() => Date.now());
   const [elapsed, setElapsed] = useState(0);
@@ -283,6 +314,7 @@ export function Assessment() {
       return;
     }
     setResult(outcome.value.result);
+    setAnswerAnalysis(outcome.value.answers);
     setSaveNote('Saved to your account.');
   };
 
@@ -291,6 +323,7 @@ export function Assessment() {
     setAnswers([]);
     setSelected(null);
     setResult(null);
+    setAnswerAnalysis(null);
     setShowReview(false);
     setSaveNote('');
     setStartedAt(Date.now());
@@ -341,6 +374,39 @@ export function Assessment() {
           <p className="mt-4 text-xs leading-5 text-muted-foreground">This paper asks about all five competencies, so all five are reported. A quiz built from an uploaded document usually touches fewer, and the ones it never asked about are left out rather than shown as zero.</p>
         </div>}
       </Card>
+
+      {/**
+        * The answer-level rollup, straight from the server's grading of this sitting.
+        * It answers a question the per-section card cannot: not "how did each competency
+        * score" but "which topic did the wrong answers actually fall under". The counts
+        * are the server's, and no question text or answer key is in this payload.
+        */}
+      {answerAnalysis && <Card className="mt-6 p-6 sm:p-8">
+        <SectionHeading eyebrow="Answer breakdown" title="Which questions went wrong, and where" description={`You attempted ${answerAnalysis.attempted} of ${answerAnalysis.total} questions and got ${answerAnalysis.correct} right — ${answerAnalysis.accuracy}% of the paper.`} />
+        <div className="grid gap-3 sm:grid-cols-4">
+          {[['Attempted', `${answerAnalysis.attempted}`], ['Correct', `${answerAnalysis.correct}`], ['Incorrect', `${answerAnalysis.incorrect}`], ['Unanswered', `${answerAnalysis.unanswered}`]].map(([label, value]) => <div key={label} className="rounded-lg bg-secondary p-4 text-center">
+            <p className="text-xs text-muted-foreground">{label}</p>
+            <p className="mt-1 font-semibold">{value}</p>
+          </div>)}
+        </div>
+        <div className="mt-6 space-y-3">
+          {answerAnalysis.topics.map((row) => <div key={row.topic} className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-border px-4 py-3">
+            <div>
+              <p className="text-sm font-semibold text-foreground">{row.topic}</p>
+              <p className="mt-0.5 text-xs text-muted-foreground">
+                {row.correct} of {row.total} correct{row.unanswered > 0 ? ` · ${row.unanswered} left blank` : ''}
+                {row.competency ? ` · counts towards ${competencyName(row.competency as CompetencyId)}` : ''}
+              </p>
+            </div>
+            <span className="font-mono text-xs text-muted-foreground">{row.percent}%</span>
+          </div>)}
+        </div>
+        <p className="mt-5 text-xs leading-5 text-muted-foreground">
+          {answerAnalysis.mostProblematicTopic
+            ? `Most of your wrong answers were in ${answerAnalysis.mostProblematicTopic.topic} — ${answerAnalysis.mostProblematicTopic.incorrect} of ${answerAnalysis.mostProblematicTopic.total} questions there went wrong. That is the topic to start with.`
+            : 'Nothing went wrong on this paper, so there is no single topic to single out.'}
+        </p>
+      </Card>}
 
       {advice.length > 0 && <Card className="mt-6 p-6 sm:p-8">
         <SectionHeading eyebrow="What to do next" title="The sections worth another pass" description={plan.headline} />
@@ -427,7 +493,37 @@ export function CourseDetail() {
   return <div className="mx-auto max-w-5xl animate-rise-in"><Link href="/learning" data-testid="link-back-learning" className="mb-6 inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground hover:text-primary"><ArrowLeft className="size-3.5" /> Back to learning</Link><Card className="overflow-hidden"><div className={`relative px-6 py-12 sm:px-12 ${course.color}`}><div className="absolute right-10 top-8 hidden opacity-20 sm:block"><course.icon className="size-32 text-primary" /></div><Badge tone="teal">{course.type}</Badge><h1 className="mt-4 max-w-2xl font-serif text-3xl leading-tight sm:text-5xl">{course.title}</h1><p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">A practical course for officials who need to move from a result to a defensible interpretation. Learn with worked examples from official statistical practice.</p><div className="mt-6 flex flex-wrap gap-4 text-xs font-medium text-muted-foreground"><span className="flex items-center gap-1"><Clock3 className="size-4" />{course.duration}</span><span className="flex items-center gap-1"><Users className="size-4" />1,248 learners</span><span>Intermediate</span></div></div><div className="grid gap-8 p-6 sm:p-10 lg:grid-cols-[1fr_280px]"><div><h2 className="font-serif text-2xl">What you will take away</h2><div className="mt-5 space-y-4">{['Read seasonality without mistaking it for structural change', 'Choose an appropriate model and explain its assumptions', 'Write a short, decision-ready interpretation for a policy brief'].map((item) => <div key={item} className="flex gap-3 text-sm leading-6"><CheckCircle2 className="mt-1 size-4 shrink-0 text-primary" />{item}</div>)}</div><h2 className="mt-10 font-serif text-2xl">Course outline</h2><div className="mt-4 divide-y divide-border rounded-xl border border-border">{['The language of change', 'Seasonal adjustment in practice', 'Model choices and diagnostics', 'Capstone: write the brief'].map((item, i) => <button key={item} data-testid={`button-course-module-${i}`} onClick={() => setToast(`${item} marked as previewed`)} className="flex w-full items-center gap-3 p-4 text-left hover:bg-secondary"><span className="font-mono text-xs text-muted-foreground">0{i + 1}</span><span className="flex-1 text-sm font-semibold">{item}</span><span className="text-xs text-muted-foreground">{i === 0 ? '18 min' : `${i + 1}h ${i + 5}m`}</span><Play className="size-3.5 text-primary" /></button>)}</div></div><aside><div className="sticky top-24 rounded-xl border border-border bg-secondary p-5"><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Your progress</p><div className="mt-4 flex items-center gap-4"><Donut value={course.progress} size={74} /><div><p className="font-semibold">{course.progress}% complete</p><p className="mt-1 text-xs text-muted-foreground">{course.progress ? 'Module 2 of 4' : 'Not started'}</p></div></div><ProgressBar value={course.progress} className="mt-5" /><ActionButton className="mt-5 w-full" onClick={() => { setStarted(true); setToast(started ? 'Course resumed' : 'Course added to your pathway'); }}>{started ? 'Resume course' : 'Start course'} <ArrowRight className="size-4" /></ActionButton><button data-testid="button-download-outline" onClick={() => setToast('Course outline downloaded')} className="mt-3 flex w-full items-center justify-center gap-2 py-2 text-xs font-semibold text-primary"><Download className="size-3.5" /> Download outline</button></div></aside></div></Card>{toast && <ToastMessage message={toast} onClose={() => setToast('')} />}</div>;
 }
 
-const stageOrder = ['reading', 'topics', 'questions', 'checking'] as const;
+/**
+ * The external course library: real courses on Coursera, edX, MIT OCW, freeCodeCamp and
+ * the like, filterable by category or by what is trending. Everything it shows comes from
+ * `src/lib/course-library.ts`; this page does no arithmetic and invents no field. Links
+ * leave the app (`target="_blank"`), and `libraryNote` states plainly that NEXORA neither
+ * hosts nor endorses them. It reuses the page's existing Card, Badge and ActionButton and
+ * the same tokens as every other screen — no new design language.
+ */
+type LibraryFilter = 'all' | 'trending' | CourseCategory;
+
+/** Cost maps to the same badge tones the rest of the app already uses. */
+function costTone(cost: string): 'teal' | 'amber' | 'coral' {
+  if (cost === 'Paid') return 'amber';
+  if (cost === 'Subscription') return 'coral';
+  return 'teal';
+}
+
+export function CourseLibrary() {
+  const [filter, setFilter] = useState<LibraryFilter>('all');
+  const counts = useMemo(() => categoryCounts(), []);
+  const trendingCount = useMemo(() => trendingCourses().length, []);
+  const shown = filter === 'trending' ? trendingCourses() : coursesInCategory(filter);
+  const chips: { id: LibraryFilter; label: string; count: number }[] = [
+    { id: 'all', label: 'All', count: courseLibrary.length },
+    { id: 'trending', label: 'Trending now', count: trendingCount },
+    ...categoryOrder.map((category) => ({ id: category, label: categoryLabels[category], count: counts[category] })),
+  ];
+  return <div className="mx-auto max-w-[1440px] animate-rise-in"><PageIntro eyebrow="Course library" title="Courses worth your evening, from across the web." description="A hand-picked catalogue of real online courses — engineering, medicine, data science and business — every one at least an hour, linking straight to the provider." action={<ActionButton variant="outline" onClick={() => setFilter('all')} icon={<RefreshCw className="size-4" />}>Reset filters</ActionButton>} /><div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><div className="flex flex-wrap gap-1 rounded-lg bg-secondary p-1">{chips.map((chip) => <button key={chip.id} data-testid={`button-library-filter-${chip.id}`} onClick={() => setFilter(chip.id)} className={`inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-xs font-semibold ${filter === chip.id ? 'bg-card text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}>{chip.id === 'trending' && <TrendingUp className="size-3.5" />}{chip.label}<span className="font-mono text-[10px] text-muted-foreground">{chip.count}</span></button>)}</div><span className="text-xs text-muted-foreground">{shown.length} {shown.length === 1 ? 'course' : 'courses'}</span></div><div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">{shown.map((course) => <Card key={course.id} interactive className="flex flex-col gap-3 p-5"><div className="flex items-start justify-between gap-2"><div className="flex flex-wrap items-center gap-2"><Badge tone="navy">{categoryLabels[course.category]}</Badge>{course.trending && <Badge tone="amber"><TrendingUp className="size-3" /> Trending</Badge>}</div><span className="shrink-0 font-mono text-[10px] uppercase tracking-[.12em] text-muted-foreground">{course.level}</span></div><div className="min-w-0 flex-1"><h3 className="font-semibold leading-snug">{course.title}</h3><p className="mt-1 text-xs text-muted-foreground">{course.provider} · {course.partner}</p><p className="mt-3 text-sm leading-6 text-muted-foreground">{course.blurb}</p></div><div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground"><span className="flex items-center gap-1"><Clock3 className="size-3.5" />{courseHoursLabel(course.hours)}</span><Badge tone={costTone(course.cost)}>{course.cost}</Badge>{course.certificate && <span className="flex items-center gap-1"><Award className="size-3.5" />Certificate</span>}</div><a href={course.url} target="_blank" rel="noopener noreferrer" data-testid={`link-library-course-${course.id}`} className="mt-1 inline-flex items-center justify-center gap-1.5 rounded-lg bg-primary px-3 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-primary/90">View course <ArrowUpRight className="size-3.5" /></a></Card>)}</div><p className="mt-6 max-w-3xl text-xs leading-5 text-muted-foreground">{libraryNote}</p></div>;
+}
+
+const stageOrder = ['reading', 'classifying', 'topics', 'questions', 'checking'] as const;
 type Stage = (typeof stageOrder)[number];
 
 /**
@@ -440,8 +536,9 @@ type Stage = (typeof stageOrder)[number];
  */
 const stageLabels: Record<Stage, string> = {
   reading: 'Reading document',
+  classifying: 'Identifying document type',
   topics: 'Understanding topics',
-  questions: 'Generating questions',
+  questions: 'Writing questions with AI',
   checking: 'Validating questions',
 };
 
@@ -455,16 +552,29 @@ type Work = {
   pageCount: number;
   conceptCount: number;
   questionCount: number;
+  /** When the AI request went out, so the wait can be reported in seconds actually elapsed. */
+  askedAt: number;
+  /** What the model classified the document as — shown as a banner before questions. */
+  classification: MaterialClassification | null;
 };
 
 /**
- * Reading owns most of the bar because on a real PDF it is the only step that takes
- * measurable time, and the only one that can report sub-steps: pages actually decoded.
+ * Reading and the model call own the bar between them; the two local passes in the
+ * middle are near-instant and are marked rather than animated.
+ *
+ * The numbers changed when generation moved to the server. Reading used to be the only
+ * step that took real time and owned most of the bar; now a model call sits behind
+ * `questions` and takes far longer than decoding a PDF, so parking the bar at 86% for
+ * twenty seconds would have implied the work was nearly done when it had barely
+ * started. It holds at 62 instead, and the seconds counter beside it — a measured
+ * number, not an estimate — is what shows the wait is progressing.
  */
 function progressFor(work: Work): number {
-  if (work.stage === 'reading') return work.pageCount > 0 ? Math.round(4 + (56 * work.pagesRead) / work.pageCount) : 4;
-  if (work.stage === 'topics') return 66;
-  if (work.stage === 'questions') return 86;
+  if (work.stage === 'reading') return work.pageCount > 0 ? Math.round(4 + (38 * work.pagesRead) / work.pageCount) : 4;
+  if (work.stage === 'classifying') return 46;
+  if (work.stage === 'topics') return 52;
+  if (work.stage === 'questions') return 60;
+  if (work.stage === 'checking') return 90;
   return 100;
 }
 
@@ -486,6 +596,34 @@ export function Materials() {
   const [isDragging, setIsDragging] = useState(false);
   const [showQuestions, setShowQuestions] = useState(false);
   const [confirmingDiscard, setConfirmingDiscard] = useState(false);
+  /** What the learner picked before uploading: how hard, and how many. */
+  const [difficulty, setDifficulty] = useState<Difficulty>('medium');
+  const [count, setCount] = useState(TARGET_QUESTIONS);
+  /** What the model classified the last uploaded document as. Persists after work ends. */
+  const [classification, setClassification] = useState<MaterialClassification | null>(null);
+  /**
+   * The account's saved papers. `null` means "not fetched yet", which is different from
+   * an empty array: an empty array is a signed-in learner with nothing saved, and that
+   * case gets a line of text rather than an empty box.
+   */
+  const [savedPapers, setSavedPapers] = useState<SavedPaperSummary[] | null>(null);
+  const [savingPaper, setSavingPaper] = useState(false);
+  /** The id of the saved paper being opened or deleted, so only that row shows a busy state. */
+  const [busyPaperId, setBusyPaperId] = useState('');
+  const [paperError, setPaperError] = useState('');
+  const [confirmingPaperDelete, setConfirmingPaperDelete] = useState('');
+  /**
+   * Redraws the seconds counter while the model is thinking. It is a re-render trigger
+   * and nothing else — the number shown is computed from `askedAt`, so a dropped tick
+   * shows a slightly stale figure rather than a wrong one.
+   */
+  const [, setTick] = useState(0);
+  const waiting = work?.stage === 'questions';
+  useEffect(() => {
+    if (!waiting) return;
+    const timer = window.setInterval(() => setTick((value) => value + 1), 1000);
+    return () => window.clearInterval(timer);
+  }, [waiting]);
 
   const startProcessing = async (
     meta: { fileName: string; fileSize: number; fileType: string; isSample: boolean },
@@ -494,7 +632,8 @@ export function Materials() {
     setError('');
     setShowQuestions(false);
     setConfirmingDiscard(false);
-    setWork({ ...meta, stage: 'reading', pagesRead: 0, pageCount: 0, conceptCount: 0, questionCount: 0 });
+    setClassification(null);
+    setWork({ ...meta, stage: 'reading', pagesRead: 0, pageCount: 0, conceptCount: 0, questionCount: 0, askedAt: 0, classification: null });
     const advance = async (stage: Stage, extra?: Partial<Work>) => {
       setWork((previous) => (previous ? { ...previous, ...extra, stage } : previous));
       await paint();
@@ -504,16 +643,31 @@ export function Materials() {
       const { text, pageCount } = await read((pagesRead, pages) => {
         setWork((previous) => (previous ? { ...previous, pagesRead, pageCount: pages } : previous));
       });
-      await advance('topics', { pageCount });
+      await advance('classifying');
+      // Ask the model what kind of document this is — study material, marksheet,
+      // report, etc. A fast call that warns the learner before the long generation.
+      const classification = await classifyDocument(text);
+      setClassification(classification);
+      await advance('topics', { pageCount, classification });
+      // Still local, still key-free: the file was decoded in this tab, and the concept
+      // and topic passes below run on it here. Only the extracted text goes further.
       const concepts = extractConcepts(text);
-      await advance('questions', { conceptCount: concepts.length });
-      const { questions, topics } = generateQuestions(text);
+      const topics = extractTopics(sentenceList(text));
+      await advance('questions', { conceptCount: concepts.length, askedAt: Date.now() });
+
+      // The real request. There is deliberately no local fallback behind this: if the
+      // server has no provider key, or the model cannot ground enough questions in this
+      // document, the learner is told so. Quietly substituting sentence-manipulation
+      // questions under an "AI generated" heading would be undetectable from the outside,
+      // which is exactly what makes it the wrong thing to do.
+      const generated = await generateAiQuestions({ text, topics, concepts, questionCount: count, difficulty });
+
       await advance('checking');
-      // Real work, not a pause. A repeated stem, or an answer index outside its own option
-      // list, is a defect in the generator rather than a problem with the document — and
-      // both are cheaper to drop here than to explain to a learner mid-quiz.
+      // A second, independent pass over what the server already validated. A repeated
+      // stem, or an answer index outside its own option list, is cheaper to drop here
+      // than to explain to a learner mid-quiz.
       const seen = new Set<string>();
-      const checked = questions.filter((question) => {
+      const checked = generated.questions.filter((question) => {
         if (question.correct < 0 || question.correct >= question.a.length) return false;
         const stem = question.q.toLowerCase();
         if (seen.has(stem)) return false;
@@ -521,18 +675,26 @@ export function Materials() {
         return true;
       });
       if (checked.length === 0) {
-        throw new Error('The document was read, but there was not enough sentence-level text to build a grounded quiz.');
+        throw new Error('The questions that came back could not be checked against this document. Please try again.');
       }
       // Store only the topics this paper can actually score, in the order the analyser
       // ranked them, so the topic list on screen matches the questions behind it.
-      const scored = Array.from(new Set(checked.map((question) => question.topic)))
-        .sort((left, right) => topics.indexOf(left) - topics.indexOf(right));
+      const scored = generated.topics.filter((topic) => checked.some((question) => question.topic === topic));
+      // Only now — after the questions exist and have been checked — is a count shown.
       setWork((previous) => (previous ? { ...previous, questionCount: checked.length } : previous));
       await paint();
       setMaterial({ ...meta, pageCount, concepts, topics: scored, questions: checked, createdAt: new Date().toISOString() });
       setWork(null);
     } catch (failure) {
       setWork(null);
+      if (failure instanceof AiGenerationError) {
+        // `produced` is how many questions did survive validation. "6 of the 10 needed"
+        // points at the document; a bare failure points nowhere.
+        setError(failure.produced > 0
+          ? `${failure.message} (${failure.produced} of the ${MIN_QUESTIONS} needed were usable.)`
+          : failure.message);
+        return;
+      }
       setError(failure instanceof Error ? failure.message : 'The document could not be read. Please try another file.');
     }
   };
@@ -586,19 +748,128 @@ export function Materials() {
     setError('');
   };
 
+  /**
+   * Read the account's saved sets once, when the page opens.
+   *
+   * A failure deliberately leaves the list at `null` rather than `[]`. Being signed out,
+   * or not reaching the server, is not the same as having nothing saved, and showing
+   * "no saved sets yet" in those cases would be a claim the page cannot support.
+   */
+  useEffect(() => {
+    let cancelled = false;
+    listPapers()
+      .then((papers) => {
+        if (!cancelled) setSavedPapers(papers);
+      })
+      .catch(() => {
+        /* Signed out or unreachable: the section stays hidden. */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  /**
+   * Store the set on screen against the account. The id comes back from the server and is
+   * written into the tab's copy of the paper, so a reload still knows it is saved.
+   */
+  const saveCurrentPaper = async () => {
+    if (!material || savingPaper || material.savedPaperId) return;
+    setSavingPaper(true);
+    setPaperError('');
+    try {
+      const paper = await savePaper({ title: material.fileName, difficulty, questions: material.questions });
+      setMaterial({ ...material, savedPaperId: paper.id });
+      setSavedPapers((previous) => [paper, ...(previous ?? []).filter((item) => item.id !== paper.id)]);
+    } catch (problem) {
+      setPaperError(problem instanceof PaperError ? problem.message : 'The set could not be saved. Please try again.');
+    } finally {
+      setSavingPaper(false);
+    }
+  };
+
+  /**
+   * Pull one saved set back into the tab and go straight to the quiz. The questions come
+   * from the server, not from this browser, so the stored paper is marked with its id and
+   * carries no file size or page count it cannot justify.
+   */
+  const openSavedPaper = async (id: string) => {
+    if (busyPaperId !== '') return;
+    setBusyPaperId(id);
+    setPaperError('');
+    try {
+      const paper = await getPaper(id);
+      setMaterial({
+        fileName: paper.title,
+        fileSize: 0,
+        fileType: 'saved',
+        pageCount: 0,
+        concepts: [],
+        topics: paper.topics,
+        questions: paper.questions,
+        createdAt: paper.createdAt,
+        isSample: false,
+        savedPaperId: paper.id,
+      });
+      setWork(null);
+      setShowQuestions(false);
+      setConfirmingDiscard(false);
+      setError('');
+      setLocation('/quiz');
+    } catch (problem) {
+      setPaperError(problem instanceof PaperError ? problem.message : 'That set could not be opened.');
+    } finally {
+      setBusyPaperId('');
+    }
+  };
+
+  /** Remove one saved set from the account. The copy in this tab, if any, is left alone. */
+  const removeSavedPaper = async (id: string) => {
+    if (busyPaperId !== '') return;
+    setBusyPaperId(id);
+    setPaperError('');
+    try {
+      await deletePaper(id);
+      setSavedPapers((previous) => (previous ?? []).filter((item) => item.id !== id));
+      setConfirmingPaperDelete('');
+    } catch (problem) {
+      setPaperError(problem instanceof PaperError ? problem.message : 'That set could not be deleted.');
+    } finally {
+      setBusyPaperId('');
+    }
+  };
+
   const stageIndex = work ? stageOrder.indexOf(work.stage) : -1;
   const progress = work ? progressFor(work) : 0;
+  /**
+   * Seconds the model has actually been thinking. Measured, not estimated — it is the
+   * one honest thing that can move while the bar has nothing new to say, and a request
+   * that has been out for 40 seconds looks different from one that has been out for 3.
+   */
+  const waitSeconds = work && work.stage === 'questions' && work.askedAt > 0
+    ? Math.floor((Date.now() - work.askedAt) / 1000)
+    : 0;
   const perTopic = material
     ? material.topics.map((topic) => ({ topic, count: material.questions.filter((question) => question.topic === topic).length }))
     : [];
 
   return <div className="mx-auto max-w-5xl animate-rise-in">
-     <PageIntro eyebrow="Materials lab · Local extraction" title="Turn a brief into a knowledge check." description="Upload a work material and NEXORA AI will extract selectable text in your browser, identify concepts, and build a grounded practice set." action={<Badge tone="navy"><LockKeyhole className="size-3.5" /> No external AI required</Badge>} />
+     <PageIntro eyebrow="Materials lab · AI question generation" title="Turn a brief into a knowledge check." description="Upload a work material and NEXORA AI will extract selectable text in your browser, identify concepts, then write a grounded practice set with AI on the server." action={<Badge tone="navy"><LockKeyhole className="size-3.5" /> Provider key stays on the server</Badge>} />
     {!work && !material && <Card className="p-6 sm:p-10">
       <div onDragOver={(event) => { event.preventDefault(); setIsDragging(true); }} onDragLeave={() => setIsDragging(false)} onDrop={handleDrop} className={`rounded-2xl border-2 border-dashed px-6 py-14 text-center transition-colors ${isDragging ? 'border-primary bg-[#e3f3ef]' : 'border-[#a9cdca] bg-[#f0f8f6]'}`}>
         <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-[#d9ece8] text-primary"><UploadCloud className="size-7" /></div>
         <h2 className="mt-5 font-serif text-2xl">Drop a material here</h2>
-         <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-muted-foreground">Choose a text-based {supportedFormatsSentence} up to {maxMaterialSize}. The file is read in this browser and is not sent to an external service.</p>
+         <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-muted-foreground">Choose a text-based {supportedFormatsSentence} up to {maxMaterialSize}. The file itself is read in this browser; only the text it contains is sent to the NEXORA AI server to write questions.</p>
+        <div className="mx-auto mt-6 grid max-w-md gap-4 text-left sm:grid-cols-2">
+          <div>
+            <p className="mb-2 font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">Difficulty</p>
+            <div className="grid grid-cols-3 gap-1.5">{(['easy', 'medium', 'hard'] as const).map((level) => <button key={level} type="button" data-testid={`button-difficulty-${level}`} onClick={() => setDifficulty(level)} className={`rounded-lg border px-2 py-2 text-xs font-semibold capitalize transition-colors ${difficulty === level ? 'border-primary bg-primary text-white' : 'border-border bg-card text-muted-foreground hover:bg-secondary'}`}>{level}</button>)}</div>
+          </div>
+          <div>
+            <p className="mb-2 font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">How many questions</p>
+            <select data-testid="select-question-count" value={count} onChange={(event) => setCount(Number(event.target.value))} className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-secondary">{[5, 8, 10, 12, 15, 20].map((n) => <option key={n} value={n}>{n} questions</option>)}</select>
+          </div>
+        </div>
         <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <label htmlFor="material-upload" className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary px-3.5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-[#245b62] active:scale-[.98]"><UploadCloud className="size-4" /> Choose file</label>
           <input id="material-upload" data-testid="input-material-upload" type="file" accept={supportedAccept} className="sr-only" onChange={(event) => { const file = event.target.files?.[0]; if (file) handleFile(file); event.currentTarget.value = ''; }} />
@@ -611,12 +882,14 @@ export function Materials() {
     </Card>}
     {work && <Card className="p-6 sm:p-10">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center"><div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#f7ebd1]"><FileCheck2 className="size-6 text-[#8a6319]" /></div><div className="min-w-0 flex-1"><p className="truncate font-semibold">{work.fileName}</p><p className="mt-1 text-xs text-muted-foreground">{work.fileType.toUpperCase()} · {formatFileSize(work.fileSize)} · {stageLabels[work.stage]}...</p></div><Badge tone="amber">Processing</Badge></div>
-      <div className="mt-8 space-y-3"><ProgressBar value={progress} color="bg-accent" /><div className="flex justify-between font-mono text-[10px] uppercase tracking-[.12em] text-muted-foreground"><span>{stageLabels[work.stage]}</span><span>{progress}%</span></div></div>
-       <div className="mt-8 grid gap-3 sm:grid-cols-3">{['Document text', 'Key terms', 'Question blueprint'].map((t, i) => <div key={t} className="rounded-lg border border-border p-4"><div className="mb-4 h-2 w-2/3 animate-pulse rounded bg-secondary" /><p className="text-xs text-muted-foreground">{t}</p><p className="mt-1 text-sm font-semibold">{i === 0 ? (stageIndex > 0 ? `Text extracted · ${work.pageCount} ${work.pageCount === 1 ? 'page' : 'pages'}` : work.pagesRead > 0 ? `${work.pagesRead} of ${work.pageCount} pages read` : 'Working...') : i === 1 ? (stageIndex > 1 ? `${work.conceptCount} concepts found` : 'Working...') : work.questionCount > 0 ? `${work.questionCount} questions ready` : 'Working...'}</p></div>)}</div>
+      <div className="mt-8 space-y-3"><ProgressBar value={progress} color="bg-accent" /><div className="flex justify-between font-mono text-[10px] uppercase tracking-[.12em] text-muted-foreground"><span>{stageLabels[work.stage]}{waitSeconds > 0 ? ` · ${waitSeconds}s elapsed` : ''}</span><span>{progress}%</span></div></div>
+      {work.classification && <div className={`mt-4 flex items-start gap-3 rounded-lg border px-4 py-3 text-sm leading-6 ${work.classification.suitable ? 'border-[#b8d8c9] bg-[#eaf5ee] text-[#1a5c3a]' : 'border-[#eac3bd] bg-[#fff2ef] text-[#a34d43]'}`}><span className="mt-0.5 shrink-0 font-mono text-[10px] uppercase tracking-[.12em]">{work.classification.label}</span><div className="flex-1"><p className="font-semibold">{work.classification.reason}</p>{work.classification.summary && <p className="mt-1 text-xs opacity-80">{work.classification.summary}</p>}{work.classification.topics.length > 0 && <p className="mt-1 text-xs opacity-70">Topics: {work.classification.topics.join(', ')}</p>}{!work.classification.suitable && <p className="mt-2 text-xs font-medium">{work.classification.advice}</p>}</div></div>}
+       <div className="mt-8 grid gap-3 sm:grid-cols-3">{['Document text', 'Key terms', 'Question blueprint'].map((t, i) => <div key={t} className="rounded-lg border border-border p-4"><div className="mb-4 h-2 w-2/3 animate-pulse rounded bg-secondary" /><p className="text-xs text-muted-foreground">{t}</p><p className="mt-1 text-sm font-semibold">{i === 0 ? (stageIndex > 0 ? `Text extracted · ${work.pageCount} ${work.pageCount === 1 ? 'page' : 'pages'}` : work.pagesRead > 0 ? `${work.pagesRead} of ${work.pageCount} pages read` : 'Working...') : i === 1 ? (stageIndex > 2 ? `${work.conceptCount} concepts found` : 'Working...') : work.questionCount > 0 ? `${work.questionCount} questions ready` : 'Working...'}</p></div>)}</div>
     </Card>}
     {!work && material && <Card className="p-6 sm:p-10">
-       <div className="flex flex-col justify-between gap-4 border-b border-border pb-6 sm:flex-row sm:items-center"><div className="flex min-w-0 items-center gap-4"><div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#dceeea]"><CheckCircle2 className="size-6 text-primary" /></div><div className="min-w-0"><p className="truncate font-semibold">{material.fileName}</p><p className="mt-1 text-xs text-muted-foreground">Read in this browser · {formatFileSize(material.fileSize)} · {material.pageCount} {material.pageCount === 1 ? 'page' : 'pages'} · {material.concepts.length} concepts identified</p></div></div><div className="flex shrink-0 flex-wrap items-center gap-2">{material.isSample && <Badge tone="amber">{sampleMaterialLabel}</Badge>}<Badge tone="teal">Ready to practise</Badge></div></div>
-       <div className="grid gap-5 py-7 lg:grid-cols-[1fr_260px]"><div><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Extracted intelligence</p><h2 className="mt-2 font-serif text-2xl">Your briefing, made queryable.</h2><p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">Text was extracted from your file and used to build these concepts and grounded questions in this browser.</p><div className="mt-5 flex flex-wrap gap-2">{material.concepts.map((concept) => <span key={concept} className="rounded-full border border-border bg-secondary px-3 py-1.5 text-xs text-muted-foreground">{concept}</span>)}</div></div><div className="rounded-xl bg-secondary p-5"><p className="text-xs text-muted-foreground">Generated set</p><p className="mt-2 font-serif text-3xl">{material.questions.length} MCQs</p><p className="mt-1 text-xs text-muted-foreground">Every question is built from extracted sentences in this material.</p><ActionButton className="mt-4 w-full" onClick={() => setLocation('/quiz')} icon={<ArrowRight className="size-4" />}>Open generated quiz</ActionButton>{confirmingDiscard ? <div className="mt-3 rounded-lg border border-[#eac3bd] bg-[#fff2ef] p-3"><p className="text-xs leading-5 text-[#a34d43]">Discard this {material.questions.length}-question paper? Rebuilding it needs the file again.</p><div className="mt-3 flex gap-2"><button data-testid="button-confirm-discard-material" onClick={discard} className="flex-1 rounded-lg bg-[#a34d43] py-2 text-xs font-semibold text-white">Discard</button><button data-testid="button-cancel-discard-material" onClick={() => setConfirmingDiscard(false)} className="flex-1 rounded-lg border border-border bg-card py-2 text-xs font-semibold">Keep it</button></div></div> : <button data-testid="button-upload-another-material" onClick={() => setConfirmingDiscard(true)} className="mt-3 w-full py-2 text-xs font-semibold text-primary hover:underline">Upload another material</button>}{!isDurable() && <p className="mt-3 text-[11px] leading-5 text-muted-foreground">Tab storage is blocked in this browser, so the paper is held in memory only and a reload will lose it.</p>}</div></div>
+       <div className="flex flex-col justify-between gap-4 border-b border-border pb-6 sm:flex-row sm:items-center"><div className="flex min-w-0 items-center gap-4"><div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#dceeea]"><CheckCircle2 className="size-6 text-primary" /></div><div className="min-w-0"><p className="truncate font-semibold">{material.fileName}</p><p className="mt-1 text-xs text-muted-foreground">{material.fileSize === 0 && material.savedPaperId ? `Reopened from your saved sets · ${material.questions.length} questions · ${material.topics.length} topics` : <>Read in this browser · {formatFileSize(material.fileSize)} · {material.pageCount} {material.pageCount === 1 ? 'page' : 'pages'} · {material.concepts.length} concepts identified</>}</p></div></div><div className="flex shrink-0 flex-wrap items-center gap-2">       {material.isSample && <Badge tone="amber">{sampleMaterialLabel}</Badge>}<Badge tone="teal">Ready to practise</Badge></div></div>
+       {classification && <div className={`mt-4 flex items-start gap-3 rounded-lg border px-4 py-3 text-sm leading-6 ${classification.suitable ? 'border-[#b8d8c9] bg-[#eaf5ee] text-[#1a5c3a]' : 'border-[#eac3bd] bg-[#fff2ef] text-[#a34d43]'}`}><span className="mt-0.5 shrink-0 font-mono text-[10px] uppercase tracking-[.12em]">{classification.label}</span><div className="flex-1"><p className="font-semibold">{classification.reason}</p>{classification.summary && <p className="mt-1 text-xs opacity-80">{classification.summary}</p>}{classification.topics.length > 0 && <p className="mt-1 text-xs opacity-70">Topics: {classification.topics.join(', ')}</p>}{!classification.suitable && <p className="mt-2 text-xs font-medium">{classification.advice}</p>}</div></div>}
+       <div className="grid gap-5 py-7 lg:grid-cols-[1fr_260px]"><div><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Extracted intelligence</p><h2 className="mt-2 font-serif text-2xl">Your briefing, made queryable.</h2><p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">Text was extracted from your file in this browser. The questions were then written by AI on the NEXORA AI server, and each one was checked back against a sentence in your document before it was accepted.</p><div className="mt-5 flex flex-wrap gap-2">{material.concepts.map((concept) => <span key={concept} className="rounded-full border border-border bg-secondary px-3 py-1.5 text-xs text-muted-foreground">{concept}</span>)}</div></div><div className="rounded-xl bg-secondary p-5"><p className="text-xs text-muted-foreground">Generated set</p><p className="mt-2 font-serif text-3xl">{material.questions.length} MCQs</p><p className="mt-1 text-xs text-muted-foreground">Every question quotes a sentence from this material, and the quote was verified against it.</p><ActionButton className="mt-4 w-full" onClick={() => setLocation('/quiz')} icon={<ArrowRight className="size-4" />}>Open generated quiz</ActionButton>{material.savedPaperId ? <p data-testid="text-paper-saved" className="mt-3 flex items-center justify-center gap-1.5 rounded-lg border border-border bg-card py-2 text-xs font-semibold text-primary"><Check className="size-3.5" /> Saved to your account</p> : <button data-testid="button-save-paper" onClick={saveCurrentPaper} disabled={savingPaper} className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-lg border border-border bg-card py-2 text-xs font-semibold transition-colors hover:bg-secondary disabled:opacity-60"><Download className="size-3.5" /> {savingPaper ? 'Saving…' : 'Save this set'}</button>}{paperError !== '' && <p data-testid="text-paper-error" className="mt-2 rounded-lg border border-[#eac3bd] bg-[#fff2ef] p-2.5 text-[11px] leading-5 text-[#a34d43]">{paperError}</p>}{confirmingDiscard ? <div className="mt-3 rounded-lg border border-[#eac3bd] bg-[#fff2ef] p-3"><p className="text-xs leading-5 text-[#a34d43]">Discard this {material.questions.length}-question paper? Rebuilding it needs the file again.</p><div className="mt-3 flex gap-2"><button data-testid="button-confirm-discard-material" onClick={discard} className="flex-1 rounded-lg bg-[#a34d43] py-2 text-xs font-semibold text-white">Discard</button><button data-testid="button-cancel-discard-material" onClick={() => setConfirmingDiscard(false)} className="flex-1 rounded-lg border border-border bg-card py-2 text-xs font-semibold">Keep it</button></div></div> : <button data-testid="button-upload-another-material" onClick={() => setConfirmingDiscard(true)} className="mt-3 w-full py-2 text-xs font-semibold text-primary hover:underline">Upload another material</button>}{!isDurable() && <p className="mt-3 text-[11px] leading-5 text-muted-foreground">Tab storage is blocked in this browser, so the paper is held in memory only and a reload will lose it.</p>}</div></div>
        {material.questions.length < MIN_QUESTIONS && <div role="status" className="mb-6 flex items-start gap-2 rounded-lg border border-[#eddcb4] bg-[#fdf6e6] px-4 py-3 text-sm leading-6 text-[#8a6319]"><TriangleAlert className="mt-0.5 size-4 shrink-0" /><span>This material yielded {material.questions.length} questions, fewer than the {MIN_QUESTIONS} a full check uses. A longer, more prose-heavy document produces more.</span></div>}
        <div className="border-t border-border pt-6">
         <div className="flex flex-wrap items-end justify-between gap-3"><div><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Scored topics</p><h3 className="mt-2 font-serif text-xl">What this paper will measure</h3></div><button data-testid="button-toggle-material-questions" onClick={() => setShowQuestions(!showQuestions)} className="text-xs font-semibold text-primary hover:underline">{showQuestions ? 'Hide the questions' : 'Show the questions'} <ArrowRight className="ml-1 inline size-3" /></button></div>
@@ -624,6 +897,41 @@ export function Materials() {
         <p className="mt-3 text-xs leading-5 text-muted-foreground">Each topic is rated on its own once it has at least {MIN_QUESTIONS_FOR_BAND} answered questions, so the result tells you which topics to revise rather than one overall mark.</p>
         {showQuestions && <div className="mt-5 space-y-3">{material.questions.map((question, index) => <div key={question.q} className="rounded-xl border border-border p-4"><div className="flex flex-wrap items-center gap-2"><span className="font-mono text-[10px] text-muted-foreground">{String(index + 1).padStart(2, '0')}</span><Badge>{questionKindLabels[question.kind]}</Badge><span className="text-[10px] font-semibold uppercase tracking-[.1em] text-muted-foreground">{question.topic}</span></div><p className="mt-2 text-sm leading-6">{question.q}</p></div>)}<p className="text-xs leading-5 text-muted-foreground">The options and the answer key stay hidden until the check starts, so reading this list cannot give the answers away.</p></div>}
        </div>
+    </Card>}
+    {savedPapers !== null && <Card className="mt-6 p-6 sm:p-8">
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Saved to your account</p>
+          <h2 className="mt-2 font-serif text-xl">Your question sets</h2>
+        </div>
+        <p className="text-xs text-muted-foreground">{savedPapers.length} of {MAX_SAVED_PAPERS} kept</p>
+      </div>
+      {savedPapers.length === 0
+        ? <p data-testid="text-no-saved-papers" className="mt-4 rounded-xl bg-secondary p-4 text-sm leading-6 text-muted-foreground">Nothing saved yet. Generate a set and press <b className="font-semibold text-foreground">Save this set</b> to keep its questions, answers and explanations here.</p>
+        : <>
+          <div data-testid="list-saved-papers" className="mt-4 divide-y divide-border rounded-xl border border-border">{savedPapers.map((paper) => <div key={paper.id} className="p-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="min-w-0">
+                <p className="truncate text-sm font-semibold">{paper.title}</p>
+                <p className="mt-1 text-xs text-muted-foreground">{paper.count} questions{paper.difficulty === '' ? '' : ` · ${paper.difficulty}`} · saved {longDate(paper.createdAt)}</p>
+              </div>
+              <div className="flex shrink-0 items-center gap-2">
+                <button data-testid={`button-open-paper-${paper.id}`} onClick={() => void openSavedPaper(paper.id)} disabled={busyPaperId !== ''} className="rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-secondary disabled:opacity-60">{busyPaperId === paper.id ? 'Opening…' : 'Open'}</button>
+                <button data-testid={`button-delete-paper-${paper.id}`} onClick={() => setConfirmingPaperDelete(paper.id)} disabled={busyPaperId !== ''} className="rounded-lg px-2 py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:text-[#a34d43] disabled:opacity-60"><X className="size-4" /></button>
+              </div>
+            </div>
+            {paper.topics.length > 0 && <div className="mt-3 flex flex-wrap gap-1.5">{paper.topics.slice(0, 6).map((topic) => <span key={topic} className="rounded-full border border-border bg-secondary px-2.5 py-1 text-[11px] text-muted-foreground">{topic}</span>)}</div>}
+            {confirmingPaperDelete === paper.id && <div className="mt-3 rounded-lg border border-[#eac3bd] bg-[#fff2ef] p-3">
+              <p className="text-xs leading-5 text-[#a34d43]">Delete “{paper.title}”? Its {paper.count} questions and explanations are removed from your account for good.</p>
+              <div className="mt-3 flex gap-2">
+                <button data-testid={`button-confirm-delete-paper-${paper.id}`} onClick={() => void removeSavedPaper(paper.id)} disabled={busyPaperId !== ''} className="flex-1 rounded-lg bg-[#a34d43] py-2 text-xs font-semibold text-white disabled:opacity-60">{busyPaperId === paper.id ? 'Deleting…' : 'Delete'}</button>
+                <button data-testid={`button-cancel-delete-paper-${paper.id}`} onClick={() => setConfirmingPaperDelete('')} className="flex-1 rounded-lg border border-border bg-card py-2 text-xs font-semibold">Keep it</button>
+              </div>
+            </div>}
+          </div>)}</div>
+          <p className="mt-3 text-xs leading-5 text-muted-foreground">Saved sets live on the NEXORA AI server under your account and are readable only by you. Opening one loads its questions straight into the quiz. Past {MAX_SAVED_PAPERS} sets, the oldest is dropped.</p>
+        </>}
+      {paperError !== '' && material === null && <p data-testid="text-saved-papers-error" className="mt-3 rounded-lg border border-[#eac3bd] bg-[#fff2ef] p-2.5 text-[11px] leading-5 text-[#a34d43]">{paperError}</p>}
     </Card>}
   </div>;
 }
@@ -781,7 +1089,7 @@ export function Quiz() {
   };
 
   if (paper.length === 0) return <div className="mx-auto max-w-3xl animate-rise-in"><PageIntro eyebrow="Grounded quiz" title="Generate a quiz from your material." description={`Upload a ${supportedFormatsSentence} file in Materials Lab first. NEXORA AI will extract the text and build questions from that source.`} /><Card className="p-8 text-center"><FileCheck2 className="mx-auto size-10 text-primary" /><p className="mt-4 text-sm text-muted-foreground">There is no generated material quiz in this browser session yet.</p><Link href="/materials" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white">Open Materials Lab <ArrowRight className="size-4" /></Link></Card></div>;
-  if (!started) return <div className="mx-auto max-w-3xl animate-rise-in"><PageIntro eyebrow="Grounded quiz · Generated locally" title="Test the brief, not your memory." description={`A ${paper.length}-question knowledge check built from extracted text in ${quizTitle}. Each answer points back to a source sentence.`} /><Card className="overflow-hidden"><div className="bg-sidebar p-8 text-sidebar-foreground sm:p-12"><div className="flex items-center justify-between"><Badge tone="amber">{paper.length} questions</Badge><span className="font-mono text-[10px] uppercase tracking-[.14em] text-sidebar-foreground/50">Source-grounded</span></div><h2 className="mt-8 max-w-lg break-words font-serif text-4xl text-white">{quizTitle}</h2><p className="mt-4 max-w-lg text-sm leading-6 text-sidebar-foreground/70">Practise identifying what the uploaded material actually says. Distractors are generated locally from the source topic.</p><ActionButton variant="amber" className="mt-8" onClick={() => begin(null)} icon={<Play className="size-4" />}>Begin knowledge check</ActionButton></div><div className="grid gap-3 p-6 sm:grid-cols-3">{[['01', 'Recall', 'Find the source statement'], ['02', 'Interpret', 'Read the signal'], ['03', 'Apply', 'Make the call']].map(([n, t, d]) => <div key={n}><p className="font-mono text-xs text-primary">{n}</p><p className="mt-2 text-sm font-semibold">{t}</p><p className="mt-1 text-xs text-muted-foreground">{d}</p></div>)}</div></Card></div>;
+  if (!started) return <div className="mx-auto max-w-3xl animate-rise-in"><PageIntro eyebrow="Grounded quiz · AI generated" title="Test the brief, not your memory." description={`A ${paper.length}-question knowledge check built from extracted text in ${quizTitle}. Each answer points back to a source sentence.`} /><Card className="overflow-hidden"><div className="bg-sidebar p-8 text-sidebar-foreground sm:p-12"><div className="flex items-center justify-between"><Badge tone="amber">{paper.length} questions</Badge><span className="font-mono text-[10px] uppercase tracking-[.14em] text-sidebar-foreground/50">Source-grounded</span></div><h2 className="mt-8 max-w-lg break-words font-serif text-4xl text-white">{quizTitle}</h2><p className="mt-4 max-w-lg text-sm leading-6 text-sidebar-foreground/70">Practise identifying what the uploaded material actually says. Distractors are written to be plausible; the correct answer is the one checked against a sentence in the material.</p><ActionButton variant="amber" className="mt-8" onClick={() => begin(null)} icon={<Play className="size-4" />}>Begin knowledge check</ActionButton></div><div className="grid gap-3 p-6 sm:grid-cols-3">{[['01', 'Recall', 'Find the source statement'], ['02', 'Interpret', 'Read the signal'], ['03', 'Apply', 'Make the call']].map(([n, t, d]) => <div key={n}><p className="font-mono text-xs text-primary">{n}</p><p className="mt-2 text-sm font-semibold">{t}</p><p className="mt-1 text-xs text-muted-foreground">{d}</p></div>)}</div></Card></div>;
   if (done) return (
     <div className="mx-auto max-w-3xl animate-rise-in">
       <PageIntro eyebrow="Knowledge check complete" title="Good judgement is a practice." description="Your answers were checked against the source-grounded answer key." />

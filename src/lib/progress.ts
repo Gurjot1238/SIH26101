@@ -15,11 +15,15 @@
  * the store disagreeing.
  *
  * Deliberately absent: any field that could carry document text or question text.
- * An uploaded PDF is parsed in the tab and never leaves it, and `AttemptPayload`
- * in `scoring.ts` is the type that keeps that promise on the way out.
+ * The uploaded file is parsed in the tab and never uploaded, and while its extracted
+ * text does go to `/api/ai/generate-mcqs` once to have questions written, none of it
+ * is persisted there. Nothing on this API — the one that does write to disk — can
+ * carry it. `AttemptPayload` in `scoring.ts` is the type that keeps that promise on
+ * the way out.
  */
 
 import { API_URL, AuthError } from './auth';
+import { type AnswerAnalysis } from './analytics';
 import { type AssessmentResult, type SealedPaper } from './assessment';
 import { type AttemptPayload } from './scoring';
 import { type Band, type CompetencyId } from './topics';
@@ -289,6 +293,12 @@ export function submitAssessment(submission: {
   attempt: StoredAttempt;
   dropped: number;
   progress: ProgressRollup;
+  /**
+   * Which questions were missed and under which topic. Computed by the server from the
+   * same grading as `result`, so the two cannot disagree; it carries no question text
+   * and no answer key of its own.
+   */
+  answers: AnswerAnalysis;
 }> {
   return request('POST', '/api/assessment/submit', submission);
 }

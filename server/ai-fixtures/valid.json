@@ -1,0 +1,186 @@
+{
+ "questions": [
+  {
+   "question": "What is the base year for the Consumer Price Index series described in this note?",
+   "options": [
+    "2012",
+    "2004",
+    "2011",
+    "2016"
+   ],
+   "correctIndex": 0,
+   "topic": "Index methodology",
+   "kind": "numeric",
+   "explanation": "The note states that the base year for the current series is 2012.",
+   "source": "The base year for the current series is 2012."
+  },
+  {
+   "question": "According to the note, how many villages are covered by monthly price collection?",
+   "options": [
+    "1181",
+    "1114",
+    "1811",
+    "1141"
+   ],
+   "correctIndex": 0,
+   "topic": "Sampling and non-response",
+   "kind": "numeric",
+   "explanation": "Price data are collected from selected markets in 1181 villages, with 1114 urban markets covered separately.",
+   "source": "Price data are collected from selected markets in 1181 villages and 1114 urban markets every month."
+  },
+  {
+   "question": "Which statement about the index formula is supported by the note?",
+   "options": [
+    "It holds the basket fixed at base-year quantities",
+    "It re-weights the basket every month using current quantities",
+    "It averages base-year and current-year quantities",
+    "It chain-links the weights each quarter"
+   ],
+   "correctIndex": 0,
+   "topic": "Index methodology",
+   "kind": "identify",
+   "explanation": "The note says a Laspeyres formula is used, which holds the basket fixed at base-year quantities.",
+   "source": "A Laspeyres formula is used, which holds the basket fixed at base-year quantities."
+  },
+  {
+   "question": "Why can a fixed-basket index overstate the cost of living?",
+   "options": [
+    "Because it does not capture consumers switching to cheaper alternatives",
+    "Because it excludes all services from the basket",
+    "Because it uses a geometric mean of price relatives",
+    "Because it is revised only once every ten years"
+   ],
+   "correctIndex": 0,
+   "topic": "Index methodology",
+   "kind": "statement",
+   "explanation": "The note explains that the index can overstate the cost of living when consumers substitute towards cheaper alternatives.",
+   "source": "This means the index can overstate the cost of living when consumers substitute towards cheaper alternatives, a limitation known as substitution bias."
+  },
+  {
+   "question": "The tendency of a fixed-basket index to overstate the cost of living is known as ______.",
+   "options": [
+    "substitution bias",
+    "response bias",
+    "coverage error",
+    "seasonal adjustment"
+   ],
+   "correctIndex": 0,
+   "topic": "Index methodology",
+   "kind": "cloze",
+   "explanation": "The note names this limitation substitution bias.",
+   "source": "This means the index can overstate the cost of living when consumers substitute towards cheaper alternatives, a limitation known as substitution bias."
+  },
+  {
+   "question": "For how long may the last reported price be carried forward when a market does not respond?",
+   "options": [
+    "A maximum of three months",
+    "A maximum of one month",
+    "A maximum of six months",
+    "Until the market reopens"
+   ],
+   "correctIndex": 0,
+   "topic": "Sampling and non-response",
+   "kind": "numeric",
+   "explanation": "Non-response is handled by carrying the last reported price forward for at most three months.",
+   "source": "Non-response in a selected market is handled by carrying forward the last reported price for a maximum of three months, after which the item is treated as temporarily unavailable."
+  },
+  {
+   "question": "After what period of continuous unavailability is an item removed from the basket altogether?",
+   "options": [
+    "Twelve consecutive months",
+    "Three consecutive months",
+    "Six consecutive months",
+    "Twenty-four consecutive months"
+   ],
+   "correctIndex": 0,
+   "topic": "Sampling and non-response",
+   "kind": "numeric",
+   "explanation": "An item is dropped from the basket only after twelve consecutive months of unavailability.",
+   "source": "An item is dropped from the basket entirely only when it has been unavailable for twelve consecutive months."
+  },
+  {
+   "question": "How does a point-to-point inflation rate differ from a month-on-month rate?",
+   "options": [
+    "It compares a month with the same month a year earlier",
+    "It compares two consecutive months",
+    "It averages the preceding twelve months",
+    "It removes the effect of basket weights"
+   ],
+   "correctIndex": 0,
+   "topic": "Index interpretation",
+   "kind": "statement",
+   "explanation": "A point-to-point rate compares the index for a month with the same month of the previous year.",
+   "source": "A point-to-point inflation rate compares the index for a month with the index for the same month of the previous year."
+  },
+  {
+   "question": "What size of change in a quotation triggers a validation query to the field office?",
+   "options": [
+    "Larger than 25 per cent",
+    "Larger than 10 per cent",
+    "Larger than 50 per cent",
+    "Any change at all"
+   ],
+   "correctIndex": 0,
+   "topic": "Data quality",
+   "kind": "numeric",
+   "explanation": "A change larger than 25 per cent triggers a validation query before the quotation is accepted.",
+   "source": "A change larger than 25 per cent triggers a validation query to the field office before the quotation is accepted."
+  },
+  {
+   "question": "An error must affect a published index by more than what amount before it is revised?",
+   "options": [
+    "0.1 index points",
+    "1.0 index points",
+    "0.5 index points",
+    "0.01 index points"
+   ],
+   "correctIndex": 0,
+   "topic": "Data quality",
+   "kind": "numeric",
+   "explanation": "Revisions are made only when an error affects the index by more than 0.1 index points.",
+   "source": "Revisions to a published index are made only when an error affects the index by more than 0.1 index points."
+  },
+  {
+   "question": "A group shows the largest price rise this month but carries a very small weight. What should an analyst conclude about its effect on headline inflation?",
+   "options": [
+    "Its contribution may still be small, so the weighted contribution should be read",
+    "It must be the largest contributor because its price rose most",
+    "Its weight should be increased before publication",
+    "Headline inflation should be recomputed without it"
+   ],
+   "correctIndex": 0,
+   "topic": "Index interpretation",
+   "kind": "scenario",
+   "explanation": "The note warns that a group with a small weight can show a large price rise and still contribute little to headline inflation.",
+   "source": "A group with a small weight can show a large price rise and still contribute little to headline inflation."
+  },
+  {
+   "question": "Where do the weights used in the basket come from?",
+   "options": [
+    "The Consumer Expenditure Survey",
+    "The Annual Survey of Industries",
+    "The Periodic Labour Force Survey",
+    "The Economic Census"
+   ],
+   "correctIndex": 0,
+   "topic": "Index methodology",
+   "kind": "statement",
+   "explanation": "Weights are derived from the Consumer Expenditure Survey.",
+   "source": "Weights in the basket are derived from the Consumer Expenditure Survey and are revised when consumption patterns shift materially."
+  },
+  {
+   "question": "How are seasonal items handled during months when they are out of season?",
+   "options": [
+    "By class-mean imputation",
+    "By dropping them from the index permanently",
+    "By repeating the previous year's price",
+    "By excluding the whole group"
+   ],
+   "correctIndex": 0,
+   "topic": "Sampling and non-response",
+   "kind": "statement",
+   "explanation": "Seasonal items are handled by the class-mean imputation method when out of season.",
+   "source": "Seasonal items such as fresh fruit are handled by the class-mean imputation method during months when they are out of season."
+  }
+ ]
+}

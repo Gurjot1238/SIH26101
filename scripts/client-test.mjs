@@ -68,6 +68,7 @@ const progress = await import(`${OUT}/lib/progress.js`);
 const materials = await import(`${OUT}/lib/materials.js`);
 const scoring = await import(`${OUT}/lib/scoring.js`);
 const assessment = await import(`${OUT}/lib/assessment.js`);
+const papers = await import(`${OUT}/lib/papers.js`);
 console.warn = realWarn;
 
 /**
@@ -522,6 +523,112 @@ await check('both sittings are in the history, newest first, as assessments', as
   // "the refused post really was refused" in one assertion.
   must(page.attempts[0].percent < page.attempts[1].percent, `newest was ${page.attempts[0].percent}%`);
   return true;
+});
+
+section('saved question sets');
+
+/** Built here rather than generated, so the assertions below are about the round trip. */
+function samplePaper(count) {
+  return Array.from({ length: count }, (unused, index) => ({
+    q: `What does indicator ${index + 1} measure?`,
+    a: [`Answer ${index + 1}A`, `Answer ${index + 1}B`, `Answer ${index + 1}C`, `Answer ${index + 1}D`],
+    correct: index % 4,
+    topic: index % 2 === 0 ? 'Price Indices' : 'Sampling',
+    kind: 'statement',
+    explanation: `Because the passage defines indicator ${index + 1} that way.`,
+    source: `Indicator ${index + 1} is defined in the source document.`,
+    sourceIndex: index,
+  }));
+}
+
+let savedId = '';
+
+await check('the cap the page prints is the cap the server enforces', async () => {
+  // The number is written in two files that cannot import each other. If they ever
+  // disagree, the page states a limit the learner will not actually hit.
+  const server = await import(new URL('../server/papers.mjs', import.meta.url).href);
+  must(
+    papers.MAX_SAVED_PAPERS === server.PAPER_LIMITS.maxPerUser,
+    `client says ${papers.MAX_SAVED_PAPERS}, server enforces ${server.PAPER_LIMITS.maxPerUser}`,
+  );
+  return true;
+});
+
+await check('a generated set is saved and comes back with a server id', async () => {
+  const saved = await papers.savePaper({ title: 'CPI brief.pdf', difficulty: 'hard', questions: samplePaper(6) });
+  must(saved.id.startsWith('pap_'), `id was ${saved.id}`);
+  must(saved.count === 6, `count was ${saved.count}`);
+  must(saved.difficulty === 'hard', `difficulty was ${saved.difficulty}`);
+  // The topics are derived by the server from the questions, not sent by the client.
+  must(saved.topics.includes('Price Indices') && saved.topics.includes('Sampling'), `topics were ${saved.topics}`);
+  must(typeof saved.createdAt === 'string' && saved.createdAt !== '', 'no createdAt came back');
+  savedId = saved.id;
+  return true;
+});
+
+await check('the list carries the summary but not the questions', async () => {
+  const list = await papers.listPapers();
+  must(list.length === 1, `list held ${list.length}`);
+  must(list[0].id === savedId, 'the saved id is not in the list');
+  // A list of sixty papers should not ship sixty answer keys to render six cards.
+  must(!('questions' in list[0]), 'the summary carried its questions');
+  return true;
+});
+
+await check('opening one returns the questions, answers and explanations intact', async () => {
+  const paper = await papers.getPaper(savedId);
+  must(paper.questions.length === 6, `questions were ${paper.questions.length}`);
+  const [first] = paper.questions;
+  must(first.q === 'What does indicator 1 measure?', `stem was ${first.q}`);
+  must(first.a.length === 4, `options were ${first.a.length}`);
+  must(first.correct === 0, `correct was ${first.correct}`);
+  // The answer key and the reason are the whole point of saving: a set that came back
+  // without them would still pass a count check and be useless to review from.
+  must(first.explanation.includes('defines indicator 1'), `explanation was ${first.explanation}`);
+  must(first.source.includes('Indicator 1'), `source was ${first.source}`);
+  return true;
+});
+
+await check('a set with a three-option question is refused, not stored half-formed', async () => {
+  const broken = samplePaper(1);
+  broken[0].a = ['only', 'three', 'options'];
+  try {
+    await papers.savePaper({ title: 'Broken', questions: broken });
+    return 'the malformed set was accepted';
+  } catch (error) {
+    must(error.status === 400, `status was ${error.status}`);
+    must(error.code === 'invalid_input', `code was ${error.code}`);
+    return true;
+  }
+});
+
+await check('an answer index outside the options is refused', async () => {
+  const broken = samplePaper(1);
+  broken[0].correct = 7;
+  try {
+    await papers.savePaper({ title: 'Broken', questions: broken });
+    return 'an out-of-range answer key was accepted';
+  } catch (error) {
+    must(error.status === 400, `status was ${error.status}`);
+    return true;
+  }
+});
+
+await check('deleting one removes it and leaves the account readable', async () => {
+  await papers.deletePaper(savedId);
+  const list = await papers.listPapers();
+  must(list.length === 0, `list still held ${list.length}`);
+  return true;
+});
+
+await check('deleting a paper that is gone is a 404, not a silent success', async () => {
+  try {
+    await papers.deletePaper(savedId);
+    return 'deleting a missing paper reported success';
+  } catch (error) {
+    must(error.status === 404, `status was ${error.status}`);
+    return true;
+  }
 });
 
 section('signing out');

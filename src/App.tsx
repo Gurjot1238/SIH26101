@@ -8,7 +8,7 @@ import { AppShell } from '@/components/shell';
 import { RequireAuth } from '@/components/require-auth';
 import { SessionProvider } from '@/components/session-provider';
 import { ProgressProvider } from '@/components/progress-provider';
-import { Assessment, CourseDetail, Dashboard, Integrations, Intelligence, Learning, Materials, Presentation, Profile, Quiz, Roadmap } from '@/pages/demo-pages';
+import { Assessment, CourseDetail, CourseLibrary, Dashboard, Integrations, Intelligence, Learning, Materials, Presentation, Profile, Quiz, Roadmap } from '@/pages/demo-pages';
 import { Login, Signup } from '@/pages/auth-pages';
 import {
   Route,
@@ -51,6 +51,7 @@ function ShellRoutes() {
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/assessment" component={Assessment} />
           <Route path="/learning" component={Learning} />
+          <Route path="/course-library" component={CourseLibrary} />
           <Route path="/courses/:id" component={CourseDetail} />
           <Route path="/materials" component={Materials} />
           <Route path="/quiz" component={Quiz} />

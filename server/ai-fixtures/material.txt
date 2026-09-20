@@ -1,0 +1,56 @@
+Sample / Demonstration Data — not a real MoSPI publication.
+
+This fixture stands in for a training note a statistical officer might upload. It is
+written so that a grounded question generator has real material to work with: it contains
+definitions, figures, a stated methodology, and a described limitation.
+
+CONSUMER PRICE INDEX: CONCEPTS AND COMPILATION
+
+The Consumer Price Index measures the change over time in the prices paid by households
+for a fixed basket of goods and services. The base year for the current series is 2012.
+Weights in the basket are derived from the Consumer Expenditure Survey and are revised
+when consumption patterns shift materially.
+
+Price data are collected from selected markets in 1181 villages and 1114 urban markets
+every month. Village price collection is carried out in the first week, while urban
+markets are visited across all four weeks of the month to capture within-month variation.
+
+A Laspeyres formula is used, which holds the basket fixed at base-year quantities. This
+means the index can overstate the cost of living when consumers substitute towards
+cheaper alternatives, a limitation known as substitution bias. The index is therefore a
+cost-of-goods measure rather than a true cost-of-living measure.
+
+SAMPLING AND NON-RESPONSE
+
+Non-response in a selected market is handled by carrying forward the last reported price
+for a maximum of three months, after which the item is treated as temporarily
+unavailable. Prolonged imputation weakens the index, so the share of imputed quotations
+is published alongside the index as a quality indicator.
+
+Seasonal items such as fresh fruit are handled by the class-mean imputation method during
+months when they are out of season. An item is dropped from the basket entirely only when
+it has been unavailable for twelve consecutive months.
+
+INDEX NUMBERS: INTERPRETATION
+
+A point-to-point inflation rate compares the index for a month with the index for the
+same month of the previous year. This differs from a month-on-month rate, which compares
+consecutive months and is more volatile because it retains seasonal movement.
+
+The contribution of a group to overall inflation depends on both its price change and its
+weight. A group with a small weight can show a large price rise and still contribute
+little to headline inflation. Analysts should therefore read the weighted contribution
+column rather than ranking groups by price change alone.
+
+DATA QUALITY CHECKS
+
+Every price quotation is checked against the previous month's quotation for the same
+outlet. A change larger than 25 per cent triggers a validation query to the field
+office before the quotation is accepted. Quotations that fail validation twice in a row
+are excluded from that month's compilation and the exclusion is recorded in the audit
+trail.
+
+Revisions to a published index are made only when an error affects the index by more than
+0.1 index points. Smaller corrections are carried into the next release rather than
+restating a published figure, because frequent restatement erodes confidence in the
+series.

@@ -7,7 +7,7 @@ nothing here is aspirational.
 One command starts both halves:
 
 ```bash
-cd ~/Documents/SIH26101/NEXORA AI-mac
+cd ~/Documents/SIH26101/statskill-mac
 ./start.sh
 ```
 
@@ -18,12 +18,13 @@ cd ~/Documents/SIH26101/NEXORA AI-mac
 **New — the auth server** (no `npm install` needed, it uses only what ships with Node):
 
 ```
-server/index.mjs        the HTTP server and the five endpoints
+server/index.mjs        the HTTP server and the routing table
 server/auth.mjs         password hashing, session tokens, validation, rate limits
 server/store.mjs        the JSON files on disk
+server/papers.mjs       what a saved MCQ set may contain, and its stored shape
 server/http.mjs         request parsing, CORS, security headers
 server/.env.example     every setting, documented
-server/smoke-test.sh    37 real HTTP assertions against a throwaway server
+server/smoke-test.sh    199 real HTTP assertions against throwaway servers
 ```
 
 **New — the front end:**
@@ -31,6 +32,7 @@ server/smoke-test.sh    37 real HTTP assertions against a throwaway server
 ```
 src/pages/auth-pages.tsx             the Login and Signup pages
 src/lib/auth.ts                      the browser client that talks to the server
+src/lib/papers.ts                    saving, listing, opening and deleting MCQ sets
 src/components/require-auth.tsx      the gate — now switched on, see section 5
 src/components/session-provider.tsx  one place that knows who is signed in
 scripts/render-test.sh, .mjs         renders every route and asserts on it
@@ -61,7 +63,7 @@ and give the dead "Sign out of demo" button something to do.
 ## 2. Run it
 
 ```bash
-cd ~/Documents/SIH26101/NEXORA AI-mac
+cd ~/Documents/SIH26101/statskill-mac
 ./start.sh
 ```
 
@@ -115,18 +117,21 @@ time it starts, which signs everyone out on restart. It tells you so on boot.
 npm run auth:test
 ```
 
-This starts its own server on port 4399 against a temporary folder, fires 37
-real HTTP requests, checks what landed on disk, then cleans up. Current result:
+This starts its own servers on ports from 4399 up, against temporary folders,
+fires 199 real HTTP requests, checks what landed on disk, then cleans up. Current
+result:
 
 ```
-37 passed, 0 failed
+199 passed, 0 failed
 ```
 
 It checks, among other things, that a short password is rejected, that a wrong
 password and an unknown account return the identical 401, that a forged cookie
 fails, that a cross-site form POST is refused, that repeated wrong passwords get
-rate limited, and that `users.json` contains no plaintext password and is
-readable only by you.
+rate limited, that `users.json` contains no plaintext password and is readable
+only by you, that an unconfigured AI provider answers 503 with a message naming
+what to configure, and that an unreachable **local** model answers 502 instead —
+different problem, different advice, and no questions invented either way.
 
 **The front end:**
 
@@ -139,9 +144,9 @@ project — and renders your real route table with React's server renderer, twic
 once with the gate on, once with it off. Current result:
 
 ```
-46 passed, 0 failed     gate on
-37 passed, 0 failed     gate off (VITE_REQUIRE_AUTH=false)
-6 passed, 0 failed      source checks
+61 passed, 0 failed     gate on
+52 passed, 0 failed     gate off (VITE_REQUIRE_AUTH=false)
+48 passed, 0 failed     source checks
 ```
 
 It proves that all thirteen of your existing routes still resolve to their own
@@ -152,8 +157,8 @@ original demo string is back exactly as it was.
 
 What it cannot prove is anything that only happens on a click — the account menu is
 closed until you open it, so the Sign out button never appears in rendered markup.
-Those six checks read the source instead, and the output labels them as such rather
-than pretending they are the same thing.
+The source checks read the source instead, and the output labels them as such
+rather than pretending they are the same thing.
 
 ---
 
@@ -207,9 +212,87 @@ VITE_API_URL=http://127.0.0.1:4100
 | `ALLOWED_ORIGINS` | `server/.env` | addresses allowed to call the API |
 | `SESSION_SECRET` | `server/.env` | signs session tokens; blank means new sessions on every restart |
 | `COOKIE_SECURE` | `server/.env` | `true` once you serve over https |
+| `AI_PROVIDER` | `server/.env` | which AI writes the questions: `local` or `gemini` |
+| `AI_LOCAL_URL` | `server/.env` | where the local model listens; blank means `http://127.0.0.1:11434/v1` |
+| `AI_LOCAL_TIMEOUT_MS` | `server/.env` | how long to wait on the local model; blank means 180000 |
+| `GEMINI_API_KEY` | `server/.env` | the Gemini key; only read when `AI_PROVIDER=gemini` |
+| `AI_MODEL` | `server/.env` | which model to ask; blank uses the provider's default |
+| `AI_GENERATION_LIMIT` | `server/.env` | generation requests allowed per IP per hour |
 
 Anything starting `VITE_` is read at build time and is visible in the browser, so
 never put a secret there. `server/.env` is gitignored and stays on your machine.
+
+### Turning on AI question generation
+
+The Materials page reads an uploaded PDF in the browser and then asks the server
+to write questions from the extracted text. The server is the only party that
+talks to the model, and the only party that would hold a key.
+
+There are two providers. Pick one with `AI_PROVIDER` in `server/.env`.
+
+**A model on this Mac — no key, no account, no cost.** This is what the project
+is set to now. Install Ollama from <https://ollama.com/download>, pull the model
+once, and leave it running:
+
+```bash
+ollama pull gpt-oss:20b
+ollama run gpt-oss:20b
+```
+
+```bash
+# server/.env
+AI_PROVIDER=local
+```
+
+Nothing else is required: `AI_LOCAL_URL` defaults to `http://127.0.0.1:11434/v1`,
+which is where Ollama listens, and `AI_MODEL` defaults to `gpt-oss:20b`. Set
+either one only if your setup differs — LM Studio, for instance, serves on
+`http://127.0.0.1:1234/v1`. The address deliberately says `127.0.0.1` rather than
+`localhost`, because on macOS `localhost` can resolve to IPv6 first while Ollama
+listens on IPv4 only, and the resulting refused connection looks identical to
+Ollama being switched off.
+
+The first document is slow — a 20B model has to be read into memory before it
+answers, which is tens of seconds — so the local provider waits up to three
+minutes (`AI_LOCAL_TIMEOUT_MS`) against Gemini's thirty seconds. Later documents
+are much quicker. If 20B is heavy on your machine, pull something smaller and put
+it in `AI_MODEL`, for example `llama3.1:8b`.
+
+**Google's API — faster, needs a key.** Get one from
+[Google AI Studio](https://aistudio.google.com/apikey), then:
+
+```bash
+# server/.env
+AI_PROVIDER=gemini
+GEMINI_API_KEY=paste-your-key-here
+```
+
+Restart the auth server either way. It prints which provider it chose, which
+model it will ask for, and — for `local` — the address it will call, on the line
+beginning `AI` in its startup banner. Check that line first whenever generation
+misbehaves; most local failures are the server and Ollama disagreeing about the
+port, and you cannot see that without printing both.
+
+With no provider configured, the Materials page reports the feature as not
+configured rather than producing questions anyway. That is deliberate. The
+project still contains a local, non-AI question generator, but it is no longer
+wired into the upload flow — falling back to it silently would put the words "AI
+generated" above questions that no AI ever saw, and nobody looking at the screen
+could tell. For the same reason, Ollama being unreachable is reported as
+unreachable (and names the address it tried), never as "not configured": being
+told to add a key you do not need, for a provider that has none, would send you
+looking in the wrong place.
+
+Two things to know before you demo it:
+
+- With `AI_PROVIDER=local`, nothing leaves the Mac. With `AI_PROVIDER=gemini`,
+  the uploaded **file** still never leaves the browser, but the **text extracted
+  from it** is posted to your own server, which forwards it to Google — so do not
+  upload anything confidential in that mode.
+- Generation costs a provider call per document chunk. `AI_GENERATION_LIMIT`
+  (default 30 per IP per hour) is the budget guard. It matters less locally,
+  where a call costs only time, but it also stops one tab from queueing up more
+  work than your Mac can chew through.
 
 ### The endpoints
 
@@ -220,6 +303,20 @@ never put a secret there. `server/.env` is gitignored and stays on your machine.
 | `POST` | `/api/auth/login` | `{ email, password }` | `200`, sets the cookie |
 | `POST` | `/api/auth/logout` | `{}` | `200`, clears the cookie |
 | `GET` | `/api/auth/me` | — | `200` and the user, or `401` |
+| `POST` | `/api/ai/generate-mcqs` | `{ text, topics, concepts, questionCount, difficulty }` | `200` and a paper, or `401` / `400` / `413` / `503` |
+| `POST` | `/api/papers` | `{ title, difficulty, questions }` | `201` and the saved set, or `401` / `400` |
+| `GET` | `/api/papers` | — | `200` and your saved sets, newest first |
+| `GET` | `/api/papers?id=…` | — | `200` and one set with its questions, or `404` |
+| `DELETE` | `/api/papers?id=…` | — | `200`, or `404` if it is not yours |
+| `GET` | `/api/analytics/competencies` | `?scope=all` (default) or `latest` | `200` and the competency analysis, or `401` / `400` |
+| `POST` | `/api/analytics/explain` | — (rebuilt server-side; `?scope=` only) | `200` and a prose summary, or `401` / `409` / `503` / `502` |
+
+A saved set holds the questions, the options, the answer key and the explanations —
+unlike an attempt, which deliberately stores only topic names and counts. That is
+safe because a set is the learner's own material, saved by choice, and the routes
+above read and write only the calling account's own papers: asking for another
+account's id returns `404`, not the paper. Sixty sets are kept per account; past
+that the oldest is dropped.
 
 Failures always come back in the same shape, so the form can put a message under
 the right input:

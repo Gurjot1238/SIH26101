@@ -29,6 +29,13 @@ import {
   answerKey,
 } from './assessment.mjs';
 import { BAND_AVERAGE_MIN, BAND_STRONG_MIN, BANDS, COMPETENCY_IDS, MIN_QUESTIONS_FOR_BAND, bandFor } from './progress.mjs';
+import {
+  COMPETENCY_LABELS,
+  DEFAULT_TARGETS,
+  MIN_QUESTIONS_FOR_STATUS,
+  PERFORMANCE_SCALE,
+  classifyPerformance,
+} from './competency.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const TOPICS = join(HERE, '..', 'src', 'lib', 'topics.ts');
@@ -64,7 +71,7 @@ function sameList(a, b) {
 }
 
 console.log('\n  Taxonomy drift check\n  ====================\n');
-console.log(`  server/progress.mjs  vs  src/lib/topics.ts\n`);
+console.log(`  server/progress.mjs + server/competency.mjs  vs  src/lib/topics.ts\n`);
 
 /* ------------------------------------------------- competency ids and bands */
 
@@ -125,6 +132,80 @@ for (let count = 0; count <= 6 && mismatch === null; count += 1) {
   }
 }
 report(`bandFor agrees on all ${checked} percent/count pairs`, mismatch === null, mismatch ?? '');
+
+/* ------------------------------------------ the analytics scale and labels */
+
+/**
+ * `server/competency.mjs` holds a second copy of the short competency names, because
+ * the gap chart and the AI explanation both read better with words than with slugs.
+ * Same rule as everything above: a duplicate is allowed only while it cannot drift
+ * silently, so the names are compared against the ones `topics.ts` actually declares.
+ */
+const tsShortNames = [...source.matchAll(/^\s{4}short: '([^']+)',$/gm)].map((hit) => hit[1]);
+const serverLabels = COMPETENCY_IDS.map((id) => COMPETENCY_LABELS[id]);
+report(
+  'competency short names match, in the same order',
+  sameList(tsShortNames, serverLabels),
+  `app has [${tsShortNames}], server has [${serverLabels}]`,
+);
+
+/**
+ * The four-level scale is walked top down, so it being sorted is the rule rather
+ * than an accident of how it was typed. An out-of-order entry would silently become
+ * unreachable and every score in its range would be labelled by the band above it.
+ */
+const descending = PERFORMANCE_SCALE.every(
+  (level, index) => index === 0 || PERFORMANCE_SCALE[index - 1].min > level.min,
+);
+report(
+  'the performance scale is sorted highest cut-off first',
+  descending,
+  `scale reads [${PERFORMANCE_SCALE.map((level) => `${level.id}:${level.min}`)}]`,
+);
+
+report(
+  'the lowest band starts at 0, so no score is unclassifiable',
+  PERFORMANCE_SCALE[PERFORMANCE_SCALE.length - 1].min === 0,
+  `lowest band starts at ${PERFORMANCE_SCALE[PERFORMANCE_SCALE.length - 1].min}`,
+);
+
+// Matching constants are not matching behaviour here either: band the whole input
+// space against the rule spelled out from the scale itself.
+let scaleMismatch = null;
+let scaleChecked = 0;
+for (let count = 0; count <= 6 && scaleMismatch === null; count += 1) {
+  for (let percent = 0; percent <= 100; percent += 1) {
+    let want = 'unrated';
+    if (count >= MIN_QUESTIONS_FOR_STATUS) {
+      want = PERFORMANCE_SCALE.find((level) => percent >= level.min)?.id ?? 'unrated';
+    }
+    scaleChecked += 1;
+    const got = classifyPerformance(percent, count);
+    if (got !== want) {
+      scaleMismatch = `classifyPerformance(${percent}, ${count}) returned "${got}", expected "${want}"`;
+      break;
+    }
+  }
+}
+report(
+  `classifyPerformance agrees on all ${scaleChecked} percent/count pairs`,
+  scaleMismatch === null,
+  scaleMismatch ?? '',
+);
+
+/**
+ * Every competency needs a target, or its gap silently becomes "0 points short of
+ * zero" — which reads on the chart as a competency that is already at the required
+ * level. A missing key here is exactly the kind of omission a new competency causes.
+ */
+const missingTargets = COMPETENCY_IDS.filter(
+  (id) => !Number.isInteger(DEFAULT_TARGETS[id]) || DEFAULT_TARGETS[id] < 0 || DEFAULT_TARGETS[id] > 100,
+);
+report(
+  'every competency has a target between 0 and 100',
+  missingTargets.length === 0,
+  `no usable target for [${missingTargets}]`,
+);
 
 /* ---------------------------------------------------- the assessment item bank */
 

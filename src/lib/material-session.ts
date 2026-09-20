@@ -14,7 +14,12 @@
  * holds fragments of a work file, so it lives in sessionStorage, which is scoped to
  * the one tab and is discarded when that tab closes. localStorage would leave those
  * fragments on disk after the learner walked away, which is not a choice they made.
- * Nothing here is ever sent anywhere — the server only receives topic names and counts.
+ *
+ * Nothing is sent anywhere *from here*. The paper reaches this module after the AI
+ * server has already written and returned it, and the only thing that leaves
+ * afterwards is an attempt payload of topic names and counts. The extracted text does
+ * go to the server once, on its way to question generation — that happens in
+ * `ai-questions.ts`, before anything is stored, and the server keeps none of it.
  *
  * `subscribe`/`snapshot` exist so React can read this through `useSyncExternalStore`
  * rather than a provider. A paper belongs to a browser tab, not to an account, so
@@ -41,6 +46,13 @@ export type StoredMaterial = {
   createdAt: string;
   /** True when this came from the built-in sample rather than a file the learner chose. */
   isSample: boolean;
+  /**
+   * Set when this paper is stored in the learner's account, either because they saved it
+   * or because they reopened it from their saved sets. Its presence is what lets the page
+   * say "already saved" after a reload, and stops the header claiming a file was read in
+   * this browser when it was actually fetched from the server.
+   */
+  savedPaperId?: string;
 };
 
 let current: StoredMaterial | null = null;
@@ -88,6 +100,11 @@ function validate(value: unknown): StoredMaterial | null {
     questions: candidate.questions,
     createdAt: typeof candidate.createdAt === 'string' ? candidate.createdAt : new Date().toISOString(),
     isSample: candidate.isSample === true,
+    // Only carried through when it is a non-empty string, so `savedPaperId` is either a
+    // real id or absent — never an empty string that reads as "saved" by accident.
+    ...(typeof candidate.savedPaperId === 'string' && candidate.savedPaperId !== ''
+      ? { savedPaperId: candidate.savedPaperId }
+      : {}),
   };
 }
 

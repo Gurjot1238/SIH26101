@@ -23,6 +23,7 @@
 import { createContext, type ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useSession } from '@/components/session-provider';
 import { type AssessmentResult, type SealedPaper } from '@/lib/assessment';
+import { type AnswerAnalysis } from '@/lib/analytics';
 import { AuthError } from '@/lib/auth';
 import {
   type CourseRecord,
@@ -78,7 +79,13 @@ export type ProgressStore = {
   sitAssessment: (submission: {
     choices: Array<{ question: string; option: string | null }>;
     durationSeconds: number;
-  }) => Promise<SaveOutcome<{ result: AssessmentResult; attempt: StoredAttempt; dropped: number }>>;
+  }) => Promise<SaveOutcome<{
+    result: AssessmentResult;
+    attempt: StoredAttempt;
+    dropped: number;
+    /** The per-question rollup the server computed from the same grading. */
+    answers: AnswerAnalysis;
+  }>>;
   /** Delete this account's history. Destructive — confirm before calling. */
   clear: () => Promise<SaveOutcome<number>>;
   setPreferences: (patch: Partial<Preferences>) => Promise<SaveOutcome<Preferences>>;
@@ -242,13 +249,13 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   const sitAssessment = useCallback<ProgressStore['sitAssessment']>(
     (submission) =>
       write(async () => {
-        const { result, attempt, dropped, progress: rollup } = await submitAssessment(submission);
+        const { result, attempt, dropped, answers, progress: rollup } = await submitAssessment(submission);
         // Same discipline as `record`: adopt the rollup the server recomputed rather
         // than adding this sitting to the old total by hand.
         setProgress(rollup);
         setHistory((current) => [attempt, ...current].slice(0, INLINE_HISTORY));
         setStatus('ready');
-        return { result, attempt, dropped };
+        return { result, attempt, dropped, answers };
       }),
     [write],
   );

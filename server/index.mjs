@@ -21,18 +21,28 @@
  *   DELETE /api/progress/attempts      clear own history
  *   POST   /api/progress/preferences   { language?, weeklyNote?, demoLabels? }
  *   POST   /api/progress/courses       { courseId, saved?, started?, completedModules? }
+ *   POST   /api/ai/generate-mcqs       { text, topics, concepts, questionCount }
  *
  * Every /api/progress route requires a session and only ever touches the caller's
- * own records. There is no endpoint that reads another account's data, and no
- * field anywhere that can hold document text or question text: uploaded PDFs are
- * parsed in the browser tab and never leave it.
+ * own records. There is no endpoint that reads another account's data.
+ *
+ * /api/ai/generate-mcqs is the one route that receives document text, and it is worth
+ * being precise about what that means. A PDF is still opened and parsed entirely in the
+ * browser tab — the file itself never moves. But the *extracted text* is posted here and
+ * forwarded to the configured AI provider, because questions grounded in a document
+ * cannot be written by anything that has not read it. Nothing about that text is
+ * persisted: it is held in memory for the duration of the request, never written to
+ * ./data, and never logged. The request log prints method, path, status and duration
+ * only. The UI says the same thing on the upload screen, because a user agreeing to
+ * "local extraction" should not discover later that their material was sent somewhere.
  *
  * Two kinds of score reach the disk by two different routes, and the difference is
  * deliberate. An assessment is graded here, from the key in ./assessment.mjs, so
  * /api/progress/attempts refuses a posted assessment outright. A material quiz is
- * graded in the tab, because its questions came from a document the tab never
- * uploaded — nothing on this side has ever seen them. The stored `source` field keeps
- * the two distinguishable instead of implying both were invigilated.
+ * graded in the tab: the questions came from the learner's own document, and although
+ * this server generated them it does not keep them, so it has no key to grade against.
+ * The stored `source` field keeps the two distinguishable instead of implying both were
+ * invigilated.
  */
 
 import { createServer } from 'node:http';
@@ -43,6 +53,7 @@ import { fileURLToPath } from 'node:url';
 
 import {
   HttpError,
+  MAX_AI_BODY_BYTES,
   assertTrustedOrigin,
   clientKey,
   corsHeaders,
@@ -87,6 +98,34 @@ import {
   validateCourseUpdate,
   validatePreferences,
 } from './progress.mjs';
+import {
+  MAX_QUESTIONS,
+  MAX_TEXT_CHARS,
+  MIN_QUESTIONS,
+  MIN_TEXT_CHARS,
+  TARGET_QUESTIONS,
+  describeModel,
+  describeTarget,
+  generateMcqs,
+  providerStatus,
+} from './ai/provider.mjs';
+import {
+  classifyMaterial,
+  classificationStatus,
+} from './ai/classify.mjs';
+import { explainAnalytics } from './ai/explain.mjs';
+import {
+  PAPER_LIMITS,
+  newPaperId,
+  paperSummary,
+  publicPaper,
+  validateSavedPaper,
+} from './papers.mjs';
+import {
+  ANALYTICS_SCOPES,
+  analyseAnswers,
+  buildAnalyticsSummary,
+} from './competency.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 
@@ -135,6 +174,22 @@ function envInt(name, fallback) {
   const value = Number.parseInt(raw, 10);
   if (!Number.isInteger(value) || value <= 0) {
     throw new Error(`${name} must be a positive integer, got "${raw}".`);
+  }
+  return value;
+}
+
+/**
+ * Like envInt, but zero is allowed and means "no limit". Only the AI generation
+ * budget uses this: on a local model a run costs the operator's own CPU and nothing
+ * else, so 0 is a legitimate "let me run as many as I like" rather than an error.
+ * The rate limiter treats a limit of 0 as unlimited (see createRateLimiter).
+ */
+function envIntAllowingZero(name, fallback) {
+  const raw = process.env[name];
+  if (raw === undefined || raw === '') return fallback;
+  const value = Number.parseInt(raw, 10);
+  if (!Number.isInteger(value) || value < 0) {
+    throw new Error(`${name} must be zero or a positive integer, got "${raw}".`);
   }
   return value;
 }
@@ -192,6 +247,13 @@ const limiters = {
    * can produce and far less than a loop can.
    */
   progressWritesPerIp: createRateLimiter({ name: 'progress-writes/ip', limit: envInt('PROGRESS_WRITE_LIMIT', 240), windowMs: 60 * 60 * 1000 }),
+  /**
+   * AI generation gets its own budget, and a small one. Every call spends real money
+   * with the provider and takes tens of seconds, so this is the one endpoint where a
+   * loop costs the operator rather than just the CPU. 30 an hour is more documents than
+   * a person studies in a day; it is nowhere near enough to run up a bill.
+   */
+  aiGenerationsPerIp: createRateLimiter({ name: 'ai-generations/ip', limit: envIntAllowingZero('AI_GENERATION_LIMIT', 30), windowMs: 60 * 60 * 1000 }),
 };
 
 function tooManyRequests(retryAfter) {
@@ -520,6 +582,63 @@ async function handleCourseProgress(req, res, cors) {
   sendJson(res, 200, { ok: true, course, courses: Object.values(courses) }, cors);
 }
 
+/* --------------------------------------------------------------- saved papers */
+
+/**
+ * Save a generated MCQ set to the caller's account.
+ *
+ * The stored record is `validateSavedPaper`'s field-by-field rebuild plus the three
+ * server-owned fields (id, owner, timestamp). The client cannot choose any of those,
+ * and nothing outside the allow-list in papers.mjs reaches disk. Body cap is the same
+ * 256 KB as generation, since a full paper can be a few kilobytes of question text.
+ */
+async function handleSavePaper(req, res, cors) {
+  const { user } = await requireSessionForWrite(req);
+  const body = await readJsonBody(req, { maxBytes: MAX_AI_BODY_BYTES });
+  const record = {
+    id: newPaperId(),
+    userId: user.id,
+    createdAt: new Date().toISOString(),
+    ...validateSavedPaper(body),
+  };
+  const { dropped } = await store.addPaper(record, { maxPerUser: PAPER_LIMITS.maxPerUser });
+  sendJson(res, 201, { ok: true, paper: publicPaper(record), dropped }, cors);
+}
+
+/**
+ * List the caller's saved papers, or return one in full when `?id=` is given.
+ *
+ * Both are GET /api/papers because the router matches on method and path only; the id
+ * query is what picks between the list (summaries, newest first) and a single paper
+ * (with its questions). Either way `store` scopes the read to this account, so there is
+ * no id a caller can pass to read someone else's saved set.
+ */
+async function handlePapersGet(req, res, cors) {
+  const { user } = await requireSession(req);
+  const id = new URL(req.url ?? '/', 'http://internal').searchParams.get('id');
+  if (id !== null && id.trim() !== '') {
+    const paper = store.paperForUser(user.id, id.trim());
+    if (!paper) throw new HttpError(404, 'not_found', 'No saved paper with that id.');
+    sendJson(res, 200, { ok: true, paper: publicPaper(paper) }, cors);
+    return;
+  }
+  const papers = store.papersForUser(user.id);
+  sendJson(res, 200, { ok: true, papers: papers.slice().reverse().map(paperSummary), total: papers.length }, cors);
+}
+
+/**
+ * Delete one of the caller's saved papers, chosen by `?id=`. Same protections as
+ * clearing history: the SameSite=Lax cookie and the origin allow-list, plus the fact
+ * that `store.deletePaper` only ever touches this account's own list.
+ */
+async function handleDeletePaper(req, res, cors) {
+  const { user } = await requireSessionForWrite(req);
+  const id = new URL(req.url ?? '/', 'http://internal').searchParams.get('id') ?? '';
+  const removed = await store.deletePaper(user.id, id.trim());
+  if (!removed) throw new HttpError(404, 'not_found', 'No saved paper with that id.');
+  sendJson(res, 200, { ok: true, removed: true }, cors);
+}
+
 /* --------------------------------------------------------------- assessment */
 
 /**
@@ -568,9 +687,311 @@ async function handleAssessmentSubmit(req, res, cors) {
   sendJson(res, 201, {
     ok: true,
     result: graded,
+    /**
+     * Which questions were missed and under which topic, summarised. Computed from
+     * the same grading, so it cannot disagree with the report beside it, and it
+     * carries no question text and no answer key of its own.
+     */
+    answers: analyseAnswers(graded.questions),
     attempt: publicAttempt(record),
     dropped,
     progress: computeProgress(store.attemptsForUser(user.id)),
+  }, cors);
+}
+
+/* ------------------------------------------------------------- analytics */
+
+/** `?scope=` on the analytics endpoint. Anything unrecognised is refused, not defaulted. */
+function analyticsScope(req) {
+  const raw = new URL(req.url ?? '/', 'http://internal').searchParams.get('scope');
+  if (raw === null || raw.trim() === '') return 'all';
+  const scope = raw.trim().toLowerCase();
+  if (!ANALYTICS_SCOPES.includes(scope)) {
+    const message = `scope must be one of: ${ANALYTICS_SCOPES.join(', ')}.`;
+    throw new HttpError(400, 'invalid_input', message, { scope: message });
+  }
+  return scope;
+}
+
+/**
+ * The competency analysis for the signed-in account.
+ *
+ * Every figure in the response is computed here from stored attempts — the scores,
+ * the bands, the gaps against the target levels and the learning priority order. The
+ * browser does no competency arithmetic at all; it maps a status to a colour and
+ * draws what it was sent. That is the point of the endpoint: two copies of a scoring
+ * rule drift, and the one on screen would be the one nobody tested.
+ *
+ * `?scope=latest` analyses the newest sitting alone. The trend is built from the whole
+ * history either way, because "how did that paper go" and "am I improving" are
+ * different questions.
+ */
+async function handleAnalytics(req, res, cors) {
+  const { user } = await requireSession(req);
+  const scope = analyticsScope(req);
+  const analytics = buildAnalyticsSummary(store.attemptsForUser(user.id), { scope });
+  sendJson(res, 200, { ok: true, analytics }, cors);
+}
+
+/**
+ * Ask the model to put that analysis into sentences.
+ *
+ * The payload is rebuilt here from stored attempts and is not read from the request at
+ * all. A body carrying its own scores would let the browser dictate what the model is
+ * told, and the guarantee this endpoint makes — the numbers in the paragraph are the
+ * numbers the server calculated — would be worth nothing. `?scope=` is the only thing
+ * the caller gets to choose, and it only selects which attempts are analysed.
+ *
+ * Shares the AI rate limiter with generation and classification because it is the same
+ * model on the same machine.
+ */
+async function handleExplainAnalytics(req, res, cors) {
+  assertTrustedOrigin(req, ALLOWED_ORIGINS);
+  const { user } = await requireSession(req);
+  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUST_PROXY));
+
+  const scope = analyticsScope(req);
+  const analytics = buildAnalyticsSummary(store.attemptsForUser(user.id), { scope });
+  const outcome = await explainAnalytics(analytics, { env: process.env });
+
+  console.log(
+    `  analytics: explain provider=${outcome.explanation?.provider ?? outcome.provider ?? 'none'} ` +
+      (outcome.ok ? `ok attempts=${outcome.explanation.attempts}` : `failed=${outcome.code}`),
+  );
+
+  if (!outcome.ok) {
+    const status = ANALYTICS_FAILURE_STATUS[outcome.code] ?? AI_FAILURE_STATUS[outcome.code] ?? 502;
+    sendJson(res, status, {
+      ok: false,
+      error: { code: outcome.code, message: outcome.message },
+      // The charts do not need the model, so send the analysis regardless. A page that
+      // loses its whole dashboard because Ollama is asleep would be a worse failure than
+      // the one that actually happened.
+      analytics,
+    }, cors);
+    return;
+  }
+
+  sendJson(res, 200, { ok: true, explanation: outcome.explanation, analytics }, cors);
+}
+
+/**
+ * Two failures generation cannot produce. `no_data` is the caller's state, not a fault,
+ * and `unverified` means the model worked and was caught inventing figures — a bad
+ * gateway response, since the thing upstream returned something unusable.
+ */
+const ANALYTICS_FAILURE_STATUS = {
+  no_data: 409,
+  unverified: 502,
+};
+
+/* --------------------------------------------------------------------- ai */
+
+/** Caps on the metadata that rides along with the text, so neither can be used to bloat a request. */
+const MAX_TOPICS = 12;
+const MAX_CONCEPTS = 60;
+const MAX_LABEL_CHARS = 120;
+
+/**
+ * A defect in what the browser sent, phrased for the person who will read it.
+ *
+ * `fields` is what the Materials page uses to decide whether to blame the document or
+ * the request, so the codes here are stable rather than prose.
+ */
+function badRequest(code, message, fields) {
+  return new HttpError(400, code, message, fields);
+}
+
+function validateGenerationRequest(body) {
+  if (!body || typeof body !== 'object') {
+    throw badRequest('invalid_body', 'Send a JSON object with the extracted document text.');
+  }
+
+  if (typeof body.text !== 'string') {
+    throw badRequest('text_required', 'No document text was sent.', { text: 'required' });
+  }
+  const text = body.text.trim();
+  if (text === '') {
+    throw badRequest('text_required', 'No document text was sent.', { text: 'required' });
+  }
+  if (text.length < MIN_TEXT_CHARS) {
+    throw badRequest(
+      'text_too_short',
+      `This document only has ${text.length} characters of readable text. At least ${MIN_TEXT_CHARS} are needed to write questions worth answering.`,
+      { text: 'too_short' },
+    );
+  }
+  if (text.length > MAX_TEXT_CHARS) {
+    throw badRequest(
+      'text_too_long',
+      `This document has ${text.length.toLocaleString('en-IN')} characters of text, which is more than the ${MAX_TEXT_CHARS.toLocaleString('en-IN')} this can process in one go. Try a single chapter or section.`,
+      { text: 'too_long' },
+    );
+  }
+
+  const list = (value, name, cap) => {
+    if (value === undefined) return [];
+    if (!Array.isArray(value)) {
+      throw badRequest(`${name}_invalid`, `"${name}" must be an array.`, { [name]: 'invalid' });
+    }
+    if (value.length > cap) {
+      throw badRequest(`${name}_invalid`, `Too many ${name} were sent.`, { [name]: 'invalid' });
+    }
+    return value
+      .filter((entry) => typeof entry === 'string')
+      .map((entry) => entry.trim().slice(0, MAX_LABEL_CHARS))
+      .filter((entry) => entry !== '');
+  };
+
+  const topics = list(body.topics, 'topics', MAX_TOPICS);
+  const concepts = list(body.concepts, 'concepts', MAX_CONCEPTS);
+
+  let questionCount = TARGET_QUESTIONS;
+  if (body.questionCount !== undefined) {
+    if (!Number.isInteger(body.questionCount)) {
+      throw badRequest('question_count_invalid', `"questionCount" must be a whole number between ${MIN_QUESTIONS} and ${MAX_QUESTIONS}.`, { questionCount: 'invalid' });
+    }
+    if (body.questionCount < MIN_QUESTIONS || body.questionCount > MAX_QUESTIONS) {
+      throw badRequest('question_count_invalid', `"questionCount" must be between ${MIN_QUESTIONS} and ${MAX_QUESTIONS}.`, { questionCount: 'invalid' });
+    }
+    questionCount = body.questionCount;
+  }
+
+  // Difficulty is optional and, unlike the count, never fatal: an unrecognised value is
+  // dropped rather than rejected, because it only tunes the prompt and a bad one should
+  // fall back to the balanced default, not fail the whole request.
+  let difficulty;
+  if (typeof body.difficulty === 'string') {
+    const wanted = body.difficulty.trim().toLowerCase();
+    if (wanted === 'easy' || wanted === 'medium' || wanted === 'hard') difficulty = wanted;
+  }
+
+  return { text, topics, concepts, questionCount, difficulty };
+}
+
+/**
+ * Which HTTP status an AI failure deserves.
+ *
+ * Split by whose fault it is, because the page reacts differently: 503 means "the
+ * operator has not finished setting this up", 502/504 mean "the provider is having a
+ * bad day, try again", and 422 means "your document was fine, there just was not enough
+ * in it" — which is not an error the user should be told to retry.
+ */
+const AI_FAILURE_STATUS = {
+  not_configured: 503,
+  rate_limited: 429,
+  timeout: 504,
+  network_error: 502,
+  provider_error: 502,
+  insufficient_questions: 422,
+};
+
+/**
+ * Generate MCQs from an uploaded document.
+ *
+ * The browser has already extracted the text and pulled out topics; this route adds the
+ * things that must not happen in a browser tab — holding the provider key, calling the
+ * provider, and refusing to believe what it says until every question has been checked
+ * against the document it claims to quote.
+ *
+ * There is deliberately no fallback to the deterministic generator in ./src/lib. If the
+ * provider is unconfigured or down, this returns an honest failure and the page says so.
+ * Quietly serving locally-assembled questions under an "AI generated" label would be a
+ * lie the user has no way to detect.
+ */
+async function handleGenerateMcqs(req, res, cors) {
+  assertTrustedOrigin(req, ALLOWED_ORIGINS);
+  // Session first, then the budget, so an anonymous flood cannot spend a real user's
+  // quota — same order as every other write on this server.
+  await requireSession(req);
+  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUST_PROXY));
+
+  const body = await readJsonBody(req, { maxBytes: MAX_AI_BODY_BYTES });
+  const input = validateGenerationRequest(body);
+
+  const outcome = await generateMcqs(input, { env: process.env });
+
+  // Counts and the provider name only. The document text and the questions themselves
+  // are never logged: this is the one route that sees a learner's material.
+  console.log(
+    `  ai: provider=${outcome.meta.provider} chunks=${outcome.meta.chunks} calls=${outcome.meta.calls} ` +
+      `asked=${outcome.meta.asked} accepted=${outcome.meta.accepted} rejected=${outcome.meta.rejected}` +
+      (outcome.ok ? '' : ` failed=${outcome.code}`),
+  );
+
+  if (!outcome.ok) {
+    const status = AI_FAILURE_STATUS[outcome.code] ?? 502;
+    sendJson(res, status, {
+      ok: false,
+      error: { code: outcome.code, message: outcome.message },
+      // A shortfall still returns what survived validation, so the page can say "6 of 10"
+      // rather than an unexplained failure.
+      questions: outcome.questions ?? [],
+      meta: outcome.meta,
+    }, cors);
+    return;
+  }
+
+  sendJson(res, 200, {
+    ok: true,
+    questions: outcome.questions,
+    meta: outcome.meta,
+  }, cors);
+}
+
+/**
+ * Classify an uploaded document before generating questions.
+ *
+ * Takes the extracted text and asks the local model what kind of document it is —
+ * study material, marksheet, report, etc. The page uses this to warn the learner
+ * before spending thirty seconds on MCQ generation from a document that cannot
+ * yield good questions.
+ *
+ * Shares the AI rate-limiter with generation, because it is the same model.
+ */
+async function handleClassifyMaterial(req, res, cors) {
+  assertTrustedOrigin(req, ALLOWED_ORIGINS);
+  await requireSession(req);
+  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUST_PROXY));
+
+  const body = await readJsonBody(req, { maxBytes: MAX_AI_BODY_BYTES });
+
+  if (!body || typeof body !== 'object') {
+    throw badRequest('invalid_body', 'Send a JSON object with the extracted document text.');
+  }
+  if (typeof body.text !== 'string' || body.text.trim() === '') {
+    throw badRequest('text_required', 'No document text was sent for classification.', { text: 'required' });
+  }
+  const text = body.text.trim();
+  if (text.length < MIN_TEXT_CHARS) {
+    throw badRequest(
+      'text_too_short',
+      `This document only has ${text.length} characters of readable text. At least ${MIN_TEXT_CHARS} are needed to classify it.`,
+      { text: 'too_short' },
+    );
+  }
+
+  const result = await classifyMaterial({ text }, { env: process.env });
+
+  // Counts only — no document text in the log.
+  if (result.ok) {
+    console.log(`  ai: classified as ${result.classification.type} (confidence=${result.classification.confidence})`);
+  } else {
+    console.log(`  ai: classification failed: ${result.code}`);
+  }
+
+  if (!result.ok) {
+    const status = AI_FAILURE_STATUS[result.code] ?? 502;
+    sendJson(res, status, {
+      ok: false,
+      error: { code: result.code, message: result.message },
+    }, cors);
+    return;
+  }
+
+  sendJson(res, 200, {
+    ok: true,
+    classification: result.classification,
   }, cors);
 }
 
@@ -590,6 +1011,13 @@ const ROUTES = new Map([
   ['DELETE /api/progress/attempts', handleClearAttempts],
   ['POST /api/progress/preferences', handlePreferences],
   ['POST /api/progress/courses', handleCourseProgress],
+  ['GET /api/analytics/competencies', handleAnalytics],
+  ['POST /api/analytics/explain', handleExplainAnalytics],
+  ['POST /api/ai/generate-mcqs', handleGenerateMcqs],
+  ['POST /api/ai/classify-material', handleClassifyMaterial],
+  ['POST /api/papers', handleSavePaper],
+  ['GET /api/papers', handlePapersGet],
+  ['DELETE /api/papers', handleDeletePaper],
 ]);
 
 const server = createServer(async (req, res) => {
@@ -665,6 +1093,7 @@ housekeeping.unref();
 
 server.listen(PORT, HOST, () => {
   const counts = store.counts();
+  const ai = providerStatus(process.env);
   console.log(`
   NEXORA AI auth server
   ---------------------
@@ -672,13 +1101,34 @@ server.listen(PORT, HOST, () => {
   Accounts   ${counts.users}
   Sessions   ${counts.sessions}
   Attempts   ${counts.attempts}
-  Data       ${DATA_DIR} (users, sessions, attempts, profiles)
+  Saved sets ${counts.papers}
+  Data       ${DATA_DIR} (users, sessions, attempts, profiles, papers)
   Assessment ${ASSESSMENT_LENGTH} questions, graded here (the browser never sees the key)
+  AI         ${ai.ok ? `${ai.provider} ready (${describeModel(process.env)})${describeTarget(process.env) ? ` at ${describeTarget(process.env)}` : ''}` : `${ai.provider} NOT configured — question generation will return an honest error`}
   Hashing    scrypt (Node built-in), min ${PASSWORD_POLICY.min} character password
   Origins    ${[...ALLOWED_ORIGINS].join(', ')}
   Cookie     ${SESSION_COOKIE}; HttpOnly; SameSite=Lax${COOKIE_SECURE ? '; Secure' : ' (Secure off — http is fine on localhost)'}
   Env file   ${usedEnvFile ? 'server/.env loaded' : 'no server/.env (using defaults)'}
 `);
+
+  if (!ai.ok) {
+    console.log(
+      '  Note: AI question generation is off. Uploading material will report that\n' +
+        '  it is not configured rather than inventing questions. To switch it on,\n' +
+        '  add ONE of these to server/.env:\n\n' +
+        '    a cloud model:   AI_PROVIDER=gemini\n' +
+        '                     GEMINI_API_KEY=your-key-here\n\n' +
+        '    a local model:   AI_PROVIDER=local\n' +
+        '                     (needs Ollama running: ollama run gpt-oss:20b)\n',
+    );
+  }
+
+  if (ai.provider === 'mock') {
+    console.log(
+      '  WARNING: AI_PROVIDER=mock. Questions come from a canned file, not a model.\n' +
+        '  This is for tests only — do not demo with it.\n',
+    );
+  }
 
   if (ephemeralSecret) {
     console.log(

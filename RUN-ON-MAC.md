@@ -1,11 +1,11 @@
 # Run NEXORA AI on your Mac
 
-Everything below assumes you have this `NEXORA AI-mac` folder open in VS Code.
+Everything below assumes you have this `statskill-mac` folder open in VS Code.
 
 ## The short version
 
 ```bash
-cd ~/Documents/SIH26101/NEXORA AI-mac
+cd ~/Documents/SIH26101/statskill-mac
 ./start.sh
 ```
 
@@ -31,10 +31,10 @@ before login existed. Full detail: `AUTH-SETUP.md`.
 
 ## Step by step
 
-1. Open VS Code, then **File → Open Folder** and pick `NEXORA AI-mac`.
+1. Open VS Code, then **File → Open Folder** and pick `statskill-mac`.
 
 2. Open the built-in terminal with **Control + `** (backtick). The prompt should
-   already be inside `NEXORA AI-mac`. Confirm with:
+   already be inside `statskill-mac`. Confirm with:
 
    ```bash
    pwd
@@ -102,10 +102,11 @@ part of the line.
 | `npm run build` | production build into `dist/` |
 | `npm run preview` | serve the built `dist/` locally |
 | `npm run auth` | the auth server on its own, port 4000 |
-| `npm test` | all four suites below, in order |
-| `npm run engine:test` | 104 checks on the question engine and the scorer |
-| `npm run auth:test` | 150 assertions against the server, over HTTP |
-| `npm run client:test` | 34 checks that the browser code and the server agree |
+| `npm test` | all five suites below, in order |
+| `npm run engine:test` | 116 checks on the question engine and the scorer |
+| `npm run auth:test` | 199 assertions against the server, over HTTP |
+| `npm run client:test` | 42 checks that the browser code and the server agree |
+| `npm run ai:test` | 131 checks on AI question generation, no API key and no model needed |
 | `npm run ui:test` | renders every route and checks the login gate |
 
 ## If something goes wrong
@@ -136,6 +137,31 @@ screen also has a button to open the demo anyway.
 the page through the `http://localhost:5173` URL, never by double-clicking
 `index.html`; the app is an ES-module build and will not load over `file://`.
 
+**"AI question generation is not configured."** — the server found no model to
+ask. Check that `server/.env` has an `AI_PROVIDER` line. If the file was created
+before the AI feature existed it will not have one, and the AI section has to be
+added; copy it from `server/.env.example`. The server prints what it decided in
+its startup banner, on the line beginning `AI`.
+
+**"Could not reach the local AI model at http://127.0.0.1:11434."** — the
+configuration is fine and Ollama is not answering. In another terminal:
+
+```bash
+ollama run gpt-oss:20b
+```
+
+If that says the model is not found, `ollama pull gpt-oss:20b` first. If Ollama
+is running on a different port, set `AI_LOCAL_URL` in `server/.env` to match.
+Note the address is `127.0.0.1` and not `localhost` on purpose: on macOS
+`localhost` can resolve to IPv6 first, and Ollama listens on IPv4 only, which
+looks exactly like it being switched off.
+
+**The first document takes forever, then the rest are fine** — expected. Ollama
+loads the model into memory on first use, which for a 20B model is tens of
+seconds. The server waits up to three minutes before giving up. If your Mac
+struggles with 20B, put a smaller model in `AI_MODEL`, for example
+`llama3.1:8b`, after pulling it.
+
 **Anything else** — copy the full red error text from the terminal and send it
 over.
 
@@ -159,11 +185,40 @@ export, so the interface is unchanged.
 
 Three kinds of screen, and they need the server to different degrees.
 
-**The Materials Lab needs nothing.** It extracts text from your PDF and writes the
-questions in the browser tab, through `pdfjs-dist` and `src/lib/materials.ts`. The
-file is never uploaded. That quiz is graded in the tab too, because the tab is the
-only thing that has seen its questions, and the finished attempt is then posted to
-be stored.
+**The Materials Lab needs the server, and a model.** The tab still opens your PDF
+and pulls the text out of it locally, through `pdfjs-dist` and
+`src/lib/materials.ts`, so the **file** itself is never uploaded. But the questions
+are no longer written in the browser: the extracted **text** is posted to your own
+server, which asks a language model for them and checks every answer back against
+the document before returning it.
+
+There are two ways to provide that model, and you choose with `AI_PROVIDER` in
+`server/.env`:
+
+```
+AI_PROVIDER=local     a model running on this Mac, through Ollama. Free, no key,
+                      no account, and nothing you upload leaves the machine.
+                      Needs: ollama pull gpt-oss:20b
+
+AI_PROVIDER=gemini    Google's API. Faster, needs GEMINI_API_KEY, and the
+                      document text is sent to Google.
+```
+
+This project is currently set to `local`. Start the model before the app:
+
+```bash
+ollama run gpt-oss:20b
+```
+
+Leave that running (or just `ollama serve`) and then `./start.sh` as usual. The
+first document you upload will be slow — a 20B model has to be read into memory
+before it answers — and subsequent ones are much quicker. If Ollama is not
+running, the page says so and names the address it tried, rather than producing
+questions some other way. With neither provider set up the page reports the
+feature as unconfigured — see `AUTH-SETUP.md`.
+
+The quiz is still graded in the tab, because the tab is the only thing holding
+the answer key, and the finished attempt is then posted to be stored.
 
 **The Assessment needs the server, and cannot work without it.** The 15 scenarios
 and their answer key live in `server/assessment.mjs` and nowhere else — `src/` does
@@ -175,10 +230,11 @@ server not running, that page says so instead of inventing a result.
 **Your history needs the server**, because it is stored per account: attempts,
 per-topic bands, saved courses and preferences, in JSON files under `server/data/`.
 
-So `server/` is no longer only an auth server. It is twelve endpoints — signup,
-login, logout, "who am I", deal a paper, submit a sitting, and the progress routes —
-with no npm dependencies, only what ships with Node. `AUTH-SETUP.md` documents the
-accounts half, including what its security does and does not cover.
+So `server/` is no longer only an auth server. It is fourteen endpoints — signup,
+login, logout, "who am I", deal a paper, submit a sitting, generate questions from
+uploaded material, and the progress routes — with no npm dependencies, only what
+ships with Node. `AUTH-SETUP.md` documents the accounts half, including what its
+security does and does not cover, and how to switch the AI on.
 
 Two screens are still sample content and say so on the page: Intelligence and
 Integrations. The Dashboard, Learning, Roadmap and the preference switches on
