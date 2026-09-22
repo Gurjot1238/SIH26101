@@ -21,11 +21,13 @@ import * as local from './local.mjs';
 import * as mock from './mock.mjs';
 import {
   buildDocumentIndex,
+  matchKey,
   parseProviderJson,
   selectQuestions,
   validateBatch,
 } from './validation.mjs';
 import { buildGenerationPrompt, buildRepairPrompt } from './prompt.mjs';
+import { generateBackfill } from './backfill.mjs';
 
 /** Bounds the route also advertises. A document past the ceiling is chunked, not refused. */
 export const MIN_TEXT_CHARS = 120;
@@ -171,6 +173,61 @@ function perChunkTarget(totalTarget, chunkCount) {
   return Math.max(3, Math.ceil((totalTarget + 2) / chunkCount) + 1);
 }
 
+/** Content words of a string, lowercased, for overlap scoring. Stopword-free enough. */
+function scoringTerms(value) {
+  return (String(value ?? '').toLowerCase().match(/[a-z0-9]{4,}/g)) ?? [];
+}
+
+/**
+ * Choose which parts of a document to send when it is too large to send whole.
+ *
+ * A 900-page PDF chunks into far more than MAX_CHUNKS pieces, and the old code simply
+ * packed the overflow into the last chunk and sent the first few — so questions came from
+ * the front matter and the appendix got a single bloated chunk. That is exactly the
+ * "do NOT blindly send the entire document" case: the fix is to send the *relevant* parts.
+ *
+ * When the whole document already fits in MAX_CHUNKS chunks (the common case, and every
+ * normal upload), this returns them unchanged, so nothing about small-document behaviour
+ * moves. Only when a document overflows does ranking kick in: each chunk is scored by how
+ * many of the extracted topic/concept terms it contains (a chunk that mentions more of
+ * what the document is *about* is a better source of gradeable questions), the top
+ * MAX_CHUNKS are kept, and they are put back into document order so a reader of the
+ * revision passages still moves front-to-back through the material.
+ *
+ * With no topics or concepts to rank by, it falls back to the first MAX_CHUNKS in order —
+ * no worse than before, and never a mid-sentence cut, because each chunk is whole.
+ */
+export function selectRelevantChunks(text, { topics = [], concepts = [], maxChunks = MAX_CHUNKS } = {}) {
+  // Split uncapped (sentence boundaries preserved) so ranking sees every part of the
+  // document, not a pre-truncated front slice.
+  const all = chunkText(text, CHUNK_CHARS, Number.MAX_SAFE_INTEGER);
+  if (all.length <= maxChunks) return all;
+
+  const wanted = new Set([...topics, ...concepts].flatMap((t) => scoringTerms(t)));
+  if (wanted.size === 0) return all.slice(0, maxChunks);
+
+  const scored = all.map((chunk, order) => {
+    const terms = scoringTerms(chunk);
+    let hits = 0;
+    const seen = new Set();
+    for (const term of terms) {
+      if (wanted.has(term)) {
+        hits += 1;
+        seen.add(term);
+      }
+    }
+    // Reward both raw mentions and breadth of distinct topics touched, so a chunk that
+    // covers five topics once beats one that repeats a single word twenty times.
+    return { chunk, order, score: hits + seen.size };
+  });
+
+  const topByScore = [...scored]
+    .sort((a, b) => b.score - a.score || a.order - b.order)
+    .slice(0, maxChunks);
+  // Restore document order for the chunks we kept.
+  return topByScore.sort((a, b) => a.order - b.order).map((entry) => entry.chunk);
+}
+
 /**
  * Turn a document into a validated paper.
  *
@@ -205,16 +262,51 @@ export async function generateMcqs(input, { env = process.env } = {}) {
     : undefined;
 
   const documentIndex = buildDocumentIndex(text);
-  const chunks = chunkText(text);
+  // For a normal upload this is just the document's chunks in order; for an over-large one
+  // it is the MAX_CHUNKS most topic-relevant chunks, so we never blindly send 900 pages.
+  const chunks = selectRelevantChunks(text, { topics, concepts });
   if (chunks.length === 0) {
     return { ok: false, code: 'insufficient_questions', message: 'The document had no usable text to generate questions from.', meta: emptyMeta(provider.providerName) };
   }
 
   const accepted = [];
-  const meta = { provider: provider.providerName, asked: 0, accepted: 0, rejected: 0, calls: 0, chunks: chunks.length };
+  const meta = { provider: provider.providerName, asked: 0, accepted: 0, rejected: 0, calls: 0, chunks: chunks.length, selected: 0 };
+  // Counters that answer the bug report directly ("I asked for 20 and got 16"): they
+  // separate what the model returned (parsed) from what survived the quality gate (valid),
+  // how many fell to deduplication vs. other rules, and how the exact count was finally
+  // reached (valid from the model + backfill = final). Returned alongside `meta` rather
+  // than inside it, so the wire contract the browser sees stays counts-only and unchanged,
+  // while the server log still gets the full breakdown. Never carries document text.
+  const debug = {
+    requestedCount: target,
+    rawResponseChars: 0,
+    parsedQuestionCount: 0,
+    validQuestionCount: 0,
+    duplicateQuestionCount: 0,
+    rejectedQuestionCount: 0,
+    backfillQuestionCount: 0,
+    finalQuestionCount: 0,
+  };
   let lastProviderError = null;
   const perChunk = perChunkTarget(target, chunks.length);
 
+  // Fold one ingest result into the running totals, so generation and repair update the
+  // counters the same way and cannot drift out of step.
+  const absorb = (outcome) => {
+    meta.asked += outcome.asked;
+    meta.rejected += outcome.rejected.length;
+    debug.rawResponseChars += outcome.rawChars;
+    debug.parsedQuestionCount += outcome.parsed;
+    debug.validQuestionCount += outcome.accepted.length;
+    debug.duplicateQuestionCount += outcome.duplicates;
+    debug.rejectedQuestionCount += outcome.qualityRejects;
+    for (const question of outcome.accepted) accepted.push(question);
+  };
+
+  // Phase 1 — generation. One generation call and (when that chunk fell short and left
+  // reasons) one targeted repair call per chunk. This is the model re-ask the spec calls
+  // for, and where the rich, model-written questions come from; backfill below only makes
+  // up whatever the model still could not supply.
   for (let index = 0; index < chunks.length; index += 1) {
     if (accepted.length >= target || meta.calls >= MAX_PROVIDER_CALLS) break;
 
@@ -231,9 +323,7 @@ export async function generateMcqs(input, { env = process.env } = {}) {
     }
 
     const outcome = ingest(raw, documentIndex, { existing: accepted, allowedTopics: topics });
-    meta.asked += outcome.asked;
-    meta.rejected += outcome.rejected.length;
-    for (const question of outcome.accepted) accepted.push(question);
+    absorb(outcome);
 
     // One repair pass per chunk: hand the model back the exact reasons and re-ask, but
     // only when this chunk fell short and we still have call budget.
@@ -243,10 +333,7 @@ export async function generateMcqs(input, { env = process.env } = {}) {
       try {
         meta.calls += 1;
         const repaired = await provider.generateRaw(repairPrompt, { env, attempt: 2 });
-        const second = ingest(repaired, documentIndex, { existing: accepted, allowedTopics: topics });
-        meta.asked += second.asked;
-        meta.rejected += second.rejected.length;
-        for (const question of second.accepted) accepted.push(question);
+        absorb(ingest(repaired, documentIndex, { existing: accepted, allowedTopics: topics }));
       } catch (error) {
         lastProviderError = normalizeProviderError(error);
       }
@@ -255,36 +342,128 @@ export async function generateMcqs(input, { env = process.env } = {}) {
 
   meta.accepted = accepted.length;
 
-  if (accepted.length === 0 && lastProviderError) {
-    return { ok: false, code: lastProviderError.code, message: lastProviderError.message, meta };
-  }
-
-  const selected = selectQuestions(accepted, target);
-  meta.selected = selected.length;
-
-  if (selected.length < MIN_QUESTIONS) {
-    // Honest shortfall, not padded to ten with invented questions. Callable path: a short
-    // or thin document. The route turns this into a clear message with the real count.
+  // If the model produced fewer than a real quiz's worth of grounded questions, that is an
+  // AI failure to report honestly, not a gap to paper over. Backfilling on top of a dead
+  // provider (a thrown error) or a model that returned nothing usable (malformed JSON, a
+  // prose refusal, wholesale invented questions) would hide a broken provider behind a
+  // deterministic quiz — the exact dishonesty this pipeline refuses. So the backstop only
+  // supplements a paper that already has a genuine model-written base of MIN_QUESTIONS.
+  if (accepted.length < MIN_QUESTIONS) {
+    debug.finalQuestionCount = accepted.length;
+    if (accepted.length === 0 && lastProviderError) {
+      return { ok: false, code: lastProviderError.code, message: lastProviderError.message, meta, debug };
+    }
+    meta.selected = accepted.length;
     return {
       ok: false,
       code: 'insufficient_questions',
-      message: `Only ${selected.length} well-grounded question${selected.length === 1 ? '' : 's'} could be generated from this material. A high-quality short set is preferred over invented questions — try a longer or more detailed document.`,
-      questions: selected,
+      message: `Only ${accepted.length} well-grounded question${accepted.length === 1 ? '' : 's'} could be generated from this material. A high-quality short set is preferred over invented questions — try a longer or more detailed document.`,
+      questions: selectQuestions(accepted, target),
       meta,
+      debug,
     };
   }
 
-  return { ok: true, questions: selected, meta };
+  // Deterministic, document-grounded backfill. The model gave a real base but came up
+  // short of the requested count; this completes the exact number from the SAME material —
+  // cloze questions built out of real document sentences, each cleared by the very same
+  // validator the model's questions pass — so the learner gets exactly the count they
+  // asked for without one invented fact.
+  if (accepted.length < target) {
+    const backfill = generateBackfill(text, documentIndex, {
+      need: target - accepted.length,
+      existing: accepted,
+      allowedTopics: topics,
+      preferTopics: underrepresentedTopics(accepted, topics),
+    });
+    for (const question of backfill.accepted) accepted.push(question);
+    debug.backfillQuestionCount = backfill.accepted.length;
+    meta.accepted = accepted.length;
+  }
+
+  // The exact-count contract. selectQuestions trims any surplus to exactly `target` with an
+  // even topic spread; if even backfill could not reach `target` (a document too short to
+  // yield that many grounded questions), we return a controlled error carrying the real
+  // count rather than silently showing a paper of the wrong size.
+  const selected = selectQuestions(accepted, target);
+  meta.selected = selected.length;
+  debug.finalQuestionCount = selected.length;
+
+  if (selected.length < target) {
+    return {
+      ok: false,
+      code: 'insufficient_questions',
+      message: `You asked for ${target} questions, but this material only yielded ${selected.length} that could be grounded in it. Try a longer or more detailed document, or request fewer questions.`,
+      questions: selected,
+      meta,
+      debug,
+    };
+  }
+
+  return { ok: true, questions: selected, meta, debug };
 }
 
-function ingest(raw, documentIndex, options) {
-  const parsed = parseProviderJson(raw);
-  if (!parsed.ok) {
-    return { asked: 0, accepted: [], rejected: [{ reason: parsed.reason, question: '' }] };
+/**
+ * The supplied topics that the accepted questions cover least, fewest-first.
+ *
+ * Steers the backfill toward even coverage: a paper that is 15 questions on one topic and
+ * nothing on four others is a worse test than one spread across all five at the same total
+ * count. Topics with zero questions sort first.
+ */
+function underrepresentedTopics(accepted, topics) {
+  if (!Array.isArray(topics) || topics.length === 0) return [];
+  const counts = new Map(topics.map((topic) => [topic, 0]));
+  for (const question of accepted) {
+    const key = matchKey(question.topic ?? '');
+    for (const topic of topics) {
+      if (matchKey(topic) === key) { counts.set(topic, counts.get(topic) + 1); break; }
+    }
   }
-  const asked = parsed.questions.length;
-  const { accepted, rejected } = validateBatch(parsed.questions, documentIndex, options);
-  return { asked, accepted, rejected };
+  return [...counts.entries()]
+    .sort((a, b) => a[1] - b[1])
+    .filter(([, count], _i, all) => count <= all[0][1] + 1)
+    .map(([topic]) => topic);
+}
+
+/**
+ * Parse one raw provider reply and validate it against the document, returning the counts
+ * the debug block needs: how many characters came back, how many questions parsed out of
+ * the JSON, how many survived validation, and — split apart because they mean different
+ * things — how many were dropped as duplicates vs. failed a quality rule. A reply that
+ * would not parse at all counts as zero parsed and one quality reject (the parse reason).
+ */
+function ingest(raw, documentIndex, options) {
+  const rawChars = typeof raw === 'string' ? raw.length : 0;
+  const parsedResult = parseProviderJson(raw);
+  if (!parsedResult.ok) {
+    return {
+      asked: 0,
+      rawChars,
+      parsed: 0,
+      accepted: [],
+      rejected: [{ reason: parsedResult.reason, question: '' }],
+      duplicates: 0,
+      qualityRejects: 1,
+    };
+  }
+  const asked = parsedResult.questions.length;
+  const { accepted, rejected } = validateBatch(parsedResult.questions, documentIndex, options);
+  const duplicates = rejected.filter((r) => isDuplicateReason(r.reason)).length;
+  return {
+    asked,
+    rawChars,
+    parsed: asked,
+    accepted,
+    rejected,
+    duplicates,
+    qualityRejects: rejected.length - duplicates,
+  };
+}
+
+/** The two rejection reasons validateBatch emits for a repeat, kept in sync with it. */
+function isDuplicateReason(reason) {
+  return reason === 'duplicate of another question in this paper'
+    || reason === 'asks the same fact as another question in this paper';
 }
 
 function clampTarget(value) {

@@ -94,7 +94,35 @@ function summarize(course) {
     officialUrl: source.official_url ?? '',
     modules: moduleCount,
     lessons: lessonCount,
+    // Additive metadata for the recommender's quality/prerequisite/difficulty checks (§7).
+    // All optional and defaulted so every existing course.json stays valid without editing:
+    // the current dataset carries `language` and `format`, not `prerequisites`/`availability`,
+    // so those default to an empty list and "available". A course only gains prerequisite-aware
+    // or availability filtering once its course.json actually declares these fields — nothing
+    // is invented here.
+    language: typeof course.language === 'string' ? course.language : '',
+    // `learning_format` is the documented field name; the dataset currently writes `format`.
+    learningFormat: course.learning_format ?? course.format ?? '',
+    // Prerequisites are course ids OR competency requirements; both shapes are accepted and
+    // normalised by the quality module. Absent → no prerequisites, which never blocks.
+    prerequisites: Array.isArray(course.prerequisites) ? course.prerequisites : [],
+    // A course is assumed available unless it explicitly says otherwise. Only an explicit
+    // "unavailable"/"archived"/false removes it from candidates (§6, §8).
+    availability: normaliseAvailability(course.availability),
   };
+}
+
+/**
+ * Fold the various ways a course.json might express availability into a single string the
+ * recommender checks: 'available' (the default and the only value that gets recommended) or
+ * 'unavailable'. Missing means available — most of the dataset predates this field.
+ */
+function normaliseAvailability(value) {
+  if (value === undefined || value === null || value === true) return 'available';
+  if (value === false) return 'unavailable';
+  const key = String(value).toLowerCase().trim();
+  if (key === '' || key === 'available' || key === 'active' || key === 'published') return 'available';
+  return 'unavailable';
 }
 
 /* ------------------------------------------------------------------- loader */

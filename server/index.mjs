@@ -81,7 +81,9 @@ import {
 } from './auth.mjs';
 import { openStore } from './store.mjs';
 import { catalogue, getCourse, resolveContent, coursesStatus } from './courses.mjs';
-import { recommendCoursesForGaps } from './course-recommendations.mjs';
+import { RecommendationService } from './recommend/service.mjs';
+import { learnerLevelRank } from './recommend/features.mjs';
+import { sanitizeEvent, forbiddenKeysIn } from './recommend/interactions.mjs';
 import {
   ASSESSMENT_LENGTH,
   ASSESSMENT_SOURCE,
@@ -277,6 +279,15 @@ function enforceWithoutSpending(limiter, key) {
 
 const store = await openStore(DATA_DIR);
 await warmUp();
+
+/**
+ * The recommendation service: one door for all course recommendations. It defaults to the
+ * hybrid engine, which generates candidates with the proven deterministic engine and only
+ * lets the ML ranker reorder them once a trained model AND enough interaction data exist.
+ * With neither present today it behaves exactly like the current system — the upgrade is
+ * additive and cannot empty or corrupt the list. See recommend/service.mjs.
+ */
+const recommendationService = new RecommendationService();
 
 /* ----------------------------------------------------------------- sessions */
 
@@ -581,6 +592,30 @@ async function handleCourseProgress(req, res, cors) {
 
   const courses = { ...profile.courses, [course.courseId]: course };
   await store.saveProfile(user.id, { ...profile, courses, updatedAt: now });
+
+  // Record the engagement signal this update carries. Completion is computed against the
+  // course's real lesson count (the dataset's, not something the client sent), so it is the
+  // same denominator the UI shows. These are the strong training signals: a course that is
+  // opened and completed is a positive example; opened and abandoned at 3% is a negative one.
+  // Anonymised and allow-listed downstream; no lesson text or ids beyond counts are logged.
+  let totalLessons = 0;
+  try {
+    totalLessons = getCourse(course.courseId).lessonIds.length;
+  } catch {
+    /* course not in the dataset (or invalid id) — log without a completion percent */
+  }
+  const completionPercent = totalLessons > 0 ? Math.round((course.completedLessons.length / totalLessons) * 100) : null;
+  void logInteractions([
+    {
+      userId: user.id,
+      type: completionPercent === 100 ? 'course_completed' : 'course_opened',
+      courseId: course.courseId,
+      courseStarted: Boolean(course.startedAt),
+      completionPercent,
+      completed: completionPercent === 100,
+    },
+  ]);
+
   sendJson(res, 200, { ok: true, course, courses: Object.values(courses) }, cors);
 }
 
@@ -686,6 +721,27 @@ async function handleAssessmentSubmit(req, res, cors) {
   };
 
   const { dropped } = await store.addAttempt(record, { maxPerUser: LIMITS.maxAttemptsPerUser });
+
+  // The after-state for the feedback loop (§11). A fresh sitting gives a new competency score
+  // per area; logging it as competency_measured lets buildTrainingRows pair a course's
+  // recommendation_shown (competency-before) with the later measurement (competency-after)
+  // into a real "did studying this improve the competency?" label. Anonymised + allow-listed
+  // downstream; only the competency id and its new score/gap are recorded, never answers.
+  const freshAnalytics = buildAnalyticsSummary(store.attemptsForUser(user.id), { scope: 'latest' });
+  void logInteractions(
+    (freshAnalytics.gaps ?? []).map((g) => ({
+      userId: user.id,
+      type: 'competency_measured',
+      // competency_measured is not tied to one course; use a stable sentinel course id so the
+      // event validates (courseId is required) without implying a specific course.
+      courseId: 'competency-measurement',
+      competency: g.competency,
+      competencyScoreAfter: g.currentScore,
+      gapAfter: g.gap,
+      assessmentScore: graded.score ?? graded.percent,
+    })),
+  );
+
   sendJson(res, 201, {
     ok: true,
     result: graded,
@@ -749,8 +805,117 @@ async function handleAnalytics(req, res, cors) {
 async function handleRecommendedCourses(req, res, cors) {
   const { user } = await requireSession(req);
   const analytics = buildAnalyticsSummary(store.attemptsForUser(user.id), { scope: 'all' });
-  const recommendations = recommendCoursesForGaps(analytics, catalogue());
+
+  // The learner facts the quality gate and explanations need — all derived from data we
+  // already hold (analytics + the account's saved course progress). No new reads of anything
+  // sensitive; competency scores and completed-course ids only.
+  const context = buildLearnerContext(user.id, analytics);
+
+  // Route through the service rather than calling the engine directly. The response keeps
+  // every field the UI already reads (available/measured/hasGaps/groups/courses/note) and
+  // gains an additive `strategy` block; the interaction count decides whether the hybrid
+  // engine is even allowed to consult the ML ranker (it is not, until a model is trained).
+  const recommendations = recommendationService.recommend(analytics, catalogue(), {
+    interactionCount: store.interactionCount(),
+    context,
+  });
+
+  // Record that these courses were shown, WITH the learner's competency-before / gap-before
+  // for each — the anchor of the feedback loop (§11). After the learner studies and sits a
+  // fresh assessment, competency_measured events carry the after-state, and buildTrainingRows
+  // pairs them into a real improvement label. Each event is anonymised and allow-listed by
+  // recommend/interactions.mjs before it reaches the store; no user id, email or document text
+  // is ever written. Best-effort: a logging failure must never break the response.
+  const scoreByComp = context.competencyScores;
+  const gapByComp = new Map((analytics.gaps ?? []).map((g) => [g.competency, g.gap]));
+  void logInteractions(
+    (recommendations.courses ?? []).map((course) => ({
+      userId: user.id,
+      type: 'recommendation_shown',
+      courseId: course.courseId,
+      competency: course.forCompetency,
+      competencyScoreBefore: scoreByComp.get(course.forCompetency),
+      gapBefore: gapByComp.get(course.forCompetency),
+      courseLevel: course.level,
+      courseDurationHours: course.estimatedHours,
+      courseCompetencies: course.competencies,
+      strategy: recommendations.strategy?.engine,
+      modelVersion: recommendations.strategy?.modelVersion,
+    })),
+  );
+
   sendJson(res, 200, { ok: true, recommendations }, cors);
+}
+
+/**
+ * Assemble the learner context the recommendation pipeline needs, from data already on hand:
+ *   - competencyScores  Map(competencyId -> current score)  from the analytics summary
+ *   - learnerLevel      0..3 coarse level                    from the overall score
+ *   - completedCourseIds Set                                 courses whose every lesson is done
+ *   - weakTopicsByCompetency Map(compId -> [{topic,percent}]) the assessment's own weak topics
+ *
+ * Completion is computed against the dataset's real lesson count (getCourse), the same
+ * denominator the UI shows, so "completed" here means genuinely finished, not merely started.
+ */
+function buildLearnerContext(userId, analytics) {
+  const competencyScores = new Map(
+    (analytics.competencies ?? []).map((c) => [c.competency, c.currentScore]),
+  );
+  // Fall back to gap rows if competencies[] is absent for any reason.
+  for (const g of analytics.gaps ?? []) {
+    if (!competencyScores.has(g.competency) && Number.isFinite(g.currentScore)) {
+      competencyScores.set(g.competency, g.currentScore);
+    }
+  }
+
+  const weakTopicsByCompetency = new Map();
+  for (const c of analytics.competencies ?? []) {
+    const weak = (c.topics ?? [])
+      .filter((t) => t.status === 'weak' || (Number.isFinite(t.score) && t.score < 50))
+      .map((t) => ({ topic: t.name, percent: t.score }));
+    if (weak.length > 0) weakTopicsByCompetency.set(c.competency, weak);
+  }
+
+  const overall = Number.isFinite(analytics.attempts?.overallScore)
+    ? analytics.attempts.overallScore
+    : (analytics.overallScore ?? 0);
+  const learnerLevel = learnerLevelRank(overall);
+
+  const completedCourseIds = new Set();
+  const profile = store.profileForUser(userId);
+  const courses = profile && profile.courses ? profile.courses : {};
+  for (const [courseId, record] of Object.entries(courses)) {
+    const done = Array.isArray(record?.completedLessons) ? record.completedLessons.length : 0;
+    if (done === 0) continue;
+    try {
+      const total = getCourse(courseId).lessonIds.length;
+      if (total > 0 && done >= total) completedCourseIds.add(courseId);
+    } catch {
+      /* course not in the dataset any more — cannot confirm completion, so skip */
+    }
+  }
+
+  return { competencyScores, learnerLevel, completedCourseIds, weakTopicsByCompetency };
+}
+
+/**
+ * Anonymise, allow-list, and append a batch of learning-interaction events. This is the one
+ * place events are written, so the privacy guarantees live here: `sanitizeEvent` rebuilds
+ * each event from an allow-list (dropping any PII or document text) and hashes the user id
+ * under the session secret; `forbiddenKeysIn` is a belt-and-braces check that refuses to log
+ * a raw input that carries a forbidden field at all. Failures are swallowed on purpose —
+ * training data is valuable but never worth failing a user-facing request over.
+ */
+async function logInteractions(rawEvents) {
+  try {
+    for (const raw of Array.isArray(rawEvents) ? rawEvents : []) {
+      if (forbiddenKeysIn(raw).length > 0) continue; // caller assembled it wrongly — skip
+      const event = sanitizeEvent({ ...raw, secret: sessionSecret });
+      if (event) await store.addInteraction(event);
+    }
+  } catch {
+    /* logging is best-effort; never surface to the caller */
+  }
 }
 
 /**
@@ -932,11 +1097,20 @@ async function handleGenerateMcqs(req, res, cors) {
   const outcome = await generateMcqs(input, { env: process.env });
 
   // Counts and the provider name only. The document text and the questions themselves
-  // are never logged: this is the one route that sees a learner's material.
+  // are never logged: this is the one route that sees a learner's material. The debug
+  // breakdown answers "asked for N, got M?" at a glance — how many the model parsed,
+  // how many were valid, how many were duplicates vs. other rejects, and how many the
+  // document-grounded backfill added to hit the requested count.
+  const dbg = outcome.debug ?? {};
   console.log(
     `  ai: provider=${outcome.meta.provider} chunks=${outcome.meta.chunks} calls=${outcome.meta.calls} ` +
       `asked=${outcome.meta.asked} accepted=${outcome.meta.accepted} rejected=${outcome.meta.rejected}` +
       (outcome.ok ? '' : ` failed=${outcome.code}`),
+  );
+  console.log(
+    `  ai.count: requested=${dbg.requestedCount} parsed=${dbg.parsedQuestionCount} valid=${dbg.validQuestionCount} ` +
+      `duplicate=${dbg.duplicateQuestionCount} rejected=${dbg.rejectedQuestionCount} ` +
+      `backfill=${dbg.backfillQuestionCount} final=${dbg.finalQuestionCount}`,
   );
 
   if (!outcome.ok) {

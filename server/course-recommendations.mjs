@@ -314,6 +314,13 @@ function summariseRecommendation(course, gap, overlap) {
     estimatedHours: course.estimatedHours,
     lessons: course.lessons,
     modules: course.modules,
+    // Carried through so the recommendation card can link out and so the quality gate
+    // (server/recommend/quality.mjs) can check the real URL, availability and prerequisites.
+    // Defaulted for older catalogue rows that predate these fields — never invented.
+    officialUrl: course.officialUrl ?? '',
+    availability: course.availability ?? 'available',
+    prerequisites: Array.isArray(course.prerequisites) ? course.prerequisites : [],
+    competencies: Array.isArray(course.competencies) ? course.competencies : [],
     matchedTags: overlap.matched,
     forCompetency: gap.competency,
     forCompetencyName: gap.name,

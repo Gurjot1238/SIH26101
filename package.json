@@ -16,9 +16,12 @@
     "engine:test": "./scripts/engine-test.sh",
     "competency:test": "./scripts/competency-test.sh",
     "recommend:test": "./scripts/recommend-test.sh",
+    "recommend-service:test": "./scripts/recommend-service-test.sh",
     "client:test": "./scripts/client-test.sh",
     "ai:test": "./scripts/ai-test.sh",
-    "test": "./scripts/engine-test.sh && ./scripts/competency-test.sh && ./scripts/recommend-test.sh && ./server/smoke-test.sh && ./scripts/client-test.sh && ./scripts/ai-test.sh && ./scripts/render-test.sh && ./scripts/catalog-ready-test.sh",
+    "exact-count:test": "node scripts/exact-count-test/run.mjs",
+    "docintel:test": "node scripts/docintel-test.mjs",
+    "test": "./scripts/engine-test.sh && ./scripts/competency-test.sh && ./scripts/recommend-test.sh && ./scripts/recommend-service-test.sh && ./server/smoke-test.sh && ./scripts/client-test.sh && ./scripts/ai-test.sh && npm run exact-count:test && npm run docintel:test && ./scripts/render-test.sh && ./scripts/catalog-ready-test.sh",
     "auth:secret": "node -e \"console.log(require('node:crypto').randomBytes(48).toString('base64url'))\""
   },
   "dependencies": {

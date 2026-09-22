@@ -15,6 +15,9 @@
  *   profiles.json   preferences and course progress, one record per account
  *   papers.json     saved MCQ sets: the learner's own questions, answers and
  *                   explanations, kept by choice and readable only by their account
+ *   interactions.json  anonymised learning-interaction events (see recommend/interactions.mjs):
+ *                   an append-only training-data source keyed by an HMAC of the user id,
+ *                   never the account — carries learning signals, never PII or document text
  *
  * Honest limitation: a single-file JSON store is fine for a prototype, a demo,
  * or a few thousand accounts. It rewrites the whole file on every write, so it
@@ -66,18 +69,24 @@ export async function openStore(dataDir) {
   const attemptsPath = join(dataDir, 'attempts.json');
   const profilesPath = join(dataDir, 'profiles.json');
   const papersPath = join(dataDir, 'papers.json');
+  const interactionsPath = join(dataDir, 'interactions.json');
 
   const userFile = await readJsonFile(usersPath, { version: 1, users: [] });
   const sessionFile = await readJsonFile(sessionsPath, { version: 1, sessions: [] });
   const attemptFile = await readJsonFile(attemptsPath, { version: 1, attempts: [] });
   const profileFile = await readJsonFile(profilesPath, { version: 1, profiles: {} });
   const paperFile = await readJsonFile(papersPath, { version: 1, papers: [] });
+  const interactionFile = await readJsonFile(interactionsPath, { version: 1, interactions: [] });
 
   const users = Array.isArray(userFile.users) ? userFile.users : [];
   const sessions = Array.isArray(sessionFile.sessions) ? sessionFile.sessions : [];
   const attempts = Array.isArray(attemptFile.attempts) ? attemptFile.attempts : [];
   const profiles = new Map(Object.entries(profileFile.profiles ?? {}));
   const papers = Array.isArray(paperFile.papers) ? paperFile.papers : [];
+  // Interactions are a flat, append-only list. Unlike attempts/papers they are NOT grouped
+  // by account: the learner id stored is already an anonymised HMAC, and training reads the
+  // whole log at once, so there is nothing to gain from a per-user map.
+  const interactions = Array.isArray(interactionFile.interactions) ? interactionFile.interactions : [];
 
   const byEmail = new Map(users.map((user) => [user.email, user]));
   const byId = new Map(users.map((user) => [user.id, user]));
@@ -133,6 +142,8 @@ export async function openStore(dataDir) {
     enqueue(() => writeJsonFile(profilesPath, { version: 1, profiles: Object.fromEntries(profiles) }));
   const flushPapers = () =>
     enqueue(() => writeJsonFile(papersPath, { version: 1, papers: [...papersByUser.values()].flat() }));
+  const flushInteractions = () =>
+    enqueue(() => writeJsonFile(interactionsPath, { version: 1, interactions }));
 
   const countAttempts = () => {
     let total = 0;
@@ -146,8 +157,14 @@ export async function openStore(dataDir) {
   };
 
   return {
-    paths: { usersPath, sessionsPath, attemptsPath, profilesPath, papersPath },
-    counts: () => ({ users: users.length, sessions: byFingerprint.size, attempts: countAttempts(), papers: countPapers() }),
+    paths: { usersPath, sessionsPath, attemptsPath, profilesPath, papersPath, interactionsPath },
+    counts: () => ({
+      users: users.length,
+      sessions: byFingerprint.size,
+      attempts: countAttempts(),
+      papers: countPapers(),
+      interactions: interactions.length,
+    }),
 
     findUserByEmail: (email) => byEmail.get(email) ?? null,
     findUserById: (id) => byId.get(id) ?? null,
@@ -315,6 +332,34 @@ export async function openStore(dataDir) {
       papersByUser.delete(userId);
       await flushPapers();
       return removed;
+    },
+
+    /* -------------------------------------------------- learning interactions */
+
+    /**
+     * How many interaction events are logged in total. Drives ML activation: the
+     * RecommendationService will not let the model rank until this crosses a threshold.
+     */
+    interactionCount: () => interactions.length,
+
+    /**
+     * The whole event log, oldest first — the live array, so callers must not mutate it
+     * (the training-row builder only reads). It is safe to expose whole because every row
+     * is already anonymised and allow-listed by recommend/interactions.mjs before it lands.
+     */
+    allInteractions: () => interactions,
+
+    /**
+     * Append one already-sanitised event. The caller is responsible for having run it
+     * through sanitizeEvent (which drops PII and rebuilds from an allow-list); the store
+     * only persists. Oldest events are trimmed past the cap, same as attempts/papers.
+     */
+    async addInteraction(event, { max = 50000 } = {}) {
+      interactions.push(event);
+      const dropped = Math.max(0, interactions.length - max);
+      if (dropped > 0) interactions.splice(0, dropped);
+      await flushInteractions();
+      return { event, dropped };
     },
 
     /** Waits for any in-flight write so shutdown cannot truncate a file. */

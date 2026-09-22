@@ -22,6 +22,7 @@
  */
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { ArrowUpRight, Check, RefreshCw, X } from 'lucide-react';
 import { type Block, type InlineNode, parseMarkdown } from '@/lib/markdown';
 import { contentUrl, fetchLessonContent } from '@/lib/course-content';
@@ -182,7 +183,12 @@ export function LessonReader({ courseId, lessonId, title, contentFile, sourceUrl
     return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = prevOverflow; };
   }, [onClose]);
 
-  return (
+  // Rendered through a portal to <body>. Every page is wrapped in `.animate-rise-in`,
+  // whose `transform` creates a containing block that would otherwise trap this
+  // `position: fixed` overlay inside the page column (it appeared low on the page rather
+  // than over the viewport). A portal escapes that ancestor so the overlay covers the
+  // whole screen and is centred, as a modal should be.
+  return createPortal(
     <div className="fixed inset-0 z-50 flex items-stretch justify-center bg-[hsl(214_40%_16%/.55)] p-0 sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-label={title} data-testid="lesson-reader">
       <div className="flex h-full w-full max-w-3xl flex-col overflow-hidden bg-card shadow-2xl sm:h-[86vh] sm:rounded-2xl">
         {/* Header */}
@@ -225,6 +231,7 @@ export function LessonReader({ courseId, lessonId, title, contentFile, sourceUrl
           </div>
         )}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

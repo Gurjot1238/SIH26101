@@ -61,8 +61,10 @@ QUESTION KINDS — choose the one the passage supports, do not force a spread:
 - "identify": asks which statement is supported by the passage.
 - "scenario": applies the passage to a work situation. Use ONLY if the passage supports a real methodological judgement. Do not invent a scenario the passage cannot settle.
 
-COUNT:
-Return up to {{COUNT}} questions. Returning FEWER good questions is correct and expected when the passage is short or thin. Never pad the list with weak or invented questions to reach a number.
+COUNT AND COVERAGE:
+Generate {{COUNT}} questions. Aim to return all {{COUNT}}: this passage is being combined with others to build one paper, and a shortfall here is made up elsewhere, so do not hold back good questions.
+Distribute the questions across the supplied topics rather than clustering on one — if there are several topics, cover each of them before asking a second question on any single topic.
+The one thing you must never do is invent a question the passage cannot support to reach the number. A grounded question the passage proves is always better than a padded one it does not; if you genuinely cannot reach {{COUNT}} from this passage, return the ones you can stand behind. Never fabricate a fact, figure, or source sentence to hit the count.
 
 OUTPUT:
 Return a single JSON object and nothing else. No prose, no markdown fence, no commentary.`;
@@ -157,3 +159,4 @@ PASSAGE (the only permitted source of truth):
 ${chunk}
 """`;
 }
+
