@@ -90,14 +90,14 @@ function attempt(id, topics, { at = '2026-09-10T10:00:00.000Z', source = 'assess
 }
 
 /** A catalogue entry shaped exactly like courses.mjs `catalogue()` returns per course. */
-function course(courseId, competencies, { title = courseId, category = 'Technology', estimatedHours = 10, lessons = 12, modules = 3 } = {}) {
+function course(courseId, competencies, { title = courseId, category = 'Technology', estimatedHours = 10, lessons = 12, modules = 3, level = 'introductory' } = {}) {
   return {
     courseId,
     title,
     provider: 'Test Provider',
     category,
     subcategory: '',
-    level: 'introductory',
+    level,
     description: '',
     estimatedHours,
     competencies,
@@ -309,6 +309,43 @@ check('a gap the bridge cannot reach is dropped, not padded with an unrelated co
   if (rec.courses.length !== 0) return `${rec.courses.length} courses offered for an unreachable gap`;
   if (rec.hasGaps !== false) return 'hasGaps true when the only gap has no matching course';
   if (!rec.note) return 'no note for an unmatchable gap';
+});
+
+/* ------------------------------------------- level suitability + relevance floor */
+
+section('level suitability and the minimum-relevance floor');
+
+check('a foundational gap prefers a beginner course over an advanced one at equal overlap', () => {
+  // Learner very weak in inference (10%) — still building foundations. Two equally-relevant
+  // courses (both match one inference tag); the beginner one must rank first.
+  const learner = buildAnalyticsSummary(
+    [attempt('p', [{ topic: 'CIs', competency: 'inference', correct: 1, total: 10 }])], // 10%
+    { env: DEFAULT_ENV },
+  );
+  const cat = {
+    available: true,
+    courses: [
+      course('adv', ['Machine Learning'], { title: 'Advanced ML', level: 'advanced', estimatedHours: 10 }),
+      course('beg', ['Machine Learning'], { title: 'ML Basics', level: 'beginner', estimatedHours: 10 }),
+    ],
+  };
+  const rec = recommendCoursesForGaps(learner, cat);
+  if (rec.courses.length < 1) return 'no courses recommended';
+  if (rec.courses[0].courseId !== 'beg') return `advanced course led instead of beginner (${rec.courses[0].courseId})`;
+});
+
+check('the minimum-relevance floor can exclude a single-tag match when raised', () => {
+  const learner = buildAnalyticsSummary(
+    [attempt('p', [{ topic: 'CIs', competency: 'inference', correct: 1, total: 10 }])],
+    { env: DEFAULT_ENV },
+  );
+  // One course matches inference on a single tag. Default floor (1) keeps it; a floor of 2
+  // excludes it rather than recommending on one incidental match.
+  const cat = { available: true, courses: [course('one', ['Machine Learning'], { title: 'One-tag ML' })] };
+  const kept = recommendCoursesForGaps(learner, cat, { minTagOverlap: 1 });
+  if (kept.courses.length !== 1) return `default floor should keep the single-tag match, got ${kept.courses.length}`;
+  const dropped = recommendCoursesForGaps(learner, cat, { minTagOverlap: 2 });
+  if (dropped.courses.length !== 0) return `raising the floor to 2 should drop the single-tag match, got ${dropped.courses.length}`;
 });
 
 /* --------------------------------------------------------------- report */
