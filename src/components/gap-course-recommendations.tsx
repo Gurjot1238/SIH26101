@@ -26,6 +26,7 @@ import {
   type CourseRecommendations,
   fetchRecommendedCourses,
 } from '@/lib/analytics';
+import { recommendOnlineCourses } from '@/lib/online-recommendations';
 
 /** Same category→tone mapping the catalogue cards use, kept local to avoid coupling. */
 function categoryTone(category: string): 'navy' | 'coral' | 'neutral' {
