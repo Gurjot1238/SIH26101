@@ -109,8 +109,11 @@ export const COMPETENCY_TAGS = {
   // one nursing-leadership course, and software-engineering (which covers process and
   // working in teams) is the only other thin bridge; often this still yields nothing,
   // and that is reported honestly rather than filled with an unrelated course.
+  // Only software-engineering (process, working in teams) — the nursing-leadership tag was
+  // removed so a learner never gets a nursing course recommended for a leadership gap.
+  // Often this maps to nothing, which is reported honestly rather than filled with a
+  // course that does not build the skill.
   leadership: [
-    'nursing-leadership',
     'software-engineering',
   ],
 };

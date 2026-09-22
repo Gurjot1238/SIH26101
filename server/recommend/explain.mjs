@@ -88,4 +88,4 @@ export function countForGap(gap) {
 }
 
 /** Overall cap so a learner with many gaps still sees a focused list, not a wall (§10). */
-export const MAX_TOTAL_RECOMMENDATIONS = 8;
+export const MAX_TOTAL_RECOMMENDATIONS = 4;

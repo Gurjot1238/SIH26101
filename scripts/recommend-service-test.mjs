@@ -353,7 +353,8 @@ check('count scales with gap size: critical > moderate > small', () => {
   const critical = countForGap({ gap: 55 });
   const moderate = countForGap({ gap: 25 });
   const small = countForGap({ gap: 10 });
-  return (critical === 4 && moderate === 3 && small === 2) || `critical=${critical} moderate=${moderate} small=${small}`;
+  // Deliberately small shortlist: a serious gap earns 3, moderate 2, minor 1.
+  return (critical === 3 && moderate === 2 && small === 1) || `critical=${critical} moderate=${moderate} small=${small}`;
 });
 
 check('explanation is built from real evidence, not fabricated', () => {

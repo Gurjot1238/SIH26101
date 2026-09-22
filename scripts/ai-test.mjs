@@ -42,6 +42,7 @@ import {
   spanSupport,
   validateBatch,
   validateQuestion,
+  estimateDifficulty,
 } from '../server/ai/validation.mjs';
 import { chunkText, describeModel, describeTarget, generateMcqs, providerStatus, MIN_QUESTIONS } from '../server/ai/provider.mjs';
 import { generateRaw } from '../server/ai/gemini.mjs';
@@ -1376,6 +1377,51 @@ check('no source file contains a stray control byte', () => {
     const bad = body.match(/[\x00-\x08\x0b\x0c\x0e-\x1f]/);
     if (bad) return `${name} contains a control byte (0x${bad[0].charCodeAt(0).toString(16).padStart(2, '0')})`;
   }
+});
+
+/* ------------------------------------------------ difficulty evaluator (real levels) */
+
+console.log('\n  -- the difficulty control is real, not a label -------------\n');
+
+check('a fill-in-the-blank / cloze question reads as easy', () => {
+  const est = estimateDifficulty({ question: 'Fill in the blank from the material: The _____ price index measures household prices.', kind: 'cloze' });
+  return est === 'easy' ? null : `estimated ${est}`;
+});
+
+check('a bare "what is / define" recall question reads as easy', () => {
+  const est = estimateDifficulty({ question: 'What is a consumer price index?', kind: 'statement' });
+  return est === 'easy' ? null : `estimated ${est}`;
+});
+
+check('a multi-cue reasoning scenario reads as hard', () => {
+  const est = estimateDifficulty({ question: 'Suppose a market reports repeated non-response; how would this affect the reliability of the published index and what would be the consequence for the trend?', kind: 'scenario' });
+  return est === 'hard' ? null : `estimated ${est}`;
+});
+
+check('a single-cue interpretation question reads as at least medium', () => {
+  const est = estimateDifficulty({ question: 'Why does the seasonally adjusted figure differ from the raw figure in the same month?', kind: 'statement' });
+  return (est === 'medium' || est === 'hard') ? null : `estimated ${est}`;
+});
+
+check('validateQuestion rejects an easy question under a HARD request', () => {
+  // A cloze question grounded in the fixture, offered under a "hard" request, must be
+  // rejected for being too easy — this is what makes the level control real.
+  const doc = 'The consumer price index measures the change in prices paid by households for a fixed basket of goods and services.';
+  const index = buildDocumentIndex(doc);
+  const q = {
+    question: 'Fill in the blank from the material: The consumer price index measures the change in prices paid by _____ for a fixed basket of goods and services.',
+    options: ['households', 'markets', 'agencies', 'auditors'],
+    correctIndex: 0,
+    topic: 'consumer price index',
+    kind: 'cloze',
+    explanation: 'The blanked word from the material is "households".',
+    source: doc,
+  };
+  const asHard = validateQuestion(q, index, { requestedDifficulty: 'hard' });
+  if (asHard.ok) return 'an easy cloze question was accepted under a hard request';
+  const asEasy = validateQuestion(q, index, { requestedDifficulty: 'easy' });
+  if (!asEasy.ok) return `the same question was rejected under an easy request too: ${asEasy.reason}`;
+  return null;
 });
 
 /* ---------------------------------------------------------------------- report */

@@ -270,13 +270,14 @@ export function buildBackfillCandidates(text, { allowedTopics = [], preferTopics
  * Returns { accepted, asked, rejected } mirroring the AI ingest shape, so the provider can
  * fold the counts into the same meta.
  */
-export function generateBackfill(text, documentIndex, { need, existing = [], allowedTopics = [], preferTopics = [] }) {
+export function generateBackfill(text, documentIndex, { need, existing = [], allowedTopics = [], preferTopics = [], requestedDifficulty = null }) {
   if (!Number.isInteger(need) || need <= 0) return { accepted: [], asked: 0, rejected: 0 };
 
   const candidates = buildBackfillCandidates(text, { allowedTopics, preferTopics });
   // Validate as one batch against everything already accepted; validateBatch drops repeats
-  // (both near-duplicate wording and same-fact) and enforces every quality rule.
-  const { accepted } = validateBatch(candidates, documentIndex, { existing, allowedTopics });
+  // (both near-duplicate wording and same-fact) and enforces every quality rule — including
+  // the difficulty gate, so cloze backfill is excluded from a "hard" paper.
+  const { accepted } = validateBatch(candidates, documentIndex, { existing, allowedTopics, requestedDifficulty });
   return {
     accepted: accepted.slice(0, need),
     asked: candidates.length,

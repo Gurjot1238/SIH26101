@@ -322,7 +322,7 @@ export async function generateMcqs(input, { env = process.env } = {}) {
       continue;
     }
 
-    const outcome = ingest(raw, documentIndex, { existing: accepted, allowedTopics: topics });
+    const outcome = ingest(raw, documentIndex, { existing: accepted, allowedTopics: topics, requestedDifficulty: difficulty });
     absorb(outcome);
 
     // One repair pass per chunk: hand the model back the exact reasons and re-ask, but
@@ -333,7 +333,7 @@ export async function generateMcqs(input, { env = process.env } = {}) {
       try {
         meta.calls += 1;
         const repaired = await provider.generateRaw(repairPrompt, { env, attempt: 2 });
-        absorb(ingest(repaired, documentIndex, { existing: accepted, allowedTopics: topics }));
+        absorb(ingest(repaired, documentIndex, { existing: accepted, allowedTopics: topics, requestedDifficulty: difficulty }));
       } catch (error) {
         lastProviderError = normalizeProviderError(error);
       }
@@ -375,6 +375,10 @@ export async function generateMcqs(input, { env = process.env } = {}) {
       existing: accepted,
       allowedTopics: topics,
       preferTopics: underrepresentedTopics(accepted, topics),
+      // Cloze backfill is recall-level; passing the requested difficulty lets the validator
+      // exclude it from a "hard" paper (which then relies on the model or returns an honest
+      // shortfall) while still allowing it for easy/medium papers.
+      requestedDifficulty: difficulty,
     });
     for (const question of backfill.accepted) accepted.push(question);
     debug.backfillQuestionCount = backfill.accepted.length;
@@ -447,6 +451,7 @@ function ingest(raw, documentIndex, options) {
     };
   }
   const asked = parsedResult.questions.length;
+  // options already carries { existing, allowedTopics, requestedDifficulty } from the caller.
   const { accepted, rejected } = validateBatch(parsedResult.questions, documentIndex, options);
   const duplicates = rejected.filter((r) => isDuplicateReason(r.reason)).length;
   return {

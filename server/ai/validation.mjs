@@ -666,10 +666,69 @@ export function validateQuestion(raw, documentIndex, options = {}) {
     return { ok: false, reason: 'the question text gives away its own answer' };
   }
 
+  // Difficulty gate: when the learner asked for a specific level, a question that is clearly
+  // easier than requested is rejected so it can be regenerated. This is what makes the
+  // easy/medium/hard control real rather than a label — a recall/fill-in-the-blank question
+  // cannot be served under a "hard" request. Only rejects when the estimate is two full bands
+  // below the request (hard→easy), which keeps the exact-count contract achievable while
+  // still stopping the egregious "asked hard, got trivial" case.
+  const requested = options.requestedDifficulty;
+  if (requested === 'easy' || requested === 'medium' || requested === 'hard') {
+    const estBand = estimateDifficulty({ question, options: optionList, kind });
+    if (DIFFICULTY_RANK[requested] - DIFFICULTY_RANK[estBand] >= 2) {
+      return { ok: false, reason: `question is too easy for the requested "${requested}" level` };
+    }
+  }
+
   return {
     ok: true,
-    question: { question, options: optionList, correctIndex: correct, topic, kind, explanation, source: groundedSource },
+    question: { question, options: optionList, correctIndex: correct, topic, kind, explanation, source: groundedSource, difficulty: estimateDifficulty({ question, options: optionList, kind }) },
   };
+}
+
+/** easy < medium < hard, as a comparable rank. */
+export const DIFFICULTY_RANK = Object.freeze({ easy: 0, medium: 1, hard: 2 });
+
+/**
+ * Estimate a question's real cognitive difficulty from its wording — independent of any
+ * label the model attached, which cannot be trusted. This is a deterministic heuristic, not
+ * a model: it reads the signals that separate recall from reasoning.
+ *
+ *   easy   — a fill-in-the-blank, a definition, or a short "what is X" recall question.
+ *   hard   — asks the reader to reason: apply, compare, predict a consequence, diagnose,
+ *            judge the best option, or work through a scenario ("if…", "suppose…", "how would").
+ *   medium — everything in between.
+ *
+ * It is intentionally conservative (a question is only "hard" when it clearly demands
+ * reasoning), so it under-claims rather than over-claims difficulty.
+ */
+export function estimateDifficulty(question) {
+  const stem = String(question?.question ?? '');
+  const lower = stem.toLowerCase();
+  const words = (lower.match(/[a-z0-9]+/g) ?? []).length;
+
+  // Fill-in-the-blank and bare recall are recall-level by construction.
+  if (question?.kind === 'cloze' || stem.includes('_____')) return 'easy';
+
+  const reasoningCues = [
+    'why', 'how would', 'how does', 'if ', 'suppose', 'predict', 'consequence', 'would happen',
+    'compare', 'difference between', 'most appropriate', 'best describes', 'which would', 'best explains',
+    'implication', 'scenario', 'given that', 'as a result', 'what happens when', 'reason for', 'in order to',
+    'leads to', 'affect', 'effect of', 'diagnose', 'evaluate', 'justify',
+  ];
+  const recallCues = [
+    'what is', 'what are', 'define', 'which of the following is', 'according to', 'is called',
+    'refers to', 'the term for', 'which term', 'name the', 'identify the',
+  ];
+
+  const reasoning = reasoningCues.filter((c) => lower.includes(c)).length;
+  const recall = recallCues.some((c) => lower.includes(c));
+
+  // Two or more reasoning cues, or one plus a substantial scenario stem, reads as hard.
+  if (reasoning >= 2 || (reasoning >= 1 && words >= 22)) return 'hard';
+  if (reasoning >= 1) return 'medium';
+  if (recall || words < 12) return 'easy';
+  return 'medium';
 }
 
 /**
@@ -700,7 +759,7 @@ export function factKey(question) {
  * chunks, so chunk three cannot re-ask what chunk one already asked.
  */
 export function validateBatch(rawQuestions, documentIndex, options = {}) {
-  const { existing = [], allowedTopics = null } = options;
+  const { existing = [], allowedTopics = null, requestedDifficulty = null } = options;
   const accepted = [];
   const rejected = [];
   const kept = [...existing];
@@ -711,7 +770,7 @@ export function validateBatch(rawQuestions, documentIndex, options = {}) {
   }
 
   for (const raw of Array.isArray(rawQuestions) ? rawQuestions : []) {
-    const outcome = validateQuestion(raw, documentIndex, { allowedTopics });
+    const outcome = validateQuestion(raw, documentIndex, { allowedTopics, requestedDifficulty });
     if (!outcome.ok) {
       rejected.push({ reason: outcome.reason, question: typeof raw?.question === 'string' ? raw.question.slice(0, 120) : '' });
       continue;
