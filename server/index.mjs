@@ -54,6 +54,7 @@ import { fileURLToPath } from 'node:url';
 import {
   HttpError,
   MAX_AI_BODY_BYTES,
+  MAX_BODY_BYTES,
   assertTrustedOrigin,
   clientKey,
   corsHeaders,
@@ -80,6 +81,11 @@ import {
   warmUp,
 } from './auth.mjs';
 import { openStore } from './store.mjs';
+import { openDocumentStore } from './documents/store.mjs';
+import { ingestDocument, finalizeDocument, searchDocuments, generateFromTopic } from './documents/pipeline.mjs';
+import { jobView } from './documents/jobs.mjs';
+import { extractMarksheet, analyzePerformance } from './documents/marksheet.mjs';
+import { loadConfig } from './documents/config.mjs';
 import { catalogue, getCourse, resolveContent, coursesStatus } from './courses.mjs';
 import { RecommendationService } from './recommend/service.mjs';
 import { learnerLevelRank } from './recommend/features.mjs';
@@ -278,6 +284,10 @@ function enforceWithoutSpending(limiter, key) {
 /* -------------------------------------------------------------------- store */
 
 const store = await openStore(DATA_DIR);
+// The document-intelligence store lives in its own subtree so a large book's chunks never
+// share a file with accounts or attempts. Same JSON-on-disk approach, same honest limits.
+const documentStore = await openDocumentStore(join(DATA_DIR, 'documents'));
+const docConfig = loadConfig(process.env);
 await warmUp();
 
 /**
@@ -1242,6 +1252,248 @@ async function handleCourseContent(req, res, cors) {
   stream.pipe(res);
 }
 
+/* --------------------------------------------------- large-document pipeline */
+
+/**
+ * Smart Document Intelligence routes. A large book is never sent whole to the AI: it is
+ * uploaded as bounded page batches, chunked and indexed ONCE, then a topic search retrieves
+ * only the relevant chunks and MCQ generation runs on that bounded context. Every route is
+ * session-guarded and every document lookup is ownership-checked in documentStore, so one
+ * account can never read or search another's uploads.
+ */
+
+const MAX_TOPIC_QUERY_CHARS = 200;
+const MAX_PAGE_BATCH = 400; // pages per append request — keeps any single request bounded
+
+function requireDocId(body) {
+  const id = typeof body?.documentId === 'string' ? body.documentId.trim() : '';
+  if (id === '') throw badRequest('document_required', 'A documentId is required.', { documentId: 'required' });
+  return id;
+}
+
+/** Create a document record for a staged upload. Body: { filename, sizeBytes }. */
+async function handleDocumentUpload(req, res, cors) {
+  assertTrustedOrigin(req, ALLOWED_ORIGINS);
+  const { user } = await requireSessionForWrite(req);
+  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUST_PROXY));
+  const body = await readJsonBody(req, { maxBytes: MAX_AI_BODY_BYTES });
+  if (!body || typeof body !== 'object') throw badRequest('invalid_body', 'Send a JSON object.');
+  const filename = typeof body.filename === 'string' && body.filename.trim() !== '' ? body.filename.trim() : 'document';
+  const sizeBytes = Number.isInteger(body.sizeBytes) ? body.sizeBytes : 0;
+  if (sizeBytes > docConfig.upload.maxBytes) {
+    throw badRequest('file_too_large', `That file is larger than the ${(docConfig.upload.maxBytes / (1024 * 1024)).toFixed(0)} MB limit.`, { file: 'too_large' });
+  }
+  const doc = await documentStore.createDocument({ userId: user.id, filename, sizeBytes });
+  sendJson(res, 201, { ok: true, documentId: doc.id, document: publicDocument(doc) }, cors);
+}
+
+/** Append a bounded batch of extracted pages. Body: { documentId, pages:[{page,text}] }. */
+async function handleDocumentAppend(req, res, cors) {
+  assertTrustedOrigin(req, ALLOWED_ORIGINS);
+  const { user } = await requireSessionForWrite(req);
+  const body = await readJsonBody(req, { maxBytes: MAX_AI_BODY_BYTES });
+  const documentId = requireDocId(body);
+  if (!documentStore.getDocument(user.id, documentId)) throw new HttpError(404, 'not_found', 'No such document.');
+  if (!Array.isArray(body.pages) || body.pages.length === 0) throw badRequest('pages_required', 'Send a non-empty pages array.');
+  if (body.pages.length > MAX_PAGE_BATCH) throw badRequest('batch_too_large', `Send at most ${MAX_PAGE_BATCH} pages per request.`);
+  const pages = body.pages
+    .filter((p) => p && (typeof p.text === 'string'))
+    .map((p, i) => ({ page: Number.isInteger(p.page) ? p.page : i + 1, text: String(p.text).slice(0, 200_000) }));
+  const total = await documentStore.appendPages(user.id, documentId, pages);
+  if (total !== null && total > docConfig.upload.maxPages) {
+    throw badRequest('too_many_pages', `This document exceeds the ${docConfig.upload.maxPages}-page limit.`);
+  }
+  sendJson(res, 200, { ok: true, documentId, pageCount: total }, cors);
+}
+
+/** Finalize: classify, chunk, index, run the job on the accumulated pages. Body: { documentId }. */
+async function handleDocumentFinalize(req, res, cors) {
+  assertTrustedOrigin(req, ALLOWED_ORIGINS);
+  const { user } = await requireSessionForWrite(req);
+  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUST_PROXY));
+  const body = await readJsonBody(req, { maxBytes: MAX_AI_BODY_BYTES });
+  const documentId = requireDocId(body);
+  const outcome = await finalizeDocument({ store: documentStore, userId: user.id, documentId, env: process.env });
+  console.log(`  doc.finalize: id=${documentId} ok=${outcome.ok} type=${outcome.classification?.documentType ?? '-'} mode=${outcome.mode ?? '-'} chunks=${outcome.document?.chunkCount ?? 0}`);
+  if (!outcome.ok) {
+    sendJson(res, outcome.code === 'not_found' ? 404 : 422, { ok: false, error: { code: outcome.code, message: outcome.message } }, cors);
+    return;
+  }
+  sendJson(res, 200, {
+    ok: true,
+    document: publicDocument(outcome.document),
+    job: outcome.job,
+    classification: outcome.classification,
+    mode: outcome.mode,
+    isLargeMode: outcome.isLargeMode,
+  }, cors);
+}
+
+/** List the signed-in user's documents (metadata only). */
+async function handleDocumentList(req, res, cors) {
+  const { user } = await requireSession(req);
+  const docs = documentStore.listDocuments(user.id).map(publicDocument);
+  sendJson(res, 200, { ok: true, documents: docs }, cors);
+}
+
+/** Job status for the processing progress UI. Query: ?id=jobId. */
+async function handleDocumentJob(req, res, cors) {
+  const { user } = await requireSession(req);
+  const id = queryParam(req, 'id');
+  if (!id) throw badRequest('job_required', 'A job id is required.');
+  const job = documentStore.getJob(user.id, id);
+  if (!job) throw new HttpError(404, 'not_found', 'No such job.');
+  sendJson(res, 200, { ok: true, job: jobView(job) }, cors);
+}
+
+/** Topic search over one/more owned documents. Body: { documentId | documentIds, query }. */
+async function handleDocumentSearch(req, res, cors) {
+  assertTrustedOrigin(req, ALLOWED_ORIGINS);
+  const { user } = await requireSessionForWrite(req);
+  const body = await readJsonBody(req, { maxBytes: MAX_AI_BODY_BYTES });
+  const query = typeof body?.query === 'string' ? body.query.trim().slice(0, MAX_TOPIC_QUERY_CHARS) : '';
+  if (query === '') throw badRequest('query_required', 'Enter a topic to search for.', { query: 'required' });
+  const documentIds = normalizeDocIds(body);
+  const result = await searchDocuments({ store: documentStore, userId: user.id, documentIds, query, env: process.env });
+  if (!result.ok) {
+    sendJson(res, result.code === 'no_documents' ? 404 : 400, { ok: false, error: { code: result.code, message: result.message } }, cors);
+    return;
+  }
+  console.log(`  doc.search: user=${user.id.slice(0, 8)} docs=${documentIds.length} q="${query.slice(0, 40)}" found=${result.found}`);
+  // Topic-not-found: no fabrication. Offer section-title suggestions from the document.
+  if (result.found === 0) {
+    const suggestions = await documentSectionSuggestions(user.id, documentIds);
+    sendJson(res, 200, { ok: true, query, found: 0, topicFound: false, suggestions }, cors);
+    return;
+  }
+  sendJson(res, 200, {
+    ok: true,
+    query,
+    topicFound: true,
+    found: result.found,
+    sections: result.sections,
+    chapters: result.chapters,
+    pageRanges: result.pageRanges,
+    estimatedTokens: result.estimatedTokens,
+    // A short preview only — never the whole book.
+    preview: result.retrieval.usedChunks.slice(0, 3).map((c) => ({ pageStart: c.pageStart, pageEnd: c.pageEnd, section: c.section, snippet: c.text.slice(0, 240) })),
+  }, cors);
+}
+
+/** Generate MCQs (and optionally material) from a topic over owned documents. */
+async function handleDocumentGenerate(req, res, cors) {
+  assertTrustedOrigin(req, ALLOWED_ORIGINS);
+  const { user } = await requireSessionForWrite(req);
+  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUST_PROXY));
+  const body = await readJsonBody(req, { maxBytes: MAX_AI_BODY_BYTES });
+  const query = typeof body?.query === 'string' ? body.query.trim().slice(0, MAX_TOPIC_QUERY_CHARS) : '';
+  if (query === '') throw badRequest('query_required', 'A topic is required.', { query: 'required' });
+  const documentIds = normalizeDocIds(body);
+  let questionCount = TARGET_QUESTIONS;
+  if (body.questionCount !== undefined) {
+    if (!Number.isInteger(body.questionCount) || body.questionCount < MIN_QUESTIONS || body.questionCount > MAX_QUESTIONS) {
+      throw badRequest('question_count_invalid', `"questionCount" must be between ${MIN_QUESTIONS} and ${MAX_QUESTIONS}.`, { questionCount: 'invalid' });
+    }
+    questionCount = body.questionCount;
+  }
+  const difficulty = ['easy', 'medium', 'hard'].includes(body.difficulty) ? body.difficulty : undefined;
+  const wantMaterial = body.wantMaterial === true;
+  const materialStyle = typeof body.materialStyle === 'string' ? body.materialStyle : 'revision';
+
+  const outcome = await generateFromTopic({
+    store: documentStore, userId: user.id, documentIds, query, questionCount, difficulty, wantMaterial, materialStyle, env: process.env,
+  });
+  // Structured debug line — the "asked for 20, got N?" breakdown, no document text.
+  const d = outcome.debug ?? {};
+  console.log(`  doc.generate: q="${query.slice(0, 40)}" requested=${questionCount} parsed=${d.parsedQuestionCount ?? '-'} valid=${d.validQuestionCount ?? '-'} dup=${d.duplicateQuestionCount ?? '-'} rej=${d.rejectedQuestionCount ?? '-'} backfill=${d.backfillQuestionCount ?? '-'} final=${d.finalQuestionCount ?? (outcome.questions?.length ?? 0)}${outcome.ok ? '' : ` failed=${outcome.code}`}`);
+  if (!outcome.ok) {
+    const status = AI_FAILURE_STATUS[outcome.code] ?? 502;
+    sendJson(res, status, { ok: false, error: { code: outcome.code, message: outcome.message }, questions: outcome.questions ?? [], preview: outcome.preview ?? null }, cors);
+    return;
+  }
+  sendJson(res, 200, { ok: true, query, questions: outcome.questions, meta: outcome.meta, preview: outcome.preview, material: outcome.material }, cors);
+}
+
+/** Analyze a finalized marksheet document into performance + competency gaps. */
+async function handleDocumentMarksheet(req, res, cors) {
+  assertTrustedOrigin(req, ALLOWED_ORIGINS);
+  const { user } = await requireSessionForWrite(req);
+  const body = await readJsonBody(req, { maxBytes: MAX_AI_BODY_BYTES });
+  const documentId = requireDocId(body);
+  const doc = documentStore.getDocument(user.id, documentId);
+  if (!doc) throw new HttpError(404, 'not_found', 'No such document.');
+  const chunks = await documentStore.getChunks(user.id, documentId);
+  const text = (chunks ?? []).map((c) => c.text).join('\n');
+  if (text.trim() === '') throw badRequest('not_indexed', 'This document has not finished processing yet.');
+  const marksheet = extractMarksheet(text);
+  const analysis = analyzePerformance(marksheet);
+  sendJson(res, 200, { ok: true, documentId, marksheet, analysis }, cors);
+}
+
+/** Rename a document. Body: { documentId, title }. */
+async function handleDocumentRename(req, res, cors) {
+  assertTrustedOrigin(req, ALLOWED_ORIGINS);
+  const { user } = await requireSessionForWrite(req);
+  const body = await readJsonBody(req, { maxBytes: MAX_BODY_BYTES });
+  const documentId = requireDocId(body);
+  const title = typeof body.title === 'string' ? body.title.trim() : '';
+  if (title === '') throw badRequest('title_required', 'A new title is required.', { title: 'required' });
+  const rec = await documentStore.renameDocument(user.id, documentId, title);
+  if (!rec) throw new HttpError(404, 'not_found', 'No such document.');
+  sendJson(res, 200, { ok: true, document: publicDocument(rec) }, cors);
+}
+
+/** Delete a document and its chunks/job. Body or ?id=. */
+async function handleDocumentDelete(req, res, cors) {
+  assertTrustedOrigin(req, ALLOWED_ORIGINS);
+  const { user } = await requireSessionForWrite(req);
+  let id = queryParam(req, 'id');
+  if (!id) { const body = await readJsonBody(req, { maxBytes: MAX_BODY_BYTES }); id = typeof body?.documentId === 'string' ? body.documentId.trim() : ''; }
+  if (!id) throw badRequest('document_required', 'A documentId is required.');
+  const removed = await documentStore.deleteDocument(user.id, id);
+  if (!removed) throw new HttpError(404, 'not_found', 'No such document.');
+  sendJson(res, 200, { ok: true, deleted: id }, cors);
+}
+
+/** The client-safe view of a document record (no internal paths, no other user's id leak). */
+function publicDocument(doc) {
+  if (!doc) return null;
+  return {
+    id: doc.id,
+    title: doc.title,
+    filename: doc.filename,
+    documentType: doc.documentType,
+    confidence: doc.confidence,
+    mode: doc.mode,
+    pageCount: doc.pageCount,
+    chunkCount: doc.chunkCount,
+    topicsIndexed: doc.topicsIndexed,
+    status: doc.status,
+    createdAt: doc.createdAt,
+  };
+}
+
+function normalizeDocIds(body) {
+  if (Array.isArray(body?.documentIds)) return body.documentIds.filter((x) => typeof x === 'string').slice(0, 10);
+  if (typeof body?.documentId === 'string') return [body.documentId];
+  throw badRequest('document_required', 'A documentId or documentIds array is required.', { documentId: 'required' });
+}
+
+/** Section/chapter titles from a document's chunks, offered as "did you mean" suggestions. */
+async function documentSectionSuggestions(userId, documentIds) {
+  const titles = new Set();
+  for (const id of documentIds) {
+    // eslint-disable-next-line no-await-in-loop
+    const chunks = await documentStore.getChunks(userId, id);
+    for (const c of chunks ?? []) {
+      if (c.section) titles.add(c.section);
+      else if (c.chapter) titles.add(c.chapter);
+      if (titles.size >= 8) break;
+    }
+  }
+  return [...titles].slice(0, 8);
+}
+
 /* ------------------------------------------------------------------- routing */
 
 const ROUTES = new Map([
@@ -1268,6 +1520,16 @@ const ROUTES = new Map([
   ['DELETE /api/papers', handleDeletePaper],
   ['GET /api/courses', handleCoursesCatalogue],
   ['GET /api/courses/content', handleCourseContent],
+  ['POST /api/documents/upload', handleDocumentUpload],
+  ['POST /api/documents/append', handleDocumentAppend],
+  ['POST /api/documents/finalize', handleDocumentFinalize],
+  ['GET /api/documents', handleDocumentList],
+  ['GET /api/documents/job', handleDocumentJob],
+  ['POST /api/documents/search', handleDocumentSearch],
+  ['POST /api/documents/generate', handleDocumentGenerate],
+  ['POST /api/documents/marksheet', handleDocumentMarksheet],
+  ['POST /api/documents/rename', handleDocumentRename],
+  ['DELETE /api/documents', handleDocumentDelete],
 ]);
 
 const server = createServer(async (req, res) => {

@@ -21,7 +21,8 @@
     "ai:test": "./scripts/ai-test.sh",
     "exact-count:test": "node scripts/exact-count-test/run.mjs",
     "docintel:test": "node scripts/docintel-test.mjs",
-    "test": "./scripts/engine-test.sh && ./scripts/competency-test.sh && ./scripts/recommend-test.sh && ./scripts/recommend-service-test.sh && ./server/smoke-test.sh && ./scripts/client-test.sh && ./scripts/ai-test.sh && npm run exact-count:test && npm run docintel:test && ./scripts/render-test.sh && ./scripts/catalog-ready-test.sh",
+    "docpipeline:test": "node scripts/docpipeline-test.mjs",
+    "test": "./scripts/engine-test.sh && ./scripts/competency-test.sh && ./scripts/recommend-test.sh && ./scripts/recommend-service-test.sh && ./server/smoke-test.sh && ./scripts/client-test.sh && ./scripts/ai-test.sh && npm run exact-count:test && npm run docintel:test && npm run docpipeline:test && ./scripts/render-test.sh && ./scripts/catalog-ready-test.sh",
     "auth:secret": "node -e \"console.log(require('node:crypto').randomBytes(48).toString('base64url'))\""
   },
   "dependencies": {
