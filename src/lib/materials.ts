@@ -834,6 +834,28 @@ export async function extractPdfText(file: File, onPage?: PageProgress) {
 }
 
 /**
+ * Like {@link extractPdfText}, but keeps each page's text separate.
+ *
+ * The large-document workflow needs per-page text so it can upload the book in bounded
+ * page batches (never one giant request) and so every chunk keeps a real page number. This
+ * shares the same pdfjs pass; it simply does not join the pages into one string.
+ */
+export async function extractPdfPages(file: File, onPage?: PageProgress): Promise<{ pages: { page: number; text: string }[]; pageCount: number }> {
+  const data = new Uint8Array(await file.arrayBuffer());
+  const pdf = await getDocument({ data }).promise;
+  const pages: { page: number; text: string }[] = [];
+  for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
+    const page = await pdf.getPage(pageNumber);
+    const content = await page.getTextContent();
+    const pageText = normalizeText(content.items.map((item) => ('str' in item ? item.str : '')).join(' '));
+    pages.push({ page: pageNumber, text: pageText });
+    page.cleanup();
+    onPage?.(pageNumber, pdf.numPages);
+  }
+  return { pages, pageCount: pdf.numPages };
+}
+
+/**
  * The formats that actually work. The Materials page reads this list instead of
  * keeping its own copy, because the two had drifted: the page advertised DOCX and
  * PPTX in its accept attribute and its help text, validated them happily, and then
@@ -859,6 +881,37 @@ export async function readMaterial(file: File, onPage?: PageProgress) {
     return { text, pageCount: 1 };
   }
   throw new Error(`${extension ? `.${extension}` : 'That format'} is not supported. Upload a text-based PDF, TXT or MD file.`);
+}
+
+/**
+ * Read a file to page-tagged text (for the large-document workflow) plus the joined text
+ * and page count (so the caller can decide small-vs-large from the same single read).
+ */
+export async function readMaterialWithPages(file: File, onPage?: PageProgress): Promise<{ text: string; pageCount: number; pages: { page: number; text: string }[] }> {
+  const extension = file.name.split('.').pop()?.toLowerCase() ?? '';
+  if (extension === 'pdf') {
+    const { pages, pageCount } = await extractPdfPages(file, onPage);
+    const text = normalizeText(pages.map((p) => p.text).join('\n\n'));
+    if (text.length < 45) throw new Error('This PDF appears to be scanned or contains too little selectable text. Try a text-based PDF or export it with OCR first.');
+    return { text, pageCount, pages };
+  }
+  if (extension === 'txt' || extension === 'md') {
+    const text = normalizeText(await file.text());
+    if (text.length < 45) throw new Error('That file has too little text to build a knowledge check from.');
+    onPage?.(1, 1);
+    return { text, pageCount: 1, pages: [{ page: 1, text }] };
+  }
+  throw new Error(`${extension ? `.${extension}` : 'That format'} is not supported. Upload a text-based PDF, TXT or MD file.`);
+}
+
+/** A PDF at or above this page count uses the large-document (search-then-generate) flow. */
+export const LARGE_DOCUMENT_PAGE_THRESHOLD = 50;
+/** …or a document whose extracted text exceeds this many characters (a dense short book). */
+export const LARGE_DOCUMENT_CHAR_THRESHOLD = 200_000;
+
+/** True when a read document should take the large-document workflow. */
+export function isLargeDocument(pageCount: number, textLength: number): boolean {
+  return pageCount >= LARGE_DOCUMENT_PAGE_THRESHOLD || textLength >= LARGE_DOCUMENT_CHAR_THRESHOLD;
 }
 
 /** ".pdf,.txt,.md" — for the file input, built from the one supported-format list. */

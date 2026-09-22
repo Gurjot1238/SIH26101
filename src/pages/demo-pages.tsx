@@ -14,6 +14,8 @@ import {
   extractTopics,
   questionKindLabels,
   readMaterial,
+  readMaterialWithPages,
+  isLargeDocument,
   sampleMaterialLabel,
   sampleMaterialMeta,
   sampleMaterialText,
@@ -23,6 +25,7 @@ import {
   supportedFormatsSentence,
 } from '@/lib/materials';
 import { AiGenerationError, generateAiQuestions, classifyDocument, type MaterialClassification, type Difficulty } from '@/lib/ai-questions';
+import { DocumentError, ingestLargeDocument, searchDocument, generateFromTopic, type DocumentRecord, type SearchPreview } from '@/lib/documents';
 import { MAX_SAVED_PAPERS, PaperError, type SavedPaperSummary, deletePaper, getPaper, listPapers, savePaper } from '@/lib/papers';
 import { clearMaterial, isDurable, setMaterial, useMaterial } from '@/lib/material-session';
 import {
@@ -821,6 +824,116 @@ function formatFileSize(bytes: number) {
 
 const maxMaterialSize = formatFileSize(MAX_MATERIAL_BYTES);
 
+/**
+ * The large-document workflow: a book has been uploaded and indexed; the learner searches
+ * it for a topic, sees the pages/sections found, then generates a grounded quiz from ONLY
+ * those pages. Reuses the same exact-count MCQ engine — the questions land as a normal
+ * StoredMaterial and flow into the existing quiz/grading path unchanged.
+ */
+function LargePdfPanel({ document, initialDifficulty, initialCount, onDiscard }: {
+  document: DocumentRecord;
+  initialDifficulty: Difficulty;
+  initialCount: number;
+  onDiscard: () => void;
+}) {
+  const [, setLocation] = useLocation();
+  const [topic, setTopic] = useState('');
+  const [searching, setSearching] = useState(false);
+  const [result, setResult] = useState<SearchPreview | null>(null);
+  const [searchError, setSearchError] = useState('');
+  const [difficulty, setDifficulty] = useState<Difficulty>(initialDifficulty);
+  const [count, setCount] = useState(initialCount);
+  const [generating, setGenerating] = useState(false);
+  const [genError, setGenError] = useState('');
+
+  const pagesText = (ranges?: { start: number; end: number }[]) =>
+    (ranges ?? []).map((r) => (r.start === r.end ? `${r.start}` : `${r.start}–${r.end}`)).join(', ');
+
+  const runSearch = async () => {
+    const query = topic.trim();
+    if (query === '') return;
+    setSearching(true); setSearchError(''); setResult(null); setGenError('');
+    try {
+      setResult(await searchDocument(document.id, query));
+    } catch (failure) {
+      setSearchError(failure instanceof DocumentError ? failure.message : 'The search failed. Please try again.');
+    } finally {
+      setSearching(false);
+    }
+  };
+
+  const runGenerate = async () => {
+    const query = topic.trim();
+    if (query === '' || !result?.topicFound) return;
+    setGenerating(true); setGenError('');
+    try {
+      const gen = await generateFromTopic({ documentId: document.id, query, questionCount: count, difficulty, documentTitle: document.title });
+      if (gen.questions.length === 0) throw new DocumentError('No gradeable questions could be built for this topic. Try a broader topic.', 'no_questions');
+      setMaterial({
+        fileName: `${document.title} — ${query}`,
+        fileSize: 0,
+        fileType: 'book',
+        pageCount: document.pageCount,
+        concepts: result.sections ?? [],
+        topics: gen.topics,
+        questions: gen.questions,
+        createdAt: new Date().toISOString(),
+        isSample: false,
+      });
+      setLocation('/quiz');
+    } catch (failure) {
+      // A shortfall carries how many were produced, so the learner can generate that many.
+      const produced = (failure as any)?.payload?.questions?.length ?? 0;
+      setGenError(failure instanceof DocumentError
+        ? `${failure.message}${produced > 0 ? ` (${produced} grounded questions are available for this topic.)` : ''}`
+        : 'Generation failed. Please try again.');
+    } finally {
+      setGenerating(false);
+    }
+  };
+
+  return <Card className="p-6 sm:p-10">
+    <div className="flex flex-col justify-between gap-4 border-b border-border pb-6 sm:flex-row sm:items-center">
+      <div className="flex min-w-0 items-center gap-4"><div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#dceeea]"><FileCheck2 className="size-6 text-primary" /></div><div className="min-w-0"><p className="truncate font-semibold">{document.title}</p><p className="mt-1 text-xs text-muted-foreground">Large document · {document.pageCount} pages · indexed into {document.chunkCount} sections</p></div></div>
+      <div className="flex shrink-0 items-center gap-2"><Badge tone="navy">Large document</Badge><button onClick={onDiscard} className="rounded-lg px-2 py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:text-[#a34d43]"><X className="size-4" /></button></div>
+    </div>
+
+    <div className="py-7">
+      <p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Search this book</p>
+      <h2 className="mt-2 font-serif text-2xl">What do you want to learn?</h2>
+      <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">Nexora will search the book and use only the relevant sections — the whole book is never sent to the AI. Try a topic, concept, or chapter.</p>
+      <div className="mt-5 flex flex-col gap-2 sm:flex-row">
+        <input data-testid="input-topic-search" value={topic} onChange={(e) => setTopic(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') void runSearch(); }} placeholder="e.g. TCP congestion control" className="flex-1 rounded-lg border border-border bg-card px-3.5 py-2.5 text-sm text-foreground focus:border-primary focus:outline-none" />
+        <ActionButton onClick={() => void runSearch()} disabled={searching || topic.trim() === ''} icon={<Target className="size-4" />}>{searching ? 'Searching…' : 'Search topic'}</ActionButton>
+      </div>
+      {searchError && <div role="alert" className="mt-4 flex items-center gap-2 rounded-lg border border-[#eac3bd] bg-[#fff2ef] px-4 py-3 text-sm text-[#a34d43]"><X className="size-4 shrink-0" />{searchError}</div>}
+    </div>
+
+    {result && !result.topicFound && <div className="rounded-xl border border-[#eddcb4] bg-[#fdf6e6] p-5 text-sm leading-6 text-[#8a6319]">
+      <p className="font-semibold">Topic not found</p>
+      <p className="mt-1">We couldn't find enough relevant content for “{topic.trim()}”. Try another keyword, a broader topic, or a related concept.</p>
+      {(result.suggestions?.length ?? 0) > 0 && <div className="mt-3"><p className="text-xs font-semibold uppercase tracking-[.1em]">Sections in this book</p><div className="mt-2 flex flex-wrap gap-2">{result.suggestions!.map((s) => <button key={s} onClick={() => setTopic(s)} className="rounded-full border border-[#e2cd9a] bg-white/60 px-3 py-1 text-xs text-[#8a6319] hover:bg-white">{s}</button>)}</div></div>}
+    </div>}
+
+    {result && result.topicFound && <div className="rounded-xl border border-border">
+      <div className="border-b border-border p-5">
+        <div className="flex flex-wrap items-center justify-between gap-2"><div><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Topic found</p><h3 className="mt-1 font-serif text-xl capitalize">{topic.trim()}</h3></div><Badge tone="teal">{result.found} relevant {result.found === 1 ? 'section' : 'sections'}</Badge></div>
+        {(result.pageRanges?.length ?? 0) > 0 && <p className="mt-2 text-xs text-muted-foreground">Source pages: {pagesText(result.pageRanges)}</p>}
+        {(result.sections?.length ?? 0) > 0 && <div className="mt-3 flex flex-wrap gap-2">{result.sections!.slice(0, 8).map((s) => <span key={s} className="rounded-full border border-border bg-secondary px-3 py-1 text-xs text-muted-foreground">{s}</span>)}</div>}
+        {(result.preview?.length ?? 0) > 0 && <p className="mt-3 line-clamp-2 text-xs leading-5 text-muted-foreground">{result.preview![0].snippet}…</p>}
+      </div>
+      <div className="grid gap-5 p-5 sm:grid-cols-2">
+        <div><p className="mb-2 font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">Difficulty</p><div className="grid grid-cols-3 gap-1.5">{(['easy', 'medium', 'hard'] as const).map((level) => <button key={level} type="button" data-testid={`button-large-difficulty-${level}`} onClick={() => setDifficulty(level)} className={`rounded-lg border px-2 py-2 text-xs font-semibold capitalize transition-colors ${difficulty === level ? 'border-primary bg-primary text-white' : 'border-border bg-card text-muted-foreground hover:bg-secondary'}`}>{level}</button>)}</div></div>
+        <div><p className="mb-2 font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">How many questions</p><select data-testid="select-large-question-count" value={count} onChange={(e) => setCount(Number(e.target.value))} className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm font-semibold text-foreground hover:bg-secondary">{[5, 8, 10, 12, 15, 20].map((n) => <option key={n} value={n}>{n} questions</option>)}</select></div>
+      </div>
+      <div className="border-t border-border p-5">
+        <ActionButton className="w-full" onClick={() => void runGenerate()} disabled={generating} icon={<Sparkles className="size-4" />}>{generating ? 'Generating…' : `Generate ${count} MCQs`}</ActionButton>
+        {genError && <div role="alert" className="mt-3 rounded-lg border border-[#eddcb4] bg-[#fdf6e6] px-4 py-3 text-sm leading-6 text-[#8a6319]">{genError}</div>}
+      </div>
+    </div>}
+  </Card>;
+}
+
 export function Materials() {
   const [, setLocation] = useLocation();
   const material = useMaterial();
@@ -834,6 +947,10 @@ export function Materials() {
   const [count, setCount] = useState(TARGET_QUESTIONS);
   /** What the model classified the last uploaded document as. Persists after work ends. */
   const [classification, setClassification] = useState<MaterialClassification | null>(null);
+  /** Set when a large book has been indexed and is waiting for a topic search. */
+  const [largeDoc, setLargeDoc] = useState<DocumentRecord | null>(null);
+  /** Upload/index progress for a large book (real work, not a timer). */
+  const [preparing, setPreparing] = useState<{ sent: number; total: number; stage: string } | null>(null);
   /**
    * The account's saved papers. `null` means "not fetched yet", which is different from
    * an empty array: an empty array is a signed-in learner with nothing saved, and that
@@ -860,12 +977,14 @@ export function Materials() {
 
   const startProcessing = async (
     meta: { fileName: string; fileSize: number; fileType: string; isSample: boolean },
-    read: (onPage: PageProgress) => Promise<{ text: string; pageCount: number }>,
+    read: (onPage: PageProgress) => Promise<{ text: string; pageCount: number; pages?: { page: number; text: string }[] }>,
   ) => {
     setError('');
     setShowQuestions(false);
     setConfirmingDiscard(false);
     setClassification(null);
+    setLargeDoc(null);
+    setPreparing(null);
     setWork({ ...meta, stage: 'reading', pagesRead: 0, pageCount: 0, conceptCount: 0, questionCount: 0, askedAt: 0, classification: null });
     const advance = async (stage: Stage, extra?: Partial<Work>) => {
       setWork((previous) => (previous ? { ...previous, ...extra, stage } : previous));
@@ -873,9 +992,25 @@ export function Materials() {
     };
     try {
       await paint();
-      const { text, pageCount } = await read((pagesRead, pages) => {
-        setWork((previous) => (previous ? { ...previous, pagesRead, pageCount: pages } : previous));
+      const { text, pageCount, pages: pageList } = await read((pagesRead, totalPages) => {
+        setWork((previous) => (previous ? { ...previous, pagesRead, pageCount: totalPages } : previous));
       });
+
+      // Large book: do NOT send it whole to the AI. Upload it in bounded page batches,
+      // index it once, then hand off to the topic-search panel below. Small documents fall
+      // straight through to the existing fast path.
+      if (pageList && isLargeDocument(pageCount, text.length)) {
+        setWork(null);
+        setPreparing({ sent: 0, total: pageCount, stage: 'uploading' });
+        const ingest = await ingestLargeDocument(
+          { filename: meta.fileName, sizeBytes: meta.fileSize, pages: pageList },
+          (sent, total, stage) => setPreparing({ sent, total, stage }),
+        );
+        setPreparing(null);
+        setLargeDoc(ingest.document);
+        return;
+      }
+
       await advance('classifying');
       // Ask the model what kind of document this is — study material, marksheet,
       // report, etc. A fast call that warns the learner before the long generation.
@@ -920,6 +1055,11 @@ export function Materials() {
       setWork(null);
     } catch (failure) {
       setWork(null);
+      setPreparing(null);
+      if (failure instanceof DocumentError) {
+        setError(failure.message);
+        return;
+      }
       if (failure instanceof AiGenerationError) {
         // `produced` is how many questions did survive validation. "6 of the 10 needed"
         // points at the document; a bare failure points nowhere.
@@ -951,7 +1091,9 @@ export function Materials() {
     }
     void startProcessing(
       { fileName: file.name, fileSize: file.size, fileType: extension, isSample: false },
-      (onPage) => readMaterial(file, onPage),
+      // Read with per-page text so a large book can take the search-then-generate path;
+      // small documents ignore the extra `pages` field and use the existing fast flow.
+      (onPage) => readMaterialWithPages(file, onPage),
     );
   };
 
@@ -979,6 +1121,8 @@ export function Materials() {
     setConfirmingDiscard(false);
     setShowQuestions(false);
     setError('');
+    setLargeDoc(null);
+    setPreparing(null);
   };
 
   /**
@@ -1088,7 +1232,7 @@ export function Materials() {
 
   return <div className="mx-auto max-w-5xl animate-rise-in">
      <PageIntro eyebrow="Materials lab · AI question generation" title="Turn a brief into a knowledge check." description="Upload a work material and NEXORA AI will extract selectable text in your browser, identify concepts, then write a grounded practice set with AI on the server." action={<Badge tone="navy"><LockKeyhole className="size-3.5" /> Provider key stays on the server</Badge>} />
-    {!work && !material && <Card className="p-6 sm:p-10">
+    {!work && !material && !largeDoc && !preparing && <Card className="p-6 sm:p-10">
       <div onDragOver={(event) => { event.preventDefault(); setIsDragging(true); }} onDragLeave={() => setIsDragging(false)} onDrop={handleDrop} className={`rounded-2xl border-2 border-dashed px-6 py-14 text-center transition-colors ${isDragging ? 'border-primary bg-[#e3f3ef]' : 'border-[#a9cdca] bg-[#f0f8f6]'}`}>
         <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-[#d9ece8] text-primary"><UploadCloud className="size-7" /></div>
         <h2 className="mt-5 font-serif text-2xl">Drop a material here</h2>
@@ -1119,6 +1263,11 @@ export function Materials() {
       {work.classification && <div className={`mt-4 flex items-start gap-3 rounded-lg border px-4 py-3 text-sm leading-6 ${work.classification.suitable ? 'border-[#b8d8c9] bg-[#eaf5ee] text-[#1a5c3a]' : 'border-[#eac3bd] bg-[#fff2ef] text-[#a34d43]'}`}><span className="mt-0.5 shrink-0 font-mono text-[10px] uppercase tracking-[.12em]">{work.classification.label}</span><div className="flex-1"><p className="font-semibold">{work.classification.reason}</p>{work.classification.summary && <p className="mt-1 text-xs opacity-80">{work.classification.summary}</p>}{work.classification.topics.length > 0 && <p className="mt-1 text-xs opacity-70">Topics: {work.classification.topics.join(', ')}</p>}{!work.classification.suitable && <p className="mt-2 text-xs font-medium">{work.classification.advice}</p>}</div></div>}
        <div className="mt-8 grid gap-3 sm:grid-cols-3">{['Document text', 'Key terms', 'Question blueprint'].map((t, i) => <div key={t} className="rounded-lg border border-border p-4"><div className="mb-4 h-2 w-2/3 animate-pulse rounded bg-secondary" /><p className="text-xs text-muted-foreground">{t}</p><p className="mt-1 text-sm font-semibold">{i === 0 ? (stageIndex > 0 ? `Text extracted · ${work.pageCount} ${work.pageCount === 1 ? 'page' : 'pages'}` : work.pagesRead > 0 ? `${work.pagesRead} of ${work.pageCount} pages read` : 'Working...') : i === 1 ? (stageIndex > 2 ? `${work.conceptCount} concepts found` : 'Working...') : work.questionCount > 0 ? `${work.questionCount} questions ready` : 'Working...'}</p></div>)}</div>
     </Card>}
+    {preparing && <Card className="p-6 sm:p-10">
+      <div className="flex items-center gap-4"><div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#f7ebd1]"><FileCheck2 className="size-6 text-[#8a6319]" /></div><div className="min-w-0 flex-1"><p className="truncate font-semibold">Preparing your book</p><p className="mt-1 text-xs text-muted-foreground">{preparing.stage === 'indexing' ? 'Chunking and indexing the document…' : `Uploading pages · ${preparing.sent} of ${preparing.total}`}</p></div><Badge tone="amber">Working</Badge></div>
+      <div className="mt-8 space-y-3"><ProgressBar value={preparing.total > 0 ? Math.round((preparing.sent / preparing.total) * (preparing.stage === 'indexing' ? 100 : 90)) : 10} color="bg-accent" /><p className="font-mono text-[10px] uppercase tracking-[.12em] text-muted-foreground">{preparing.stage === 'indexing' ? 'Building document index' : 'Uploading in small batches — the whole book is never sent at once'}</p></div>
+    </Card>}
+    {largeDoc && !material && !preparing && <LargePdfPanel document={largeDoc} initialDifficulty={difficulty} initialCount={count} onDiscard={discard} />}
     {!work && material && <Card className="p-6 sm:p-10">
        <div className="flex flex-col justify-between gap-4 border-b border-border pb-6 sm:flex-row sm:items-center"><div className="flex min-w-0 items-center gap-4"><div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#dceeea]"><CheckCircle2 className="size-6 text-primary" /></div><div className="min-w-0"><p className="truncate font-semibold">{material.fileName}</p><p className="mt-1 text-xs text-muted-foreground">{material.fileSize === 0 && material.savedPaperId ? `Reopened from your saved sets · ${material.questions.length} questions · ${material.topics.length} topics` : <>Read in this browser · {formatFileSize(material.fileSize)} · {material.pageCount} {material.pageCount === 1 ? 'page' : 'pages'} · {material.concepts.length} concepts identified</>}</p></div></div><div className="flex shrink-0 flex-wrap items-center gap-2">       {material.isSample && <Badge tone="amber">{sampleMaterialLabel}</Badge>}<Badge tone="teal">Ready to practise</Badge></div></div>
        {classification && <div className={`mt-4 flex items-start gap-3 rounded-lg border px-4 py-3 text-sm leading-6 ${classification.suitable ? 'border-[#b8d8c9] bg-[#eaf5ee] text-[#1a5c3a]' : 'border-[#eac3bd] bg-[#fff2ef] text-[#a34d43]'}`}><span className="mt-0.5 shrink-0 font-mono text-[10px] uppercase tracking-[.12em]">{classification.label}</span><div className="flex-1"><p className="font-semibold">{classification.reason}</p>{classification.summary && <p className="mt-1 text-xs opacity-80">{classification.summary}</p>}{classification.topics.length > 0 && <p className="mt-1 text-xs opacity-70">Topics: {classification.topics.join(', ')}</p>}{!classification.suitable && <p className="mt-2 text-xs font-medium">{classification.advice}</p>}</div></div>}
