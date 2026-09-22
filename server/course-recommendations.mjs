@@ -50,6 +50,9 @@ export const FOUNDATIONAL_MAX_SCORE = 50;
 export const COMPETENCY_TAGS = {
   // Handling, cleaning, structuring and managing data before it is analysed. These are
   // the dataset's data-engineering / data-management / health-data tags.
+  // Only genuine data-handling subjects. The health-informatics / bioinformatics tags were
+  // removed: a nursing or bio course is not what a learner short on data quality needs, and
+  // surfacing one read as a random, off-topic recommendation.
   'data-quality': [
     'data-science',
     'data-engineering',
@@ -57,10 +60,6 @@ export const COMPETENCY_TAGS = {
     'database-systems',
     'data-structures',
     'sql',
-    'bioinformatics',
-    'healthcare-informatics',
-    'healthcare-information-systems',
-    'digital-health',
   ],
   // Drawing conclusions from data under uncertainty — the statistical core.
   inference: [
@@ -73,16 +72,12 @@ export const COMPETENCY_TAGS = {
     'natural-language-processing',
     'computer-vision',
   ],
-  // Turning results into something an audience can read. The dataset has little that
-  // is truly about communication; signal/image work is the closest honest neighbour
-  // (representing and presenting data), and it is intentionally a short list.
-  dissemination: [
-    'image-processing',
-    'dsp',
-    'signals-and-systems',
-    'digital-communications',
-    'computer-vision',
-  ],
+  // Turning results into something an audience can read. The dataset has NO genuine
+  // communication/reporting/visualisation courses — signal- and image-processing are about
+  // processing data, not disseminating it, and recommending "Signals and Systems" for a
+  // communication gap read as noise. So this maps to nothing, and a dissemination gap is
+  // reported honestly as "no matching course" rather than filled with an unrelated one.
+  dissemination: [],
   // Practical computing fluency: writing code, using tools, understanding the systems
   // underneath. This is where the CS-heavy dataset is richest.
   'digital-tools': [

@@ -127,6 +127,10 @@ const SECURITY_HEADERS = {
   'Cache-Control': 'no-store',
   // This is a JSON API and never renders HTML, so lock the policy right down.
   'Content-Security-Policy': "default-src 'none'; frame-ancestors 'none'",
+  // HSTS: browsers ignore this when it arrives over plain http (so it is a no-op on
+  // localhost) and enforce https-only for a year once the site is served over https —
+  // exactly the behaviour we want in production without breaking local development.
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
 };
 
 export function sendJson(res, status, payload, extraHeaders = {}) {

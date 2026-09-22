@@ -80,9 +80,11 @@ function lowerFirst(s) {
  */
 export function countForGap(gap) {
   const g = Number.isFinite(gap?.gap) ? gap.gap : 0;
-  if (g >= 40) return 4;
-  if (g >= 20) return 3;
-  return 2;
+  // Kept deliberately small so the learner gets a focused shortlist, not a wall of courses:
+  // a serious gap earns 3 options, a moderate one 2, a minor one 1.
+  if (g >= 40) return 3;
+  if (g >= 20) return 2;
+  return 1;
 }
 
 /** Overall cap so a learner with many gaps still sees a focused list, not a wall (§10). */

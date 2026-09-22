@@ -1,6 +1,6 @@
 import { type DragEvent, type ReactNode, useEffect, useMemo, useState } from 'react';
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Award, BarChart3, Briefcase, Calendar, Camera, Check, CheckCircle2, Clock3, Download, Edit3, FileCheck2, Filter, Globe, Lightbulb, ListChecks, LockKeyhole, Mail, MapPin, Minus, Phone, Play, Plus, RefreshCw, Shield, ShieldCheck, Sparkles, Target, TrendingDown, TrendingUp, TriangleAlert, UploadCloud, Users, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, Award, BarChart3, Briefcase, Calendar, Camera, Check, CheckCircle2, Clock3, Download, Edit3, FileCheck2, Filter, Globe, GraduationCap, Lightbulb, ListChecks, LockKeyhole, Mail, MapPin, Minus, Phone, Play, Plus, RefreshCw, Shield, ShieldCheck, Sparkles, Target, TrendingDown, TrendingUp, TriangleAlert, UploadCloud, Users, X } from 'lucide-react';
 import { Link, useLocation, useParams } from 'wouter';
 import { ActionButton, Badge, Card, EmptyState, LoadingBlock, ProgressBar, SectionHeading, ToastMessage } from '@/components/ui';
 import { initials, useSession } from '@/components/session-provider';
@@ -501,16 +501,47 @@ export function Assessment() {
 
 export function Learning() {
   const { courses: records } = useProgress();
-  const [filter, setFilter] = useState('All'); const [saved, setSaved] = useState<string[]>([]);
-  // Real progress from the account's own module completions — 0 for a new learner, never a
-  // hard-coded percentage. The `courses` array supplies only editorial fields.
-  const recordFor = (courseId: string) => records.find((c) => c.courseId === courseId) ?? null;
-  const realProgress = (courseId: string) => courseProgress(courseId, recordFor(courseId));
-  const stateTag = (course: (typeof courses)[number]) => (realProgress(course.id) > 0 ? 'In progress' : course.tag);
-  const shown = filter === 'All' ? courses : courses.filter((course) => filter === 'In progress' ? realProgress(course.id) > 0 : stateTag(course) === 'New');
-  const pathwayValue = Math.round(courses.reduce((sum, c) => sum + realProgress(c.id), 0) / courses.length);
-  const milestones: [string, string, number][] = [['01', 'Evidence foundations', 25], ['02', 'Inference in context', 50], ['03', 'Communicating uncertainty', 75], ['04', 'Applied capstone', 100]];
-  return <div className="mx-auto max-w-[1440px] animate-rise-in"><PageIntro eyebrow="Learning intelligence" title="A pathway built around your work." description="Your learning plan adapts to demonstrated strengths, role expectations, and the skills that will matter next." action={<ActionButton variant="outline" onClick={() => setFilter('All')} icon={<RefreshCw className="size-4" />}>Refresh pathway</ActionButton>} /><div className="grid gap-6 lg:grid-cols-[.85fr_1.15fr]"><Card className="overflow-hidden bg-sidebar text-sidebar-foreground"><div className="border-b border-sidebar-border p-6"><div className="flex items-center justify-between"><div><p className="font-mono text-[10px] uppercase tracking-[.16em] text-accent">Active pathway</p><h2 className="mt-2 font-serif text-2xl text-white">Statistical inference<br />in public practice</h2></div><Donut value={pathwayValue} color="#c49743" size={82} /></div><p className="mt-5 text-sm leading-6 text-sidebar-foreground/70">A focused sequence to move from reliable data production to confident interpretation and advice.</p></div><div className="space-y-0 p-6">{milestones.map(([n, t, threshold], i) => { const done = pathwayValue >= threshold; return <div key={String(n)} className="flex gap-3"><div className="flex flex-col items-center"><div className={`flex size-7 items-center justify-center rounded-full text-[10px] font-bold ${done ? 'bg-accent text-sidebar' : 'border border-sidebar-border text-sidebar-foreground/50'}`}>{done ? <Check className="size-3" /> : n}</div>{i < milestones.length - 1 && <div className={`my-1 h-6 w-px ${done ? 'bg-accent/50' : 'bg-sidebar-border'}`} />}</div><div className="pb-4"><p className={`text-sm font-semibold ${done ? 'text-white' : 'text-sidebar-foreground/50'}`}>{t}</p><p className="mt-1 text-[11px] text-sidebar-foreground/50">{done ? 'Milestone complete' : 'In progress as you complete courses'}</p></div></div>; })}</div><div className="border-t border-sidebar-border p-6"><ActionButton variant="amber" className="w-full" onClick={() => window.scrollTo({ top: 450, behavior: 'smooth' })}>Continue pathway <ArrowRight className="size-4" /></ActionButton></div></Card><div><div className="mb-4 flex items-center justify-between"><div className="flex gap-1 rounded-lg bg-secondary p-1">{['All', 'In progress', 'New'].map((f) => <button key={f} data-testid={`button-filter-${f.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setFilter(f)} className={`rounded-md px-3 py-2 text-xs font-semibold ${filter === f ? 'bg-card text-foreground shadow-sm' : 'text-muted-foreground'}`}>{f}</button>)}</div><span className="text-xs text-muted-foreground">{shown.length} courses</span></div><div className="space-y-3">{shown.map((course) => { const progress = realProgress(course.id); const tag = stateTag(course); return <Card key={course.id} interactive className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center"><div className={`flex size-14 shrink-0 items-center justify-center rounded-xl ${course.color}`}><course.icon className="size-6 text-primary/80" /></div><div className="min-w-0 flex-1"><div className="flex flex-wrap items-center gap-2"><p className="text-[10px] font-semibold uppercase tracking-[.1em] text-muted-foreground">{course.type}</p><Badge tone={tag === 'New' ? 'amber' : 'teal'}>{tag}</Badge></div><h3 className="mt-1 font-semibold">{course.title}</h3><div className="mt-2 flex items-center gap-4 text-xs text-muted-foreground"><span className="flex items-center gap-1"><Clock3 className="size-3.5" />{course.duration}</span><span>{course.level}</span></div>{progress > 0 && <div className="mt-3 flex items-center gap-2"><ProgressBar value={progress} className="max-w-[180px] flex-1" /><span className="font-mono text-[10px] text-muted-foreground">{progress}%</span></div>}</div><div className="flex items-center gap-2 sm:flex-col sm:items-end"><button data-testid={`button-save-course-${course.id}`} onClick={() => setSaved(saved.includes(course.id) ? saved.filter((id) => id !== course.id) : [...saved, course.id])} className={`rounded-lg p-2 ${saved.includes(course.id) ? 'text-accent' : 'text-muted-foreground hover:bg-secondary'}`}><Target className="size-4" /></button><Link href={`/courses/${course.id}`} data-testid={`link-course-${course.id}`} className="inline-flex items-center gap-1 rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white">{progress > 0 ? 'Resume' : 'Start'} <ArrowRight className="size-3.5" /></Link></div></Card>; })}</div></div></div></div>;
+  const [filter, setFilter] = useState<'All' | 'In progress' | 'Completed'>('All');
+  const [saved, setSaved] = useState<string[]>([]);
+  const [state, setState] = useState<{ status: 'loading' | 'ready' | 'error'; problem: string; courses: CatalogueCourse[]; available: boolean }>(
+    { status: 'loading', problem: '', courses: [], available: false },
+  );
+
+  // The course list is the REAL downloaded catalogue (GET /api/courses), the same source the
+  // /catalog page uses — no hard-coded demo courses. Progress is measured per account.
+  useEffect(() => {
+    let live = true;
+    setState((s) => ({ ...s, status: 'loading', problem: '' }));
+    fetchCatalogue()
+      .then((data) => { if (live) setState({ status: 'ready', problem: '', courses: data.courses, available: data.available }); })
+      .catch((error: unknown) => { if (live) setState({ status: 'error', problem: error instanceof Error ? error.message : 'The course service did not answer.', courses: [], available: false }); });
+    return () => { live = false; };
+  }, []);
+
+  const doneByCourse = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const record of records) map.set(record.courseId, record.completedLessons.length);
+    return map;
+  }, [records]);
+  const percentOf = (course: CatalogueCourse) => (course.lessons > 0 ? Math.min(100, Math.round(((doneByCourse.get(course.courseId) ?? 0) / course.lessons) * 100)) : 0);
+
+  const shown = state.courses.filter((course) => {
+    const p = percentOf(course);
+    if (filter === 'In progress') return p > 0 && p < 100;
+    if (filter === 'Completed') return p === 100;
+    return true;
+  });
+
+  // Pathway completion = average real completion across the courses the learner has started.
+  const started = state.courses.filter((c) => (doneByCourse.get(c.courseId) ?? 0) > 0);
+  const pathwayValue = started.length ? Math.round(started.reduce((sum, c) => sum + percentOf(c), 0) / started.length) : 0;
+  const milestones: [string, string, number][] = [['01', 'Get started', 1], ['02', 'Building momentum', 40], ['03', 'Most of the way', 75], ['04', 'Pathway complete', 100]];
+
+  return <div className="mx-auto max-w-[1440px] animate-rise-in"><PageIntro eyebrow="Learning intelligence" title="A pathway built around your work." description="Real, openly-licensed courses on your platform — open one, mark lessons done, and your progress is tracked against your account." action={<ActionButton variant="outline" onClick={() => setFilter('All')} icon={<RefreshCw className="size-4" />}>Show all</ActionButton>} /><div className="grid gap-6 lg:grid-cols-[.85fr_1.15fr]"><Card className="overflow-hidden bg-sidebar text-sidebar-foreground"><div className="border-b border-sidebar-border p-6"><div className="flex items-center justify-between"><div><p className="font-mono text-[10px] uppercase tracking-[.16em] text-accent">Your progress</p><h2 className="mt-2 font-serif text-2xl text-white">Courses you've<br />started</h2></div><Donut value={pathwayValue} color="#c49743" size={82} /></div><p className="mt-5 text-sm leading-6 text-sidebar-foreground/70">{started.length === 0 ? 'Open a course and mark a lesson done to start tracking your completion here.' : `Average completion across the ${started.length} ${started.length === 1 ? 'course' : 'courses'} you've begun.`}</p></div><div className="space-y-0 p-6">{milestones.map(([n, t, threshold], i) => { const done = pathwayValue >= threshold; return <div key={String(n)} className="flex gap-3"><div className="flex flex-col items-center"><div className={`flex size-7 items-center justify-center rounded-full text-[10px] font-bold ${done ? 'bg-accent text-sidebar' : 'border border-sidebar-border text-sidebar-foreground/50'}`}>{done ? <Check className="size-3" /> : n}</div>{i < milestones.length - 1 && <div className={`my-1 h-6 w-px ${done ? 'bg-accent/50' : 'bg-sidebar-border'}`} />}</div><div className="pb-4"><p className={`text-sm font-semibold ${done ? 'text-white' : 'text-sidebar-foreground/50'}`}>{t}</p><p className="mt-1 text-[11px] text-sidebar-foreground/50">{done ? 'Reached' : 'As your completion grows'}</p></div></div>; })}</div><div className="border-t border-sidebar-border p-6"><Link href="/catalog" data-testid="link-learning-catalog" className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-3 py-2.5 text-sm font-semibold text-sidebar">Browse full catalogue <ArrowRight className="size-4" /></Link></div></Card><div><div className="mb-4 flex items-center justify-between"><div className="flex gap-1 rounded-lg bg-secondary p-1">{(['All', 'In progress', 'Completed'] as const).map((f) => <button key={f} data-testid={`button-filter-${f.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setFilter(f)} className={`rounded-md px-3 py-2 text-xs font-semibold ${filter === f ? 'bg-card text-foreground shadow-sm' : 'text-muted-foreground'}`}>{f}</button>)}</div><span className="text-xs text-muted-foreground">{shown.length} courses</span></div>
+    {state.status === 'loading' && <LoadingBlock label="Loading your courses" />}
+    {state.status === 'error' && <EmptyState title="The course service is not answering" description={state.problem} />}
+    {state.status === 'ready' && !state.available && <EmptyState title="No course dataset found" description="The downloaded course content is not on this machine yet. Once the Nexora course dataset sits beside the app and the server is restarted, your courses appear here." />}
+    {state.status === 'ready' && state.available && <div className="space-y-3">{shown.map((course) => { const done = doneByCourse.get(course.courseId) ?? 0; const progress = percentOf(course); return <Card key={course.courseId} interactive className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center"><div className="flex size-14 shrink-0 items-center justify-center rounded-xl bg-[#dceeea]"><GraduationCap className="size-6 text-primary/80" /></div><div className="min-w-0 flex-1"><div className="flex flex-wrap items-center gap-2"><p className="text-[10px] font-semibold uppercase tracking-[.1em] text-muted-foreground">{course.provider}</p><Badge tone={progress === 100 ? 'teal' : progress > 0 ? 'teal' : 'amber'}>{progress === 100 ? 'Completed' : progress > 0 ? 'In progress' : 'Not started'}</Badge></div><h3 className="mt-1 font-semibold">{course.title}</h3><div className="mt-2 flex items-center gap-4 text-xs text-muted-foreground">{course.estimatedHours ? <span className="flex items-center gap-1"><Clock3 className="size-3.5" />{course.estimatedHours} hrs</span> : null}<span className="flex items-center gap-1"><ListChecks className="size-3.5" />{course.lessons} {course.lessons === 1 ? 'lesson' : 'lessons'}</span><span>{course.level}</span></div>{progress > 0 && <div className="mt-3 flex items-center gap-2"><ProgressBar value={progress} className="max-w-[180px] flex-1" /><span className="font-mono text-[10px] text-muted-foreground">{done}/{course.lessons}</span></div>}</div><div className="flex items-center gap-2 sm:flex-col sm:items-end"><button data-testid={`button-save-course-${course.courseId}`} onClick={() => setSaved(saved.includes(course.courseId) ? saved.filter((id) => id !== course.courseId) : [...saved, course.courseId])} className={`rounded-lg p-2 ${saved.includes(course.courseId) ? 'text-accent' : 'text-muted-foreground hover:bg-secondary'}`}><Target className="size-4" /></button><Link href={`/catalog/${course.courseId}`} data-testid={`link-course-${course.courseId}`} className="inline-flex items-center gap-1 rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white">{progress > 0 ? 'Resume' : 'Open'} <ArrowRight className="size-3.5" /></Link></div></Card>; })}</div>}</div></div></div>;
 }
 
 export function CourseDetail() {
@@ -1511,6 +1542,9 @@ export function Quiz() {
   const [saving, setSaving] = useState(false);
   const [saveNote, setSaveNote] = useState('');
   const [showReview, setShowReview] = useState(false);
+  // Bumped once this sitting is saved, so the gap-driven course recommendations refetch and
+  // include it (the server only knows about the attempt after the save round-trips).
+  const [recsKey, setRecsKey] = useState(0);
 
   const full = material?.questions ?? [];
   const paper = retryPaper ?? full;
@@ -1589,6 +1623,7 @@ export function Quiz() {
     );
     setSaving(false);
     setSaveNote(outcome.saved ? 'Saved to your account.' : outcome.reason);
+    if (outcome.saved) setRecsKey((k) => k + 1);
     // The save is what lets the Dashboard's cross-attempt gap analysis and course
     // recommendations include this sitting the next time it is opened. The on-screen
     // charts below need no refetch — they are drawn from this tab's own graded result.
@@ -1663,25 +1698,11 @@ export function Quiz() {
         <p className="mt-4 text-xs leading-5 text-muted-foreground">Quoted from {quizTitle}, in the order they appear in the document. This is your own material — nothing here was fetched from anywhere else.</p>
       </Card>}
 
-      {plan.courses.length > 0 && <Card className="mt-6 p-6 sm:p-8">
-        <SectionHeading eyebrow="Pathways" title="Where a longer pass would help" description="Matched to the competency your weaker topics sit under. Only pathways that actually build it are listed, so this section is often short." />
-        <div className="space-y-3">
-          {plan.courses.map((facts) => {
-            const listed = courses.find((item) => item.id === facts.id);
-            const Icon = listed?.icon ?? Target;
-            return <Link key={facts.id} href={`/courses/${facts.id}`} data-testid={`link-quiz-pathway-${facts.id}`} className="flex items-start gap-4 rounded-xl border border-border p-4 transition-all hover:border-primary/50 hover:bg-secondary">
-              <span className={`flex size-11 shrink-0 items-center justify-center rounded-lg ${listed?.color ?? 'bg-secondary'}`}><Icon className="size-5 text-[#29485a]" /></span>
-              <span className="min-w-0">
-                <span className="block text-sm font-semibold text-foreground">{listed?.title ?? facts.id}</span>
-                <span className="mt-1 block text-xs leading-5 text-muted-foreground">{facts.helpsWith}</span>
-                <span className="mt-2 block font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">{competencyName(facts.competency)} · {formatMinutes(courseMinutes(facts.id))} outline</span>
-              </span>
-              <ArrowRight className="ml-auto mt-1 size-4 shrink-0 text-muted-foreground" />
-            </Link>;
-          })}
-        </div>
-        <p className="mt-4 text-xs leading-5 text-muted-foreground">{catalogueNote}</p>
-      </Card>}
+      {/* Real courses from the downloaded 52-course catalogue, matched to the competency gaps
+          this sitting measured — the same engine the Dashboard uses. Replaces the old
+          hard-coded pathway list. Shows an honest empty state when this material's topics did
+          not map to a measurable gap. */}
+      <GapCourseRecommendations refreshKey={recsKey} />
 
       {/**
         * A graph-rich analytics report of the paper just taken — built entirely from the
