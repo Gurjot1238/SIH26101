@@ -28,6 +28,16 @@
  */
 
 import { COMPETENCY_IDS } from './progress.mjs';
+import { courseLevelRank } from './recommend/quality.mjs';
+
+/**
+ * A learner scoring below this on a competency is still building its foundations, so for
+ * that gap a beginner course is ranked ahead of an advanced one at equal topic overlap
+ * (spec: "prefer foundational learning first; do not push Advanced to a 35% learner").
+ * Configurable via the `foundationalMaxScore` option; kept as a plain threshold, not
+ * scattered through the file.
+ */
+export const FOUNDATIONAL_MAX_SCORE = 50;
 
 /**
  * Framework competency -> the dataset subject tags that build it.
@@ -196,7 +206,7 @@ export function rankedGapCompetencies(analytics) {
  *   groups        [{ competency, name, gap, priority, courses: [...] }]
  *   courses       flat, de-duplicated, priority-interleaved, capped at `limit`
  */
-export function recommendCoursesForGaps(analytics, cat, { perGap = 3, limit = 6 } = {}) {
+export function recommendCoursesForGaps(analytics, cat, { perGap = 3, limit = 6, minTagOverlap = 1, foundationalMaxScore = FOUNDATIONAL_MAX_SCORE } = {}) {
   const available = Boolean(cat?.available);
   const measured = Boolean(analytics?.measured);
   const allCourses = Array.isArray(cat?.courses) ? cat.courses : [];
@@ -236,7 +246,11 @@ export function recommendCoursesForGaps(analytics, cat, { perGap = 3, limit = 6 
     let winner = null;
     for (const id of gapOrder) {
       const overlap = tagOverlap(course.competencies, id);
-      if (overlap.count === 0) continue;
+      // A configurable minimum relevance: a course sharing fewer than this many competency
+      // tags with the gap is not relevant enough to recommend (spec §29 — never surface a
+      // course on one incidental keyword). Default 1 keeps the dataset's curated single-tag
+      // matches, which are genuine competency coverage, not stray keywords.
+      if (overlap.count < minTagOverlap) continue;
       // Prefer the higher overlap; tie broken by the gap's own priority order (earlier
       // in gapOrder wins), which is why we iterate gapOrder in order and use `>` only.
       if (!winner || overlap.count > winner.overlap.count) {
@@ -248,10 +262,18 @@ export function recommendCoursesForGaps(analytics, cat, { perGap = 3, limit = 6 
 
   const groups = rankedGaps
     .map((gap) => {
+      // For a gap where the learner is still building foundations, a beginner course is
+      // preferred over an advanced one at equal topic overlap. Level only breaks ties after
+      // relevance, so it never promotes a less-relevant course — it just picks the more
+      // suitable of two equally-relevant ones (spec §10/§15).
+      const foundational = Number.isFinite(gap.currentScore) && gap.currentScore < foundationalMaxScore;
+      // Unknown level sorts last (never ahead of a known beginner course), and never NaN.
+      const levelValue = (course) => { const r = courseLevelRank(course.level); return r === null ? 99 : r; };
       const ranked = (bestFor.get(gap.competency) ?? [])
         .sort(
           (a, b) =>
             b.overlap.count - a.overlap.count ||
+            (foundational ? levelValue(a.course) - levelValue(b.course) : 0) ||
             hoursOf(a.course) - hoursOf(b.course) ||
             String(a.course.title).localeCompare(String(b.course.title)),
         )
