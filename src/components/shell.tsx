@@ -11,7 +11,7 @@ const learnerNav: NavItem[] = [
   { href: '/learning', label: 'My learning', icon: BookOpen },
   { href: '/catalog', label: 'Course catalogue', icon: Library },
   { href: '/course-library', label: 'Course library', icon: GraduationCap },
-  { href: '/materials', label: 'Materials lab', icon: FileText },
+  { href: '/assignment', label: 'Assignment', icon: FileText },
   { href: '/quiz', label: 'Knowledge check', icon: Sparkles },
   { href: '/roadmap', label: 'Career roadmap', icon: Compass },
 ];

@@ -494,7 +494,7 @@ export function Assessment() {
    * sit, and the honest thing is to say which and offer the two ways forward rather than
    * a local exam nobody can mark.
    */
-  if (!paper || !scenario || !section) return <div className="mx-auto max-w-4xl animate-rise-in"><PageIntro eyebrow="Quarterly competency check" title="The paper could not be dealt." description="The assessment is dealt and marked by the server, so this screen needs it. Nothing about your earlier attempts is affected." /><Card className="p-6 sm:p-10"><div className="flex items-start gap-3"><TriangleAlert className="mt-0.5 size-5 shrink-0 text-[#c86c5e]" /><div><p className="text-sm font-semibold text-foreground">What went wrong</p><p data-testid="text-assessment-unavailable" className="mt-1 text-sm leading-6 text-muted-foreground">{dealProblem || 'The assessment API did not answer.'}</p></div></div><div className="mt-7 flex flex-col gap-3 sm:flex-row"><ActionButton onClick={() => void deal()} icon={<RefreshCw className="size-4" />}>Try again</ActionButton><ActionButton variant="outline" onClick={() => setLocation('/materials')} icon={<ArrowRight className="size-4" />}>Practise from a document instead</ActionButton></div><p className="mt-5 text-xs leading-5 text-muted-foreground">A quiz built from your own PDF is graded in this tab, so it works without the assessment server.</p></Card></div>;
+  if (!paper || !scenario || !section) return <div className="mx-auto max-w-4xl animate-rise-in"><PageIntro eyebrow="Quarterly competency check" title="The paper could not be dealt." description="The assessment is dealt and marked by the server, so this screen needs it. Nothing about your earlier attempts is affected." /><Card className="p-6 sm:p-10"><div className="flex items-start gap-3"><TriangleAlert className="mt-0.5 size-5 shrink-0 text-[#c86c5e]" /><div><p className="text-sm font-semibold text-foreground">What went wrong</p><p data-testid="text-assessment-unavailable" className="mt-1 text-sm leading-6 text-muted-foreground">{dealProblem || 'The assessment API did not answer.'}</p></div></div><div className="mt-7 flex flex-col gap-3 sm:flex-row"><ActionButton onClick={() => void deal()} icon={<RefreshCw className="size-4" />}>Try again</ActionButton><ActionButton variant="outline" onClick={() => setLocation('/assignment')} icon={<ArrowRight className="size-4" />}>Practise from a document instead</ActionButton></div><p className="mt-5 text-xs leading-5 text-muted-foreground">A quiz built from your own PDF is graded in this tab, so it works without the assessment server.</p></Card></div>;
 
   return <div className="mx-auto max-w-4xl animate-rise-in"><PageIntro eyebrow="Quarterly competency check" title="Assessment, without the anxiety." description={`${paper.length} scenario questions, ${paper.questionsPerSection} for each of the five competencies in the National Competency Framework for official statistics. Marked on the server against a fixed answer key.`} action={<Badge tone="navy"><Clock3 className="size-3.5" /> {clockText(elapsed)} elapsed</Badge>} /><div className="mb-5 flex items-center gap-2">{paper.sections.map((item, i) => <div key={item.competency} className="flex flex-1 items-center gap-2"><div className={`flex size-7 items-center justify-center rounded-full text-xs font-bold ${i < sectionOf(paper, step) ? 'bg-primary text-white' : i === sectionOf(paper, step) ? 'bg-accent text-foreground' : 'bg-secondary text-muted-foreground'}`}>{i < sectionOf(paper, step) ? <Check className="size-3.5" /> : i + 1}</div>{i < paper.sections.length - 1 && <div className={`h-px flex-1 ${i < sectionOf(paper, step) ? 'bg-primary' : 'bg-border'}`} />}</div>)}</div><Card className="p-6 sm:p-10"><div className="flex items-center justify-between"><Badge tone="teal">Scenario {step + 1} of {paper.questions.length}</Badge><span className="font-mono text-xs text-muted-foreground">{section.focus}</span></div><h2 className="mt-8 max-w-2xl font-serif text-2xl leading-snug sm:text-3xl">{scenario.q}</h2><div className="mt-8 space-y-3">{scenario.options.map((option, i) => <button key={option.id} data-testid={`button-assessment-option-${i}`} onClick={() => choose(i)} className={`flex w-full items-start gap-3 rounded-xl border p-4 text-left text-sm transition-all ${selected === i ? 'border-primary bg-[#edf7f5] ring-1 ring-primary' : 'border-border hover:border-primary/40 hover:bg-secondary'}`}><span className={`flex size-6 shrink-0 items-center justify-center rounded-full border text-xs font-semibold ${selected === i ? 'border-primary bg-primary text-white' : 'border-border text-muted-foreground'}`}>{String.fromCharCode(65 + i)}</span><span className="leading-6">{option.text}</span></button>)}</div><div className="mt-8 flex justify-between border-t border-border pt-5"><button data-testid="button-assessment-back" onClick={() => goTo(Math.max(0, step - 1))} disabled={step === 0} className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground disabled:opacity-30"><ArrowLeft className="size-4" /> Back</button><ActionButton disabled={selected === null || saving} onClick={() => { if (isLast) void submit(); else goTo(step + 1); }} icon={<ArrowRight className="size-4" />}>{isLast ? (saving ? 'Marking...' : 'Submit assessment') : 'Save & continue'}</ActionButton></div>{saveNote && <p data-testid="text-assessment-submit-problem" className="mt-4 text-sm leading-6 text-[#a34d43]">{saveNote}</p>}</Card><p className="mt-4 text-xs leading-5 text-muted-foreground">{paper.note}</p></div>;
 }
@@ -935,7 +935,7 @@ function LargePdfPanel({ document, initialDifficulty, initialCount, onDiscard }:
         createdAt: new Date().toISOString(),
         isSample: false,
       });
-      setLocation('/quiz');
+      setLocation('/assignment/quiz');
     } catch (failure) {
       // A shortfall carries how many were produced, so the learner can generate that many.
       const produced = (failure as any)?.payload?.questions?.length ?? 0;
@@ -1247,7 +1247,7 @@ export function Materials() {
       setShowQuestions(false);
       setConfirmingDiscard(false);
       setError('');
-      setLocation('/quiz');
+      setLocation('/assignment/quiz');
     } catch (problem) {
       setPaperError(problem instanceof PaperError ? problem.message : 'That set could not be opened.');
     } finally {
@@ -1286,7 +1286,7 @@ export function Materials() {
     : [];
 
   return <div className="mx-auto max-w-5xl animate-rise-in">
-     <PageIntro eyebrow="Materials lab · AI question generation" title="Turn a brief into a knowledge check." description="Upload a work material and NEXORA AI will extract selectable text in your browser, identify concepts, then write a grounded practice set with AI on the server." action={<Badge tone="navy"><LockKeyhole className="size-3.5" /> Provider key stays on the server</Badge>} />
+     <PageIntro eyebrow="Assignment · AI question generation" title="Turn a brief into an assignment." description="Upload a work material and NEXORA AI will extract selectable text in your browser, identify concepts, then write a grounded practice set with AI on the server." action={<Badge tone="navy"><LockKeyhole className="size-3.5" /> Provider key stays on the server</Badge>} />
     {!work && !material && !largeDoc && !preparing && <Card className="p-6 sm:p-10">
       <div onDragOver={(event) => { event.preventDefault(); setIsDragging(true); }} onDragLeave={() => setIsDragging(false)} onDrop={handleDrop} className={`rounded-2xl border-2 border-dashed px-6 py-14 text-center transition-colors ${isDragging ? 'border-primary bg-[#e3f3ef]' : 'border-[#a9cdca] bg-[#f0f8f6]'}`}>
         <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-[#d9ece8] text-primary"><UploadCloud className="size-7" /></div>
@@ -1326,7 +1326,7 @@ export function Materials() {
     {!work && material && <Card className="p-6 sm:p-10">
        <div className="flex flex-col justify-between gap-4 border-b border-border pb-6 sm:flex-row sm:items-center"><div className="flex min-w-0 items-center gap-4"><div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#dceeea]"><CheckCircle2 className="size-6 text-primary" /></div><div className="min-w-0"><p className="truncate font-semibold">{material.fileName}</p><p className="mt-1 text-xs text-muted-foreground">{material.fileSize === 0 && material.savedPaperId ? `Reopened from your saved sets · ${material.questions.length} questions · ${material.topics.length} topics` : <>Read in this browser · {formatFileSize(material.fileSize)} · {material.pageCount} {material.pageCount === 1 ? 'page' : 'pages'} · {material.concepts.length} concepts identified</>}</p></div></div><div className="flex shrink-0 flex-wrap items-center gap-2">       {material.isSample && <Badge tone="amber">{sampleMaterialLabel}</Badge>}<Badge tone="teal">Ready to practise</Badge></div></div>
        {classification && <div className={`mt-4 flex items-start gap-3 rounded-lg border px-4 py-3 text-sm leading-6 ${classification.suitable ? 'border-[#b8d8c9] bg-[#eaf5ee] text-[#1a5c3a]' : 'border-[#eac3bd] bg-[#fff2ef] text-[#a34d43]'}`}><span className="mt-0.5 shrink-0 font-mono text-[10px] uppercase tracking-[.12em]">{classification.label}</span><div className="flex-1"><p className="font-semibold">{classification.reason}</p>{classification.summary && <p className="mt-1 text-xs opacity-80">{classification.summary}</p>}{classification.topics.length > 0 && <p className="mt-1 text-xs opacity-70">Topics: {classification.topics.join(', ')}</p>}{!classification.suitable && <p className="mt-2 text-xs font-medium">{classification.advice}</p>}</div></div>}
-       <div className="grid gap-5 py-7 lg:grid-cols-[1fr_260px]"><div><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Extracted intelligence</p><h2 className="mt-2 font-serif text-2xl">Your briefing, made queryable.</h2><p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">Text was extracted from your file in this browser. The questions were then written by AI on the NEXORA AI server, and each one was checked back against a sentence in your document before it was accepted.</p><div className="mt-5 flex flex-wrap gap-2">{material.concepts.map((concept) => <span key={concept} className="rounded-full border border-border bg-secondary px-3 py-1.5 text-xs text-muted-foreground">{concept}</span>)}</div></div><div className="rounded-xl bg-secondary p-5"><p className="text-xs text-muted-foreground">Generated set</p><p className="mt-2 font-serif text-3xl">{material.questions.length} MCQs</p><p className="mt-1 text-xs text-muted-foreground">Every question quotes a sentence from this material, and the quote was verified against it.</p><ActionButton className="mt-4 w-full" onClick={() => setLocation('/quiz')} icon={<ArrowRight className="size-4" />}>Open generated quiz</ActionButton>{material.savedPaperId ? <p data-testid="text-paper-saved" className="mt-3 flex items-center justify-center gap-1.5 rounded-lg border border-border bg-card py-2 text-xs font-semibold text-primary"><Check className="size-3.5" /> Saved to your account</p> : <button data-testid="button-save-paper" onClick={saveCurrentPaper} disabled={savingPaper} className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-lg border border-border bg-card py-2 text-xs font-semibold transition-colors hover:bg-secondary disabled:opacity-60"><Download className="size-3.5" /> {savingPaper ? 'Saving…' : 'Save this set'}</button>}{paperError !== '' && <p data-testid="text-paper-error" className="mt-2 rounded-lg border border-[#eac3bd] bg-[#fff2ef] p-2.5 text-[11px] leading-5 text-[#a34d43]">{paperError}</p>}{confirmingDiscard ? <div className="mt-3 rounded-lg border border-[#eac3bd] bg-[#fff2ef] p-3"><p className="text-xs leading-5 text-[#a34d43]">Discard this {material.questions.length}-question paper? Rebuilding it needs the file again.</p><div className="mt-3 flex gap-2"><button data-testid="button-confirm-discard-material" onClick={discard} className="flex-1 rounded-lg bg-[#a34d43] py-2 text-xs font-semibold text-white">Discard</button><button data-testid="button-cancel-discard-material" onClick={() => setConfirmingDiscard(false)} className="flex-1 rounded-lg border border-border bg-card py-2 text-xs font-semibold">Keep it</button></div></div> : <button data-testid="button-upload-another-material" onClick={() => setConfirmingDiscard(true)} className="mt-3 w-full py-2 text-xs font-semibold text-primary hover:underline">Upload another material</button>}{!isDurable() && <p className="mt-3 text-[11px] leading-5 text-muted-foreground">Tab storage is blocked in this browser, so the paper is held in memory only and a reload will lose it.</p>}</div></div>
+       <div className="grid gap-5 py-7 lg:grid-cols-[1fr_260px]"><div><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Extracted intelligence</p><h2 className="mt-2 font-serif text-2xl">Your briefing, made queryable.</h2><p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">Text was extracted from your file in this browser. The questions were then written by AI on the NEXORA AI server, and each one was checked back against a sentence in your document before it was accepted.</p><div className="mt-5 flex flex-wrap gap-2">{material.concepts.map((concept) => <span key={concept} className="rounded-full border border-border bg-secondary px-3 py-1.5 text-xs text-muted-foreground">{concept}</span>)}</div></div><div className="rounded-xl bg-secondary p-5"><p className="text-xs text-muted-foreground">Generated set</p><p className="mt-2 font-serif text-3xl">{material.questions.length} MCQs</p><p className="mt-1 text-xs text-muted-foreground">Every question quotes a sentence from this material, and the quote was verified against it.</p><ActionButton className="mt-4 w-full" onClick={() => setLocation('/assignment/quiz')} icon={<ArrowRight className="size-4" />}>Open generated quiz</ActionButton>{material.savedPaperId ? <p data-testid="text-paper-saved" className="mt-3 flex items-center justify-center gap-1.5 rounded-lg border border-border bg-card py-2 text-xs font-semibold text-primary"><Check className="size-3.5" /> Saved to your account</p> : <button data-testid="button-save-paper" onClick={saveCurrentPaper} disabled={savingPaper} className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-lg border border-border bg-card py-2 text-xs font-semibold transition-colors hover:bg-secondary disabled:opacity-60"><Download className="size-3.5" /> {savingPaper ? 'Saving…' : 'Save this set'}</button>}{paperError !== '' && <p data-testid="text-paper-error" className="mt-2 rounded-lg border border-[#eac3bd] bg-[#fff2ef] p-2.5 text-[11px] leading-5 text-[#a34d43]">{paperError}</p>}{confirmingDiscard ? <div className="mt-3 rounded-lg border border-[#eac3bd] bg-[#fff2ef] p-3"><p className="text-xs leading-5 text-[#a34d43]">Discard this {material.questions.length}-question paper? Rebuilding it needs the file again.</p><div className="mt-3 flex gap-2"><button data-testid="button-confirm-discard-material" onClick={discard} className="flex-1 rounded-lg bg-[#a34d43] py-2 text-xs font-semibold text-white">Discard</button><button data-testid="button-cancel-discard-material" onClick={() => setConfirmingDiscard(false)} className="flex-1 rounded-lg border border-border bg-card py-2 text-xs font-semibold">Keep it</button></div></div> : <button data-testid="button-upload-another-material" onClick={() => setConfirmingDiscard(true)} className="mt-3 w-full py-2 text-xs font-semibold text-primary hover:underline">Upload another material</button>}{!isDurable() && <p className="mt-3 text-[11px] leading-5 text-muted-foreground">Tab storage is blocked in this browser, so the paper is held in memory only and a reload will lose it.</p>}</div></div>
        {material.questions.length < MIN_QUESTIONS && <div role="status" className="mb-6 flex items-start gap-2 rounded-lg border border-[#eddcb4] bg-[#fdf6e6] px-4 py-3 text-sm leading-6 text-[#8a6319]"><TriangleAlert className="mt-0.5 size-4 shrink-0" /><span>This material yielded {material.questions.length} questions, fewer than the {MIN_QUESTIONS} a full check uses. A longer, more prose-heavy document produces more.</span></div>}
        <div className="border-t border-border pt-6">
         <div className="flex flex-wrap items-end justify-between gap-3"><div><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Scored topics</p><h3 className="mt-2 font-serif text-xl">What this paper will measure</h3></div><button data-testid="button-toggle-material-questions" onClick={() => setShowQuestions(!showQuestions)} className="text-xs font-semibold text-primary hover:underline">{showQuestions ? 'Hide the questions' : 'Show the questions'} <ArrowRight className="ml-1 inline size-3" /></button></div>
@@ -1525,6 +1525,40 @@ function QuizAnalytics({ graded }: { graded: AttemptResult }) {
  * about React and are covered by `scripts/engine-test.sh`. This component only
  * arranges what they return.
  */
+/**
+ * Knowledge check — the persistent results page.
+ *
+ * Unlike the quiz-taking flow (which lives on the Assignment page), everything here is
+ * server-driven: the competency gaps and the recommended courses are fetched from the
+ * account's stored attempts on every mount. So they stay put after the learner opens a
+ * recommended course and comes back — no need to retake the quiz to see them again.
+ */
+export function KnowledgeCheck() {
+  const { live, history } = useProgress();
+  const [, setLocation] = useLocation();
+  // The most recent saved sitting — its score summary is drawn from the account, so it
+  // persists between visits and survives opening a recommended course.
+  const latest = history.find((a) => a.source === 'material') ?? history[0] ?? null;
+  return <div className="mx-auto max-w-5xl animate-rise-in">
+    <PageIntro
+      eyebrow="Knowledge check"
+      title="Your competency gaps and recommended courses."
+      description="Measured from every knowledge check you've taken and saved — and matched to real courses in your catalogue. This stays here between visits, until you take another."
+      action={<ActionButton variant="amber" onClick={() => setLocation('/assignment')} icon={<ArrowRight className="size-4" />}>New assignment</ActionButton>}
+    />
+    {!live && <Card className="p-6 sm:p-8"><EmptyState title="No knowledge check taken yet" description="Create an assignment from a document, take the knowledge check, and your competency gaps and recommended courses will appear here — and stay." action={<ActionButton onClick={() => setLocation('/assignment')} icon={<ArrowRight className="size-4" />}>Go to Assignment</ActionButton>} /></Card>}
+    {live && latest && <Card className="p-6 sm:p-8">
+      <SectionHeading eyebrow="Latest result" title="How your most recent check went" description="Saved to your account — server-graded, not from this tab." />
+      <div className="mt-4 flex flex-wrap items-center gap-6">
+        <div><p className="font-serif text-4xl text-primary">{latest.correct}<span className="text-2xl text-muted-foreground">/{latest.total}</span></p><p className="mt-1 text-xs text-muted-foreground">{latest.percent}% · {latest.label}</p></div>
+        <div className="min-w-[160px] flex-1"><ProgressBar value={latest.percent} /></div>
+      </div>
+    </Card>}
+    {live && <CompetencyGapSection />}
+    {live && <GapCourseRecommendations />}
+  </div>;
+}
+
 export function Quiz() {
   const material = useMaterial();
   const { record } = useProgress();
@@ -1542,9 +1576,6 @@ export function Quiz() {
   const [saving, setSaving] = useState(false);
   const [saveNote, setSaveNote] = useState('');
   const [showReview, setShowReview] = useState(false);
-  // Bumped once this sitting is saved, so the gap-driven course recommendations refetch and
-  // include it (the server only knows about the attempt after the save round-trips).
-  const [recsKey, setRecsKey] = useState(0);
 
   const full = material?.questions ?? [];
   const paper = retryPaper ?? full;
@@ -1623,7 +1654,6 @@ export function Quiz() {
     );
     setSaving(false);
     setSaveNote(outcome.saved ? 'Saved to your account.' : outcome.reason);
-    if (outcome.saved) setRecsKey((k) => k + 1);
     // The save is what lets the Dashboard's cross-attempt gap analysis and course
     // recommendations include this sitting the next time it is opened. The on-screen
     // charts below need no refetch — they are drawn from this tab's own graded result.
@@ -1647,7 +1677,7 @@ export function Quiz() {
     if (questions.length > 0) begin(questions);
   };
 
-  if (paper.length === 0) return <div className="mx-auto max-w-3xl animate-rise-in"><PageIntro eyebrow="Grounded quiz" title="Generate a quiz from your material." description={`Upload a ${supportedFormatsSentence} file in Materials Lab first. NEXORA AI will extract the text and build questions from that source.`} /><Card className="p-8 text-center"><FileCheck2 className="mx-auto size-10 text-primary" /><p className="mt-4 text-sm text-muted-foreground">There is no generated material quiz in this browser session yet.</p><Link href="/materials" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white">Open Materials Lab <ArrowRight className="size-4" /></Link></Card></div>;
+  if (paper.length === 0) return <div className="mx-auto max-w-3xl animate-rise-in"><PageIntro eyebrow="Knowledge check" title="Generate a quiz from your material." description={`Upload a ${supportedFormatsSentence} file on the Assignment page first. NEXORA AI will extract the text and build questions from that source.`} /><Card className="p-8 text-center"><FileCheck2 className="mx-auto size-10 text-primary" /><p className="mt-4 text-sm text-muted-foreground">There is no generated assignment in this browser session yet.</p><Link href="/assignment" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white">Open Assignment <ArrowRight className="size-4" /></Link></Card></div>;
   if (!started) return <div className="mx-auto max-w-3xl animate-rise-in"><PageIntro eyebrow="Grounded quiz · AI generated" title="Test the brief, not your memory." description={`A ${paper.length}-question knowledge check built from extracted text in ${quizTitle}. Each answer points back to a source sentence.`} /><Card className="overflow-hidden"><div className="bg-sidebar p-8 text-sidebar-foreground sm:p-12"><div className="flex items-center justify-between"><Badge tone="amber">{paper.length} questions</Badge><span className="font-mono text-[10px] uppercase tracking-[.14em] text-sidebar-foreground/50">Source-grounded</span></div><h2 className="mt-8 max-w-lg break-words font-serif text-4xl text-white">{quizTitle}</h2><p className="mt-4 max-w-lg text-sm leading-6 text-sidebar-foreground/70">Practise identifying what the uploaded material actually says. Distractors are written to be plausible; the correct answer is the one checked against a sentence in the material.</p><ActionButton variant="amber" className="mt-8" onClick={() => begin(null)} icon={<Play className="size-4" />}>Begin knowledge check</ActionButton></div><div className="grid gap-3 p-6 sm:grid-cols-3">{[['01', 'Recall', 'Find the source statement'], ['02', 'Interpret', 'Read the signal'], ['03', 'Apply', 'Make the call']].map(([n, t, d]) => <div key={n}><p className="font-mono text-xs text-primary">{n}</p><p className="mt-2 text-sm font-semibold">{t}</p><p className="mt-1 text-xs text-muted-foreground">{d}</p></div>)}</div></Card></div>;
   if (done) return (
     <div className="mx-auto max-w-3xl animate-rise-in">
@@ -1661,7 +1691,7 @@ export function Quiz() {
         <div className="mt-7 flex flex-wrap justify-center gap-3">
           {plan.retry.length > 0 && <ActionButton onClick={practiseMissed} icon={<RefreshCw className="size-4" />}>Practise what you missed</ActionButton>}
           <ActionButton variant={plan.retry.length > 0 ? 'outline' : 'primary'} onClick={() => { setRetryPaper(null); setStarted(false); setDone(false); setQ(0); setChoice(null); setAnswers([]); setAnswered(false); setShowReview(false); setSaveNote(''); }}>Take the full paper again</ActionButton>
-          <Link href="/materials" className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2.5 text-sm font-semibold">Back to material</Link>
+          <Link href="/assignment" className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2.5 text-sm font-semibold">Back to assignment</Link>
         </div>
         {(saving || saveNote) && <p className="mt-5 text-xs text-muted-foreground">{saving ? 'Saving this result to your account...' : saveNote}</p>}
       </Card>
@@ -1698,11 +1728,13 @@ export function Quiz() {
         <p className="mt-4 text-xs leading-5 text-muted-foreground">Quoted from {quizTitle}, in the order they appear in the document. This is your own material — nothing here was fetched from anywhere else.</p>
       </Card>}
 
-      {/* Real courses from the downloaded 52-course catalogue, matched to the competency gaps
-          this sitting measured — the same engine the Dashboard uses. Replaces the old
-          hard-coded pathway list. Shows an honest empty state when this material's topics did
-          not map to a measurable gap. */}
-      <GapCourseRecommendations refreshKey={recsKey} />
+      {/* Your competency gaps and the real dataset courses matched to them live on the
+          Knowledge check page, where they persist (server-driven) — so they stay put after
+          you open a recommended course, without retaking the quiz. */}
+      <Card className="mt-6 p-6 sm:p-8">
+        <SectionHeading eyebrow="Next" title="See your gaps and recommended courses" description="Your competency gaps and the courses matched to them are saved to your account and stay on your Knowledge check page." />
+        <Link href="/quiz" data-testid="link-quiz-to-knowledge-check" className="mt-4 inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white">Open Knowledge check <ArrowRight className="size-4" /></Link>
+      </Card>
 
       {/**
         * A graph-rich analytics report of the paper just taken — built entirely from the

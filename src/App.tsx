@@ -8,7 +8,7 @@ import { AppShell } from '@/components/shell';
 import { RequireAuth } from '@/components/require-auth';
 import { SessionProvider } from '@/components/session-provider';
 import { ProgressProvider } from '@/components/progress-provider';
-import { Assessment, CatalogCourse, CourseCatalog, CourseDetail, CourseLibrary, Dashboard, Integrations, Intelligence, Learning, Materials, Presentation, Profile, Quiz, Roadmap } from '@/pages/demo-pages';
+import { Assessment, CatalogCourse, CourseCatalog, CourseDetail, CourseLibrary, Dashboard, Integrations, Intelligence, KnowledgeCheck, Learning, Materials, Presentation, Profile, Quiz, Roadmap } from '@/pages/demo-pages';
 import { Login, Signup } from '@/pages/auth-pages';
 import {
   Route,
@@ -55,8 +55,10 @@ function ShellRoutes() {
           <Route path="/catalog/:id" component={CatalogCourse} />
           <Route path="/catalog" component={CourseCatalog} />
           <Route path="/courses/:id" component={CourseDetail} />
+          <Route path="/assignment" component={Materials} />
           <Route path="/materials" component={Materials} />
-          <Route path="/quiz" component={Quiz} />
+          <Route path="/assignment/quiz" component={Quiz} />
+          <Route path="/quiz" component={KnowledgeCheck} />
           <Route path="/intelligence" component={Intelligence} />
           <Route path="/roadmap" component={Roadmap} />
           <Route path="/profile" component={Profile} />
