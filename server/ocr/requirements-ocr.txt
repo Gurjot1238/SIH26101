@@ -1,0 +1,21 @@
+# Local OCR service dependencies (Nexora AI).
+#
+# Install into the project-local virtualenv the app expects:
+#
+#   python3 -m venv .venv-ocr
+#   ./.venv-ocr/bin/pip install -r server/ocr/requirements-ocr.txt
+#
+# Everything here runs entirely on your machine — no cloud API, no key. The HTTP
+# service itself uses only the Python standard library; these packages are the
+# OCR engine and the image/PDF decoders it needs.
+#
+# Versions are pinned to what this project was verified against (macOS, Python
+# 3.9). PaddlePaddle wheels are platform-specific; if pip cannot find a matching
+# wheel for your OS/Python, see https://www.paddlepaddle.org.cn/en for the right
+# index URL.
+
+paddlepaddle==3.3.1
+paddleocr==3.7.0
+pillow==11.3.0
+pypdfium2==5.13.0
+numpy==2.0.2

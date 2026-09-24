@@ -22,6 +22,21 @@ function envInt(name, fallback, env = process.env) {
   return Number.isInteger(n) && n > 0 ? n : fallback;
 }
 
+/** Read a boolean flag (1/true/yes/on vs 0/false/no/off). Falls back when unset or unknown. */
+function envBool(name, fallback, env = process.env) {
+  const raw = (env[name] ?? '').trim().toLowerCase();
+  if (raw === '') return fallback;
+  if (['1', 'true', 'yes', 'on'].includes(raw)) return true;
+  if (['0', 'false', 'no', 'off'].includes(raw)) return false;
+  return fallback;
+}
+
+/** Read a non-empty trimmed string from the environment, falling back when unset. */
+function envStr(name, fallback, env = process.env) {
+  const raw = (env[name] ?? '').trim();
+  return raw === '' ? fallback : raw;
+}
+
 /**
  * Processing modes, chosen automatically from page count (and, for SCANNED /
  * STRUCTURED_RESULT / QUESTION_PAPER, from the classifier — those are set elsewhere and
@@ -85,6 +100,38 @@ export function loadConfig(env = process.env) {
     jobs: {
       maxChunkRetries: envInt('DOC_JOB_MAX_CHUNK_RETRIES', 3, env),
       concurrency: envInt('DOC_JOB_CONCURRENCY', 2, env),
+    },
+
+    // Local OCR (optional). When a PDF page carries too little selectable text (see
+    // upload.minCharsPerPage) the browser rasterises just that page and posts the PNG to
+    // /api/documents/ocr-page, which forwards to a local PaddleOCR HTTP service. Everything
+    // here is a knob so an operator can retune without a code change, and the feature is
+    // strictly optional: with OCR disabled or the service down, native-text PDFs are
+    // unaffected and only genuinely scanned pages get an honest "OCR unavailable" result.
+    ocr: {
+      // Master switch. Off → the server behaves exactly as it did before OCR existed.
+      enabled: envBool('OCR_ENABLED', true, env),
+      // The service binds to loopback ONLY; a public bind is never a supported configuration.
+      host: envStr('OCR_HOST', '127.0.0.1', env),
+      port: envInt('OCR_PORT', 8091, env),
+      // Per-request ceiling for a single page image / small PDF. PaddleOCR's first call also
+      // pays a one-time model-load cost, so this is generous rather than tight.
+      timeoutMs: envInt('OCR_TIMEOUT_MS', 30_000, env),
+      // Interpreter that has paddleocr installed. Default matches the venv the user created;
+      // relative paths resolve from the repo root (resolved by the dev launcher / adapter).
+      python: envStr('OCR_PYTHON', '.venv-ocr/bin/python', env),
+      // Recognition language passed to PaddleOCR (`en`, `ch`, ...).
+      lang: envStr('OCR_LANG', 'en', env),
+      // Rasterisation resolution for scanned pages. ~200 DPI is a good text/latency trade.
+      dpi: envInt('OCR_DPI', 200, env),
+      // Safety caps so a scanned book can never OCR itself into an unbounded job: at most
+      // this many pages are OCR'd per document, in batches of this size (one page per HTTP
+      // request from the browser, so the server never receives many pages at once).
+      maxPages: envInt('OCR_MAX_PAGES', 200, env),
+      maxBatch: envInt('OCR_MAX_BATCH', 1, env),
+      // Largest page image the /ocr-page route will accept (defends the service from a
+      // pathologically large PNG). 12 MB comfortably holds a 200-DPI A4 page.
+      maxImageBytes: envInt('OCR_MAX_IMAGE_BYTES', 12 * 1024 * 1024, env),
     },
   };
   return cfg;

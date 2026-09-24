@@ -1,4 +1,6 @@
-/**
+import dotenv from 'dotenv';
+
+dotenv.config({ path: new URL('../.env', import.meta.url) });/**
  * One-time (idempotent) importer: JSON files under server/data → PostgreSQL.
  *
  *   DATABASE_URL=postgres://user:pass@localhost:5432/nexora  node server/db/migrate.mjs

@@ -25,3 +25,15 @@ server/auth-server.log
 .DS_Store
 .idea/
 *.swp
+
+# local OCR (PaddleOCR) — venv, downloaded models, python caches, temp page
+# images and service logs are all local artifacts and must never be committed.
+.venv-ocr/
+server/ocr/__pycache__/
+**/__pycache__/
+*.pyc
+.paddleocr/
+server/ocr/models/
+server/ocr/*.log
+server/data/ocr-tmp/
+ocr-service.log

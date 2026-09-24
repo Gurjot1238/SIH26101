@@ -871,6 +871,142 @@ export const supportedExtensions = ['pdf', 'txt', 'md'] as const;
  */
 export const MAX_MATERIAL_BYTES = 25 * 1024 * 1024;
 
+// --- Scanned-page (OCR) seam ------------------------------------------------
+//
+// Native text extraction still runs FIRST and for free in the browser. Only a page that
+// comes back with too little selectable text is a candidate for OCR — a page that is
+// really an image of text (a scan, a photographed slide). For those, and only those, we
+// rasterise the page here in the tab and hand the PNG bytes to the server's local OCR
+// service through an injected callback. The file itself is still never uploaded; a
+// scanned page leaves the tab as a one-page image, one page at a time.
+//
+// The callback is injected rather than imported so this module stays server-agnostic and
+// unit-testable (the same reason question generation moved out), and so importing this
+// file under SSR/import-smoke never reaches for `document` or the network.
+
+/** A page's extracted text plus how it was obtained. `source` defaults to native text. */
+export type PageText = {
+  page: number;
+  text: string;
+  source?: 'native_text' | 'ocr' | 'ocr_failed';
+  /** OCR confidence in [0,1], present only for a page whose text came from OCR. */
+  confidence?: number;
+};
+
+/** Result of an injected OCR call for one page image, or null when it could not be read. */
+export type OcrPageResult = { text: string; confidence: number } | null;
+
+/** Injected OCR transport: image bytes in, recognised text out. Never throws for the caller. */
+export type OcrPageFn = (args: { imageBase64: string; pageNumber: number }) => Promise<OcrPageResult>;
+
+/**
+ * A page with fewer selectable characters than this is treated as scanned and sent for
+ * OCR. Chosen well below a normal prose page but above the stray ligatures/headers a
+ * truly blank scan sometimes yields.
+ */
+export const LOW_TEXT_PAGE_CHARS = 24;
+
+/** True when a page's native text is too sparse to be the real content of the page. */
+export function isLowTextPage(text: string): boolean {
+  return normalizeText(text).length < LOW_TEXT_PAGE_CHARS;
+}
+
+/** Progress hook for the OCR pass: called as each scanned page finishes (ok or failed). */
+export type OcrProgress = (pagesOcred: number, pagesToOcr: number) => void;
+
+/**
+ * Render one already-loaded pdf.js page to a PNG and return its base64 (no data: prefix).
+ *
+ * Browser-only by nature — it needs a real canvas. It is never called during import, so
+ * SSR/import-smoke never touches `document`. `scale` trades OCR accuracy for image size;
+ * ~2x is a good default for recognising body text without producing a huge PNG.
+ */
+async function rasterizePageToPngBase64(page: any, scale = 2): Promise<string> {
+  if (typeof document === 'undefined') throw new Error('Page rasterization requires a browser environment.');
+  const viewport = page.getViewport({ scale });
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.max(1, Math.ceil(viewport.width));
+  canvas.height = Math.max(1, Math.ceil(viewport.height));
+  const context = canvas.getContext('2d');
+  if (!context) throw new Error('Could not get a 2D canvas context for rasterization.');
+  await page.render({ canvasContext: context, viewport }).promise;
+  const dataUrl = canvas.toDataURL('image/png');
+  // Free the backing store promptly — a scanned book would otherwise pin one bitmap per page.
+  canvas.width = 0;
+  canvas.height = 0;
+  return dataUrl.slice(dataUrl.indexOf(',') + 1);
+}
+
+/**
+ * Extract a PDF page-by-page, then OCR only the scanned (low-text) pages via `ocr`.
+ *
+ * Native extraction runs first for every page (fast, local, free). The pages that come
+ * back essentially empty are rasterised and OCR'd ONE AT A TIME — the image is created,
+ * sent, and discarded before the next page, so a large scan never holds many bitmaps and
+ * never posts more than a single page image per request. A page OCR cannot read is tagged
+ * `ocr_failed` (honest, not silently blank); a page OCR reads becomes `ocr` with its
+ * confidence. If `ocr` is absent, this behaves like the native-only extractor.
+ */
+export async function extractPdfPagesWithOcr(
+  file: File,
+  { onPage, ocr, onOcr }: { onPage?: PageProgress; ocr?: OcrPageFn; onOcr?: OcrProgress } = {},
+): Promise<{ pages: PageText[]; pageCount: number; pagesOcred: number; pagesOcrFailed: number }> {
+  const data = new Uint8Array(await file.arrayBuffer());
+  const pdf = await getDocument({ data }).promise;
+  const pages: PageText[] = [];
+  const scanned: number[] = [];
+
+  // Pass 1 — native text for every page (unchanged behaviour). Keep the pdf open so a
+  // low-text page can be re-fetched and rendered in pass 2 without decoding the file twice.
+  for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
+    const page = await pdf.getPage(pageNumber);
+    const content = await page.getTextContent();
+    const pageText = normalizeText(content.items.map((item) => ('str' in item ? item.str : '')).join(' '));
+    pages.push({ page: pageNumber, text: pageText, source: 'native_text' });
+    if (isLowTextPage(pageText)) scanned.push(pageNumber);
+    page.cleanup();
+    onPage?.(pageNumber, pdf.numPages);
+  }
+
+  let pagesOcred = 0;
+  let pagesOcrFailed = 0;
+  // Pass 2 — OCR the scanned pages only, streamed one image at a time.
+  if (ocr && scanned.length > 0) {
+    let done = 0;
+    for (const pageNumber of scanned) {
+      const entry = pages[pageNumber - 1];
+      try {
+        const page = await pdf.getPage(pageNumber);
+        const imageBase64 = await rasterizePageToPngBase64(page);
+        page.cleanup();
+        const result = await ocr({ imageBase64, pageNumber });
+        const text = normalizeText(result?.text ?? '');
+        if (result && text.length >= LOW_TEXT_PAGE_CHARS) {
+          entry.text = text;
+          entry.source = 'ocr';
+          if (typeof result.confidence === 'number') entry.confidence = result.confidence;
+          pagesOcred += 1;
+        } else {
+          // OCR ran but produced nothing usable: mark it failed rather than faking text.
+          entry.source = 'ocr_failed';
+          pagesOcrFailed += 1;
+        }
+      } catch {
+        // Rasterization or transport failed for this page. Native text (if any) stays;
+        // the page is honestly marked failed so downstream metadata reflects reality.
+        entry.source = 'ocr_failed';
+        pagesOcrFailed += 1;
+      }
+      done += 1;
+      onOcr?.(done, scanned.length);
+    }
+  }
+  // With no OCR wired, scanned pages simply stay as sparse native_text — not marked
+  // failed, because OCR was never attempted.
+
+  return { pages, pageCount: pdf.numPages, pagesOcred, pagesOcrFailed };
+}
+
 export async function readMaterial(file: File, onPage?: PageProgress) {
   const extension = file.name.split('.').pop()?.toLowerCase() ?? '';
   if (extension === 'pdf') return extractPdfText(file, onPage);
@@ -886,20 +1022,32 @@ export async function readMaterial(file: File, onPage?: PageProgress) {
 /**
  * Read a file to page-tagged text (for the large-document workflow) plus the joined text
  * and page count (so the caller can decide small-vs-large from the same single read).
+ *
+ * When an `ocr` transport is supplied in `opts`, scanned (low-text) PDF pages are run
+ * through OCR and their text folded into the same page list — so the rest of the pipeline
+ * (chunk → index → retrieve → generate) never has to know a page was scanned. Without it,
+ * behaviour is exactly the native-only read it always was.
  */
-export async function readMaterialWithPages(file: File, onPage?: PageProgress): Promise<{ text: string; pageCount: number; pages: { page: number; text: string }[] }> {
+export async function readMaterialWithPages(
+  file: File,
+  onPage?: PageProgress,
+  opts: { ocr?: OcrPageFn; onOcr?: OcrProgress } = {},
+): Promise<{ text: string; pageCount: number; pages: PageText[]; pagesOcred: number; pagesOcrFailed: number }> {
   const extension = file.name.split('.').pop()?.toLowerCase() ?? '';
   if (extension === 'pdf') {
-    const { pages, pageCount } = await extractPdfPages(file, onPage);
+    const { pages, pageCount, pagesOcred, pagesOcrFailed } = await extractPdfPagesWithOcr(file, { onPage, ocr: opts.ocr, onOcr: opts.onOcr });
     const text = normalizeText(pages.map((p) => p.text).join('\n\n'));
-    if (text.length < 45) throw new Error('This PDF appears to be scanned or contains too little selectable text. Try a text-based PDF or export it with OCR first.');
-    return { text, pageCount, pages };
+    if (text.length < 45) {
+      // Still too little text after OCR (or with none wired): the honest scanned-PDF error.
+      throw new Error('This PDF appears to be scanned or contains too little selectable text. Try a text-based PDF or export it with OCR first.');
+    }
+    return { text, pageCount, pages, pagesOcred, pagesOcrFailed };
   }
   if (extension === 'txt' || extension === 'md') {
     const text = normalizeText(await file.text());
     if (text.length < 45) throw new Error('That file has too little text to build a knowledge check from.');
     onPage?.(1, 1);
-    return { text, pageCount: 1, pages: [{ page: 1, text }] };
+    return { text, pageCount: 1, pages: [{ page: 1, text, source: 'native_text' }], pagesOcred: 0, pagesOcrFailed: 0 };
   }
   throw new Error(`${extension ? `.${extension}` : 'That format'} is not supported. Upload a text-based PDF, TXT or MD file.`);
 }

@@ -63,12 +63,31 @@ function headingKind(line) {
 /**
  * Split pages into chunks.
  *
- *   pages       [{ page, text }]
+ *   pages       [{ page, text, source?, confidence? }]  — source is 'native_text' | 'ocr'
+ *               | 'ocr_failed' (default 'native_text'); confidence is the OCR score if any.
  *   documentId  stamped into every chunk
  *   cfg         chunk sizing (targetChars, minChars, overlapChars)
  *
- * Returns [{ documentId, chunkId, index, pageStart, pageEnd, chapter, section, text, topics }].
+ * Returns [{ documentId, chunkId, index, pageStart, pageEnd, chapter, section, text, topics,
+ *            extractionMethod, ocrConfidence }]. extractionMethod is 'native_text' | 'ocr' |
+ * 'mixed', derived from the pages that fed the chunk — so a question grounded in a chunk can
+ * honestly say whether its evidence was typed or recognised from a scan.
  */
+function normaliseSource(source) {
+  if (source === 'ocr') return 'ocr';
+  if (source === 'ocr_failed') return 'ocr_failed';
+  return 'native_text';
+}
+
+/** Collapse a set of page sources into one chunk-level extraction method. */
+function methodFromSources(sources) {
+  const hasNative = sources.has('native_text');
+  const hasOcr = sources.has('ocr');
+  if (hasNative && hasOcr) return 'mixed';
+  if (hasOcr) return 'ocr';
+  return 'native_text';
+}
+
 export function chunkPages(pages, { documentId = 'doc', cfg = loadConfig() } = {}) {
   const { targetChars, minChars, overlapChars } = cfg.chunk;
   const chunks = [];
@@ -79,21 +98,36 @@ export function chunkPages(pages, { documentId = 'doc', cfg = loadConfig() } = {
   let section = null;
   let chunkChapter = null;
   let chunkSection = null;
+  // Provenance for the current buffer: which extraction sources fed it, and the running
+  // mean of any OCR confidences, so each chunk can report how its text was obtained.
+  let bufSources = new Set();
+  let ocrConfSum = 0;
+  let ocrConfCount = 0;
+
+  const finalizeChunk = (text) => {
+    const method = methodFromSources(bufSources);
+    const chunk = {
+      documentId,
+      chunkId: `${documentId}::c${chunks.length}`,
+      index: chunks.length,
+      pageStart: bufPageStart,
+      pageEnd: bufPageEnd,
+      chapter: chunkChapter,
+      section: chunkSection,
+      text,
+      topics: [],
+      extractionMethod: method,
+    };
+    if (method !== 'native_text' && ocrConfCount > 0) {
+      chunk.ocrConfidence = Math.round((ocrConfSum / ocrConfCount) * 1000) / 1000;
+    }
+    chunks.push(chunk);
+  };
 
   const flush = (nextText = '') => {
     const text = buf.trim();
     if (text.length >= Math.min(minChars, 1)) {
-      chunks.push({
-        documentId,
-        chunkId: `${documentId}::c${chunks.length}`,
-        index: chunks.length,
-        pageStart: bufPageStart,
-        pageEnd: bufPageEnd,
-        chapter: chunkChapter,
-        section: chunkSection,
-        text,
-        topics: [],
-      });
+      finalizeChunk(text);
     }
     // Carry a small overlap tail into the next buffer so a concept cut at the boundary
     // still appears at the head of the following chunk.
@@ -105,9 +139,14 @@ export function chunkPages(pages, { documentId = 'doc', cfg = loadConfig() } = {
     bufPageEnd = null;
     chunkChapter = chapter;
     chunkSection = section;
+    // The overlap tail belongs to the chunk just flushed, so its sources carry forward;
+    // with no tail the next chunk starts with a clean provenance slate.
+    bufSources = tail ? new Set(bufSources) : new Set();
+    if (!tail) { ocrConfSum = 0; ocrConfCount = 0; }
   };
 
-  for (const { page, text } of pages) {
+  for (const { page, text, source, confidence } of pages) {
+    const src = normaliseSource(source);
     const paras = String(text).split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
     for (const para of paras) {
       // Update the running chapter/section when a paragraph is actually a heading line.
@@ -125,6 +164,8 @@ export function chunkPages(pages, { documentId = 'doc', cfg = loadConfig() } = {
 
       if (bufPageStart === null) { bufPageStart = page; chunkChapter = chapter; chunkSection = section; }
       bufPageEnd = page;
+      bufSources.add(src);
+      if (src === 'ocr' && typeof confidence === 'number') { ocrConfSum += confidence; ocrConfCount += 1; }
       buf = buf === '' ? para : `${buf}\n\n${para}`;
 
       if (buf.length >= targetChars) flush('');
@@ -132,18 +173,9 @@ export function chunkPages(pages, { documentId = 'doc', cfg = loadConfig() } = {
   }
   if (buf.trim().length > 0) {
     // Final flush without overlap handling (nothing follows).
-    const text = buf.trim();
-    chunks.push({
-      documentId,
-      chunkId: `${documentId}::c${chunks.length}`,
-      index: chunks.length,
-      pageStart: bufPageStart ?? (pages[0]?.page ?? 1),
-      pageEnd: bufPageEnd ?? (pages[pages.length - 1]?.page ?? 1),
-      chapter: chunkChapter,
-      section: chunkSection,
-      text,
-      topics: [],
-    });
+    if (bufPageStart === null) bufPageStart = pages[0]?.page ?? 1;
+    if (bufPageEnd === null) bufPageEnd = pages[pages.length - 1]?.page ?? 1;
+    finalizeChunk(buf.trim());
   }
   return chunks;
 }

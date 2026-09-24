@@ -8,7 +8,9 @@ import {
   MAX_MATERIAL_BYTES,
   MIN_QUESTIONS,
   type MaterialQuestion,
+  type OcrPageFn,
   type PageProgress,
+  type PageText,
   TARGET_QUESTIONS,
   extractConcepts,
   extractTopics,
@@ -25,7 +27,7 @@ import {
   supportedFormatsSentence,
 } from '@/lib/materials';
 import { AiGenerationError, generateAiQuestions, classifyDocument, type MaterialClassification, type Difficulty } from '@/lib/ai-questions';
-import { DocumentError, ingestLargeDocument, searchDocument, generateFromTopic, type DocumentRecord, type SearchPreview } from '@/lib/documents';
+import { DocumentError, checkOcrAvailable, createOcrTransport, ingestLargeDocument, searchDocument, generateFromTopic, type DocumentRecord, type SearchPreview } from '@/lib/documents';
 import { MAX_SAVED_PAPERS, PaperError, type SavedPaperSummary, deletePaper, getPaper, listPapers, savePaper } from '@/lib/papers';
 import { clearMaterial, isDurable, setMaterial, useMaterial } from '@/lib/material-session';
 import {
@@ -847,6 +849,8 @@ type Work = {
   askedAt: number;
   /** What the model classified the document as — shown as a banner before questions. */
   classification: MaterialClassification | null;
+  /** True once OCR has started reading scanned pages, so the label can say so honestly. */
+  ocrActive?: boolean;
 };
 
 /**
@@ -1032,7 +1036,7 @@ export function Materials() {
 
   const startProcessing = async (
     meta: { fileName: string; fileSize: number; fileType: string; isSample: boolean },
-    read: (onPage: PageProgress) => Promise<{ text: string; pageCount: number; pages?: { page: number; text: string }[] }>,
+    read: (onPage: PageProgress) => Promise<{ text: string; pageCount: number; pages?: PageText[] }>,
   ) => {
     setError('');
     setShowQuestions(false);
@@ -1148,7 +1152,21 @@ export function Materials() {
       { fileName: file.name, fileSize: file.size, fileType: extension, isSample: false },
       // Read with per-page text so a large book can take the search-then-generate path;
       // small documents ignore the extra `pages` field and use the existing fast flow.
-      (onPage) => readMaterialWithPages(file, onPage),
+      // Only PDFs can hold scanned pages, so text files never probe for OCR. When the local
+      // OCR service is up, its transport is handed in; low-text pages are then rasterised and
+      // read one at a time inside the reader. When it is down we pass nothing, so text PDFs
+      // are wholly unaffected and a scanned file falls through to the existing honest error.
+      async (onPage) => {
+        let ocr: OcrPageFn | undefined;
+        if (extension === 'pdf') {
+          const health = await checkOcrAvailable();
+          if (health.available) ocr = createOcrTransport();
+        }
+        return readMaterialWithPages(file, onPage, {
+          ocr,
+          onOcr: () => setWork((previous) => (previous ? { ...previous, ocrActive: true } : previous)),
+        });
+      },
     );
   };
 
@@ -1274,6 +1292,14 @@ export function Materials() {
   const stageIndex = work ? stageOrder.indexOf(work.stage) : -1;
   const progress = work ? progressFor(work) : 0;
   /**
+   * The reading stage says "Reading scanned content" once OCR is actually running on this
+   * document, so a learner watching a scanned upload sees why it takes a moment. Every other
+   * stage keeps its normal label.
+   */
+  const stageLabel = work
+    ? (work.stage === 'reading' && work.ocrActive ? 'Reading scanned content' : stageLabels[work.stage])
+    : '';
+  /**
    * Seconds the model has actually been thinking. Measured, not estimated — it is the
    * one honest thing that can move while the bar has nothing new to say, and a request
    * that has been out for 40 seconds looks different from one that has been out for 3.
@@ -1313,8 +1339,8 @@ export function Materials() {
       <div className="mt-8 grid gap-3 sm:grid-cols-3">{[['1', 'Upload', 'Add a work material'], ['2', 'Ground', 'Extract key concepts'], ['3', 'Practise', 'Generate MCQs']].map(([n, t, d]) => <div key={n} className="flex gap-3 rounded-lg bg-secondary p-4"><span className="font-mono text-xs text-primary">{n}</span><div><p className="text-sm font-semibold">{t}</p><p className="mt-1 text-xs text-muted-foreground">{d}</p></div></div>)}</div>
     </Card>}
     {work && <Card className="p-6 sm:p-10">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center"><div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#f7ebd1]"><FileCheck2 className="size-6 text-[#8a6319]" /></div><div className="min-w-0 flex-1"><p className="truncate font-semibold">{work.fileName}</p><p className="mt-1 text-xs text-muted-foreground">{work.fileType.toUpperCase()} · {formatFileSize(work.fileSize)} · {stageLabels[work.stage]}...</p></div><Badge tone="amber">Processing</Badge></div>
-      <div className="mt-8 space-y-3"><ProgressBar value={progress} color="bg-accent" /><div className="flex justify-between font-mono text-[10px] uppercase tracking-[.12em] text-muted-foreground"><span>{stageLabels[work.stage]}{waitSeconds > 0 ? ` · ${waitSeconds}s elapsed` : ''}</span><span>{progress}%</span></div></div>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center"><div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#f7ebd1]"><FileCheck2 className="size-6 text-[#8a6319]" /></div><div className="min-w-0 flex-1"><p className="truncate font-semibold">{work.fileName}</p><p className="mt-1 text-xs text-muted-foreground">{work.fileType.toUpperCase()} · {formatFileSize(work.fileSize)} · {stageLabel}...</p></div><Badge tone="amber">Processing</Badge></div>
+      <div className="mt-8 space-y-3"><ProgressBar value={progress} color="bg-accent" /><div className="flex justify-between font-mono text-[10px] uppercase tracking-[.12em] text-muted-foreground"><span>{stageLabel}{waitSeconds > 0 ? ` · ${waitSeconds}s elapsed` : ''}</span><span>{progress}%</span></div></div>
       {work.classification && <div className={`mt-4 flex items-start gap-3 rounded-lg border px-4 py-3 text-sm leading-6 ${work.classification.suitable ? 'border-[#b8d8c9] bg-[#eaf5ee] text-[#1a5c3a]' : 'border-[#eac3bd] bg-[#fff2ef] text-[#a34d43]'}`}><span className="mt-0.5 shrink-0 font-mono text-[10px] uppercase tracking-[.12em]">{work.classification.label}</span><div className="flex-1"><p className="font-semibold">{work.classification.reason}</p>{work.classification.summary && <p className="mt-1 text-xs opacity-80">{work.classification.summary}</p>}{work.classification.topics.length > 0 && <p className="mt-1 text-xs opacity-70">Topics: {work.classification.topics.join(', ')}</p>}{!work.classification.suitable && <p className="mt-2 text-xs font-medium">{work.classification.advice}</p>}</div></div>}
        <div className="mt-8 grid gap-3 sm:grid-cols-3">{['Document text', 'Key terms', 'Question blueprint'].map((t, i) => <div key={t} className="rounded-lg border border-border p-4"><div className="mb-4 h-2 w-2/3 animate-pulse rounded bg-secondary" /><p className="text-xs text-muted-foreground">{t}</p><p className="mt-1 text-sm font-semibold">{i === 0 ? (stageIndex > 0 ? `Text extracted · ${work.pageCount} ${work.pageCount === 1 ? 'page' : 'pages'}` : work.pagesRead > 0 ? `${work.pagesRead} of ${work.pageCount} pages read` : 'Working...') : i === 1 ? (stageIndex > 2 ? `${work.conceptCount} concepts found` : 'Working...') : work.questionCount > 0 ? `${work.questionCount} questions ready` : 'Working...'}</p></div>)}</div>
     </Card>}
@@ -1536,14 +1562,15 @@ function QuizAnalytics({ graded }: { graded: AttemptResult }) {
 export function KnowledgeCheck() {
   const { live, history } = useProgress();
   const [, setLocation] = useLocation();
-  // The most recent saved sitting — its score summary is drawn from the account, so it
-  // persists between visits and survives opening a recommended course.
-  const latest = history.find((a) => a.source === 'material') ?? history[0] ?? null;
+  // The current sitting: the newest saved attempt. History is newest-first, so [0] is the
+  // check just taken — never an older one. It is drawn from the account, so it persists
+  // between visits and survives opening a recommended course.
+  const latest = history[0] ?? null;
   return <div className="mx-auto max-w-5xl animate-rise-in">
     <PageIntro
       eyebrow="Knowledge check"
       title="Your competency gaps and recommended courses."
-      description="Measured from every knowledge check you've taken and saved — and matched to real courses in your catalogue. This stays here between visits, until you take another."
+      description="Measured from your most recent knowledge check and matched to real courses in your catalogue. This stays here between visits, until you take another."
       action={<ActionButton variant="amber" onClick={() => setLocation('/assignment')} icon={<ArrowRight className="size-4" />}>New assignment</ActionButton>}
     />
     {!live && <Card className="p-6 sm:p-8"><EmptyState title="No knowledge check taken yet" description="Create an assignment from a document, take the knowledge check, and your competency gaps and recommended courses will appear here — and stay." action={<ActionButton onClick={() => setLocation('/assignment')} icon={<ArrowRight className="size-4" />}>Go to Assignment</ActionButton>} /></Card>}
@@ -1554,8 +1581,8 @@ export function KnowledgeCheck() {
         <div className="min-w-[160px] flex-1"><ProgressBar value={latest.percent} /></div>
       </div>
     </Card>}
-    {live && <CompetencyGapSection />}
-    {live && <GapCourseRecommendations />}
+    {live && <CompetencyGapSection scope="latest" />}
+    {live && <GapCourseRecommendations scope="latest" />}
   </div>;
 }
 

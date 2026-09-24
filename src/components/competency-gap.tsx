@@ -58,7 +58,7 @@ function Tally({ label, value, note, tone }: { label: string; value: string; not
  * shown include that sitting rather than the state from before it. Omitted on the
  * Dashboard, where a mount is always fresh.
  */
-export function CompetencyGapSection({ refreshKey = 0 }: { refreshKey?: number } = {}) {
+export function CompetencyGapSection({ refreshKey = 0, scope = 'all' }: { refreshKey?: number; scope?: 'all' | 'latest' } = {}) {
   const [analytics, setAnalytics] = useState<CompetencyAnalytics | null>(null);
   const [status, setStatus] = useState<'loading' | 'ready' | 'unavailable'>('loading');
   const [problem, setProblem] = useState('');
@@ -69,7 +69,7 @@ export function CompetencyGapSection({ refreshKey = 0 }: { refreshKey?: number }
 
   useEffect(() => {
     let live = true;
-    fetchCompetencyAnalytics('all')
+    fetchCompetencyAnalytics(scope)
       .then((payload) => {
         if (!live) return;
         setAnalytics(payload);
@@ -84,7 +84,7 @@ export function CompetencyGapSection({ refreshKey = 0 }: { refreshKey?: number }
         setStatus('unavailable');
       });
     return () => { live = false; };
-  }, [refreshKey]);
+  }, [refreshKey, scope]);
 
   const rows = analytics?.competencies ?? [];
   const chosen = useMemo(
@@ -114,7 +114,7 @@ export function CompetencyGapSection({ refreshKey = 0 }: { refreshKey?: number }
     setExplainState('working');
     setExplainProblem('');
     try {
-      const result = await explainAnalytics('all');
+      const result = await explainAnalytics(scope);
       setExplanation(result.paragraphs);
       setExplainState('idle');
     } catch (error: unknown) {

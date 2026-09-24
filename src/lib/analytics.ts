@@ -312,14 +312,21 @@ export type CourseRecommendations = {
 /**
  * Fetch the account's gap-driven course recommendations.
  *
+ * `scope: 'latest'` derives the gaps (and therefore the courses) from the newest sitting
+ * alone, so the Knowledge check page can recommend only for the assessment just taken;
+ * `'all'` (the default, used on the Dashboard) ranks gaps across the whole history.
+ *
  * Session-guarded server-side (it reads the learner's private results). A signed-out
  * or brand-new account does not throw here for the "nothing yet" cases — those come
  * back as a valid payload with `measured: false`; only a real transport or auth
  * failure raises `AnalyticsError`.
  */
-export async function fetchRecommendedCourses(): Promise<CourseRecommendations> {
+export async function fetchRecommendedCourses(
+  scope: 'all' | 'latest' = 'all',
+): Promise<CourseRecommendations> {
+  const query = scope === 'all' ? '' : `?scope=${encodeURIComponent(scope)}`;
   const body = await request<{ recommendations: CourseRecommendations }>(
-    '/api/analytics/recommended-courses',
+    `/api/analytics/recommended-courses${query}`,
     { method: 'GET' },
   );
   return body.recommendations;

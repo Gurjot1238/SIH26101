@@ -154,6 +154,10 @@ export function retrieveContext(index, query, { cfg = loadConfig(), maxChunks, m
       pageEnd: chunk.pageEnd,
       chapter: chunk.chapter,
       section: chunk.section,
+      // Carry extraction provenance through retrieval so a grounded question can honestly
+      // report whether its evidence was typed text or recognised from a scan (spec §metadata).
+      extractionMethod: chunk.extractionMethod ?? 'native_text',
+      ...(typeof chunk.ocrConfidence === 'number' ? { ocrConfidence: chunk.ocrConfidence } : {}),
       score: Number(score.toFixed(3)),
       text,
     });

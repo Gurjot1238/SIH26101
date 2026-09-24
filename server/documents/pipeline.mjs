@@ -26,6 +26,32 @@ import { generateMaterial } from './material.mjs';
 import { generateMcqs } from '../ai/provider.mjs';
 
 /**
+ * Summarise how a document's pages were extracted, for the document record. All additive:
+ * these fields ride along in the JSONB document row, so no schema migration is needed.
+ *   ocrStatus       'not_required' | 'completed' | 'partial' | 'failed'
+ *   pagesOcred      count of pages whose text came from OCR
+ *   pagesOcrFailed  count of pages OCR was attempted on but could not read
+ *   extractionMethod document-level 'native_text' | 'ocr' | 'mixed'
+ */
+function ocrSummary(pageList) {
+  let ocred = 0;
+  let failed = 0;
+  let native = 0;
+  for (const p of pageList) {
+    if (p.source === 'ocr') ocred += 1;
+    else if (p.source === 'ocr_failed') failed += 1;
+    else if ((p.text ?? '').trim() !== '') native += 1;
+  }
+  let ocrStatus;
+  if (ocred === 0 && failed === 0) ocrStatus = 'not_required';
+  else if (failed === 0) ocrStatus = 'completed';
+  else if (ocred === 0) ocrStatus = 'failed';
+  else ocrStatus = 'partial';
+  const extractionMethod = ocred > 0 && native > 0 ? 'mixed' : ocred > 0 ? 'ocr' : 'native_text';
+  return { ocrStatus, pagesOcred: ocred, pagesOcrFailed: failed, extractionMethod };
+}
+
+/**
  * Ingest an uploaded document.
  *
  *   pages     [{page,text}] (preferred) OR omit and pass `text` for a single blob
@@ -77,7 +103,8 @@ export async function ingestDocument({ store, userId, filename = 'document', tex
   });
 
   await store.saveChunks(userId, document.id, chunks);
-  await store.setDocumentStatus(userId, document.id, { status: job.status === 'completed' ? 'ready' : 'failed' });
+  const ocr = ocrSummary(pageList);
+  await store.setDocumentStatus(userId, document.id, { status: job.status === 'completed' ? 'ready' : 'failed', ...ocr });
 
   return { ok: true, document: store.getDocument(userId, document.id), job: jobView(job), classification, mode, isLargeMode: isLargeMode(mode) };
 }
@@ -125,7 +152,8 @@ export async function finalizeDocument({ store, userId, documentId, env = proces
     persist: async (j) => { await store.updateJob(userId, j.id, { status: j.status, stages: j.stages, chunkStatus: j.chunkStatus, error: j.error }); },
   });
   await store.saveChunks(userId, documentId, chunks);
-  await store.setDocumentStatus(userId, documentId, { status: job.status === 'completed' ? 'ready' : 'failed' });
+  const ocr = ocrSummary(pageList);
+  await store.setDocumentStatus(userId, documentId, { status: job.status === 'completed' ? 'ready' : 'failed', ...ocr });
 
   return { ok: true, document: store.getDocument(userId, documentId), job: jobView(job), classification, mode, isLargeMode: isLargeMode(mode) };
 }
@@ -181,7 +209,7 @@ function locatePages(sourceText, usedChunks) {
     const score = shared / needle.size;
     if (score > bestScore) { bestScore = score; best = c; }
   }
-  return bestScore >= 0.3 && best ? { pageStart: best.pageStart, pageEnd: best.pageEnd, section: best.section, chapter: best.chapter } : null;
+  return bestScore >= 0.3 && best ? { pageStart: best.pageStart, pageEnd: best.pageEnd, section: best.section, chapter: best.chapter, extractionMethod: best.extractionMethod ?? null } : null;
 }
 
 /**
@@ -206,7 +234,7 @@ export async function generateFromTopic({ store, userId, documentIds = [], query
   // Stamp real source references onto every question the generator returned.
   const stampSource = (q) => {
     const loc = locatePages(q.source ?? '', retrieval.usedChunks) ?? (retrieval.pageRanges[0]
-      ? { pageStart: retrieval.pageRanges[0].start, pageEnd: retrieval.pageRanges[0].end, section: retrieval.sections[0] ?? null, chapter: retrieval.chapters[0] ?? null }
+      ? { pageStart: retrieval.pageRanges[0].start, pageEnd: retrieval.pageRanges[0].end, section: retrieval.sections[0] ?? null, chapter: retrieval.chapters[0] ?? null, extractionMethod: retrieval.usedChunks[0]?.extractionMethod ?? null }
       : null);
     return {
       ...q,
@@ -218,6 +246,7 @@ export async function generateFromTopic({ store, userId, documentIds = [], query
         pageEnd: loc?.pageEnd ?? null,
         section: loc?.section ?? null,
         chapter: loc?.chapter ?? null,
+        extractionMethod: loc?.extractionMethod ?? null,
       },
     };
   };

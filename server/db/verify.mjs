@@ -1,4 +1,6 @@
-/**
+import dotenv from 'dotenv';
+
+dotenv.config({ path: new URL('../.env', import.meta.url) });/**
  * PostgreSQL-side proof that the migration landed intact and safely.
  *
  *   DATABASE_URL=postgres://localhost:5432/nexora  node server/db/verify.mjs

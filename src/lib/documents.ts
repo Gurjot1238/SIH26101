@@ -12,7 +12,7 @@
  */
 
 import { API_URL } from './auth';
-import type { MaterialQuestion, QuestionKind } from './materials';
+import type { MaterialQuestion, QuestionKind, OcrPageFn, OcrPageResult, PageText } from './materials';
 
 /** Keep each upload request comfortably under the server's 256 KB JSON cap. */
 const BATCH_CHAR_BUDGET = 120_000;
@@ -77,14 +77,16 @@ async function post(path: string, body: unknown): Promise<any> {
  * Returns the finalized document record + mode.
  */
 export async function ingestLargeDocument(
-  { filename, sizeBytes, pages }: { filename: string; sizeBytes: number; pages: { page: number; text: string }[] },
+  { filename, sizeBytes, pages }: { filename: string; sizeBytes: number; pages: PageText[] },
   onProgress?: (sent: number, total: number, stage: 'uploading' | 'indexing') => void,
 ): Promise<{ document: DocumentRecord; mode: string; isLargeMode: boolean; classification: any }> {
   const created = await post('/api/documents/upload', { filename, sizeBytes });
   const documentId: string = created.documentId;
 
   // Send pages in char-bounded batches so no single request approaches the body limit.
-  let batch: { page: number; text: string }[] = [];
+  // Batches keep each page's per-page metadata (source/confidence) so OCR'd pages arrive at
+  // the append route already tagged — the server threads that straight into chunk metadata.
+  let batch: PageText[] = [];
   let batchChars = 0;
   let sent = 0;
   const flush = async () => {
@@ -167,4 +169,50 @@ export async function listDocuments(): Promise<DocumentRecord[]> {
   const payload = await response.json().catch(() => null);
   if (!response.ok || payload?.ok !== true) throw new DocumentError('Could not list your documents.', 'document_error');
   return payload.documents ?? [];
+}
+
+// --- OCR transport ----------------------------------------------------------
+//
+// The browser-side extractor (materials.ts) is deliberately server-agnostic: it takes an
+// injected `OcrPageFn` and knows nothing about URLs or cookies. These helpers are that
+// injection — the only place the OCR HTTP route is named — so the extractor stays unit
+// testable and this file stays the single client-side transport, mirroring the rest of
+// the document client.
+
+/** Whether the server has OCR enabled AND its local engine is reachable right now. */
+export async function checkOcrAvailable(): Promise<{ enabled: boolean; available: boolean }> {
+  try {
+    const response = await fetch(`${API_URL}/api/documents/ocr-health`, { credentials: 'include' });
+    const payload = await response.json().catch(() => null);
+    if (!response.ok || payload?.ok !== true) return { enabled: false, available: false };
+    return { enabled: Boolean(payload.enabled), available: Boolean(payload.available) };
+  } catch {
+    return { enabled: false, available: false };
+  }
+}
+
+/**
+ * Build an OCR transport bound to an optional documentId. The returned function posts one
+ * page image to the local OCR route and resolves to the recognised text, or to null when
+ * the page could not be read — it NEVER throws, so a single unreadable page marks itself
+ * `ocr_failed` in the extractor rather than aborting the whole document read.
+ */
+export function createOcrTransport(documentId?: string): OcrPageFn {
+  return async ({ imageBase64, pageNumber }): Promise<OcrPageResult> => {
+    let response: Response;
+    try {
+      response = await fetch(`${API_URL}/api/documents/ocr-page`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...(documentId ? { documentId } : {}), pageNumber, imageBase64 }),
+      });
+    } catch {
+      return null; // network/transport failure for this page — caller marks it ocr_failed
+    }
+    const payload = await response.json().catch(() => null);
+    if (!response.ok || payload?.ok !== true || typeof payload.text !== 'string') return null;
+    const confidence = typeof payload.confidence === 'number' ? payload.confidence : 0;
+    return { text: payload.text, confidence };
+  };
 }

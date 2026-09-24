@@ -41,13 +41,13 @@ function categoryTone(category: string): 'navy' | 'coral' | 'neutral' {
  * screen bumps it once the just-finished attempt has been saved, so the recommendations
  * reflect that sitting. Omitted on the Dashboard, where a mount is always fresh.
  */
-export function GapCourseRecommendations({ refreshKey = 0 }: { refreshKey?: number } = {}) {
+export function GapCourseRecommendations({ refreshKey = 0, scope = 'all' }: { refreshKey?: number; scope?: 'all' | 'latest' } = {}) {
   const [data, setData] = useState<CourseRecommendations | null>(null);
   const [status, setStatus] = useState<'loading' | 'ready' | 'unavailable'>('loading');
 
   useEffect(() => {
     let live = true;
-    fetchRecommendedCourses()
+    fetchRecommendedCourses(scope)
       .then((payload) => {
         if (!live) return;
         setData(payload);
@@ -61,7 +61,7 @@ export function GapCourseRecommendations({ refreshKey = 0 }: { refreshKey?: numb
         setStatus('unavailable');
       });
     return () => { live = false; };
-  }, [refreshKey]);
+  }, [refreshKey, scope]);
 
   if (status === 'loading') {
     return <div className="mt-7">

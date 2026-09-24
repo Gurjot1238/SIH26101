@@ -83,6 +83,7 @@ import {
 import { openStore } from './store.mjs';
 import { openDocumentStore } from './documents/store.mjs';
 import { ingestDocument, finalizeDocument, searchDocuments, generateFromTopic } from './documents/pipeline.mjs';
+import { ocrImage, ocrHealth } from './documents/ocr.mjs';
 import { jobView } from './documents/jobs.mjs';
 import { extractMarksheet, analyzePerformance } from './documents/marksheet.mjs';
 import { loadConfig } from './documents/config.mjs';
@@ -264,6 +265,13 @@ const limiters = {
    * a person studies in a day; it is nowhere near enough to run up a bill.
    */
   aiGenerationsPerIp: createRateLimiter({ name: 'ai-generations/ip', limit: envIntAllowingZero('AI_GENERATION_LIMIT', 30), windowMs: 60 * 60 * 1000 }),
+  /**
+   * OCR pages get their own budget so a scanned book cannot starve ordinary progress
+   * writes, and so a loop cannot pin the local OCR engine. One request is one page
+   * image; 600 an hour covers three full-length scanned documents and is far beyond a
+   * human studying, while still bounding abuse. Local inference costs no money, only CPU.
+   */
+  ocrPagesPerIp: createRateLimiter({ name: 'ocr-pages/ip', limit: envInt('OCR_PAGE_LIMIT', 600), windowMs: 60 * 60 * 1000 }),
 };
 
 function tooManyRequests(retryAfter) {
@@ -814,7 +822,11 @@ async function handleAnalytics(req, res, cors) {
  */
 async function handleRecommendedCourses(req, res, cors) {
   const { user } = await requireSession(req);
-  const analytics = buildAnalyticsSummary(store.attemptsForUser(user.id), { scope: 'all' });
+  // `?scope=latest` derives the gaps (and so the courses) from the newest sitting alone,
+  // for the Knowledge check page; omitted (`all`) it ranks gaps across the whole history,
+  // as the Dashboard does. Validated by the same guard as the competencies endpoint.
+  const scope = analyticsScope(req);
+  const analytics = buildAnalyticsSummary(store.attemptsForUser(user.id), { scope });
 
   // The learner facts the quality gate and explanations need — all derived from data we
   // already hold (analytics + the account's saved course progress). No new reads of anything
@@ -1265,6 +1277,11 @@ async function handleCourseContent(req, res, cors) {
 const MAX_TOPIC_QUERY_CHARS = 200;
 const MAX_PAGE_BATCH = 400; // pages per append request — keeps any single request bounded
 
+// A single scanned-page image, base64-encoded, is far larger than a JSON text batch.
+// Bound it to the configured decoded ceiling plus base64 inflation (~4/3) and a little
+// slack for the surrounding JSON, so the route accepts a real page image but nothing wild.
+const MAX_OCR_BODY_BYTES = Math.ceil((docConfig.ocr.maxImageBytes * 4) / 3) + 16 * 1024;
+
 function requireDocId(body) {
   const id = typeof body?.documentId === 'string' ? body.documentId.trim() : '';
   if (id === '') throw badRequest('document_required', 'A documentId is required.', { documentId: 'required' });
@@ -1298,7 +1315,14 @@ async function handleDocumentAppend(req, res, cors) {
   if (body.pages.length > MAX_PAGE_BATCH) throw badRequest('batch_too_large', `Send at most ${MAX_PAGE_BATCH} pages per request.`);
   const pages = body.pages
     .filter((p) => p && (typeof p.text === 'string'))
-    .map((p, i) => ({ page: Number.isInteger(p.page) ? p.page : i + 1, text: String(p.text).slice(0, 200_000) }));
+    .map((p, i) => {
+      const page = { page: Number.isInteger(p.page) ? p.page : i + 1, text: String(p.text).slice(0, 200_000) };
+      // Preserve optional extraction provenance so OCR'd pages stay distinguishable from
+      // typed ones all the way through chunking. Only a known source label is accepted.
+      if (p.source === 'ocr' || p.source === 'ocr_failed' || p.source === 'native_text') page.source = p.source;
+      if (typeof p.confidence === 'number' && p.confidence >= 0 && p.confidence <= 1) page.confidence = p.confidence;
+      return page;
+    });
   const total = await documentStore.appendPages(user.id, documentId, pages);
   if (total !== null && total > docConfig.upload.maxPages) {
     throw badRequest('too_many_pages', `This document exceeds the ${docConfig.upload.maxPages}-page limit.`);
@@ -1329,11 +1353,70 @@ async function handleDocumentFinalize(req, res, cors) {
   }, cors);
 }
 
+/**
+ * OCR a single scanned page image and return its recognised text. The browser has already
+ * rasterised only the low-text pages (native extraction runs there first), so this receives
+ * at most one page image per request — the "never send 1000 pages at once" rule holds by
+ * construction. The image is bytes, never a path, so there is no file-read surface. An OCR
+ * failure is reported honestly (source:'ocr_failed'); it never crashes the request.
+ * Body: { documentId, pageNumber, imageBase64 }.
+ */
+async function handleDocumentOcrPage(req, res, cors) {
+  assertTrustedOrigin(req, ALLOWED_ORIGINS);
+  const { user } = await requireSession(req);
+  enforce(limiters.ocrPagesPerIp, clientKey(req, TRUST_PROXY));
+  if (!docConfig.ocr.enabled) throw new HttpError(503, 'ocr_disabled', 'OCR is not enabled on this server.');
+
+  const body = await readJsonBody(req, { maxBytes: MAX_OCR_BODY_BYTES });
+  // documentId is OPTIONAL here: OCR is stateless (image bytes in, text out) and writes
+  // nothing to the document, so a small scanned PDF that was never staged server-side can
+  // still be recognised. When an id IS supplied we verify ownership as defence in depth;
+  // the session cookie and per-IP rate limiter gate the endpoint either way.
+  const documentId = typeof body?.documentId === 'string' ? body.documentId.trim() : '';
+  if (documentId !== '' && !documentStore.getDocument(user.id, documentId)) throw new HttpError(404, 'not_found', 'No such document.');
+
+  const imageBase64 = typeof body.imageBase64 === 'string' ? body.imageBase64 : '';
+  if (imageBase64 === '') throw badRequest('image_required', 'A page image is required.', { imageBase64: 'required' });
+  const pageNumber = Number.isInteger(body.pageNumber) ? body.pageNumber : null;
+  // stubText is honoured only by the stub engine (tests); the real engine ignores it.
+  const stubText = typeof body.stubText === 'string' ? body.stubText : undefined;
+
+  const result = await ocrImage({ imageBase64, pageNumber, stubText, cfg: docConfig, env: process.env });
+  if (!result.ok) {
+    const status = (result.code === 'service_unavailable' || result.code === 'ocr_unavailable' || result.code === 'ocr_disabled')
+      ? 503 : result.code === 'timeout' ? 504 : result.code === 'image_too_large' || result.code === 'image_required' ? 400 : 502;
+    console.log(`  doc.ocr-page: doc=${documentId ? documentId.slice(0, 8) : '-'} page=${pageNumber ?? '-'} failed=${result.code}`);
+    sendJson(res, status, { ok: false, error: { code: result.code, message: result.message }, page: pageNumber, source: 'ocr_failed' }, cors);
+    return;
+  }
+  console.log(`  doc.ocr-page: doc=${documentId ? documentId.slice(0, 8) : '-'} page=${pageNumber ?? '-'} lines=${result.lineCount} conf=${result.confidence}`);
+  sendJson(res, 200, {
+    ok: true, page: pageNumber, source: 'ocr',
+    text: result.text, confidence: result.confidence, lineCount: result.lineCount, engine: result.engine,
+  }, cors);
+}
+
 /** List the signed-in user's documents (metadata only). */
 async function handleDocumentList(req, res, cors) {
   const { user } = await requireSession(req);
   const docs = documentStore.listDocuments(user.id).map(publicDocument);
   sendJson(res, 200, { ok: true, documents: docs }, cors);
+}
+
+/**
+ * Whether OCR is available right now, so the browser can decide before it bothers
+ * rasterising a scanned page. Reports config state without ever blocking on a slow
+ * engine: if OCR is disabled it answers instantly; otherwise it probes the local
+ * service with a short timeout. Never leaks anything but availability.
+ */
+async function handleDocumentOcrHealth(req, res, cors) {
+  await requireSession(req);
+  if (!docConfig.ocr.enabled) {
+    sendJson(res, 200, { ok: true, enabled: false, available: false }, cors);
+    return;
+  }
+  const health = await ocrHealth({ cfg: docConfig, env: process.env });
+  sendJson(res, 200, { ok: true, enabled: true, ...health }, cors);
 }
 
 /** Job status for the processing progress UI. Query: ?id=jobId. */
@@ -1469,6 +1552,12 @@ function publicDocument(doc) {
     chunkCount: doc.chunkCount,
     topicsIndexed: doc.topicsIndexed,
     status: doc.status,
+    // OCR provenance (present only once a document has been finalised). All optional so a
+    // document created before OCR existed simply omits them.
+    ocrStatus: doc.ocrStatus ?? undefined,
+    pagesOcred: doc.pagesOcred ?? undefined,
+    pagesOcrFailed: doc.pagesOcrFailed ?? undefined,
+    extractionMethod: doc.extractionMethod ?? undefined,
     createdAt: doc.createdAt,
   };
 }
@@ -1522,8 +1611,10 @@ const ROUTES = new Map([
   ['GET /api/courses/content', handleCourseContent],
   ['POST /api/documents/upload', handleDocumentUpload],
   ['POST /api/documents/append', handleDocumentAppend],
+  ['POST /api/documents/ocr-page', handleDocumentOcrPage],
   ['POST /api/documents/finalize', handleDocumentFinalize],
   ['GET /api/documents', handleDocumentList],
+  ['GET /api/documents/ocr-health', handleDocumentOcrHealth],
   ['GET /api/documents/job', handleDocumentJob],
   ['POST /api/documents/search', handleDocumentSearch],
   ['POST /api/documents/generate', handleDocumentGenerate],
