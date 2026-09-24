@@ -62,8 +62,6 @@ async function check(name, fn) {
 const cfg = loadConfig({ OCR_ENABLED: 'true', OCR_HOST: '127.0.0.1', OCR_PORT: String(PORT) });
 const b64 = (s) => Buffer.from(s).toString('base64');
 
-// PLACEHOLDER_BODY
-
 // --- launch the stub OCR service --------------------------------------------
 const child = spawn(PYTHON, [SERVICE], {
   cwd: REPO,
@@ -159,8 +157,6 @@ async function main() {
     if (r.ok) return 'a path was somehow accepted';
     if (r.code !== 'image_required') return `code ${r.code}`;
   });
-
-  // PLACEHOLDER_PIPELINE
 
   console.log('\n  -- pipeline metadata threading (source -> chunk -> document) ---\n');
 

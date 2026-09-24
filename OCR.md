@@ -153,8 +153,6 @@ curl -s http://127.0.0.1:8091/health
 equivalent `GET /api/documents/ocr-health` before rasterising anything, and only attempts OCR
 when the engine is genuinely available.
 
-<!-- __APPEND_3__ -->
-
 ## Manual test
 
 1. Start `npm run auth` and `npm run dev`, then open the app and sign in.

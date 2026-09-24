@@ -79,8 +79,6 @@ async function waitDown(port, timeoutMs) {
   return false;
 }
 
-// __STARTUP_MAIN__
-
 const launcher = spawn(process.execPath, ['scripts/dev-with-ocr.mjs'], {
   cwd: REPO,
   env: {

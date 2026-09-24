@@ -40,8 +40,6 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO = join(HERE, '..');
 const OCR_ONLY = process.argv.includes('--ocr-only');
 
-// __WRAPPER_BODY__
-
 /** One structured launcher line, kept distinct from the children's own [web]/[ocr] output. */
 function log(msg) { process.stdout.write(`[dev] ${msg}\n`); }
 
@@ -99,8 +97,6 @@ function startChild(tag, command, args, extraEnv = {}) {
   pipeTagged(child.stderr, tag, process.stderr);
   return child;
 }
-
-// __WRAPPER_BODY_2__
 
 /**
  * Choose the Python interpreter for the OCR service. The configured/overridden path wins

@@ -49,8 +49,6 @@ const PDF = join(FIXTURE_DIR, 'sample-scan.pdf');
 const MAKE_FIXTURES = join(REPO, 'scripts', 'make-ocr-fixtures.py');
 const PORT = Number(process.env.OCR_TEST_PORT || 8291);
 
-// __REAL_BODY__
-
 /**
  * Pick the interpreter that has PaddleOCR. OCR_PYTHON wins (the operator's override); then
  * the conventional .venv-ocr the spec says already exists; then a bare `python3`. A relative
@@ -121,8 +119,6 @@ function ensureFixtures() {
 const cfg = loadConfig({
   OCR_ENABLED: 'true', OCR_HOST: '127.0.0.1', OCR_PORT: String(PORT), OCR_TIMEOUT_MS: '180000',
 });
-
-// __REAL_MAIN__
 
 // --- launch the REAL OCR service (paddle engine) ----------------------------
 let child = null;
