@@ -69,8 +69,10 @@ function loadEnvFile(path) {
 loadEnvFile(join(REPO, 'server', '.env'));
 const ocr = loadConfig(process.env).ocr;
 
-// Children we own, with the signal that stops each most cleanly (SIGINT lets the Python
-// http.server unwind its serve_forever via KeyboardInterrupt; Vite stops on SIGTERM).
+// Children we own. Both are stopped with SIGTERM on shutdown: the OS closes each listening
+// socket promptly, so the dev ports free up immediately on Ctrl-C. (SIGINT to the Python
+// http.server also unwinds via KeyboardInterrupt, but its thread teardown can leave the port
+// held for a couple of seconds — SIGTERM is the reliable, instant choice for a dev launcher.)
 const children = [];
 let shuttingDown = false;
 
