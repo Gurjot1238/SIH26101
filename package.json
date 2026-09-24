@@ -5,7 +5,10 @@
   "type": "module",
   "description": "NEXORA AI Intelligence Platform — MoSPI capacity-building UI (SIH26101). Local macOS build.",
   "scripts": {
-    "dev": "vite",
+    "dev": "node scripts/dev-with-ocr.mjs",
+    "dev:web": "vite",
+    "dev:ocr": "node scripts/dev-with-ocr.mjs --ocr-only",
+    "ocr:serve": "node scripts/dev-with-ocr.mjs --ocr-only",
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc -p tsconfig.json --noEmit",
@@ -27,6 +30,7 @@
     "largepdf:test": "node scripts/large-pdf-http-test.mjs",
     "ocr:test": "node scripts/ocr-test.mjs",
     "ocr:test:real": "node scripts/ocr-real-test.mjs",
+    "startup:test": "node scripts/startup-test.mjs",
     "test": "./scripts/engine-test.sh && ./scripts/competency-test.sh && ./scripts/recommend-test.sh && ./scripts/recommend-service-test.sh && ./server/smoke-test.sh && ./scripts/client-test.sh && ./scripts/ai-test.sh && npm run exact-count:test && npm run docintel:test && npm run docpipeline:test && npm run largepdf:test && npm run ocr:test && ./scripts/render-test.sh && ./scripts/catalog-ready-test.sh",
     "auth:secret": "node -e \"console.log(require('node:crypto').randomBytes(48).toString('base64url'))\""
   },
