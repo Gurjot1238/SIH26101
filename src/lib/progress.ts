@@ -85,6 +85,21 @@ export type Preferences = {
   language: Language;
   weeklyNote: boolean;
   demoLabels: boolean;
+  /** Whether the notification bell fetches and shows a feed. */
+  notify: boolean;
+};
+
+/**
+ * The editable free-text identity fields on the Profile page. Name and email are
+ * deliberately NOT here: they are the account's credentials, owned by the auth
+ * session and read-only on the profile.
+ */
+export type Personal = {
+  phone: string;
+  bio: string;
+  role: string;
+  department: string;
+  location: string;
 };
 
 export type CourseRecord = {
@@ -123,6 +138,7 @@ export type StoredAttempt = {
 export type ProgressBundle = {
   progress: ProgressRollup;
   preferences: Preferences;
+  personal: Personal;
   courses: CourseRecord[];
   /** The most recent handful, so the Dashboard renders without a second call. */
   history: StoredAttempt[];
@@ -162,7 +178,11 @@ export function emptyRollup(): ProgressRollup {
 }
 
 export function defaultPreferences(): Preferences {
-  return { language: 'English', weeklyNote: true, demoLabels: true };
+  return { language: 'English', weeklyNote: true, demoLabels: true, notify: true };
+}
+
+export function defaultPersonal(): Personal {
+  return { phone: '', bio: '', role: '', department: '', location: '' };
 }
 
 /* ------------------------------------------------------------------ transport */
@@ -246,6 +266,15 @@ export function clearHistory(): Promise<{ removed: number; progress: ProgressRol
 /** Patch one or more preferences. Unnamed fields keep their stored value. */
 export function savePreferences(patch: Partial<Preferences>): Promise<{ preferences: Preferences }> {
   return request('POST', '/api/progress/preferences', patch);
+}
+
+/**
+ * Patch the editable personal details (phone/bio/role/department/location).
+ * Unnamed fields keep their stored value; an empty string clears a field. Name and
+ * email are not accepted here — they are account credentials.
+ */
+export function saveProfileDetails(patch: Partial<Personal>): Promise<{ personal: Personal }> {
+  return request('POST', '/api/progress/profile', patch);
 }
 
 /**

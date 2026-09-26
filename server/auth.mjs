@@ -17,12 +17,14 @@ const scryptAsync = promisify(scrypt);
  * it ships inside Node, so the backend has zero install step and cannot break
  * on a native build. Cost is tunable through the environment.
  *
- * N=2^15 with r=8 costs roughly 32 MiB and ~100 ms per hash on a laptop.
- * Raising N doubles both. Existing hashes keep working when you change these,
- * because the parameters are stored inside each hash string.
+ * N=2^17 with r=8 costs roughly 128 MiB and ~300-400 ms per hash on a laptop —
+ * OWASP's current headline scrypt parameter set. Raising N doubles both cost and
+ * memory. Existing hashes keep working when you change these, because the N/r/p
+ * used are stored inside each hash string and read back at verify time, so older
+ * accounts verify against their original (lower) cost and only re-hash on next set.
  */
 const SCRYPT = {
-  N: readIntEnv('SCRYPT_COST_N', 1 << 15, 1 << 12, 1 << 20),
+  N: readIntEnv('SCRYPT_COST_N', 1 << 17, 1 << 12, 1 << 20),
   r: readIntEnv('SCRYPT_BLOCK_SIZE', 8, 1, 32),
   p: readIntEnv('SCRYPT_PARALLELISM', 1, 1, 8),
   keylen: 64,
@@ -124,6 +126,17 @@ export function newSessionToken() {
  */
 export function fingerprintToken(token, secret) {
   return createHmac('sha256', secret).update(token).digest('hex');
+}
+
+/**
+ * Derive a purpose-specific subkey from the master secret so two subsystems never share the
+ * same key material (audit A10: SESSION_SECRET was used both to fingerprint sessions and to
+ * pseudonymise the interaction log). HMAC-SHA256(masterSecret, "nexora:subkey:<label>") is a
+ * standard KDF step: the label domain-separates each use, so a key derived for one purpose is
+ * cryptographically independent of the other and neither is the bare secret.
+ */
+export function deriveSubkey(masterSecret, label) {
+  return createHmac('sha256', String(masterSecret)).update(`nexora:subkey:${label}`).digest('hex');
 }
 
 export function newUserId() {

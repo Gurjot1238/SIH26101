@@ -69,6 +69,7 @@ import {
   SESSION_COOKIE,
   burnTime,
   createRateLimiter,
+  deriveSubkey,
   fingerprintToken,
   hashPassword,
   newSessionToken,
@@ -81,7 +82,7 @@ import {
   warmUp,
 } from './auth.mjs';
 import { openStore } from './store.mjs';
-import { openDocumentStore } from './documents/store.mjs';
+import { openDocumentStore, DocumentPageLimitError } from './documents/store.mjs';
 import { ingestDocument, finalizeDocument, searchDocuments, generateFromTopic } from './documents/pipeline.mjs';
 import { guardDocument } from './documents/document-type-guard.mjs';
 import { ocrImage, ocrHealth } from './documents/ocr.mjs';
@@ -108,8 +109,10 @@ import {
   publicAttempt,
   validateAttempt,
   validateCourseUpdate,
+  validatePersonal,
   validatePreferences,
 } from './progress.mjs';
+import { buildNotifications } from './notifications.mjs';
 import {
   MAX_QUESTIONS,
   MAX_TEXT_CHARS,
@@ -245,7 +248,39 @@ if (sessionSecret.length < 32) {
   ephemeralSecret = true;
 }
 
+// Purpose-specific subkeys, so the session-cookie HMAC and the interaction-log pseudonym never
+// share raw key material (audit A10). Each is an independent HMAC of SESSION_SECRET under a
+// distinct label; obtaining or attacking one tells you nothing about the other, and neither is
+// the bare secret. (Both still change if SESSION_SECRET is rotated — that is inherent to keying
+// from one master secret; supply a separate secret only if the log must survive rotation.)
+const SESSION_FP_KEY = deriveSubkey(sessionSecret, 'session-fingerprint:v1');
+const INTERACTION_KEY = deriveSubkey(sessionSecret, 'interaction-pseudonym:v1');
+
 /* -------------------------------------------------------------- rate limiters */
+
+/**
+ * AI generation budget, with a guard against an expensive foot-gun (audit A14).
+ *
+ * `0` means "no limit". That is fine for a local model, where a request costs only
+ * this machine's CPU — but a metered provider (gemini bills per call) exposed with
+ * no cap is an open-ended bill waiting for the first abusive loop. So when the
+ * provider is metered we refuse to run unlimited: the limit is clamped to a safe
+ * positive default and the operator is warned once at boot. Choosing a higher cap
+ * is a matter of setting a positive number; running a metered provider with no cap
+ * at all is never a safe default and is deliberately not offered.
+ */
+const AI_GENERATION_LIMIT = (() => {
+  const configured = envIntAllowingZero('AI_GENERATION_LIMIT', 30);
+  if (configured > 0) return configured;
+  if (providerStatus(process.env).provider !== 'gemini') return 0; // local/mock: only CPU is spent
+  const safe = 30;
+  console.warn(
+    '[ai] AI_GENERATION_LIMIT=0 (unlimited) is unsafe with a metered provider — each '
+    + `generation bills the provider. Clamping to ${safe} requests/IP/hour. Set `
+    + 'AI_GENERATION_LIMIT to a positive number to choose your own cap.',
+  );
+  return safe;
+})();
 
 const limiters = {
   /**
@@ -259,6 +294,14 @@ const limiters = {
   loginPerAccount: createRateLimiter({ name: 'login/account', limit: envInt('LOGIN_LIMIT', 8), windowMs: 15 * 60 * 1000 }),
   loginPerIp: createRateLimiter({ name: 'login/ip', limit: envInt('LOGIN_IP_LIMIT', 30), windowMs: 15 * 60 * 1000 }),
   /**
+   * Failed logins per account across ALL source IPs. The `login/account` limiter above is
+   * keyed `ip|email`, so an attacker rotating IPs earns a fresh budget per IP against one
+   * targeted account (audit A3). This global-by-email cap closes that: a higher budget over a
+   * longer window, spent ONLY on a failed attempt and cleared on success — so a correct
+   * password always logs the real owner in and this can never be used to lock them out.
+   */
+  loginPerAccountGlobal: createRateLimiter({ name: 'login/account-global', limit: envInt('LOGIN_ACCOUNT_LIMIT', 50), windowMs: 60 * 60 * 1000 }),
+  /**
    * Progress writes are cheap for the client and not for the server: each one
    * rewrites a whole JSON file. 240 an hour is far more than a person studying
    * can produce and far less than a loop can.
@@ -270,7 +313,7 @@ const limiters = {
    * loop costs the operator rather than just the CPU. 30 an hour is more documents than
    * a person studies in a day; it is nowhere near enough to run up a bill.
    */
-  aiGenerationsPerIp: createRateLimiter({ name: 'ai-generations/ip', limit: envIntAllowingZero('AI_GENERATION_LIMIT', 30), windowMs: 60 * 60 * 1000 }),
+  aiGenerationsPerIp: createRateLimiter({ name: 'ai-generations/ip', limit: AI_GENERATION_LIMIT, windowMs: 60 * 60 * 1000 }),
   /**
    * OCR pages get their own budget so a scanned book cannot starve ordinary progress
    * writes, and so a loop cannot pin the local OCR engine. One request is one page
@@ -349,7 +392,7 @@ async function startSession(userId) {
   const token = newSessionToken();
   const now = Date.now();
   await store.createSession({
-    fingerprint: fingerprintToken(token, sessionSecret),
+    fingerprint: fingerprintToken(token, SESSION_FP_KEY),
     userId,
     createdAt: now,
     lastSeenAt: now,
@@ -363,7 +406,7 @@ async function currentUser(req) {
   const token = parseCookies(req.headers.cookie)[SESSION_COOKIE];
   if (!token) return null;
 
-  const fingerprint = fingerprintToken(token, sessionSecret);
+  const fingerprint = fingerprintToken(token, SESSION_FP_KEY);
   const session = store.findSession(fingerprint);
   if (!session) return null;
 
@@ -436,11 +479,17 @@ async function handleLogin(req, res, cors) {
   const ok = user ? await verifyPassword(password, user.passwordHash) : await burnTime(password);
 
   if (!ok || !user) {
+    // Only NOW (on a genuine failure) charge the global per-account budget, keyed by the
+    // submitted email regardless of whether it exists (so this stays non-enumerable). A
+    // correct password never reaches this line, so the real owner can never be locked out;
+    // a distributed guesser rotating IPs is still capped per account. Over budget → 429.
+    enforce(limiters.loginPerAccountGlobal, email);
     // One message for both cases, on purpose.
     throw new HttpError(401, 'invalid_credentials', 'That email and password do not match.');
   }
 
   limiters.loginPerAccount.clear(`${ip}|${email}`);
+  limiters.loginPerAccountGlobal.clear(email);
   const token = await startSession(user.id);
   await store.recordLogin(user.id, new Date().toISOString());
   sendJson(res, 200, { ok: true, user: publicUser(user) }, { ...cors, 'Set-Cookie': sessionCookie(token) });
@@ -462,14 +511,19 @@ async function handleMe(req, res, cors) {
   sendJson(res, 200, { ok: true, user: publicUser(session.user) }, cors);
 }
 
-function handleHealth(_req, res, cors) {
-  sendJson(res, 200, {
+async function handleHealth(req, res, cors) {
+  const base = {
     ok: true,
     service: 'NEXORA AI-auth',
     passwordHash: 'scrypt',
     passwordPolicy: PASSWORD_POLICY,
-    ...store.counts(),
-  }, cors);
+  };
+  // Global record counts (accounts / sessions / attempts / saved sets) are operational
+  // detail, not public: an anonymous caller must not be able to read them (audit A8). A
+  // signed-in caller still sees them. Liveness and the (non-sensitive) hash scheme stay public.
+  const session = await currentUser(req);
+  if (session) Object.assign(base, store.counts());
+  sendJson(res, 200, base, cors);
 }
 
 /* ----------------------------------------------------------------- progress */
@@ -527,6 +581,7 @@ function progressBundle(user) {
   return {
     progress: computeProgress(attempts),
     preferences: profile.preferences,
+    personal: profile.personal,
     courses: Object.values(profile.courses),
     history: recentAttempts(attempts, LIMITS.inlineHistory),
   };
@@ -595,27 +650,54 @@ async function handlePreferences(req, res, cors) {
   const { user } = await requireSessionForWrite(req);
   const body = await readJsonBody(req);
 
-  const profile = normalizeProfile(store.profileForUser(user.id));
-  const preferences = validatePreferences(body, profile.preferences);
-  await store.saveProfile(user.id, { ...profile, preferences, updatedAt: new Date().toISOString() });
+  // Serialized read-modify-write: validation and the merge both run inside the store's
+  // per-user lock, against the freshest profile, so a concurrent course-progress save
+  // for the same account cannot clobber these preferences (audit A19).
+  let preferences;
+  await store.updateProfile(user.id, (raw) => {
+    const profile = normalizeProfile(raw);
+    preferences = validatePreferences(body, profile.preferences);
+    return { ...profile, preferences, updatedAt: new Date().toISOString() };
+  });
   sendJson(res, 200, { ok: true, preferences }, cors);
+}
+
+async function handleProfileDetails(req, res, cors) {
+  const { user } = await requireSessionForWrite(req);
+  const body = await readJsonBody(req);
+
+  // Same lost-update-safe path as preferences (audit A19): validate and merge the
+  // personal block against the freshest profile inside the per-user lock. Name and
+  // email are NOT touched here — they are account credentials owned by auth.mjs and
+  // stay read-only on the profile.
+  let personal;
+  await store.updateProfile(user.id, (raw) => {
+    const profile = normalizeProfile(raw);
+    personal = validatePersonal(body, profile.personal);
+    return { ...profile, personal, updatedAt: new Date().toISOString() };
+  });
+  sendJson(res, 200, { ok: true, personal }, cors);
 }
 
 async function handleCourseProgress(req, res, cors) {
   const { user } = await requireSessionForWrite(req);
   const body = await readJsonBody(req);
 
-  const profile = normalizeProfile(store.profileForUser(user.id));
-  // hasOwn, not a plain lookup: `courses` is a literal, so an id like
-  // "__proto__" would otherwise read straight off Object.prototype.
-  const current = Object.hasOwn(profile.courses, body.courseId) ? profile.courses[body.courseId] : null;
-
   const now = new Date().toISOString();
-  const course = validateCourseUpdate(body, current, now);
-  assertCourseRoom(profile.courses, course.courseId);
-
-  const courses = { ...profile.courses, [course.courseId]: course };
-  await store.saveProfile(user.id, { ...profile, courses, updatedAt: now });
+  let course;
+  let courses;
+  // Same lost-update-safe path as preferences: read the freshest courses map, validate and
+  // merge this one course into it, and persist — all inside the per-user lock (audit A19).
+  await store.updateProfile(user.id, (raw) => {
+    const profile = normalizeProfile(raw);
+    // hasOwn, not a plain lookup: `courses` is a literal, so an id like
+    // "__proto__" would otherwise read straight off Object.prototype.
+    const current = Object.hasOwn(profile.courses, body.courseId) ? profile.courses[body.courseId] : null;
+    course = validateCourseUpdate(body, current, now);
+    assertCourseRoom(profile.courses, course.courseId);
+    courses = { ...profile.courses, [course.courseId]: course };
+    return { ...profile, courses, updatedAt: now };
+  });
 
   // Record the engagement signal this update carries. Completion is computed against the
   // course's real lesson count (the dataset's, not something the client sent), so it is the
@@ -641,6 +723,44 @@ async function handleCourseProgress(req, res, cors) {
   ]);
 
   sendJson(res, 200, { ok: true, course, courses: Object.values(courses) }, cors);
+}
+
+/* --------------------------------------------------------------- notifications */
+
+/**
+ * The notification feed is derived on read from the account's own progress,
+ * courses and profile — there is no stored feed. `buildNotifications` is pure, so
+ * everything here is a read: no write, no lock. `notificationsSeenAt` (set by the
+ * /seen route) turns the raw items into an unread count.
+ */
+function notificationsFor(user, now = new Date().toISOString()) {
+  const attempts = store.attemptsForUser(user.id);
+  const profile = normalizeProfile(store.profileForUser(user.id));
+  return buildNotifications({
+    progress: computeProgress(attempts),
+    courses: Object.values(profile.courses),
+    profile,
+    now,
+  });
+}
+
+async function handleNotifications(req, res, cors) {
+  const { user } = await requireSession(req);
+  const feed = notificationsFor(user);
+  sendJson(res, 200, { ok: true, ...feed }, cors);
+}
+
+async function handleNotificationsSeen(req, res, cors) {
+  const { user } = await requireSessionForWrite(req);
+  const now = new Date().toISOString();
+  // Record that the panel was opened now, inside the per-user lock so a concurrent
+  // profile write cannot lose it (audit A19). The rebuilt feed then reads unread = 0.
+  await store.updateProfile(user.id, (raw) => {
+    const profile = normalizeProfile(raw);
+    return { ...profile, notificationsSeenAt: now, updatedAt: now };
+  });
+  const feed = notificationsFor(user, now);
+  sendJson(res, 200, { ok: true, ...feed }, cors);
 }
 
 /* --------------------------------------------------------------- saved papers */
@@ -938,7 +1058,7 @@ async function logInteractions(rawEvents) {
   try {
     for (const raw of Array.isArray(rawEvents) ? rawEvents : []) {
       if (forbiddenKeysIn(raw).length > 0) continue; // caller assembled it wrongly — skip
-      const event = sanitizeEvent({ ...raw, secret: sessionSecret });
+      const event = sanitizeEvent({ ...raw, secret: INTERACTION_KEY });
       if (event) await store.addInteraction(event);
     }
   } catch {
@@ -1360,9 +1480,14 @@ async function handleDocumentAppend(req, res, cors) {
       if (typeof p.confidence === 'number' && p.confidence >= 0 && p.confidence <= 1) page.confidence = p.confidence;
       return page;
     });
-  const total = await documentStore.appendPages(user.id, documentId, pages);
-  if (total !== null && total > docConfig.upload.maxPages) {
-    throw badRequest('too_many_pages', `This document exceeds the ${docConfig.upload.maxPages}-page limit.`);
+  let total;
+  try {
+    total = await documentStore.appendPages(user.id, documentId, pages, { maxPages: docConfig.upload.maxPages });
+  } catch (error) {
+    if (error instanceof DocumentPageLimitError) {
+      throw badRequest('too_many_pages', `This document exceeds the ${docConfig.upload.maxPages}-page limit.`);
+    }
+    throw error;
   }
   sendJson(res, 200, { ok: true, documentId, pageCount: total }, cors);
 }
@@ -1702,7 +1827,10 @@ const ROUTES = new Map([
   ['GET /api/progress/attempts', handleListAttempts],
   ['DELETE /api/progress/attempts', handleClearAttempts],
   ['POST /api/progress/preferences', handlePreferences],
+  ['POST /api/progress/profile', handleProfileDetails],
   ['POST /api/progress/courses', handleCourseProgress],
+  ['GET /api/notifications', handleNotifications],
+  ['POST /api/notifications/seen', handleNotificationsSeen],
   ['GET /api/analytics/competencies', handleAnalytics],
   ['GET /api/analytics/recommended-courses', handleRecommendedCourses],
   ['POST /api/analytics/explain', handleExplainAnalytics],

@@ -345,7 +345,7 @@ export function publicAttempt(record) {
 
 /* --------------------------------------------------------------- preferences */
 
-const PREFERENCE_KEYS = ['language', 'weeklyNote', 'demoLabels'];
+const PREFERENCE_KEYS = ['language', 'weeklyNote', 'demoLabels', 'notify'];
 
 export function defaultPreferences() {
   return {
@@ -354,6 +354,8 @@ export function defaultPreferences() {
     weeklyNote: true,
     /** Whether "Sample / Demonstration Data" markers stay visible. Default on, on purpose. */
     demoLabels: true,
+    /** Whether the in-app notification bell fetches and shows a feed. Default on. */
+    notify: true,
   };
 }
 
@@ -370,6 +372,7 @@ export function normalizePreferences(stored) {
     language: LANGUAGES.includes(raw.language) ? raw.language : base.language,
     weeklyNote: typeof raw.weeklyNote === 'boolean' ? raw.weeklyNote : base.weeklyNote,
     demoLabels: typeof raw.demoLabels === 'boolean' ? raw.demoLabels : base.demoLabels,
+    notify: typeof raw.notify === 'boolean' ? raw.notify : base.notify,
   };
 }
 
@@ -397,6 +400,62 @@ export function validatePreferences(patch, current) {
   }
   if (Object.hasOwn(patch, 'weeklyNote')) next.weeklyNote = requireBoolean(patch.weeklyNote, 'weeklyNote', 'Weekly note');
   if (Object.hasOwn(patch, 'demoLabels')) next.demoLabels = requireBoolean(patch.demoLabels, 'demoLabels', 'Demonstration labels');
+  if (Object.hasOwn(patch, 'notify')) next.notify = requireBoolean(patch.notify, 'notify', 'Notifications');
+  return next;
+}
+
+/* ------------------------------------------------------------- personal details */
+
+/**
+ * The editable identity fields on the Profile page. Name and email are NOT here:
+ * they are the account's own credentials, owned by auth.mjs, and are read-only on
+ * the profile. These are the free-text extras a learner may fill in, each capped
+ * so a hand-edited profiles.json cannot smuggle in an unbounded blob.
+ */
+const PERSONAL_KEYS = ['phone', 'bio', 'role', 'department', 'location'];
+const PERSONAL_CAPS = { phone: 40, bio: 400, role: 80, department: 120, location: 80 };
+
+export function defaultPersonal() {
+  return { phone: '', bio: '', role: '', department: '', location: '' };
+}
+
+/**
+ * The stored personal block, field by field, each cleaned to one line and capped.
+ * Same allow-list discipline as preferences: an unknown key on disk is dropped, a
+ * missing one defaults to empty string.
+ */
+export function normalizePersonal(stored) {
+  const raw = stored !== null && typeof stored === 'object' && !Array.isArray(stored) ? stored : {};
+  const out = defaultPersonal();
+  for (const key of PERSONAL_KEYS) {
+    if (typeof raw[key] === 'string') out[key] = cleanLine(raw[key], PERSONAL_CAPS[key]);
+  }
+  return out;
+}
+
+/**
+ * Merge a patch into the stored personal details. Unknown keys are rejected (a
+ * silent no-op is worse than an error); each supplied value must be a string and
+ * is cleaned + capped before it is stored. An empty string is a valid value: it
+ * is how a learner clears a field.
+ */
+export function validatePersonal(patch, current) {
+  if (patch === null || typeof patch !== 'object' || Array.isArray(patch)) {
+    throw new HttpError(400, 'invalid_input', 'Send profile details as a JSON object.');
+  }
+  for (const key of Object.keys(patch)) {
+    if (!PERSONAL_KEYS.includes(key)) {
+      throw fieldError(key, `"${cleanLine(key, 40)}" is not a profile field this server stores.`);
+    }
+  }
+
+  const next = normalizePersonal(current);
+  for (const key of PERSONAL_KEYS) {
+    if (Object.hasOwn(patch, key)) {
+      if (typeof patch[key] !== 'string') throw fieldError(key, `${key} must be text.`);
+      next[key] = cleanLine(patch[key], PERSONAL_CAPS[key]);
+    }
+  }
   return next;
 }
 
@@ -525,7 +584,10 @@ export function normalizeProfile(stored) {
   }
   return {
     preferences: normalizePreferences(record.preferences),
+    personal: normalizePersonal(record.personal),
     courses,
+    /** When the learner last opened the notification panel; drives the unread count. */
+    notificationsSeenAt: typeof record.notificationsSeenAt === 'string' ? record.notificationsSeenAt : null,
     updatedAt: typeof record.updatedAt === 'string' ? record.updatedAt : null,
   };
 }

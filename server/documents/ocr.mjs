@@ -61,8 +61,23 @@ function requestJson({ host, port, path, method, payload, timeoutMs }) {
     const req = http.request({ host, port, path, method, headers }, (res) => {
       const chunks = [];
       let size = 0;
-      res.on('data', (c) => { size += c.length; if (size <= 8 * 1024 * 1024) chunks.push(c); });
+      let aborted = false;
+      const MAX_RESPONSE_BYTES = 8 * 1024 * 1024;
+      res.on('data', (c) => {
+        if (aborted) return;
+        size += c.length;
+        // Past the cap, stop reading AND tear the socket down. Merely dropping the
+        // bytes (the old behaviour) still let a broken or hostile OCR endpoint stream
+        // unbounded data at us and pin CPU/socket for the full timeout window (audit A13).
+        if (size > MAX_RESPONSE_BYTES) {
+          aborted = true;
+          req.destroy(new Error('__too_large__'));
+          return;
+        }
+        chunks.push(c);
+      });
       res.on('end', () => {
+        if (aborted) return;
         clearTimeout(timer);
         const raw = Buffer.concat(chunks).toString('utf8');
         let parsed;
@@ -87,6 +102,7 @@ function requestJson({ host, port, path, method, payload, timeoutMs }) {
       let code = 'connection_error';
       let message = 'Could not reach the local OCR service.';
       if (err && err.message === '__timeout__') { code = 'timeout'; message = 'The OCR service did not respond in time.'; }
+      else if (err && err.message === '__too_large__') { code = 'bad_response'; message = 'The OCR service returned too much data.'; }
       else if (err && err.code === 'ECONNREFUSED') { code = 'service_unavailable'; message = 'The local OCR service is not running.'; }
       else if (err && err.code === 'ECONNRESET') { code = 'connection_reset'; message = 'The OCR connection was reset.'; }
       resolve({ ok: false, code, message });

@@ -76,6 +76,7 @@ import {
   dashboardNote,
   lastDelta,
   longDate,
+  moduleRows,
   monthEffort,
   pathwayProgress,
   practiceStreak,
@@ -503,9 +504,9 @@ export function Assessment() {
 }
 
 export function Learning() {
-  const { courses: records } = useProgress();
+  const { courses: records, markCourse } = useProgress();
   const [filter, setFilter] = useState<'All' | 'In progress' | 'Completed'>('All');
-  const [saved, setSaved] = useState<string[]>([]);
+  const [toast, setToast] = useState('');
   const [state, setState] = useState<{ status: 'loading' | 'ready' | 'error'; problem: string; courses: CatalogueCourse[]; available: boolean }>(
     { status: 'loading', problem: '', courses: [], available: false },
   );
@@ -528,6 +529,16 @@ export function Learning() {
   }, [records]);
   const percentOf = (course: CatalogueCourse) => (course.lessons > 0 ? Math.min(100, Math.round(((doneByCourse.get(course.courseId) ?? 0) / course.lessons) * 100)) : 0);
 
+  // Bookmarks are the account's own: which courses are saved comes from the progress
+  // records, and the star writes straight through `markCourse`. With nobody signed in
+  // the write declines and the learner is told to sign in rather than the star silently
+  // lighting up and forgetting on reload.
+  const savedIds = useMemo(() => new Set(records.filter((record) => record.saved).map((record) => record.courseId)), [records]);
+  const toggleSave = async (courseId: string) => {
+    const outcome = await markCourse({ courseId, saved: !savedIds.has(courseId) });
+    if (!outcome.saved) setToast(outcome.reason);
+  };
+
   const shown = state.courses.filter((course) => {
     const p = percentOf(course);
     if (filter === 'In progress') return p > 0 && p < 100;
@@ -544,7 +555,7 @@ export function Learning() {
     {state.status === 'loading' && <LoadingBlock label="Loading your courses" />}
     {state.status === 'error' && <EmptyState title="The course service is not answering" description={state.problem} />}
     {state.status === 'ready' && !state.available && <EmptyState title="No course dataset found" description="The downloaded course content is not on this machine yet. Once the Nexora course dataset sits beside the app and the server is restarted, your courses appear here." />}
-    {state.status === 'ready' && state.available && <div className="space-y-3">{shown.map((course) => { const done = doneByCourse.get(course.courseId) ?? 0; const progress = percentOf(course); return <Card key={course.courseId} interactive className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center"><div className="flex size-14 shrink-0 items-center justify-center rounded-xl bg-[#dceeea]"><GraduationCap className="size-6 text-primary/80" /></div><div className="min-w-0 flex-1"><div className="flex flex-wrap items-center gap-2"><p className="text-[10px] font-semibold uppercase tracking-[.1em] text-muted-foreground">{course.provider}</p><Badge tone={progress === 100 ? 'teal' : progress > 0 ? 'teal' : 'amber'}>{progress === 100 ? 'Completed' : progress > 0 ? 'In progress' : 'Not started'}</Badge></div><h3 className="mt-1 font-semibold">{course.title}</h3><div className="mt-2 flex items-center gap-4 text-xs text-muted-foreground">{course.estimatedHours ? <span className="flex items-center gap-1"><Clock3 className="size-3.5" />{course.estimatedHours} hrs</span> : null}<span className="flex items-center gap-1"><ListChecks className="size-3.5" />{course.lessons} {course.lessons === 1 ? 'lesson' : 'lessons'}</span><span>{course.level}</span></div>{progress > 0 && <div className="mt-3 flex items-center gap-2"><ProgressBar value={progress} className="max-w-[180px] flex-1" /><span className="font-mono text-[10px] text-muted-foreground">{done}/{course.lessons}</span></div>}</div><div className="flex items-center gap-2 sm:flex-col sm:items-end"><button data-testid={`button-save-course-${course.courseId}`} onClick={() => setSaved(saved.includes(course.courseId) ? saved.filter((id) => id !== course.courseId) : [...saved, course.courseId])} className={`rounded-lg p-2 ${saved.includes(course.courseId) ? 'text-accent' : 'text-muted-foreground hover:bg-secondary'}`}><Target className="size-4" /></button><Link href={`/catalog/${course.courseId}`} data-testid={`link-course-${course.courseId}`} className="inline-flex items-center gap-1 rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white">{progress > 0 ? 'Resume' : 'Open'} <ArrowRight className="size-3.5" /></Link></div></Card>; })}</div>}</div></div></div>;
+    {state.status === 'ready' && state.available && <div className="space-y-3">{shown.map((course) => { const done = doneByCourse.get(course.courseId) ?? 0; const progress = percentOf(course); return <Card key={course.courseId} interactive className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center"><div className="flex size-14 shrink-0 items-center justify-center rounded-xl bg-[#dceeea]"><GraduationCap className="size-6 text-primary/80" /></div><div className="min-w-0 flex-1"><div className="flex flex-wrap items-center gap-2"><p className="text-[10px] font-semibold uppercase tracking-[.1em] text-muted-foreground">{course.provider}</p><Badge tone={progress === 100 ? 'teal' : progress > 0 ? 'teal' : 'amber'}>{progress === 100 ? 'Completed' : progress > 0 ? 'In progress' : 'Not started'}</Badge></div><h3 className="mt-1 font-semibold">{course.title}</h3><div className="mt-2 flex items-center gap-4 text-xs text-muted-foreground">{course.estimatedHours ? <span className="flex items-center gap-1"><Clock3 className="size-3.5" />{course.estimatedHours} hrs</span> : null}<span className="flex items-center gap-1"><ListChecks className="size-3.5" />{course.lessons} {course.lessons === 1 ? 'lesson' : 'lessons'}</span><span>{course.level}</span></div>{progress > 0 && <div className="mt-3 flex items-center gap-2"><ProgressBar value={progress} className="max-w-[180px] flex-1" /><span className="font-mono text-[10px] text-muted-foreground">{done}/{course.lessons}</span></div>}</div><div className="flex items-center gap-2 sm:flex-col sm:items-end"><button data-testid={`button-save-course-${course.courseId}`} onClick={() => void toggleSave(course.courseId)} className={`rounded-lg p-2 ${savedIds.has(course.courseId) ? 'text-accent' : 'text-muted-foreground hover:bg-secondary'}`}><Target className="size-4" /></button><Link href={`/catalog/${course.courseId}`} data-testid={`link-course-${course.courseId}`} className="inline-flex items-center gap-1 rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white">{progress > 0 ? 'Resume' : 'Open'} <ArrowRight className="size-3.5" /></Link></div></Card>; })}</div>}</div></div>{toast && <ToastMessage message={toast} onClose={() => setToast('')} />}</div>;
 }
 
 export function CourseDetail() {
@@ -552,18 +563,31 @@ export function CourseDetail() {
   const course = courses.find((item) => item.id === id) ?? courses[0];
   const { courses: records, markCourse } = useProgress();
   const record = records.find((c) => c.courseId === course.id) ?? null;
-  // Measured, not decorative: progress and the module count come from this account's own
-  // completions, and "Start course" persists real enrollment through the progress system.
+  // Measured, not decorative: the outline, the progress ring and every tick are this
+  // account's own. "Start course" persists real enrolment and ticking a module writes
+  // real completion; with nobody signed in the write declines and says so.
+  const facts = courseFactsFor(course.id);
+  const modules = moduleRows(course.id, record);
   const progress = courseProgress(course.id, record);
   const done = moduleCompletedCount(course.id, record);
-  const totalModules = courseFactsFor(course.id)?.modules.length ?? 0;
+  const totalModules = modules.length;
+  const duration = formatMinutes(courseMinutes(course.id));
   const started = progress > 0 || Boolean(record?.startedAt);
   const [toast, setToast] = useState('');
   const enroll = async () => {
     const outcome = await markCourse({ courseId: course.id, started: true });
-    setToast(outcome.saved ? (started ? 'Course resumed' : 'Course added to your pathway') : 'Sign in to enrol and track your progress.');
+    setToast(outcome.saved ? (started ? 'Course resumed' : 'Course added to your pathway') : outcome.reason);
   };
-  return <div className="mx-auto max-w-5xl animate-rise-in"><Link href="/learning" data-testid="link-back-learning" className="mb-6 inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground hover:text-primary"><ArrowLeft className="size-3.5" /> Back to learning</Link><Card className="overflow-hidden"><div className={`relative px-6 py-12 sm:px-12 ${course.color}`}><div className="absolute right-10 top-8 hidden opacity-20 sm:block"><course.icon className="size-32 text-primary" /></div><Badge tone="teal">{course.type}</Badge><h1 className="mt-4 max-w-2xl font-serif text-3xl leading-tight sm:text-5xl">{course.title}</h1><p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">A practical course for officials who need to move from a result to a defensible interpretation. Learn with worked examples from official statistical practice.</p><div className="mt-6 flex flex-wrap gap-4 text-xs font-medium text-muted-foreground"><span className="flex items-center gap-1"><Clock3 className="size-4" />{course.duration}</span><span className="flex items-center gap-1"><ListChecks className="size-4" />{totalModules} {totalModules === 1 ? 'module' : 'modules'}</span><span>{course.level}</span></div></div><div className="grid gap-8 p-6 sm:p-10 lg:grid-cols-[1fr_280px]"><div><h2 className="font-serif text-2xl">What you will take away</h2><div className="mt-5 space-y-4">{['Read seasonality without mistaking it for structural change', 'Choose an appropriate model and explain its assumptions', 'Write a short, decision-ready interpretation for a policy brief'].map((item) => <div key={item} className="flex gap-3 text-sm leading-6"><CheckCircle2 className="mt-1 size-4 shrink-0 text-primary" />{item}</div>)}</div><h2 className="mt-10 font-serif text-2xl">Course outline</h2><div className="mt-4 divide-y divide-border rounded-xl border border-border">{['The language of change', 'Seasonal adjustment in practice', 'Model choices and diagnostics', 'Capstone: write the brief'].map((item, i) => <button key={item} data-testid={`button-course-module-${i}`} onClick={() => setToast(`${item} marked as previewed`)} className="flex w-full items-center gap-3 p-4 text-left hover:bg-secondary"><span className="font-mono text-xs text-muted-foreground">0{i + 1}</span><span className="flex-1 text-sm font-semibold">{item}</span><span className="text-xs text-muted-foreground">{i === 0 ? '18 min' : `${i + 1}h ${i + 5}m`}</span><Play className="size-3.5 text-primary" /></button>)}</div></div><aside><div className="sticky top-24 rounded-xl border border-border bg-secondary p-5"><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Your progress</p><div className="mt-4 flex items-center gap-4"><Donut value={progress} size={74} /><div><p className="font-semibold">{progress}% complete</p><p className="mt-1 text-xs text-muted-foreground">{progress > 0 ? `Module ${Math.min(done + 1, totalModules)} of ${totalModules}` : started ? 'Enrolled — not started' : 'Not started'}</p></div></div><ProgressBar value={progress} className="mt-5" /><ActionButton className="mt-5 w-full" onClick={() => void enroll()}>{started ? 'Resume course' : 'Start course'} <ArrowRight className="size-4" /></ActionButton><button data-testid="button-download-outline" onClick={() => setToast('Course outline downloaded')} className="mt-3 flex w-full items-center justify-center gap-2 py-2 text-xs font-semibold text-primary"><Download className="size-3.5" /> Download outline</button></div></aside></div></Card>{toast && <ToastMessage message={toast} onClose={() => setToast('')} />}</div>;
+  // The server replaces the completed list with what we send, so the toggled set both
+  // marks a module done and clears it again — one write, no merge to reason about.
+  const toggleModule = async (index: number) => {
+    const next = new Set(record?.completedModules ?? []);
+    if (next.has(index)) next.delete(index);
+    else next.add(index);
+    const outcome = await markCourse({ courseId: course.id, completedModules: [...next] });
+    if (!outcome.saved) setToast(outcome.reason);
+  };
+  return <div className="mx-auto max-w-5xl animate-rise-in"><Link href="/learning" data-testid="link-back-learning" className="mb-6 inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground hover:text-primary"><ArrowLeft className="size-3.5" /> Back to learning</Link><Card className="overflow-hidden"><div className={`relative px-6 py-12 sm:px-12 ${course.color}`}><div className="absolute right-10 top-8 hidden opacity-20 sm:block"><course.icon className="size-32 text-primary" /></div><Badge tone="teal">{course.type}</Badge><h1 className="mt-4 max-w-2xl font-serif text-3xl leading-tight sm:text-5xl">{course.title}</h1><p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">{facts?.helpsWith ?? 'A practical pathway for official statistical work.'}</p><div className="mt-6 flex flex-wrap gap-4 text-xs font-medium text-muted-foreground"><span className="flex items-center gap-1"><Clock3 className="size-4" />{duration}</span><span className="flex items-center gap-1"><ListChecks className="size-4" />{totalModules} {totalModules === 1 ? 'module' : 'modules'}</span><span>{course.level}</span></div></div><div className="grid gap-8 p-6 sm:p-10 lg:grid-cols-[1fr_280px]"><div><h2 className="font-serif text-2xl">Course outline</h2><p className="mt-2 max-w-xl text-xs leading-5 text-muted-foreground">{catalogueNote}</p><div className="mt-4 divide-y divide-border rounded-xl border border-border">{modules.map((m) => <button key={m.index} data-testid={`button-course-module-${m.index}`} onClick={() => void toggleModule(m.index)} className="flex w-full items-start gap-3 p-4 text-left hover:bg-secondary"><span className={`mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold ${m.done ? 'bg-primary text-white' : 'border border-border text-muted-foreground'}`}>{m.done ? <Check className="size-3" /> : m.number}</span><span className="min-w-0 flex-1"><span className="flex items-center justify-between gap-3"><span className="text-sm font-semibold">{m.title}</span><span className="shrink-0 text-xs text-muted-foreground">{formatMinutes(m.minutes)}</span></span><span className="mt-1 block text-xs leading-5 text-muted-foreground">{m.summary}</span></span></button>)}</div></div><aside><div className="sticky top-24 rounded-xl border border-border bg-secondary p-5"><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Your progress</p><div className="mt-4 flex items-center gap-4"><Donut value={progress} size={74} /><div><p className="font-semibold">{progress}% complete</p><p className="mt-1 text-xs text-muted-foreground">{done} of {totalModules} {totalModules === 1 ? 'module' : 'modules'} done</p></div></div><ProgressBar value={progress} className="mt-5" /><ActionButton className="mt-5 w-full" onClick={() => void enroll()}>{started ? 'Resume course' : 'Start course'} <ArrowRight className="size-4" /></ActionButton><p className="mt-3 text-center text-[11px] leading-4 text-muted-foreground">Tick a module in the outline to record it against your account.</p></div></aside></div></Card>{toast && <ToastMessage message={toast} onClose={() => setToast('')} />}</div>;
 }
 
 /**
@@ -1863,55 +1887,68 @@ export function Quiz() {
   return <div className="mx-auto max-w-3xl animate-rise-in"><PageIntro eyebrow={quizTitle} title="Read closely." description="Choose the statement that is supported by the uploaded source. There is no penalty for taking a moment." action={<span className="font-mono text-xs text-muted-foreground">{q + 1} / {paper.length}</span>} /><ProgressBar value={((q + 1) / paper.length) * 100} className="mb-6" color="bg-accent" /><Card className="p-6 sm:p-10"><div className="flex flex-wrap items-center justify-between gap-2"><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Question {q + 1}</p><Badge tone="navy">{current.topic}</Badge></div><h2 className="mt-4 text-xl font-semibold leading-snug sm:text-2xl">{current.q}</h2><div className="mt-8 space-y-3">{current.a.map((answer, i) => <button key={answer} data-testid={`button-quiz-answer-${i}`} disabled={answered} onClick={() => setChoice(i)} className={`flex w-full items-start gap-3 rounded-xl border p-4 text-left text-sm transition-all disabled:cursor-default ${optionClass(i)}`}><span className={`flex size-7 shrink-0 items-center justify-center rounded-full border text-xs font-semibold ${bubbleClass(i)}`}>{String.fromCharCode(65 + i)}</span><span className="leading-6">{answer}</span></button>)}</div><div className="mt-8 flex flex-wrap items-center justify-end gap-3 border-t border-border pt-5">{!answered && <ActionButton variant="quiet" onClick={skip}>Skip this question</ActionButton>}<ActionButton disabled={!answered && choice === null} onClick={answered ? advance : check} icon={<ArrowRight className="size-4" />}>{!answered ? 'Check answer' : isLast ? 'See your report' : 'Next question'}</ActionButton></div>{answered && <AnswerReveal question={current} pick={choice} className="mt-6" />}</Card></div>;
 }
 
-export function Intelligence() {
-  const [period, setPeriod] = useState('Last 90 days'); const [toast, setToast] = useState('');
-  const org = [{ name: 'Apr', trained: 42, target: 55 }, { name: 'May', trained: 64, target: 60 }, { name: 'Jun', trained: 58, target: 62 }, { name: 'Jul', trained: 81, target: 70 }, { name: 'Aug', trained: 74, target: 76 }, { name: 'Sep', trained: 92, target: 82 }];
-  return <div className="mx-auto max-w-[1440px] animate-rise-in"><PageIntro eyebrow="Training manager · Demonstration data" title="See the capability picture." description="A calm view of readiness across your directorate — where to invest, who needs support, and what is moving." action={<div className="flex gap-2"><button data-testid="button-intelligence-period" onClick={() => setPeriod(period === 'Last 90 days' ? 'This financial year' : 'Last 90 days')} className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2.5 text-xs font-semibold"><Filter className="size-3.5" />{period}</button><ActionButton onClick={() => setToast('Brief exported as a demonstration PDF')} icon={<Download className="size-4" />}>Export brief</ActionButton></div>} /><div className="mb-6 rounded-lg border border-[#d6e2e7] bg-[#edf3f6] px-4 py-3 text-xs text-[#29485a]"><span className="font-semibold">Demonstration Data</span> · Organisational figures are synthetic and intended for the SIH26101 product walkthrough.</div><div className="grid grid-cols-2 gap-3 lg:grid-cols-4"><Metric label="Directorate readiness" value="71.8%" note="+5.2 pts this quarter" /><Metric label="Active learners" value="184" note="of 216 staff" accent="amber" /><Metric label="Critical gaps" value="12" note="Across 3 competencies" accent="coral" /><Metric label="Learning hours" value="486" note="This financial year" /></div><div className="mt-7 grid gap-6 xl:grid-cols-[1.35fr_.65fr]"><Card className="p-5"><SectionHeading eyebrow="Capability movement" title="Learning activity vs target" description="Learners completing at least one assessed milestone each month." /><div className="h-[280px]"><ResponsiveContainer width="100%" height="100%"><BarChart data={org} margin={{ top: 8, right: 8, left: -15, bottom: 0 }}><CartesianGrid vertical={false} stroke="#e1e9ea" /><XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#718189' }} /><YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#718189' }} /><Tooltip contentStyle={{ borderRadius: 8, border: '1px solid #dfe9ea', fontSize: 12 }} /><Bar dataKey="trained" name="Active learners" fill="#2f7880" radius={[4, 4, 0, 0]} barSize={24} /><Bar dataKey="target" name="Target" fill="#c49743" radius={[4, 4, 0, 0]} barSize={24} /></BarChart></ResponsiveContainer></div></Card><Card className="p-5"><SectionHeading eyebrow="Competency distribution" title="Where support is needed" /><div className="space-y-5">{[['Statistical inference', 54, 'coral'], ['Data stewardship', 68, 'amber'], ['Dissemination', 79, 'teal'], ['Digital fluency', 83, 'teal']].map(([label, val, tone]) => <div key={String(label)}><div className="mb-2 flex justify-between text-xs"><span className="font-semibold">{label}</span><span className="font-mono text-muted-foreground">{val}%</span></div><ProgressBar value={Number(val)} color={tone === 'coral' ? 'bg-[#c86c5e]' : tone === 'amber' ? 'bg-accent' : 'bg-primary'} /></div>)}</div><button data-testid="button-view-gap-analysis" onClick={() => setToast('Gap analysis queued for review')} className="mt-7 w-full rounded-lg border border-border py-2.5 text-xs font-semibold text-primary hover:bg-secondary">Open gap analysis <ArrowRight className="ml-1 inline size-3.5" /></button></Card></div><div className="mt-7 grid gap-6 lg:grid-cols-3"><Card className="p-5 lg:col-span-2"><SectionHeading eyebrow="Priority queue" title="Signals that deserve a response" /><div className="divide-y divide-border">{[['12 people', 'Need support in statistical inference', 'High priority', 'coral'], ['28 people', 'Have not opened a pathway this quarter', 'Attention', 'amber'], ['46 people', 'Ready for an advanced practice module', 'Opportunity', 'teal']].map(([num, text, label, tone], i) => <div key={text} className="flex items-center gap-4 py-4"><div className={`flex size-10 items-center justify-center rounded-lg ${tone === 'coral' ? 'bg-[#f9e5e1] text-[#a34d43]' : tone === 'amber' ? 'bg-[#fff2d8] text-[#8a6319]' : 'bg-[#e2f1ef] text-[#216b67]'}`}><span className="font-mono text-xs font-bold">{num.split(' ')[0]}</span></div><div className="flex-1"><p className="text-sm font-semibold">{text}</p><p className="mt-1 text-xs text-muted-foreground">Detected by competency and activity signals</p></div><Badge tone={tone === 'coral' ? 'coral' : tone === 'amber' ? 'amber' : 'teal'}>{label}</Badge><button data-testid={`button-action-priority-${i}`} onClick={() => setToast(`${label} action noted for review`)} className="rounded-lg p-2 text-muted-foreground hover:bg-secondary hover:text-primary"><ArrowRight className="size-4" /></button></div>)}</div></Card><Card className="bg-[#f7ebd1] p-6"><Lightbulb className="size-5 text-[#9b722b]" /><p className="mt-5 font-mono text-[10px] uppercase tracking-[.16em] text-[#8a6319]">Manager note</p><h3 className="mt-2 font-serif text-2xl text-[#5f4a27]">Make the next cohort applied.</h3><p className="mt-3 text-sm leading-6 text-[#755f38]">The strongest shift this quarter came from worked examples, not video completion. Consider pairing the inference module with a live release review.</p><button data-testid="button-save-manager-note" onClick={() => setToast('Manager note saved')} className="mt-5 text-sm font-semibold text-[#8a6319] hover:underline">Save to planning brief <ArrowRight className="ml-1 inline size-4" /></button></Card></div>{toast && <ToastMessage message={toast} onClose={() => setToast('')} />}</div>;
-}
-
 export function Profile() {
   const [, setLocation] = useLocation();
   const { user } = useSession();
+  const { live, progress, preferences, personal, history, setPreferences, setProfileDetails } = useProgress();
   const [editing, setEditing] = useState(false);
-  const [name, setName] = useState(user?.name ?? 'Ananya Sharma');
-  const [email, setEmail] = useState(user?.email ?? 'ananya.sharma@mospi.gov.in');
-  const [phone, setPhone] = useState('+91 98765 43210');
-  const [bio, setBio] = useState('Statistical Officer with 6 years of experience in survey design, data quality assurance, and dissemination of national economic indicators.');
-  const [role, setRole] = useState('Statistical Officer');
-  const [department, setDepartment] = useState('Directorate of Economics & Statistics');
-  const [location, setLoc] = useState('Bengaluru, Karnataka');
-  const [language, setLanguage] = useState('English');
-  const [notifications, setNotifications] = useState(true);
-  const [weeklyDigest, setWeeklyDigest] = useState(true);
-  const [demoLabels, setDemoLabels] = useState(true);
-  const [saved, setSaved] = useState(false);
   const [toast, setToast] = useState('');
+  // Identity is a credential, not a profile field: name and email come from the session
+  // and are read-only here. The editable details are the Personal block the server stores.
+  const name = user?.name ?? 'Ananya Sharma';
+  const email = user?.email ?? 'ananya.sharma@mospi.gov.in';
+  const samplePersonal = { phone: '+91 98765 43210', bio: 'Statistical Officer with 6 years of experience in survey design, data quality assurance, and dissemination of national economic indicators.', role: 'Statistical Officer', department: 'Directorate of Economics & Statistics', location: 'Bengaluru, Karnataka' };
+  // Live shows the account's own details; demo mode shows the screenshot's sample identity.
+  const details = live ? personal : samplePersonal;
+  const [form, setForm] = useState(personal);
+  useEffect(() => { setForm(personal); }, [personal]);
+  const startEdit = () => { setForm(personal); setEditing(true); };
+  const cancelEdit = () => { setForm(personal); setEditing(false); };
+  const saveDetails = async () => {
+    const outcome = await setProfileDetails(form);
+    if (outcome.saved) { setEditing(false); setToast('Profile details saved.'); }
+    else setToast(outcome.reason);
+  };
+  const changePref = async (patch: Partial<typeof preferences>) => {
+    const outcome = await setPreferences(patch);
+    if (!outcome.saved) setToast(outcome.reason);
+  };
+  const joined = user?.createdAt ? new Date(user.createdAt).toLocaleDateString('en-IN', { month: 'long', year: 'numeric' }) : 'March 2021';
+  const streak = practiceStreak(history).current;
+  const miniStats = live
+    ? [{ v: String(progress.attempts), l: 'Assessments' }, { v: `${progress.index}`, l: 'Score' }, { v: `${Math.round(progress.minutes / 60)}h`, l: 'Learning' }]
+    : [{ v: '27', l: 'Courses' }, { v: '68.4', l: 'Score' }, { v: '142h', l: 'Learning' }];
 
-  useEffect(() => { if (user?.name) setName(user.name); }, [user?.name]);
-  useEffect(() => { if (user?.email) setEmail(user.email); }, [user?.email]);
+  // Measured competencies when live; the demo screenshot's five bars otherwise.
+  const skills = live
+    ? competencyBars(progress).map((bar) => ({ name: bar.name, level: bar.score }))
+    : [
+        { name: 'Data Quality', level: 82 },
+        { name: 'Statistical Inference', level: 68 },
+        { name: 'Data Dissemination', level: 74 },
+        { name: 'Leadership', level: 54 },
+        { name: 'Digital Tools', level: 61 },
+      ];
 
-  const handleSave = () => { setEditing(false); setSaved(true); setToast('Profile updated successfully'); setTimeout(() => setToast(''), 3000); };
-  const handleCancel = () => { setEditing(false); setName(user?.name ?? 'Ananya Sharma'); setEmail(user?.email ?? 'ananya.sharma@mospi.gov.in'); };
-
-  const skills = [
-    { name: 'Data Quality', level: 82 },
-    { name: 'Statistical Inference', level: 68 },
-    { name: 'Data Dissemination', level: 74 },
-    { name: 'Leadership', level: 54 },
-    { name: 'Digital Tools', level: 61 },
-  ];
-
-  const stats = [
-    { label: 'Courses completed', value: '27', icon: Award },
-    { label: 'Assessments taken', value: '12', icon: Target },
-    { label: 'Learning hours', value: '142', icon: Clock3 },
-    { label: 'Current streak', value: '8 days', icon: Sparkles },
-  ];
+  const stats = live
+    ? [
+        { label: 'Assessments taken', value: String(progress.attempts), icon: Target },
+        { label: 'Competency index', value: `${progress.index}%`, icon: Award },
+        { label: 'Learning hours', value: String(Math.round(progress.minutes / 60)), icon: Clock3 },
+        { label: 'Current streak', value: `${streak} ${streak === 1 ? 'day' : 'days'}`, icon: Sparkles },
+      ]
+    : [
+        { label: 'Courses completed', value: '27', icon: Award },
+        { label: 'Assessments taken', value: '12', icon: Target },
+        { label: 'Learning hours', value: '142', icon: Clock3 },
+        { label: 'Current streak', value: '8 days', icon: Sparkles },
+      ];
 
   const inputClass = 'w-full rounded-lg border border-input bg-card px-3 py-2.5 text-sm outline-none transition-all focus:ring-2 focus:ring-primary/20 focus:border-primary/40 disabled:opacity-60 disabled:cursor-not-allowed';
 
   return <div className="mx-auto max-w-5xl animate-rise-in">
     <PageIntro eyebrow="Profile & preferences" title="Your NEXORA AI identity." description="Manage your personal information, professional details, and platform preferences — all in one place." />
+    {!live && <div className="mb-6 rounded-lg border border-[#d6e2e7] bg-[#eef4f6] px-4 py-3 text-xs text-[#29485a]"><span className="font-semibold">Sample / Demonstration Data</span> · Sign in to see your own measured profile. The figures and competencies below are illustrative.</div>}
 
     <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
       {stats.map((s) => <Card key={s.label} className="p-4 text-center">
@@ -1929,23 +1966,16 @@ export function Profile() {
             <div className="relative mx-auto flex size-24 items-center justify-center rounded-full bg-[#b8ddd6] font-serif text-4xl text-sidebar ring-4 ring-white/20">
               {initials(user?.name ?? name)}
             </div>
-            <button data-testid="button-change-avatar" className="relative mx-auto mt-3 flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-[11px] font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/25">
-              <Camera className="size-3" /> Change photo
-            </button>
           </div>
           <div className="-mt-8 rounded-t-[20px] bg-card px-6 pb-6 pt-8 text-center">
             <h2 className="font-serif text-xl">{name}</h2>
-            <p className="mt-1 text-sm text-muted-foreground">{role}</p>
+            <p className="mt-1 text-sm text-muted-foreground">{details.role || 'Add your role'}</p>
             <div className="mt-3 flex items-center justify-center gap-2">
               <Badge tone="amber">Verified official</Badge>
               <Badge tone="teal">Active</Badge>
             </div>
-            <div className="mt-5 flex justify-center gap-6 border-t border-border pt-5 text-xs text-muted-foreground">
-              <div className="text-center"><p className="font-semibold text-foreground">27</p><p>Courses</p></div>
-              <div className="h-8 w-px bg-border" />
-              <div className="text-center"><p className="font-semibold text-foreground">68.4</p><p>Score</p></div>
-              <div className="h-8 w-px bg-border" />
-              <div className="text-center"><p className="font-semibold text-foreground">142h</p><p>Learning</p></div>
+            <div className="mt-5 grid grid-cols-3 gap-2 border-t border-border pt-5 text-xs text-muted-foreground">
+              {miniStats.map((m) => <div key={m.l} className="text-center"><p className="font-semibold text-foreground">{m.v}</p><p>{m.l}</p></div>)}
             </div>
           </div>
         </Card>
@@ -1953,7 +1983,7 @@ export function Profile() {
         <Card className="p-6">
           <SectionHeading eyebrow="Competencies" title="Skill levels" />
           <div className="space-y-4">
-            {skills.map((s) => <div key={s.name}>
+            {skills.length === 0 ? <p className="text-sm text-muted-foreground">Take an assessment to measure your competencies — your levels will appear here.</p> : skills.map((s) => <div key={s.name}>
               <div className="mb-1.5 flex items-center justify-between text-sm">
                 <span className="font-medium">{s.name}</span>
                 <span className="font-mono text-xs text-muted-foreground">{s.level}%</span>
@@ -1968,51 +1998,39 @@ export function Profile() {
         <Card className="p-6">
           <div className="mb-5 flex items-center justify-between">
             <SectionHeading eyebrow="Personal" title="Your information" />
-            {!editing && <button data-testid="button-edit-profile" onClick={() => setEditing(true)} className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-2 text-xs font-semibold text-primary transition-colors hover:bg-secondary"><Edit3 className="size-3.5" /> Edit</button>}
+            {live && !editing && <button data-testid="button-edit-profile" onClick={startEdit} className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-2 text-xs font-semibold text-primary transition-colors hover:bg-secondary"><Edit3 className="size-3.5" /> Edit</button>}
           </div>
           <div className="space-y-5">
-            <label className="block">
-              <span className="flex items-center gap-2 text-sm font-semibold"><Users className="size-3.5 text-muted-foreground" /> Full name</span>
-              <input data-testid="input-name" type="text" value={name} onChange={(e) => setName(e.target.value)} disabled={!editing} className={`mt-2 ${inputClass}`} />
-            </label>
-            <label className="block">
-              <span className="flex items-center gap-2 text-sm font-semibold"><Mail className="size-3.5 text-muted-foreground" /> Email address</span>
-              <input data-testid="input-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={!editing} className={`mt-2 ${inputClass}`} />
-            </label>
-            <label className="block">
-              <span className="flex items-center gap-2 text-sm font-semibold"><Phone className="size-3.5 text-muted-foreground" /> Phone number</span>
-              <input data-testid="input-phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} disabled={!editing} className={`mt-2 ${inputClass}`} />
-            </label>
-            <label className="block">
-              <span className="flex items-center gap-2 text-sm font-semibold"><Edit3 className="size-3.5 text-muted-foreground" /> Bio</span>
-              <textarea data-testid="input-bio" value={bio} onChange={(e) => setBio(e.target.value)} disabled={!editing} rows={3} className={`mt-2 resize-none ${inputClass}`} />
-            </label>
-            {editing && <div className="flex gap-3 border-t border-border pt-5">
-              <ActionButton onClick={handleSave}>Save changes <Check className="size-4" /></ActionButton>
-              <ActionButton variant="outline" onClick={handleCancel}>Cancel</ActionButton>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div>
+                <span className="flex items-center gap-2 text-sm font-semibold"><Users className="size-3.5 text-muted-foreground" /> Full name</span>
+                <p className="mt-2 text-sm">{name}</p>
+                <p className="mt-1 text-[11px] text-muted-foreground">Managed by your account</p>
+              </div>
+              <div>
+                <span className="flex items-center gap-2 text-sm font-semibold"><Mail className="size-3.5 text-muted-foreground" /> Email address</span>
+                <p className="mt-2 break-all text-sm">{email}</p>
+                <p className="mt-1 text-[11px] text-muted-foreground">Managed by your account</p>
+              </div>
+            </div>
+            {editing ? <div className="grid gap-5 sm:grid-cols-2">
+              <label className="block"><span className="flex items-center gap-2 text-sm font-semibold"><Briefcase className="size-3.5 text-muted-foreground" /> Role</span><input data-testid="input-role" type="text" value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })} className={`mt-2 ${inputClass}`} /></label>
+              <label className="block"><span className="flex items-center gap-2 text-sm font-semibold"><Shield className="size-3.5 text-muted-foreground" /> Department</span><input data-testid="input-department" type="text" value={form.department} onChange={(e) => setForm({ ...form, department: e.target.value })} className={`mt-2 ${inputClass}`} /></label>
+              <label className="block"><span className="flex items-center gap-2 text-sm font-semibold"><MapPin className="size-3.5 text-muted-foreground" /> Location</span><input data-testid="input-location" type="text" value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} className={`mt-2 ${inputClass}`} /></label>
+              <label className="block"><span className="flex items-center gap-2 text-sm font-semibold"><Phone className="size-3.5 text-muted-foreground" /> Phone number</span><input data-testid="input-phone" type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={`mt-2 ${inputClass}`} /></label>
+              <label className="block sm:col-span-2"><span className="flex items-center gap-2 text-sm font-semibold"><Edit3 className="size-3.5 text-muted-foreground" /> Bio</span><textarea data-testid="input-bio" value={form.bio} onChange={(e) => setForm({ ...form, bio: e.target.value })} rows={3} className={`mt-2 resize-none ${inputClass}`} /></label>
+            </div> : <div className="grid gap-5 sm:grid-cols-2">
+              <div><p className="flex items-center gap-2 text-xs text-muted-foreground"><Briefcase className="size-3.5" /> Role</p><p className="mt-1.5 text-sm font-semibold">{details.role || '—'}</p></div>
+              <div><p className="flex items-center gap-2 text-xs text-muted-foreground"><Shield className="size-3.5" /> Department</p><p className="mt-1.5 text-sm font-semibold">{details.department || '—'}</p></div>
+              <div><p className="flex items-center gap-2 text-xs text-muted-foreground"><MapPin className="size-3.5" /> Location</p><p className="mt-1.5 text-sm font-semibold">{details.location || '—'}</p></div>
+              <div><p className="flex items-center gap-2 text-xs text-muted-foreground"><Phone className="size-3.5" /> Phone</p><p className="mt-1.5 text-sm font-semibold">{details.phone || '—'}</p></div>
+              <div className="sm:col-span-2"><p className="flex items-center gap-2 text-xs text-muted-foreground"><Edit3 className="size-3.5" /> Bio</p><p className="mt-1.5 text-sm leading-6 text-muted-foreground">{details.bio || 'No bio yet.'}</p></div>
             </div>}
-          </div>
-        </Card>
-
-        <Card className="p-6">
-          <SectionHeading eyebrow="Professional" title="Work details" />
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div className="rounded-lg bg-secondary/50 p-4">
-              <p className="flex items-center gap-2 text-xs text-muted-foreground"><Briefcase className="size-3.5" /> Role</p>
-              <p className="mt-1.5 text-sm font-semibold">{role}</p>
-            </div>
-            <div className="rounded-lg bg-secondary/50 p-4">
-              <p className="flex items-center gap-2 text-xs text-muted-foreground"><Shield className="size-3.5" /> Department</p>
-              <p className="mt-1.5 text-sm font-semibold">{department}</p>
-            </div>
-            <div className="rounded-lg bg-secondary/50 p-4">
-              <p className="flex items-center gap-2 text-xs text-muted-foreground"><MapPin className="size-3.5" /> Location</p>
-              <p className="mt-1.5 text-sm font-semibold">{location}</p>
-            </div>
-            <div className="rounded-lg bg-secondary/50 p-4">
-              <p className="flex items-center gap-2 text-xs text-muted-foreground"><Calendar className="size-3.5" /> Joined</p>
-              <p className="mt-1.5 text-sm font-semibold">{user?.createdAt ? new Date(user.createdAt).toLocaleDateString('en-IN', { month: 'long', year: 'numeric' }) : 'March 2021'}</p>
-            </div>
+            {editing && <div className="flex gap-3 border-t border-border pt-5">
+              <ActionButton onClick={() => void saveDetails()}>Save changes <Check className="size-4" /></ActionButton>
+              <ActionButton variant="outline" onClick={cancelEdit}>Cancel</ActionButton>
+            </div>}
+            <div className="flex items-center gap-2 border-t border-border pt-4 text-xs text-muted-foreground"><Calendar className="size-3.5" /> Joined {joined}</div>
           </div>
         </Card>
 
@@ -2021,37 +2039,22 @@ export function Profile() {
           <div className="space-y-6">
             <label className="block">
               <span className="flex items-center gap-2 text-sm font-semibold"><Globe className="size-3.5 text-muted-foreground" /> Preferred language</span>
-              <select data-testid="select-language" value={language} onChange={(e) => setLanguage(e.target.value)} className={`mt-2 ${inputClass}`}>
-                <option>English</option><option>Hindi</option><option>Kannada</option><option>Tamil</option><option>Telugu</option><option>Bengali</option>
+              <select data-testid="select-language" value={live ? preferences.language : 'English'} disabled={!live} onChange={(e) => void changePref({ language: e.target.value as typeof preferences.language })} className={`mt-2 ${inputClass}`}>
+                <option>English</option><option>Hindi</option><option>Kannada</option>
               </select>
+              <span className="mt-1.5 block text-xs text-muted-foreground">Saved to your account.</span>
             </label>
 
             <label className="flex items-center justify-between gap-4">
               <span>
-                <span className="block text-sm font-semibold">Push notifications</span>
-                <span className="mt-1 block text-xs text-muted-foreground">Get notified about assessment windows and new pathways.</span>
+                <span className="block text-sm font-semibold">Notifications</span>
+                <span className="mt-1 block text-xs text-muted-foreground">Show a feed of your assessment activity and course progress in the bell.</span>
               </span>
-              <button data-testid="button-toggle-notifications" onClick={() => setNotifications(!notifications)} className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${notifications ? 'bg-primary' : 'bg-secondary'}`}><span className={`absolute top-1 size-4 rounded-full bg-card transition-transform ${notifications ? 'left-6' : 'left-1'}`} /></button>
+              <button data-testid="button-toggle-notifications" role="switch" aria-checked={live ? preferences.notify : true} aria-label="Notifications" onClick={() => void changePref({ notify: !(live ? preferences.notify : true) })} className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${(live ? preferences.notify : true) ? 'bg-primary' : 'bg-secondary'}`}><span className={`absolute top-1 size-4 rounded-full bg-card transition-transform ${(live ? preferences.notify : true) ? 'left-6' : 'left-1'}`} /></button>
             </label>
 
-            <label className="flex items-center justify-between gap-4">
-              <span>
-                <span className="block text-sm font-semibold">Weekly intelligence digest</span>
-                <span className="mt-1 block text-xs text-muted-foreground">A short Monday brief on your next learning move.</span>
-              </span>
-              <button data-testid="button-toggle-digest" onClick={() => setWeeklyDigest(!weeklyDigest)} className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${weeklyDigest ? 'bg-primary' : 'bg-secondary'}`}><span className={`absolute top-1 size-4 rounded-full bg-card transition-transform ${weeklyDigest ? 'left-6' : 'left-1'}`} /></button>
-            </label>
-
-            <label className="flex items-center justify-between gap-4">
-              <span>
-                <span className="block text-sm font-semibold">Show demonstration labels</span>
-                <span className="mt-1 block text-xs text-muted-foreground">Keep prototype data markers visible in your workspace.</span>
-              </span>
-              <button data-testid="button-toggle-demo-labels" onClick={() => setDemoLabels(!demoLabels)} className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${demoLabels ? 'bg-primary' : 'bg-secondary'}`}><span className={`absolute top-1 size-4 rounded-full bg-card transition-transform ${demoLabels ? 'left-6' : 'left-1'}`} /></button>
-            </label>
-
-            <div className="flex items-center gap-3 border-t border-border pt-5">
-              <ActionButton onClick={() => { setSaved(true); setToast('Preferences saved'); setTimeout(() => setToast(''), 3000); }}>{saved ? 'Preferences saved' : 'Save preferences'} <Check className="size-4" /></ActionButton>
+            <div className="flex items-center justify-between gap-3 border-t border-border pt-5">
+              <p className="text-xs text-muted-foreground">{live ? 'Preferences save as you change them.' : 'Sign in to change your preferences.'}</p>
               <button data-testid="button-open-integrations" onClick={() => setLocation('/integrations')} className="text-sm font-semibold text-primary hover:underline">Manage integrations</button>
             </div>
           </div>
@@ -2064,12 +2067,7 @@ export function Profile() {
 function Building2Icon() { return <svg viewBox="0 0 24 24" className="size-7 text-[#29485a]" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M4 21V5l8-3 8 3v16M8 9h1m3 0h1m3 0h1M8 13h1m3 0h1m3 0h1M8 17h1m3 0h1m3 0h1M10 21v-4h4v4" /></svg>; }
 
 export function Presentation() {
-  const [, setLocation] = useLocation(); const [slide, setSlide] = useState(0); const slides = [{ kicker: '01 · Orient', title: 'NEXORA AI turns competency data into a next action.', body: 'A guided tour for the official statistical workforce — from individual signal to organisational response.', target: '/dashboard', button: 'Open learner overview' }, { kicker: '02 · Diagnose', title: 'Start with the question behind the score.', body: 'Scenario-based assessment makes competency evidence useful, not ornamental.', target: '/assessment', button: 'Run a sample assessment' }, { kicker: '03 · Practise', title: 'Make a work material a learning surface.', body: 'Upload a briefing, ground the language, then practise the judgement it demands.', target: '/materials', button: 'Open materials lab' }, { kicker: '04 · See the system', title: 'Managers see where support will matter.', body: 'Organisational intelligence turns scattered activity into a prioritised queue.', target: '/intelligence', button: 'Open intelligence view' }]; const current = slides[slide]; return <div className="min-h-[calc(100dvh-68px)]"><div className="mx-auto flex min-h-[calc(100dvh-120px)] max-w-6xl flex-col justify-between py-8 sm:py-14"><div className="flex items-center justify-between"><div className="flex items-center gap-3"><div className="flex size-9 items-center justify-center rounded-lg bg-primary text-white"><span className="font-serif text-xl">S</span></div><div><p className="font-serif text-lg">NEXORA AI</p><p className="font-mono text-[9px] uppercase tracking-[.16em] text-muted-foreground">Guided presentation</p></div></div><Badge tone="amber">Prototype · Demonstration data</Badge></div><div className="grid items-center gap-12 py-14 lg:grid-cols-[1fr_.8fr]"><div key={slide} className="animate-rise-in"><p className="font-mono text-xs font-medium uppercase tracking-[.18em] text-primary">{current.kicker}</p><h1 className="mt-5 max-w-3xl font-serif text-5xl leading-[1.02] tracking-[-.03em] sm:text-7xl">{current.title}</h1><p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">{current.body}</p><ActionButton className="mt-8" onClick={() => setLocation(current.target)} icon={<ArrowRight className="size-4" />}>{current.button}</ActionButton></div><div className="relative aspect-square max-w-[440px] justify-self-center"><div className="absolute inset-7 rounded-full border border-primary/15" /><div className="absolute inset-16 rounded-full border border-primary/20" /><div className="absolute inset-[27%] flex flex-col items-center justify-center rounded-full bg-sidebar text-center text-white shadow-xl"><Sparkles className="mb-3 size-6 text-accent" /><span className="font-mono text-[10px] uppercase tracking-[.15em] text-sidebar-foreground/60">Signal</span><span className="mt-1 font-serif text-3xl">68.4</span><span className="mt-1 text-xs text-sidebar-foreground/60">competency index</span></div><div className="absolute left-0 top-[31%] rounded-lg border border-border bg-card p-3 shadow-lg"><p className="font-mono text-[9px] uppercase tracking-[.12em] text-muted-foreground">Next move</p><p className="mt-1 text-xs font-semibold">Applied inference</p></div><div className="absolute bottom-[20%] right-0 rounded-lg border border-border bg-card p-3 shadow-lg"><p className="font-mono text-[9px] uppercase tracking-[.12em] text-muted-foreground">Pathway</p><p className="mt-1 text-xs font-semibold">42% complete</p></div></div></div><div className="flex items-center justify-between border-t border-border pt-5"><div className="flex gap-2">{slides.map((s, i) => <button key={s.kicker} data-testid={`button-presentation-slide-${i}`} onClick={() => setSlide(i)} className={`h-1.5 rounded-full transition-all ${i === slide ? 'w-12 bg-primary' : 'w-5 bg-border'}`} aria-label={`Go to presentation slide ${i + 1}`} />)}</div><div className="flex gap-2"><button data-testid="button-presentation-previous" onClick={() => setSlide(Math.max(0, slide - 1))} disabled={slide === 0} className="rounded-lg border border-border p-2.5 disabled:opacity-30"><ArrowLeft className="size-4" /></button><button data-testid="button-presentation-next" onClick={() => setSlide(Math.min(slides.length - 1, slide + 1))} disabled={slide === slides.length - 1} className="rounded-lg bg-primary p-2.5 text-white disabled:opacity-30"><ArrowRight className="size-4" /></button></div></div></div></div>;
-}
-export function Roadmap() {
-  const [expanded, setExpanded] = useState<number | null>(1);
-  const milestones = [{ title: 'Statistical Officer', sub: 'Current role · Directorate of Economics', status: 'Current', score: 68, skills: ['Data quality', 'Official methods', 'Release practice'] }, { title: 'Senior Statistical Officer', sub: 'Next horizon · 12–18 months', status: 'Next horizon', score: 78, skills: ['Applied inference', 'Policy communication', 'Team leadership'] }, { title: 'Deputy Director, Statistics', sub: 'Longer horizon · 3–5 years', status: 'Aspirational', score: 0, skills: ['Strategic planning', 'System leadership', 'Advanced dissemination'] }];
-  return <div className="mx-auto max-w-5xl animate-rise-in"><PageIntro eyebrow="Career roadmap" title="Make the next role legible." description="A skills-first view of your progression, grounded in the competencies expected across India’s official statistical system." action={<ActionButton variant="outline" onClick={() => setExpanded(expanded === null ? 1 : null)} icon={<MapPin className="size-4" />}>Recenter map</ActionButton>} /><Card className="overflow-hidden p-6 sm:p-10"><div className="relative"><div className="absolute left-[19px] top-5 h-[calc(100%-40px)] w-px bg-border sm:left-6" />{milestones.map((m, i) => <div key={m.title} className="relative mb-8 flex gap-5 last:mb-0 sm:gap-8"><div className={`z-10 flex size-10 shrink-0 items-center justify-center rounded-full border-4 border-card ${i === 0 ? 'bg-primary text-white' : i === 1 ? 'bg-accent text-foreground' : 'bg-secondary text-muted-foreground'}`}><span className="font-mono text-xs font-bold">{i === 0 ? <Check className="size-4" /> : `0${i + 1}`}</span></div><div className="min-w-0 flex-1 rounded-xl border border-border bg-card p-5 transition-colors hover:bg-secondary/50"><div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-start"><div><div className="flex flex-wrap items-center gap-2"><h2 className="font-serif text-xl">{m.title}</h2><Badge tone={i === 0 ? 'teal' : i === 1 ? 'amber' : 'neutral'}>{m.status}</Badge></div><p className="mt-1 text-xs text-muted-foreground">{m.sub}</p></div>{i < 2 && <div className="text-left sm:text-right"><p className="font-mono text-xl text-primary">{m.score}%</p><p className="text-[10px] text-muted-foreground">readiness</p></div>}</div><button data-testid={`button-expand-roadmap-${i}`} onClick={() => setExpanded(expanded === i ? null : i)} className="mt-4 flex items-center gap-1 text-xs font-semibold text-primary">{expanded === i ? 'Hide competency detail' : 'View competency detail'}<ArrowRight className={`size-3.5 transition-transform ${expanded === i ? 'rotate-90' : ''}`} /></button>{expanded === i && <div className="mt-4 grid gap-3 border-t border-border pt-4 sm:grid-cols-3">{m.skills.map((skill, j) => <div key={skill} className="rounded-lg bg-secondary p-3"><p className="text-xs font-semibold">{skill}</p><p className="mt-2 text-[11px] text-muted-foreground">{i === 0 ? 'Demonstrated' : j === 0 ? 'Focus next' : 'Build evidence'}</p></div>)}</div>}</div></div>)}</div></Card><div className="mt-6 grid gap-4 sm:grid-cols-2"><Card className="flex items-center gap-4 p-5"><div className="flex size-11 items-center justify-center rounded-xl bg-[#e2f1ef]"><Target className="size-5 text-primary" /></div><div><p className="text-sm font-semibold">Next evidence to collect</p><p className="mt-1 text-xs text-muted-foreground">Lead one quality review and document the decision.</p></div></Card><Card className="flex items-center gap-4 p-5"><div className="flex size-11 items-center justify-center rounded-xl bg-[#fff2d8]"><Award className="size-5 text-[#8a6319]" /></div><div><p className="text-sm font-semibold">Recognition milestone</p><p className="mt-1 text-xs text-muted-foreground">2 more pathway modules unlock a badge.</p></div></Card></div></div>;
+  const [, setLocation] = useLocation(); const [slide, setSlide] = useState(0); const slides = [{ kicker: '01 · Orient', title: 'NEXORA AI turns competency data into a next action.', body: 'A guided tour for the official statistical workforce — from individual signal to organisational response.', target: '/dashboard', button: 'Open learner overview' }, { kicker: '02 · Diagnose', title: 'Start with the question behind the score.', body: 'Scenario-based assessment makes competency evidence useful, not ornamental.', target: '/assessment', button: 'Run a sample assessment' }, { kicker: '03 · Practise', title: 'Make a work material a learning surface.', body: 'Upload a briefing, ground the language, then practise the judgement it demands.', target: '/materials', button: 'Open materials lab' }]; const current = slides[slide]; return <div className="min-h-[calc(100dvh-68px)]"><div className="mx-auto flex min-h-[calc(100dvh-120px)] max-w-6xl flex-col justify-between py-8 sm:py-14"><div className="flex items-center justify-between"><div className="flex items-center gap-3"><div className="flex size-9 items-center justify-center rounded-lg bg-primary text-white"><span className="font-serif text-xl">N</span></div><div><p className="font-serif text-lg">NEXORA AI</p><p className="font-mono text-[9px] uppercase tracking-[.16em] text-muted-foreground">Guided presentation</p></div></div><Badge tone="amber">Prototype · Demonstration data</Badge></div><div className="grid items-center gap-12 py-14 lg:grid-cols-[1fr_.8fr]"><div key={slide} className="animate-rise-in"><p className="font-mono text-xs font-medium uppercase tracking-[.18em] text-primary">{current.kicker}</p><h1 className="mt-5 max-w-3xl font-serif text-5xl leading-[1.02] tracking-[-.03em] sm:text-7xl">{current.title}</h1><p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">{current.body}</p><ActionButton className="mt-8" onClick={() => setLocation(current.target)} icon={<ArrowRight className="size-4" />}>{current.button}</ActionButton></div><div className="relative aspect-square max-w-[440px] justify-self-center"><div className="absolute inset-7 rounded-full border border-primary/15" /><div className="absolute inset-16 rounded-full border border-primary/20" /><div className="absolute inset-[27%] flex flex-col items-center justify-center rounded-full bg-sidebar text-center text-white shadow-xl"><Sparkles className="mb-3 size-6 text-accent" /><span className="font-mono text-[10px] uppercase tracking-[.15em] text-sidebar-foreground/60">Signal</span><span className="mt-1 font-serif text-3xl">68.4</span><span className="mt-1 text-xs text-sidebar-foreground/60">competency index</span></div><div className="absolute left-0 top-[31%] rounded-lg border border-border bg-card p-3 shadow-lg"><p className="font-mono text-[9px] uppercase tracking-[.12em] text-muted-foreground">Next move</p><p className="mt-1 text-xs font-semibold">Applied inference</p></div><div className="absolute bottom-[20%] right-0 rounded-lg border border-border bg-card p-3 shadow-lg"><p className="font-mono text-[9px] uppercase tracking-[.12em] text-muted-foreground">Pathway</p><p className="mt-1 text-xs font-semibold">42% complete</p></div></div></div><div className="flex items-center justify-between border-t border-border pt-5"><div className="flex gap-2">{slides.map((s, i) => <button key={s.kicker} data-testid={`button-presentation-slide-${i}`} onClick={() => setSlide(i)} className={`h-1.5 rounded-full transition-all ${i === slide ? 'w-12 bg-primary' : 'w-5 bg-border'}`} aria-label={`Go to presentation slide ${i + 1}`} />)}</div><div className="flex gap-2"><button data-testid="button-presentation-previous" onClick={() => setSlide(Math.max(0, slide - 1))} disabled={slide === 0} className="rounded-lg border border-border p-2.5 disabled:opacity-30"><ArrowLeft className="size-4" /></button><button data-testid="button-presentation-next" onClick={() => setSlide(Math.min(slides.length - 1, slide + 1))} disabled={slide === slides.length - 1} className="rounded-lg bg-primary p-2.5 text-white disabled:opacity-30"><ArrowRight className="size-4" /></button></div></div></div></div>;
 }
 
 export function Integrations() {

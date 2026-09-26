@@ -15,7 +15,7 @@
 
 import { randomUUID } from 'node:crypto';
 import { getDb, jsonb } from './pool.mjs';
-import { sanitizeFilename } from '../documents/json-store.mjs';
+import { sanitizeFilename, DocumentPageLimitError } from '../documents/json-store.mjs';
 
 export async function openPostgresDocumentStore() {
   const db = await getDb();
@@ -132,14 +132,19 @@ export async function openPostgresDocumentStore() {
     },
     /* ---- staged page upload (avoids one giant request for a large book) ---- */
 
-    async appendPages(userId, id, pages) {
+    async appendPages(userId, id, pages, options = {}) {
       const rec = getOwned(userId, id);
       if (!rec) return null;
+      const incoming = Array.isArray(pages) ? pages : [];
+      const maxPages = Number.isInteger(options.maxPages) && options.maxPages > 0 ? options.maxPages : Infinity;
       let mergedLength = 0;
       await enqueue(async () => {
         const existing = await db.query('SELECT pages FROM document_pages WHERE document_id = $1', [id]);
         const current = Array.isArray(existing.rows[0]?.pages) ? existing.rows[0].pages : [];
-        const merged = current.concat(Array.isArray(pages) ? pages : []);
+        // Enforce the cap inside the serialized section, BEFORE writing, so a concurrent
+        // pair of appends cannot both slip past the limit and nothing over-limit is stored.
+        if (current.length + incoming.length > maxPages) throw new DocumentPageLimitError(maxPages);
+        const merged = current.concat(incoming);
         mergedLength = merged.length;
         await db.query(
           `INSERT INTO document_pages (document_id, pages) VALUES ($1, $2::jsonb)

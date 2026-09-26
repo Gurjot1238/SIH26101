@@ -58,6 +58,16 @@ export async function openPostgresStore() {
     return run;
   }
 
+  // Per-user serialization for read-modify-write profile updates (audit A19); mirrors the
+  // JSON store. The freshest profile is read inside the per-account lock, right before write.
+  const profileLocks = new Map();
+  const withProfileLock = (userId, fn) => {
+    const prev = profileLocks.get(userId) ?? Promise.resolve();
+    const run = prev.then(fn, fn);
+    profileLocks.set(userId, run.then(() => {}, () => {}));
+    return run;
+  };
+
   const countAttempts = () => {
     let total = 0;
     for (const list of attemptsByUser.values()) total += list.length;
@@ -221,6 +231,28 @@ export async function openPostgresStore() {
         ),
       );
       return profile;
+    },
+
+    /**
+     * Serialized read-modify-write for one account's profile (audit A19). Same contract as
+     * the JSON store: `mutate(current)` gets the freshest profile inside a per-user lock and
+     * returns the next profile to persist (undefined = leave unchanged).
+     */
+    updateProfile(userId, mutate) {
+      return withProfileLock(userId, async () => {
+        const current = profiles.get(userId) ?? null;
+        const next = await mutate(current);
+        if (next === undefined) return current;
+        profiles.set(userId, next);
+        await enqueue(() =>
+          db.query(
+            `INSERT INTO profiles (user_id, data) VALUES ($1, $2::jsonb)
+             ON CONFLICT (user_id) DO UPDATE SET data = EXCLUDED.data`,
+            [userId, jsonb(next)],
+          ),
+        );
+        return next;
+      });
     },
     /* ------------------------------------------------------------ saved papers */
 

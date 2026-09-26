@@ -2,7 +2,7 @@
  * One place that knows what this account has actually measured.
  *
  * The companion to `session-provider.tsx`, and it exists for the same reason: the
- * Dashboard, the Materials page, the Quiz, the Roadmap and the Profile page all
+ * Dashboard, the Materials page, the Quiz and the Profile page all
  * want the same rollup, and without a provider each would fetch its own copy and
  * they would drift apart within one navigation.
  *
@@ -27,10 +27,12 @@ import { type AnswerAnalysis } from '@/lib/analytics';
 import { AuthError } from '@/lib/auth';
 import {
   type CourseRecord,
+  type Personal,
   type Preferences,
   type ProgressRollup,
   type StoredAttempt,
   clearHistory,
+  defaultPersonal,
   defaultPreferences,
   emptyRollup,
   fetchAssessmentPaper,
@@ -38,6 +40,7 @@ import {
   saveAttempt,
   saveCourse,
   savePreferences,
+  saveProfileDetails,
   submitAssessment,
 } from '@/lib/progress';
 import { type AttemptPayload } from '@/lib/scoring';
@@ -60,6 +63,8 @@ export type ProgressStore = {
   /** Always a usable rollup — `emptyRollup()` while idle, so pages need no null check. */
   progress: ProgressRollup;
   preferences: Preferences;
+  /** The editable identity fields (phone/bio/role/department/location). */
+  personal: Personal;
   courses: CourseRecord[];
   /** The most recent attempts, newest first. */
   history: StoredAttempt[];
@@ -89,6 +94,8 @@ export type ProgressStore = {
   /** Delete this account's history. Destructive — confirm before calling. */
   clear: () => Promise<SaveOutcome<number>>;
   setPreferences: (patch: Partial<Preferences>) => Promise<SaveOutcome<Preferences>>;
+  /** Save the editable identity fields. An empty string clears a field. */
+  setProfileDetails: (patch: Partial<Personal>) => Promise<SaveOutcome<Personal>>;
   markCourse: (update: {
     courseId: string;
     saved?: boolean;
@@ -122,6 +129,7 @@ const NO_PROVIDER: ProgressStore = {
   live: false,
   progress: emptyRollup(),
   preferences: defaultPreferences(),
+  personal: defaultPersonal(),
   courses: [],
   history: [],
   refresh: async () => {},
@@ -130,6 +138,7 @@ const NO_PROVIDER: ProgressStore = {
   sitAssessment: async () => ({ saved: false, reason: SIGN_IN_TO_SIT }),
   clear: async () => ({ saved: false, reason: NOT_SIGNED_IN }),
   setPreferences: async () => ({ saved: false, reason: NOT_SIGNED_IN }),
+  setProfileDetails: async () => ({ saved: false, reason: NOT_SIGNED_IN }),
   markCourse: async () => ({ saved: false, reason: NOT_SIGNED_IN }),
   courseFor: () => null,
 };
@@ -144,6 +153,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   const [problem, setProblem] = useState('');
   const [progress, setProgress] = useState<ProgressRollup>(emptyRollup);
   const [preferences, setPrefs] = useState<Preferences>(defaultPreferences);
+  const [personal, setPersonal] = useState<Personal>(defaultPersonal);
   const [courses, setCourses] = useState<CourseRecord[]>([]);
   const [history, setHistory] = useState<StoredAttempt[]>([]);
 
@@ -159,6 +169,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   const reset = useCallback(() => {
     setProgress(emptyRollup());
     setPrefs(defaultPreferences());
+    setPersonal(defaultPersonal());
     setCourses([]);
     setHistory([]);
   }, []);
@@ -181,6 +192,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       if (generation.current !== mine) return;
       setProgress(bundle.progress);
       setPrefs(bundle.preferences);
+      setPersonal(bundle.personal);
       setCourses(bundle.courses);
       setHistory(bundle.history);
       setProblem('');
@@ -282,6 +294,16 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     [write],
   );
 
+  const setProfileDetails = useCallback<ProgressStore['setProfileDetails']>(
+    (patch) =>
+      write(async () => {
+        const { personal: next } = await saveProfileDetails(patch);
+        setPersonal(next);
+        return next;
+      }),
+    [write],
+  );
+
   const markCourse = useCallback<ProgressStore['markCourse']>(
     (update) =>
       write(async () => {
@@ -304,6 +326,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       live: status === 'ready',
       progress,
       preferences,
+      personal,
       courses,
       history,
       refresh: load,
@@ -312,6 +335,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       sitAssessment,
       clear,
       setPreferences,
+      setProfileDetails,
       markCourse,
       courseFor,
     }),
@@ -320,6 +344,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       problem,
       progress,
       preferences,
+      personal,
       courses,
       history,
       load,
@@ -328,6 +353,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       sitAssessment,
       clear,
       setPreferences,
+      setProfileDetails,
       markCourse,
       courseFor,
     ],

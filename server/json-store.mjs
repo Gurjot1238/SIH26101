@@ -145,6 +145,19 @@ export async function openJsonStore(dataDir) {
   const flushInteractions = () =>
     enqueue(() => writeJsonFile(interactionsPath, { version: 1, interactions }));
 
+  // Per-user serialization for read-modify-write profile updates. Without it, two concurrent
+  // requests from the same account both read the same snapshot and the second save clobbers
+  // the first's change (audit A19). Each account's updates run in a chained promise, so the
+  // freshest profile is read INSIDE the critical section, immediately before the write.
+  const profileLocks = new Map();
+  const withProfileLock = (userId, fn) => {
+    const prev = profileLocks.get(userId) ?? Promise.resolve();
+    const run = prev.then(fn, fn);
+    // Keep only a settled tail so a rejection in one update never poisons the next.
+    profileLocks.set(userId, run.then(() => {}, () => {}));
+    return run;
+  };
+
   const countAttempts = () => {
     let total = 0;
     for (const list of attemptsByUser.values()) total += list.length;
@@ -284,6 +297,23 @@ export async function openJsonStore(dataDir) {
       profiles.set(userId, profile);
       await flushProfiles();
       return profile;
+    },
+
+    /**
+     * Serialized read-modify-write for one account's profile. `mutate(current)` is called
+     * with the FRESHEST stored profile (or null) inside a per-user lock and returns the next
+     * profile to persist; returning undefined leaves the profile unchanged. This is the
+     * lost-update-safe path the routes use — see withProfileLock above (audit A19).
+     */
+    updateProfile(userId, mutate) {
+      return withProfileLock(userId, async () => {
+        const current = profiles.get(userId) ?? null;
+        const next = await mutate(current);
+        if (next === undefined) return current;
+        profiles.set(userId, next);
+        await flushProfiles();
+        return next;
+      });
     },
 
     /* ------------------------------------------------------------ saved papers */

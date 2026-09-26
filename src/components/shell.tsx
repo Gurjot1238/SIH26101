@@ -1,24 +1,75 @@
-import { type ReactNode, useState } from 'react';
-import { Bell, BookOpen, Building2, ChevronDown, ClipboardCheck, Compass, FileText, GraduationCap, LayoutDashboard, Library, Menu, Network, Presentation, Sparkles, UserRound, X } from 'lucide-react';
+import { type ReactNode, useCallback, useEffect, useState } from 'react';
+import { Bell, BookOpen, Building2, ChevronDown, ClipboardCheck, FileText, GraduationCap, LayoutDashboard, Library, Menu, Presentation, Sparkles, UserRound, X } from 'lucide-react';
 import { Link, useLocation } from 'wouter';
 import { Badge } from './ui';
 import { firstName, greeting, initials, useSession } from './session-provider';
+import { useProgress } from './progress-provider';
+import { fetchNotifications, markNotificationsSeen, type NotificationFeed } from '../lib/notifications';
 
 type NavItem = { href: string; label: string; icon: typeof LayoutDashboard; count?: string };
 const learnerNav: NavItem[] = [
   { href: '/dashboard', label: 'Overview', icon: LayoutDashboard },
-  { href: '/assessment', label: 'Assessment', icon: ClipboardCheck, count: '2' },
+  { href: '/assessment', label: 'Assessment', icon: ClipboardCheck },
   { href: '/learning', label: 'My learning', icon: BookOpen },
   { href: '/catalog', label: 'Course catalogue', icon: Library },
   { href: '/course-library', label: 'Course library', icon: GraduationCap },
   { href: '/assignment', label: 'Assignment', icon: FileText },
   { href: '/quiz', label: 'Knowledge check', icon: Sparkles },
-  { href: '/roadmap', label: 'Career roadmap', icon: Compass },
 ];
 const systemNav: NavItem[] = [
-  { href: '/intelligence', label: 'Org intelligence', icon: Network },
   { href: '/integrations', label: 'Integrations', icon: Building2 },
 ];
+
+/**
+ * The notification feed for the signed-in account, fetched only when the account
+ * has notifications switched on. There is no stored notifications table — the
+ * server derives the feed from the account's own progress — so the only writes
+ * this makes are "mark seen". `enabled` is `signed-in && preferences.notify`;
+ * when it is false the hook holds no feed and never calls the network, which is
+ * also why this is safe during server rendering (effects do not run there).
+ */
+type NoticeState = { feed: NotificationFeed | null; loading: boolean; error: string | null };
+
+function useNotices(enabled: boolean) {
+  const [state, setState] = useState<NoticeState>({ feed: null, loading: false, error: null });
+
+  const load = useCallback(async () => {
+    if (!enabled) return;
+    setState((s) => ({ ...s, loading: true, error: null }));
+    try {
+      const feed = await fetchNotifications();
+      setState({ feed, loading: false, error: null });
+    } catch (err) {
+      setState({ feed: null, loading: false, error: err instanceof Error ? err.message : 'Could not load notifications.' });
+    }
+  }, [enabled]);
+
+  useEffect(() => {
+    if (!enabled) {
+      setState({ feed: null, loading: false, error: null });
+      return;
+    }
+    void load();
+  }, [enabled, load]);
+
+  const markSeen = useCallback(async () => {
+    try {
+      const feed = await markNotificationsSeen();
+      setState({ feed, loading: false, error: null });
+    } catch (err) {
+      setState((s) => ({ ...s, error: err instanceof Error ? err.message : 'Could not update notifications.' }));
+    }
+  }, []);
+
+  return { ...state, reload: load, markSeen };
+}
+
+function formatWhen(at: string | null): string {
+  if (!at) return '';
+  const date = new Date(at);
+  if (Number.isNaN(date.getTime())) return '';
+  return date.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+}
 
 export function AppShell({ children, role, onRoleChange }: { children: ReactNode; role: 'learner' | 'manager'; onRoleChange: (role: 'learner' | 'manager') => void }) {
   const [location, setLocation] = useLocation();
@@ -29,14 +80,24 @@ export function AppShell({ children, role, onRoleChange }: { children: ReactNode
   // gate is switched off, in which case every line below falls back to the
   // original demonstration text.
   const { user, signOut } = useSession();
+  const { preferences } = useProgress();
   const [signingOut, setSigningOut] = useState(false);
+  // Notifications are only real for a signed-in account that has them on.
+  const notifyOn = Boolean(user) && preferences.notify;
+  const notices = useNotices(notifyOn);
+  const unread = notices.feed?.unread ?? 0;
   const nav = role === 'manager' ? [...learnerNav.slice(0, 1), ...systemNav, ...learnerNav.slice(1)] : learnerNav;
   const currentLabel = [...learnerNav, ...systemNav].find((item) => location.startsWith(item.href))?.label || 'Overview';
+  const toggleNotices = () => {
+    const next = !noticeOpen;
+    setNoticeOpen(next);
+    if (next && notifyOn) void notices.reload();
+  };
   return <div className="noise min-h-[100dvh] bg-background text-foreground">
     <aside className="fixed inset-y-0 left-0 z-30 hidden w-[252px] flex-col bg-sidebar text-sidebar-foreground md:flex">
       <div className="border-b border-sidebar-border px-6 py-5">
         <Link href="/dashboard" data-testid="link-brand" className="flex items-center gap-3">
-          <div className="relative flex size-9 items-center justify-center rounded-lg bg-accent text-sidebar"><span className="font-serif text-xl font-semibold">S</span><span className="absolute -right-1 -top-1 size-2 rounded-full bg-[#9ed5cc]" /></div>
+          <div className="relative flex size-9 items-center justify-center rounded-lg bg-accent text-sidebar"><span className="font-serif text-xl font-semibold">N</span><span className="absolute -right-1 -top-1 size-2 rounded-full bg-[#9ed5cc]" /></div>
           <div><p className="font-serif text-[21px] leading-none text-white">NEXORA AI</p><p className="mt-1 font-mono text-[8px] uppercase tracking-[.18em] text-sidebar-foreground/60">Intelligence platform</p></div>
         </Link>
       </div>
@@ -50,7 +111,7 @@ export function AppShell({ children, role, onRoleChange }: { children: ReactNode
         </nav>
         <p className="mb-2 mt-8 px-3 font-mono text-[9px] uppercase tracking-[.18em] text-sidebar-foreground/45">System</p>
         <nav className="space-y-1">
-          <Link href="/profile" data-testid="link-nav-profile" className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm ${location.startsWith('/profile') ? 'bg-sidebar-accent text-white' : 'text-sidebar-foreground/70 hover:bg-sidebar-accent/70 hover:text-white'}`}><UserRound className="size-[17px] text-sidebar-foreground/55" />Profile & preferences</Link>
+          <Link href="/profile" data-testid="link-nav-profile" className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm ${location.startsWith('/profile') ? 'bg-sidebar-accent text-white' : 'text-sidebar-foreground/70 hover:bg-sidebar-accent/70 hover:text-white'}`}><UserRound className="size-[17px] text-sidebar-foreground/55" />Profile &amp; preferences</Link>
           <Link href="/presentation" data-testid="link-nav-presentation" className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-sidebar-foreground/70 hover:bg-sidebar-accent/70 hover:text-white"><Presentation className="size-[17px] text-sidebar-foreground/55" />Presentation mode</Link>
         </nav>
       </div>
@@ -72,13 +133,34 @@ export function AppShell({ children, role, onRoleChange }: { children: ReactNode
           </div>
           <div className="flex items-center gap-2 sm:gap-4">
             <button data-testid="button-role-switch" onClick={() => onRoleChange(role === 'learner' ? 'manager' : 'learner')} className="hidden items-center gap-2 rounded-full border border-border bg-card px-3 py-2 text-xs font-semibold text-foreground sm:flex"><span className="size-2 rounded-full bg-[#74b7ad]" />{role === 'learner' ? 'Learner view' : 'Manager view'}<ChevronDown className="size-3.5 text-muted-foreground" /></button>
-            <button data-testid="button-notifications" onClick={() => setNoticeOpen(!noticeOpen)} className="relative rounded-lg p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"><Bell className="size-[18px]" /><span className="absolute right-1.5 top-1.5 size-1.5 rounded-full bg-[#c86c5e]" /></button>
+            <button data-testid="button-notifications" aria-label={unread > 0 ? `Notifications, ${unread} unread` : 'Notifications'} onClick={toggleNotices} className="relative rounded-lg p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"><Bell className="size-[18px]" />{unread > 0 && <span data-testid="dot-notifications-unread" className="absolute right-1.5 top-1.5 size-1.5 rounded-full bg-[#c86c5e]" />}</button>
             <Link href="/presentation" data-testid="link-header-presentation" className="hidden items-center gap-2 rounded-lg bg-primary px-3.5 py-2.5 text-xs font-semibold text-primary-foreground shadow-sm transition-transform hover:-translate-y-0.5 sm:flex"><Presentation className="size-3.5" /> Present demo</Link>
           </div>
         </div>
-        {noticeOpen && <div className="absolute right-5 top-[62px] w-[290px] rounded-xl border border-border bg-card p-4 shadow-xl animate-rise-in"><div className="flex items-center justify-between"><p className="font-semibold">Notifications</p><Badge tone="teal">3 new</Badge></div><div className="mt-3 space-y-3 text-xs"><p className="border-l-2 border-accent pl-3"><b>Assessment window open</b><br /><span className="text-muted-foreground">Your quarterly competency check is ready.</span></p><p className="border-l-2 border-primary pl-3"><b>New pathway suggestion</b><br /><span className="text-muted-foreground">Time Series Analysis was added to your plan.</span></p><p className="border-l-2 border-border pl-3"><b>iGOT sync complete</b><br /><span className="text-muted-foreground">Training history updated today.</span></p></div><button data-testid="button-mark-notifications" onClick={() => setNoticeOpen(false)} className="mt-3 text-xs font-semibold text-primary">Mark all as read</button></div>}
+        {noticeOpen && <div data-testid="panel-notifications" className="absolute right-5 top-[62px] w-[320px] rounded-xl border border-border bg-card p-4 shadow-xl animate-rise-in">
+          <div className="flex items-center justify-between"><p className="font-semibold">Notifications</p>{unread > 0 && <Badge tone="teal">{unread} new</Badge>}</div>
+          <div className="mt-3">
+            {!user
+              ? <p className="py-4 text-center text-xs text-muted-foreground">Sign in to see notifications about your progress. <Link href="/login" onClick={() => setNoticeOpen(false)} className="font-semibold text-primary">Sign in</Link></p>
+              : !preferences.notify
+              ? <p className="py-4 text-center text-xs text-muted-foreground">Notifications are switched off. Turn them on in <Link href="/profile" onClick={() => setNoticeOpen(false)} className="font-semibold text-primary">Profile &amp; preferences</Link>.</p>
+              : notices.loading && !notices.feed
+              ? <p className="py-4 text-center text-xs text-muted-foreground">Loading your notifications…</p>
+              : notices.error && !notices.feed
+              ? <p data-testid="text-notifications-error" className="py-4 text-center text-xs text-muted-foreground">{notices.error}</p>
+              : notices.feed && notices.feed.items.length === 0
+              ? <p data-testid="text-notifications-empty" className="py-4 text-center text-xs text-muted-foreground">You’re all caught up.</p>
+              : <div className="max-h-[320px] space-y-3 overflow-y-auto pr-1 text-xs">
+                  {notices.feed?.items.map((item, i) => <div key={item.id} data-testid={`notice-${item.id}`} className={`border-l-2 pl-3 ${i < unread ? 'border-accent' : 'border-border'}`}>
+                    <div className="flex items-baseline justify-between gap-2"><b>{item.title}</b>{formatWhen(item.at) && <span className="shrink-0 font-mono text-[10px] text-muted-foreground">{formatWhen(item.at)}</span>}</div>
+                    <span className="text-muted-foreground">{item.body}</span>
+                  </div>)}
+                </div>}
+          </div>
+          {notifyOn && unread > 0 && <button data-testid="button-mark-notifications" onClick={() => void notices.markSeen()} className="mt-3 text-xs font-semibold text-primary">Mark all as read</button>}
+        </div>}
       </header>
-      {mobileOpen && <div className="fixed inset-x-0 top-[68px] z-20 border-b border-border bg-sidebar p-3 md:hidden"><nav className="grid grid-cols-2 gap-1">{nav.map((item) => <Link key={item.href} href={item.href} data-testid={`link-mobile-${item.label.toLowerCase().replaceAll(' ', '-')}`} className="flex items-center gap-2 rounded-lg px-3 py-3 text-sm text-sidebar-foreground hover:bg-sidebar-accent"><item.icon className="size-4 text-accent" />{item.label}</Link>)}</nav></div>}
+      {mobileOpen && <div className="fixed inset-x-0 top-[68px] z-20 border-b border-border bg-sidebar p-3 md:hidden"><nav className="grid grid-cols-2 gap-1">{nav.map((item) => <Link key={item.href} href={item.href} data-testid={`link-mobile-${item.label.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setMobileOpen(false)} className="flex items-center gap-2 rounded-lg px-3 py-3 text-sm text-sidebar-foreground hover:bg-sidebar-accent"><item.icon className="size-4 text-accent" />{item.label}</Link>)}</nav></div>}
       <main className="civic-grid min-h-[calc(100dvh-68px)] px-4 py-7 sm:px-7 lg:px-10">{children}</main>
     </div>
   </div>;
