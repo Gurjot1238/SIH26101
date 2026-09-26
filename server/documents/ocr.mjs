@@ -1,9 +1,17 @@
 /**
- * Node -> local OCR service adapter.
+ * Node -> OCR adapter (provider-dispatching front door).
  *
  * The browser rasterises only the scanned pages of a PDF and posts each page image to
- * POST /api/documents/ocr-page; that route calls the functions here, which forward the
- * image to the local PaddleOCR HTTP service (127.0.0.1) and normalise the reply.
+ * POST /api/documents/ocr-page; that route calls the functions here. After shared contract
+ * validation this module dispatches on cfg.ocr.provider:
+ *   * 'local'        → forwards the image to the loopback PaddleOCR HTTP service (127.0.0.1),
+ *                      the dev default (needs .venv-ocr). Implemented in this file.
+ *   * 'official_api' → forwards to the hosted PaddleOCR Official API adapter
+ *                      (server/documents/ocr-official.mjs); no local Python required.
+ *   * 'disabled'     → OCR is skipped entirely (identical to the master switch being off).
+ * Every provider returns the SAME normalised { ok, text, confidence, lineCount, engine } shape,
+ * so the whole append → finalize → chunk → index → retrieve → generate path is identical no
+ * matter which engine read the page. There is deliberately no second pipeline.
  *
  * Design rules this module keeps:
  *   * It NEVER throws for an OCR problem. A timeout, a refused connection, a malformed
@@ -11,15 +19,17 @@
  *     scanned page can be marked "OCR failed" without taking the request — or the
  *     server — down with it. The only inputs it rejects up front are its own contract
  *     violations (missing image), and even those resolve, never throw.
- *   * It talks to loopback only, on the host/port from config. There is no path field in
- *     the contract: the service receives image BYTES, never a filesystem path, so there
- *     is no arbitrary-file-read surface to defend.
+ *   * The local path talks to loopback only, on the host/port from config. There is no path
+ *     field in the contract: the service receives image BYTES, never a filesystem path, so
+ *     there is no arbitrary-file-read surface to defend. The hosted path likewise carries only
+ *     image bytes, and its token is read inside the official adapter — never here, never logged.
  *   * It bounds everything: a per-request timeout (config), and it refuses an image whose
  *     base64 decodes to more than the configured ceiling before it ever hits the wire.
  */
 
 import http from 'node:http';
 import { loadConfig } from './config.mjs';
+import { ocrImageOfficial, officialHealth } from './ocr-official.mjs';
 
 /** Approximate decoded byte length of a base64 string without allocating a Buffer. */
 function approxDecodedBytes(b64) {
@@ -89,6 +99,15 @@ function requestJson({ host, port, path, method, payload, timeoutMs }) {
 
 /** Is the OCR service up, and does it actually have an engine available? Never throws. */
 export async function ocrHealth({ cfg = loadConfig(), env = process.env } = {}) {
+  // Provider dispatch. 'official_api' reports readiness from config alone (a non-empty token
+  // present in the server env) — NO network call and the token itself is never revealed.
+  // 'disabled' (or the master switch off) reports unavailable without touching any engine.
+  if (!cfg.ocr.enabled || cfg.ocr.provider === 'disabled') {
+    return { available: false, reachable: false, code: 'ocr_disabled', message: 'OCR is disabled on this server.' };
+  }
+  if (cfg.ocr.provider === 'official_api') {
+    return officialHealth({ cfg });
+  }
   const { host, port } = cfg.ocr;
   const reply = await requestJson({
     host, port, path: '/health', method: 'GET',
@@ -110,14 +129,27 @@ export async function ocrHealth({ cfg = loadConfig(), env = process.env } = {}) 
  * OCR a single page image (base64). Resolves to a normalised result or a structured error.
  *   { ok:true, text, confidence, lineCount, engine }
  *   { ok:false, code, message }
+ *
+ * Shared contract validation (enabled, image present, size ceiling) runs FIRST and is identical
+ * for every provider. Only then does it dispatch: provider 'official_api' → the hosted async API
+ * (server/documents/ocr-official.mjs), anything else → the loopback local PaddleOCR service. Both
+ * return the SAME normalised shape, so append → finalize → chunk → index → retrieve → generate is
+ * byte-for-byte identical no matter which engine read the page — there is deliberately no second
+ * pipeline. The local provider is preserved intact as the dev/fallback path.
  */
 export async function ocrImage({ imageBase64, pageNumber = null, stubText, cfg = loadConfig(), env = process.env } = {}) {
-  if (!cfg.ocr.enabled) return { ok: false, code: 'ocr_disabled', message: 'OCR is disabled on this server.' };
+  if (!cfg.ocr.enabled || cfg.ocr.provider === 'disabled') return { ok: false, code: 'ocr_disabled', message: 'OCR is disabled on this server.' };
   if (typeof imageBase64 !== 'string' || imageBase64 === '') {
     return { ok: false, code: 'image_required', message: 'A page image is required.' };
   }
   if (approxDecodedBytes(imageBase64) > cfg.ocr.maxImageBytes) {
     return { ok: false, code: 'image_too_large', message: 'The page image exceeds the configured size limit.' };
+  }
+
+  // Provider dispatch. The hosted API needs no local Python / .venv-ocr; the token lives only in
+  // the server environment and is read inside the adapter, never here and never on the wire back.
+  if (cfg.ocr.provider === 'official_api') {
+    return ocrImageOfficial({ imageBase64, pageNumber, cfg, env });
   }
 
   const payload = { imageBase64, pageNumber, lang: cfg.ocr.lang };

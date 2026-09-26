@@ -18,6 +18,7 @@
  */
 
 import { classifyDocument } from './classify.mjs';
+import { guardDocument } from './document-type-guard.mjs';
 import { chunkPages, pagesFromText } from './chunk.mjs';
 import { buildChunkIndex, retrieveContext, tokenize } from './search.mjs';
 import { loadConfig, modeFor, isLargeMode } from './config.mjs';
@@ -73,6 +74,17 @@ export async function ingestDocument({ store, userId, filename = 'document', tex
   const sample = pageList.map((p) => p.text).join('\n').slice(0, 8000);
 
   const classification = classifyDocument({ text: sample, filename, pageCount, charsPerPage });
+
+  // STUDY MATERIAL ONLY gate (spec §2/§10): decide locally, with no AI, whether this is
+  // learning material BEFORE any chunking/indexing/job/AI. A rejected document is never
+  // persisted (createDocument has not run yet) and never reaches the generator.
+  const guard = guardDocument({ text: sample, filename, pageCount, charsPerPage });
+  if (guard.decision === 'reject') {
+    // Safe metadata only — never the OCR text or any personal content (spec §14).
+    console.log(`doc.guard: rejected type=${guard.documentType} pages=${pageCount} conf=${guard.confidence}`);
+    return { ok: false, code: 'document_rejected', documentType: guard.documentType, reason: guard.reason, message: guard.message, guard };
+  }
+
   const mode = modeFor(pageCount, { isScanned: classification.isScanned, documentType: classification.documentType }, cfg);
 
   const document = await store.createDocument({
@@ -133,6 +145,19 @@ export async function finalizeDocument({ store, userId, documentId, env = proces
   const charsPerPage = pageCount ? totalChars / pageCount : totalChars;
   const sample = pageList.map((p) => p.text).join('\n').slice(0, 8000);
   const classification = classifyDocument({ text: sample, filename: record.filename, pageCount, charsPerPage });
+
+  // STUDY MATERIAL ONLY gate on the large-document path (spec §2/§10/§11). Classified from
+  // the head sample only — the full book is never loaded to decide type. On reject we purge
+  // everything staged for this document: the pending pages were already consumed above by
+  // takePendingPages (so no sensitive page text remains on disk), and here we delete the
+  // document record itself, so nothing rejected is retained or indexed (spec §13).
+  const guard = guardDocument({ text: sample, filename: record.filename, pageCount, charsPerPage });
+  if (guard.decision === 'reject') {
+    console.log(`doc.guard: rejected type=${guard.documentType} pages=${pageCount} conf=${guard.confidence}`);
+    await store.deleteDocument(userId, documentId);
+    return { ok: false, code: 'document_rejected', documentType: guard.documentType, reason: guard.reason, message: guard.message, guard };
+  }
+
   const mode = modeFor(pageCount, { isScanned: classification.isScanned, documentType: classification.documentType }, cfg);
 
   await store.setDocumentStatus(userId, documentId, {

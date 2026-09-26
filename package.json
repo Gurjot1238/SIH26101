@@ -29,9 +29,12 @@
     "docpipeline:test": "node scripts/docpipeline-test.mjs",
     "largepdf:test": "node scripts/large-pdf-http-test.mjs",
     "ocr:test": "node scripts/ocr-test.mjs",
+    "ocr-official:test": "node scripts/ocr-official-test.mjs",
+    "proxy:test": "node scripts/proxy-ip-test.mjs",
+    "guard:test": "node scripts/guard-test.mjs",
     "ocr:test:real": "node scripts/ocr-real-test.mjs",
     "startup:test": "node scripts/startup-test.mjs",
-    "test": "./scripts/engine-test.sh && ./scripts/competency-test.sh && ./scripts/recommend-test.sh && ./scripts/recommend-service-test.sh && ./server/smoke-test.sh && ./scripts/client-test.sh && ./scripts/ai-test.sh && npm run exact-count:test && npm run docintel:test && npm run docpipeline:test && npm run largepdf:test && npm run ocr:test && ./scripts/render-test.sh && ./scripts/catalog-ready-test.sh",
+    "test": "./scripts/engine-test.sh && ./scripts/competency-test.sh && ./scripts/recommend-test.sh && ./scripts/recommend-service-test.sh && ./server/smoke-test.sh && ./scripts/client-test.sh && ./scripts/ai-test.sh && npm run exact-count:test && npm run docintel:test && npm run docpipeline:test && npm run largepdf:test && npm run ocr:test && npm run ocr-official:test && npm run proxy:test && npm run guard:test && ./scripts/render-test.sh && ./scripts/catalog-ready-test.sh",
     "auth:secret": "node -e \"console.log(require('node:crypto').randomBytes(48).toString('base64url'))\""
   },
   "dependencies": {

@@ -1,4 +1,4 @@
-import { type DragEvent, type ReactNode, useEffect, useMemo, useState } from 'react';
+import { type DragEvent, type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Award, BarChart3, Briefcase, Calendar, Camera, Check, CheckCircle2, Clock3, Download, Edit3, FileCheck2, Filter, Globe, GraduationCap, Lightbulb, ListChecks, LockKeyhole, Mail, MapPin, Minus, Phone, Play, Plus, RefreshCw, Shield, ShieldCheck, Sparkles, Target, TrendingDown, TrendingUp, TriangleAlert, UploadCloud, Users, X } from 'lucide-react';
 import { Link, useLocation, useParams } from 'wouter';
@@ -27,9 +27,10 @@ import {
   supportedFormatsSentence,
 } from '@/lib/materials';
 import { AiGenerationError, generateAiQuestions, classifyDocument, type MaterialClassification, type Difficulty } from '@/lib/ai-questions';
-import { DocumentError, checkOcrAvailable, createOcrTransport, ingestLargeDocument, searchDocument, generateFromTopic, type DocumentRecord, type SearchPreview } from '@/lib/documents';
+import { DocumentError, checkOcrAvailable, createOcrTransport, guardMaterial, ingestLargeDocument, searchDocument, generateFromTopic, type DocumentRecord, type SearchPreview } from '@/lib/documents';
 import { MAX_SAVED_PAPERS, PaperError, type SavedPaperSummary, deletePaper, getPaper, listPapers, savePaper } from '@/lib/papers';
 import { clearMaterial, isDurable, setMaterial, useMaterial } from '@/lib/material-session';
+import { attemptKey, clearAttempt, loadAttempt, saveAttempt } from '@/lib/attempt-session';
 import {
   type AssessmentResult,
   type SealedPaper,
@@ -1055,6 +1056,28 @@ export function Materials() {
         setWork((previous) => (previous ? { ...previous, pagesRead, pageCount: totalPages } : previous));
       });
 
+      // STUDY MATERIAL ONLY gate (spec §2/§9). A local, no-AI check runs HERE — before any
+      // large-document upload and before any Gemini call — so a non-study file (marksheet, ID,
+      // resume, medical report, …) is stopped with a clear message and never parsed further,
+      // uploaded, indexed, or sent to the AI. Only a bounded head sample of the already-
+      // extracted text is sent. The server re-runs the identical guard authoritatively at
+      // /finalize and /generate, so this is a fast UX gate, not the security boundary — a
+      // transport failure here is therefore non-fatal: we fall through and let the
+      // server-side gate decide rather than block a legitimate upload on a transient error.
+      try {
+        const verdict = await guardMaterial({ text, filename: meta.fileName, pageCount });
+        if (verdict.decision === 'reject') {
+          setWork(null);
+          setPreparing(null);
+          setError(verdict.message
+            ?? 'This file could not be verified as study material. Please upload a textbook, lecture notes, course material, research paper, or other educational document.');
+          return;
+        }
+      } catch {
+        // Could not reach the guard (network / rate-limit / auth). The server enforces the
+        // same policy at finalize and generate, so nothing rejected slips past; proceed.
+      }
+
       // Large book: do NOT send it whole to the AI. Upload it in bounded page batches,
       // index it once, then hand off to the topic-search panel below. Small documents fall
       // straight through to the existing fast path.
@@ -1589,17 +1612,24 @@ export function KnowledgeCheck() {
 export function Quiz() {
   const material = useMaterial();
   const { record } = useProgress();
+  // The sitting belongs to the assignment it was taken on, so a stored result is only ever
+  // restored against the same generated paper — a new paper carries a new key.
+  const materialId = attemptKey(material);
+  // Read any finished sitting for THIS assignment once, at mount. Restoring the result here
+  // — rather than after mount — is what brings the report straight back when the learner
+  // returns from another page, instead of the quiz snapping back to its "Begin" screen.
+  const [restored] = useState(() => loadAttempt(materialId));
   /** Non-null once the learner chooses to re-sit only what they missed. */
-  const [retryPaper, setRetryPaper] = useState<MaterialQuestion[] | null>(null);
-  const [started, setStarted] = useState(false);
+  const [retryPaper, setRetryPaper] = useState<MaterialQuestion[] | null>(restored?.retry ?? null);
+  const [started, setStarted] = useState(restored?.done ?? false);
   const [q, setQ] = useState(0);
   const [choice, setChoice] = useState<number | null>(null);
   /** Index-aligned with the paper. A hole means the question was skipped. */
-  const [answers, setAnswers] = useState<Choice[]>([]);
+  const [answers, setAnswers] = useState<Choice[]>(restored?.answers ?? []);
   /** True once the current answer is locked in, which is what reveals the explanation. */
   const [answered, setAnswered] = useState(false);
-  const [done, setDone] = useState(false);
-  const [startedAt, setStartedAt] = useState(0);
+  const [done, setDone] = useState(restored?.done ?? false);
+  const [startedAt, setStartedAt] = useState(restored?.startedAt ?? 0);
   const [saving, setSaving] = useState(false);
   const [saveNote, setSaveNote] = useState('');
   const [showReview, setShowReview] = useState(false);
@@ -1613,11 +1643,19 @@ export function Quiz() {
   const isLast = q === paper.length - 1;
 
   /**
-   * A newly generated paper invalidates everything: a retry paper holds questions
-   * from the document the learner has just replaced, and a half-finished attempt is
-   * measuring a document that is no longer on screen.
+   * A newly generated paper invalidates everything: a retry paper holds questions from the
+   * document the learner has just replaced, and a half-finished attempt is measuring a
+   * document that is no longer on screen. This must NOT fire on a mere remount, though —
+   * coming back to this page from another one is exactly when a finished result has to
+   * return — so it keys off the assignment's identity and runs only when that changes.
    */
+  const seenMaterial = useRef(materialId);
   useEffect(() => {
+    if (seenMaterial.current === materialId) return;
+    seenMaterial.current = materialId;
+    // A genuinely different assignment replaced the old one: drop the previous sitting so
+    // its result is never shown against the new paper.
+    clearAttempt();
     setRetryPaper(null);
     setStarted(false);
     setQ(0);
@@ -1627,9 +1665,12 @@ export function Quiz() {
     setDone(false);
     setSaveNote('');
     setShowReview(false);
-  }, [material]);
+  }, [materialId]);
 
   const begin = (questions: MaterialQuestion[] | null) => {
+    // A new sitting supersedes the last finished one; if the learner leaves before
+    // completing this paper, there is no stale result waiting to be restored.
+    clearAttempt();
     setRetryPaper(questions);
     setStarted(true);
     setQ(0);
@@ -1691,6 +1732,10 @@ export function Quiz() {
     if (isLast) {
       setDone(true);
       void save();
+      // Keep the finished sitting in the tab, so leaving this page and returning shows the
+      // report again rather than forcing a retake. Held until a new sitting begins or a new
+      // assignment is generated. Inputs only — the report is re-derived by the same grader.
+      saveAttempt({ materialKey: materialId, answers: [...answers], retry: retryPaper, done: true, startedAt });
       return;
     }
     setQ(q + 1);
@@ -1717,7 +1762,7 @@ export function Quiz() {
         <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-muted-foreground">{describeAttempt(graded)}</p>
         <div className="mt-7 flex flex-wrap justify-center gap-3">
           {plan.retry.length > 0 && <ActionButton onClick={practiseMissed} icon={<RefreshCw className="size-4" />}>Practise what you missed</ActionButton>}
-          <ActionButton variant={plan.retry.length > 0 ? 'outline' : 'primary'} onClick={() => { setRetryPaper(null); setStarted(false); setDone(false); setQ(0); setChoice(null); setAnswers([]); setAnswered(false); setShowReview(false); setSaveNote(''); }}>Take the full paper again</ActionButton>
+          <ActionButton variant={plan.retry.length > 0 ? 'outline' : 'primary'} onClick={() => { clearAttempt(); setRetryPaper(null); setStarted(false); setDone(false); setQ(0); setChoice(null); setAnswers([]); setAnswered(false); setShowReview(false); setSaveNote(''); }}>Take the full paper again</ActionButton>
           <Link href="/assignment" className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2.5 text-sm font-semibold">Back to assignment</Link>
         </div>
         {(saving || saveNote) && <p className="mt-5 text-xs text-muted-foreground">{saving ? 'Saving this result to your account...' : saveNote}</p>}

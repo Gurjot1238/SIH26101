@@ -37,6 +37,14 @@ function envStr(name, fallback, env = process.env) {
   return raw === '' ? fallback : raw;
 }
 
+/** Read a comma-separated list of trimmed, lowercased, non-empty tokens (else the fallback). */
+function envList(name, fallback, env = process.env) {
+  const raw = (env[name] ?? '').trim();
+  if (raw === '') return fallback;
+  const items = raw.split(',').map((s) => s.trim().toLowerCase()).filter((s) => s !== '');
+  return items.length ? items : fallback;
+}
+
 /**
  * Processing modes, chosen automatically from page count (and, for SCANNED /
  * STRUCTURED_RESULT / QUESTION_PAPER, from the classifier — those are set elsewhere and
@@ -111,6 +119,16 @@ export function loadConfig(env = process.env) {
     ocr: {
       // Master switch. Off → the server behaves exactly as it did before OCR existed.
       enabled: envBool('OCR_ENABLED', true, env),
+      // Which OCR engine backs a scanned page:
+      //   'local'        → the loopback PaddleOCR Python service (dev default, needs .venv-ocr)
+      //   'official_api' → the hosted PaddleOCR Official API (production; no local Python)
+      //   'disabled'     → skip OCR entirely (identical to enabled:false)
+      // An unrecognised value falls back to 'local' so a typo can never silently turn a
+      // scanned page into a blind call to the cloud.
+      provider: (() => {
+        const raw = envStr('OCR_PROVIDER', 'local', env).toLowerCase();
+        return ['local', 'official_api', 'disabled'].includes(raw) ? raw : 'local';
+      })(),
       // The service binds to loopback ONLY; a public bind is never a supported configuration.
       host: envStr('OCR_HOST', '127.0.0.1', env),
       port: envInt('OCR_PORT', 8091, env),
@@ -132,6 +150,51 @@ export function loadConfig(env = process.env) {
       // Largest page image the /ocr-page route will accept (defends the service from a
       // pathologically large PNG). 12 MB comfortably holds a 200-DPI A4 page.
       maxImageBytes: envInt('OCR_MAX_IMAGE_BYTES', 12 * 1024 * 1024, env),
+
+      // ---- Hosted PaddleOCR Official API (used when provider === 'official_api') --------
+      // The production OCR path: no local Python, no .venv-ocr. A single scanned-page image
+      // is submitted to the hosted asynchronous jobs API, polled until the job is done, and
+      // its JSONL result parsed into the SAME normalised { text, confidence, lineCount } the
+      // local engine returns — so chunk → index → retrieve → AI is identical no matter which
+      // provider read the page. The token is read from the server environment ONLY: it is
+      // never sent to the browser, written to a log, or included in an API response.
+      official: {
+        // Async jobs endpoint. Submit = POST here; polling = GET <apiUrl>/<jobId>.
+        apiUrl: envStr('PADDLEOCR_API_URL', 'https://paddleocr.aistudio-app.com/api/v2/ocr/jobs', env),
+        // SSRF allow-list for the result-download host. The jobs API returns a pre-signed result
+        // URL on a DIFFERENT object-storage host that we then GET server-side, so a compromised or
+        // rogue API response could otherwise steer that fetch at an internal address. Independent
+        // of this list the adapter ALWAYS requires https for the result URL and blocks
+        // loopback/private/link-local/reserved IPs (incl. the cloud-metadata address); a non-empty
+        // comma-separated host list narrows it further to just those hosts (suffix match). Empty by
+        // default so the real provider keeps working; set it to lock the download host down.
+        resultHostAllowlist: envList('PADDLEOCR_RESULT_HOST_ALLOWLIST', [], env),
+        // Server-side secret. Empty → provider answers ocr_not_configured (never a blind call).
+        token: envStr('PADDLEOCR_ACCESS_TOKEN', '', env),
+        // The hosted example authorises with `bearer <token>`; kept configurable so an operator
+        // can switch to `token`/`Bearer` without a code change if the service expects it.
+        authScheme: envStr('PADDLEOCR_AUTH_SCHEME', 'bearer', env),
+        // Model label sent with the job (the hosted example uses PaddleOCR-VL-1.6).
+        model: envStr('PADDLEOCR_MODEL', 'PaddleOCR-VL-1.6', env),
+        // Chart recognition is OFF by default: it is slower and unnecessary for text pages, and
+        // the spec is explicit not to enable it globally. Set PADDLEOCR_USE_CHART_RECOGNITION=1
+        // only where a deployment genuinely wants chart-structure extraction.
+        useChartRecognition: envBool('PADDLEOCR_USE_CHART_RECOGNITION', false, env),
+        // Timeouts / poll budget — all bounded so a single page can never hang forever.
+        submitTimeoutMs: envInt('PADDLEOCR_SUBMIT_TIMEOUT_MS', 30_000, env), // POST /jobs
+        pollTimeoutMs: envInt('PADDLEOCR_POLL_TIMEOUT_MS', 8_000, env),      // each status GET
+        pollIntervalMs: envInt('PADDLEOCR_POLL_INTERVAL_MS', 1_500, env),    // base backoff step
+        pollMaxMs: envInt('PADDLEOCR_POLL_MAX_MS', 90_000, env),             // total wait ceiling
+        resultTimeoutMs: envInt('PADDLEOCR_RESULT_TIMEOUT_MS', 30_000, env), // JSONL download
+        // Cap the JSONL download so a pathological result can never exhaust memory.
+        maxResultBytes: envInt('PADDLEOCR_MAX_RESULT_BYTES', 32 * 1024 * 1024, env),
+        // Reported when the hosted result carries no per-page confidence (VL parsing often
+        // omits a scalar score); kept in [0,1] so the existing confidence plumbing is unchanged.
+        defaultConfidence: (() => {
+          const raw = Number.parseFloat((env.PADDLEOCR_DEFAULT_CONFIDENCE ?? '').trim());
+          return Number.isFinite(raw) && raw >= 0 && raw <= 1 ? raw : 0.9;
+        })(),
+      },
     },
   };
   return cfg;

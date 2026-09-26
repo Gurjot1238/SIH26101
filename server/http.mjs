@@ -197,11 +197,30 @@ export function assertTrustedOrigin(req, allowedOrigins) {
   }
 }
 
-/** Best-effort client address, used only for rate limiting. */
+/**
+ * Best-effort client address, used only for rate limiting.
+ *
+ * `trustProxy` is the number of trusted reverse-proxy hops in front of this server (a boolean
+ * `true` is read as 1; `false`/`0` means "trust nothing"). This matters for security: a client
+ * can put anything in `X-Forwarded-For`, and each proxy in the chain APPENDS the address it saw
+ * to the right. So the honest client address is the entry `hops` from the RIGHT — never the
+ * leftmost, which is fully attacker-controlled. Taking the leftmost value would let a client mint
+ * a fresh rate-limit bucket per forged IP and defeat every per-IP limit. If the header is missing
+ * or shorter than the configured hop count (misconfiguration), we fall back to the socket peer
+ * (the proxy itself) rather than to a spoofable value.
+ */
 export function clientKey(req, trustProxy) {
-  if (trustProxy) {
-    const forwarded = String(req.headers['x-forwarded-for'] ?? '').split(',')[0].trim();
-    if (forwarded) return forwarded;
+  const hops = trustProxy === true ? 1
+    : (Number.isInteger(trustProxy) && trustProxy > 0 ? trustProxy : 0);
+  if (hops > 0) {
+    const chain = String(req.headers['x-forwarded-for'] ?? '')
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean);
+    if (chain.length >= hops) {
+      const candidate = chain[chain.length - hops];
+      if (candidate) return candidate;
+    }
   }
   return req.socket.remoteAddress ?? 'unknown';
 }

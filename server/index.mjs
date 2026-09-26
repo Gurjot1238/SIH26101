@@ -83,6 +83,7 @@ import {
 import { openStore } from './store.mjs';
 import { openDocumentStore } from './documents/store.mjs';
 import { ingestDocument, finalizeDocument, searchDocuments, generateFromTopic } from './documents/pipeline.mjs';
+import { guardDocument } from './documents/document-type-guard.mjs';
 import { ocrImage, ocrHealth } from './documents/ocr.mjs';
 import { jobView } from './documents/jobs.mjs';
 import { extractMarksheet, analyzePerformance } from './documents/marksheet.mjs';
@@ -211,6 +212,11 @@ const DATA_DIR = process.env.AUTH_DATA_DIR || join(HERE, 'data');
 const SESSION_TTL_MS = envInt('SESSION_TTL_HOURS', 168) * 60 * 60 * 1000;
 const COOKIE_SECURE = envFlag('COOKIE_SECURE', IS_PRODUCTION);
 const TRUST_PROXY = envFlag('TRUST_PROXY', false);
+// How many trusted reverse-proxy hops sit in front of this server. Only consulted when
+// TRUST_PROXY is on. The client IP is read this many entries from the RIGHT of
+// X-Forwarded-For (see clientKey), so a client cannot forge its rate-limit bucket by
+// prepending fake hops. Default 1 = a single reverse proxy (the common case).
+const TRUSTED_PROXY_HOPS = TRUST_PROXY ? envInt('TRUSTED_PROXY_HOPS', 1) : 0;
 
 const ALLOWED_ORIGINS = new Set(
   (process.env.ALLOWED_ORIGINS || 'http://localhost:5173,http://127.0.0.1:5173')
@@ -377,7 +383,7 @@ async function currentUser(req) {
 
 async function handleSignup(req, res, cors) {
   assertTrustedOrigin(req, ALLOWED_ORIGINS);
-  const ip = clientKey(req, TRUST_PROXY);
+  const ip = clientKey(req, TRUSTED_PROXY_HOPS);
   enforce(limiters.signupAttemptsPerIp, ip);
   enforceWithoutSpending(limiters.signupCreatedPerIp, ip);
 
@@ -415,7 +421,7 @@ async function handleSignup(req, res, cors) {
 
 async function handleLogin(req, res, cors) {
   assertTrustedOrigin(req, ALLOWED_ORIGINS);
-  const ip = clientKey(req, TRUST_PROXY);
+  const ip = clientKey(req, TRUSTED_PROXY_HOPS);
   enforce(limiters.loginPerIp, ip);
 
   const body = await readJsonBody(req);
@@ -487,7 +493,7 @@ async function requireSession(req) {
 async function requireSessionForWrite(req) {
   assertTrustedOrigin(req, ALLOWED_ORIGINS);
   const session = await requireSession(req);
-  enforce(limiters.progressWritesPerIp, clientKey(req, TRUST_PROXY));
+  enforce(limiters.progressWritesPerIp, clientKey(req, TRUSTED_PROXY_HOPS));
   return session;
 }
 
@@ -955,7 +961,7 @@ async function logInteractions(rawEvents) {
 async function handleExplainAnalytics(req, res, cors) {
   assertTrustedOrigin(req, ALLOWED_ORIGINS);
   const { user } = await requireSession(req);
-  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUST_PROXY));
+  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUSTED_PROXY_HOPS));
 
   const scope = analyticsScope(req);
   const analytics = buildAnalyticsSummary(store.attemptsForUser(user.id), { scope });
@@ -1094,6 +1100,18 @@ const AI_FAILURE_STATUS = {
 };
 
 /**
+ * STUDY MATERIAL ONLY server-side gate for the text (small-document) AI routes (spec §10/§17).
+ * Runs the local, no-AI guard on the extracted text so a client that bypasses the frontend
+ * cannot push a marksheet / ID / bank statement / medical report / resume / form into
+ * generation or classification. The document text is never logged (spec §14). pageCount is
+ * estimated from length only to feed the length-aware signals; the char-based checks dominate.
+ */
+function guardExtractedText(text) {
+  const estPages = Math.max(1, Math.round((typeof text === 'string' ? text.length : 0) / 1800));
+  return guardDocument({ text, filename: '', pageCount: estPages, charsPerPage: null });
+}
+
+/**
  * Generate MCQs from an uploaded document.
  *
  * The browser has already extracted the text and pulled out topics; this route adds the
@@ -1111,10 +1129,20 @@ async function handleGenerateMcqs(req, res, cors) {
   // Session first, then the budget, so an anonymous flood cannot spend a real user's
   // quota — same order as every other write on this server.
   await requireSession(req);
-  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUST_PROXY));
+  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUSTED_PROXY_HOPS));
 
   const body = await readJsonBody(req, { maxBytes: MAX_AI_BODY_BYTES });
   const input = validateGenerationRequest(body);
+
+  // STUDY MATERIAL ONLY enforcement (spec §10/§15/§17): reject non-study documents here,
+  // server-side, BEFORE any Gemini call. A rejected document (marksheet, ID, financial,
+  // medical, resume, form, unknown, …) never reaches the provider.
+  const guard = guardExtractedText(input.text);
+  if (guard.decision === 'reject') {
+    console.log(`  ai.guard: generation blocked type=${guard.documentType} conf=${guard.confidence}`);
+    sendJson(res, 422, { ok: false, error: { code: 'document_rejected', message: guard.message }, documentType: guard.documentType }, cors);
+    return;
+  }
 
   const outcome = await generateMcqs(input, { env: process.env });
 
@@ -1168,7 +1196,7 @@ async function handleGenerateMcqs(req, res, cors) {
 async function handleClassifyMaterial(req, res, cors) {
   assertTrustedOrigin(req, ALLOWED_ORIGINS);
   await requireSession(req);
-  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUST_PROXY));
+  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUSTED_PROXY_HOPS));
 
   const body = await readJsonBody(req, { maxBytes: MAX_AI_BODY_BYTES });
 
@@ -1185,6 +1213,15 @@ async function handleClassifyMaterial(req, res, cors) {
       `This document only has ${text.length} characters of readable text. At least ${MIN_TEXT_CHARS} are needed to classify it.`,
       { text: 'too_short' },
     );
+  }
+
+  // STUDY MATERIAL ONLY enforcement (spec §3/§10): a rejected personal/sensitive document is
+  // NEVER sent to Gemini — not even for classification. The local guard decides first.
+  const guard = guardExtractedText(text);
+  if (guard.decision === 'reject') {
+    console.log(`  ai.guard: classify blocked type=${guard.documentType} conf=${guard.confidence}`);
+    sendJson(res, 422, { ok: false, error: { code: 'document_rejected', message: guard.message }, documentType: guard.documentType }, cors);
+    return;
   }
 
   const result = await classifyMaterial({ text }, { env: process.env });
@@ -1292,7 +1329,7 @@ function requireDocId(body) {
 async function handleDocumentUpload(req, res, cors) {
   assertTrustedOrigin(req, ALLOWED_ORIGINS);
   const { user } = await requireSessionForWrite(req);
-  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUST_PROXY));
+  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUSTED_PROXY_HOPS));
   const body = await readJsonBody(req, { maxBytes: MAX_AI_BODY_BYTES });
   if (!body || typeof body !== 'object') throw badRequest('invalid_body', 'Send a JSON object.');
   const filename = typeof body.filename === 'string' && body.filename.trim() !== '' ? body.filename.trim() : 'document';
@@ -1334,13 +1371,20 @@ async function handleDocumentAppend(req, res, cors) {
 async function handleDocumentFinalize(req, res, cors) {
   assertTrustedOrigin(req, ALLOWED_ORIGINS);
   const { user } = await requireSessionForWrite(req);
-  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUST_PROXY));
+  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUSTED_PROXY_HOPS));
   const body = await readJsonBody(req, { maxBytes: MAX_AI_BODY_BYTES });
   const documentId = requireDocId(body);
   const outcome = await finalizeDocument({ store: documentStore, userId: user.id, documentId, env: process.env });
   console.log(`  doc.finalize: id=${documentId} ok=${outcome.ok} type=${outcome.classification?.documentType ?? '-'} mode=${outcome.mode ?? '-'} chunks=${outcome.document?.chunkCount ?? 0}`);
   if (!outcome.ok) {
-    sendJson(res, outcome.code === 'not_found' ? 404 : 422, { ok: false, error: { code: outcome.code, message: outcome.message } }, cors);
+    // A study-material rejection carries the category so the client can show the precise
+    // message; the reason string is safe metadata (no personal content). Other failures are
+    // unchanged (404 for not_found, 422 otherwise).
+    sendJson(res, outcome.code === 'not_found' ? 404 : 422, {
+      ok: false,
+      error: { code: outcome.code, message: outcome.message },
+      ...(outcome.documentType ? { documentType: outcome.documentType } : {}),
+    }, cors);
     return;
   }
   sendJson(res, 200, {
@@ -1354,6 +1398,32 @@ async function handleDocumentFinalize(req, res, cors) {
 }
 
 /**
+ * Map a provider-neutral OCR failure code to an HTTP status. Codes come from either the local
+ * adapter or the hosted (official_api) adapter; both are provider-neutral by design. Anything
+ * not listed is a bad upstream reply → 502. None of these statuses ever carries a secret: the
+ * body is only { code, message } where message is a fixed, safe string.
+ *   503  OCR can't serve right now (disabled, not configured, auth misconfig, unreachable)
+ *   504  the engine took too long
+ *   429  the cloud service is rate-limiting us
+ *   400  the caller's own input was bad (missing / oversized image)
+ *   502  malformed / empty / rejected upstream response (default)
+ */
+const OCR_PAGE_STATUS_BY_CODE = Object.freeze({
+  ocr_disabled: 503,
+  ocr_not_configured: 503,
+  ocr_auth_failed: 503,
+  ocr_unavailable: 503,
+  service_unavailable: 503,
+  connection_error: 503,
+  connection_reset: 503,
+  bad_config: 503,
+  timeout: 504,
+  ocr_rate_limited: 429,
+  image_too_large: 400,
+  image_required: 400,
+});
+
+/**
  * OCR a single scanned page image and return its recognised text. The browser has already
  * rasterised only the low-text pages (native extraction runs there first), so this receives
  * at most one page image per request — the "never send 1000 pages at once" rule holds by
@@ -1364,7 +1434,7 @@ async function handleDocumentFinalize(req, res, cors) {
 async function handleDocumentOcrPage(req, res, cors) {
   assertTrustedOrigin(req, ALLOWED_ORIGINS);
   const { user } = await requireSession(req);
-  enforce(limiters.ocrPagesPerIp, clientKey(req, TRUST_PROXY));
+  enforce(limiters.ocrPagesPerIp, clientKey(req, TRUSTED_PROXY_HOPS));
   if (!docConfig.ocr.enabled) throw new HttpError(503, 'ocr_disabled', 'OCR is not enabled on this server.');
 
   const body = await readJsonBody(req, { maxBytes: MAX_OCR_BODY_BYTES });
@@ -1383,8 +1453,9 @@ async function handleDocumentOcrPage(req, res, cors) {
 
   const result = await ocrImage({ imageBase64, pageNumber, stubText, cfg: docConfig, env: process.env });
   if (!result.ok) {
-    const status = (result.code === 'service_unavailable' || result.code === 'ocr_unavailable' || result.code === 'ocr_disabled')
-      ? 503 : result.code === 'timeout' ? 504 : result.code === 'image_too_large' || result.code === 'image_required' ? 400 : 502;
+    // The failure code is provider-neutral, so this map covers local and cloud alike. The log
+    // records ONLY the code — never the token, the recognised text, or the image bytes.
+    const status = OCR_PAGE_STATUS_BY_CODE[result.code] ?? 502;
     console.log(`  doc.ocr-page: doc=${documentId ? documentId.slice(0, 8) : '-'} page=${pageNumber ?? '-'} failed=${result.code}`);
     sendJson(res, status, { ok: false, error: { code: result.code, message: result.message }, page: pageNumber, source: 'ocr_failed' }, cors);
     return;
@@ -1406,12 +1477,14 @@ async function handleDocumentList(req, res, cors) {
 /**
  * Whether OCR is available right now, so the browser can decide before it bothers
  * rasterising a scanned page. Reports config state without ever blocking on a slow
- * engine: if OCR is disabled it answers instantly; otherwise it probes the local
- * service with a short timeout. Never leaks anything but availability.
+ * engine and without ever leaking a secret: if OCR is disabled (master switch off or
+ * provider 'disabled') it answers instantly; the local provider probes the loopback
+ * service with a short timeout; the hosted (official_api) provider answers from config
+ * alone (token present?) with no network call and the token itself never included.
  */
 async function handleDocumentOcrHealth(req, res, cors) {
   await requireSession(req);
-  if (!docConfig.ocr.enabled) {
+  if (!docConfig.ocr.enabled || docConfig.ocr.provider === 'disabled') {
     sendJson(res, 200, { ok: true, enabled: false, available: false }, cors);
     return;
   }
@@ -1467,7 +1540,7 @@ async function handleDocumentSearch(req, res, cors) {
 async function handleDocumentGenerate(req, res, cors) {
   assertTrustedOrigin(req, ALLOWED_ORIGINS);
   const { user } = await requireSessionForWrite(req);
-  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUST_PROXY));
+  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUSTED_PROXY_HOPS));
   const body = await readJsonBody(req, { maxBytes: MAX_AI_BODY_BYTES });
   const query = typeof body?.query === 'string' ? body.query.trim().slice(0, MAX_TOPIC_QUERY_CHARS) : '';
   if (query === '') throw badRequest('query_required', 'A topic is required.', { query: 'required' });
@@ -1536,6 +1609,37 @@ async function handleDocumentDelete(req, res, cors) {
   const removed = await documentStore.deleteDocument(user.id, id);
   if (!removed) throw new HttpError(404, 'not_found', 'No such document.');
   sendJson(res, 200, { ok: true, deleted: id }, cors);
+}
+
+/**
+ * Local, NO-AI study-material guard (spec §4/§9/§10). The frontend calls this BEFORE it
+ * parses, uploads, or generates, so a non-study document is stopped without any Gemini call
+ * and without starting a large-document job. Server-side enforcement in the generate /
+ * finalize / classify routes is the authoritative gate; this route lets the UI fail fast
+ * with the correct, professional message. Body: { text, filename?, pageCount?, charsPerPage? }.
+ * The text is capped to a head sample and is never logged (spec §14).
+ */
+async function handleDocumentGuard(req, res, cors) {
+  assertTrustedOrigin(req, ALLOWED_ORIGINS);
+  await requireSession(req);
+  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUSTED_PROXY_HOPS));
+  const body = await readJsonBody(req, { maxBytes: MAX_AI_BODY_BYTES });
+  if (!body || typeof body !== 'object') throw badRequest('invalid_body', 'Send a JSON object with the extracted document text.');
+  const text = typeof body.text === 'string' ? body.text.slice(0, 8000) : '';
+  const filename = typeof body.filename === 'string' ? body.filename.slice(0, 256) : '';
+  const pageCount = Number.isInteger(body.pageCount) && body.pageCount > 0 ? body.pageCount : Math.max(1, Math.round(text.length / 1800));
+  const charsPerPage = typeof body.charsPerPage === 'number' && body.charsPerPage >= 0 ? body.charsPerPage : null;
+  const guard = guardDocument({ text, filename, pageCount, charsPerPage });
+  console.log(`  doc.guard: decision=${guard.decision} type=${guard.documentType} conf=${guard.confidence}`);
+  sendJson(res, 200, {
+    ok: true,
+    decision: guard.decision,
+    accepted: guard.decision === 'accept',
+    documentType: guard.documentType,
+    confidence: guard.confidence,
+    reason: guard.reason,
+    message: guard.decision === 'reject' ? guard.message : null,
+  }, cors);
 }
 
 /** The client-safe view of a document record (no internal paths, no other user's id leak). */
@@ -1610,6 +1714,7 @@ const ROUTES = new Map([
   ['GET /api/courses', handleCoursesCatalogue],
   ['GET /api/courses/content', handleCourseContent],
   ['POST /api/documents/upload', handleDocumentUpload],
+  ['POST /api/documents/guard', handleDocumentGuard],
   ['POST /api/documents/append', handleDocumentAppend],
   ['POST /api/documents/ocr-page', handleDocumentOcrPage],
   ['POST /api/documents/finalize', handleDocumentFinalize],

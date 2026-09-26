@@ -13,6 +13,7 @@
  */
 
 import { readFile } from 'node:fs/promises';
+import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -24,16 +25,38 @@ let ready = null;
  * TLS policy. A local database (the brew install, 127.0.0.1) speaks plain TCP and
  * must NOT be handed an ssl option or the connection hangs. A hosted database
  * (Neon, Supabase, RDS, Render) needs TLS, signalled by sslmode=require in the URL
- * or PGSSL=require in the environment. rejectUnauthorized:false accepts the managed
- * provider's certificate chain, which is the normal setting for those services.
+ * or PGSSL=require in the environment.
+ *
+ * When TLS is on we VERIFY the server certificate by default (rejectUnauthorized:true).
+ * The previous default trusted any certificate, so an active MITM between the app and a
+ * managed Postgres could read or alter account rows, password hashes and sessions in
+ * transit (audit A4). Verification closes that. For a provider whose chain isn't in Node's
+ * default trust store (e.g. Amazon RDS), point PGSSL_CA_FILE (or PGSSLROOTCERT) at the
+ * provider CA bundle. Verification can be disabled only by a deliberate, documented opt-out
+ * (PGSSL_INSECURE=1, or PGSSL=no-verify) — never silently.
  */
 function sslOption(connectionString) {
   const url = String(connectionString);
   if (process.env.PGSSL === 'disable') return false;
-  if (process.env.PGSSL === 'require' || /[?&]sslmode=require/.test(url)) {
+  const wantsTls = process.env.PGSSL === 'require'
+    || process.env.PGSSL === 'no-verify'
+    || /[?&]sslmode=require/.test(url);
+  if (!wantsTls) return false;
+
+  if (process.env.PGSSL_INSECURE === '1' || process.env.PGSSL === 'no-verify') {
+    console.warn('[db] TLS certificate verification is DISABLED (PGSSL_INSECURE) — '
+      + 'the app↔database link is encrypted but not authenticated. Do not use in production.');
     return { rejectUnauthorized: false };
   }
-  return false;
+
+  const caPath = process.env.PGSSL_CA_FILE || process.env.PGSSLROOTCERT;
+  if (caPath) {
+    let ca;
+    try { ca = readFileSync(caPath, 'utf8'); }
+    catch (error) { throw new Error(`PGSSL CA file could not be read (${caPath}): ${error.message}`); }
+    return { rejectUnauthorized: true, ca };
+  }
+  return { rejectUnauthorized: true };
 }
 
 /**

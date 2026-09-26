@@ -171,6 +171,51 @@ export async function listDocuments(): Promise<DocumentRecord[]> {
   return payload.documents ?? [];
 }
 
+// --- Study-material upload gate ---------------------------------------------
+//
+// A local, no-AI pre-check that runs in the browser BEFORE any large-document upload or any
+// Gemini call, so a non-study file (marksheet, ID, resume, medical report, …) is stopped at
+// the door with a clear message and never parsed, uploaded, or sent to the AI. Only a bounded
+// head sample of the already-extracted text is sent — never the whole document. This is a UX
+// fast-path only: the server enforces the SAME guard authoritatively at /finalize and
+// /generate, so a client that skips or fails this check still cannot push a rejected file
+// through (spec §2, §9, §10).
+
+export type GuardDecision = {
+  decision: 'accept' | 'reject';
+  accepted: boolean;
+  documentType: string;
+  confidence: number;
+  reason: string;
+  message: string | null;
+};
+
+/**
+ * Ask the server's document-type guard whether an extracted text sample is study material.
+ * Resolves to the decision on any definite server answer. THROWS DocumentError only on a
+ * transport/rate-limit/auth failure — callers treat a throw as "couldn't pre-check, let the
+ * authoritative server-side gate decide" and proceed with the normal flow, because
+ * /finalize and /generate re-run the identical guard and will reject there if warranted.
+ */
+export async function guardMaterial(
+  { text, filename, pageCount }: { text: string; filename?: string; pageCount?: number },
+): Promise<GuardDecision> {
+  const r = await post('/api/documents/guard', {
+    text: typeof text === 'string' ? text.slice(0, 8000) : '',
+    ...(filename ? { filename: filename.slice(0, 256) } : {}),
+    ...(Number.isFinite(pageCount) ? { pageCount } : {}),
+  });
+  const rejected = r.decision === 'reject';
+  return {
+    decision: rejected ? 'reject' : 'accept',
+    accepted: !rejected,
+    documentType: String(r.documentType ?? 'unknown'),
+    confidence: typeof r.confidence === 'number' ? r.confidence : 0,
+    reason: String(r.reason ?? ''),
+    message: typeof r.message === 'string' ? r.message : null,
+  };
+}
+
 // --- OCR transport ----------------------------------------------------------
 //
 // The browser-side extractor (materials.ts) is deliberately server-agnostic: it takes an

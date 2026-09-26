@@ -1,19 +1,28 @@
-# Local OCR (PaddleOCR)
+# OCR for scanned PDFs (PaddleOCR — local engine or hosted API)
 
 Nexora AI reads most PDFs entirely in the browser: `pdfjs-dist` pulls the selectable text
 out of each page and only that text is uploaded. Some PDFs are **scans or photographs** —
-their pages carry no selectable text, so that extraction comes back empty. Local OCR fills
-that gap: a small **PaddleOCR** service running on your own machine recognises the text in
-those page images so scanned pages feed the **same** retrieval → AI material → MCQ →
-competency-gap flow as ordinary typed pages.
+their pages carry no selectable text, so that extraction comes back empty. OCR fills that
+gap: it recognises the text in those page images so scanned pages feed the **same**
+retrieval → AI material → MCQ → competency-gap flow as ordinary typed pages.
 
-OCR is **local and optional**:
+OCR is **optional** and has **two interchangeable providers**, chosen with `OCR_PROVIDER`:
 
-- **Local** — inference runs on this machine via `.venv-ocr`. Nothing is sent to any cloud;
-  there is no API key, token, or external OCR service. The service binds to `127.0.0.1` only.
-- **Optional** — if OCR is off or not installed, normal text PDFs work exactly as before.
-  Only genuinely scanned pages are affected, and they get an honest "couldn't read" message
-  rather than silently failing.
+- **`local`** — inference runs on this machine via `.venv-ocr`. Nothing is sent to any cloud;
+  there is no API key or token. The service binds to `127.0.0.1` only. This is the dev/
+  fallback default and **must not be removed**.
+- **`official_api`** — the hosted **PaddleOCR Official API** (production). No local Python and
+  no `.venv-ocr` on the deploy host. Each scanned page image is submitted as an asynchronous
+  job, polled to completion, and its result parsed into the **same** normalised
+  `{ text, confidence, lineCount }` the local engine returns — so everything downstream is
+  byte-for-byte identical regardless of which provider read the page. There is no second
+  pipeline.
+- **`disabled`** — skip OCR entirely (identical to `OCR_ENABLED=false`).
+
+Whichever provider is active, the contract is the same: **only page images cross the wire**
+(never the whole PDF), one page per request, and a page that cannot be read is reported
+honestly (`ocr_failed`) rather than faked. If OCR is off or unavailable, normal text PDFs work
+exactly as before.
 
 ---
 
@@ -131,15 +140,28 @@ production URLs or secrets are hard-coded, and nothing OCR-related is exposed to
 | Variable | Default | Purpose |
 | --- | --- | --- |
 | `OCR_ENABLED` | `true` | Master switch. `false` → OCR is skipped; text PDFs still work. |
-| `OCR_HOST` | `127.0.0.1` | Bind/host address. **Loopback only** — do not expose publicly. |
-| `OCR_PORT` | `8091` | Local OCR service port. |
-| `OCR_TIMEOUT_MS` | `30000` | Per-page request timeout in the Node adapter. |
-| `OCR_PYTHON` | `.venv-ocr/bin/python` | Interpreter used to launch the service. |
-| `OCR_LANG` | `en` | PaddleOCR recognition language. |
-| `OCR_DPI` | `200` | Render DPI for the server-side `/ocr/pdf` path. |
-| `OCR_MAX_PAGES` | `200` | Page ceiling for a single `/ocr/pdf` request. |
-| `OCR_MAX_IMAGE_BYTES` | `12582912` (12 MB) | Max decoded page-image size; larger is rejected pre-wire. |
-| `OCR_ENGINE` | `paddle` | `paddle` = real inference; `stub` = deterministic text for tests. |
+| `OCR_PROVIDER` | `local` | `local` \| `official_api` \| `disabled`. Unknown values fall back to `local`. |
+| `OCR_HOST` | `127.0.0.1` | (local) Bind/host address. **Loopback only** — do not expose publicly. |
+| `OCR_PORT` | `8091` | (local) OCR service port. |
+| `OCR_TIMEOUT_MS` | `30000` | (local) Per-page request timeout in the Node adapter. |
+| `OCR_PYTHON` | `.venv-ocr/bin/python` | (local) Interpreter used to launch the service. |
+| `OCR_LANG` | `en` | (local) PaddleOCR recognition language. |
+| `OCR_DPI` | `200` | (local) Render DPI for the server-side `/ocr/pdf` path. |
+| `OCR_MAX_PAGES` | `200` | (local) Page ceiling for a single `/ocr/pdf` request. |
+| `OCR_MAX_IMAGE_BYTES` | `12582912` (12 MB) | Max decoded page-image size; larger is rejected pre-wire (both providers). |
+| `OCR_ENGINE` | `paddle` | (local) `paddle` = real inference; `stub` = deterministic text for tests. |
+| `PADDLEOCR_ACCESS_TOKEN` | _(empty)_ | (cloud) **Server-side secret.** Empty → `ocr_not_configured`, never a blind call. Never in frontend/git/logs. |
+| `PADDLEOCR_API_URL` | `https://paddleocr.aistudio-app.com/api/v2/ocr/jobs` | (cloud) Async jobs endpoint. |
+| `PADDLEOCR_AUTH_SCHEME` | `bearer` | (cloud) Authorization scheme prefix. |
+| `PADDLEOCR_MODEL` | `PaddleOCR-VL-1.6` | (cloud) Model label sent with each job. |
+| `PADDLEOCR_USE_CHART_RECOGNITION` | `false` | (cloud) Chart-structure extraction. Off by default; do not enable globally. |
+| `PADDLEOCR_SUBMIT_TIMEOUT_MS` | `30000` | (cloud) POST /jobs timeout. |
+| `PADDLEOCR_POLL_TIMEOUT_MS` | `8000` | (cloud) Each status GET timeout. |
+| `PADDLEOCR_POLL_INTERVAL_MS` | `1500` | (cloud) Base poll backoff step (grows ×1.5, capped 4s). |
+| `PADDLEOCR_POLL_MAX_MS` | `90000` | (cloud) Total poll-wait ceiling before `timeout`. |
+| `PADDLEOCR_RESULT_TIMEOUT_MS` | `30000` | (cloud) JSONL result download timeout. |
+| `PADDLEOCR_MAX_RESULT_BYTES` | `33554432` (32 MB) | (cloud) Hard cap on the downloaded JSONL. |
+| `PADDLEOCR_DEFAULT_CONFIDENCE` | `0.9` | (cloud) Confidence when the result carries no per-line scores. |
 | `DOC_MIN_CHARS_PER_PAGE` | `60` | Below this, a page is treated as low-text and sent to OCR. |
 
 ## Health check
@@ -151,7 +173,10 @@ curl -s http://127.0.0.1:8091/health
 
 `available:true` means PaddleOCR is importable and ready here. The browser calls the
 equivalent `GET /api/documents/ocr-health` before rasterising anything, and only attempts OCR
-when the engine is genuinely available.
+when the engine is genuinely available. Under `OCR_PROVIDER=official_api` that same
+`ocr-health` endpoint reports `available` from whether `PADDLEOCR_ACCESS_TOKEN` is configured
+(no probe call is made, and the token is never returned) — an unconfigured cloud provider is
+reported unavailable so the browser skips OCR instead of failing mid-upload.
 
 ## Manual test
 
@@ -174,17 +199,25 @@ curl -s http://127.0.0.1:8091/health
 ## Automated tests
 
 ```bash
-npm run ocr:test        # stub engine — full Node↔Python↔pipeline contract, runs anywhere
-npm run startup:test    # proves `npm run dev` starts BOTH web + OCR and Ctrl-C stops both
-npm run ocr:test:real   # REAL PaddleOCR on .venv-ocr (Mac); skips cleanly if paddle absent
+npm run ocr:test          # local stub engine — full Node↔Python↔pipeline contract, runs anywhere
+npm run ocr-official:test  # hosted-API adapter against a stub jobs server — no network, runs anywhere
+npm run startup:test      # proves `npm run dev` starts BOTH web + OCR and Ctrl-C stops both
+npm run ocr:test:real     # REAL PaddleOCR on .venv-ocr (Mac); skips cleanly if paddle absent
 ```
 
-`ocr:test` and `startup:test` use the paddle-free stub, so they are safe in CI and are part
-of the broader suite where applicable. `ocr:test:real` is deliberately **excluded** from
-`npm test` because it is heavy and platform-specific; it launches the real engine against the
-committed fixtures in `tests/fixtures/ocr/` (`sample-scan.png`, `sample-scan.pdf`, regenerated
-by `scripts/make-ocr-fixtures.py` if missing) and asserts real recognition plus retrieval of
-the OCR'd topic. Run it on the Mac to confirm end-to-end OCR.
+`ocr:test`, `ocr-official:test` and `startup:test` use paddle-free / network-free stubs, so
+they are safe in CI and part of the broader `npm test` suite. `ocr-official:test` stands up a
+fake async-jobs HTTP server and drives the official adapter through the full submit → poll →
+fetch → parse round-trip: it asserts the normalised result shape, that the bearer token is sent
+**only** to the API host and **never** on the result download, that a missing token makes zero
+network calls, that every failure mode (auth, rate-limit, timeout, failed job, malformed
+envelope/JSONL, empty result, oversized image, disabled provider) maps to the right code, and an
+end-to-end pass where hosted-OCR pages are ingested, retrieved (`extractionMethod:ocr`) and used
+to ground exact-count MCQs. `ocr:test:real` is deliberately **excluded** from `npm test` because
+it is heavy and platform-specific; it launches the real engine against the committed fixtures in
+`tests/fixtures/ocr/` (`sample-scan.png`, `sample-scan.pdf`, regenerated by
+`scripts/make-ocr-fixtures.py` if missing) and asserts real recognition plus retrieval of the
+OCR'd topic. Run it on the Mac to confirm end-to-end OCR.
 
 ## Scanned-PDF flow, in detail
 
@@ -199,10 +232,76 @@ the OCR'd topic. Run it on the Mac to confirm end-to-end OCR.
   from the text — never faked. If OCR is down, text pages still work; only the scanned pages
   report that they couldn't be read.
 
+## Cloud OCR (PaddleOCR Official API)
+
+Set `OCR_PROVIDER=official_api` and the scanned-page seam is served by the hosted **PaddleOCR
+Official API** instead of the local Python service. This is the **production** path: no
+`.venv-ocr`, no Python and no PaddlePaddle on the deploy host. Everything else is unchanged —
+the browser still rasterises only low-text pages, still posts one page image to
+`/api/documents/ocr-page`, and the recognised text still flows through the same
+append → finalize → chunk → BM25 index → retrieve → AI pipeline. There is **no second
+pipeline**; only the adapter behind `ocrImage` differs.
+
+Each page image is handled as its own asynchronous job:
+
+```
+server/documents/ocr.mjs  (provider dispatch: official_api)
+        │  ocrImageOfficial({ imageBase64 })
+        ▼
+server/documents/ocr-official.mjs
+  1. submitJob   POST   {PADDLEOCR_API_URL}                 → { code, msg, data:{ jobId } }
+  2. pollJob     GET    {PADDLEOCR_API_URL}/{jobId}         → data.state: pending→running→done|failed
+  3. fetchResult GET    data.resultUrl.jsonUrl              → JSONL (no Authorization header)
+  4. collectText parse each JSONL line → layoutParsingResults[].markdown.text
+        ▼
+  { ok, text, confidence, lineCount, engine:'official_api', durationMs }
+```
+
+That normalised object is **byte-for-byte the same shape** the local engine returns, so the
+page is ingested with `source:'ocr'`, chunked, indexed and retrieved exactly as a locally-OCR'd
+page — it becomes genuinely searchable and can ground exact-count MCQs, not merely get saved as
+Markdown. `confidence` is the mean of the result's `rec_scores` when present, otherwise
+`PADDLEOCR_DEFAULT_CONFIDENCE`.
+
+**Enable it** by setting two things in `server/.env` (git-ignored, never committed):
+
+```bash
+OCR_PROVIDER=official_api
+PADDLEOCR_ACCESS_TOKEN=your-real-token   # server/.env only — NEVER in git, frontend, or logs
+```
+
+With `PADDLEOCR_ACCESS_TOKEN` empty the provider answers `ocr_not_configured` and makes **no
+network call at all** — a missing token can never become a blind, unauthenticated request.
+
+**`useChartRecognition` is off by default and stays off** (`PADDLEOCR_USE_CHART_RECOGNITION=false`).
+It was investigated and is neither safe nor necessary to enable globally: it is slower, is aimed
+at chart-structure extraction rather than the printed text these scanned pages carry, and OCR
+does not *interpret* charts regardless. Turn it on only for a deployment that specifically wants
+chart parsing.
+
+**Error handling never crashes the server.** Missing/empty token → `ocr_not_configured`; a
+`401/403` from the API → `ocr_auth_failed`; `429` → `ocr_rate_limited`; a submit/poll/result
+timeout or the poll ceiling → `timeout`; a `data.state:"failed"` job → `ocr_failed`; malformed
+envelope or JSONL → `bad_response`; a done job with no text → `empty_result`; an oversized image
+is rejected `image_too_large` **before** any job is submitted. `server/index.mjs` maps each code
+to a stable HTTP status (`503` config/unavailable, `504` timeout, `429` rate-limited, `400`
+bad input, `502` otherwise), and the browser only ever sees a safe fixed message such as
+*"Cloud OCR is temporarily unavailable. Please try again."* — never a token or provider detail.
+
 ## Security
 
-- **Loopback only.** The service binds to `127.0.0.1`; it is not reachable off the machine and
-  is not exposed through the public frontend.
+- **Server-side token only.** `PADDLEOCR_ACCESS_TOKEN` is read from the server environment and
+  used solely in the `Authorization: bearer <token>` header of the request **to the API host**.
+  It is never sent to the browser, never given a `VITE_` prefix, never written to git, logs, or
+  API responses. The frontend talks only to Nexora's backend.
+- **Token never leaves for the result URL.** The JSONL result lives on a different
+  object-storage host; the result download carries **no** `Authorization` header, so the token
+  is never disclosed to that untrusted origin. (A dedicated test asserts this.)
+- **Safe user-facing messages.** Failures surface as fixed strings (e.g. "Cloud OCR is
+  temporarily unavailable. Please try again.") — never the underlying provider error, status
+  line, or any secret.
+- **Loopback only (local provider).** The local service binds to `127.0.0.1`; it is not
+  reachable off the machine and is not exposed through the public frontend.
 - **Bytes, not paths.** The contract carries image **bytes** (base64), never a filesystem
   path — there is no arbitrary-file-read surface. A request that tries to pass a `path` is
   rejected as `image_required`.
@@ -237,6 +336,16 @@ understanding without reworking the pipeline; that is explicitly out of scope he
 - **First real OCR is slow** — the model loads once per process (and downloads once to
   `~/.paddleocr`). Subsequent pages reuse the in-memory model.
 - **Port already in use** — change `OCR_PORT` in `server/.env` (keep host `127.0.0.1`).
+- **(cloud) "Cloud OCR is not configured"** — `OCR_PROVIDER=official_api` but
+  `PADDLEOCR_ACCESS_TOKEN` is empty. Set the token in `server/.env` (never in git or the
+  frontend). Until then no cloud call is made.
+- **(cloud) "Cloud OCR is temporarily unavailable"** — the API returned an auth error, rate
+  limit, timeout, or a malformed/failed job. The exact code is logged server-side (without the
+  token); the user only ever sees the safe message. Confirm the token is valid and the quota
+  isn't exhausted.
+- **(cloud) scanned pages skipped entirely** — `ocr-health` reports the cloud provider
+  unavailable because the token isn't set; text PDFs are unaffected. Set the token to enable
+  scanned-PDF reading.
 
 
 

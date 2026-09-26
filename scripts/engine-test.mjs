@@ -669,6 +669,91 @@ check('a failed write is reported, so the page can stop promising a reload is sa
   withoutStorage.isDurable() === false ? true : 'the store still claims the paper is durable',
 );
 
+section('the finished result survives leaving the page');
+
+/**
+ * The bug the learner hit: finish a paper, click to another page, and the report was gone —
+ * the material persisted but the sitting did not, so the only way back was to retake it.
+ * `attempt-session.ts` keeps the sitting's inputs in the same tab storage, keyed to the
+ * assignment, so the report can be rebuilt on return. The shim is a real string store for
+ * the same reason as above: a broken JSON round trip must show up as a lost result.
+ */
+const attemptCell = new Map();
+globalThis.window = {
+  sessionStorage: {
+    getItem: (key) => (attemptCell.has(key) ? attemptCell.get(key) : null),
+    setItem: (key, value) => { attemptCell.set(key, String(value)); },
+    removeItem: (key) => { attemptCell.delete(key); },
+  },
+};
+
+const ATTEMPT = `${OUT}/lib/attempt-session.js`;
+const attempts = await import(ATTEMPT);
+
+const sittingMaterial = { fileName: 'Price_index_note.txt', createdAt: '2026-01-01T00:00:00.000Z', questions: sample.questions };
+const sittingKey = attempts.attemptKey(sittingMaterial);
+const sittingAnswers = sample.questions.map((question, index) => (index % 3 === 0 ? null : question.correct));
+
+check('the assignment key changes with the paper, so an old result is not shown against a new one', () => {
+  if (!sittingKey) return 'a material produced an empty key';
+  const regenerated = attempts.attemptKey({ ...sittingMaterial, createdAt: '2026-02-02T00:00:00.000Z' });
+  if (regenerated === sittingKey) return 'regenerating the paper reused the old key';
+});
+
+attempts.saveAttempt({ materialKey: sittingKey, answers: sittingAnswers, retry: null, done: true, startedAt: Date.now() });
+
+check('a finished sitting is stored as JSON text, not held by reference', () => {
+  const raw = attemptCell.get('NEXORA AI.attempt.v1');
+  if (typeof raw !== 'string') return `tab storage holds a ${typeof raw}`;
+  if (JSON.parse(raw).answers.length !== sittingAnswers.length) return 'the stored copy lost answers';
+});
+
+check('the result is only returned against the assignment it was taken on', () => {
+  if (!attempts.loadAttempt(sittingKey)) return 'the sitting was not found under its own key';
+  if (attempts.loadAttempt('a-different-assignment') !== null) return 'a sitting was shown against a different paper';
+  if (attempts.loadAttempt('') !== null) return 'an empty key matched a stored sitting';
+});
+
+// A fresh module instance has empty in-memory state — exactly what leaving the page and
+// coming back leaves behind: nothing but whatever tab storage kept.
+const afterLeaving = await import(`${ATTEMPT}?reload=1`);
+
+check('returning to the page restores the same finished sitting', () => {
+  const back = afterLeaving.loadAttempt(sittingKey);
+  if (!back) return 'the result was gone after navigating away and back';
+  if (back.done !== true) return 'the sitting came back but no longer reads as finished';
+  if (back.answers.length !== sittingAnswers.length) return `${back.answers.length} of ${sittingAnswers.length} answers survived`;
+  if (back.answers[1] !== sittingAnswers[1]) return 'a stored answer changed';
+});
+
+const brokenSittings = [
+  ['no assignment key', { answers: [], retry: null, done: true, startedAt: 0 }],
+  ['answers that are not a list', { materialKey: sittingKey, answers: 'all of them', retry: null, done: true, startedAt: 0 }],
+  ['an answer that is neither a choice nor a skip', { materialKey: sittingKey, answers: ['b'], retry: null, done: true, startedAt: 0 }],
+  ['a retry paper whose key is out of range', { materialKey: sittingKey, answers: [0], retry: [{ ...sample.questions[0], correct: 9 }], done: true, startedAt: 0 }],
+];
+
+let brokenIndex = 0;
+for (const [label, bad] of brokenSittings) {
+  brokenIndex += 1;
+  attemptCell.set('NEXORA AI.attempt.v1', JSON.stringify(bad));
+  const fresh = await import(`${ATTEMPT}?broken=${brokenIndex}`);
+  const restored = fresh.getAttempt();
+  const stillStored = attemptCell.has('NEXORA AI.attempt.v1');
+  check(`a stored sitting with ${label} is refused`, () => {
+    if (restored !== null) return 'it was accepted and would have been shown as a real result';
+    if (stillStored) return 'it was refused but left in storage to fail on every later read';
+  });
+}
+
+attempts.saveAttempt({ materialKey: sittingKey, answers: sittingAnswers, retry: null, done: true, startedAt: 0 });
+attempts.clearAttempt();
+
+check('starting a new sitting (or a new assignment) clears the stored result', () => {
+  if (attempts.getAttempt() !== null) return 'the finished sitting is still in memory';
+  if (attemptCell.has('NEXORA AI.attempt.v1')) return 'the finished sitting is still in tab storage';
+});
+
 section('reading a file the way the page does');
 
 const pageEvents = [];
