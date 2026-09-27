@@ -21,6 +21,11 @@ const ENDPOINT_BASE = 'https://generativelanguage.googleapis.com/v1beta/models';
 /** How long to wait on the provider before giving up, so a hung API cannot hang a request. */
 const DEFAULT_TIMEOUT_MS = 30_000;
 
+/** Hard ceiling on the provider response we will buffer. A well-formed batch is a few KB of
+ *  JSON; anything past this is a malfunctioning or hostile response and is refused rather than
+ *  read into memory. */
+const MAX_RESPONSE_BYTES = 8 * 1024 * 1024;
+
 export const providerName = 'gemini';
 
 /** The model called when AI_MODEL is blank, so the startup banner can name it. */
@@ -54,6 +59,32 @@ export class ProviderError extends Error {
 function modelFor(env) {
   const model = (env.AI_MODEL ?? '').trim().replace(/^models\//i, '');
   return model === '' ? DEFAULT_MODEL : model;
+}
+
+/**
+ * Read a fetch Response body as text with a hard byte ceiling, aborting mid-stream once the
+ * ceiling is crossed so an over-large or endless body is never fully buffered. Returns the text,
+ * or `null` when the Response exposes no readable stream (the test stubs, which offer only
+ * `.json()`) — the caller then falls back to `.json()`. Throws ProviderError when the cap trips.
+ */
+async function readCappedText(response, maxBytes) {
+  const reader = response.body && typeof response.body.getReader === 'function' ? response.body.getReader() : null;
+  if (!reader) return null;
+  const decoder = new TextDecoder();
+  let out = '';
+  let total = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    total += value.byteLength;
+    if (total > maxBytes) {
+      try { await reader.cancel(); } catch { /* already closing */ }
+      throw new ProviderError('provider_error', 'The AI provider returned a response that was too large.');
+    }
+    out += decoder.decode(value, { stream: true });
+  }
+  out += decoder.decode();
+  return out;
 }
 
 /**
@@ -143,11 +174,27 @@ export async function generateRaw(prompt, { env = process.env, timeoutMs = DEFAU
     throw new ProviderError('provider_error', `The AI provider returned an error (HTTP ${response.status}).`);
   }
 
+  // Refuse an over-large response up front when the length is declared, then read the body
+  // through a streaming cap so an undeclared (chunked) over-large body is aborted mid-flight.
+  const declaredLength = Number(response.headers?.get?.('content-length') ?? Number.NaN);
+  if (Number.isFinite(declaredLength) && declaredLength > MAX_RESPONSE_BYTES) {
+    throw new ProviderError('provider_error', 'The AI provider returned a response that was too large.');
+  }
+
   let payload;
-  try {
-    payload = await response.json();
-  } catch {
-    throw new ProviderError('provider_error', 'The AI provider returned a response that was not JSON.');
+  const rawText = await readCappedText(response, MAX_RESPONSE_BYTES);
+  if (rawText !== null) {
+    try {
+      payload = JSON.parse(rawText);
+    } catch {
+      throw new ProviderError('provider_error', 'The AI provider returned a response that was not JSON.');
+    }
+  } else {
+    try {
+      payload = await response.json();
+    } catch {
+      throw new ProviderError('provider_error', 'The AI provider returned a response that was not JSON.');
+    }
   }
 
   const blocked = payload?.promptFeedback?.blockReason;

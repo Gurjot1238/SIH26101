@@ -23,7 +23,7 @@
  * id→directory map are read once and cached. Restart the server after a rebuild.
  */
 
-import { readFileSync, existsSync, statSync, readdirSync } from 'node:fs';
+import { readFileSync, existsSync, statSync, readdirSync, realpathSync } from 'node:fs';
 import { dirname, join, resolve, sep, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -296,10 +296,19 @@ function fileWithin(courseDir, relativePath) {
   try {
     const st = statSync(target);
     if (!st.isFile() || st.size === 0) return null;
+    // The lexical check above only proves the *path string* stays inside the course
+    // folder. A symlink whose name sits inside the folder but whose target is outside
+    // (e.g. a link to /etc/passwd) would still pass it, because statSync follows links.
+    // Re-check the fully-resolved real paths so an inner symlink cannot escape the tree.
+    // realpathSync the base too, so a dataset that itself lives behind a symlink still
+    // matches instead of being wrongly rejected.
+    const realBase = realpathSync(base);
+    const realTarget = realpathSync(target);
+    if (realTarget !== realBase && !realTarget.startsWith(realBase + sep)) return null;
+    return realTarget;
   } catch {
     return null;
   }
-  return target;
 }
 
 /**

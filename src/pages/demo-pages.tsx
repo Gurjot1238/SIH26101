@@ -708,7 +708,7 @@ export function CourseCatalog() {
             <span className="shrink-0 font-mono text-[10px] uppercase tracking-[.12em] text-muted-foreground">{course.level}</span>
           </div>
           <div className="min-w-0 flex-1">
-            <h3 className="font-semibold leading-snug">{course.title}</h3>
+            <h2 className="font-semibold leading-snug">{course.title}</h2>
             <p className="mt-1 text-xs text-muted-foreground">{course.provider}</p>
             {course.description && <p className="mt-3 line-clamp-3 text-sm leading-6 text-muted-foreground">{course.description}</p>}
           </div>
@@ -987,7 +987,7 @@ function LargePdfPanel({ document, initialDifficulty, initialCount, onDiscard }:
       <h2 className="mt-2 font-serif text-2xl">What do you want to learn?</h2>
       <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">Nexora will search the book and use only the relevant sections — the whole book is never sent to the AI. Try a topic, concept, or chapter.</p>
       <div className="mt-5 flex flex-col gap-2 sm:flex-row">
-        <input data-testid="input-topic-search" value={topic} onChange={(e) => setTopic(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') void runSearch(); }} placeholder="e.g. TCP congestion control" className="flex-1 rounded-lg border border-border bg-card px-3.5 py-2.5 text-sm text-foreground focus:border-primary focus:outline-none" />
+        <input data-testid="input-topic-search" aria-label="Search topic" value={topic} onChange={(e) => setTopic(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') void runSearch(); }} placeholder="e.g. TCP congestion control" className="flex-1 rounded-lg border border-border bg-card px-3.5 py-2.5 text-sm text-foreground focus:border-primary focus:outline-none" />
         <ActionButton onClick={() => void runSearch()} disabled={searching || topic.trim() === ''} icon={<Target className="size-4" />}>{searching ? 'Searching…' : 'Search topic'}</ActionButton>
       </div>
       {searchError && <div role="alert" className="mt-4 flex items-center gap-2 rounded-lg border border-[#eac3bd] bg-[#fff2ef] px-4 py-3 text-sm text-[#a34d43]"><X className="size-4 shrink-0" />{searchError}</div>}
@@ -1008,7 +1008,7 @@ function LargePdfPanel({ document, initialDifficulty, initialCount, onDiscard }:
       </div>
       <div className="grid gap-5 p-5 sm:grid-cols-2">
         <div><p className="mb-2 font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">Difficulty</p><div className="grid grid-cols-3 gap-1.5">{(['easy', 'medium', 'hard'] as const).map((level) => <button key={level} type="button" data-testid={`button-large-difficulty-${level}`} onClick={() => setDifficulty(level)} className={`rounded-lg border px-2 py-2 text-xs font-semibold capitalize transition-colors ${difficulty === level ? 'border-primary bg-primary text-white' : 'border-border bg-card text-muted-foreground hover:bg-secondary'}`}>{level}</button>)}</div></div>
-        <div><p className="mb-2 font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">How many questions</p><select data-testid="select-large-question-count" value={count} onChange={(e) => setCount(Number(e.target.value))} className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm font-semibold text-foreground hover:bg-secondary">{[5, 8, 10, 12, 15, 20].map((n) => <option key={n} value={n}>{n} questions</option>)}</select></div>
+        <div><p id="large-qcount-label" className="mb-2 font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">How many questions</p><select data-testid="select-large-question-count" aria-labelledby="large-qcount-label" value={count} onChange={(e) => setCount(Number(e.target.value))} className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm font-semibold text-foreground hover:bg-secondary">{[5, 8, 10, 12, 15, 20].map((n) => <option key={n} value={n}>{n} questions</option>)}</select></div>
       </div>
       <div className="border-t border-border p-5">
         <ActionButton className="w-full" onClick={() => void runGenerate()} disabled={generating} icon={<Sparkles className="size-4" />}>{generating ? 'Generating…' : `Generate ${count} MCQs`}</ActionButton>
@@ -1607,12 +1607,16 @@ function QuizAnalytics({ graded }: { graded: AttemptResult }) {
  * recommended course and comes back — no need to retake the quiz to see them again.
  */
 export function KnowledgeCheck() {
-  const { live, history } = useProgress();
+  const { live, status, problem, history } = useProgress();
   const [, setLocation] = useLocation();
   // The current sitting: the newest saved attempt. History is newest-first, so [0] is the
   // check just taken — never an older one. It is drawn from the account, so it persists
   // between visits and survives opening a recommended course.
   const latest = history[0] ?? null;
+  // `!live` alone cannot tell "still loading" from "server unreachable" from "signed in but
+  // never sat a check" — three states that deserve three different answers. Read the status
+  // so a slow load is not mislabelled "no check taken", and a real outage says so.
+  const loading = status === 'idle' || status === 'loading';
   return <div className="mx-auto max-w-5xl animate-rise-in">
     <PageIntro
       eyebrow="Knowledge check"
@@ -1620,7 +1624,9 @@ export function KnowledgeCheck() {
       description="Measured from your most recent knowledge check and matched to real courses in your catalogue. This stays here between visits, until you take another."
       action={<ActionButton variant="amber" onClick={() => setLocation('/assignment')} icon={<ArrowRight className="size-4" />}>New assignment</ActionButton>}
     />
-    {!live && <Card className="p-6 sm:p-8"><EmptyState title="No knowledge check taken yet" description="Create an assignment from a document, take the knowledge check, and your competency gaps and recommended courses will appear here — and stay." action={<ActionButton onClick={() => setLocation('/assignment')} icon={<ArrowRight className="size-4" />}>Go to Assignment</ActionButton>} /></Card>}
+    {loading && <Card className="p-6 sm:p-8"><LoadingBlock label="Loading your latest knowledge check…" /></Card>}
+    {status === 'unavailable' && <Card className="p-6 sm:p-8"><EmptyState title="Your results are not available right now" description={problem || 'We could not reach the server to load your knowledge check. Please try again in a moment.'} /></Card>}
+    {live && !latest && <Card className="p-6 sm:p-8"><EmptyState title="No knowledge check taken yet" description="Create an assignment from a document, take the knowledge check, and your competency gaps and recommended courses will appear here — and stay." action={<ActionButton onClick={() => setLocation('/assignment')} icon={<ArrowRight className="size-4" />}>Go to Assignment</ActionButton>} /></Card>}
     {live && latest && <Card className="p-6 sm:p-8">
       <SectionHeading eyebrow="Latest result" title="How your most recent check went" description="Saved to your account — server-graded, not from this tab." />
       <div className="mt-4 flex flex-wrap items-center gap-6">

@@ -19,7 +19,7 @@
 
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
-import { ArrowUpRight, Clock3, GraduationCap, ListChecks } from 'lucide-react';
+import { ArrowUpRight, Clock3, ExternalLink, Globe, GraduationCap, ListChecks } from 'lucide-react';
 import { Badge, Card, SectionHeading } from '@/components/ui';
 import {
   AnalyticsError,
@@ -79,6 +79,12 @@ export function GapCourseRecommendations({ refreshKey = 0, scope = 'all' }: { re
   // prompts the learner to sit one, so this section adds nothing and stays hidden.
   if (!data.measured) return null;
 
+  // A second, additive source: real external courses from the browse-library, matched to the
+  // SAME ranked gaps the server returned (deterministic keyword match, no network, no model).
+  // Distinct from the in-catalogue courses above — these open on the provider's own site. When
+  // no gap has a genuinely relevant external course, this is empty and the block is not shown.
+  const onlineRecs = recommendOnlineCourses(data.groups ?? []);
+
   return <div className="mt-7">
     <Card className="p-5" >
       <SectionHeading
@@ -119,6 +125,40 @@ export function GapCourseRecommendations({ refreshKey = 0, scope = 'all' }: { re
             Matches are by subject, not by an official mandate: the catalogue is open CS, engineering and medical courseware, so a gap with no closely-matching course is left out rather than filled with an unrelated one.
           </p>
         </>
+      )}
+
+      {onlineRecs.length > 0 && (
+        <div className="mt-7 border-t border-border pt-6">
+          <SectionHeading
+            eyebrow="Free online courses"
+            title="More ways to close the same gaps"
+            description="Open courses from named providers on the wider web, matched to the same gaps. They open on the provider’s own site — NEXORA AI does not host or endorse them."
+          />
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {onlineRecs.map((rec) => (
+              <a
+                key={rec.course.id}
+                href={rec.course.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid={`link-online-course-${rec.course.id}`}
+                className="group flex flex-col gap-3 rounded-[14px] border border-border bg-card p-5 shadow-[0_3px_15px_hsl(214_30%_20%/.035)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_22px_hsl(214_30%_20%/.08)]"
+              >
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge tone="neutral"><Globe className="size-3" /> {rec.course.provider}</Badge>
+                  <Badge tone="teal"><GraduationCap className="size-3" /> {rec.forCompetencyName}</Badge>
+                </div>
+                <h3 className="font-semibold leading-snug">{rec.course.title}</h3>
+                <p className="text-xs leading-5 text-muted-foreground">{rec.reason}</p>
+                <div className="mt-auto flex flex-wrap items-center gap-3 pt-1 text-xs font-medium text-muted-foreground">
+                  <span className="flex items-center gap-1"><Clock3 className="size-3.5" />{rec.course.hours} hrs</span>
+                  <span className="truncate">{rec.course.partner}</span>
+                  <span className="ml-auto inline-flex items-center gap-1 font-semibold text-primary">Visit <ExternalLink className="size-3.5 transition-transform group-hover:translate-x-0.5" /></span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
       )}
     </Card>
   </div>;

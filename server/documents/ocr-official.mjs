@@ -43,8 +43,11 @@ import { loadConfig } from './config.mjs';
 
 // ---- low-level HTTP: always resolves a structured outcome, never throws ----------
 
-/** One HTTP(S) request, body + response both bounded. Resolves; never rejects. */
-function httpRequest({ urlStr, method = 'GET', headers = {}, bodyBuf = null, timeoutMs = 30_000, maxBytes = 8 * 1024 * 1024 }) {
+/** One HTTP(S) request, body + response both bounded. Resolves; never rejects.
+ *  `lookup` (optional) pins DNS resolution to pre-vetted addresses — used for the result
+ *  download so the socket can only connect to the IP the SSRF guard already approved, closing
+ *  the TOCTOU DNS-rebinding window between the guard's lookup and the transport's own. */
+function httpRequest({ urlStr, method = 'GET', headers = {}, bodyBuf = null, timeoutMs = 30_000, maxBytes = 8 * 1024 * 1024, lookup = null }) {
   return new Promise((resolve) => {
     let settled = false;
     const done = (v) => { if (!settled) { settled = true; resolve(v); } };
@@ -59,8 +62,13 @@ function httpRequest({ urlStr, method = 'GET', headers = {}, bodyBuf = null, tim
     const reqHeaders = { Accept: 'application/json', ...headers };
     if (bodyBuf) reqHeaders['Content-Length'] = bodyBuf.length;
 
+    // The hostname is kept for TLS SNI and the Host header (and so certificate validation is
+    // still against the real name); only the connect-time address is pinned when `lookup` is set.
+    const reqOptions = { hostname: url.hostname, port: url.port ? Number(url.port) : undefined, path: url.pathname + url.search, method, headers: reqHeaders };
+    if (lookup) reqOptions.lookup = lookup;
+
     const req = transport.request(
-      { hostname: url.hostname, port: url.port ? Number(url.port) : undefined, path: url.pathname + url.search, method, headers: reqHeaders },
+      reqOptions,
       (res) => {
         const chunks = [];
         let size = 0;
@@ -159,6 +167,23 @@ function apiHostIsLoopback(cfg) {
 }
 
 /**
+ * A DNS `lookup` implementation that always resolves to a fixed, pre-vetted address set,
+ * ignoring the queried hostname. Passed to the result-download request so the socket connects
+ * only to an IP the SSRF guard already approved — a second, independent DNS answer (rebinding)
+ * can no longer redirect the fetch to a private/metadata address. Honours the `all` option so
+ * it is a drop-in for Node's own resolver.
+ */
+function pinnedLookup(addresses) {
+  const list = addresses.map((a) => ({ address: a.address, family: a.family }));
+  return (hostname, options, callback) => {
+    const cb = typeof options === 'function' ? options : callback;
+    const opts = typeof options === 'function' ? {} : (options || {});
+    if (opts.all) cb(null, list);
+    else cb(null, list[0].address, list[0].family);
+  };
+}
+
+/**
  * Validate the pre-signed result URL before we fetch it. Resolves { ok:true } or a safe,
  * secret-free { ok:false, code, message }. Exported for direct testing of the guard.
  */
@@ -181,13 +206,14 @@ export async function assertResultUrlAllowed(jsonUrl, cfg = loadConfig()) {
     if (!ok) return reject;
   }
 
-  if (net.isIP(host)) return ipIsBlocked(host) ? reject : { ok: true };
+  if (net.isIP(host)) return ipIsBlocked(host) ? reject : { ok: true, addresses: [{ address: host, family: net.isIP(host) }] };
 
   let addrs;
   try { addrs = await dns.promises.lookup(host, { all: true }); }
   catch { return { ok: false, code: 'service_unavailable', message: 'Cloud OCR result location could not be resolved.' }; }
   if (!addrs.length || addrs.some((rec) => ipIsBlocked(rec.address))) return reject;
-  return { ok: true };
+  // Return the exact vetted addresses so the caller can pin the connection to them.
+  return { ok: true, addresses: addrs.map((r) => ({ address: r.address, family: r.family })) };
 }
 
 // ---- envelope + auth helpers -----------------------------------------------------
@@ -306,7 +332,10 @@ async function fetchResult({ jsonUrl, cfg }) {
   const o = cfg.ocr.official;
   const guard = await assertResultUrlAllowed(jsonUrl, cfg);
   if (!guard.ok) return guard;
-  const res = await httpRequest({ urlStr: jsonUrl, method: 'GET', headers: {}, timeoutMs: o.resultTimeoutMs, maxBytes: o.maxResultBytes });
+  // Pin the download to the guard's vetted addresses (skipped for the trusted loopback branch,
+  // which returns none), so DNS cannot be re-answered with a private/metadata IP after vetting.
+  const lookup = Array.isArray(guard.addresses) && guard.addresses.length ? pinnedLookup(guard.addresses) : null;
+  const res = await httpRequest({ urlStr: jsonUrl, method: 'GET', headers: {}, timeoutMs: o.resultTimeoutMs, maxBytes: o.maxResultBytes, lookup });
   if (!res.ok) return res;
   if (typeof res.status === 'number' && res.status >= 400) return { ok: false, ...classifyStatus(res.status) };
   return { ok: true, bodyText: res.bodyText };

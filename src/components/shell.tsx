@@ -93,7 +93,26 @@ export function AppShell({ children, role, onRoleChange }: { children: ReactNode
     setNoticeOpen(next);
     if (next && notifyOn) void notices.reload();
   };
+  // A popover the keyboard can open must also be closable without a mouse, and a
+  // click anywhere else should dismiss it — otherwise it traps focus and lingers.
+  // One listener covers both menus: Escape closes whichever is open; a pointer press
+  // outside a menu's own root (button + panel share a data-attr) closes it.
+  useEffect(() => {
+    if (!noticeOpen && !profileOpen) return;
+    const onDown = (e: MouseEvent) => {
+      const t = e.target as Element | null;
+      if (noticeOpen && !(t && t.closest('[data-notice-root]'))) setNoticeOpen(false);
+      if (profileOpen && !(t && t.closest('[data-profile-root]'))) setProfileOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { setNoticeOpen(false); setProfileOpen(false); }
+    };
+    document.addEventListener('mousedown', onDown);
+    document.addEventListener('keydown', onKey);
+    return () => { document.removeEventListener('mousedown', onDown); document.removeEventListener('keydown', onKey); };
+  }, [noticeOpen, profileOpen]);
   return <div className="noise min-h-[100dvh] bg-background text-foreground">
+    <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-foreground focus:shadow-lg">Skip to content</a>
     <aside className="fixed inset-y-0 left-0 z-30 hidden w-[252px] flex-col bg-sidebar text-sidebar-foreground md:flex">
       <div className="border-b border-sidebar-border px-6 py-5">
         <Link href="/dashboard" data-testid="link-brand" className="flex items-center gap-3">
@@ -119,9 +138,9 @@ export function AppShell({ children, role, onRoleChange }: { children: ReactNode
         <Link href="/profile" data-testid="link-profile-card" className="flex items-center gap-3 rounded-lg bg-sidebar-accent/65 p-3 transition-colors hover:bg-sidebar-accent cursor-pointer">
           <div className="flex size-9 items-center justify-center rounded-full bg-[#b8ddd6] text-xs font-bold text-sidebar">{initials(user?.name)}</div>
           <div className="min-w-0 flex-1"><p className="truncate text-sm font-semibold text-white">{user?.name ?? 'Ananya Sharma'}</p><p className="truncate text-[11px] text-sidebar-foreground/55">{user?.email ?? 'Directorate of Economics'}</p></div>
-          <button data-testid="button-profile-menu" aria-label={profileOpen ? 'Close account menu' : 'Open account menu'} aria-expanded={profileOpen} onClick={(e) => { e.preventDefault(); e.stopPropagation(); setProfileOpen(!profileOpen); }} className="text-sidebar-foreground/60 hover:text-white"><ChevronDown className="size-4" /></button>
+          <button data-testid="button-profile-menu" data-profile-root aria-label={profileOpen ? 'Close account menu' : 'Open account menu'} aria-expanded={profileOpen} aria-controls="menu-account" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setProfileOpen(!profileOpen); }} className="text-sidebar-foreground/60 hover:text-white"><ChevronDown className="size-4" /></button>
         </Link>
-        {profileOpen && <div className="mt-2 rounded-lg border border-sidebar-border bg-sidebar-accent p-2 text-xs"><button data-testid="button-signout-demo" disabled={signingOut} onClick={async () => { if (signingOut) return; setSigningOut(true); setProfileOpen(false); await signOut(); setLocation('/login'); }} className="w-full rounded px-2 py-1.5 text-left text-sidebar-foreground/80 hover:bg-sidebar">{signingOut ? 'Signing out...' : user ? 'Sign out' : 'Sign out of demo'}</button></div>}
+        {profileOpen && <div id="menu-account" data-profile-root className="mt-2 rounded-lg border border-sidebar-border bg-sidebar-accent p-2 text-xs"><button data-testid="button-signout-demo" disabled={signingOut} onClick={async () => { if (signingOut) return; setSigningOut(true); setProfileOpen(false); await signOut(); setLocation('/login'); }} className="w-full rounded px-2 py-1.5 text-left text-sidebar-foreground/80 hover:bg-sidebar">{signingOut ? 'Signing out...' : user ? 'Sign out' : 'Sign out of demo'}</button></div>}
       </div>
     </aside>
     <div className="md:pl-[252px]">
@@ -129,15 +148,15 @@ export function AppShell({ children, role, onRoleChange }: { children: ReactNode
         <div className="flex h-[68px] items-center justify-between px-4 sm:px-7 lg:px-10">
           <div className="flex items-center gap-3">
             <button data-testid="button-mobile-menu" aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'} aria-expanded={mobileOpen} onClick={() => setMobileOpen(!mobileOpen)} className="rounded-lg p-2 hover:bg-secondary md:hidden">{mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}</button>
-            <div><p className="font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">NEXORA AI / {currentLabel}</p><h1 className="mt-0.5 text-sm font-semibold text-foreground">{greeting()}, {firstName(user?.name)}</h1></div>
+            <div><p className="font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">NEXORA AI / {currentLabel}</p><p className="mt-0.5 text-sm font-semibold text-foreground">{greeting()}, {firstName(user?.name)}</p></div>
           </div>
           <div className="flex items-center gap-2 sm:gap-4">
             <button data-testid="button-role-switch" onClick={() => onRoleChange(role === 'learner' ? 'manager' : 'learner')} className="hidden items-center gap-2 rounded-full border border-border bg-card px-3 py-2 text-xs font-semibold text-foreground sm:flex"><span className="size-2 rounded-full bg-[#74b7ad]" />{role === 'learner' ? 'Learner view' : 'Manager view'}<ChevronDown className="size-3.5 text-muted-foreground" /></button>
-            <button data-testid="button-notifications" aria-label={unread > 0 ? `Notifications, ${unread} unread` : 'Notifications'} onClick={toggleNotices} className="relative rounded-lg p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"><Bell className="size-[18px]" />{unread > 0 && <span data-testid="dot-notifications-unread" className="absolute right-1.5 top-1.5 size-1.5 rounded-full bg-[#c86c5e]" />}</button>
+            <button data-testid="button-notifications" data-notice-root aria-label={unread > 0 ? `Notifications, ${unread} unread` : 'Notifications'} aria-expanded={noticeOpen} aria-controls="panel-notifications" aria-haspopup="dialog" onClick={toggleNotices} className="relative rounded-lg p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"><Bell className="size-[18px]" />{unread > 0 && <span data-testid="dot-notifications-unread" className="absolute right-1.5 top-1.5 size-1.5 rounded-full bg-[#c86c5e]" />}</button>
             <Link href="/presentation" data-testid="link-header-presentation" className="hidden items-center gap-2 rounded-lg bg-primary px-3.5 py-2.5 text-xs font-semibold text-primary-foreground shadow-sm transition-transform hover:-translate-y-0.5 sm:flex"><Presentation className="size-3.5" /> Present demo</Link>
           </div>
         </div>
-        {noticeOpen && <div data-testid="panel-notifications" className="absolute right-5 top-[62px] w-[320px] rounded-xl border border-border bg-card p-4 shadow-xl animate-rise-in">
+        {noticeOpen && <div id="panel-notifications" data-notice-root role="dialog" aria-label="Notifications" data-testid="panel-notifications" className="absolute right-5 top-[62px] w-[320px] rounded-xl border border-border bg-card p-4 shadow-xl animate-rise-in">
           <div className="flex items-center justify-between"><p className="font-semibold">Notifications</p>{unread > 0 && <Badge tone="teal">{unread} new</Badge>}</div>
           <div className="mt-3">
             {!user
@@ -161,7 +180,7 @@ export function AppShell({ children, role, onRoleChange }: { children: ReactNode
         </div>}
       </header>
       {mobileOpen && <div className="fixed inset-x-0 top-[68px] z-20 border-b border-border bg-sidebar p-3 md:hidden"><nav className="grid grid-cols-2 gap-1">{nav.map((item) => <Link key={item.href} href={item.href} data-testid={`link-mobile-${item.label.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setMobileOpen(false)} className="flex items-center gap-2 rounded-lg px-3 py-3 text-sm text-sidebar-foreground hover:bg-sidebar-accent"><item.icon className="size-4 text-accent" />{item.label}</Link>)}</nav></div>}
-      <main className="civic-grid min-h-[calc(100dvh-68px)] px-4 py-7 sm:px-7 lg:px-10">{children}</main>
+      <main id="main" tabIndex={-1} className="civic-grid min-h-[calc(100dvh-68px)] px-4 py-7 sm:px-7 lg:px-10">{children}</main>
     </div>
   </div>;
 }

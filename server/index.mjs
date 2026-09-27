@@ -1404,15 +1404,40 @@ async function handleCourseContent(req, res, cors) {
   }
   const { path, contentType } = resolveContent(id, file);
   const size = statSync(path).size;
-  res.writeHead(200, {
+
+  // Course content is public and un-authenticated, but it is served from the API's
+  // own origin — so a lesson file that a browser would EXECUTE (an .html page, an
+  // .svg with a <script>) is a stored-XSS vector the moment someone opens its URL
+  // directly: the script would run with the app's origin. The in-app reader never
+  // renders these as HTML (markdown is parsed to React elements, PDFs go in an
+  // <embed>), so nothing legitimate needs them served renderable. We force those
+  // active types to download as an opaque octet-stream instead of rendering, and
+  // clamp every response with a no-privilege CSP as defence in depth. PDFs, text,
+  // markdown and images keep their real type and inline disposition, so the reader
+  // and the PDF <embed> are unaffected.
+  const isActiveType = /^(text\/html|image\/svg\+xml|application\/xhtml)/i.test(contentType);
+  const headers = {
     ...cors,
-    'Content-Type': contentType,
     'Content-Length': size,
     'Cache-Control': 'private, max-age=3600',
-    // Inline for things a browser renders (PDF, text, images); the UI opens these in a new tab.
-    'Content-Disposition': 'inline',
     'X-Content-Type-Options': 'nosniff',
-  });
+    // No scripts, no subresources, sandboxed opaque origin — inert even if a browser
+    // is coaxed into rendering the body. Harmless on the download/inline paths alike.
+    'Content-Security-Policy': "default-src 'none'; sandbox",
+    'Referrer-Policy': 'no-referrer',
+  };
+  if (isActiveType) {
+    headers['Content-Type'] = 'application/octet-stream';
+    // A safe download filename derived from the request; strip any path segments.
+    const safeName = String(file).split(/[\\/]/).pop().replace(/[^A-Za-z0-9._-]/g, '_') || 'lesson';
+    headers['Content-Disposition'] = `attachment; filename="${safeName}"`;
+  } else {
+    headers['Content-Type'] = contentType;
+    // Inline for things a browser renders safely (PDF, text, images); the UI embeds
+    // PDFs and fetches text — neither executes script.
+    headers['Content-Disposition'] = 'inline';
+  }
+  res.writeHead(200, headers);
   const stream = createReadStream(path);
   stream.on('error', () => {
     if (!res.headersSent) sendJson(res, 500, { ok: false, error: { code: 'read_failed', message: 'Could not read the file.' } }, cors);
@@ -1879,10 +1904,15 @@ const server = createServer(async (req, res) => {
   try {
     if (!handler) {
       // Distinguish "wrong method" from "no such route" without listing routes.
-      const methodMismatch = [...ROUTES.keys()].some((key) => key.endsWith(` ${pathname}`));
-      throw methodMismatch
-        ? new HttpError(405, 'method_not_allowed', `${req.method} is not allowed on ${pathname}.`)
-        : new HttpError(404, 'not_found', 'No such endpoint.');
+      const allow = [...ROUTES.keys()].filter((key) => key.endsWith(` ${pathname}`)).map((key) => key.split(' ')[0]);
+      if (allow.length > 0) {
+        // RFC 7231 §6.5.5 / §7.4.1: a 405 MUST carry an Allow header of the methods this
+        // resource does accept. OPTIONS is always answered (CORS preflight), so it is listed too.
+        const err = new HttpError(405, 'method_not_allowed', `${req.method} is not allowed on ${pathname}.`);
+        err.allow = [...new Set([...allow, 'OPTIONS'])].sort();
+        throw err;
+      }
+      throw new HttpError(404, 'not_found', 'No such endpoint.');
     }
     await handler(req, res, cors);
   } catch (error) {
@@ -1905,6 +1935,7 @@ function respondWithError(res, error, cors, req, pathname) {
     if (error.fields) payload.error.fields = error.fields;
     const headers = { ...cors };
     if (error.status === 429) headers['Retry-After'] = '60';
+    if (Array.isArray(error.allow) && error.allow.length > 0) headers['Allow'] = error.allow.join(', ');
     sendJson(res, error.status, payload, headers);
     return;
   }
