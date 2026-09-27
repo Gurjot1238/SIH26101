@@ -8,7 +8,8 @@
  *
  * So this component asks the session for four states and answers each one
  * differently. When the server cannot be reached it says so, prints the command
- * that starts it, offers a retry, and offers to open the demo anyway.
+ * that starts it, offers a retry, and — in development only — offers to open the
+ * demo anyway.
  *
  * Why offering that bypass is not a hole: nothing behind this gate is
  * server-side data. Every page here renders local demonstration data that ships
@@ -16,8 +17,11 @@
  * the product behaves like a real product, not to protect a secret. The things
  * that do need protecting — the account records and the session cookie — are
  * enforced on the server in server/index.mjs, where a browser cannot argue with
- * them. If real per-user data is ever served from an API, delete the bypass
- * button below and rely on the server rejecting the request instead.
+ * them. Even so, the bypass button is shown only in a dev build (or when the
+ * gate is switched off): a production build with the gate on never offers it, so
+ * a shipped site cannot be walked past while its auth server is down. If real
+ * per-user data is ever served from an API, drop the bypass entirely and rely on
+ * the server rejecting the request instead.
  *
  * Turn the gate off entirely with VITE_REQUIRE_AUTH=false in .env.local.
  */
@@ -45,7 +49,7 @@ export function RequireAuth({ children, fallback = '/login' }: { children: React
   }
 
   if (status === 'unreachable') {
-    return <ServerDown problem={problem} onRetry={refresh} onSkip={() => setOpenedAnyway(true)} />;
+    return <ServerDown problem={problem} onRetry={refresh} onSkip={() => setOpenedAnyway(true)} allowBypass={import.meta.env.DEV || !AUTH_REQUIRED} />;
   }
 
   if (status === 'signed-out') {
@@ -55,7 +59,7 @@ export function RequireAuth({ children, fallback = '/login' }: { children: React
   return <>{children}</>;
 }
 
-function ServerDown({ problem, onRetry, onSkip }: { problem: string; onRetry: () => void; onSkip: () => void }) {
+function ServerDown({ problem, onRetry, onSkip, allowBypass }: { problem: string; onRetry: () => void; onSkip: () => void; allowBypass: boolean }) {
   return <div className="noise flex min-h-[100dvh] items-center justify-center bg-background px-4">
     <Card className="civic-grid w-full max-w-[460px] p-7 animate-rise-in">
       <div className="flex size-11 items-center justify-center rounded-xl bg-[#f9e5e1]"><PlugZap className="size-5 text-[#a34d43]" /></div>
@@ -67,13 +71,14 @@ function ServerDown({ problem, onRetry, onSkip }: { problem: string; onRetry: ()
       <pre className="mt-4 overflow-x-auto rounded-lg bg-secondary px-4 py-3 font-mono text-xs text-foreground">npm run auth</pre>
       <div className="mt-6 flex flex-wrap items-center gap-3">
         <ActionButton onClick={onRetry} icon={<RefreshCw className="size-4" />}>Retry</ActionButton>
-        <button data-testid="button-open-demo-anyway" onClick={onSkip} className="text-sm font-semibold text-primary hover:underline">
+        {allowBypass && <button data-testid="button-open-demo-anyway" onClick={onSkip} className="text-sm font-semibold text-primary hover:underline">
           Open the demo without signing in
-        </button>
+        </button>}
       </div>
       <p className="mt-6 border-t border-border pt-4 text-xs leading-5 text-muted-foreground">
-        Every page in the workspace shows demonstration data held in the app itself, so opening it
-        without an account exposes nothing. Accounts and sessions are enforced on the server.
+        {allowBypass
+          ? 'Every page in the workspace shows demonstration data held in the app itself, so opening it without an account exposes nothing. Accounts and sessions are enforced on the server.'
+          : 'Accounts and sessions are enforced on the server, so the workspace stays closed until sign in is available. Start the auth server above, then retry.'}
       </p>
     </Card>
   </div>;

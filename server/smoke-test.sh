@@ -273,6 +273,49 @@ check 'preferences survive on the next read' 200 -b "$JAR" "${BASE}/api/progress
 expect_in_body 'language persisted' '"language":"Hindi"'
 expect_in_body 'course progress persisted' '"courseId":"time-series"'
 
+printf '\n  --- progress: profile details (name and email stay read-only) ---\n'
+# role/department/location/phone/bio are the account's own editable block. Name and
+# email are credentials owned by auth.mjs, so the server refuses them here rather than
+# letting the profile form rewrite an identity.
+PROFILE="${BASE}/api/progress/profile"
+check 'saving profile details needs a session' 401 -X POST "$PROFILE" -H "$JSON" -H "$ORIGIN" -d '{"role":"x"}'
+check 'profile details save' 200 -b "$JAR" -X POST "$PROFILE" -H "$JSON" -H "$ORIGIN" \
+  -d '{"role":"Senior Statistical Officer","department":"Directorate of Field Operations","location":"Bengaluru","phone":"+91 90000 11111","bio":"Runs quarterly data-quality reviews."}'
+expect_in_body 'the role is applied' '"role":"Senior Statistical Officer"'
+expect_in_body 'the department is applied' '"department":"Directorate of Field Operations"'
+check 'name is not a profile field the server will accept' 400 -b "$JAR" -X POST "$PROFILE" -H "$JSON" -H "$ORIGIN" \
+  -d '{"name":"Someone Else"}'
+expect_in_body 'and it says the field is not stored here' 'not a profile field'
+check 'email is not a profile field either' 400 -b "$JAR" -X POST "$PROFILE" -H "$JSON" -H "$ORIGIN" \
+  -d '{"email":"someone-else@example.gov"}'
+check 'a non-string profile value is rejected' 400 -b "$JAR" -X POST "$PROFILE" -H "$JSON" -H "$ORIGIN" -d '{"role":42}'
+check 'a non-object profile body is rejected' 400 -b "$JAR" -X POST "$PROFILE" -H "$JSON" -H "$ORIGIN" -d '[1,2,3]'
+check 'form-encoded profile body rejected (CSRF control)' 415 -b "$JAR" -X POST "$PROFILE" -H "$ORIGIN" \
+  -H 'Content-Type: application/x-www-form-urlencoded' -d 'role=x'
+check 'profile details survive on the next read' 200 -b "$JAR" "${BASE}/api/progress"
+expect_in_body 'the saved role persisted' '"role":"Senior Statistical Officer"'
+expect_in_body 'the saved department persisted' '"department":"Directorate of Field Operations"'
+expect_not_in_body 'the rejected name never became the profile name' '"name":"Someone Else"'
+
+printf '\n  --- notifications: derived from the account, never stored ---\n'
+# There is no notifications table. The feed is rebuilt on every read from the account's
+# own progress and courses, so the bell can never show a number the rest of the app
+# would contradict. Opening the panel is the only write, and it only records the time.
+NOTIFS="${BASE}/api/notifications"
+check 'the feed needs a session' 401 "$NOTIFS"
+check 'marking seen needs a session' 401 -X POST "${NOTIFS}/seen" -H "$JSON" -H "$ORIGIN"
+check 'signed in, the feed is built' 200 -b "$JAR" "$NOTIFS"
+expect_in_body 'a learner with attempts gets a summary' '"kind":"summary"'
+expect_not_in_body 'and not the first-run welcome call to action' '"kind":"welcome"'
+expect_in_body 'with something unread before the panel is opened' '"unread":[1-9]'
+expect_not_in_body 'the feed never carries document text' 'CONFIDENTIAL-DOCUMENT-BODY'
+check 'marking seen from an untrusted origin is refused' 403 -b "$JAR" -X POST "${NOTIFS}/seen" -H "$JSON" \
+  -H 'Origin: https://evil.example.com'
+check 'the owner marks the panel seen' 200 -b "$JAR" -X POST "${NOTIFS}/seen" -H "$JSON" -H "$ORIGIN"
+expect_in_body 'and the unread count falls to zero' '"unread":0'
+check 'a reopened feed stays at zero unread' 200 -b "$JAR" "$NOTIFS"
+expect_in_body 'because notificationsSeenAt was recorded' '"unread":0'
+
 printf '\n  --- progress: one account cannot see another ---\n'
 check 'a second account signs up' 201 -c "$JAR2" -X POST "${BASE}/api/auth/signup" -H "$JSON" -H "$ORIGIN" \
   -d '{"name":"Ravi Nair","email":"ravi@example.gov","password":"a quite different long passphrase"}'

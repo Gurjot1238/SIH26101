@@ -7,8 +7,12 @@ import './index.css';
 
 createRoot(document.getElementById('root')!, {
   // Keeps caught errors off reportError(), which would raise the dev overlay.
+  // Dev only: error objects and component stacks can carry internals, so they
+  // are not written to a production console.
   onCaughtError: (error, errorInfo) => {
-    console.error(error, errorInfo.componentStack);
+    if (import.meta.env.DEV) {
+      console.error(error, errorInfo.componentStack);
+    }
   },
 }).render(
   <ErrorBoundary>

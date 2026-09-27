@@ -148,8 +148,6 @@ const ROUTES = [
   ['/assignment', 'Turn a brief into an assignment.'],
   ['/quiz', 'Your competency gaps and recommended courses.'],
   ['/assignment/quiz', 'Generate a quiz from your material.'],
-  ['/intelligence', 'See the capability picture.'],
-  ['/roadmap', 'Make the next role legible.'],
   ['/profile', 'Your NEXORA AI identity.'],
   ['/integrations', 'Connect the systems that know your work.'],
   ['/presentation', 'data-testid="button-presentation-next"'],
@@ -172,7 +170,7 @@ if (!GATE_OFF) {
   check('unreachable server explains itself', has(down, 'The auth server is not answering.'));
   check('unreachable server prints the command', has(down, 'npm run auth'));
   check('unreachable server passes the real error through', has(down, 'Cannot reach the auth server'));
-  check('unreachable server offers the demo escape', has(down, 'data-testid="button-open-demo-anyway"'));
+  check('a production build with the gate on hides the demo bypass', !has(down, 'data-testid="button-open-demo-anyway"'));
   check('unreachable server renders no protected content', !has(down, SIDEBAR));
 
   console.log('\n  -- signed in: the real account, not the demo one -----------');

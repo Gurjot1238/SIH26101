@@ -49,6 +49,19 @@ export type LessonReaderProps = {
 
 /* ------------------------------------------------------------------ inline render */
 
+/**
+ * Lesson markdown is network-delivered content, so a link's href could be a
+ * `javascript:` or `data:` URL that runs on click. Only http(s) and mailto links
+ * — and scheme-less relative URLs — are allowed to be clickable; anything else is
+ * returned as undefined so the text renders plain and non-navigable.
+ */
+function safeHref(href: string): string | undefined {
+  const trimmed = href.trim();
+  // No scheme (relative, anchor, or protocol-relative) → no javascript:/data: risk.
+  if (!/^[a-z][a-z0-9+.-]*:/i.test(trimmed)) return trimmed || undefined;
+  return /^(https?|mailto):/i.test(trimmed) ? trimmed : undefined;
+}
+
 function renderInline(nodes: InlineNode[], keyPrefix: string) {
   return nodes.map((node, i) => {
     const key = `${keyPrefix}-${i}`;
@@ -61,8 +74,12 @@ function renderInline(nodes: InlineNode[], keyPrefix: string) {
         return <em key={key}>{renderInline(node.children, key)}</em>;
       case 'code':
         return <code key={key} className="rounded bg-secondary px-1.5 py-0.5 font-mono text-[.85em] text-foreground">{node.value}</code>;
-      case 'link':
-        return <a key={key} href={node.href} target="_blank" rel="noopener noreferrer" className="font-medium text-primary underline underline-offset-2">{renderInline(node.children, key)}</a>;
+      case 'link': {
+        const href = safeHref(node.href);
+        return href
+          ? <a key={key} href={href} target="_blank" rel="noopener noreferrer" className="font-medium text-primary underline underline-offset-2">{renderInline(node.children, key)}</a>
+          : <span key={key}>{renderInline(node.children, key)}</span>;
+      }
       case 'image':
         // The dataset's image URLs are dead CDN links, so an <img> would just show a broken
         // icon. The alt text is the useful part, shown as a caption.

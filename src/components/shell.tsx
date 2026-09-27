@@ -119,7 +119,7 @@ export function AppShell({ children, role, onRoleChange }: { children: ReactNode
         <Link href="/profile" data-testid="link-profile-card" className="flex items-center gap-3 rounded-lg bg-sidebar-accent/65 p-3 transition-colors hover:bg-sidebar-accent cursor-pointer">
           <div className="flex size-9 items-center justify-center rounded-full bg-[#b8ddd6] text-xs font-bold text-sidebar">{initials(user?.name)}</div>
           <div className="min-w-0 flex-1"><p className="truncate text-sm font-semibold text-white">{user?.name ?? 'Ananya Sharma'}</p><p className="truncate text-[11px] text-sidebar-foreground/55">{user?.email ?? 'Directorate of Economics'}</p></div>
-          <button data-testid="button-profile-menu" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setProfileOpen(!profileOpen); }} className="text-sidebar-foreground/60 hover:text-white"><ChevronDown className="size-4" /></button>
+          <button data-testid="button-profile-menu" aria-label={profileOpen ? 'Close account menu' : 'Open account menu'} aria-expanded={profileOpen} onClick={(e) => { e.preventDefault(); e.stopPropagation(); setProfileOpen(!profileOpen); }} className="text-sidebar-foreground/60 hover:text-white"><ChevronDown className="size-4" /></button>
         </Link>
         {profileOpen && <div className="mt-2 rounded-lg border border-sidebar-border bg-sidebar-accent p-2 text-xs"><button data-testid="button-signout-demo" disabled={signingOut} onClick={async () => { if (signingOut) return; setSigningOut(true); setProfileOpen(false); await signOut(); setLocation('/login'); }} className="w-full rounded px-2 py-1.5 text-left text-sidebar-foreground/80 hover:bg-sidebar">{signingOut ? 'Signing out...' : user ? 'Sign out' : 'Sign out of demo'}</button></div>}
       </div>
@@ -128,7 +128,7 @@ export function AppShell({ children, role, onRoleChange }: { children: ReactNode
       <header className="sticky top-0 z-20 border-b border-border bg-background/90 backdrop-blur-md">
         <div className="flex h-[68px] items-center justify-between px-4 sm:px-7 lg:px-10">
           <div className="flex items-center gap-3">
-            <button data-testid="button-mobile-menu" onClick={() => setMobileOpen(!mobileOpen)} className="rounded-lg p-2 hover:bg-secondary md:hidden">{mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}</button>
+            <button data-testid="button-mobile-menu" aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'} aria-expanded={mobileOpen} onClick={() => setMobileOpen(!mobileOpen)} className="rounded-lg p-2 hover:bg-secondary md:hidden">{mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}</button>
             <div><p className="font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">NEXORA AI / {currentLabel}</p><h1 className="mt-0.5 text-sm font-semibold text-foreground">{greeting()}, {firstName(user?.name)}</h1></div>
           </div>
           <div className="flex items-center gap-2 sm:gap-4">

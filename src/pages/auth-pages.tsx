@@ -36,7 +36,7 @@ function AuthLayout({ eyebrow, title, description, children, footer }: {
       <div className="w-full max-w-[460px] animate-rise-in">
         <Link href="/dashboard" data-testid="link-auth-brand" className="mb-7 flex items-center justify-center gap-3">
           <div className="relative flex size-9 items-center justify-center rounded-lg bg-accent text-sidebar">
-            <span className="font-serif text-xl font-semibold">S</span>
+            <span className="font-serif text-xl font-semibold">N</span>
             <span className="absolute -right-1 -top-1 size-2 rounded-full bg-[#9ed5cc]" />
           </div>
           <div>

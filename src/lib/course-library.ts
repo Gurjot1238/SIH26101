@@ -1022,7 +1022,7 @@ const dataScience: ExternalCourse[] = [
     cost: 'Free',
     certificate: false,
     trending: false,
-    url: 'http://introtodeeplearning.com/',
+    url: 'https://introtodeeplearning.com/',
     blurb: "MIT's fast-paced intro to deep learning, with lecture videos and labs refreshed each year.",
   },
   {
