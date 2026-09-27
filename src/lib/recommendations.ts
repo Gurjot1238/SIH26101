@@ -7,14 +7,12 @@
  * missed questions came from, in document order, plus a retry built only from the
  * questions they got wrong. Both are grounded in something that actually exists.
  *
- * The three learning pathways in the app are offered second, and only when a weak
- * topic maps to a competency one of them builds. There is no invented catalogue and
- * no external link: a recommendation that leads nowhere is worse than none.
+ * There is no invented catalogue and no external link: a recommendation that leads
+ * nowhere is worse than none.
  */
 
 import { type MaterialQuestion } from './materials';
 import { type AttemptResult, type TopicScore } from './scoring';
-import { type CourseFacts, coursesForCompetency } from './courses';
 import { bandLabels, competencyById } from './topics';
 
 export type RevisionPassage = {
@@ -35,8 +33,6 @@ export type TopicPlan = {
   passages: RevisionPassage[];
   /** Question indexes to re-ask for this topic. */
   retry: number[];
-  /** Pathways that build the matching competency. Often empty, and that is correct. */
-  courses: CourseFacts[];
 };
 
 export type StudyPlan = {
@@ -46,8 +42,6 @@ export type StudyPlan = {
   topics: TopicPlan[];
   /** Every question worth re-asking, weak topics first, in a stable order. */
   retry: number[];
-  /** Distinct pathways across all weak topics, best match first. */
-  courses: CourseFacts[];
   /** Passages across all weak topics, deduplicated, in document order. */
   passages: RevisionPassage[];
 };
@@ -68,7 +62,6 @@ export function buildStudyPlan(questions: MaterialQuestion[], result: AttemptRes
       competencyName: score.competency ? competencyById(score.competency).name : null,
       passages,
       retry: [...score.missed].sort((a, b) => a - b),
-      courses: score.competency ? coursesForCompetency(score.competency) : [],
     };
   });
 
@@ -100,21 +93,6 @@ export function buildStudyPlan(questions: MaterialQuestion[], result: AttemptRes
   rest.sort((a, b) => a - b);
   retry.push(...rest);
 
-  // Pathways for the whole plan, primary matches only. Every course lists secondary
-  // competencies too, and taking those as well meant all three pathways came back
-  // for almost any weak result — which is the same as recommending nothing.
-  const courses: CourseFacts[] = [];
-  const collect = (primaryOnly: boolean) => {
-    for (const topic of topics) {
-      for (const course of topic.courses) {
-        if (primaryOnly && course.competency !== topic.score.competency) continue;
-        if (!courses.some((existing) => existing.id === course.id)) courses.push(course);
-      }
-    }
-  };
-  collect(true);
-  if (courses.length === 0) collect(false);
-
   const passages: RevisionPassage[] = [];
   for (const topic of topics) {
     for (const passage of topic.passages) {
@@ -127,7 +105,6 @@ export function buildStudyPlan(questions: MaterialQuestion[], result: AttemptRes
     headline: headlineFor(result, retry.length, passages.length),
     topics,
     retry,
-    courses,
     passages,
   };
 }
@@ -204,14 +181,12 @@ export function buildRetryPaper(
 export function summarizePlan(plan: StudyPlan): string[] {
   return plan.topics.map((topic) => {
     const score = `${topic.score.correct} of ${topic.score.total}`;
-    const course = topic.courses[0];
-    if (course) return `${topic.score.topic}: ${score}. ${course.helpsWith}`;
     if (topic.passages.length > 0) {
       return `${topic.score.topic}: ${score}. Re-read the ${topic.passages.length === 1 ? 'passage' : 'passages'} from your material.`;
     }
-    // No pathway and nothing to quote: the curated assessment, where the explanation on
-    // the review screen is the only material there is. Say that instead of pointing at a
-    // passage list that is empty.
+    // Nothing to quote: the curated assessment, where the explanation on the review
+    // screen is the only material there is. Say that instead of pointing at a passage
+    // list that is empty.
     return `${topic.score.topic}: ${score}. Read the explanations for the questions you missed.`;
   });
 }

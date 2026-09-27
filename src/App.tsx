@@ -1,4 +1,4 @@
-import { type ReactNode, useState } from 'react';
+import { type ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
@@ -8,7 +8,7 @@ import { AppShell } from '@/components/shell';
 import { RequireAuth } from '@/components/require-auth';
 import { SessionProvider } from '@/components/session-provider';
 import { ProgressProvider } from '@/components/progress-provider';
-import { Assessment, CatalogCourse, CourseCatalog, CourseDetail, CourseLibrary, Dashboard, Integrations, KnowledgeCheck, Learning, Materials, Presentation, Profile, Quiz } from '@/pages/demo-pages';
+import { Assessment, CatalogCourse, CourseCatalog, CourseLibrary, Dashboard, KnowledgeCheck, Learning, Materials, Profile, Quiz } from '@/pages/demo-pages';
 import { Login, Signup } from '@/pages/auth-pages';
 import {
   Route,
@@ -42,9 +42,8 @@ export function Router() {
 }
 
 function ShellRoutes() {
-  const [role, setRole] = useState<'learner' | 'manager'>('learner');
   return (
-    <AppShell role={role} onRoleChange={setRole}>
+    <AppShell>
       <RoutedErrorBoundary>
         <Switch>
           <Route path="/" component={Dashboard} />
@@ -54,14 +53,11 @@ function ShellRoutes() {
           <Route path="/course-library" component={CourseLibrary} />
           <Route path="/catalog/:id" component={CatalogCourse} />
           <Route path="/catalog" component={CourseCatalog} />
-          <Route path="/courses/:id" component={CourseDetail} />
           <Route path="/assignment" component={Materials} />
           <Route path="/materials" component={Materials} />
           <Route path="/assignment/quiz" component={Quiz} />
           <Route path="/quiz" component={KnowledgeCheck} />
           <Route path="/profile" component={Profile} />
-          <Route path="/integrations" component={Integrations} />
-          <Route path="/presentation" component={Presentation} />
           <Route component={NotFound} />
         </Switch>
       </RoutedErrorBoundary>

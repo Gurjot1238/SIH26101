@@ -1,6 +1,6 @@
 import { type DragEvent, type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Award, BarChart3, Briefcase, Calendar, Camera, Check, CheckCircle2, Clock3, Download, Edit3, FileCheck2, Filter, Globe, GraduationCap, Lightbulb, ListChecks, LockKeyhole, Mail, MapPin, Minus, Phone, Play, Plus, RefreshCw, Shield, ShieldCheck, Sparkles, Target, TrendingDown, TrendingUp, TriangleAlert, UploadCloud, Users, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, Award, BarChart3, Briefcase, Calendar, Camera, Check, CheckCircle2, Clock3, Download, Edit3, FileCheck2, Filter, Globe, GraduationCap, Lightbulb, ListChecks, LockKeyhole, Mail, MapPin, Minus, Phone, Play, Plus, RefreshCw, Shield, Sparkles, Target, TrendingDown, TrendingUp, TriangleAlert, UploadCloud, Users, X } from 'lucide-react';
 import { Link, useLocation, useParams } from 'wouter';
 import { ActionButton, Badge, Card, EmptyState, LoadingBlock, ProgressBar, SectionHeading, ToastMessage } from '@/components/ui';
 import { initials, useSession } from '@/components/session-provider';
@@ -42,7 +42,6 @@ import {
 import { type CompetencyId, MIN_QUESTIONS_FOR_BAND, bandColors, bandLabels, bandTones, competencyName } from '@/lib/topics';
 import { type AttemptResult, type Choice, describeAttempt, gradeAttempt, toAttemptPayload } from '@/lib/scoring';
 import { buildRetryPaper, buildStudyPlan, summarizePlan } from '@/lib/recommendations';
-import { catalogueNote, courseFactsFor, courseMinutes, formatMinutes } from '@/lib/courses';
 import {
   type CatalogueCourse,
   type CourseDetail as DatasetCourseDetail,
@@ -71,17 +70,12 @@ import {
   activityRows,
   bucketHours,
   competencyBars,
-  completedCount as moduleCompletedCount,
-  courseProgress,
   dashboardNote,
   lastDelta,
   longDate,
-  moduleRows,
   monthEffort,
-  pathwayProgress,
   practiceStreak,
   quarterLabel,
-  recommended,
   signal,
   trend,
   weekBuckets,
@@ -95,8 +89,6 @@ const competencyData = [{ name: 'Data quality', score: 82 }, { name: 'Inference'
 const weeklyData = [{ name: 'Mon', hours: 0.8 }, { name: 'Tue', hours: 1.4 }, { name: 'Wed', hours: 0.3 }, { name: 'Thu', hours: 1.7 }, { name: 'Fri', hours: 1.1 }, { name: 'Sat', hours: 2.2 }, { name: 'Sun', hours: 1.6 }];
 /** One of the four figures across the top of the overview. */
 type MetricRow = { label: string; value: string; note: string; accent: 'teal' | 'amber' | 'coral' };
-/** A recommendation card: the design fields from `courses`, plus what the account measured. */
-type CourseCard = { id: string; title: string; type: string; level: string; duration: string; progress: number; tag: string; color: string; icon: typeof TrendingUp; why: string };
 /**
  * The sample overview, shown only when the progress API is not the source — demo mode
  * (`VITE_REQUIRE_AUTH=false`) or the server not answering. Left exactly as the design
@@ -108,7 +100,7 @@ const sampleMetrics: MetricRow[] = [
   { label: 'Competency index', value: '68.4', note: '+4.8 pts since last review', accent: 'teal' as const },
   { label: 'Learning streak', value: '12 days', note: 'Best: 18 days', accent: 'amber' as const },
   { label: 'Hours this month', value: '7.6', note: '2.4 hrs to monthly goal', accent: 'teal' as const },
-  { label: 'Pathway completion', value: '42%', note: '6 of 14 milestones', accent: 'coral' as const },
+  { label: 'Latest score', value: '42%', note: 'Your most recent sitting', accent: 'coral' as const },
 ];
 const sampleActivity: ActivityRow[] = [
   { id: 's1', title: 'Assessment calibrated', detail: 'Evidence-based Inference', date: '18 Sep', tone: 'teal' },
@@ -118,11 +110,6 @@ const sampleActivity: ActivityRow[] = [
 /** Rows in the activity list, collapsed and expanded. 20 is the server's inline history. */
 const ACTIVITY_ROWS = 3;
 const ACTIVITY_ROWS_ALL = 20;
-const courses = [
-  { id: 'time-series', title: 'Time Series Analysis for Official Statistics', type: 'Priority pathway', level: 'Intermediate', duration: '4h 20m', progress: 38, tag: 'Recommended', color: 'bg-[#dceeea]', icon: TrendingUp },
-  { id: 'data-ethics', title: 'Responsible Data Stewardship', type: 'Core practice', level: 'Foundational', duration: '2h 10m', progress: 0, tag: 'New', color: 'bg-[#f7ebd1]', icon: ShieldCheck },
-  { id: 'r-programming', title: 'R for Survey Processing', type: 'Technical fluency', level: 'Intermediate', duration: '6h 40m', progress: 72, tag: 'In progress', color: 'bg-[#e2e8f0]', icon: BarChart3 },
-];
 
 function PageIntro({ eyebrow, title, description, action }: { eyebrow: string; title: string; description: string; action?: ReactNode }) {
   return <div className="mb-8 flex flex-col justify-between gap-4 lg:flex-row lg:items-end"><div><p className="font-mono text-[10px] uppercase tracking-[.18em] text-primary">{eyebrow}</p><h1 className="mt-2 font-serif text-3xl leading-tight tracking-[-.02em] sm:text-[39px]">{title}</h1><p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">{description}</p></div>{action}</div>;
@@ -150,24 +137,21 @@ function Metric({ label, value, note, accent = 'teal' }: { label: string; value:
 export function Dashboard() {
   const [, setLocation] = useLocation();
   const [toast, setToast] = useState('');
-  const [showAll, setShowAll] = useState(false);
   const [noteOpen, setNoteOpen] = useState(true);
   const [fullActivity, setFullActivity] = useState(false);
-  const { live, status, problem, progress, history, courses: records } = useProgress();
+  const { live, status, problem, progress, history } = useProgress();
   const sample = !live;
   const view = useMemo(() => {
     const now = new Date();
-    return { quarter: quarterLabel(now), bars: competencyBars(progress), buckets: weekBuckets(history, now), streak: practiceStreak(history, now), month: monthEffort(history, now), pathway: pathwayProgress(records), trend: trend(history), recs: recommended(progress, records), rows: activityRows(history, fullActivity ? ACTIVITY_ROWS_ALL : ACTIVITY_ROWS), signal: signal(progress), note: dashboardNote(progress), delta: lastDelta(history) };
-  }, [progress, history, records, fullActivity]);
+    return { quarter: quarterLabel(now), bars: competencyBars(progress), buckets: weekBuckets(history, now), streak: practiceStreak(history, now), month: monthEffort(history, now), trend: trend(history), rows: activityRows(history, fullActivity ? ACTIVITY_ROWS_ALL : ACTIVITY_ROWS), signal: signal(progress), note: dashboardNote(progress), delta: lastDelta(history) };
+  }, [progress, history, fullActivity]);
   const nothingYet = live && progress.attempts === 0;
   const metrics: MetricRow[] = sample ? sampleMetrics : [
     { label: 'Competency index', value: nothingYet ? '—' : progress.index.toFixed(1), note: nothingYet ? 'No sittings recorded yet' : view.delta, accent: 'teal' },
     { label: 'Learning streak', value: nothingYet ? '—' : `${view.streak.current} day${view.streak.current === 1 ? '' : 's'}`, note: nothingYet ? 'Nothing logged yet' : `Longest run: ${view.streak.best} day${view.streak.best === 1 ? '' : 's'}`, accent: 'amber' },
     { label: 'Hours this month', value: view.month.sittings === 0 ? '—' : view.month.hours.toFixed(1), note: view.month.sittings === 0 ? 'No sittings this month' : `${view.month.sittings} sitting${view.month.sittings === 1 ? '' : 's'} this month`, accent: 'teal' },
-    { label: 'Pathway completion', value: view.pathway.tracked === 0 ? '—' : `${view.pathway.percent}%`, note: view.pathway.tracked === 0 ? 'No pathway started yet' : `${view.pathway.done} of ${view.pathway.total} modules`, accent: 'coral' },
+    { label: 'Latest score', value: nothingYet ? '—' : `${history[0].percent}%`, note: nothingYet ? 'No sittings yet' : `${history[0].correct} of ${history[0].total} correct`, accent: 'coral' },
   ];
-  const design = new Map(courses.map((course) => [course.id, course]));
-  const cards: CourseCard[] = sample ? courses.map((course) => ({ ...course, why: '' })) : view.recs.flatMap((rec) => { const base = design.get(rec.id); return base ? [{ ...base, progress: rec.percent, tag: rec.tag, why: rec.why }] : []; });
   const rows = sample ? sampleActivity : view.rows;
   const faces = sample ? ['M', 'T', 'W'] : view.buckets.filter((day) => day.active).slice(-3).map((day) => day.name.slice(0, 1));
   const moreActivity = !sample && history.length > ACTIVITY_ROWS;
@@ -188,7 +172,6 @@ export function Dashboard() {
       */}
     {live && <CompetencyGapSection />}
     {live && <GapCourseRecommendations />}
-    <div className="mt-8"><SectionHeading eyebrow="Curated for your role" title="Recommended next" description={sample ? 'Signals from your profile, current role, and recent assessment.' : 'Ordered by the competency your answers scored lowest.'} action={<button data-testid="button-show-all-recommendations" onClick={() => setShowAll(!showAll)} className="text-xs font-semibold text-primary hover:underline">{showAll ? 'Show less' : 'See all recommendations'} <ArrowRight className="ml-1 inline size-3.5" /></button>} /><div className="grid gap-4 md:grid-cols-3">{cards.slice(0, showAll ? 3 : 2).map((course) => <Card key={course.id} interactive className="overflow-hidden"><div className={`flex h-20 items-center justify-between px-5 ${course.color}`}><course.icon className="size-8 text-[#296b6b]/60" /><Badge tone={course.tag === 'Recommended' ? 'teal' : 'amber'}>{course.tag}</Badge></div><div className="p-5"><p className="text-[11px] font-semibold uppercase tracking-[.08em] text-muted-foreground">{course.type}</p><h3 className="mt-2 min-h-[48px] font-semibold leading-6">{course.title}</h3>{course.why && <p className="text-xs leading-5 text-muted-foreground">{course.why}</p>}<div className="mt-4 flex items-center justify-between text-xs text-muted-foreground"><span className="flex items-center gap-1"><Clock3 className="size-3.5" />{course.duration}</span><span>{course.progress ? `${course.progress}% complete` : course.level}</span></div>{course.progress > 0 && <ProgressBar value={course.progress} className="mt-3" />}<button data-testid={`button-open-course-${course.id}`} onClick={() => setLocation(`/courses/${course.id}`)} className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg border border-border py-2 text-xs font-semibold text-primary hover:bg-secondary">{course.progress ? 'Resume learning' : 'View course'}<ArrowRight className="size-3.5" /></button></div></Card>)}</div></div>
     <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_.9fr]"><Card className="p-5"><SectionHeading eyebrow="Recent activity" title="A short record of progress" action={<button data-testid="button-view-activity" onClick={sample ? () => setToast('Sign in to see your own history') : moreActivity ? () => setFullActivity(!fullActivity) : () => setToast(history.length === 0 ? 'Nothing is recorded yet' : 'That is everything recorded so far')} className="text-xs font-semibold text-primary">{moreActivity ? (fullActivity ? 'Show less' : `View all ${history.length}`) : 'View history'}</button>} /><div className="space-y-4">{rows.length === 0 ? <p className="text-sm leading-6 text-muted-foreground">Nothing recorded yet. Assessments and knowledge checks appear here with the score each one earned.</p> : rows.map((row) => <div key={row.id} className="flex items-center gap-3"><div className={`size-2 rounded-full ${row.tone === 'teal' ? 'bg-primary' : row.tone === 'amber' ? 'bg-accent' : 'bg-[#9db5c5]'}`} /><div className="flex-1"><p className="text-sm font-semibold">{row.title}</p><p className="text-xs text-muted-foreground">{row.detail}</p></div><span className="font-mono text-[10px] text-muted-foreground">{row.date}</span></div>)}</div></Card><Card className="relative overflow-hidden bg-sidebar p-6 text-sidebar-foreground"><div className="absolute -right-8 -top-10 size-40 rounded-full border border-accent/20" /><div className="absolute -right-3 -top-5 size-28 rounded-full border border-accent/15" /><Award className="mb-5 size-6 text-accent" /><p className="font-mono text-[10px] uppercase tracking-[.16em] text-accent">Signal worth noticing</p><h3 className="mt-2 max-w-[290px] font-serif text-2xl text-white">{sample ? 'Your strongest and weakest competency, side by side.' : view.signal ? view.signal.headline : 'Your profile starts with one sitting.'}</h3><p className="mt-3 max-w-[300px] text-sm leading-6 text-sidebar-foreground/70">{sample ? 'This card is showing demonstration copy. With your own results it names your strongest and weakest competency, and the gap between them.' : view.signal ? view.signal.detail : 'Sit the assessment or upload your own material, and this card names your strongest and weakest competency with the counts behind them.'}</p><button data-testid="button-view-insight" onClick={sample ? () => setToast('Sign in to keep this in your learning brief') : () => setLocation(view.signal ? view.signal.href : '/assessment')} className="mt-5 text-sm font-semibold text-accent hover:underline">{sample ? 'Save to brief' : view.signal ? view.signal.actionLabel : 'Take the assessment'} <ArrowRight className="ml-1 inline size-4" /></button></Card></div>
     {toast && <ToastMessage message={toast} onClose={() => setToast('')} />}
   </div>;
@@ -440,27 +423,7 @@ export function Assessment() {
             <p className="mt-2 text-sm leading-6 text-foreground">{advice[index]}</p>
           </li>)}
         </ul>
-        <p className="mt-4 text-xs leading-5 text-muted-foreground">There is no document behind these scenarios to quote back, so the material for a weak section is the explanation on each question you missed, plus any pathway below that builds the same competency.</p>
-      </Card>}
-
-      {plan.courses.length > 0 && <Card className="mt-6 p-6 sm:p-8">
-        <SectionHeading eyebrow="Pathways" title="Where a longer pass would help" description="Matched to the competency your weaker sections sit under. Only pathways that actually build it are listed, so this section is often short." />
-        <div className="space-y-3">
-          {plan.courses.map((facts) => {
-            const listed = courses.find((item) => item.id === facts.id);
-            const Icon = listed?.icon ?? Target;
-            return <Link key={facts.id} href={`/courses/${facts.id}`} data-testid={`link-assessment-pathway-${facts.id}`} className="flex items-start gap-4 rounded-xl border border-border p-4 transition-all hover:border-primary/50 hover:bg-secondary">
-              <span className={`flex size-11 shrink-0 items-center justify-center rounded-lg ${listed?.color ?? 'bg-secondary'}`}><Icon className="size-5 text-[#29485a]" /></span>
-              <span className="min-w-0">
-                <span className="block text-sm font-semibold text-foreground">{listed?.title ?? facts.id}</span>
-                <span className="mt-1 block text-xs leading-5 text-muted-foreground">{facts.helpsWith}</span>
-                <span className="mt-2 block font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">{competencyName(facts.competency)} · {formatMinutes(courseMinutes(facts.id))} outline</span>
-              </span>
-              <ArrowRight className="ml-auto mt-1 size-4 shrink-0 text-muted-foreground" />
-            </Link>;
-          })}
-        </div>
-        <p className="mt-4 text-xs leading-5 text-muted-foreground">{catalogueNote}</p>
+        <p className="mt-4 text-xs leading-5 text-muted-foreground">There is no document behind these scenarios to quote back, so the material for a weak section is the explanation on each question you missed.</p>
       </Card>}
 
       {showReview && <Card className="mt-6 p-6 sm:p-8">
@@ -556,38 +519,6 @@ export function Learning() {
     {state.status === 'error' && <EmptyState title="The course service is not answering" description={state.problem} />}
     {state.status === 'ready' && !state.available && <EmptyState title="No course dataset found" description="The downloaded course content is not on this machine yet. Once the Nexora course dataset sits beside the app and the server is restarted, your courses appear here." />}
     {state.status === 'ready' && state.available && <div className="space-y-3">{shown.map((course) => { const done = doneByCourse.get(course.courseId) ?? 0; const progress = percentOf(course); return <Card key={course.courseId} interactive className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center"><div className="flex size-14 shrink-0 items-center justify-center rounded-xl bg-[#dceeea]"><GraduationCap className="size-6 text-primary/80" /></div><div className="min-w-0 flex-1"><div className="flex flex-wrap items-center gap-2"><p className="text-[10px] font-semibold uppercase tracking-[.1em] text-muted-foreground">{course.provider}</p><Badge tone={progress === 100 ? 'teal' : progress > 0 ? 'teal' : 'amber'}>{progress === 100 ? 'Completed' : progress > 0 ? 'In progress' : 'Not started'}</Badge></div><h3 className="mt-1 font-semibold">{course.title}</h3><div className="mt-2 flex items-center gap-4 text-xs text-muted-foreground">{course.estimatedHours ? <span className="flex items-center gap-1"><Clock3 className="size-3.5" />{course.estimatedHours} hrs</span> : null}<span className="flex items-center gap-1"><ListChecks className="size-3.5" />{course.lessons} {course.lessons === 1 ? 'lesson' : 'lessons'}</span><span>{course.level}</span></div>{progress > 0 && <div className="mt-3 flex items-center gap-2"><ProgressBar value={progress} className="max-w-[180px] flex-1" /><span className="font-mono text-[10px] text-muted-foreground">{done}/{course.lessons}</span></div>}</div><div className="flex items-center gap-2 sm:flex-col sm:items-end"><button data-testid={`button-save-course-${course.courseId}`} onClick={() => void toggleSave(course.courseId)} aria-label={savedIds.has(course.courseId) ? 'Remove from saved courses' : 'Save this course'} aria-pressed={savedIds.has(course.courseId)} className={`rounded-lg p-2 ${savedIds.has(course.courseId) ? 'text-accent' : 'text-muted-foreground hover:bg-secondary'}`}><Target className="size-4" /></button><Link href={`/catalog/${course.courseId}`} data-testid={`link-course-${course.courseId}`} className="inline-flex items-center gap-1 rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white">{progress > 0 ? 'Resume' : 'Open'} <ArrowRight className="size-3.5" /></Link></div></Card>; })}</div>}</div></div>{toast && <ToastMessage message={toast} onClose={() => setToast('')} />}</div>;
-}
-
-export function CourseDetail() {
-  const { id } = useParams<{ id: string }>();
-  const course = courses.find((item) => item.id === id) ?? courses[0];
-  const { courses: records, markCourse } = useProgress();
-  const record = records.find((c) => c.courseId === course.id) ?? null;
-  // Measured, not decorative: the outline, the progress ring and every tick are this
-  // account's own. "Start course" persists real enrolment and ticking a module writes
-  // real completion; with nobody signed in the write declines and says so.
-  const facts = courseFactsFor(course.id);
-  const modules = moduleRows(course.id, record);
-  const progress = courseProgress(course.id, record);
-  const done = moduleCompletedCount(course.id, record);
-  const totalModules = modules.length;
-  const duration = formatMinutes(courseMinutes(course.id));
-  const started = progress > 0 || Boolean(record?.startedAt);
-  const [toast, setToast] = useState('');
-  const enroll = async () => {
-    const outcome = await markCourse({ courseId: course.id, started: true });
-    setToast(outcome.saved ? (started ? 'Course resumed' : 'Course added to your pathway') : outcome.reason);
-  };
-  // The server replaces the completed list with what we send, so the toggled set both
-  // marks a module done and clears it again — one write, no merge to reason about.
-  const toggleModule = async (index: number) => {
-    const next = new Set(record?.completedModules ?? []);
-    if (next.has(index)) next.delete(index);
-    else next.add(index);
-    const outcome = await markCourse({ courseId: course.id, completedModules: [...next] });
-    if (!outcome.saved) setToast(outcome.reason);
-  };
-  return <div className="mx-auto max-w-5xl animate-rise-in"><Link href="/learning" data-testid="link-back-learning" className="mb-6 inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground hover:text-primary"><ArrowLeft className="size-3.5" /> Back to learning</Link><Card className="overflow-hidden"><div className={`relative px-6 py-12 sm:px-12 ${course.color}`}><div className="absolute right-10 top-8 hidden opacity-20 sm:block"><course.icon className="size-32 text-primary" /></div><Badge tone="teal">{course.type}</Badge><h1 className="mt-4 max-w-2xl font-serif text-3xl leading-tight sm:text-5xl">{course.title}</h1><p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">{facts?.helpsWith ?? 'A practical pathway for official statistical work.'}</p><div className="mt-6 flex flex-wrap gap-4 text-xs font-medium text-muted-foreground"><span className="flex items-center gap-1"><Clock3 className="size-4" />{duration}</span><span className="flex items-center gap-1"><ListChecks className="size-4" />{totalModules} {totalModules === 1 ? 'module' : 'modules'}</span><span>{course.level}</span></div></div><div className="grid gap-8 p-6 sm:p-10 lg:grid-cols-[1fr_280px]"><div><h2 className="font-serif text-2xl">Course outline</h2><p className="mt-2 max-w-xl text-xs leading-5 text-muted-foreground">{catalogueNote}</p><div className="mt-4 divide-y divide-border rounded-xl border border-border">{modules.map((m) => <button key={m.index} data-testid={`button-course-module-${m.index}`} onClick={() => void toggleModule(m.index)} className="flex w-full items-start gap-3 p-4 text-left hover:bg-secondary"><span className={`mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold ${m.done ? 'bg-primary text-white' : 'border border-border text-muted-foreground'}`}>{m.done ? <Check className="size-3" /> : m.number}</span><span className="min-w-0 flex-1"><span className="flex items-center justify-between gap-3"><span className="text-sm font-semibold">{m.title}</span><span className="shrink-0 text-xs text-muted-foreground">{formatMinutes(m.minutes)}</span></span><span className="mt-1 block text-xs leading-5 text-muted-foreground">{m.summary}</span></span></button>)}</div></div><aside><div className="sticky top-24 rounded-xl border border-border bg-secondary p-5"><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Your progress</p><div className="mt-4 flex items-center gap-4"><Donut value={progress} size={74} /><div><p className="font-semibold">{progress}% complete</p><p className="mt-1 text-xs text-muted-foreground">{done} of {totalModules} {totalModules === 1 ? 'module' : 'modules'} done</p></div></div><ProgressBar value={progress} className="mt-5" /><ActionButton className="mt-5 w-full" onClick={() => void enroll()}>{started ? 'Resume course' : 'Start course'} <ArrowRight className="size-4" /></ActionButton><p className="mt-3 text-center text-[11px] leading-4 text-muted-foreground">Tick a module in the outline to record it against your account.</p></div></aside></div></Card>{toast && <ToastMessage message={toast} onClose={() => setToast('')} />}</div>;
 }
 
 /**
@@ -1894,7 +1825,6 @@ export function Quiz() {
 }
 
 export function Profile() {
-  const [, setLocation] = useLocation();
   const { user } = useSession();
   const { live, progress, preferences, personal, history, setPreferences, setProfileDetails } = useProgress();
   const [editing, setEditing] = useState(false);
@@ -2061,7 +1991,6 @@ export function Profile() {
 
             <div className="flex items-center justify-between gap-3 border-t border-border pt-5">
               <p className="text-xs text-muted-foreground">{live ? 'Preferences save as you change them.' : 'Sign in to change your preferences.'}</p>
-              <button data-testid="button-open-integrations" onClick={() => setLocation('/integrations')} className="text-sm font-semibold text-primary hover:underline">Manage integrations</button>
             </div>
           </div>
         </Card>
@@ -2069,15 +1998,4 @@ export function Profile() {
     </div>
     {toast && <ToastMessage message={toast} onClose={() => setToast('')} />}
   </div>;
-}
-function Building2Icon() { return <svg viewBox="0 0 24 24" className="size-7 text-[#29485a]" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M4 21V5l8-3 8 3v16M8 9h1m3 0h1m3 0h1M8 13h1m3 0h1m3 0h1M8 17h1m3 0h1m3 0h1M10 21v-4h4v4" /></svg>; }
-
-export function Presentation() {
-  const [, setLocation] = useLocation(); const [slide, setSlide] = useState(0); const slides = [{ kicker: '01 · Orient', title: 'NEXORA AI turns competency data into a next action.', body: 'A guided tour for the official statistical workforce — from individual signal to organisational response.', target: '/dashboard', button: 'Open learner overview' }, { kicker: '02 · Diagnose', title: 'Start with the question behind the score.', body: 'Scenario-based assessment makes competency evidence useful, not ornamental.', target: '/assessment', button: 'Run a sample assessment' }, { kicker: '03 · Practise', title: 'Make a work material a learning surface.', body: 'Upload a briefing, ground the language, then practise the judgement it demands.', target: '/materials', button: 'Open materials lab' }]; const current = slides[slide]; return <div className="min-h-[calc(100dvh-68px)]"><div className="mx-auto flex min-h-[calc(100dvh-120px)] max-w-6xl flex-col justify-between py-8 sm:py-14"><div className="flex items-center justify-between"><div className="flex items-center gap-3"><div className="relative flex size-9 items-center justify-center rounded-lg bg-accent text-sidebar"><span className="font-serif text-xl font-semibold">N</span><span className="absolute -right-1 -top-1 size-2 rounded-full bg-[#9ed5cc]" /></div><div><p className="font-serif text-lg">NEXORA AI</p><p className="font-mono text-[9px] uppercase tracking-[.16em] text-muted-foreground">Guided presentation</p></div></div><Badge tone="amber">Prototype · Demonstration data</Badge></div><div className="grid items-center gap-12 py-14 lg:grid-cols-[1fr_.8fr]"><div key={slide} className="animate-rise-in"><p className="font-mono text-xs font-medium uppercase tracking-[.18em] text-primary">{current.kicker}</p><h1 className="mt-5 max-w-3xl font-serif text-5xl leading-[1.02] tracking-[-.03em] sm:text-7xl">{current.title}</h1><p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">{current.body}</p><ActionButton className="mt-8" onClick={() => setLocation(current.target)} icon={<ArrowRight className="size-4" />}>{current.button}</ActionButton></div><div className="relative aspect-square max-w-[440px] justify-self-center"><div className="absolute inset-7 rounded-full border border-primary/15" /><div className="absolute inset-16 rounded-full border border-primary/20" /><div className="absolute inset-[27%] flex flex-col items-center justify-center rounded-full bg-sidebar text-center text-white shadow-xl"><Sparkles className="mb-3 size-6 text-accent" /><span className="font-mono text-[10px] uppercase tracking-[.15em] text-sidebar-foreground/60">Signal</span><span className="mt-1 font-serif text-3xl">68.4</span><span className="mt-1 text-xs text-sidebar-foreground/60">competency index</span></div><div className="absolute left-0 top-[31%] rounded-lg border border-border bg-card p-3 shadow-lg"><p className="font-mono text-[9px] uppercase tracking-[.12em] text-muted-foreground">Next move</p><p className="mt-1 text-xs font-semibold">Applied inference</p></div><div className="absolute bottom-[20%] right-0 rounded-lg border border-border bg-card p-3 shadow-lg"><p className="font-mono text-[9px] uppercase tracking-[.12em] text-muted-foreground">Pathway</p><p className="mt-1 text-xs font-semibold">42% complete</p></div></div></div><div className="flex items-center justify-between border-t border-border pt-5"><div className="flex gap-2">{slides.map((s, i) => <button key={s.kicker} data-testid={`button-presentation-slide-${i}`} onClick={() => setSlide(i)} className={`h-1.5 rounded-full transition-all ${i === slide ? 'w-12 bg-primary' : 'w-5 bg-border'}`} aria-label={`Go to presentation slide ${i + 1}`} />)}</div><div className="flex gap-2"><button data-testid="button-presentation-previous" onClick={() => setSlide(Math.max(0, slide - 1))} disabled={slide === 0} aria-label="Previous slide" className="rounded-lg border border-border p-2.5 disabled:opacity-30"><ArrowLeft className="size-4" /></button><button data-testid="button-presentation-next" onClick={() => setSlide(Math.min(slides.length - 1, slide + 1))} disabled={slide === slides.length - 1} aria-label="Next slide" className="rounded-lg bg-primary p-2.5 text-white disabled:opacity-30"><ArrowRight className="size-4" /></button></div></div></div></div>;
-}
-
-export function Integrations() {
-  const [connected, setConnected] = useState(true); const [syncing, setSyncing] = useState(false); const [toast, setToast] = useState('');
-  const sync = () => { setSyncing(true); window.setTimeout(() => { setSyncing(false); setToast('iGOT training history synced locally'); }, 1200); };
-  return <div className="mx-auto max-w-4xl animate-rise-in"><PageIntro eyebrow="Integrations" title="Connect the systems that know your work." description="Prototype connectors for a future NEXORA AI intelligence layer. No external services are contacted in this demo." /><Card className="overflow-hidden"><div className="flex flex-col justify-between gap-5 border-b border-border p-6 sm:flex-row sm:items-center sm:p-8"><div className="flex items-center gap-4"><div className="flex size-14 items-center justify-center rounded-xl bg-[#dce5ee]"><Building2Icon /></div><div><h2 className="font-serif text-2xl">iGOT Karmayogi</h2><p className="mt-1 text-sm text-muted-foreground">Training history and course completion</p></div></div><Badge tone={connected ? 'teal' : 'neutral'}>{connected ? 'Connected' : 'Not connected'}</Badge></div><div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[1fr_260px]"><div><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Connector status</p><div className="mt-4 space-y-4">{[['Last sync', 'Today, 09:42 IST'], ['Records available', '27 completed courses'], ['Permission scope', 'Learning history only']].map(([l, v]) => <div key={l} className="flex justify-between border-b border-border pb-3 text-sm"><span className="text-muted-foreground">{l}</span><span className="font-semibold">{v}</span></div>)}</div><div className="mt-6 flex items-center gap-2 text-xs text-[#216b67]"><CheckCircle2 className="size-4" /> Connector is operating within its approved scope.</div></div><div className="rounded-xl bg-secondary p-5"><p className="text-xs text-muted-foreground">Demo controls</p><ActionButton className="mt-4 w-full" disabled={syncing} onClick={sync} icon={syncing ? <RefreshCw className="size-4 animate-spin" /> : <RefreshCw className="size-4" />}>{syncing ? 'Syncing...' : 'Sync now'}</ActionButton><button data-testid="button-disconnect-igot" onClick={() => { setConnected(!connected); setToast(connected ? 'iGOT connector paused' : 'iGOT connector restored'); }} className="mt-3 w-full py-2 text-xs font-semibold text-muted-foreground hover:text-foreground">{connected ? 'Pause connector' : 'Restore connector'}</button></div></div></Card><Card className="mt-5 p-6"><div className="flex items-center justify-between"><div><p className="font-mono text-[10px] uppercase tracking-[.16em] text-primary">Coming next</p><h2 className="mt-1 font-serif text-xl">Other trusted sources</h2></div><Badge tone="navy">Prototype</Badge></div><div className="mt-5 grid gap-3 sm:grid-cols-2"><div className="rounded-lg border border-dashed border-border p-4"><p className="text-sm font-semibold">Department HRMS</p><p className="mt-1 text-xs text-muted-foreground">Role history and movement signals</p></div><div className="rounded-lg border border-dashed border-border p-4"><p className="text-sm font-semibold">Learning Management System</p><p className="mt-1 text-xs text-muted-foreground">Local course and assessment events</p></div></div></Card>{toast && <ToastMessage message={toast} onClose={() => setToast('')} />}</div>;
 }

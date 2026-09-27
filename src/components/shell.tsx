@@ -1,5 +1,5 @@
 import { type ReactNode, useCallback, useEffect, useState } from 'react';
-import { Bell, BookOpen, Building2, ChevronDown, ClipboardCheck, FileText, GraduationCap, LayoutDashboard, Library, Menu, Presentation, Sparkles, UserRound, X } from 'lucide-react';
+import { Bell, BookOpen, ChevronDown, ClipboardCheck, FileText, GraduationCap, LayoutDashboard, Library, Menu, Sparkles, UserRound, X } from 'lucide-react';
 import { Link, useLocation } from 'wouter';
 import { Badge } from './ui';
 import { firstName, greeting, initials, useSession } from './session-provider';
@@ -15,9 +15,6 @@ const learnerNav: NavItem[] = [
   { href: '/course-library', label: 'Course library', icon: GraduationCap },
   { href: '/assignment', label: 'Assignment', icon: FileText },
   { href: '/quiz', label: 'Knowledge check', icon: Sparkles },
-];
-const systemNav: NavItem[] = [
-  { href: '/integrations', label: 'Integrations', icon: Building2 },
 ];
 
 /**
@@ -71,7 +68,7 @@ function formatWhen(at: string | null): string {
   return date.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
 }
 
-export function AppShell({ children, role, onRoleChange }: { children: ReactNode; role: 'learner' | 'manager'; onRoleChange: (role: 'learner' | 'manager') => void }) {
+export function AppShell({ children }: { children: ReactNode }) {
   const [location, setLocation] = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [noticeOpen, setNoticeOpen] = useState(false);
@@ -86,8 +83,7 @@ export function AppShell({ children, role, onRoleChange }: { children: ReactNode
   const notifyOn = Boolean(user) && preferences.notify;
   const notices = useNotices(notifyOn);
   const unread = notices.feed?.unread ?? 0;
-  const nav = role === 'manager' ? [...learnerNav.slice(0, 1), ...systemNav, ...learnerNav.slice(1)] : learnerNav;
-  const currentLabel = [...learnerNav, ...systemNav].find((item) => location.startsWith(item.href))?.label || 'Overview';
+  const currentLabel = learnerNav.find((item) => location.startsWith(item.href))?.label || 'Overview';
   const toggleNotices = () => {
     const next = !noticeOpen;
     setNoticeOpen(next);
@@ -123,7 +119,7 @@ export function AppShell({ children, role, onRoleChange }: { children: ReactNode
       <div className="flex-1 overflow-y-auto px-3 py-5">
         <p className="mb-2 px-3 font-mono text-[9px] uppercase tracking-[.18em] text-sidebar-foreground/45">Workspace</p>
         <nav className="space-y-1">
-          {nav.map((item) => <Link key={item.href} href={item.href} data-testid={`link-nav-${item.label.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setMobileOpen(false)} className={`group flex items-center justify-between rounded-lg px-3 py-2.5 text-sm transition-colors ${location.startsWith(item.href) ? 'bg-sidebar-accent text-white' : 'text-sidebar-foreground/70 hover:bg-sidebar-accent/70 hover:text-white'}`}>
+          {learnerNav.map((item) => <Link key={item.href} href={item.href} data-testid={`link-nav-${item.label.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setMobileOpen(false)} className={`group flex items-center justify-between rounded-lg px-3 py-2.5 text-sm transition-colors ${location.startsWith(item.href) ? 'bg-sidebar-accent text-white' : 'text-sidebar-foreground/70 hover:bg-sidebar-accent/70 hover:text-white'}`}>
             <span className="flex items-center gap-3"><item.icon className={`size-[17px] ${location.startsWith(item.href) ? 'text-accent' : 'text-sidebar-foreground/55 group-hover:text-accent'}`} />{item.label}</span>
             {item.count && <span className="rounded-full bg-accent px-1.5 py-0.5 text-[10px] font-bold text-sidebar">{item.count}</span>}
           </Link>)}
@@ -131,7 +127,6 @@ export function AppShell({ children, role, onRoleChange }: { children: ReactNode
         <p className="mb-2 mt-8 px-3 font-mono text-[9px] uppercase tracking-[.18em] text-sidebar-foreground/45">System</p>
         <nav className="space-y-1">
           <Link href="/profile" data-testid="link-nav-profile" className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm ${location.startsWith('/profile') ? 'bg-sidebar-accent text-white' : 'text-sidebar-foreground/70 hover:bg-sidebar-accent/70 hover:text-white'}`}><UserRound className="size-[17px] text-sidebar-foreground/55" />Profile &amp; preferences</Link>
-          <Link href="/presentation" data-testid="link-nav-presentation" className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-sidebar-foreground/70 hover:bg-sidebar-accent/70 hover:text-white"><Presentation className="size-[17px] text-sidebar-foreground/55" />Presentation mode</Link>
         </nav>
       </div>
       <div className="border-t border-sidebar-border p-4">
@@ -151,9 +146,7 @@ export function AppShell({ children, role, onRoleChange }: { children: ReactNode
             <div><p className="font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">NEXORA AI / {currentLabel}</p><p className="mt-0.5 text-sm font-semibold text-foreground">{greeting()}, {firstName(user?.name)}</p></div>
           </div>
           <div className="flex items-center gap-2 sm:gap-4">
-            <button data-testid="button-role-switch" onClick={() => onRoleChange(role === 'learner' ? 'manager' : 'learner')} className="hidden items-center gap-2 rounded-full border border-border bg-card px-3 py-2 text-xs font-semibold text-foreground sm:flex"><span className="size-2 rounded-full bg-[#74b7ad]" />{role === 'learner' ? 'Learner view' : 'Manager view'}<ChevronDown className="size-3.5 text-muted-foreground" /></button>
             <button data-testid="button-notifications" data-notice-root aria-label={unread > 0 ? `Notifications, ${unread} unread` : 'Notifications'} aria-expanded={noticeOpen} aria-controls="panel-notifications" aria-haspopup="dialog" onClick={toggleNotices} className="relative rounded-lg p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"><Bell className="size-[18px]" />{unread > 0 && <span data-testid="dot-notifications-unread" className="absolute right-1.5 top-1.5 size-1.5 rounded-full bg-[#c86c5e]" />}</button>
-            <Link href="/presentation" data-testid="link-header-presentation" className="hidden items-center gap-2 rounded-lg bg-primary px-3.5 py-2.5 text-xs font-semibold text-primary-foreground shadow-sm transition-transform hover:-translate-y-0.5 sm:flex"><Presentation className="size-3.5" /> Present demo</Link>
           </div>
         </div>
         {noticeOpen && <div id="panel-notifications" data-notice-root role="dialog" aria-label="Notifications" data-testid="panel-notifications" className="absolute right-5 top-[62px] w-[320px] rounded-xl border border-border bg-card p-4 shadow-xl animate-rise-in">
@@ -179,7 +172,7 @@ export function AppShell({ children, role, onRoleChange }: { children: ReactNode
           {notifyOn && unread > 0 && <button data-testid="button-mark-notifications" onClick={() => void notices.markSeen()} className="mt-3 text-xs font-semibold text-primary">Mark all as read</button>}
         </div>}
       </header>
-      {mobileOpen && <div className="fixed inset-x-0 top-[68px] z-20 border-b border-border bg-sidebar p-3 md:hidden"><nav className="grid grid-cols-2 gap-1">{nav.map((item) => <Link key={item.href} href={item.href} data-testid={`link-mobile-${item.label.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setMobileOpen(false)} className="flex items-center gap-2 rounded-lg px-3 py-3 text-sm text-sidebar-foreground hover:bg-sidebar-accent"><item.icon className="size-4 text-accent" />{item.label}</Link>)}</nav></div>}
+      {mobileOpen && <div className="fixed inset-x-0 top-[68px] z-20 border-b border-border bg-sidebar p-3 md:hidden"><nav className="grid grid-cols-2 gap-1">{learnerNav.map((item) => <Link key={item.href} href={item.href} data-testid={`link-mobile-${item.label.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setMobileOpen(false)} className="flex items-center gap-2 rounded-lg px-3 py-3 text-sm text-sidebar-foreground hover:bg-sidebar-accent"><item.icon className="size-4 text-accent" />{item.label}</Link>)}</nav></div>}
       <main id="main" tabIndex={-1} className="civic-grid min-h-[calc(100dvh-68px)] px-4 py-7 sm:px-7 lg:px-10">{children}</main>
     </div>
   </div>;

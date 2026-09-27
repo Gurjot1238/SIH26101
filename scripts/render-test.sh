@@ -149,12 +149,12 @@ src_lacks src/pages/demo-pages.tsx '[...prev.slice(0, step), index]' 'going back
 # covered by engine:test instead. What is asserted here is the half neither can see:
 # that each fabricated figure was replaced by a derivation rather than moved, and that
 # the shipped numbers survive only inside the branch that is labelled sample data.
-src_has src/pages/demo-pages.tsx 'const { live, status, problem, progress, history, courses: records } = useProgress();' 'the overview reads the account instead of a literal'
+src_has src/pages/demo-pages.tsx 'const { live, status, problem, progress, history } = useProgress();' 'the overview reads the account instead of a literal'
 src_lacks src/pages/demo-pages.tsx '<Metric label="Competency index" value="68.4" note="+4.8 pts since last review" />' 'the hardcoded 68.4 competency index is gone'
 src_has src/pages/demo-pages.tsx 'progress.index.toFixed(1)' 'the index on screen is the one the server rolled up'
 src_has src/pages/demo-pages.tsx 'practiceStreak(history, now)' 'the streak is counted from stored attempt dates'
 src_has src/pages/demo-pages.tsx 'monthEffort(history, now)' 'hours this month come from stored durations'
-src_has src/pages/demo-pages.tsx 'pathwayProgress(records)' 'pathway completion counts real modules'
+src_has src/pages/demo-pages.tsx 'history[0].percent' 'the latest-score metric reads the most recent sitting'
 src_lacks src/pages/demo-pages.tsx 'eyebrow="Learner overview · Q3 2024"' 'the eyebrow no longer claims Q3 2024'
 src_has src/pages/demo-pages.tsx 'quarterLabel(now)' 'the quarter is read from the clock'
 src_lacks src/pages/demo-pages.tsx 'Your applied exercises score 18 points higher than recall checks.' 'the invented 18-point insight is gone, in sample mode too'

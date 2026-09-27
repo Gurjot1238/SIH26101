@@ -60,9 +60,9 @@ export type ExternalCourse = {
 };
 
 /**
- * Shown wherever the catalogue appears. It is not the same disclaimer as `catalogueNote`
- * in `./courses.ts`: that one says "no lessons ship"; this one says "these lead off-site
- * and are not ours", which is the honest thing to tell a learner about an external link.
+ * Shown wherever the external course library appears. It says "these lead off-site and
+ * are not ours", which is the honest thing to tell a learner about an external link —
+ * distinct from the in-app dataset catalogue, which ships its own downloaded material.
  */
 export const libraryNote =
   'These are real courses hosted by external providers. NEXORA AI does not host or endorse them; links open on the provider’s site and may change over time.';

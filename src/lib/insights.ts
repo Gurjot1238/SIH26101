@@ -2,7 +2,7 @@
  * The Dashboard's arithmetic, kept out of the page.
  *
  * Every figure the overview prints used to be a literal in the JSX — a 68.4 index, a
- * 12-day streak, 7.6 hours, 42% of a pathway. Each one is now derived here from the
+ * 12-day streak, 7.6 hours, a 42% latest score. Each one is now derived here from the
  * account's own rollup and its stored attempts, and lives in a library rather than in
  * the component for one practical reason: a page cannot be executed in this sandbox
  * (no browser, no Vite build) but a pure function can, so these are covered by
@@ -19,9 +19,8 @@
  * `now` is a parameter on everything that needs the date so a test can pin it.
  */
 
-import type { CourseRecord, ProgressRollup, StoredAttempt } from '@/lib/progress';
+import type { ProgressRollup, StoredAttempt } from '@/lib/progress';
 import { type Band, type CompetencyId, bandLabels, competencyById } from '@/lib/topics';
-import { type CourseId, courseFacts, courseFactsFor } from '@/lib/courses';
 
 /** Days in the rhythm chart. Seven, so every weekday appears exactly once. */
 export const WEEK_DAYS = 7;
@@ -158,139 +157,6 @@ export function monthEffort(history: StoredAttempt[], now = new Date()): MonthEf
   return { minutes: Math.round(seconds / 60), hours: oneDecimal(seconds / 3600), sittings };
 }
 
-/** Completed modules of one pathway, ignoring anything the outline does not contain. */
-export function completedCount(courseId: string, record: CourseRecord | null): number {
-  const facts = courseFactsFor(courseId);
-  if (!facts || !record) return 0;
-  const inRange = new Set(record.completedModules.filter((index) => index >= 0 && index < facts.modules.length));
-  return inRange.size;
-}
-
-export function courseProgress(courseId: string, record: CourseRecord | null): number {
-  const facts = courseFactsFor(courseId);
-  if (!facts || facts.modules.length === 0) return 0;
-  return Math.round((completedCount(courseId, record) / facts.modules.length) * 100);
-}
-
-export type ModuleRow = {
-  /** Position in the outline, which is also the value stored in `completedModules`. */
-  index: number;
-  /** '01', '02' … — the numbered marker in the pathway timeline. */
-  number: string;
-  title: string;
-  minutes: number;
-  summary: string;
-  done: boolean;
-  /** True for the last module, so the timeline stops drawing its connecting line. */
-  last: boolean;
-};
-
-/**
- * One pathway's outline with the learner's own ticks against it.
- *
- * Both the Learning timeline and the course page need exactly this, and both used to
- * hardcode four module titles with invented durations. The `done` flag goes through the
- * same range check as `completedCount`, so a stored index the outline no longer has
- * cannot tick a row that is not the one it was stored for.
- */
-export function moduleRows(courseId: string, record: CourseRecord | null): ModuleRow[] {
-  const facts = courseFactsFor(courseId);
-  if (!facts) return [];
-  const done = new Set((record?.completedModules ?? []).filter((index) => index >= 0 && index < facts.modules.length));
-  return facts.modules.map((module, index) => ({
-    index,
-    number: String(index + 1).padStart(2, '0'),
-    title: module.title,
-    minutes: module.minutes,
-    summary: module.summary,
-    done: done.has(index),
-    last: index === facts.modules.length - 1,
-  }));
-}
-
-/** Modules left in the pathways the learner has actually opened. */
-export function pathwayRemaining(records: CourseRecord[]): number {
-  const roll = pathwayProgress(records);
-  return Math.max(0, roll.total - roll.done);
-}
-
-export type PathwayProgress = {
-  /** Pathways the learner has saved or started. Nothing tracked is not 0% — it is nothing. */
-  tracked: number;
-  done: number;
-  total: number;
-  percent: number;
-};
-
-/**
- * Pathway completion across what the learner is actually following.
- *
- * Deliberately not averaged over the whole catalogue: three pathways exist, and
- * counting the two nobody opened would put a ceiling of 33% on a finished course.
- */
-export function pathwayProgress(records: CourseRecord[]): PathwayProgress {
-  let tracked = 0;
-  let done = 0;
-  let total = 0;
-  for (const record of records) {
-    const facts = courseFactsFor(record.courseId);
-    if (!facts) continue;
-    if (!record.saved && !record.startedAt && record.completedModules.length === 0) continue;
-    tracked += 1;
-    done += completedCount(record.courseId, record);
-    total += facts.modules.length;
-  }
-  return { tracked, done, total, percent: total === 0 ? 0 : Math.round((done / total) * 100) };
-}
-
-export type Recommendation = {
-  id: CourseId;
-  competency: CompetencyId;
-  /** Weakest measured competency first, then untouched ones, then the rest. */
-  rank: number;
-  percent: number;
-  band: Band;
-  tag: string;
-  /** Why this pathway, in the learner's own numbers. Empty when nothing is measured. */
-  why: string;
-};
-
-/**
- * The three pathways, ordered by what the account measured weakest.
- *
- * The catalogue itself stays in `courses.ts` and the card design stays in the page.
- * This decides order, badge and the sentence that explains the order — the part that
- * has to be true.
- */
-export function recommended(progress: ProgressRollup, records: CourseRecord[]): Recommendation[] {
-  const place = new Map<CompetencyId, number>();
-  progress.focus.forEach((row, index) => place.set(row.id, index));
-  const measured = new Map(progress.competencies.map((row) => [row.id, row]));
-
-  return courseFacts
-    .map((facts, order) => {
-      const record = records.find((row) => row.courseId === facts.id) ?? null;
-      const percent = courseProgress(facts.id, record);
-      const hit = measured.get(facts.competency) ?? null;
-      const weak = place.get(facts.competency);
-      const short = competencyById(facts.competency).short;
-      return {
-        id: facts.id,
-        competency: facts.competency,
-        rank: weak !== undefined ? weak : hit ? 100 + order : 50 + order,
-        percent,
-        band: hit ? hit.band : ('unrated' as Band),
-        tag: weak !== undefined ? 'Recommended' : percent > 0 ? 'In progress' : record?.saved ? 'Saved' : 'New',
-        why: hit
-          ? `${short} scored ${hit.percent}% across ${hit.total} question${hit.total === 1 ? '' : 's'} — ${bandLabels[hit.band].toLowerCase()}.`
-          : progress.attempts === 0
-            ? ''
-            : `${short} has not been measured yet.`,
-      };
-    })
-    .sort((left, right) => left.rank - right.rank);
-}
-
 export type Bar = { id: CompetencyId; name: string; score: number; band: Band; total: number };
 
 /**
@@ -382,7 +248,7 @@ export type Signal = {
  * recall checks" — a comparison nothing in this build has ever measured.
  *
  * What replaces it is the widest real gap between two measured competencies, and a
- * button that goes to the pathway for the weaker one. Null when there is nothing to
+ * button to add material for the weaker one. Null when there is nothing to
  * say yet; the page then shows its own empty variant rather than a hedged sentence.
  */
 export function signal(progress: ProgressRollup): Signal | null {
@@ -401,12 +267,11 @@ export function signal(progress: ProgressRollup): Signal | null {
     };
   }
 
-  const pathway = courseFacts.find((facts) => facts.competency === weakest.id);
   return {
     headline: `Your practice is strongest in ${strongest.name}.`,
     detail: `${strongest.name} is at ${strongest.score}% and ${weakest.name} at ${weakest.score}% — a ${strongest.score - weakest.score} point gap. Work on ${weakest.name} moves your index the most.`,
-    actionLabel: pathway ? `Open ${weakest.name} pathway` : `Practise ${weakest.name}`,
-    href: pathway ? `/courses/${pathway.id}` : '/materials',
+    actionLabel: `Practise ${weakest.name}`,
+    href: '/materials',
   };
 }
 
@@ -421,7 +286,7 @@ export function dashboardNote(progress: ProgressRollup): string {
   const weakest = progress.focus[0];
   if (weakest) {
     const short = competencyById(weakest.id).short;
-    return `${short} is your weakest measured competency at ${weakest.percent}% (${bandLabels[weakest.band].toLowerCase()}), so the pathways below start there.`;
+    return `${short} is your weakest measured competency at ${weakest.percent}% (${bandLabels[weakest.band].toLowerCase()}). Add material there to strengthen it.`;
   }
   return `Nothing sits in the weak band across ${progress.questions} answered question${progress.questions === 1 ? '' : 's'}. New material will test that rather than confirm it.`;
 }

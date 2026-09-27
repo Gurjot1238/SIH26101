@@ -555,9 +555,9 @@ export function buildAnalyticsSummary(attempts, { scope = 'all', env = process.e
      * What to learn next. The order is the formula's, and `reason` states it in the
      * learner's own numbers so the ranking can be checked rather than believed.
      *
-     * Which course teaches which competency is not decided here. That catalogue lives
-     * in src/lib/courses.ts and the existing recommendation path reads this order and
-     * matches against it, so there is still exactly one course system.
+     * Which course addresses which competency is not decided here. The recommendation
+     * path (server/recommend over the downloaded course dataset) reads this priority
+     * order and matches real courses against it, so there is still exactly one ranking.
      */
     priorities: competencies
       .filter((row) => row.priority > 0)

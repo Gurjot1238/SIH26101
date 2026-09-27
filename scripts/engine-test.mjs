@@ -25,7 +25,6 @@ console.warn = () => {};
 const materials = await import(`${OUT}/lib/materials.js`);
 const scoring = await import(`${OUT}/lib/scoring.js`);
 const recommendations = await import(`${OUT}/lib/recommendations.js`);
-const courseLib = await import(`${OUT}/lib/courses.js`);
 const taxonomy = await import(`${OUT}/lib/topics.js`);
 const assessment = await import(`${OUT}/lib/assessment.js`);
 const markdown = await import(`${OUT}/lib/markdown.js`);
@@ -443,18 +442,6 @@ check('the retry paper keeps the original options and answer key', () => {
   });
 });
 
-check('every recommended pathway is one the app actually has', () => {
-  const real = new Set(courseLib.courseFacts.map((course) => course.id));
-  for (const course of weakPlan.courses) {
-    if (!real.has(course.id)) return `"${course.id}" is not in the catalogue`;
-  }
-  for (const topic of weakPlan.topics) {
-    if (topic.competencyName === null && topic.courses.length > 0) {
-      return `"${topic.score.topic}" has no competency but was given a course anyway`;
-    }
-  }
-});
-
 check('a perfect attempt is not given a revision plan', () => {
   const plan = recommendations.buildStudyPlan(sample.questions, scoring.gradeAttempt(sample.questions, allRight));
   if (plan.topics.length !== 0) return `${plan.topics.length} topics recommended after a perfect paper`;
@@ -469,15 +456,18 @@ check('the plan headline states real counts', () => {
   if (weakPlan.topics.length > 0 && !/\d/.test(weakPlan.headline)) return 'headline has no numbers in it';
 });
 
-check('every weak topic gets either a pathway or a passage to read', () => {
-  for (const topic of weakPlan.topics) {
-    if (topic.courses.length === 0 && topic.passages.length === 0) {
-      return `"${topic.score.topic}" was flagged with no advice at all`;
-    }
+check('every weak topic carries a real band label and an actionable summary', () => {
+  const lines = recommendations.summarizePlan(weakPlan);
+  weakPlan.topics.forEach((topic, index) => {
     if (!['Good', 'Average', 'Needs work'].includes(topic.bandLabel)) {
-      return `"${topic.score.topic}" has band label "${topic.bandLabel}"`;
+      throw new Error(`"${topic.score.topic}" has band label "${topic.bandLabel}"`);
     }
-  }
+    // Advice always exists now: either a passage to re-read or the review-screen
+    // explanation. The summary line must never leave the learner with nothing to do.
+    if (!/re-read|explanation/i.test(lines[index] ?? '')) {
+      throw new Error(`"${topic.score.topic}" was flagged with no advice: "${lines[index]}"`);
+    }
+  });
 });
 
 check('the one-line summaries name the topic and the score', () => {
@@ -490,43 +480,7 @@ check('the one-line summaries name the topic and the score', () => {
   });
 });
 
-section('course catalogue');
-
-check('the outlines add up to the durations the Learning page prints', () => {
-  const stated = { 'time-series': 260, 'data-ethics': 130, 'r-programming': 400 };
-  for (const [id, minutes] of Object.entries(stated)) {
-    const actual = courseLib.courseMinutes(id);
-    if (actual !== minutes) return `${id}: outline is ${actual}m, the page says ${minutes}m`;
-  }
-});
-
-check('durations format the way the page writes them', () => {
-  if (courseLib.formatMinutes(260) !== '4h 20m') return courseLib.formatMinutes(260);
-  if (courseLib.formatMinutes(130) !== '2h 10m') return courseLib.formatMinutes(130);
-  if (courseLib.formatMinutes(400) !== '6h 40m') return courseLib.formatMinutes(400);
-  if (courseLib.formatMinutes(45) !== '45m') return courseLib.formatMinutes(45);
-});
-
-check('every pathway names a real competency and has an outline', () => {
-  const ids = new Set(taxonomy.competencies.map((competency) => competency.id));
-  for (const course of courseLib.courseFacts) {
-    if (!ids.has(course.competency)) return `${course.id} claims "${course.competency}"`;
-    for (const also of course.alsoBuilds) {
-      if (!ids.has(also)) return `${course.id} also claims "${also}"`;
-      if (also === course.competency) return `${course.id} lists its own competency twice`;
-    }
-    if (course.modules.length < 3) return `${course.id} has only ${course.modules.length} modules`;
-    for (const module of course.modules) {
-      if (!module.title || !module.summary) return `${course.id} has an unlabelled module`;
-      if (!(module.minutes > 0)) return `${course.id} has a module with no duration`;
-    }
-  }
-});
-
-check('the catalogue says out loud that no lesson content ships', () => {
-  const note = courseLib.catalogueNote.toLowerCase();
-  if (!note.includes('sample') && !note.includes('demonstration')) return `note reads "${courseLib.catalogueNote}"`;
-});
+section('topic classification');
 
 check('classifyTopic refuses to guess', () => {
   if (taxonomy.classifyTopic('Kabaddi Tournament', 'The final was held on Sunday.') !== null) {
@@ -1418,22 +1372,7 @@ check('assessment: the plan retries what was missed without quoting a passage it
   }
 });
 
-check('assessment: a weak section still gets a pathway when one builds that competency', () => {
-  const inference = examSections.find((item) => item.competency === 'inference');
-  if (!inference) return 'no section declares inference, so this check proves nothing';
-  const missed = examPaper.map((question) =>
-    question.topic === inference.topic ? (question.correct + 1) % question.a.length : question.correct,
-  );
-  const plan = recommendations.buildStudyPlan(examPaper, scoring.gradeAttempt(examPaper, missed));
-  if (plan.courses.length === 0) return 'no pathway offered for a weak inference section';
-  const primary = courseLib.coursesForCompetency('inference').filter((course) => course.competency === 'inference');
-  if (primary.length === 0) return 'nothing lists inference as its primary competency, so this check proves nothing';
-  if (!plan.courses.some((course) => course.id === primary[0].id)) {
-    return `expected ${primary[0].id} first, got ${plan.courses.map((course) => course.id).join(', ')}`;
-  }
-});
-
-check('assessment: a topic with no pathway and no passage is summarised honestly', () => {
+check('assessment: a topic with no passage is summarised honestly', () => {
   const bare = examPaper
     .slice(0, exam.QUESTIONS_PER_SECTION)
     .map((question) => ({ ...question, topic: 'Unfiled scenarios', competency: null }));
@@ -1442,7 +1381,6 @@ check('assessment: a topic with no pathway and no passage is summarised honestly
     scoring.gradeAttempt(bare, bare.map((question) => (question.correct + 1) % question.a.length)),
   );
   if (barePlan.topics.length !== 1) return `${barePlan.topics.length} topics planned, expected 1`;
-  if (barePlan.topics[0].courses.length !== 0) return 'the fixture found a pathway, so this check proves nothing';
   if (barePlan.topics[0].passages.length !== 0) return 'the fixture found a passage, so this check proves nothing';
   const [line] = recommendations.summarizePlan(barePlan);
   if (/passage/i.test(line)) return `the summary promises a passage it does not have: "${line}"`;
@@ -1655,67 +1593,14 @@ check('the activity list is the stored history, with its own dates and bands', (
   if (insights.activityRows([], 3).length !== 0) return 'an empty history produced a row';
 });
 
-const timeSeriesModules = courseLib.courseFactsFor('time-series').modules.length;
-const dataEthicsModules = courseLib.courseFactsFor('data-ethics').modules.length;
-const dashCourses = [
-  // Two valid modules, one of them recorded twice, and one index the outline does not have.
-  { courseId: 'time-series', saved: true, startedAt: '2026-09-01T10:00:00.000Z', completedModules: [0, 1, 1, 99], updatedAt: '2026-09-09T10:00:00.000Z' },
-  { courseId: 'data-ethics', saved: false, startedAt: '2026-09-03T10:00:00.000Z', completedModules: [0], updatedAt: '2026-09-03T10:00:00.000Z' },
-  { courseId: 'r-programming', saved: false, startedAt: null, completedModules: [], updatedAt: null },
-  { courseId: 'not-a-course', saved: true, startedAt: '2026-09-04T10:00:00.000Z', completedModules: [0, 1, 2], updatedAt: null },
-];
-
-check('pathway completion counts modules that exist, once, in pathways actually opened', () => {
-  if (timeSeriesModules < 3) return `time-series has ${timeSeriesModules} modules, so 2 of them proves nothing`;
-  const percent = insights.courseProgress('time-series', dashCourses[0]);
-  const expected = Math.round((2 / timeSeriesModules) * 100);
-  if (percent !== expected) return `one pathway reads ${percent}%, expected ${expected}% — 2 of ${timeSeriesModules}`;
-  if (insights.completedCount('time-series', dashCourses[0]) !== 2) {
-    return `${insights.completedCount('time-series', dashCourses[0])} modules counted from [0, 1, 1, 99]`;
-  }
-  if (insights.courseProgress('time-series', null) !== 0) return 'a pathway with no record reported progress';
-  if (insights.courseProgress('not-a-course', dashCourses[3]) !== 0) return 'an unknown pathway reported progress';
-
-  const roll = insights.pathwayProgress(dashCourses);
-  if (roll.tracked !== 2) return `${roll.tracked} pathways tracked — saved or started only, and never the unknown one`;
-  if (roll.total !== timeSeriesModules + dataEthicsModules) return `${roll.total} modules in the denominator`;
-  if (roll.done !== 3) return `${roll.done} modules done, expected 3`;
-  if (roll.percent !== Math.round((3 / (timeSeriesModules + dataEthicsModules)) * 100)) return `the metric reads ${roll.percent}%`;
-  const untouched = insights.pathwayProgress([dashCourses[2]]);
-  if (untouched.tracked !== 0 || untouched.percent !== 0) return `an unopened pathway produced ${JSON.stringify(untouched)}`;
-});
-
-check('the recommendations are ordered by what scored weakest, and say so in numbers', () => {
-  const recs = insights.recommended(dashRollup, dashCourses);
-  if (recs.length !== courseLib.courseFacts.length) return `${recs.length} recommendations for ${courseLib.courseFacts.length} pathways`;
-  if (recs[0].id !== 'time-series') return `the first card is ${recs[0].id}, but inference scored 41%`;
-  if (recs[0].competency !== 'inference') return `the first card builds ${recs[0].competency}`;
-  if (recs[1].id !== 'r-programming') return `the second card is ${recs[1].id}, but digital-tools is the other focus`;
-  if (recs[2].id !== 'data-ethics') return `the strong competency's pathway is not last: ${recs.map((rec) => rec.id).join(' → ')}`;
-  if (recs[0].tag !== 'Recommended') return `the weakest pathway is badged "${recs[0].tag}"`;
-  if (recs[2].tag !== 'In progress') return `a started pathway is badged "${recs[2].tag}"`;
-  if (!recs[0].why.includes('41%')) return `the reason reads "${recs[0].why}"`;
-  if (!recs[0].why.includes('22 question')) return `the reason does not say how many questions: "${recs[0].why}"`;
-  if (!recs[0].why.toLowerCase().includes(taxonomy.bandLabels['needs-work'].toLowerCase())) {
-    return `the reason omits the band: "${recs[0].why}"`;
-  }
-  if (recs[0].percent !== Math.round((2 / timeSeriesModules) * 100)) return `the card's progress bar reads ${recs[0].percent}%`;
-  // An account with nothing measured gets the catalogue, in its own order, with no claims.
-  const cold = insights.recommended(emptyDashRollup(), []);
-  if (cold.length !== courseLib.courseFacts.length) return `${cold.length} cards for a new account`;
-  if (cold.some((rec) => rec.why !== '')) return `a new account was told why: "${cold.find((rec) => rec.why !== '').why}"`;
-  if (cold.some((rec) => rec.tag === 'Recommended')) return 'a new account had a pathway recommended on no evidence';
-  if (cold.some((rec) => rec.percent !== 0)) return 'a new account had progress on a pathway';
-});
-
-check('the signal card names the real gap, and goes somewhere real', () => {
+check('the signal card names the real gap, and points at adding material', () => {
   const sig = insights.signal(dashRollup);
   if (!sig) return 'a measured account got no signal';
   if (!sig.headline.includes('Data quality')) return `the headline reads "${sig.headline}"`;
   if (!sig.detail.includes('90%') || !sig.detail.includes('41%')) return `the detail reads "${sig.detail}"`;
   if (!sig.detail.includes('49 point')) return `the gap is not stated: "${sig.detail}"`;
-  if (sig.href !== '/courses/time-series') return `the button goes to ${sig.href}`;
-  if (!courseLib.courseFactsFor(sig.href.replace('/courses/', ''))) return `the button goes to a pathway that does not exist: ${sig.href}`;
+  if (sig.href !== '/materials') return `the button goes to ${sig.href}`;
+  if (!sig.actionLabel.toLowerCase().includes('inference')) return `the button does not name the weaker competency: "${sig.actionLabel}"`;
   if (insights.signal(emptyDashRollup()) !== null) return 'a new account was given a signal about nothing';
   const single = insights.signal({ ...emptyDashRollup(), attempts: 1, competencies: [dashRollup.competencies[0]] });
   if (!single) return 'one measured competency produced no signal';

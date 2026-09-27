@@ -144,13 +144,10 @@ const ROUTES = [
   ['/course-library', 'Courses worth your evening'],
   ['/catalog', 'Real courses you can open and finish here.'],
   ['/catalog/wtcs-nursing-fundamentals-2e', 'data-testid="link-back-catalog"'],
-  ['/courses/time-series', 'data-testid="link-back-learning"'],
   ['/assignment', 'Turn a brief into an assignment.'],
   ['/quiz', 'Your competency gaps and recommended courses.'],
   ['/assignment/quiz', 'Generate a quiz from your material.'],
   ['/profile', 'Your NEXORA AI identity.'],
-  ['/integrations', 'Connect the systems that know your work.'],
-  ['/presentation', 'data-testid="button-presentation-next"'],
   ['/no-such-page', '404 Page Not Found'],
 ];
 
