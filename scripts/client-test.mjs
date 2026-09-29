@@ -1,49 +1,17 @@
-/**
- * Tests the browser progress client against the real server.
- *
- * Usage:  node scripts/client-test.mjs <compiled-out-dir> <base-url>
- *         (or, more usefully:  npm run client:test)
- *
- * `server/smoke-test.sh` proves the API behaves. `scripts/engine-test.mjs` proves
- * the question engine and the scorer behave. Neither proves the two halves agree:
- * a client that posts `questionCount` to an API expecting `total` passes both and
- * fails in the browser. So this harness imports the compiled `src/lib/progress.ts`
- * — the same module the pages import — and calls it against a live server.
- *
- * The one thing it cannot use is the browser's cookie jar, so `fetch` is wrapped
- * below to carry Set-Cookie between calls. That wrapper is the only simulated part;
- * the module under test, the requests it builds and the server answering them are
- * all real.
- */
-
 const [OUT, BASE] = process.argv.slice(2);
 if (!OUT || !BASE) {
   console.error('usage: node scripts/client-test.mjs <compiled-out-dir> <base-url>');
   process.exit(2);
 }
 
-/* ------------------------------------------------------------ browser shims */
-
-// auth.js reads import.meta.env at module scope, which compile-src.sh rewrote to
-// this global. It has to exist before the import below, not after.
 globalThis.__VITE_ENV__ = { VITE_API_URL: BASE, VITE_REQUIRE_AUTH: 'true', BASE_URL: '/' };
 
 const jar = new Map();
 const realFetch = globalThis.fetch;
 
-/**
- * A cookie jar, because Node's fetch ignores `credentials: 'include'`.
- *
- * Deliberately thin: it stores name=value and sends them back. It does not honour
- * Path, Domain, Max-Age or Expires, so it must never be used to assert anything
- * about cookie policy — `server/smoke-test.sh` does that with curl, which does
- * implement them.
- */
 globalThis.fetch = async (url, init = {}) => {
   const headers = new Headers(init.headers ?? {});
   if (jar.size > 0) headers.set('cookie', [...jar].map(([k, v]) => `${k}=${v}`).join('; '));
-  // A browser always sends Origin on a cross-origin call; the server's allow-list
-  // checks it, so omitting it here would skip a control the real app must satisfy.
   headers.set('origin', 'http://localhost:5173');
 
   const response = await realFetch(url, { ...init, headers });
@@ -59,8 +27,6 @@ globalThis.fetch = async (url, init = {}) => {
   return response;
 };
 
-/* --------------------------------------------------------- modules under test */
-
 const realWarn = console.warn;
 console.warn = () => {};
 const auth = await import(`${OUT}/lib/auth.js`);
@@ -72,15 +38,6 @@ const papers = await import(`${OUT}/lib/papers.js`);
 const courseContent = await import(`${OUT}/lib/course-content.js`);
 console.warn = realWarn;
 
-/**
- * Not a module under test: the server's own item bank, imported for its answer key.
- *
- * A perfect sitting cannot be built without knowing which option is right, and the key
- * exists in exactly one place — which is the entire point of the design, so reaching
- * across for it here is the honest way to sit the paper rather than a shortcut. If this
- * import could be replaced by one from `${OUT}/lib/`, the assessment would be back in
- * the browser bundle and `scripts/render-test.mjs` would be failing.
- */
 const exam = await import(new URL('../server/assessment.mjs', import.meta.url).href);
 
 let passed = 0;
@@ -110,7 +67,6 @@ function section(title) {
   console.log(`\n  -- ${title} ${'-'.repeat(Math.max(0, 58 - title.length))}`);
 }
 
-/** Assert and return, so a value can be checked and reused in one expression. */
 function must(condition, message) {
   if (!condition) throw new Error(message);
 }
@@ -118,8 +74,6 @@ function must(condition, message) {
 const account = {
   name: 'Client Harness',
   email: `harness.${Date.now().toString(36)}@example.gov`,
-  // Must not contain the full name or the email local part — server/auth.mjs
-  // rejects both, and the first draft of this fixture tripped that rule.
   password: 'a long enough passphrase for tests',
 };
 
@@ -179,8 +133,6 @@ await check('the shape the client declares is the shape the server sends', async
 
 section('a real paper, end to end');
 
-// Document text -> questions -> answers -> grading -> payload -> server. Every step
-// is the real module; nothing between them is stubbed.
 const paper = materials.analyzeMaterial(materials.sampleMaterialText, 1);
 const answers = paper.questions.map((question, index) =>
   index % 3 === 0 ? question.correct : (question.correct + 1) % 4,
@@ -199,9 +151,6 @@ await check('the analyzer produced at least 10 questions', () =>
 await check('the payload carries counts and topic names, and nothing else', () => {
   const serialised = JSON.stringify(payload);
   for (const question of paper.questions) {
-    // `question.q` is the stem and `question.a` the options. Reading a field the type
-    // does not have — `question.stem` was the first draft — makes `includes(undefined)`
-    // search for the literal string "undefined", which passes whatever the payload holds.
     must(typeof question.q === 'string' && question.q.length > 0, 'the question stem is not where this check thinks it is');
     must(!serialised.includes(question.q), 'a question stem is in the payload');
     must(!serialised.includes(question.source), 'a source sentence is in the payload');
@@ -348,30 +297,12 @@ await check('clearHistory removes the attempts and nothing else', async () => {
 
 section('the assessment: dealt sealed, marked on the server');
 
-/*
- * The history was cleared a moment ago, so this account holds nothing and every count
- * below is the assessment's own. Two sittings are submitted: a perfect one, which proves
- * the option-id round trip end to end, and a deliberately mixed one, which proves the
- * figures the report screens show are the server's even when they are not 100%.
- *
- * `server/smoke-test.sh` covers the same endpoints with curl. What it cannot cover is
- * this: that `src/lib/progress.ts` and `src/lib/assessment.ts` — the exact modules the
- * page imports — build a submission the server grades the way the page then reports it.
- */
-
 const key = new Map(exam.answerKey().map((row) => [row.id, row.option]));
 
-/** Where the right option landed on screen, per question, for a dealt paper. */
 function rightPositions(paper) {
   return paper.questions.map((question) => question.options.findIndex((option) => option.id === key.get(question.id)));
 }
 
-/**
- * How many right options did *not* land back in their bank position.
- *
- * Every check below that claims to prove "graded by id, not by position" is worthless on
- * a paper dealt in bank order, where the two agree. This is what makes that visible.
- */
 function moved(paper, positions) {
   return positions.filter((index, slot) => index !== exam.OPTION_IDS.indexOf(key.get(paper.questions[slot].id))).length;
 }
@@ -393,8 +324,6 @@ await check('fetchAssessmentPaper deals a whole paper', async () => {
 
 await check('what the client parsed carries no answer key', () => {
   const serialised = JSON.stringify(dealt);
-  // Field names, quoted. An unquoted /correct/ matches scenario prose — an early version
-  // of this probe did exactly that and reported a leak that was not there.
   for (const field of ['"correct"', '"correctOption"', '"explanation"', '"answer"', '"key"', '"right"']) {
     must(!serialised.includes(field), `the dealt paper carries ${field}`);
   }
@@ -464,9 +393,6 @@ await check('a mixed sitting: the server and the report on screen reach the same
   const right = rightPositions(second);
   must(moved(second, right) > 0, 'this deal left every right option in its bank position, so nothing was proven');
 
-  // Right on every third question, wrong on the rest, first one left blank — so the score
-  // is neither 0 nor 100, the topics do not all band alike, and an unanswered question has
-  // to survive the round trip as unanswered rather than as a wrong guess or a gap.
   const chosen = second.questions.map((question, index) => {
     if (index === 0) return null;
     return index % 3 === 0 ? right[index] : (right[index] + 1) % question.options.length;
@@ -491,7 +417,6 @@ await check('a mixed sitting: the server and the report on screen reach the same
     'the unanswered question was not recorded as unanswered',
   );
 
-  // The one that matters: what the page would print, against what the server stored.
   const local = scoring.gradeAttempt(assessment.rebuildPaper(second, outcome.result), chosen);
   must(local.correct === outcome.result.correct, `the report counted ${local.correct}, the server ${outcome.result.correct}`);
   must(local.percent === outcome.result.percent, `report ${local.percent}% vs stored ${outcome.result.percent}%`);
@@ -520,15 +445,12 @@ await check('both sittings are in the history, newest first, as assessments', as
   const page = await progress.fetchHistory();
   must(page.total === 2, `total was ${page.total}`);
   must(page.attempts.every((row) => row.source === 'assessment'), 'a stored row is not an assessment');
-  // The mixed sitting was submitted second and scored below 100, so this is ordering and
-  // "the refused post really was refused" in one assertion.
   must(page.attempts[0].percent < page.attempts[1].percent, `newest was ${page.attempts[0].percent}%`);
   return true;
 });
 
 section('saved question sets');
 
-/** Built here rather than generated, so the assertions below are about the round trip. */
 function samplePaper(count) {
   return Array.from({ length: count }, (unused, index) => ({
     q: `What does indicator ${index + 1} measure?`,
@@ -545,8 +467,6 @@ function samplePaper(count) {
 let savedId = '';
 
 await check('the cap the page prints is the cap the server enforces', async () => {
-  // The number is written in two files that cannot import each other. If they ever
-  // disagree, the page states a limit the learner will not actually hit.
   const server = await import(new URL('../server/papers.mjs', import.meta.url).href);
   must(
     papers.MAX_SAVED_PAPERS === server.PAPER_LIMITS.maxPerUser,
@@ -560,7 +480,6 @@ await check('a generated set is saved and comes back with a server id', async ()
   must(saved.id.startsWith('pap_'), `id was ${saved.id}`);
   must(saved.count === 6, `count was ${saved.count}`);
   must(saved.difficulty === 'hard', `difficulty was ${saved.difficulty}`);
-  // The topics are derived by the server from the questions, not sent by the client.
   must(saved.topics.includes('Price Indices') && saved.topics.includes('Sampling'), `topics were ${saved.topics}`);
   must(typeof saved.createdAt === 'string' && saved.createdAt !== '', 'no createdAt came back');
   savedId = saved.id;
@@ -571,7 +490,6 @@ await check('the list carries the summary but not the questions', async () => {
   const list = await papers.listPapers();
   must(list.length === 1, `list held ${list.length}`);
   must(list[0].id === savedId, 'the saved id is not in the list');
-  // A list of sixty papers should not ship sixty answer keys to render six cards.
   must(!('questions' in list[0]), 'the summary carried its questions');
   return true;
 });
@@ -583,8 +501,6 @@ await check('opening one returns the questions, answers and explanations intact'
   must(first.q === 'What does indicator 1 measure?', `stem was ${first.q}`);
   must(first.a.length === 4, `options were ${first.a.length}`);
   must(first.correct === 0, `correct was ${first.correct}`);
-  // The answer key and the reason are the whole point of saving: a set that came back
-  // without them would still pass a count check and be useless to review from.
   must(first.explanation.includes('defines indicator 1'), `explanation was ${first.explanation}`);
   must(first.source.includes('Indicator 1'), `source was ${first.source}`);
   return true;
@@ -660,26 +576,12 @@ await check('signing back in returns the same account, with its records', async 
   const bundle = await progress.fetchProgress();
   must(bundle.preferences.language === 'Hindi', `language was ${bundle.preferences.language}`);
   must(bundle.courses.length === 1, `courses held ${bundle.courses.length}`);
-  // The two sittings outlived the session that produced them, which is the difference
-  // between storage on the server and state in a tab.
   must(bundle.progress.attempts === 2, `attempts was ${bundle.progress.attempts}`);
   must(bundle.history.every((row) => row.source === 'assessment'), 'a stored row came back as something else');
   return true;
 });
 
 section('dataset courses: catalogue, content and lesson completion');
-
-/*
- * The other half of the courses feature: the read-only dataset client
- * (src/lib/course-content.ts) and the completion percentage the course page shows.
- * The server was started with NEXORA_DATASET_DIR pointing at server/course-fixtures,
- * so fetchCatalogue and fetchCourse run against a real reader over real files. This
- * account is signed in again from the section above, so saveCourse can record which
- * lessons are done — the number the donut divides into the course's real lessons.
- *
- * server/smoke-test.sh proves the endpoints; what this adds is that the exact module
- * the page imports parses those responses and computes the same percentage.
- */
 
 let datasetDetail = null;
 await check('fetchCatalogue lists the fixture course served from disk', async () => {
@@ -721,7 +623,6 @@ await check('marking both is 100%, and a stale lesson id cannot exceed it', asyn
   const { course } = await progress.saveCourse({ courseId: 'demo-open-stats', completedLessons: ['les-02-quality', 'les-01-sampling', 'les-01-sampling'] });
   must(JSON.stringify(course.completedLessons) === '["les-01-sampling","les-02-quality"]', `stored ${JSON.stringify(course.completedLessons)}`);
   must(courseContent.completionPercent(datasetDetail.lessonIds, course.completedLessons) === 100, 'both lessons was not 100%');
-  // The guard that matters: an id left over from a rebuilt course must not count.
   must(
     courseContent.completionPercent(datasetDetail.lessonIds, [...course.completedLessons, 'les-99-ghost']) === 100,
     'a stale id pushed the percentage past 100',
@@ -737,8 +638,6 @@ await check('contentUrl addresses the streaming route for a lesson file', () => 
   return true;
 });
 
-/* ------------------------------------------------------------------- summary */
-
 console.log(`\n  ====================================`);
 console.log(`  ${passed} passed, ${failed} failed\n`);
 if (failed > 0) {
@@ -746,4 +645,3 @@ if (failed > 0) {
   console.log('');
 }
 process.exit(failed === 0 ? 0 : 1);
-

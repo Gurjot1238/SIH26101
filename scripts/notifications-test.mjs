@@ -1,16 +1,4 @@
 #!/usr/bin/env node
-/**
- * buildNotifications() unit tests — the derived, per-account feed (M2, feature B6).
- *
- * The feed is not stored; it is rebuilt on every read from the account's own
- * progress, courses and profile, so a notification can only ever restate something
- * already true of the account. These checks pin that contract without a server or a
- * network: a first-run learner sees one honest call to action, a returning learner
- * sees a real summary of measured work, unread accounting follows notificationsSeenAt,
- * the course items describe what the learner actually did, and the panel stays a
- * glance (capped) rather than a backlog. server/smoke-test.sh proves the same feed
- * over HTTP; this proves the arithmetic underneath it.
- */
 import { buildNotifications } from '../server/notifications.mjs';
 
 let passed = 0; let failed = 0;
@@ -24,10 +12,10 @@ function check(name, fn) {
 const has = (feed, kind) => feed.items.some((it) => it.kind === kind);
 const byId = (feed, id) => feed.items.find((it) => it.id === id);
 
-const T_OLD = '2026-09-01T00:00:00.000Z';   // an early attempt / course touch
-const T_NEW = '2026-09-10T00:00:00.000Z';   // the most recent sitting
-const SEEN_BEFORE = '2026-08-01T00:00:00.000Z';  // opened the panel before any of it
-const SEEN_AFTER = '2026-12-01T00:00:00.000Z';   // opened it after everything
+const T_OLD = '2026-09-01T00:00:00.000Z';
+const T_NEW = '2026-09-10T00:00:00.000Z';
+const SEEN_BEFORE = '2026-08-01T00:00:00.000Z';
+const SEEN_AFTER = '2026-12-01T00:00:00.000Z';
 
 console.log('\n  -- buildNotifications  derived feed, honest unread ------------\n');
 

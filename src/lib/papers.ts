@@ -1,21 +1,6 @@
-/**
- * The browser client for saved MCQ sets.
- *
- * A learner can save a generated paper to their account and open it later. Everything
- * here talks to `/api/papers`, carries the session cookie, and returns typed results or
- * throws `PaperError` so a page can say what happened. The server owns the id, the
- * timestamp and the owner; this file never invents them.
- */
-
 import { API_URL } from './auth';
 import { type MaterialQuestion } from './materials';
 
-/**
- * The per-account cap, mirrored from `PAPER_LIMITS.maxPerUser` in server/papers.mjs so the
- * page can state the number without a round trip. `scripts/client-test.mjs` asserts the two
- * agree — a cap printed on screen that disagrees with the one the server enforces is worse
- * than printing no number at all.
- */
 export const MAX_SAVED_PAPERS = 60;
 
 export type SavedPaperSummary = {
@@ -77,11 +62,6 @@ async function request<T>(path: string, init: RequestInit): Promise<T> {
   return payload as T;
 }
 
-/**
- * Save a generated set. `title` defaults to the file name on the server if blank.
- * Only the fields the server allow-lists are kept, so passing the whole question
- * objects is safe.
- */
 export async function savePaper(input: {
   title: string;
   difficulty?: string;
@@ -99,19 +79,16 @@ export async function savePaper(input: {
   return body.paper;
 }
 
-/** The caller's saved papers, newest first, without their questions. */
 export async function listPapers(): Promise<SavedPaperSummary[]> {
   const body = await request<{ papers: SavedPaperSummary[] }>('/api/papers', { method: 'GET' });
   return body.papers;
 }
 
-/** One saved paper in full, including its questions. */
 export async function getPaper(id: string): Promise<SavedPaper> {
   const body = await request<{ paper: SavedPaper }>(`/api/papers?id=${encodeURIComponent(id)}`, { method: 'GET' });
   return body.paper;
 }
 
-/** Delete one saved paper by id. */
 export async function deletePaper(id: string): Promise<void> {
   await request<{ removed: boolean }>(`/api/papers?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
 }

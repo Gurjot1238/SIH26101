@@ -1,14 +1,4 @@
 #!/usr/bin/env bash
-# Runs the AI question-generation pipeline against a mock provider and asserts on
-# what it returns.
-#
-# Usage:  npm run ai:test        (or ./scripts/ai-test.sh)
-#
-# No API key is needed and none is read. The provider is swapped for one that
-# returns canned text from server/ai-fixtures, so the parser, the validator, the
-# grounding check, the repair loop and the selection all run for real while the
-# network is never touched.
-
 set -euo pipefail
 
 cd "$(dirname "$0")/.."

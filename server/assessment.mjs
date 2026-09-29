@@ -1,61 +1,14 @@
-/**
- * The quarterly competency check, and the only copy of its answer key.
- *
- * The paper used to live in `src/lib/assessment.ts`, which meant two things. The key
- * shipped inside the browser bundle, readable by anyone who opened the sources tab.
- * And the score was computed in the tab, then posted to be stored — so a hand-written
- * request could file 15/15 without answering a question. Moving the items here fixes
- * both. The browser is dealt the questions with `correct` and `explanation` stripped,
- * it sends back which option it picked, and the server decides the score.
- *
- *   What each side knows
- *
- *   browser   question text, option text in a per-sitting order, option ids
- *   server    all of that, plus the key, the explanations, and the grading
- *
- * The key does reach the browser once, in the reply to a submission, because the
- * review screen has to show what the right answer was and why. By then the attempt is
- * already stored, so knowing it changes nothing.
- *
- *   Grading by option id, not by position
- *
- * Every option carries the id it had in the canonical bank (a, b, c, d) and the list
- * is shuffled before it goes out. The tab answers `{ question: 'q4', option: 'c' }`,
- * so the server never has to remember which order it dealt: there is no per-sitting
- * state to store, expire, or forge, and shuffling costs nothing.
- *
- *   What is deliberately not shuffled
- *
- * Questions move within a section, never across sections. The five sections are the
- * five framework competencies and the page walks them in order, so interleaving them
- * would make the progress stepper jump between subjects for no measurement gain.
- *
- * `server/taxonomy-check.mjs` fails if the sections here stop covering the five
- * competency ids in `src/lib/topics.ts` exactly once each.
- */
-
 import { HttpError } from './http.mjs';
 import { COMPETENCY_IDS, bandFor, percentOf } from './progress.mjs';
 
-/** Canonical option ids. Position in the bank, not position on screen. */
 export const OPTION_IDS = ['a', 'b', 'c', 'd'];
 
 export const ASSESSMENT_SOURCE = 'assessment';
 export const ASSESSMENT_LABEL = 'Quarterly competency check';
 
-/**
- * Said out loud on the page. These are NEXORA AI's own items, and the result is a
- * self-check against the framework rather than an official competency rating.
- */
 export const ASSESSMENT_NOTE =
   'These fifteen scenarios are written into NEXORA AI and graded on the server against a fixed answer key. They are a self-check against the competency framework, not an official MoSPI or iGOT Karmayogi certification.';
 
-/* ------------------------------------------------------------------- the bank */
-
-/**
- * One section per framework competency. `topic` is what the per-topic report calls
- * it; `focus` is the line shown beside the scenario counter while answering.
- */
 export const SECTIONS = [
   { competency: 'data-quality', topic: 'Data quality and coverage', focus: 'Coverage & comparability' },
   { competency: 'inference', topic: 'Evidence and inference', focus: 'Evidence & interpretation' },
@@ -64,21 +17,6 @@ export const SECTIONS = [
   { competency: 'leadership', topic: 'Review and sign-off', focus: 'Review & capability' },
 ];
 
-/**
- * Fifteen scenarios, five sections of three.
- *
- * Three per section is the smallest paper that still gives a section a band worth
- * reading: at two, one wrong answer swings a topic from Good to Needs work.
- *
- * Each item states a situation an official statistician actually meets, has exactly
- * one option that professional practice supports, and carries the reason in
- * `explanation`. Nothing here claims to be an MoSPI or iGOT item bank.
- *
- * The key is spread across all four positions on purpose. Three questions that all
- * answered B would let a learner score full marks without reading, which makes the
- * measurement worthless; `assessment: the answer key is spread across all four
- * positions` in `scripts/engine-test.mjs` fails if that regresses.
- */
 const ITEMS = [
   {
     section: 0,
@@ -280,13 +218,10 @@ const ITEMS = [
 export const ASSESSMENT_LENGTH = ITEMS.length;
 export const QUESTIONS_PER_SECTION = ITEMS.length / SECTIONS.length;
 
-/* -------------------------------------------------------------------- dealing */
-
 function questionId(index) {
   return 'q' + (index + 1);
 }
 
-/** Fisher-Yates. `random` is a parameter so a test can pin the order it is dealt. */
 function shuffled(list, random) {
   const out = [...list];
   for (let i = out.length - 1; i > 0; i -= 1) {
@@ -298,13 +233,6 @@ function shuffled(list, random) {
   return out;
 }
 
-/**
- * The paper as a browser is allowed to see it: every question, every option, in a
- * fresh order, with no key and no explanation anywhere in the payload.
- *
- * Pass `shuffle: false` to get the bank in its written order, which is what the
- * tests use so they can assert on a fixed paper.
- */
 export function sealedPaper({ shuffle = true, random = Math.random } = {}) {
   const rows = ITEMS.map((item, index) => ({ item, index }));
   const dealt = [];
@@ -338,27 +266,12 @@ export function sealedPaper({ shuffle = true, random = Math.random } = {}) {
   };
 }
 
-/* -------------------------------------------------------------------- grading */
-
 const ITEM_BY_ID = new Map(ITEMS.map((item, index) => [questionId(index), { item, index }]));
 
 function invalid(message) {
   return new HttpError(400, 'invalid_input', message, { choices: message });
 }
 
-/**
- * Grade one submission.
- *
- * Takes which option was picked for which question, and nothing else that counts.
- * There is no score in the input and no place to put one: `total` is the size of the
- * bank, `correct` is counted here from the key, and every figure downstream — the
- * percentage, the band, the per-topic rows — is derived from those two. A body that
- * also carries `correct: 15` is not rejected, it is simply not read.
- *
- * Grading walks the canonical bank rather than the submitted list, so leaving
- * questions out of `choices` cannot shorten the paper. An unanswered question is
- * recorded as unanswered and counted as wrong.
- */
 export function gradeSubmission(body) {
   if (body === null || typeof body !== 'object' || Array.isArray(body)) throw invalid('A submission is required.');
   if (!Array.isArray(body.choices)) throw invalid('Answers must be a list.');
@@ -439,13 +352,6 @@ export function gradeSubmission(body) {
   };
 }
 
-/**
- * The body `validateAttempt` would have received, built from the real grading.
- *
- * Routing the server's own numbers back through the same validator as a posted
- * material quiz keeps one storage path and one set of invariants — including the
- * check that topic counts cannot add up to more than the paper.
- */
 export function attemptPayload(graded, { durationSeconds } = {}) {
   return {
     source: graded.source,
@@ -457,11 +363,6 @@ export function attemptPayload(graded, { durationSeconds } = {}) {
   };
 }
 
-/**
- * The key on its own, for the tests and the drift check. Never sent to a browser:
- * what a submission gets back is the key for the paper it just finished, assembled
- * by `gradeSubmission` after the attempt is graded.
- */
 export function answerKey() {
   return ITEMS.map((item, index) => ({
     id: questionId(index),
@@ -470,7 +371,6 @@ export function answerKey() {
   }));
 }
 
-/** Every competency the paper measures, in framework order. Used by the drift check. */
 export function measuredCompetencies() {
   return COMPETENCY_IDS.filter((id) => SECTIONS.some((section) => section.competency === id));
 }

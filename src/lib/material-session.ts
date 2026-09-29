@@ -1,31 +1,3 @@
-/**
- * The paper the learner is currently working from, kept where a reload cannot lose it.
- *
- * Before this file, the analysed material lived in a module-level `let` inside
- * pages/demo-pages.tsx. That survived navigation — the Quiz page could read what the
- * Materials page had written — but it did not survive a refresh, so pressing reload
- * on the quiz screen silently threw away a twelve-question paper and sent the learner
- * back to the upload box with no explanation.
- *
- *   Why sessionStorage and not localStorage
- *
- * The stored paper contains sentences quoted from the learner's own document. That is
- * unavoidable: a grounded question has to cite its source. But it means the store
- * holds fragments of a work file, so it lives in sessionStorage, which is scoped to
- * the one tab and is discarded when that tab closes. localStorage would leave those
- * fragments on disk after the learner walked away, which is not a choice they made.
- *
- * Nothing is sent anywhere *from here*. The paper reaches this module after the AI
- * server has already written and returned it, and the only thing that leaves
- * afterwards is an attempt payload of topic names and counts. The extracted text does
- * go to the server once, on its way to question generation — that happens in
- * `ai-questions.ts`, before anything is stored, and the server keeps none of it.
- *
- * `subscribe`/`snapshot` exist so React can read this through `useSyncExternalStore`
- * rather than a provider. A paper belongs to a browser tab, not to an account, so
- * there is nothing for a context provider to scope it to.
- */
-
 import { useSyncExternalStore } from 'react';
 import { type MaterialQuestion } from './materials';
 
@@ -34,44 +6,25 @@ const KEY = 'NEXORA AI.material.v1';
 export type StoredMaterial = {
   fileName: string;
   fileSize: number;
-  /** Extension or MIME type as reported by the browser. Display only. */
   fileType: string;
   pageCount: number;
-  /** Display pills on the Materials page. */
   concepts: string[];
-  /** The topics the paper is scored by. */
   topics: string[];
   questions: MaterialQuestion[];
-  /** When the paper was generated, ISO 8601. */
   createdAt: string;
-  /** True when this came from the built-in sample rather than a file the learner chose. */
   isSample: boolean;
-  /**
-   * Set when this paper is stored in the learner's account, either because they saved it
-   * or because they reopened it from their saved sets. Its presence is what lets the page
-   * say "already saved" after a reload, and stops the header claiming a file was read in
-   * this browser when it was actually fetched from the server.
-   */
   savedPaperId?: string;
 };
 
 let current: StoredMaterial | null = null;
 let loaded = false;
 
-/**
- * False once a write to sessionStorage has failed. Safari in private mode and a full
- * quota both throw on setItem, and in that case the paper still works for as long as
- * the tab stays on the page — so the failure is recorded and surfaced rather than
- * swallowed, because "survives a reload" would otherwise become quietly untrue.
- */
 let durable = true;
 
 const listeners = new Set<() => void>();
 
 function store(): Storage | null {
   try {
-    // Both guards are needed: `window` is absent when server-rendering, and reading
-    // `sessionStorage` itself throws in a browser with storage disabled entirely.
     if (typeof window === 'undefined') return null;
     return window.sessionStorage;
   } catch {
@@ -79,7 +32,6 @@ function store(): Storage | null {
   }
 }
 
-/** Reject anything that is not a paper we could actually run a quiz from. */
 function validate(value: unknown): StoredMaterial | null {
   if (!value || typeof value !== 'object') return null;
   const candidate = value as Partial<StoredMaterial>;
@@ -100,8 +52,6 @@ function validate(value: unknown): StoredMaterial | null {
     questions: candidate.questions,
     createdAt: typeof candidate.createdAt === 'string' ? candidate.createdAt : new Date().toISOString(),
     isSample: candidate.isSample === true,
-    // Only carried through when it is a non-empty string, so `savedPaperId` is either a
-    // real id or absent — never an empty string that reads as "saved" by accident.
     ...(typeof candidate.savedPaperId === 'string' && candidate.savedPaperId !== ''
       ? { savedPaperId: candidate.savedPaperId }
       : {}),
@@ -122,12 +72,8 @@ function read(): StoredMaterial | null {
   try {
     parsed = validate(JSON.parse(raw));
   } catch {
-    // A truncated value — a tab killed mid-write — lands here rather than in validate.
     parsed = null;
   }
-  // A paper from an older build, a half-written one, or one whose answer key is out of
-  // range is dropped rather than repaired: guessing at a missing answer would mark the
-  // learner's answers wrongly, and leaving it in place would fail again on every read.
   if (!parsed) {
     try {
       bucket.removeItem(KEY);
@@ -142,7 +88,6 @@ function announce() {
   for (const listener of [...listeners]) listener();
 }
 
-/** The current paper, restoring it from the tab's storage on first call. */
 export function getMaterial(): StoredMaterial | null {
   if (!loaded) {
     current = read();
@@ -182,7 +127,6 @@ export function clearMaterial(): void {
   announce();
 }
 
-/** False when the paper is memory-only, so a page can stop promising it will survive a reload. */
 export function isDurable(): boolean {
   return durable;
 }
@@ -192,24 +136,14 @@ export function subscribe(listener: () => void): () => void {
   return () => listeners.delete(listener);
 }
 
-/** Stable identity for `useSyncExternalStore` — the object only changes when the paper does. */
 export function snapshot(): StoredMaterial | null {
   return getMaterial();
 }
 
-/** Server rendering has no tab storage, so there is never a paper in progress. */
 export function serverSnapshot(): StoredMaterial | null {
   return null;
 }
 
-/**
- * Read the current paper in a component, re-rendering when it changes.
- *
- * The third argument is what makes this safe under `renderToStaticMarkup`, which the
- * render harness uses: without it React throws instead of rendering, and with it the
- * quiz page server-renders its "no material yet" state, which is the honest answer
- * when there is no tab to have uploaded anything.
- */
 export function useMaterial(): StoredMaterial | null {
   return useSyncExternalStore(subscribe, snapshot, serverSnapshot);
 }

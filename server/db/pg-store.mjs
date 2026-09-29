@@ -1,27 +1,8 @@
-/**
- * PostgreSQL backend for the account store, behind the exact same API as the JSON
- * store (server/json-store.mjs), so server/index.mjs never learns which one it got.
- *
- * How it stays API-compatible: index.mjs reads several methods SYNCHRONOUSLY
- * (findUserByEmail, findSession, attemptsForUser, profileForUser, counts, ...), and
- * `pg` is asynchronous, so a read cannot issue a query inline. The JSON store already
- * solved this by holding everything in memory and serving reads from Maps; this store
- * does the same, but every write is ALSO written through to PostgreSQL on a serialized
- * queue. Postgres is the durable source of truth — the in-memory snapshot is rebuilt
- * from it on every boot (so data survives restarts), and writes are ACID.
- *
- * Honest limitation: like the JSON store, the in-memory snapshot assumes ONE server
- * process. Many concurrent users on one server are fully supported; running several
- * server instances against one database would need these reads to hit Postgres
- * directly (drop the cache) so instances don't serve a stale snapshot.
- */
-
 import { getDb, jsonb } from './pool.mjs';
 
 export async function openPostgresStore() {
   const db = await getDb();
 
-  // ---- load the snapshot once, in the order the app expects to read it back ----
   const users = (await db.query('SELECT data FROM users')).rows.map((r) => r.data);
   const sessions = (await db.query('SELECT data FROM sessions')).rows.map((r) => r.data);
   const attemptRows = (await db.query('SELECT user_id, data FROM attempts ORDER BY user_id, seq')).rows;
@@ -49,8 +30,6 @@ export async function openPostgresStore() {
     papersByUser.set(row.user_id, list);
   }
 
-  // Every write goes through one promise chain, so two concurrent requests can never
-  // interleave their SQL and lose each other's changes — same guarantee as the JSON store.
   let queue = Promise.resolve();
   function enqueue(task) {
     const run = queue.then(task, task);
@@ -58,8 +37,6 @@ export async function openPostgresStore() {
     return run;
   }
 
-  // Per-user serialization for read-modify-write profile updates (audit A19); mirrors the
-  // JSON store. The freshest profile is read inside the per-account lock, right before write.
   const profileLocks = new Map();
   const withProfileLock = (userId, fn) => {
     const prev = profileLocks.get(userId) ?? Promise.resolve();
@@ -186,7 +163,6 @@ export async function openPostgresStore() {
       if (removed > 0) await enqueue(() => db.query('DELETE FROM sessions WHERE expires_at <= $1', [now]));
       return removed;
     },
-    /* ---------------------------------------------------------- attempts */
 
     attemptsForUser: (userId) => attemptsByUser.get(userId) ?? [],
 
@@ -217,8 +193,6 @@ export async function openPostgresStore() {
       return removed;
     },
 
-    /* ---------------------------------------------------------- profiles */
-
     profileForUser: (userId) => profiles.get(userId) ?? null,
 
     async saveProfile(userId, profile) {
@@ -233,11 +207,6 @@ export async function openPostgresStore() {
       return profile;
     },
 
-    /**
-     * Serialized read-modify-write for one account's profile (audit A19). Same contract as
-     * the JSON store: `mutate(current)` gets the freshest profile inside a per-user lock and
-     * returns the next profile to persist (undefined = leave unchanged).
-     */
     updateProfile(userId, mutate) {
       return withProfileLock(userId, async () => {
         const current = profiles.get(userId) ?? null;
@@ -254,7 +223,6 @@ export async function openPostgresStore() {
         return next;
       });
     },
-    /* ------------------------------------------------------------ saved papers */
 
     papersForUser: (userId) => papersByUser.get(userId) ?? [],
 
@@ -301,7 +269,6 @@ export async function openPostgresStore() {
       await enqueue(() => db.query('DELETE FROM papers WHERE user_id = $1', [userId]));
       return removed;
     },
-    /* -------------------------------------------------- learning interactions */
 
     interactionCount: () => interactions.length,
 
@@ -314,7 +281,6 @@ export async function openPostgresStore() {
       await enqueue(async () => {
         await db.query('INSERT INTO interactions (data) VALUES ($1::jsonb)', [jsonb(event)]);
         if (dropped > 0) {
-          // Trim the same number of oldest rows the memory snapshot just dropped.
           await db.query(
             'DELETE FROM interactions WHERE seq IN (SELECT seq FROM interactions ORDER BY seq ASC LIMIT $1)',
             [dropped],
@@ -324,7 +290,6 @@ export async function openPostgresStore() {
       return { event, dropped };
     },
 
-    /** Waits for any in-flight write so shutdown cannot lose a queued statement. */
     drain: () => enqueue(() => {}),
   };
 }

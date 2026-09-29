@@ -1,12 +1,4 @@
 #!/usr/bin/env bash
-# Compiles src/ into plain JavaScript that plain Node can import.
-#
-# Usage:  ./scripts/compile-src.sh <work-dir>      -> writes <work-dir>/out
-#
-# The caller owns <work-dir> and is responsible for deleting it. Nothing is ever
-# written inside the project. Two scripts need this — the render harness and the
-# engine tests — so it lives in one place rather than being copied into both.
-
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
@@ -22,8 +14,6 @@ fi
 mkdir -p "$WORK"
 [ -e "$WORK/node_modules" ] || ln -s "$APP/node_modules" "$WORK/node_modules"
 
-# A standalone config rather than "extends": the real one sets noEmit, and the
-# include/paths globs in it resolve relative to the file, which now lives in /tmp.
 cat > "$WORK/tsconfig.json" <<EOF
 {
   "compilerOptions": {

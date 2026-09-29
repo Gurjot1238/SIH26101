@@ -1,16 +1,6 @@
 import dotenv from 'dotenv';
 
-dotenv.config({ path: new URL('../.env', import.meta.url) });/**
- * One-time (idempotent) importer: JSON files under server/data → PostgreSQL.
- *
- *   DATABASE_URL=postgres://user:pass@localhost:5432/nexora  node server/db/migrate.mjs
- *   # optional: pass a data dir as the first arg (defaults to server/data)
- *
- * Safe to run more than once: every row is upserted by primary key, so re-running
- * reconciles rather than duplicates. Interactions are the one exception — they have
- * no natural key, so they are imported only when the table is still empty. The whole
- * import runs in a single transaction: any failure rolls the database back untouched.
- */
+dotenv.config({ path: new URL('../.env', import.meta.url) });
 
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -49,12 +39,11 @@ async function main() {
   const jobs = (await readJson(join(docsDir, 'jobs.json'), { jobs: [] })).jobs ?? [];
   const documentIds = new Set(documents.map((d) => d.id));
 
-  const pool = await getDb(); // also applies schema.sql
+  const pool = await getDb();
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
 
-    // Parents first so foreign keys always resolve.
     for (const u of users) {
       await client.query(
         `INSERT INTO users (id, email, data) VALUES ($1, $2, $3::jsonb)
@@ -96,8 +85,6 @@ async function main() {
       );
     }
 
-    // Interactions have no natural key; only import when the table is still empty
-    // so a second run cannot duplicate the anonymised learning log.
     const existing = await client.query('SELECT count(*)::int AS count FROM interactions');
     if (existing.rows[0].count === 0) {
       for (const ev of interactions) {
@@ -112,7 +99,6 @@ async function main() {
         [d.id, d.userId, jsonb(d)],
       );
 
-      // Per-document chunk text and staged pages live in their own files.
       const chunkFile = await readJson(join(docsDir, 'docs', `${d.id}.json`), null);
       if (chunkFile && Array.isArray(chunkFile.chunks)) {
         await client.query(
@@ -132,8 +118,6 @@ async function main() {
     }
 
     for (const j of jobs) {
-      // Keep the original documentId inside data, but null the FK column if the parent
-      // document is missing so an orphan job cannot abort the whole import.
       const docId = documentIds.has(j.documentId) ? j.documentId : null;
       await client.query(
         `INSERT INTO jobs (id, user_id, document_id, data) VALUES ($1, $2, $3, $4::jsonb)
@@ -151,7 +135,6 @@ async function main() {
     client.release();
   }
 
-  // Report what now lives in each table so the import is self-verifying.
   const tables = ['users', 'sessions', 'attempts', 'profiles', 'papers',
     'interactions', 'documents', 'document_chunks', 'document_pages', 'jobs'];
   console.log('\nImported. Row counts now in PostgreSQL:');

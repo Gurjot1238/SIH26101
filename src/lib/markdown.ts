@@ -1,26 +1,3 @@
-/**
- * A small, dependency-free Markdown parser for lesson content.
- *
- * The dataset ships 700+ real Markdown lessons (OpenStax, MIT OCW and the like). To read
- * one *inside* the app — which is what lets us tell when a learner has scrolled through
- * it — the Markdown has to become elements this app renders itself. There is no Markdown
- * library on the client (the whole stack is deliberately zero-runtime-dependency), so this
- * file is it.
- *
- * It parses to a *block tree*, not to an HTML string. That is the important choice: the
- * React reader turns these nodes into real elements, so nothing is ever fed to
- * `dangerouslySetInnerHTML` and a malformed lesson can produce a wrong-looking heading but
- * never injected markup. Being a pure function of a string, it is also testable in plain
- * Node with no browser — see scripts/markdown-test.mjs.
- *
- * It is intentionally a pragmatic subset, matched to what the lessons actually use:
- * ATX headings, blockquotes, fenced and indented code, ordered/unordered lists,
- * horizontal rules, images (kept as a node the reader shows as a caption, because the
- * dataset's image URLs are dead CDN links), and paragraphs — with inline bold, italic,
- * inline code and links inside all of them. Anything it does not recognise degrades to a
- * paragraph of text rather than being dropped, so no lesson ever renders blank.
- */
-
 export type InlineNode =
   | { type: 'text'; value: string }
   | { type: 'strong'; children: InlineNode[] }
@@ -37,16 +14,6 @@ export type Block =
   | { type: 'list'; ordered: boolean; items: InlineNode[][] }
   | { type: 'hr' };
 
-/* --------------------------------------------------------------- inline */
-
-/**
- * Parse the inline span of one line/paragraph: bold, italic, inline code, links, images.
- *
- * A single left-to-right scan. `**`/`__` is strong, `*`/`_` is emphasis, backticks are
- * literal code (no inner parsing), `[text](href)` is a link, `![alt](src)` an image.
- * Unmatched markers are treated as plain text, so a stray asterisk never eats the rest of
- * a paragraph.
- */
 export function parseInline(input: string): InlineNode[] {
   const nodes: InlineNode[] = [];
   let text = '';
@@ -59,7 +26,6 @@ export function parseInline(input: string): InlineNode[] {
     const ch = input[i];
     const rest = input.slice(i);
 
-    // Inline code: literal until the next backtick.
     if (ch === '`') {
       const end = input.indexOf('`', i + 1);
       if (end > i) {
@@ -70,7 +36,6 @@ export function parseInline(input: string): InlineNode[] {
       }
     }
 
-    // Image: ![alt](src) — matched before link because it starts with '!'.
     if (ch === '!' && input[i + 1] === '[') {
       const m = /^!\[([^\]]*)\]\(([^)]*)\)/.exec(rest);
       if (m) {
@@ -81,7 +46,6 @@ export function parseInline(input: string): InlineNode[] {
       }
     }
 
-    // Link: [text](href). Angle brackets in the href (the dataset uses them) are kept.
     if (ch === '[') {
       const m = /^\[([^\]]*)\]\(<?([^)>]*)>?\)/.exec(rest);
       if (m) {
@@ -92,7 +56,6 @@ export function parseInline(input: string): InlineNode[] {
       }
     }
 
-    // Strong: ** or __ (two chars), then the matching close.
     if ((rest.startsWith('**') || rest.startsWith('__'))) {
       const marker = rest.slice(0, 2);
       const end = input.indexOf(marker, i + 2);
@@ -104,7 +67,6 @@ export function parseInline(input: string): InlineNode[] {
       }
     }
 
-    // Emphasis: single * or _ with a matching close on the same line.
     if (ch === '*' || ch === '_') {
       const end = input.indexOf(ch, i + 1);
       if (end > i) {
@@ -122,15 +84,12 @@ export function parseInline(input: string): InlineNode[] {
   return nodes;
 }
 
-/* ---------------------------------------------------------------- blocks */
-
 const HR = /^ {0,3}([-*_])(?: *\1){2,} *$/;
 const ATX = /^(#{1,6})\s+(.*?)\s*#*\s*$/;
 const UL = /^ {0,3}[-*+]\s+(.*)$/;
 const OL = /^ {0,3}\d+[.)]\s+(.*)$/;
 const FENCE = /^ {0,3}(```|~~~)/;
 
-/** Split into blocks and parse each. Blank lines separate paragraphs and end lists. */
 export function parseMarkdown(input: string): Block[] {
   const lines = String(input ?? '').replace(/\r\n?/g, '\n').split('\n');
   const blocks: Block[] = [];
@@ -146,7 +105,6 @@ export function parseMarkdown(input: string): Block[] {
 
     if (line.trim() === '') { i += 1; continue; }
 
-    // Fenced code: everything until the closing fence, verbatim.
     const fence = FENCE.exec(line);
     if (fence) {
       const marker = fence[1];
@@ -156,15 +114,13 @@ export function parseMarkdown(input: string): Block[] {
         body.push(lines[i]);
         i += 1;
       }
-      i += 1; // consume the closing fence (or run off the end harmlessly)
+      i += 1;
       blocks.push({ type: 'code', value: body.join('\n') });
       continue;
     }
 
-    // Horizontal rule.
     if (HR.test(line)) { blocks.push({ type: 'hr' }); i += 1; continue; }
 
-    // Heading.
     const atx = ATX.exec(line);
     if (atx) {
       blocks.push({ type: 'heading', level: atx[1].length, children: parseInline(atx[2]) });
@@ -172,7 +128,6 @@ export function parseMarkdown(input: string): Block[] {
       continue;
     }
 
-    // Blockquote: consecutive `>` lines, joined.
     if (/^ {0,3}>/.test(line)) {
       const quote: string[] = [];
       while (i < lines.length && /^ {0,3}>/.test(lines[i])) {
@@ -183,7 +138,6 @@ export function parseMarkdown(input: string): Block[] {
       continue;
     }
 
-    // List: a run of like-marker items. A blank line or a non-item ends it.
     if (UL.test(line) || OL.test(line)) {
       const ordered = OL.test(line);
       const items: InlineNode[][] = [];
@@ -197,7 +151,6 @@ export function parseMarkdown(input: string): Block[] {
       continue;
     }
 
-    // Indented code block (four spaces or a tab), verbatim until it stops.
     if (/^( {4}|\t)/.test(line)) {
       const body: string[] = [];
       while (i < lines.length && (/^( {4}|\t)/.test(lines[i]) || lines[i].trim() === '')) {
@@ -209,7 +162,6 @@ export function parseMarkdown(input: string): Block[] {
       continue;
     }
 
-    // Otherwise: a paragraph, gathering lines until a blank or a block starter.
     const buffer: string[] = [];
     while (
       i < lines.length &&

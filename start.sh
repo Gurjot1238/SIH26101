@@ -24,7 +24,6 @@ done
 printf '\n  NEXORA AI Intelligence Platform — local start\n'
 printf '  --------------------------------------------\n\n'
 
-# ---------------------------------------------------------------- Node check
 if ! command -v node >/dev/null 2>&1; then
   cat <<'EOF'
   Node.js is not installed.
@@ -48,7 +47,6 @@ fi
 printf '  Node    %s\n' "$(node -v)"
 printf '  npm     v%s\n\n' "$(npm -v)"
 
-# ------------------------------------------------------------------- Install
 if [ ! -d node_modules ]; then
   printf '  Installing dependencies (first run only, takes a few minutes)...\n\n'
   npm install
@@ -57,13 +55,9 @@ else
   printf '  Dependencies already installed.\n\n'
 fi
 
-# --------------------------------------------------------------- Auth server
 AUTH_PID=""
 AUTH_LOG="server/auth-server.log"
 
-# Stop the background server whatever way this script ends. This is also why the
-# last line runs npm normally instead of exec-ing it: exec would replace this
-# shell and the trap would never fire, leaving a stray node process on the port.
 cleanup() {
   if [ -n "$AUTH_PID" ] && kill -0 "$AUTH_PID" 2>/dev/null; then
     kill "$AUTH_PID" 2>/dev/null || true
@@ -77,17 +71,12 @@ if [ "$APP_ONLY" -eq 1 ]; then
   printf '  Skipping the auth server (--app-only).\n'
   printf '  Sign in will show "server not answering"; open the demo from that screen.\n\n'
 else
-  # server/.env holds the settings. It is gitignored, so it never exists on a
-  # fresh clone — copy the documented example rather than inventing defaults.
   if [ ! -f server/.env ]; then
     cp server/.env.example server/.env
     chmod 600 server/.env
     printf '  Created server/.env from the example.\n'
   fi
 
-  # A blank SESSION_SECRET makes the server invent a new one on every boot, which
-  # signs everybody out each restart. Fill it in once, here, with a random value
-  # that never leaves this machine. An existing value is left alone.
   if grep -qE '^SESSION_SECRET=[[:space:]]*$' server/.env; then
     SECRET="$(node -e 'process.stdout.write(require("node:crypto").randomBytes(48).toString("base64url"))')"
     ENV_TMP="$(mktemp)"
@@ -128,6 +117,5 @@ else
   fi
 fi
 
-# --------------------------------------------------------------------- Start
 printf '  Starting the dev server. Press Control-C to stop everything.\n\n'
 npm run dev

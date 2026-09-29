@@ -1,45 +1,18 @@
-/**
- * The Gemini adapter: the one file that knows Google's wire format.
- *
- * Everything above it (the route, the service, the validation) speaks in plain
- * `{ text, topics, questionCount }` requests and `{ questions }` responses. This file
- * is where that turns into a `generateContent` POST and back, so swapping to another
- * provider means writing a sibling of this file and nothing else.
- *
- * The key is read from the environment at call time and never logged, never returned,
- * never put in an error message. A network failure here throws a plain Error whose
- * message is safe to surface; the route maps it to an honest user-facing string.
- *
- * Dependency-free on purpose, like the rest of the server: Node's global `fetch`
- * (Node 18+) makes the request, so there is no SDK to install and nothing native to
- * fail to compile on Apple Silicon.
- */
-
 const DEFAULT_MODEL = 'gemini-1.5-flash';
 const ENDPOINT_BASE = 'https://generativelanguage.googleapis.com/v1beta/models';
 
-/** How long to wait on the provider before giving up, so a hung API cannot hang a request. */
 const DEFAULT_TIMEOUT_MS = 30_000;
 
-/** Hard ceiling on the provider response we will buffer. A well-formed batch is a few KB of
- *  JSON; anything past this is a malfunctioning or hostile response and is refused rather than
- *  read into memory. */
 const MAX_RESPONSE_BYTES = 8 * 1024 * 1024;
 
 export const providerName = 'gemini';
 
-/** The model called when AI_MODEL is blank, so the startup banner can name it. */
 export const defaultModel = DEFAULT_MODEL;
 
-/** True when a key is present, so the route can answer "not configured" without a call. */
 export function isConfigured(env = process.env) {
   return typeof env.GEMINI_API_KEY === 'string' && env.GEMINI_API_KEY.trim() !== '';
 }
 
-/**
- * A defect in configuration or in the provider, tagged so the route can turn it into the
- * right HTTP status and a message that never contains a secret.
- */
 export class ProviderError extends Error {
   constructor(code, message) {
     super(message);
@@ -48,25 +21,11 @@ export class ProviderError extends Error {
   }
 }
 
-/**
- * Google documents model names both bare ("gemini-1.5-flash") and fully qualified
- * ("models/gemini-1.5-flash"), and the second form is what appears in most of their REST
- * examples. ENDPOINT_BASE already ends in /models, so pasting the qualified form would
- * build .../models/models/gemini-1.5-flash and 404. Stripping the prefix here — rather
- * than telling the operator off in a comment — makes both spellings work, and keeps that
- * piece of Google-specific trivia in the Google-specific file.
- */
 function modelFor(env) {
   const model = (env.AI_MODEL ?? '').trim().replace(/^models\//i, '');
   return model === '' ? DEFAULT_MODEL : model;
 }
 
-/**
- * Read a fetch Response body as text with a hard byte ceiling, aborting mid-stream once the
- * ceiling is crossed so an over-large or endless body is never fully buffered. Returns the text,
- * or `null` when the Response exposes no readable stream (the test stubs, which offer only
- * `.json()`) — the caller then falls back to `.json()`. Throws ProviderError when the cap trips.
- */
 async function readCappedText(response, maxBytes) {
   const reader = response.body && typeof response.body.getReader === 'function' ? response.body.getReader() : null;
   if (!reader) return null;
@@ -87,13 +46,6 @@ async function readCappedText(response, maxBytes) {
   return out;
 }
 
-/**
- * Ask Gemini for one batch of raw JSON text.
- *
- * Returns the model's text output as a string; parsing and validation are somebody
- * else's job (validation.mjs), because they are provider-independent and this file
- * should stay swappable. The caller passes a fully-formed prompt.
- */
 export async function generateRaw(prompt, { env = process.env, timeoutMs = DEFAULT_TIMEOUT_MS, fetchImpl } = {}) {
   const key = (env.GEMINI_API_KEY ?? '').trim();
   if (key === '') {
@@ -111,22 +63,13 @@ export async function generateRaw(prompt, { env = process.env, timeoutMs = DEFAU
   const body = {
     contents: [{ role: 'user', parts: [{ text: prompt }] }],
     generationConfig: {
-      // Low but not zero: enough variation that a repair attempt is not identical to the
-      // one that just failed, not so much that grounding drifts.
       temperature: 0.4,
       topP: 0.9,
       maxOutputTokens: 4096,
-      // Gemini honours this: it returns a bare JSON object instead of prose or a fence.
       responseMimeType: 'application/json',
     },
   };
 
-  // Gemini answers 500/502/503/504 when the model is momentarily overloaded rather
-  // than when anything is wrong with the request — it is Google's "busy, try again",
-  // and it clears on its own within a second or two. Retrying a few times with a short
-  // growing pause turns the commonest transient failure into a slight delay instead of
-  // a visible error. Auth (401/403), rate limits (429) and bad requests (400/404) are
-  // NOT transient, so they fall straight through to the handling below without a retry.
   const TRANSIENT = new Set([500, 502, 503, 504]);
   const MAX_ATTEMPTS = 3;
 
@@ -137,7 +80,6 @@ export async function generateRaw(prompt, { env = process.env, timeoutMs = DEFAU
     try {
       response = await doFetch(url, {
         method: 'POST',
-        // The key rides in a header, never in the URL, so it cannot land in an access log.
         headers: { 'content-type': 'application/json', 'x-goog-api-key': key },
         body: JSON.stringify(body),
         signal: controller.signal,
@@ -162,20 +104,15 @@ export async function generateRaw(prompt, { env = process.env, timeoutMs = DEFAU
     throw new ProviderError('rate_limited', 'The AI provider is rate limiting requests. Try again shortly.');
   }
   if (response.status === 401 || response.status === 403) {
-    // Never echo the provider's body here: it can contain the rejected key.
     throw new ProviderError('not_configured', 'The AI provider rejected the configured credentials.');
   }
   if (response.status === 503 || response.status === 500 || response.status === 502 || response.status === 504) {
-    // Still overloaded after the retries above. This is Google's capacity, not the
-    // document or the key, so say so and point at the fix (wait, or a lighter model).
     throw new ProviderError('provider_error', 'The AI model is overloaded right now (HTTP 503 from Google). This is temporary — try again in a few seconds. If it keeps happening, switch AI_MODEL to a stable version like gemini-2.0-flash.');
   }
   if (!response.ok) {
     throw new ProviderError('provider_error', `The AI provider returned an error (HTTP ${response.status}).`);
   }
 
-  // Refuse an over-large response up front when the length is declared, then read the body
-  // through a streaming cap so an undeclared (chunked) over-large body is aborted mid-flight.
   const declaredLength = Number(response.headers?.get?.('content-length') ?? Number.NaN);
   if (Number.isFinite(declaredLength) && declaredLength > MAX_RESPONSE_BYTES) {
     throw new ProviderError('provider_error', 'The AI provider returned a response that was too large.');
@@ -209,7 +146,6 @@ export async function generateRaw(prompt, { env = process.env, timeoutMs = DEFAU
   return text;
 }
 
-/** Pull the concatenated text parts out of a generateContent response. */
 function extractText(payload) {
   const candidates = Array.isArray(payload?.candidates) ? payload.candidates : [];
   const parts = candidates[0]?.content?.parts;

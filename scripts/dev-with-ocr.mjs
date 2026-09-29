@@ -1,33 +1,4 @@
 #!/usr/bin/env node
-/**
- * Nexora AI — one-command local dev launcher (Vite web + local OCR service).
- *
- * The spec asks for a SINGLE dev command that brings up the browser dev server and the
- * local PaddleOCR HTTP service together, waits until OCR reports healthy, and shuts both
- * down cleanly on Ctrl-C — without pulling in `concurrently` or any other dependency. This
- * is that launcher, written with Node built-ins only.
- *
- * What it does
- *   * Loads server/.env (same "never override an already-set var" rule as the API server)
- *     so an operator's OCR_PORT / OCR_PYTHON / OCR_ENABLED overrides are honoured here too.
- *   * Starts Vite (the web dev server) and the Python OCR service as child processes, each
- *     with its stdout/stderr prefixed ([web] / [ocr]) so one terminal stays readable.
- *   * Auto-selects the OCR interpreter: the configured venv python when it exists (the
- *     .venv-ocr the operator created), else falls back to `python3` so the command still
- *     runs in a degraded mode instead of failing outright.
- *   * Polls GET /health and prints whether OCR is genuinely available. OCR is OPTIONAL: if
- *     it never comes up, the web server keeps running and text PDFs are unaffected.
- *   * On SIGINT/SIGTERM (or if Vite exits) terminates both children and exits cleanly.
- *
- * Usage
- *   node scripts/dev-with-ocr.mjs            # web + OCR (this is `npm run dev`)
- *   node scripts/dev-with-ocr.mjs --ocr-only # just the OCR service (`npm run dev:ocr`)
- *
- * The API/auth server (node server/index.mjs, `npm run auth`) is deliberately NOT started
- * here — it is a separate long-lived process the operator already runs; folding it in would
- * clash with an existing `npm run auth` on the same port.
- */
-
 import { spawn } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { get as httpGet } from 'node:http';
@@ -40,13 +11,8 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO = join(HERE, '..');
 const OCR_ONLY = process.argv.includes('--ocr-only');
 
-/** One structured launcher line, kept distinct from the children's own [web]/[ocr] output. */
 function log(msg) { process.stdout.write(`[dev] ${msg}\n`); }
 
-/**
- * Minimal .env reader — mirrors server/index.mjs so both the API server and this launcher
- * resolve OCR_* the same way. Never overrides a variable already present in the environment.
- */
 function loadEnvFile(path) {
   if (!existsSync(path)) return false;
   for (const rawLine of readFileSync(path, 'utf8').split(/\r?\n/)) {
@@ -67,14 +33,9 @@ function loadEnvFile(path) {
 loadEnvFile(join(REPO, 'server', '.env'));
 const ocr = loadConfig(process.env).ocr;
 
-// Children we own. Both are stopped with SIGTERM on shutdown: the OS closes each listening
-// socket promptly, so the dev ports free up immediately on Ctrl-C. (SIGINT to the Python
-// http.server also unwinds via KeyboardInterrupt, but its thread teardown can leave the port
-// held for a couple of seconds — SIGTERM is the reliable, instant choice for a dev launcher.)
 const children = [];
 let shuttingDown = false;
 
-/** Line-buffer a child stream and re-emit each line under a fixed tag, so logs stay clean. */
 function pipeTagged(stream, tag, dest) {
   let buffered = '';
   stream.setEncoding('utf8');
@@ -98,22 +59,15 @@ function startChild(tag, command, args, extraEnv = {}) {
   return child;
 }
 
-/**
- * Choose the Python interpreter for the OCR service. The configured/overridden path wins
- * when it exists (the operator's .venv-ocr); a bare command name is left for PATH lookup;
- * a missing configured path falls back to python3 so the launcher still runs (the service
- * then honestly reports OCR unavailable rather than the command failing).
- */
 function resolvePython() {
   const configured = (process.env.OCR_PYTHON ?? '').trim() || ocr.python;
-  if (!configured.includes('/')) return configured;               // e.g. "python3" → PATH
+  if (!configured.includes('/')) return configured;
   const abs = isAbsolute(configured) ? configured : join(REPO, configured);
   if (existsSync(abs)) return abs;
   log(`configured OCR python "${configured}" not found — falling back to python3 (OCR may be unavailable).`);
   return 'python3';
 }
 
-/** One /health probe. Resolves to the parsed body, or null on any failure/timeout. */
 function ocrHealthOnce() {
   return new Promise((resolve) => {
     const req = httpGet({ host: ocr.host, port: ocr.port, path: '/health', timeout: 2000 }, (res) => {
@@ -144,7 +98,6 @@ function shutdown(code = 0) {
   for (const { child, signal } of children) {
     try { child.kill(signal); } catch { /* already gone */ }
   }
-  // Give the children a moment to unwind, then leave regardless.
   setTimeout(() => process.exit(code), 600);
 }
 
@@ -178,9 +131,6 @@ function startOcr() {
 }
 
 function startWeb() {
-  // Default is Vite. DEV_WEB_CMD/DEV_WEB_ARGS let an operator (or the startup test, which
-  // cannot run Vite's platform-native binaries in CI) substitute the web command without
-  // touching this file. When unset, behaviour is exactly `vite`.
   const override = (process.env.DEV_WEB_CMD ?? '').trim();
   let command;
   let args;
@@ -212,7 +162,7 @@ async function main() {
     const health = await waitForOcr();
     if (health) log(`OCR ready — engine=${health.engine}, available=${health.available}${health.paddleocrVersion ? `, paddleocr=${health.paddleocrVersion}` : ''}`);
     else log('OCR service did not report healthy within the timeout (it may still be starting).');
-    return; // the child keeps the process alive until Ctrl-C
+    return;
   }
 
   startWeb();
@@ -227,5 +177,3 @@ async function main() {
 }
 
 main().catch((err) => { log(`launcher error: ${err.message}`); shutdown(1); });
-
-

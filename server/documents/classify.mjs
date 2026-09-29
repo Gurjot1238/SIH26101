@@ -1,23 +1,3 @@
-/**
- * The document router: what IS this file, and how sure are we?
- *
- * This is a deterministic, zero-dependency classifier. It does not call a model — it reads
- * the signals the spec lists (filename, keywords, page count, table-shaped layout, title
- * lines) and scores each candidate type. It complements the existing AI classifier in
- * server/ai/classify.mjs: this one is instant, free, and always available, so it can run on
- * every upload to decide routing before any expensive call; the AI classifier can still be
- * consulted for a second opinion on genuinely ambiguous documents.
- *
- * The single most important job here is keeping a marksheet OUT of the learning pipeline.
- * A grade card fed to MCQ generation produces nonsense questions about roll numbers, so
- * MARKSHEET detection is deliberately sensitive: the table shape (Subject | Credits | Marks
- * | Grade) plus the vocabulary of results (SGPA, CGPA, semester, grade point) is a strong,
- * hard-to-fake fingerprint.
- *
- * Confidence is real, not decorative: a low score returns UNKNOWN with the ranked
- * candidates, so the caller can ask the user "what is this?" rather than guess wrong.
- */
-
 export const DOC_TYPES = Object.freeze([
   'TEXTBOOK',
   'LEARNING_MATERIAL',
@@ -30,7 +10,6 @@ export const DOC_TYPES = Object.freeze([
   'UNKNOWN',
 ]);
 
-/** Keyword fingerprints per type. Weight reflects how strongly a term implies the type. */
 const KEYWORDS = {
   MARKSHEET: [
     ['sgpa', 3], ['cgpa', 3], ['grade point', 3], ['grade card', 4], ['marksheet', 5],
@@ -68,7 +47,6 @@ const KEYWORDS = {
   ],
 };
 
-/** Filename hints — cheaper and often decisive, but never used alone (spec §2). */
 const FILENAME_HINTS = [
   [/marksheet|mark[-_ ]?sheet|grade[-_ ]?card|result|transcript|sgpa|cgpa|semester[-_ ]?\d/i, 'MARKSHEET', 3],
   [/certificate|certif/i, 'CERTIFICATE', 3],
@@ -91,11 +69,6 @@ function countOccurrences(haystack, needle) {
   return count;
 }
 
-/**
- * Detect table-shaped result rows: lines carrying several column separators AND a marks/
- * grade vocabulary. Real grade cards line subjects up in columns, which plain prose never
- * does, so this is the layout signal that separates a marksheet from an essay ABOUT grades.
- */
 function tableSignal(text) {
   const lines = text.split(/\r?\n/);
   let gridRows = 0;
@@ -104,22 +77,11 @@ function tableSignal(text) {
   for (const line of lines) {
     const seps = (line.match(/[|\t]/g) ?? []).length + (line.match(/\s{3,}/g) ?? []).length;
     if (headerRe.test(line)) headerHit = true;
-    // A row with 2+ column gaps and at least one number looks tabular.
     if (seps >= 2 && /\d/.test(line)) gridRows += 1;
   }
   return { gridRows, headerHit };
 }
 
-/**
- * Classify a document from its extracted text and metadata.
- *
- *   text        extracted text (may be a sample for very large docs — the head is enough)
- *   filename    original filename (a hint, never the sole basis)
- *   pageCount   best page estimate
- *   charsPerPage  extractable chars / page, to flag scanned docs
- *
- * Returns { documentType, confidence (0-1), isScanned, scores, candidates, signals }.
- */
 export function classifyDocument({ text = '', filename = '', pageCount = 1, charsPerPage = null } = {}) {
   const lower = String(text).toLowerCase();
   const name = String(filename).toLowerCase();
@@ -127,7 +89,6 @@ export function classifyDocument({ text = '', filename = '', pageCount = 1, char
 
   const scores = Object.fromEntries(DOC_TYPES.filter((t) => t !== 'UNKNOWN').map((t) => [t, 0]));
 
-  // Keyword evidence.
   for (const [type, terms] of Object.entries(KEYWORDS)) {
     for (const [term, weight] of terms) {
       const hits = countOccurrences(lower, term);
@@ -135,34 +96,26 @@ export function classifyDocument({ text = '', filename = '', pageCount = 1, char
     }
   }
 
-  // Filename evidence.
   for (const [re, type, weight] of FILENAME_HINTS) {
     if (re.test(name)) scores[type] += weight;
   }
 
-  // Layout evidence — the marksheet's strongest tell.
   if (table.headerHit) scores.MARKSHEET += 5;
   if (table.gridRows >= 3) scores.MARKSHEET += Math.min(table.gridRows, 8);
   if (table.gridRows >= 3 && table.headerHit) scores.QUESTION_PAPER = Math.max(0, scores.QUESTION_PAPER - 2);
 
-  // Length evidence: a long, multi-chapter document is almost certainly a textbook, not a
-  // one-page result. This keeps a passing mention of "grade" in a 900-page book from
-  // tipping it into MARKSHEET.
   if (pageCount >= 40) {
     scores.TEXTBOOK += Math.min(Math.floor(pageCount / 40), 8);
     scores.MARKSHEET = Math.max(0, scores.MARKSHEET - 4);
     scores.CERTIFICATE = Math.max(0, scores.CERTIFICATE - 3);
   }
   if (pageCount <= 3) {
-    // Short docs are much more likely to be results/certificates/question papers.
     scores.MARKSHEET += 1;
     scores.CERTIFICATE += 1;
   }
 
-  // Scanned detection: a page-bearing PDF that yielded almost no text.
   const isScanned = charsPerPage !== null && pageCount >= 1 && charsPerPage < 60 && text.trim().length < 200;
 
-  // Rank.
   const ranked = Object.entries(scores)
     .map(([type, score]) => ({ type, score }))
     .sort((a, b) => b.score - a.score);
@@ -171,8 +124,6 @@ export function classifyDocument({ text = '', filename = '', pageCount = 1, char
   const second = ranked[1] ?? { score: 0 };
   const totalSignal = ranked.reduce((sum, r) => sum + r.score, 0) || 1;
 
-  // Confidence blends the winner's share of all signal with its margin over the runner-up,
-  // so "lots of evidence, clearly ahead" scores high and "barely edged it out" scores low.
   const share = top.score / totalSignal;
   const margin = (top.score - second.score) / (top.score || 1);
   let confidence = Math.max(0, Math.min(1, 0.5 * share + 0.5 * margin));
@@ -186,13 +137,11 @@ export function classifyDocument({ text = '', filename = '', pageCount = 1, char
     confidence: Number(confidence.toFixed(2)),
     isScanned,
     scores,
-    // Ranked non-zero candidates, so a low-confidence caller can offer a choice.
     candidates: ranked.filter((r) => r.score > 0).slice(0, 4).map((r) => r.type),
     signals: { tableRows: table.gridRows, tableHeader: table.headerHit, pageCount },
   };
 }
 
-/** A learning document is one we should build questions/material from. */
 export function isLearningType(documentType) {
   return documentType === 'TEXTBOOK'
     || documentType === 'LEARNING_MATERIAL'

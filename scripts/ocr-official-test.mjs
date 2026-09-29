@@ -1,31 +1,3 @@
-/**
- * Hosted PaddleOCR Official API provider — integration test (stub async-jobs server; no
- * network egress, no Python, no PaddlePaddle).
- *
- * This proves the production OCR path (OCR_PROVIDER=official_api) end to end WITHOUT calling
- * the real cloud service. It stands up a tiny Node HTTP server that speaks the SAME async-jobs
- * contract the hosted API does — POST /api/v2/ocr/jobs → { data:{ jobId } }; GET the job →
- * pending → running → done with data.resultUrl.jsonUrl; GET that URL → JSON Lines whose
- * result.layoutParsingResults[].markdown.text carries the recognised text — then drives the
- * REAL adapter (server/documents/ocr.mjs → server/documents/ocr-official.mjs) and the REAL
- * document pipeline against it.
- *
- * Covers the spec's OCR test matrix for the cloud provider:
- *   S  Success: submit → poll (pending→running→done) → fetch JSONL → normalised
- *      { ok, text, confidence, lineCount, engine:'official_api' } — the same shape the local
- *      engine returns, so nothing downstream can tell which provider read the page.
- *   Sec1 The bearer token is sent ONLY to the API host, exactly once per request, and NEVER
- *        to the (different, untrusted) result URL.
- *   Sec2 The token never appears in any ocrImage result, in ocrHealth, or in a failure message.
- *   Sec3 Missing token → ocr_not_configured with ZERO network calls (never a blind call).
- *   F  Graceful, structured, non-throwing failure for: auth rejected (401), rate limited (429),
- *      poll timeout, malformed envelope, invalid JSONL, empty result, and a failed job.
- *   E2E An OCR-only topic whose text arrives THROUGH the hosted adapter is chunked, indexed,
- *       retrieved, and used to ground exact-count MCQs stamped with the real OCR page range.
- *
- *   node scripts/ocr-official-test.mjs
- */
-
 import { createServer } from 'node:http';
 import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -43,7 +15,6 @@ import { generateBackfill } from '../server/ai/backfill.mjs';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const TOKEN = 'TEST-SECRET-TOKEN-do-not-leak-1234567890';
 
-// ---- observed security state (asserted at the end) --------------------------------
 const seen = {
   apiRequests: 0,          // requests to the jobs API host
   resultRequests: 0,       // requests to the result URL
@@ -52,7 +23,7 @@ const seen = {
   resultAuthLeaked: false, // the token was sent to the result URL (must never happen)
 };
 
-const jobs = new Map(); // jobId -> { control, polls }
+const jobs = new Map();
 let jobSeq = 0;
 
 function sendJson(res, status, obj) {
@@ -61,17 +32,10 @@ function sendJson(res, status, obj) {
   res.end(buf);
 }
 
-/**
- * The stub hosted API. Behaviour for each job is chosen by a small control object the test
- * encodes into the base64 `file` it submits, so tests never share mutable server state:
- *   { mode: 'success'|'auth_fail'|'rate_limit'|'job_failed'|'poll_malformed'
- *          |'result_malformed'|'empty'|'timeout', text?: string }
- */
 const server = createServer((req, res) => {
   const url = new URL(req.url, 'http://127.0.0.1');
   const auth = req.headers['authorization'];
 
-  // Result URL: a DIFFERENT, untrusted host in production. The adapter must send NO auth here.
   if (req.method === 'GET' && url.pathname.startsWith('/result/')) {
     seen.resultRequests += 1;
     if (auth !== undefined) seen.resultAuthLeaked = true;
@@ -87,12 +51,10 @@ const server = createServer((req, res) => {
     return;
   }
 
-  // Everything else is the jobs API host: the bearer token MUST be present and correct.
   seen.apiRequests += 1;
   if (auth === undefined) seen.apiAuthMissing = true;
   else if (auth !== `bearer ${TOKEN}`) seen.apiAuthWrong = true;
 
-  // Submit: POST /api/v2/ocr/jobs  → decode the control object from `file`, allocate a job.
   if (req.method === 'POST' && url.pathname === '/api/v2/ocr/jobs') {
     const chunks = [];
     req.on('data', (c) => chunks.push(c));
@@ -112,7 +74,6 @@ const server = createServer((req, res) => {
     return;
   }
 
-  // Poll: GET /api/v2/ocr/jobs/{jobId}  → pending → running → done (or a failure per mode).
   if (req.method === 'GET' && url.pathname.startsWith('/api/v2/ocr/jobs/')) {
     const id = decodeURIComponent(url.pathname.slice('/api/v2/ocr/jobs/'.length));
     const job = jobs.get(id);
@@ -132,7 +93,6 @@ const server = createServer((req, res) => {
   sendJson(res, 404, { code: 404, msg: 'not found' });
 });
 
-// ---- harness ----------------------------------------------------------------------
 const PORT = Number(process.env.OCR_OFFICIAL_TEST_PORT || 8231);
 const BASE = `http://127.0.0.1:${PORT}`;
 const API_URL = `${BASE}/api/v2/ocr/jobs`;
@@ -145,7 +105,6 @@ async function check(name, fn) {
   else { passed += 1; console.log(`  ok    ${name}`); }
 }
 
-/** A config for the hosted provider, pointed at our stub, with fast polling for the test. */
 function officialCfg(overrides = {}) {
   return loadConfig({
     OCR_ENABLED: 'true',
@@ -160,7 +119,6 @@ function officialCfg(overrides = {}) {
   });
 }
 
-/** Encode a stub-control object into the base64 `file` the adapter will submit. */
 const controlImage = (control) => Buffer.from(JSON.stringify(control)).toString('base64');
 
 function listen() {
@@ -281,12 +239,6 @@ async function main() {
 
   console.log('\n  -- SSRF  the result URL is vetted before it is ever fetched ---\n');
 
-  // Production mode is activated by pointing the jobs API at a PUBLIC https host. The stub
-  // config uses a loopback API host (dev/self-hosted), which is the only case allowed to
-  // trust a loopback result URL — so these public-host checks exercise the strict path
-  // without weakening the loopback-based E2E below. None of these reach the network: literal
-  // IPs are judged directly, the allow-list mismatch is rejected before DNS, and `localhost`
-  // resolves from the hosts file (no egress).
   const PUBLIC_API = 'https://paddleocr.aistudio-app.com/api/v2/ocr/jobs';
   const strictCfg = (o = {}) => officialCfg({ PADDLEOCR_API_URL: PUBLIC_API, ...o });
 
@@ -328,15 +280,12 @@ async function main() {
   });
 
   await check('a public (non-private) allow-listed result host passes the guard', async () => {
-    // 203.0.113.10 is TEST-NET-3 (public, reserved for docs) — exercises the allow path with
-    // no DNS lookup, so it is deterministic offline.
     const cfg = strictCfg({ PADDLEOCR_RESULT_HOST_ALLOWLIST: '203.0.113.10' });
     const good = await assertResultUrlAllowed('https://203.0.113.10/r', cfg);
     if (!good.ok) return `a public allow-listed address was wrongly rejected: ${good.code}`;
   });
 
   await check('a loopback-configured deployment still trusts its own loopback result URL', async () => {
-    // The stub/dev config has a loopback API host; the E2E path below depends on this exception.
     const g = await assertResultUrlAllowed(`http://127.0.0.1:${PORT}/result/x`, officialCfg());
     if (!g.ok) return `the dev loopback result URL was rejected: ${g.code}`;
   });
@@ -352,9 +301,6 @@ async function main() {
 
   console.log('\n  -- E2E  hosted OCR text becomes searchable + grounds MCQs ------\n');
 
-  // A chapter whose distinctive topic exists ONLY on pages that are read by the HOSTED adapter.
-  // Each page's text is round-tripped through the real official provider (submit→poll→JSONL),
-  // then fed to the pipeline exactly as the browser seam feeds recognised text: source:'ocr'.
   const NN = {
     5: 'Chapter 5 Neural Networks\n\n5.1 Backpropagation\n\n'
       + 'Backpropagation trains a neural network by propagating the output error backward through every layer. '
@@ -396,7 +342,6 @@ async function main() {
     const filler = 'This page covers general administrative background about the course and its schedule. ';
     for (let p = 1; p <= 4; p += 1) pages.push({ page: p, text: filler.repeat(8), source: 'native_text' });
     for (const p of [5, 6, 7, 8]) {
-      // Round-trip page p's image through the REAL official provider.
       // eslint-disable-next-line no-await-in-loop
       const r = await ocrImage({ imageBase64: controlImage({ mode: 'success', text: NN[p] }), pageNumber: p, cfg: officialCfg(), env: process.env });
       if (!r.ok) return `hosted OCR failed for page ${p}: ${r.code}`;
@@ -461,5 +406,3 @@ main().then(() => {
   console.error('  harness error:', e);
   process.exit(1);
 });
-
-

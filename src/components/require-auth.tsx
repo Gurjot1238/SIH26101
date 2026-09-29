@@ -1,31 +1,3 @@
-/**
- * The login gate. Wraps every page that is not /login or /signup.
- *
- * The interesting case is not "signed out" — it is "the auth server is not
- * running". Those two look the same to a boolean, and treating them the same
- * gives you a dead end: the browser bounces you to /login, you type a correct
- * password, and it fails again with no explanation of why.
- *
- * So this component asks the session for four states and answers each one
- * differently. When the server cannot be reached it says so, prints the command
- * that starts it, offers a retry, and — in development only — offers to open the
- * demo anyway.
- *
- * Why offering that bypass is not a hole: nothing behind this gate is
- * server-side data. Every page here renders local demonstration data that ships
- * in the bundle, so anyone with the files already has it. The gate is here so
- * the product behaves like a real product, not to protect a secret. The things
- * that do need protecting — the account records and the session cookie — are
- * enforced on the server in server/index.mjs, where a browser cannot argue with
- * them. Even so, the bypass button is shown only in a dev build (or when the
- * gate is switched off): a production build with the gate on never offers it, so
- * a shipped site cannot be walked past while its auth server is down. If real
- * per-user data is ever served from an API, drop the bypass entirely and rely on
- * the server rejecting the request instead.
- *
- * Turn the gate off entirely with VITE_REQUIRE_AUTH=false in .env.local.
- */
-
 import { type ReactNode, useState } from 'react';
 import { Redirect } from 'wouter';
 import { PlugZap, RefreshCw } from 'lucide-react';
@@ -33,13 +5,10 @@ import { ActionButton, Card, LoadingBlock } from '@/components/ui';
 import { useSession } from '@/components/session-provider';
 import { API_URL } from '@/lib/auth';
 
-/** Default is on. Only the exact string "false" turns it off. */
 export const AUTH_REQUIRED = String(import.meta.env.VITE_REQUIRE_AUTH ?? 'true').toLowerCase() !== 'false';
 
 export function RequireAuth({ children, fallback = '/login' }: { children: ReactNode; fallback?: string }) {
   const { status, problem, refresh } = useSession();
-  // Set only by the button on the unreachable panel, and only for this page
-  // load — nothing is written to storage, so a reload asks again.
   const [openedAnyway, setOpenedAnyway] = useState(false);
 
   if (!AUTH_REQUIRED || openedAnyway) return <>{children}</>;

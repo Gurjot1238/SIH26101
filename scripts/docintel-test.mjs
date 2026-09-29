@@ -1,20 +1,3 @@
-/**
- * Smart Document Intelligence — backend tests (no key, no model, no network).
- *
- * Proves the core invariants the spec cares about most:
- *   - a document's processing mode is chosen automatically from page count + type, and the
- *     thresholds are configurable (not hard-coded around 800);
- *   - the router tells a textbook from a marksheet from a question paper, with real
- *     confidence, and marksheets never look like learning material;
- *   - a 1-page document is a valid source, never rejected for being short;
- *   - chunking preserves page ranges and chapter/section context;
- *   - a topic query over a large book retrieves ONLY the relevant pages, bounded to a hard
- *     character/chunk budget — i.e. the whole book is never sent to the AI;
- *   - a marksheet parses into rows with honest percentages and competency gaps.
- *
- *   node scripts/docintel-test.mjs
- */
-
 import { loadConfig, modeFor, isLargeMode, MODES } from '../server/documents/config.mjs';
 import { classifyDocument, isLearningType } from '../server/documents/classify.mjs';
 import { chunkPages, pagesFromText } from '../server/documents/chunk.mjs';
@@ -30,7 +13,6 @@ function check(name, fn) {
   else { passed += 1; console.log(`  ok    ${name}`); }
 }
 
-/* ------------------------------------------------------------------ §4/§32 modes */
 console.log('\n  -- processing mode is automatic and configurable --------------\n');
 
 check('1 page → SMALL (fast path, not the heavy pipeline)', () => {
@@ -56,7 +38,6 @@ check('thresholds are configurable (not hard-coded to 800)', () => {
   return m === MODES.DEEP ? null : `got ${m} with deepMin=300`;
 });
 
-/* ------------------------------------------------------------------ §2/§15/§19 router */
 console.log('\n  -- the router: what is this file, and how sure? ---------------\n');
 
 const MARKSHEET_TEXT = `
@@ -111,7 +92,6 @@ check('an ambiguous document yields low confidence + candidates, not a wrong gue
   if (r.documentType !== 'UNKNOWN') return `expected UNKNOWN, got ${r.documentType} (conf ${r.confidence})`;
 });
 
-/* ------------------------------------------------------------------ §3 small docs */
 console.log('\n  -- a 1-page document is a valid source, never rejected --------\n');
 
 check('a rich 1-page note chunks into at least one usable chunk', () => {
@@ -125,7 +105,6 @@ and red wavelengths. The overall equation shows six molecules of carbon dioxide.
   if (chunks[0].text.length < 50) return 'the chunk lost the page content';
 });
 
-/* ------------------------------------------------------------------ §7 chunking */
 console.log('\n  -- page-aware chunking preserves provenance -------------------\n');
 
 check('chunks carry page ranges and chapter/section context', () => {
@@ -143,11 +122,8 @@ check('chunks carry page ranges and chapter/section context', () => {
   if (!spans311) return 'page 311 is not covered by any chunk';
 });
 
-/* ------------------------------------------------------------------ §8/§9/§24 retrieve */
 console.log('\n  -- topic retrieval sends ONLY relevant pages, bounded ---------\n');
 
-// Build a synthetic 900-page "book": each topic occupies a distinct page range, with lots
-// of unrelated filler pages between them.
 function syntheticBook() {
   const pages = [];
   const filler = 'This section discusses general background material and administrative notes about the course. ';
@@ -193,7 +169,6 @@ check('retrieved context is BOUNDED — never the whole book', () => {
   const r = retrieveContext(bookIndex, 'normalization');
   if (r.usedChunks.length > cfg.retrieval.maxChunks) return `used ${r.usedChunks.length} > cap ${cfg.retrieval.maxChunks}`;
   if (r.contextText.length > cfg.retrieval.maxContextChars) return `context ${r.contextText.length} > cap ${cfg.retrieval.maxContextChars}`;
-  // The real point: the AI sees a tiny fraction of a 900-page book.
   if (r.contextText.length > fullBookChars * 0.2) return 'context was not meaningfully smaller than the whole book';
 });
 
@@ -203,7 +178,6 @@ check('retrieval returns page ranges for a transparent preview', () => {
   if (!r.pageRanges.every((pr) => Number.isFinite(pr.start) && Number.isFinite(pr.end))) return 'malformed page range';
 });
 
-/* ------------------------------------------------------------------ §17 marksheet analysis */
 console.log('\n  -- marksheet → honest performance + competency gaps -----------\n');
 
 check('marksheet rows parse with computed percentages', () => {
@@ -219,7 +193,6 @@ check('a weak subject becomes a competency gap; a strong one does not', () => {
   const gapDS = analysis.competencyGaps.find((g) => /data structures/i.test(g.subject));
   if (!gapDS) return 'Data Structures (48%) was not flagged as a gap';
   const strongDB = analysis.strongAreas.some((s) => /database/i.test(s.subject));
-  // Database at 78% is 'average' by the shared scale, not strong — assert it is NOT a gap.
   const dbGap = analysis.competencyGaps.some((g) => /database/i.test(g.subject));
   if (dbGap) return 'Database (78%) was wrongly flagged as a gap';
 });

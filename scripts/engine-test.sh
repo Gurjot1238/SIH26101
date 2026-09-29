@@ -1,12 +1,4 @@
 #!/usr/bin/env bash
-# Runs the question engine, the scorer and the recommender for real and asserts on
-# what they return.
-#
-# Usage:  npm run engine:test        (or ./scripts/engine-test.sh)
-#
-# Nothing is written inside the project: src/ is compiled to a temporary directory
-# that is deleted on exit.
-
 set -euo pipefail
 
 cd "$(dirname "$0")/.."

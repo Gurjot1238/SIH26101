@@ -1,18 +1,3 @@
-/**
- * Smart Document Intelligence — end-to-end backend pipeline test (no key, no network).
- *
- * Exercises the real orchestrator against a temporary store and the mock AI provider:
- *   - ingest a 900-page synthetic book → classified, chunked, job runs to completion;
- *   - search a topic → bounded relevant context with real page ranges;
- *   - generate MCQs from ONLY that context → exact count, each question stamped with its
- *     real document id + page range (never an invented page);
- *   - one-page material generation is grounded in the retrieved context;
- *   - ownership isolation: another user cannot see or search the document;
- *   - job retry/resume: a failing chunk fails the job, resume reprocesses ONLY that chunk.
- *
- *   node scripts/docpipeline-test.mjs
- */
-
 import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -87,7 +72,6 @@ await check('retrieved context is far smaller than the whole book', async () => 
 console.log('\n  -- generate MCQs from ONLY the retrieved context --------------\n');
 
 await check('MCQs are generated with exact count and real page-range sources', async () => {
-  // Build a valid model reply grounded in the SAME retrieved context the generator will use.
   const idx = buildDocumentIndex(normContext);
   const pool = generateBackfill(normContext, idx, { need: 15, existing: [], allowedTopics: ['normalization'], preferTopics: ['normalization'] }).accepted
     .map((q) => ({ question: q.question, options: q.options, correctIndex: q.correctIndex, topic: q.topic, kind: q.kind, explanation: q.explanation, source: q.source }));
@@ -133,7 +117,6 @@ await check('a failing chunk fails the job; resume reprocesses only that chunk',
   if (job.chunkStatus[2] !== 'failed') return 'chunk 2 not marked failed';
   if (job.chunkStatus[0] !== 'completed' || job.chunkStatus[4] !== 'completed') return 'other chunks not completed';
 
-  // Resume: completed chunks stay completed; only the previously failed chunk 2 is retried.
   resumeJob(job);
   if (job.chunkStatus[0] !== 'completed' || job.chunkStatus[4] !== 'completed') return 'resume wrongly reset already-completed chunks';
   if (job.chunkStatus[2] !== 'pending') return 'resume did not re-queue the failed chunk';

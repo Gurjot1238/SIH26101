@@ -1,23 +1,3 @@
-/**
- * Exact-count contract test for the AI MCQ pipeline (Issue 1).
- *
- * Proves, without a network or a key, that `generateMcqs` returns EXACTLY the requested
- * number of questions — or a controlled error — no matter what the model does. It drives
- * the real pipeline through the `mock` provider, feeding it canned replies that reproduce
- * every failure the bug report and the spec name: the model returning fewer than asked,
- * exactly as many, more than asked, malformed JSON, all duplicates, and options that fail
- * validation. In each case the assertion is the same: questions.length === requested.
- *
- *   node scripts/exact-count-test/run.mjs
- *
- * The "valid AI question" fixtures are built by the document-grounded backfill generator,
- * because those questions are known to pass the exact same validator the AI's must pass —
- * so feeding them as the model's reply is a faithful stand-in for a model that got it
- * right, and it keeps the test from depending on hand-written JSON drifting out of sync
- * with the validator's rules. Where the questions came from is irrelevant to the code
- * under test, which is the counting-and-topping-up plumbing, not question authoring.
- */
-
 import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -37,7 +17,6 @@ const CONCEPTS = ['inflation', 'index', 'survey', 'estimate', 'sample'];
 
 const index = buildDocumentIndex(DOC);
 
-/** A pool of validator-passing questions, in the wire shape a model would return. */
 function validPool(n) {
   const { accepted } = generateBackfill(DOC, index, { need: n, existing: [], allowedTopics: TOPICS, preferTopics: TOPICS });
   return accepted.map((q) => ({
@@ -55,7 +34,6 @@ function wire(questions) {
   return JSON.stringify({ questions });
 }
 
-/** Write a canned reply to a temp file and point AI_MOCK_FILE at it. */
 function mockEnv(contents) {
   const dir = mkdtempSync(join(tmpdir(), 'exact-count-'));
   const file = join(dir, 'reply.txt');
@@ -82,9 +60,6 @@ async function run(label, requested, cannedReply, expect) {
   if (expect.ok === true) {
     checks.push(['ok', result.ok === true]);
     checks.push([`final === ${requested}`, result.ok && result.questions.length === requested]);
-    // Every returned question must independently satisfy the wire contract the frontend
-    // re-checks in toQuestions: a stem, exactly 4 non-empty options, a valid correctIndex,
-    // an explanation, a verbatim source, and a topic.
     const shapeOk = result.ok && result.questions.every((q) =>
       typeof q.question === 'string' && q.question.trim().length > 0 &&
       Array.isArray(q.options) && q.options.length === 4 &&
@@ -94,7 +69,6 @@ async function run(label, requested, cannedReply, expect) {
       typeof q.source === 'string' && q.source.trim().length > 0 &&
       typeof q.topic === 'string' && q.topic.trim().length > 0);
     checks.push(['every question well-formed', shapeOk]);
-    // No two questions identical (the paper the learner sees has no repeats).
     if (result.ok) {
       const stems = new Set(result.questions.map((q) => q.question));
       checks.push(['no duplicate stems', stems.size === result.questions.length]);
@@ -136,9 +110,6 @@ results.push(await run('requested 20, AI returns 25 → trim to 20', 20, wire(va
 results.push(await run('requested 8, AI returns 18 → trim to 8', 8, wire(validPool(18)), { ok: true }));
 
 console.log('\n=== Genuine AI failure (base below the quiz floor) → controlled error, NOT masked ===');
-// Backfill supplements a real model paper; it never papers over a model that failed to
-// produce even a minimum base, because that would hide a broken provider behind a
-// deterministic quiz.
 results.push(await run('requested 12, malformed JSON → honest error, no masking', 12, 'this is not JSON at all {{{', { ok: false, code: 'insufficient_questions', maxFinal: 4 }));
 results.push(await run('requested 20, JSON but no questions array → honest error', 20, '{"foo":"bar"}', { ok: false, code: 'insufficient_questions', maxFinal: 4 }));
 results.push(await run('requested 10, AI returns only 3 valid → honest error (below floor)', 10, wire(validPool(3)), { ok: false, code: 'insufficient_questions', maxFinal: 4 }));
@@ -156,8 +127,6 @@ results.push(await run('requested 20, network error every call → error, no mas
 
 console.log('\n=== Document too thin to reach the count even with backfill → controlled error ===');
 {
-  // A tiny document cannot yield 20 grounded questions; the contract says error, not a
-  // short paper silently shown as if complete.
   const thinEnv = mockEnv('{"questions":[]}');
   const thin = 'The index uses 2012 as its base year. Prices are collected monthly.';
   let r;

@@ -1,33 +1,3 @@
-/**
- * Local OCR — integration test (stub engine; no PaddlePaddle, no network egress).
- *
- * This proves the whole Node <-> Python <-> pipeline OCR contract WITHOUT the heavy,
- * platform-specific PaddlePaddle wheel. It launches the real server/ocr/ocr_service.py in
- * its stub mode (OCR_ENGINE=stub, standard-library only), then drives it through the real
- * Node adapter (server/documents/ocr.mjs) and the real document pipeline. The one thing it
- * cannot cover — actual glyph recognition — is deferred to scripts/ocr-real-test.mjs, which
- * runs the same service with the real engine on a machine that has .venv-ocr.
- *
- * Covers the spec's OCR test matrix that is exercisable off-Mac:
- *   A  /health reports the engine and that OCR is available here.
- *   -  /ocr/image contract: normalised { text, confidence, lineCount, engine } — never a
- *      raw PaddleOCR object; a caller-supplied stubText is honoured so a test can drive
- *      retrieval with known tokens.
- *   F  OCR failure is handled gracefully: service down -> service_unavailable; disabled ->
- *      ocr_disabled; oversized image -> image_too_large. None of these throw.
- *   J  Security: the contract takes image BYTES, never a path. A body carrying only a
- *      `path` field is rejected (image_required) and no file is ever read.
- *   -  Pipeline metadata threading: per-page source -> chunk.extractionMethod
- *      (native_text|ocr|mixed) + ocrConfidence, and doc.ocrStatus / pagesOcred /
- *      pagesOcrFailed / extractionMethod.
- *   G  Retrieval of an OCR-only topic: text present ONLY on a source:'ocr' page is indexed
- *      and returned by searchDocuments, with its retrieved chunk tagged extractionMethod:'ocr'.
- *   H  AI generation reaches retrieved OCR content: generateFromTopic grounds questions in
- *      that OCR-only context and stamps each with the real OCR page range + extractionMethod.
- *
- *   node scripts/ocr-test.mjs
- */
-
 import { spawn } from 'node:child_process';
 import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -48,7 +18,7 @@ const REPO = join(__dirname, '..');
 const SERVICE = join(REPO, 'server', 'ocr', 'ocr_service.py');
 const PYTHON = process.env.OCR_TEST_PYTHON || 'python3';
 const PORT = Number(process.env.OCR_TEST_PORT || 8199);
-const DEAD_PORT = PORT + 32; // nothing listens here -> exercises connection failure
+const DEAD_PORT = PORT + 32;
 
 let passed = 0; let failed = 0;
 async function check(name, fn) {
@@ -58,11 +28,9 @@ async function check(name, fn) {
   else { passed += 1; console.log(`  ok    ${name}`); }
 }
 
-// A config whose ocr.* points at our stub service. Everything else is defaults.
 const cfg = loadConfig({ OCR_ENABLED: 'true', OCR_HOST: '127.0.0.1', OCR_PORT: String(PORT) });
 const b64 = (s) => Buffer.from(s).toString('base64');
 
-// --- launch the stub OCR service --------------------------------------------
 const child = spawn(PYTHON, [SERVICE], {
   cwd: REPO,
   env: { ...process.env, OCR_ENGINE: 'stub', OCR_HOST: '127.0.0.1', OCR_PORT: String(PORT), OCR_ENABLED: 'true' },
@@ -150,9 +118,6 @@ async function main() {
   console.log('\n  -- J  security: bytes-only contract, no path read -------------\n');
 
   await check('a body carrying only a path is rejected, no file is read', async () => {
-    // The adapter takes imageBase64; there is no path parameter anywhere in the contract.
-    // Passing a filesystem path where the image should be must fail as image_required,
-    // proving there is no arbitrary-file-read surface (spec test J, by construction).
     const r = await ocrImage({ imageBase64: undefined, path: '/etc/passwd', cfg, env: process.env });
     if (r.ok) return 'a path was somehow accepted';
     if (r.code !== 'image_required') return `code ${r.code}`;
@@ -189,11 +154,6 @@ async function main() {
 
   console.log('\n  -- G  an OCR-only topic is retrievable ------------------------\n');
 
-  // A document whose distinctive topic (neural networks) exists ONLY on scanned (OCR)
-  // pages. If retrieval can surface it and generation can ground in it, OCR text has
-  // genuinely merged into the same index/AI flow as ordinary typed text. The chapter is a
-  // few real, distinct pages so the retriever has substantive OCR content to rank and the
-  // grounded backfill has enough sentences to build a full paper from.
   const NN_CHAPTER = {
     5: 'Chapter 5 Neural Networks\n\n5.1 Backpropagation\n\n'
       + 'Backpropagation trains a neural network by propagating the output error backward through every layer. '
@@ -223,9 +183,7 @@ async function main() {
   function ocrDocPages() {
     const pages = [];
     const filler = 'This page covers general administrative background about the course and its schedule. ';
-    // Pages 1-4: ordinary typed pages on an unrelated topic (never matched by an NN query).
     for (let p = 1; p <= 4; p += 1) pages.push({ page: p, text: filler.repeat(8), source: 'native_text' });
-    // Pages 5-8: the scanned chapter, arriving as OCR text with a confidence score.
     for (const p of [5, 6, 7, 8]) pages.push({ page: p, text: NN_CHAPTER[p], source: 'ocr', confidence: 0.9 });
     return pages;
   }
@@ -241,8 +199,6 @@ async function main() {
     if (!s.ok) return `search failed: ${s.code}`;
     ocrContext = s.retrieval.contextText;
     if (!/backpropagation/i.test(ocrContext)) return 'OCR-only text was not retrieved';
-    // Every retrieved chunk falls in the scanned range (pages 5-8), and none is mislabelled
-    // as typed text — the unrelated native pages 1-4 must not be pulled in.
     const scanned = s.retrieval.usedChunks.filter((c) => c.pageStart >= 5 && c.pageEnd <= 8);
     if (scanned.length === 0) return `no scanned page retrieved: ${JSON.stringify(s.pageRanges)}`;
     if (scanned.some((c) => c.extractionMethod === 'native_text')) return 'retrieved OCR content was mislabelled native_text';
@@ -259,25 +215,18 @@ async function main() {
 
   await check('MCQs are grounded in OCR text and stamped with the real OCR page', async () => {
     const idx = buildDocumentIndex(ocrContext);
-    // The server grounds generation with allowedTopics = [query], so the backfill pool must
-    // carry topic === ocrQuery or every question is rejected for topic mismatch. Build the
-    // pool against the SAME query the server will validate against.
     const pool = generateBackfill(ocrContext, idx, { need: 10, existing: [], allowedTopics: [ocrQuery], preferTopics: [ocrQuery] })
       .accepted.map((q) => ({ question: q.question, options: q.options, correctIndex: q.correctIndex, topic: q.topic, kind: q.kind, explanation: q.explanation, source: q.source }));
     if (pool.length < 5) return `only ${pool.length} groundable questions in the OCR context (need a base of 5)`;
     const mockFile = join(workdir, 'ocr-reply.json');
     writeFileSync(mockFile, JSON.stringify({ questions: pool }));
 
-    // Same query as the pool was built from, so the server grounds against the identical
-    // retrieved context. questionCount 6 exercises the exact-count contract above MIN_QUESTIONS.
     const r = await generateFromTopic({
       store, userId: U1, documentIds: [ocrDoc.id], query: ocrQuery,
       questionCount: 6, env: { AI_PROVIDER: 'mock', AI_MOCK_FILE: mockFile },
     });
     if (!r.ok) return `generation failed: ${r.code} ${r.message}`;
     if (r.questions.length !== 6) return `got ${r.questions.length} questions, expected 6`;
-    // At least one question must be stamped with a real OCR page (5-8) and an OCR-inclusive
-    // extraction method — proof the OCR text reached generation and was cited honestly.
     const fromOcrPage = r.questions.filter((q) => q.source && [5, 6, 7, 8].includes(q.source.pageStart) && ['ocr', 'mixed'].includes(q.source.extractionMethod));
     if (fromOcrPage.length === 0) {
       const stamps = r.questions.map((q) => `${q.source?.pageStart}:${q.source?.extractionMethod}`).join(', ');

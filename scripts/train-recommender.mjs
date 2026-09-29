@@ -1,46 +1,3 @@
-/**
- * The offline recommender trainer — REAL machine learning, not a rule in disguise (§5, §16).
- *
- * Usage:
- *   node scripts/train-recommender.mjs                         # train from server/data/interactions.json
- *   node scripts/train-recommender.mjs --input events.json     # train from a specific event log
- *   node scripts/train-recommender.mjs --output model.json     # where to write the model
- *   node scripts/train-recommender.mjs --min 50 --k 5          # min rows to trust, and K for @K metrics
- *   node scripts/train-recommender.mjs --force                 # write even below --min (tests only)
- *
- * What it actually does — and why this is not fake ML:
- *
- *   1. Reads the anonymised interaction log and joins it into labelled training rows: each
- *      (learner, course) pair gets a FEATURE VECTOR (built by the very same extractFeatures
- *      the recommender scores with — so training and inference cannot drift) and a LABEL that
- *      is the learning outcome, not a click: relevance + completion + measured competency gain
- *      (server/recommend/features.mjs `outcomeLabel`). A course opened and abandoned at 3%
- *      labels near 0; one completed that moved a competency +25 labels near 1.
- *
- *   2. Fits a logistic-regression model by BATCH GRADIENT DESCENT with L2 regularisation —
- *      real weight updates over real epochs, minimising cross-entropy. Features are
- *      standardised for convergence, then the standardisation is folded back into the exported
- *      weights so the in-app `scoreVector` (a plain dot-product over raw features) reproduces
- *      the trained model exactly.
- *
- *   3. Evaluates on a held-out split: log-loss, accuracy, and the ranking metrics the spec
- *      names — Precision@K, Recall@K, NDCG@K (§13) — grouped per learner, because ranking is
- *      per learner. The objective that matters (competency improvement) is what the label
- *      encodes, so a model that ranks improving courses higher scores better.
- *
- *   4. Refuses to emit a model when there is too little data (< --min rows). A model fit on a
- *      handful of interactions is noise; better to ship nothing and let the app stay
- *      deterministic (model.mjs returns {ready:false}) than to pretend. This is the §16 line.
- *
- *   5. Writes model.json with full provenance (§14): model_version, training_dataset_version,
- *      trained_at, algorithm, features_used, weights, bias, minInteractionsToActivate, and the
- *      evaluation metrics — so any recommendation is traceable to the model that produced it
- *      and a previous model.json can be restored to roll back.
- *
- * The core functions are exported so scripts/recommend-service-test.mjs can drive the trainer
- * on a synthetic dataset with a known signal and assert the model actually learned it.
- */
-
 import { readFileSync, writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { dirname, join, resolve } from 'node:path';
@@ -50,22 +7,10 @@ import { FEATURE_NAMES, extractFeatures, outcomeLabel, tagOverlap } from '../ser
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 
-/* --------------------------------------------------------- events → labelled rows */
-
-/**
- * Join a flat event log into labelled training rows. Course engagement events
- * (recommendation_shown / course_opened / course_completed) build one row per (learner,
- * course); competency_measured events (which are per-competency, not per-course) supply the
- * AFTER score, joined to a course row by (learner, competency). The gain = after - before is
- * the heart of the learning-outcome label.
- *
- * Returns [{ features:{...}, label:0|1, outcome:0..1, learner, courseId, competency }].
- */
 export function buildLabeledRows(events, { context = {} } = {}) {
   const list = Array.isArray(events) ? events : [];
 
-  // Latest measured competency score per (learner, competency) — the "after" state.
-  const afterScore = new Map(); // `${learner}::${competency}` -> { score, gap, at }
+  const afterScore = new Map();
   for (const e of list) {
     if (e.type !== 'competency_measured' || !e.competency) continue;
     const key = `${e.learner}::${e.competency}`;
@@ -75,7 +20,6 @@ export function buildLabeledRows(events, { context = {} } = {}) {
     }
   }
 
-  // Aggregate course engagement per (learner, course).
   const rows = new Map();
   for (const e of list) {
     if (e.type === 'competency_measured') continue;
@@ -112,9 +56,6 @@ export function buildLabeledRows(events, { context = {} } = {}) {
 
   const labelled = [];
   for (const row of rows.values()) {
-    // Feature vector via the SAME extractFeatures used at inference — parity by construction.
-    // We rebuild its inputs from the logged fields; the overlap is recomputed with the real
-    // tagOverlap, and unlogged inputs (learner level) default exactly as inference defaults.
     const overlap = row.competency
       ? tagOverlap(row.courseCompetencies, row.competency)
       : { count: 0, matched: [] };
@@ -122,7 +63,6 @@ export function buildLabeledRows(events, { context = {} } = {}) {
       competency: row.competency,
       name: row.competency ?? '',
       gap: Number.isFinite(row.gapBefore) ? row.gapBefore : 0,
-      // Priority is not logged; the pre-course gap is a faithful proxy (both rank by need).
       priority: Number.isFinite(row.gapBefore) ? row.gapBefore : 0,
     };
     const course = {
@@ -157,11 +97,8 @@ export function buildLabeledRows(events, { context = {} } = {}) {
   return labelled;
 }
 
-/* ------------------------------------------------------------------ logistic model */
-
 const sigmoid = (z) => 1 / (1 + Math.exp(-z));
 
-/** Column mean/std over the feature matrix, for standardisation (std floored to avoid /0). */
 function standardisation(matrix) {
   const n = FEATURE_NAMES.length;
   const mean = new Array(n).fill(0);
@@ -174,7 +111,6 @@ function standardisation(matrix) {
   return { mean, std };
 }
 
-/** Feature object → ordered numeric array matching FEATURE_NAMES (missing key → 0). */
 export function toVector(features) {
   return FEATURE_NAMES.map((name) => {
     const v = Number(features?.[name]);
@@ -182,10 +118,6 @@ export function toVector(features) {
   });
 }
 
-/**
- * Fit logistic regression by batch gradient descent. Returns raw-space weights/bias (already
- * un-standardised) so the in-app scoreVector reproduces this model on raw feature vectors.
- */
 export function trainLogistic(rows, { epochs = 400, lr = 0.3, l2 = 0.001 } = {}) {
   const X = rows.map((r) => toVector(r.features));
   const y = rows.map((r) => r.label);
@@ -211,7 +143,6 @@ export function trainLogistic(rows, { epochs = 400, lr = 0.3, l2 = 0.001 } = {})
     if (epoch % 50 === 0 || epoch === epochs - 1) history.push(Number(logloss(Xs, y, w, b).toFixed(5)));
   }
 
-  // Fold standardisation into the weights: score in raw space = Σ (w_j/σ_j)·x_j + (b - Σ w_j·μ_j/σ_j)
   const rawW = w.map((wj, j) => wj / std[j]);
   let rawB = b;
   for (let j = 0; j < n; j += 1) rawB -= (w[j] * mean[j]) / std[j];
@@ -234,7 +165,6 @@ function logloss(Xs, y, w, b) {
   return sum / Math.max(1, Xs.length);
 }
 
-/** Score a raw feature vector with raw-space weights — identical maths to server scoreVector. */
 export function predictRaw(weights, bias, features) {
   const x = toVector(features);
   let z = bias;
@@ -242,17 +172,10 @@ export function predictRaw(weights, bias, features) {
   return sigmoid(z);
 }
 
-/* -------------------------------------------------------------------- evaluation */
-
-/**
- * Precision@K, Recall@K, NDCG@K averaged over learners, plus accuracy and log-loss (§13).
- * Ranking metrics are per learner because that is how recommendations are served.
- */
 export function evaluate(rows, weights, bias, { k = 5 } = {}) {
   if (rows.length === 0) return { rows: 0 };
   const scored = rows.map((r) => ({ ...r, score: predictRaw(weights, bias, r.features) }));
 
-  // accuracy + logloss (pointwise)
   let correct = 0;
   let ll = 0;
   const eps = 1e-9;
@@ -262,7 +185,6 @@ export function evaluate(rows, weights, bias, { k = 5 } = {}) {
     ll += -(r.label * Math.log(p) + (1 - r.label) * Math.log(1 - p));
   }
 
-  // per-learner ranking metrics
   const byLearner = new Map();
   for (const r of scored) {
     const arr = byLearner.get(r.learner) ?? [];
@@ -280,7 +202,6 @@ export function evaluate(rows, weights, bias, { k = 5 } = {}) {
     const hits = topK.reduce((s, r) => s + r.label, 0);
     pSum += hits / Math.max(1, topK.length);
     rSum += relevantTotal > 0 ? hits / relevantTotal : 0;
-    // NDCG@K with binary gains
     let dcg = 0;
     topK.forEach((r, i) => { dcg += r.label / Math.log2(i + 2); });
     let idcg = 0;
@@ -302,7 +223,6 @@ export function evaluate(rows, weights, bias, { k = 5 } = {}) {
   };
 }
 
-/** Deterministic shuffle (seeded) so a train/test split is reproducible across runs. */
 function seededShuffle(arr, seed = 42) {
   const a = [...arr];
   let s = seed;
@@ -317,13 +237,6 @@ function seededShuffle(arr, seed = 42) {
   return a;
 }
 
-/* ------------------------------------------------------------------------- driver */
-
-/**
- * The full train+evaluate flow over a set of labelled rows. Returns the model object (or
- * { ready:false, reason } when there is not enough data). Split 80/20, train on the larger
- * part, evaluate on the held-out part.
- */
 export function trainAndEvaluate(labelled, { min = 50, k = 5, force = false } = {}) {
   if (labelled.length < min && !force) {
     return {
@@ -332,7 +245,6 @@ export function trainAndEvaluate(labelled, { min = 50, k = 5, force = false } = 
       rows: labelled.length,
     };
   }
-  // Need both classes present to fit a meaningful classifier.
   const positives = labelled.filter((r) => r.label === 1).length;
   if ((positives === 0 || positives === labelled.length) && !force) {
     return { ready: false, reason: 'Training data has only one outcome class; cannot learn a ranking.', rows: labelled.length };
@@ -383,7 +295,6 @@ function loadEvents(inputPath) {
   return Array.isArray(parsed) ? parsed : (parsed.interactions ?? []);
 }
 
-/** CLI entry — only runs when invoked directly, not when imported by the test. */
 function main() {
   const args = parseArgs(process.argv);
   let events;

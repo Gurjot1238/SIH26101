@@ -1,12 +1,4 @@
 #!/usr/bin/env bash
-# End-to-end check of the auth and progress server. Starts its own server on a
-# spare port, against a throwaway data directory, then shuts it down.
-#
-#   ./server/smoke-test.sh
-#
-# Every line printed as "ok" is a real HTTP request that got the expected status,
-# or a real assertion about what ended up on disk. Nothing here is mocked.
-
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
@@ -25,15 +17,12 @@ FAIL=0
 cleanup() {
   [ -n "${SERVER_PID:-}" ] && kill "$SERVER_PID" 2>/dev/null
   wait "${SERVER_PID:-}" 2>/dev/null
-  # The AI section starts a second server on the next port up. If the script dies
-  # between starting it and stopping it, this is what stops it being orphaned.
   [ -n "${MOCK_PID:-}" ] && kill "$MOCK_PID" 2>/dev/null
   wait "${MOCK_PID:-}" 2>/dev/null
   rm -rf "$DATA_DIR"
 }
 trap cleanup EXIT
 
-# Expects: description, expected status, then curl arguments.
 check() {
   local label="$1" want="$2"; shift 2
   local got
@@ -48,7 +37,6 @@ check() {
   fi
 }
 
-# Expects: description, then a string that must appear / must not appear.
 expect_in_body() {
   if grep -q "$2" "${DATA_DIR}/body"; then
     PASS=$((PASS + 1)); printf '  ok    %s\n' "$1"
@@ -57,8 +45,6 @@ expect_in_body() {
   fi
 }
 
-# The mirror image. A missing body file is a FAILURE for the same reason as below:
-# "the response does not leak X" must not be green because there was no response.
 expect_not_in_body() {
   if [ ! -f "${DATA_DIR}/body" ]; then
     FAIL=$((FAIL + 1)); printf '  FAIL  %s — no response body was captured\n' "$1"
@@ -69,9 +55,6 @@ expect_not_in_body() {
   fi
 }
 
-# Expects: description, file, string that must NOT appear.
-# A missing file is a FAILURE, not a pass — otherwise "the password isn't in
-# users.json" would look green simply because no account was ever created.
 expect_not_in_file() {
   if [ ! -f "$2" ]; then
     FAIL=$((FAIL + 1)); printf '  FAIL  %s — %s does not exist\n' "$1" "$2"
@@ -84,15 +67,6 @@ expect_not_in_file() {
 
 printf '\n  Auth and progress server end-to-end check\n  ========================================\n\n'
 
-# AI_PROVIDER and GEMINI_API_KEY are pinned rather than inherited, and that matters more
-# than it looks. server/index.mjs reads server/.env for anything not already in the
-# environment, so without these two lines this process picks up whatever the developer
-# happens to have configured — which means the "not configured" section below was asserting
-# a property of one person's laptop. It broke the day server/.env was switched to a local
-# model, and it would equally have broken, more quietly, the day a real Gemini key was
-# pasted in: the 503 assertions would fail, and every 'AIza' assertion would start running
-# against a process holding a real key. An empty value still counts as set, so .env cannot
-# override it back.
 AUTH_PORT="$PORT" \
 AUTH_DATA_DIR="$DATA_DIR" \
 SESSION_SECRET="smoke_test_secret_not_used_anywhere_real_0123456789abc" \
@@ -188,10 +162,6 @@ check 'empty progress is a real answer, not an error' 200 -b "$JAR" "${BASE}/api
 expect_in_body 'no attempts yet reads as unrated' '"band":"unrated"'
 expect_in_body 'preferences come back with defaults' '"language":"English"'
 
-# Deliberately dishonest and deliberately overloaded. percent, band and the topic
-# percentages are all wrong, competencyPercents names a competency the paper never
-# tested, and text/questions/sentences carry document content the server must not
-# keep. 1 of 4 plus 5 of 6 is 6 of 10, so the counts themselves are consistent.
 LYING_ATTEMPT='{"source":"material","label":"Sampling manual, chapter 3","total":10,"correct":6,
   "percent":100,"band":"strong","durationSeconds":420,
   "topics":[{"topic":"Margin Of Error","competency":"inference","correct":1,"total":4,"percent":100,"band":"strong"},
@@ -201,10 +171,6 @@ LYING_ATTEMPT='{"source":"material","label":"Sampling manual, chapter 3","total"
   "questions":[{"stem":"CONFIDENTIAL-QUESTION-STEM","answer":2}],
   "sentences":["CONFIDENTIAL-SENTENCE"]}'
 check 'attempt saves' 201 -b "$JAR" -X POST "$ATTEMPTS" -H "$JSON" -H "$ORIGIN" -d "$LYING_ATTEMPT"
-# Each pattern below carries its neighbouring fields on purpose. The response also
-# contains the whole-account rollup, which legitimately holds its own "percent":60
-# and "band":"average" — matching those bare would pass even if the saved attempt
-# kept the number the client posted. Sabotaging the server proved exactly that.
 expect_in_body 'percent recomputed from the counts, not trusted' '"total":10,"correct":6,"percent":60'
 expect_in_body 'band recomputed to match' '"percent":60,"band":"average"'
 expect_in_body 'topic percent recomputed (1 of 4)' '"topic":"Margin Of Error","competency":"inference","correct":1,"total":4,"percent":25'
@@ -274,9 +240,6 @@ expect_in_body 'language persisted' '"language":"Hindi"'
 expect_in_body 'course progress persisted' '"courseId":"time-series"'
 
 printf '\n  --- progress: profile details (name and email stay read-only) ---\n'
-# role/department/location/phone/bio are the account's own editable block. Name and
-# email are credentials owned by auth.mjs, so the server refuses them here rather than
-# letting the profile form rewrite an identity.
 PROFILE="${BASE}/api/progress/profile"
 check 'saving profile details needs a session' 401 -X POST "$PROFILE" -H "$JSON" -H "$ORIGIN" -d '{"role":"x"}'
 check 'profile details save' 200 -b "$JAR" -X POST "$PROFILE" -H "$JSON" -H "$ORIGIN" \
@@ -298,9 +261,6 @@ expect_in_body 'the saved department persisted' '"department":"Directorate of Fi
 expect_not_in_body 'the rejected name never became the profile name' '"name":"Someone Else"'
 
 printf '\n  --- notifications: derived from the account, never stored ---\n'
-# There is no notifications table. The feed is rebuilt on every read from the account's
-# own progress and courses, so the bell can never show a number the rest of the app
-# would contradict. Opening the panel is the only write, and it only records the time.
 NOTIFS="${BASE}/api/notifications"
 check 'the feed needs a session' 401 "$NOTIFS"
 check 'marking seen needs a session' 401 -X POST "${NOTIFS}/seen" -H "$JSON" -H "$ORIGIN"
@@ -331,10 +291,6 @@ check 'the first account still has both attempts' 200 -b "$JAR" "$ATTEMPTS"
 expect_in_body 'clearing is per account' '"total":2'
 
 printf '\n  --- course catalogue: served from disk, and public ---\n'
-# The main server was started with NEXORA_DATASET_DIR pointing at server/course-fixtures,
-# a two-lesson course that ships in the repo. So these assertions run against a real
-# reader over real files, not a mock. Course content is reference material, not user
-# data, so unlike everything else in this file it is readable with no session.
 COURSES="${BASE}/api/courses"
 CONTENT="${BASE}/api/courses/content"
 check 'the catalogue is readable without a session' 200 "$COURSES"
@@ -354,7 +310,6 @@ check 'the catalogue is read-only' 405 -X POST "$COURSES" -H "$JSON" -H "$ORIGIN
 printf '\n  --- course content: real files stream, traversal cannot ---\n'
 check 'a real lesson file streams' 200 "${CONTENT}?id=demo-open-stats&file=content/lesson-01-sampling.txt"
 expect_in_body 'and it is the file on disk' 'A sample is a subset of a population'
-# The whole point of fileWithin(): a crafted ?file= must not escape the course dir.
 check 'a ../ traversal is refused' 404 "${CONTENT}?id=demo-open-stats&file=../../../etc/passwd"
 check 'an encoded ../ traversal is refused' 404 "${CONTENT}?id=demo-open-stats&file=..%2F..%2Fcourse.json"
 check 'an absolute path is refused' 404 "${CONTENT}?id=demo-open-stats&file=/etc/passwd"
@@ -363,7 +318,6 @@ check 'content with no file param is 400' 400 "${CONTENT}?id=demo-open-stats"
 check 'content for an unknown course is 404' 404 "${CONTENT}?id=no-such-course&file=content/lesson-01-sampling.txt"
 
 printf '\n  --- lesson progress: measured, deduplicated, per account ---\n'
-# Ananya (JAR) marks lessons done. This is the number the course card and the donut show.
 check 'lessons can be marked complete' 200 -b "$JAR" -X POST "${BASE}/api/progress/courses" -H "$JSON" -H "$ORIGIN" \
   -d '{"courseId":"demo-open-stats","started":true,"completedLessons":["les-02-quality","les-01-sampling","les-01-sampling"]}'
 expect_in_body 'stored as a sorted, de-duplicated set' '"completedLessons":\["les-01-sampling","les-02-quality"\]'
@@ -417,19 +371,12 @@ check 'signed in, the paper is dealt' 200 -b "$JAR" "$PAPER"
 expect_in_body 'fifteen questions' '"length":15'
 expect_in_body 'five sections' '"questionsPerSection":3'
 expect_in_body 'options carry their canonical id' '"options":\[{"id":"[abcd]","text":"'
-# These two are the whole point of dealing a sealed paper, and they are matched with
-# their quotes so prose cannot satisfy them: several scenarios use the word "correct"
-# in their text, and one option ends "since the arithmetic is right".
 expect_not_in_body 'no answer key in the paper' '"correct"'
 expect_not_in_body 'no explanations in the paper' '"explanation"'
 expect_not_in_body 'no correctOption field either' 'correctOption'
 check 'the paper is read-only' 405 -b "$JAR" -X POST "$PAPER" -H "$JSON" -H "$ORIGIN" -d '{}'
 
 printf '\n  --- assessment: the score is the server'"'"'s ---\n'
-# Answer "a" to all fifteen. The key spread is b c d c b a b c d a d b a c a, so
-# exactly four are right whatever order the questions and options were dealt in —
-# grading is by option id, not by position. The body also claims a perfect score,
-# which is the forgery this endpoint exists to make impossible.
 ALL_A='{"durationSeconds":484,"correct":15,"total":15,"percent":100,"band":"strong",
   "choices":[{"question":"q1","option":"a"},{"question":"q2","option":"a"},{"question":"q3","option":"a"},
              {"question":"q4","option":"a"},{"question":"q5","option":"a"},{"question":"q6","option":"a"},
@@ -451,9 +398,6 @@ expect_in_body 'and the explanations with it' '"explanation":"'
 check 'leaving every question blank is allowed' 201 -b "$JAR" -X POST "$SUBMIT" -H "$JSON" -H "$ORIGIN" \
   -d '{"choices":[]}'
 expect_in_body 'an omitted question is unanswered and wrong, not absent' '"total":15,"correct":0,"answered":0,"percent":0'
-# Grading walks the fixed bank, not the submitted list, so a short submission cannot
-# shorten the paper. Without these two the count above still reads 15 — total comes
-# from the bank — while the report itself quietly drops the skipped questions.
 expect_in_body 'a skipped question is still on the report' '"chosen":null,"correctOption":"'
 expect_in_body 'and every topic still reported, at zero' '"correct":0,"total":3,"percent":0,"band":"needs-work"'
 
@@ -487,9 +431,6 @@ expect_in_body 'the four-level scale is published, not hardcoded in the client' 
 expect_in_body 'a competency carries its target and its gap' '"requiredScore":'
 expect_in_body 'the target dataset is labelled demonstration, not official' '"custom":false'
 expect_in_body 'and the note disclaims any official framework' 'not an official'
-# The analysis is a rollup of counts and topic names. It must not become a second
-# place the answer key or the scenario text can escape — matched with neighbours so
-# the assessment's own use of the word "correct" in prose cannot satisfy them.
 expect_not_in_body 'no answer key rides along with the analysis' '"correctOption"'
 expect_not_in_body 'nor any explanation text' '"explanation":"'
 expect_not_in_body 'nor the scenario prose' 'A state agency reports'
@@ -504,18 +445,12 @@ EXPLAIN="${BASE}/api/analytics/explain"
 check 'explain needs a session' 401 -X POST "$EXPLAIN" -H "$JSON" -H "$ORIGIN"
 check 'explain from an untrusted origin rejected' 403 -b "$JAR" -X POST "$EXPLAIN" -H "$JSON" \
   -H 'Origin: https://evil.example.com'
-# The main server has no AI provider configured (AI_PROVIDER=gemini, empty key), so a
-# signed-in account with real attempts gets the §13 wording — the same string the
-# generation endpoint returns, and never a key.
 check 'explain with no provider configured is 503' 503 -b "$JAR" -X POST "$EXPLAIN" -H "$JSON" -H "$ORIGIN"
 expect_in_body 'the 503 says exactly what to configure' 'AI question generation is not configured'
 expect_not_in_body 'and never echoes a key' 'AIza'
 expect_in_body 'the charts survive a failed explain: the analysis rides along' '"analytics":{'
 
 printf '\n  --- analytics: a brand-new account ---\n'
-# Ravi cleared his history earlier, so he has no attempts. The analysis must be a
-# valid, empty payload rather than an error, and explain must decline before it ever
-# reaches the provider — there is nothing to explain, and that is a 409, not a 503.
 check "the empty account's analysis is 200, not an error" 200 -b "$JAR2" "$ANALYTICS"
 expect_in_body 'and it reports nothing measured' '"measured":false'
 expect_in_body 'with every competency listed as not yet measured' '"unmeasured":\['
@@ -549,9 +484,6 @@ else
 fi
 expect_not_in_file 'no password appears in the server log' "$LOG" 'correct horse battery staple'
 
-# The privacy claim, checked from the storage side. An uploaded PDF is parsed by
-# pdf.js in the browser tab; these three strings were posted with the attempt and
-# must not exist anywhere on disk. There is no server field that can hold them.
 expect_not_in_file 'document text never reaches attempts.json' "$ATTEMPTS_FILE" 'CONFIDENTIAL-DOCUMENT-BODY'
 expect_not_in_file 'question text never reaches attempts.json' "$ATTEMPTS_FILE" 'CONFIDENTIAL-QUESTION-STEM'
 expect_not_in_file 'source sentences never reach attempts.json' "$ATTEMPTS_FILE" 'CONFIDENTIAL-SENTENCE'
@@ -559,9 +491,6 @@ expect_not_in_file 'no field named "text"' "$ATTEMPTS_FILE" '"text"'
 expect_not_in_file 'no field named "questions"' "$ATTEMPTS_FILE" '"questions"'
 expect_not_in_file 'no field named "sentences"' "$ATTEMPTS_FILE" '"sentences"'
 expect_not_in_file 'no password anywhere in attempts.json' "$ATTEMPTS_FILE" 'correct horse battery staple'
-# The assessment now grades on this side, so the server does hold its scenarios and
-# explanations. What is stored per attempt is still only counts and topic names: a
-# graded row must not carry the paper it came from.
 expect_not_in_file 'assessment scenario text is not stored either' "$ATTEMPTS_FILE" 'A state agency reports'
 expect_not_in_file 'nor its explanations' "$ATTEMPTS_FILE" 'artefact of the count'
 expect_not_in_file 'nor which option anyone picked' "$ATTEMPTS_FILE" '"chosen"'
@@ -592,16 +521,10 @@ done
 
 printf '\n  --- AI question generation ---\n'
 
-# This half of the run has no AI provider configured, which is the state a fresh
-# clone is in. What it proves is that the endpoint says so rather than quietly
-# producing questions some other way — the §13 rule the whole feature rests on.
-
 AI_JAR="${DATA_DIR}/ai-cookies.txt"
 curl -sS -o /dev/null -c "$AI_JAR" -X POST "${BASE}/api/auth/signup" -H "$JSON" -H "$ORIGIN" \
   -d '{"name":"Ai Tester","email":"ai.tester@mospi.gov.in","password":"correct-horse-battery-staple-42"}'
 
-# Bodies are built by node so the document text is the real fixture rather than a
-# string retyped here, which would drift from what the validator is tuned on.
 BODY_DIR="${DATA_DIR}/ai-bodies"
 mkdir -p "$BODY_DIR"
 node -e '
@@ -632,8 +555,6 @@ check 'AI generation with non-array topics is 400' 400 -b "$AI_JAR" \
 check 'AI generation with an absurd question count is 400' 400 -b "$AI_JAR" \
   -X POST "${BASE}/api/ai/generate-mcqs" -H "$JSON" -H "$ORIGIN" --data-binary "@${BODY_DIR}/bad-count.json"
 
-# §18: an oversized document must be refused at the door rather than read into
-# memory, so a large upload cannot be used to exhaust the server.
 check 'a 300 KB document is refused as too large' 413 -b "$AI_JAR" \
   -X POST "${BASE}/api/ai/generate-mcqs" -H "$JSON" -H "$ORIGIN" --data-binary "@${BODY_DIR}/huge.json"
 
@@ -642,10 +563,6 @@ check 'AI generation with no provider key is 503' 503 -b "$AI_JAR" \
 expect_in_body 'the 503 says exactly what to configure' 'AI question generation is not configured'
 expect_not_in_body 'and never echoes a key' 'AIza'
 
-# §13 in its strongest form. The response does carry a questions array — the browser
-# reads its length to report how far short a generation fell — so asserting the field
-# is absent would be the wrong test. What must be true is that it is empty: with no
-# provider configured, not one question may be produced by any other means.
 if node -e '
   const parsed = JSON.parse(require("node:fs").readFileSync(process.argv[1], "utf8"));
   if (parsed.ok !== false) throw new Error("an unconfigured server reported success");
@@ -658,19 +575,6 @@ else
   sed 's/^/          /' "${DATA_DIR}/ai-503.log"
 fi
 
-# A second server, this time with the mock provider, so the success path is
-# exercised over real HTTP too. It is a separate process on a separate port
-# because AI_PROVIDER is read at startup.
-#
-# It is also given a GEMINI_API_KEY, and this is the point of the whole section.
-# Every 'AIza' assertion in this file used to run against a process whose
-# environment held no key at all, so they were asserting that a value which never
-# existed had not escaped — green by construction, and green even if the route
-# started returning process.env verbatim. The canary below is a real key-shaped
-# value living in the server's environment for the duration, which turns those
-# assertions into evidence. The mock provider ignores it (it is selected by
-# AI_PROVIDER and configured by AI_MOCK_FILE), so no network call is made and no
-# real credential is needed to prove containment.
 CANARY_KEY='AIzaSyD0-smoke-canary-must-never-leave-the-server-9x'
 
 MOCK_PORT=$((PORT + 1))
@@ -707,8 +611,6 @@ else
   expect_not_in_body 'and no key travels with them' 'AIza'
   expect_not_in_body 'and no provider URL is echoed' 'generativelanguage.googleapis.com'
 
-  # The count and the answer-key range are what the quiz UI assumes; a paper that
-  # violated either would render but mark the learner wrongly.
   if node -e '
     const body = require("node:fs").readFileSync(process.argv[1], "utf8");
     const parsed = JSON.parse(body);
@@ -728,23 +630,12 @@ else
     sed 's/^/          /' "${DATA_DIR}/ai-shape.log"
   fi
 
-  # The startup banner has to make a mock run obvious, or a demo could be given
-  # on canned questions while everyone present believes they are watching AI.
   if grep -qi 'mock' "${DATA_DIR}/mock-server.log"; then
     PASS=$((PASS + 1)); printf '  ok    the server warns at startup that the provider is mocked\n'
   else
     FAIL=$((FAIL + 1)); printf '  FAIL  a mocked provider starts up without saying so\n'
   fi
 
-  # §3/§18 the containment claim, swept rather than spot-checked.
-  #
-  # A key in the environment can escape through more than the one response body a
-  # test happens to look at: a header, an error page, a status endpoint, the 404
-  # handler, a stack trace on a malformed request. Every reachable endpoint is
-  # requested here — success paths and failure paths — and both the headers and the
-  # body of each are searched for the canary. Failure paths matter more than the
-  # success path, because they are where a framework is most likely to hand back
-  # something it assembled itself.
   SWEEP_LEAKS=0
   SWEEP_COUNT=0
   sweep() {
@@ -788,8 +679,6 @@ else
     printf '  FAIL  the API key escaped through %s of %s responses\n' "$SWEEP_LEAKS" "$SWEEP_COUNT"
   fi
 
-  # And the sweep itself has to be able to fail, or the line above is decoration.
-  # A file seeded with the canary must trip exactly the same grep.
   printf 'x-leaked-key: %s\n' "$CANARY_KEY" > "${DATA_DIR}/sweep-head"
   : > "${DATA_DIR}/sweep-body"
   if grep -qF "$CANARY_KEY" "${DATA_DIR}/sweep-head" "${DATA_DIR}/sweep-body" 2>/dev/null; then
@@ -802,17 +691,7 @@ else
   wait "$MOCK_PID" 2>/dev/null
 fi
 
-# A third server, on the local provider, pointed at a port with nothing behind it.
-#
-# This is the single most likely thing to go wrong on a machine using a local model:
-# everything is configured correctly and Ollama simply is not running. The point is that
-# the failure must stay honest — a 502 that names the problem, and an empty questions
-# array. A local model is "configured" the moment an address is valid, which is a
-# different state from "reachable", and conflating the two would tell someone to add an
-# API key that the local path does not have or need.
 LOCAL_PORT=$((PORT + 2))
-# Nothing in this script ever binds PORT+3, which is the whole point of it: the local
-# provider is aimed at a port that is guaranteed to refuse the connection.
 DEAD_PORT=$((PORT + 3))
 LOCAL_DATA="${DATA_DIR}/local-run"
 LOCAL_BASE="http://127.0.0.1:${LOCAL_PORT}"
@@ -858,8 +737,6 @@ else
     sed 's/^/          /' "${DATA_DIR}/ai-local.log"
   fi
 
-  # The banner has to name the address it will call, because "pointed at the wrong port"
-  # and "Ollama is down" look identical from the browser and are told apart only here.
   if grep -q "127.0.0.1:${DEAD_PORT}" "${DATA_DIR}/local-server.log"; then
     PASS=$((PASS + 1)); printf '  ok    the startup banner names the local model address\n'
   else
@@ -870,10 +747,6 @@ else
   wait "$LOCAL_PID" 2>/dev/null
 fi
 
-# §22: the server may log diagnostics, but never the key itself. The mock server above
-# ran with $CANARY_KEY in its environment and printed a startup banner naming the
-# provider and the model, so this now checks a log written by a process that genuinely
-# had a key to spill.
 if grep -qE 'AIza[0-9A-Za-z_-]{10,}' "$LOG" "${DATA_DIR}/mock-server.log" "${DATA_DIR}/local-server.log" 2>/dev/null \
   || grep -qF "$CANARY_KEY" "$LOG" "${DATA_DIR}/mock-server.log" "${DATA_DIR}/local-server.log" 2>/dev/null; then
   FAIL=$((FAIL + 1)); printf '  FAIL  an API key was printed to the server log\n'

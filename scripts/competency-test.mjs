@@ -1,25 +1,3 @@
-/**
- * Tests the competency analytics engine and the explanation guard by running them.
- *
- * Usage:  node scripts/competency-test.mjs        (or:  npm run competency:test)
- *
- * `server/competency.mjs` turns stored attempts into topic scores, competency scores,
- * gaps against a target, a study order and a trend. Every number the dashboard draws is
- * one of these, so these are the assertions that stand between a wrong formula and a
- * wrong chart. They import the real server module — it is plain ESM over Node built-ins,
- * the same reason the engine test can import `server/assessment.mjs` directly — and feed
- * it attempt records shaped exactly as `store.attemptsForUser` returns them.
- *
- * The cases are the ones the specification names: topic scoring, competency aggregation
- * by summed counts (not averaged percentages), the gap both ways, the four classification
- * cut-offs, and the missing-data inputs that must not throw. The last group also covers
- * `unsupportedFigures` from server/ai/explain.mjs — the check that stops the AI from
- * quoting a percentage the server never calculated.
- *
- * A check returns nothing when it passes and a string when it fails, so a failure prints
- * the value it actually saw rather than just "expected true".
- */
-
 import {
   ANALYTICS_SCOPES,
   MIN_QUESTIONS_FOR_STATUS,
@@ -64,11 +42,6 @@ function section(title) {
   console.log(`\n  -- ${title} ${'-'.repeat(Math.max(0, 58 - title.length))}`);
 }
 
-/**
- * One stored attempt, shaped like `store.attemptsForUser` returns. `topics` is a list of
- * `{ topic, competency, correct, total }`; the attempt totals and every percent are
- * derived so a fixture can never quietly disagree with itself.
- */
 function attempt(id, topics, { at = '2026-09-10T10:00:00.000Z', source = 'assessment', label = 'Assessment' } = {}) {
   const correct = topics.reduce((sum, topic) => sum + topic.correct, 0);
   const total = topics.reduce((sum, topic) => sum + topic.total, 0);
@@ -93,10 +66,7 @@ function attempt(id, topics, { at = '2026-09-10T10:00:00.000Z', source = 'assess
   };
 }
 
-/** Force the built-in targets regardless of what COMPETENCY_TARGETS is set to in this shell. */
 const DEFAULT_ENV = {};
-
-/* ------------------------------------------------------------------- the gap */
 
 section('the gap, both directions');
 
@@ -120,8 +90,6 @@ check('a non-finite score is treated as zero, not NaN', () => {
   if (calculateCompetencyGap(55, undefined) !== 0) return 'undefined target did not read as 0';
 });
 
-/* -------------------------------------------------------- the four cut-offs */
-
 section('classification at the four cut-offs');
 
 check('80 is strong, 60 is good, 40 is needs-improvement, 39 is weak', () => {
@@ -131,7 +99,6 @@ check('80 is strong, 60 is good, 40 is needs-improvement, 39 is weak', () => {
   if (at(60) !== 'good') return `60 → ${at(60)}`;
   if (at(40) !== 'needs-improvement') return `40 → ${at(40)}`;
   if (at(39) !== 'weak') return `39 → ${at(39)}`;
-  // The boundaries are inclusive on the lower edge, so one point under drops a band.
   if (at(79) !== 'good') return `79 → ${at(79)}`;
   if (at(59) !== 'needs-improvement') return `59 → ${at(59)}`;
   if (at(100) !== 'strong') return `100 → ${at(100)}`;
@@ -152,8 +119,6 @@ check('the scale the browser receives carries the thresholds and the floor', () 
   if (scale.minQuestions !== MIN_QUESTIONS_FOR_STATUS) return `published floor is ${scale.minQuestions}`;
   if (scale.unratedId !== 'unrated') return `unrated id is ${scale.unratedId}`;
 });
-
-/* ------------------------------------------------------------ topic scoring */
 
 section('topic scoring');
 
@@ -192,13 +157,9 @@ check('0 of 1 is a real 0% reported as unrated, with the count beside it', () =>
   if (indexing.status !== 'unrated') return `status is ${indexing.status}, but one question is not a measurement`;
 });
 
-/* ------------------------------------------------- competency aggregation */
-
 section('competency aggregation');
 
 check('a competency scores by summed counts, not by averaging its topics', () => {
-  // One topic 1/1 (100%) and one topic 0/9 (0%). Averaging the percentages says 50%;
-  // the truth is 1 correct out of 10 = 10%. This is the whole reason the code sums counts.
   const rows = calculateTopicPerformance([
     attempt('a1', [
       { topic: 'Point estimates', competency: 'inference', correct: 1, total: 1 },
@@ -226,12 +187,9 @@ check('gap and status ride on the aggregated competency, against the target', ()
   if (dq.status !== 'needs-improvement') return `status is ${dq.status}`;
 });
 
-/* ----------------------------------------------------- learning priority */
-
 section('learning priority');
 
 check('priority is gap x weakness x confidence, and shows its working', () => {
-  // current 40, target 80, plenty of questions → gap .4, weakness .6, confidence 1 → 24.
   const priority = calculateLearningPriority({ currentScore: 40, requiredScore: 80, questionsAttempted: 6 });
   if (priority.priority !== 24) return `priority is ${priority.priority}, expected 24`;
   if (priority.gap !== 40) return `gap input is ${priority.gap}`;
@@ -241,19 +199,14 @@ check('priority is gap x weakness x confidence, and shows its working', () => {
 });
 
 check('one lucky question cannot send a learner down a long pathway', () => {
-  // 0 of 1, target 80. Confidence is 1/3, so the priority is a third of what a full
-  // measurement of the same score would give — ranked, not hidden, not maxed out.
   const thin = calculateLearningPriority({ currentScore: 0, requiredScore: 80, questionsAttempted: 1 });
   const full = calculateLearningPriority({ currentScore: 0, requiredScore: 80, questionsAttempted: 3 });
   if (!(thin.priority < full.priority)) return `thin ${thin.priority} not below full ${full.priority}`;
   if (thin.confidence !== Math.round((1 / 3) * 100) / 100) return `confidence is ${thin.confidence}`;
 });
 
-/* --------------------------------------------------------- the whole summary */
-
 section('the whole summary');
 
-/** A realistic sitting: five competencies, a spread of scores, one topic under each. */
 const fullPaper = attempt('full-1', [
   { topic: 'Editing rules', competency: 'data-quality', correct: 11, total: 20 }, // 55%
   { topic: 'Confidence intervals', competency: 'inference', correct: 3, total: 10 }, // 30%
@@ -270,14 +223,11 @@ check('a summary reports overall, gaps sorted, priorities and a trend from real 
   }
   if (summary.overall.score !== 57) return `overall score is ${summary.overall.score}`;
   if (summary.competencies.length !== 5) return `${summary.competencies.length} competencies measured`;
-  // Gaps are biggest-first and drop any competency already at or above target.
   const gapOrder = summary.gaps.map((row) => row.gap);
   const sorted = [...gapOrder].sort((a, b) => b - a);
   if (JSON.stringify(gapOrder) !== JSON.stringify(sorted)) return `gaps not biggest-first: ${gapOrder}`;
   if (summary.gaps.some((row) => row.gap <= 0)) return 'a zero gap was listed';
-  // Dissemination scored 90% against a 70% target → no gap, so it must not be in the list.
   if (summary.gaps.some((row) => row.competency === 'dissemination')) return 'dissemination has no gap but was listed';
-  // Priorities are their own order, highest first, and each states its own numbers.
   const priOrder = summary.priorities.map((row) => row.priority);
   if (JSON.stringify(priOrder) !== JSON.stringify([...priOrder].sort((a, b) => b - a))) {
     return `priorities not highest-first: ${priOrder}`;
@@ -289,7 +239,6 @@ check('a summary reports overall, gaps sorted, priorities and a trend from real 
 });
 
 check('a competency the paper never asked about is unmeasured, not zero', () => {
-  // Only inference is answered. The other four must appear in `unmeasured`, never scored 0%.
   const onlyInference = attempt('one', [{ topic: 'Point estimates', competency: 'inference', correct: 2, total: 4 }]);
   const summary = buildAnalyticsSummary([onlyInference], { env: DEFAULT_ENV });
   if (summary.competencies.length !== 1) return `${summary.competencies.length} competencies, expected 1`;
@@ -313,15 +262,12 @@ check('the target dataset is labelled as the platform default, not an official s
   const summary = buildAnalyticsSummary([fullPaper], { env: DEFAULT_ENV });
   if (summary.requirement.custom !== false) return 'default targets were reported as custom';
   if (!/not an official/i.test(summary.requirement.note)) return `the note does not disclaim officialness: "${summary.requirement.note}"`;
-  // And an override is picked up and flips the flag.
   const overridden = buildAnalyticsSummary([fullPaper], { env: { COMPETENCY_TARGETS: 'inference=90' } });
   if (overridden.requirement.custom !== true) return 'an override did not flip custom to true';
   if (!targetsAreCustom({ COMPETENCY_TARGETS: 'inference=90' })) return 'targetsAreCustom disagreed with the summary';
   const target = overridden.competencies.find((row) => row.competency === 'inference');
   if (target && target.requiredScore !== 90) return `the override target did not apply: ${target.requiredScore}`;
 });
-
-/* ------------------------------------------------------- missing data */
 
 section('missing data must not crash');
 
@@ -373,8 +319,6 @@ check('zero-question inputs do not divide by zero anywhere', () => {
   if (analyseAnswers(undefined).total !== 0) return 'analyseAnswers(undefined) did not return an empty rollup';
 });
 
-/* -------------------------------------------------- the explanation guard */
-
 section('the AI explanation guard (unsupportedFigures)');
 
 check('a figure that is in the data passes', () => {
@@ -390,9 +334,6 @@ check('a figure that is not in the data is flagged', () => {
 });
 
 check('a claim one point off an exact figure is tolerated, two points is not', () => {
-  // Server percentages are integers (percentOf rounds), so the tolerance is ±1 around
-  // an exact figure: a model writing "about 66%" or "68%" of a real 67% is reporting it,
-  // not inventing. Two points away is no longer rounding and must be caught.
   const allowed = new Set([67]);
   if (unsupportedFigures('You reached 66%.', allowed).length !== 0) return '66% was flagged against 67';
   if (unsupportedFigures('You reached 68%.', allowed).length !== 0) return '68% was flagged against 67';
@@ -413,8 +354,6 @@ check('prose with no figures at all passes', () => {
     return 'plain prose was flagged';
   }
 });
-
-/* --------------------------------------------------------------- report */
 
 console.log(`\n  ${passed} passed, ${failed} failed.`);
 if (failed > 0) {

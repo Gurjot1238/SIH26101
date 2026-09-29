@@ -1,16 +1,4 @@
 #!/usr/bin/env node
-/**
- * M1 hardening regression (audit findings A11 + A19).
- *
- * A11 — a staged page upload must be refused BEFORE anything is written once it would push a
- *       document past its page cap, so an over-limit (or looping) client cannot bloat storage.
- * A19 — two concurrent profile writes from the SAME account must not lose an update: the store
- *       serializes read-modify-write per user, so the second write sees the first's result.
- *
- * Pure, offline, temp-dir only — no server, no network. (A13's oversize-stream teardown needs a
- * live HTTP body and is exercised by the OCR integration path; A14's metered-provider clamp is a
- * boot-time decision proven by importing the server with a metered provider + limit 0.)
- */
 import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -29,7 +17,6 @@ const pages = (n, base = 0) => Array.from({ length: n }, (_, i) => ({ page: base
 
 const root = await mkdtemp(join(tmpdir(), 'nexora-hardening-'));
 try {
-  /* ---------------------------------------------------- A11: appendPages page cap */
   console.log('\n  -- A11  staged upload is capped inside appendPages ------------\n');
   const docs = await openJsonDocumentStore(join(root, 'documents'));
   const doc = await docs.createDocument({ userId: 'u1', filename: 'big.pdf', sizeBytes: 10 });
@@ -67,7 +54,6 @@ try {
     if (total !== null) return `expected null (ownership), got ${total}`;
   });
 
-  /* ---------------------------------------------------- A19: profile lost-update */
   console.log('\n  -- A19  concurrent profile writes do not lose an update -------\n');
   const store = await openJsonStore(root);
   await store.updateProfile('u9', () => ({ preferences: { a: 1 }, courses: {}, updatedAt: 't0' }));

@@ -1,22 +1,3 @@
-/**
- * The orchestrator: upload → route → chunk → index → (topic) → retrieve → generate.
- *
- * This is the seam the HTTP routes call. It ties the pure pieces together — the classifier,
- * the chunker, the index/retriever, the job machine, the store, and the existing AI provider
- * — into the three operations the feature needs:
- *
- *   ingestDocument      classify, pick a mode, chunk page-aware, persist, run the job.
- *   searchDocuments     build an index over the owner's chosen document(s) and retrieve the
- *                       bounded, relevant context for a topic (the "here's what I found").
- *   generateFromTopic   send ONLY that bounded context to MCQ generation (and optionally to
- *                       one-page material generation), then stamp each question with the real
- *                       document + page range it was grounded in — never an invented page.
- *
- * The whole-book text is never handed to the AI. generateFromTopic's input to the model is
- * `retrieval.contextText`, already capped by the retriever. That is the structural answer to
- * "Request body too large": the model request is bounded no matter how large the book.
- */
-
 import { classifyDocument } from './classify.mjs';
 import { guardDocument } from './document-type-guard.mjs';
 import { chunkPages, pagesFromText } from './chunk.mjs';
@@ -26,14 +7,6 @@ import { DEFAULT_STAGES, runJob, jobView } from './jobs.mjs';
 import { generateMaterial } from './material.mjs';
 import { generateMcqs } from '../ai/provider.mjs';
 
-/**
- * Summarise how a document's pages were extracted, for the document record. All additive:
- * these fields ride along in the JSONB document row, so no schema migration is needed.
- *   ocrStatus       'not_required' | 'completed' | 'partial' | 'failed'
- *   pagesOcred      count of pages whose text came from OCR
- *   pagesOcrFailed  count of pages OCR was attempted on but could not read
- *   extractionMethod document-level 'native_text' | 'ocr' | 'mixed'
- */
 function ocrSummary(pageList) {
   let ocred = 0;
   let failed = 0;
@@ -52,15 +25,6 @@ function ocrSummary(pageList) {
   return { ocrStatus, pagesOcred: ocred, pagesOcrFailed: failed, extractionMethod };
 }
 
-/**
- * Ingest an uploaded document.
- *
- *   pages     [{page,text}] (preferred) OR omit and pass `text` for a single blob
- *   text      raw extracted text (used if `pages` absent); may carry \f / [[page:N]] marks
- *   filename, mimeType, sizeBytes  metadata
- *
- * Returns { ok, document, job, classification } or { ok:false, code, message }.
- */
 export async function ingestDocument({ store, userId, filename = 'document', text = '', pages = null, mimeType = '', sizeBytes = 0, env = process.env } = {}) {
   const cfg = loadConfig(env);
   const pageList = Array.isArray(pages) && pages.length ? pages : pagesFromText(text);
@@ -75,12 +39,8 @@ export async function ingestDocument({ store, userId, filename = 'document', tex
 
   const classification = classifyDocument({ text: sample, filename, pageCount, charsPerPage });
 
-  // STUDY MATERIAL ONLY gate (spec §2/§10): decide locally, with no AI, whether this is
-  // learning material BEFORE any chunking/indexing/job/AI. A rejected document is never
-  // persisted (createDocument has not run yet) and never reaches the generator.
   const guard = guardDocument({ text: sample, filename, pageCount, charsPerPage });
   if (guard.decision === 'reject') {
-    // Safe metadata only — never the OCR text or any personal content (spec §14).
     console.log(`doc.guard: rejected type=${guard.documentType} pages=${pageCount} conf=${guard.confidence}`);
     return { ok: false, code: 'document_rejected', documentType: guard.documentType, reason: guard.reason, message: guard.message, guard };
   }
@@ -92,8 +52,6 @@ export async function ingestDocument({ store, userId, filename = 'document', tex
     confidence: classification.confidence, mode, pageCount, sizeBytes,
   });
 
-  // Build chunks up front (page-aware). For a scanned doc with no text we stop here and
-  // report it — OCR is an infrastructure dependency not present in this build.
   const chunks = chunkPages(pageList, { documentId: document.id, cfg });
   if (chunks.length === 0) {
     await store.setDocumentStatus(userId, document.id, { status: 'failed' });
@@ -102,9 +60,6 @@ export async function ingestDocument({ store, userId, filename = 'document', tex
 
   const job = await store.createJob({ userId, documentId: document.id, totalChunks: chunks.length, stages: [...DEFAULT_STAGES] });
 
-  // Run the job. The per-chunk step here validates and admits each chunk; it is deliberately
-  // where a heavier per-chunk operation (e.g. computing an embedding) would live, so the
-  // retry/resume machinery is real and not decorative.
   await runJob(job, {
     maxChunkRetries: cfg.jobs.maxChunkRetries,
     processChunk: async (i) => {
@@ -121,15 +76,6 @@ export async function ingestDocument({ store, userId, filename = 'document', tex
   return { ok: true, document: store.getDocument(userId, document.id), job: jobView(job), classification, mode, isLargeMode: isLargeMode(mode) };
 }
 
-/**
- * Finalize a document uploaded in page batches: read the accumulated pages, classify, pick a
- * mode, chunk, run the job, and update the EXISTING document record (created by the staged
- * upload). This is the large-document path — pages arrived in bounded batches, so no single
- * request was ever large, and only now (server-side, off the request that uploaded the last
- * batch if the caller wishes) is the heavier chunk/index work done.
- *
- * Returns the same shape as ingestDocument.
- */
 export async function finalizeDocument({ store, userId, documentId, env = process.env } = {}) {
   const cfg = loadConfig(env);
   const record = store.getDocument(userId, documentId);
@@ -146,11 +92,6 @@ export async function finalizeDocument({ store, userId, documentId, env = proces
   const sample = pageList.map((p) => p.text).join('\n').slice(0, 8000);
   const classification = classifyDocument({ text: sample, filename: record.filename, pageCount, charsPerPage });
 
-  // STUDY MATERIAL ONLY gate on the large-document path (spec §2/§10/§11). Classified from
-  // the head sample only — the full book is never loaded to decide type. On reject we purge
-  // everything staged for this document: the pending pages were already consumed above by
-  // takePendingPages (so no sensitive page text remains on disk), and here we delete the
-  // document record itself, so nothing rejected is retained or indexed (spec §13).
   const guard = guardDocument({ text: sample, filename: record.filename, pageCount, charsPerPage });
   if (guard.decision === 'reject') {
     console.log(`doc.guard: rejected type=${guard.documentType} pages=${pageCount} conf=${guard.confidence}`);
@@ -183,12 +124,6 @@ export async function finalizeDocument({ store, userId, documentId, env = proces
   return { ok: true, document: store.getDocument(userId, documentId), job: jobView(job), classification, mode, isLargeMode: isLargeMode(mode) };
 }
 
-/**
- * Search one or more of the user's documents for a topic and return the bounded, relevant
- * context plus a preview (sections + page ranges) — the "🔎 Found relevant material" screen.
- *
- *   documentIds   array of document ids to search (all must belong to the user)
- */
 export async function searchDocuments({ store, userId, documentIds = [], query = '', env = process.env } = {}) {
   const cfg = loadConfig(env);
   if (!query || tokenize(query).length === 0) {
@@ -197,7 +132,6 @@ export async function searchDocuments({ store, userId, documentIds = [], query =
   const owned = documentIds.map((id) => store.getDocument(userId, id)).filter(Boolean);
   if (owned.length === 0) return { ok: false, code: 'no_documents', message: 'No matching document was found for your account.' };
 
-  // Gather chunks across the chosen documents (ownership already enforced by getDocument).
   const allChunks = [];
   for (const doc of owned) {
     // eslint-disable-next-line no-await-in-loop
@@ -221,7 +155,6 @@ export async function searchDocuments({ store, userId, documentIds = [], query =
   };
 }
 
-/** Locate the real page range a grounded source sentence came from, over the used chunks. */
 function locatePages(sourceText, usedChunks) {
   const needle = new Set(tokenize(sourceText));
   if (needle.size === 0) return null;
@@ -237,11 +170,6 @@ function locatePages(sourceText, usedChunks) {
   return bestScore >= 0.3 && best ? { pageStart: best.pageStart, pageEnd: best.pageEnd, section: best.section, chapter: best.chapter, extractionMethod: best.extractionMethod ?? null } : null;
 }
 
-/**
- * Generate MCQs (and optionally one-page material) for a topic, from bounded retrieved
- * context only. Each question is stamped with the document id and the real page range its
- * grounded source falls in — page refs come from actual chunks, never invented (spec §35).
- */
 export async function generateFromTopic({ store, userId, documentIds = [], query = '', questionCount = 10, difficulty, wantMaterial = false, materialStyle = 'revision', env = process.env } = {}) {
   const search = await searchDocuments({ store, userId, documentIds, query, env });
   if (!search.ok) return search;
@@ -256,7 +184,6 @@ export async function generateFromTopic({ store, userId, documentIds = [], query
     { env },
   );
 
-  // Stamp real source references onto every question the generator returned.
   const stampSource = (q) => {
     const loc = locatePages(q.source ?? '', retrieval.usedChunks) ?? (retrieval.pageRanges[0]
       ? { pageStart: retrieval.pageRanges[0].start, pageEnd: retrieval.pageRanges[0].end, section: retrieval.sections[0] ?? null, chapter: retrieval.chapters[0] ?? null, extractionMethod: retrieval.usedChunks[0]?.extractionMethod ?? null }

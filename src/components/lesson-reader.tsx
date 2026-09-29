@@ -1,26 +1,3 @@
-/**
- * The in-app lesson reader — the thing that lets a lesson mark *itself* done.
- *
- * The catalogue used to open each lesson in a new browser tab and rely on the learner
- * ticking a checkbox afterwards. That is two problems in one: the tick is a claim, not
- * evidence, and the material was never actually in the app. This reads the lesson *inside*
- * the app and completes it only once the learner has scrolled to the end of it — so
- * completion means "this was read", not "this was clicked".
- *
- * How "read" is decided:
- *  - Markdown / plain text is parsed (src/lib/markdown.ts, zero-dependency) into real React
- *    elements — never dangerouslySetInnerHTML — and rendered in a scroll box. When the box
- *    is scrolled to within a small threshold of the bottom, the lesson is complete. A lesson
- *    short enough that there is nothing to scroll is complete as soon as it has been seen.
- *  - A PDF (or anything binary) is shown in an <embed>. A cross-origin embed's inner scroll
- *    cannot be observed, so those complete on a short dwell instead — the honest best a
- *    browser allows. This is rare: the dataset is almost entirely Markdown.
- *
- * The reader never writes progress itself. It calls `onComplete(lessonId)` once, and the
- * catalogue page owns the save. That keeps this component pure UI and testable against the
- * markdown parser without a server.
- */
-
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { ArrowUpRight, Check, RefreshCw, X } from 'lucide-react';
@@ -28,9 +5,7 @@ import { type Block, type InlineNode, parseMarkdown } from '@/lib/markdown';
 import { contentUrl, fetchLessonContent } from '@/lib/course-content';
 import { AuthError } from '@/lib/auth';
 
-/** How close to the bottom (px) counts as "reached the end". A little slack for sub-pixel scroll. */
 const BOTTOM_SLACK = 24;
-/** A PDF/binary lesson can't be scroll-tracked; it completes after this long on screen. */
 const PDF_DWELL_MS = 8000;
 
 export type LessonReaderProps = {
@@ -38,26 +13,14 @@ export type LessonReaderProps = {
   lessonId: string;
   title: string;
   contentFile: string;
-  /** Source page for this lesson, shown as a footer link when present. */
   sourceUrl?: string;
-  /** True if the learner has already completed this lesson — the reader shows it as done. */
   alreadyDone: boolean;
-  /** Called once, the first time the lesson is read through. The parent saves progress. */
   onComplete: (lessonId: string) => void;
   onClose: () => void;
 };
 
-/* ------------------------------------------------------------------ inline render */
-
-/**
- * Lesson markdown is network-delivered content, so a link's href could be a
- * `javascript:` or `data:` URL that runs on click. Only http(s) and mailto links
- * — and scheme-less relative URLs — are allowed to be clickable; anything else is
- * returned as undefined so the text renders plain and non-navigable.
- */
 function safeHref(href: string): string | undefined {
   const trimmed = href.trim();
-  // No scheme (relative, anchor, or protocol-relative) → no javascript:/data: risk.
   if (!/^[a-z][a-z0-9+.-]*:/i.test(trimmed)) return trimmed || undefined;
   return /^(https?|mailto):/i.test(trimmed) ? trimmed : undefined;
 }
@@ -81,16 +44,12 @@ function renderInline(nodes: InlineNode[], keyPrefix: string) {
           : <span key={key}>{renderInline(node.children, key)}</span>;
       }
       case 'image':
-        // The dataset's image URLs are dead CDN links, so an <img> would just show a broken
-        // icon. The alt text is the useful part, shown as a caption.
         return <span key={key} className="italic text-muted-foreground">[image: {node.alt || 'figure'}]</span>;
       default:
         return null;
     }
   });
 }
-
-/* ------------------------------------------------------------------ block render */
 
 function renderBlock(block: Block, i: number) {
   const key = `b-${i}`;
@@ -119,7 +78,6 @@ function renderBlock(block: Block, i: number) {
   }
 }
 
-/** Is this a PDF/binary that has to be embedded rather than parsed? */
 function isBinary(contentType: string, contentFile: string): boolean {
   return /pdf|octet-stream/i.test(contentType) || /\.pdf$/i.test(contentFile);
 }
@@ -130,10 +88,8 @@ export function LessonReader({ courseId, lessonId, title, contentFile, sourceUrl
   const [problem, setProblem] = useState('');
   const [reached, setReached] = useState(alreadyDone);
   const scrollRef = useRef<HTMLDivElement | null>(null);
-  /** Guards `onComplete` so the parent's save fires exactly once per reading. */
   const firedRef = useRef(alreadyDone);
 
-  // Fetch the lesson's real content. Course content is public, so no session is needed.
   useEffect(() => {
     let alive = true;
     setStatus('loading');
@@ -166,8 +122,6 @@ export function LessonReader({ courseId, lessonId, title, contentFile, sourceUrl
     }
   };
 
-  // Text lessons: complete when scrolled to the end. A lesson that isn't tall enough to
-  // scroll has already been read in full the moment it's on screen, so complete it then.
   useEffect(() => {
     if (status !== 'text') return;
     const el = scrollRef.current;
@@ -175,7 +129,6 @@ export function LessonReader({ courseId, lessonId, title, contentFile, sourceUrl
     const check = () => {
       if (el.scrollHeight - el.scrollTop - el.clientHeight <= BOTTOM_SLACK) markReached();
     };
-    // Defer one frame so layout has settled before measuring scroll height.
     const raf = requestAnimationFrame(check);
     el.addEventListener('scroll', check, { passive: true });
     return () => { cancelAnimationFrame(raf); el.removeEventListener('scroll', check); };
@@ -183,7 +136,6 @@ export function LessonReader({ courseId, lessonId, title, contentFile, sourceUrl
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status, blocks]);
 
-  // PDF/binary lessons: can't observe inner scroll, so complete on a short dwell.
   useEffect(() => {
     if (status !== 'binary') return;
     const timer = setTimeout(markReached, PDF_DWELL_MS);
@@ -191,7 +143,6 @@ export function LessonReader({ courseId, lessonId, title, contentFile, sourceUrl
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
-  // Close on Escape, and lock the page behind the overlay from scrolling.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
     document.addEventListener('keydown', onKey);
@@ -200,11 +151,6 @@ export function LessonReader({ courseId, lessonId, title, contentFile, sourceUrl
     return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = prevOverflow; };
   }, [onClose]);
 
-  // Rendered through a portal to <body>. Every page is wrapped in `.animate-rise-in`,
-  // whose `transform` creates a containing block that would otherwise trap this
-  // `position: fixed` overlay inside the page column (it appeared low on the page rather
-  // than over the viewport). A portal escapes that ancestor so the overlay covers the
-  // whole screen and is centred, as a modal should be.
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-stretch justify-center bg-[hsl(214_40%_16%/.55)] p-0 sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-label={title} data-testid="lesson-reader">
       <div className="flex h-full w-full max-w-3xl flex-col overflow-hidden bg-card shadow-2xl sm:h-[86vh] sm:rounded-2xl">

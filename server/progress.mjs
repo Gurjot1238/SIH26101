@@ -1,78 +1,34 @@
-/**
- * Attempt history, preferences and course progress: validation and rollup.
- *
- * `store.mjs` knows how to put bytes on disk; this file knows what is allowed to
- * be there. It is kept separate from `index.mjs` for the same reason `auth.mjs`
- * is: the rules are worth reading on their own, and they are what a reviewer
- * will want to check.
- *
- * Two properties this file exists to guarantee:
- *
- *   1. **Nothing but an allow-list gets stored.** Every record is rebuilt field
- *      by field from the request, so a body carrying `text`, `questions` or
- *      `sentences` has those keys dropped on the floor. There is no field on the
- *      server that can hold document text or question text. The PDF is read by
- *      pdf.js in the browser tab and stays there; this is the file that keeps
- *      that claim true from the other side.
- *   2. **Derived numbers are recomputed, never trusted.** `percent`, `band` and
- *      the per-competency percentages are calculated here from `correct`,
- *      `total` and the topic list, so a stored attempt cannot be internally
- *      inconsistent no matter what the client posted.
- *
- * The competency ids and the band thresholds below are a second copy of what
- * `src/lib/topics.ts` defines — the server is plain .mjs and cannot import a
- * TypeScript module. `server/smoke-test.sh` parses that file and fails if the
- * two ever disagree, so the duplication cannot drift silently.
- */
-
 import { randomUUID } from 'node:crypto';
 
 import { HttpError } from './http.mjs';
 
-/** Mirrors CompetencyId in src/lib/topics.ts. */
 export const COMPETENCY_IDS = ['data-quality', 'inference', 'dissemination', 'digital-tools', 'leadership'];
-/** Mirrors Band in src/lib/topics.ts. */
 export const BANDS = ['strong', 'average', 'needs-work', 'unrated'];
-/** Mirrors BAND_STRONG_MIN / BAND_AVERAGE_MIN / MIN_QUESTIONS_FOR_BAND. */
 export const BAND_STRONG_MIN = 80;
 export const BAND_AVERAGE_MIN = 50;
 export const MIN_QUESTIONS_FOR_BAND = 2;
 
-/** The three options the Profile page offers. */
 export const LANGUAGES = ['English', 'Hindi', 'Kannada'];
 export const ATTEMPT_SOURCES = ['material', 'assessment'];
 
 export const LIMITS = {
-  /** A generated paper is 10-12 questions; an imported one could be longer. */
   maxQuestions: 200,
-  /** MAX_TOPICS is 5 on the client. The headroom is for a future longer paper. */
   maxTopics: 12,
   maxLabel: 120,
   maxTopicName: 80,
-  /** Longer than this is a tab left open overnight, not study time. */
   maxDurationSeconds: 12 * 60 * 60,
-  /** Oldest attempts fall off beyond this. A whole-file JSON store cannot grow forever. */
   maxAttemptsPerUser: 200,
   maxCoursesPerUser: 50,
   maxModulesPerCourse: 60,
-  /** Dataset courses track completion per lesson; the largest has well under this. */
   maxLessonsPerCourse: 400,
   defaultHistory: 50,
-  /** How many recent attempts GET /api/progress inlines, so one request fills a page. */
   inlineHistory: 20,
 };
-
-/* ------------------------------------------------------------------- helpers */
 
 function fieldError(field, message) {
   return new HttpError(400, 'invalid_input', message, { [field]: message });
 }
 
-/**
- * One line of plain text: control characters removed, then trimmed, then capped.
- * Done by code point so no literal control byte appears in this source file, the
- * same way `cleanText` does it in auth.mjs.
- */
 function cleanLine(value, max) {
   let out = '';
   for (const char of value) {
@@ -102,7 +58,6 @@ export function percentOf(correct, total) {
   return Math.round((correct / total) * 100);
 }
 
-/** Same rule as bandFor() in src/lib/topics.ts: one question is not a measurement. */
 export function bandFor(percent, questionCount) {
   if (questionCount < MIN_QUESTIONS_FOR_BAND) return 'unrated';
   if (percent >= BAND_STRONG_MIN) return 'strong';
@@ -114,15 +69,6 @@ export function newAttemptId() {
   return `att_${randomUUID().replaceAll('-', '')}`;
 }
 
-/* ------------------------------------------------------------------ attempts */
-
-/**
- * Validate one posted attempt and return the record to store.
- *
- * The return value is built key by key on purpose. Whatever else the body
- * contained is not copied, so there is no path by which document text, question
- * text or an answer key reaches the disk.
- */
 export function validateAttempt(body) {
   if (!ATTEMPT_SOURCES.includes(body.source)) {
     throw fieldError('source', `Source must be one of: ${ATTEMPT_SOURCES.join(', ')}.`);
@@ -135,8 +81,6 @@ export function validateAttempt(body) {
   const total = requireInteger(body.total, 'total', 'Question count', { min: 1, max: LIMITS.maxQuestions });
   const correct = requireInteger(body.correct, 'correct', 'Correct count', { min: 0, max: total });
 
-  // Time is a nice-to-have, not evidence: a missing value is fine, and a value
-  // from a tab left open overnight is clamped rather than rejected.
   let durationSeconds = 0;
   if (body.durationSeconds !== undefined && body.durationSeconds !== null) {
     if (typeof body.durationSeconds !== 'number' || !Number.isFinite(body.durationSeconds)) {
@@ -153,7 +97,6 @@ export function validateAttempt(body) {
     label,
     total,
     correct,
-    // Recomputed, never taken from the request, so the stored row cannot lie.
     percent,
     band: bandFor(percent, total),
     durationSeconds,
@@ -190,7 +133,6 @@ function validateTopics(value, paper) {
     const total = requireInteger(entry.total, 'topics', `Question count for ${topic}`, { min: 1, max: paper.total });
     const correct = requireInteger(entry.correct, 'topics', `Correct count for ${topic}`, { min: 0, max: total });
 
-    // A repeated topic name would double-count in every rollup. Keep the first.
     const key = topic.toLowerCase();
     if (seen.has(key)) continue;
     seen.add(key);
@@ -201,14 +143,11 @@ function validateTopics(value, paper) {
     out.push({ topic, competency: entry.competency ?? null, correct, total, percent, band: bandFor(percent, total) });
   }
 
-  // The breakdown cannot describe more questions than the paper had. Checked
-  // rather than assumed, because everything downstream sums these numbers.
   if (questionSum > paper.total) throw fieldError('topics', 'Topic question counts add up to more than the paper.');
   if (correctSum > paper.correct) throw fieldError('topics', 'Topic correct counts add up to more than the score.');
   return out;
 }
 
-/** Per-competency percentages for one attempt, computed from its topic rows. */
 function rollUpPercents(topics) {
   const totals = new Map();
   for (const topic of topics) {
@@ -220,7 +159,6 @@ function rollUpPercents(topics) {
   }
 
   const out = {};
-  // Framework order, so the stored object reads the same way every time.
   for (const id of COMPETENCY_IDS) {
     const entry = totals.get(id);
     if (entry) out[id] = percentOf(entry.correct, entry.total);
@@ -228,19 +166,8 @@ function rollUpPercents(topics) {
   return out;
 }
 
-/* ------------------------------------------------------------------- rollups */
-
-/** Worst first; "not enough questions" sits after the real bands, as in scoring.ts. */
 const bandRank = { 'needs-work': 0, average: 1, unrated: 2, strong: 3 };
 
-/**
- * Everything the Dashboard needs about a learner, computed from their attempts.
- *
- * Deliberately contains nothing bucketed by day. Grouping into weekdays or
- * counting a streak depends on the learner's timezone, which the server does not
- * know — doing it here would quietly mislabel a late-evening attempt. The raw
- * timestamps go back with the history and the browser groups them itself.
- */
 export function computeProgress(attempts) {
   const competencyTotals = new Map();
   const topicTotals = new Map();
@@ -269,7 +196,6 @@ export function computeProgress(attempts) {
       row.total += topic.total;
       row.attempts += 1;
       row.lastSeenAt = attempt.at;
-      // A later attempt may classify a topic the first one could not.
       if (!row.competency && topic.competency) row.competency = topic.competency;
       topicTotals.set(key, row);
 
@@ -312,7 +238,6 @@ export function computeProgress(attempts) {
     questions,
     correct,
     percent,
-    // One decimal place, because that is how the pages already print an index.
     index: questions > 0 ? Math.round((correct / questions) * 1000) / 10 : 0,
     band: bandFor(percent, questions),
     minutes: Math.round(seconds / 60),
@@ -321,12 +246,10 @@ export function computeProgress(attempts) {
     sources,
     competencies,
     topics,
-    /** Competencies worth working on, weakest first. Empty is a real answer. */
     focus: competencies.filter((item) => item.band === 'needs-work' || item.band === 'average'),
   };
 }
 
-/** The response shape. `userId` is an internal join key and never goes out. */
 export function publicAttempt(record) {
   return {
     id: record.id,
@@ -343,28 +266,17 @@ export function publicAttempt(record) {
   };
 }
 
-/* --------------------------------------------------------------- preferences */
-
 const PREFERENCE_KEYS = ['language', 'weeklyNote', 'demoLabels', 'notify'];
 
 export function defaultPreferences() {
   return {
     language: 'English',
-    /** The Monday brief toggle on the Profile page. */
     weeklyNote: true,
-    /** Whether "Sample / Demonstration Data" markers stay visible. Default on, on purpose. */
     demoLabels: true,
-    /** Whether the in-app notification bell fetches and shows a feed. Default on. */
     notify: true,
   };
 }
 
-/**
- * The stored preferences, field by field, with a default wherever the file does
- * not hold a usable value. Read paths are allow-listed for the same reason write
- * paths are: `profiles.json` sits on disk and can be hand-edited, and an unknown
- * key that survives a round trip is a key the client starts depending on.
- */
 export function normalizePreferences(stored) {
   const base = defaultPreferences();
   const raw = stored !== null && typeof stored === 'object' && !Array.isArray(stored) ? stored : {};
@@ -376,11 +288,6 @@ export function normalizePreferences(stored) {
   };
 }
 
-/**
- * Merge a patch into the stored preferences. Unknown keys are rejected rather
- * than ignored: a typo that silently does nothing is worse than an error, and
- * the set is small and closed.
- */
 export function validatePreferences(patch, current) {
   if (patch === null || typeof patch !== 'object' || Array.isArray(patch)) {
     throw new HttpError(400, 'invalid_input', 'Send preferences as a JSON object.');
@@ -404,14 +311,6 @@ export function validatePreferences(patch, current) {
   return next;
 }
 
-/* ------------------------------------------------------------- personal details */
-
-/**
- * The editable identity fields on the Profile page. Name and email are NOT here:
- * they are the account's own credentials, owned by auth.mjs, and are read-only on
- * the profile. These are the free-text extras a learner may fill in, each capped
- * so a hand-edited profiles.json cannot smuggle in an unbounded blob.
- */
 const PERSONAL_KEYS = ['phone', 'bio', 'role', 'department', 'location'];
 const PERSONAL_CAPS = { phone: 40, bio: 400, role: 80, department: 120, location: 80 };
 
@@ -419,11 +318,6 @@ export function defaultPersonal() {
   return { phone: '', bio: '', role: '', department: '', location: '' };
 }
 
-/**
- * The stored personal block, field by field, each cleaned to one line and capped.
- * Same allow-list discipline as preferences: an unknown key on disk is dropped, a
- * missing one defaults to empty string.
- */
 export function normalizePersonal(stored) {
   const raw = stored !== null && typeof stored === 'object' && !Array.isArray(stored) ? stored : {};
   const out = defaultPersonal();
@@ -433,12 +327,6 @@ export function normalizePersonal(stored) {
   return out;
 }
 
-/**
- * Merge a patch into the stored personal details. Unknown keys are rejected (a
- * silent no-op is worse than an error); each supplied value must be a string and
- * is cleaned + capped before it is stored. An empty string is a valid value: it
- * is how a learner clears a field.
- */
 export function validatePersonal(patch, current) {
   if (patch === null || typeof patch !== 'object' || Array.isArray(patch)) {
     throw new HttpError(400, 'invalid_input', 'Send profile details as a JSON object.');
@@ -459,23 +347,10 @@ export function validatePersonal(patch, current) {
   return next;
 }
 
-/* ------------------------------------------------------------ course progress */
-
 const COURSE_KEYS = ['courseId', 'saved', 'started', 'completedModules', 'completedLessons'];
-/**
- * Slug shape only. The catalogue itself lives in the app / dataset, not here.
- * Widened to 64 chars so dataset course ids (e.g. the longer MIT titles) fit; the
- * dataset reader in courses.mjs uses the same bound.
- */
 const COURSE_ID = /^[a-z0-9][a-z0-9-]{0,63}$/;
-/** A lesson id from the dataset, e.g. "mit-6-006-algorithms-m01-l01". */
 const LESSON_ID = /^[a-z0-9][a-z0-9-]{0,79}$/;
 
-/**
- * Merge a patch into one course record. Which courses exist is the app's
- * business — this only checks that the id looks like a slug, so adding a fourth
- * pathway does not mean editing the server.
- */
 export function validateCourseUpdate(body, current, now) {
   for (const key of Object.keys(body)) {
     if (!COURSE_KEYS.includes(key)) {
@@ -498,8 +373,6 @@ export function validateCourseUpdate(body, current, now) {
 
   if (Object.hasOwn(body, 'saved')) next.saved = requireBoolean(body.saved, 'saved', 'Saved');
   if (Object.hasOwn(body, 'started')) {
-    // Keep the original start time when re-marking as started, so "started 3 days
-    // ago" stays true after a resume.
     next.startedAt = requireBoolean(body.started, 'started', 'Started') ? (next.startedAt ?? now) : null;
   }
   if (Object.hasOwn(body, 'completedModules')) {
@@ -507,8 +380,6 @@ export function validateCourseUpdate(body, current, now) {
     if (next.completedModules.length > 0 && !next.startedAt) next.startedAt = now;
   }
   if (Object.hasOwn(body, 'completedLessons')) {
-    // The dataset courses track completion per lesson id, which is what the
-    // completion percentage divides into. Marking any lesson done implies started.
     next.completedLessons = validateLessons(body.completedLessons);
     if (next.completedLessons.length > 0 && !next.startedAt) next.startedAt = now;
   }
@@ -527,12 +398,6 @@ function validateModules(value) {
   return [...out].sort((a, b) => a - b);
 }
 
-/**
- * Completed lesson ids, de-duplicated and shape-checked. Ids are opaque to the
- * server — which lessons exist is the dataset's business — so this only enforces
- * the slug shape (so a hand-edited file cannot smuggle in a `__proto__`-style key
- * or an unbounded blob) and the per-course cap. Sorted so the stored row is stable.
- */
 function validateLessons(value) {
   if (!Array.isArray(value)) throw fieldError('completedLessons', 'Completed lessons must be a list of lesson ids.');
   if (value.length > LIMITS.maxLessonsPerCourse) {
@@ -548,7 +413,6 @@ function validateLessons(value) {
   return [...out].sort();
 }
 
-/** One stored course record, rebuilt field by field. Same reasoning as preferences. */
 function normalizeCourse(courseId, stored) {
   const raw = stored !== null && typeof stored === 'object' && !Array.isArray(stored) ? stored : {};
   const modules = Array.isArray(raw.completedModules)
@@ -567,12 +431,6 @@ function normalizeCourse(courseId, stored) {
   };
 }
 
-/**
- * A whole stored profile, normalised. A record written by an earlier version, or
- * edited by hand, still comes back with every field present and nothing extra.
- * Course keys that do not look like slugs are dropped rather than repaired —
- * `__proto__` must never become a key the rest of the server reads back.
- */
 export function normalizeProfile(stored) {
   const record = stored !== null && typeof stored === 'object' && !Array.isArray(stored) ? stored : {};
   const courses = {};
@@ -586,17 +444,11 @@ export function normalizeProfile(stored) {
     preferences: normalizePreferences(record.preferences),
     personal: normalizePersonal(record.personal),
     courses,
-    /** When the learner last opened the notification panel; drives the unread count. */
     notificationsSeenAt: typeof record.notificationsSeenAt === 'string' ? record.notificationsSeenAt : null,
     updatedAt: typeof record.updatedAt === 'string' ? record.updatedAt : null,
   };
 }
 
-/**
- * Refuse a brand-new course once the per-account cap is reached. Updating one that
- * already exists is always allowed, so a learner can never be locked out of the
- * pathway they are actually working through.
- */
 export function assertCourseRoom(courses, courseId) {
   if (Object.hasOwn(courses, courseId)) return;
   if (Object.keys(courses).length >= LIMITS.maxCoursesPerUser) {

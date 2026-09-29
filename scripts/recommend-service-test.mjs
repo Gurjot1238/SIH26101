@@ -1,29 +1,3 @@
-/**
- * Tests the recommendation SERVICE, its fallback behaviour, and the privacy of the
- * interaction log — by running them, with no server and no model.json on disk.
- *
- * Usage:  node scripts/recommend-service-test.mjs   (or:  npm run recommend:test — chained)
- *
- * Three things have to be true for the ML upgrade to be safe, and each is asserted here:
- *
- *   1. The service never returns fewer or different courses than the current engine. The
- *      hybrid engine generates candidates with the rule-based engine, so with no trained
- *      model (the state today) its output courses are exactly `recommendCoursesForGaps`'s.
- *      "Never show empty recommendations because the ML model is not trained yet."
- *
- *   2. The ML engine refuses to run without a real, complete model AND enough data. There is
- *      no `if (score < 50) recommend` — a not-ready model yields the deterministic result,
- *      tagged honestly. When a (test-injected) model IS ready and data is sufficient, it only
- *      re-orders the same courses; it cannot introduce one the rules did not vouch for.
- *
- *   3. The interaction log carries no PII. sanitizeEvent rebuilds from an allow-list, hashes
- *      the user id, and drops passwords/tokens/emails/document text even when a caller passes
- *      them. This is the guarantee that the future training set is safe to build.
- *
- * A check returns nothing (or true) when it passes and a string when it fails, so a failure
- * prints the value it actually saw.
- */
-
 import { buildAnalyticsSummary } from '../server/competency.mjs';
 import { recommendCoursesForGaps } from '../server/course-recommendations.mjs';
 import {
@@ -80,8 +54,6 @@ function section(title) {
   console.log(`\n  -- ${title} ${'-'.repeat(Math.max(0, 58 - title.length))}`);
 }
 
-/* ------------------------------------------------------------------- fixtures */
-
 function attempt(id, topics, { at = '2026-09-10T10:00:00.000Z' } = {}) {
   const correct = topics.reduce((s, t) => s + t.correct, 0);
   const total = topics.reduce((s, t) => s + t.total, 0);
@@ -97,7 +69,6 @@ function course(courseId, competencies, extra = {}) {
     courseId, title: extra.title ?? courseId, provider: extra.provider ?? 'Test Provider', category: 'Technology',
     subcategory: '', level: extra.level ?? 'introductory', description: '',
     estimatedHours: extra.estimatedHours ?? 10, competencies, topics: [], license: 'CC-BY',
-    // A real, valid URL — the quality gate (§8) rejects candidates without one.
     officialUrl: extra.officialUrl ?? `https://example.org/courses/${courseId}`,
     availability: extra.availability ?? 'available',
     prerequisites: extra.prerequisites ?? [],
@@ -126,8 +97,6 @@ const cat = {
   ],
 };
 
-/* ------------------------------------------------------- 1. rule-based is the floor */
-
 section('Rule-based engine wraps the current system unchanged');
 
 check('rule-based courses equal recommendCoursesForGaps courses', () => {
@@ -144,12 +113,9 @@ check('rule-based tags its strategy', () => {
   return r.strategy?.engine === 'rule-based' || `strategy=${JSON.stringify(r.strategy)}`;
 });
 
-/* -------------------------------------------------- 2. ML refuses without a model */
-
 section('ML engine refuses to run without a real, complete model');
 
 check('ML usable() is false when no model file exists', () => {
-  // The real loader: with no model.json on disk it must report not-ready.
   const ml = new MLRecommendationEngine();
   const state = ml.usable({ interactionCount: 10000 });
   return state.usable === false || `expected not-usable, got ${JSON.stringify(state)}`;
@@ -162,18 +128,13 @@ check('ML usable() is false when a model exists but data is thin', () => {
   return (state.usable === false && /activates at 200/.test(state.reason)) || `got ${JSON.stringify(state)}`;
 });
 
-/* -------------------------------------------- 3. hybrid falls back, never empties */
-
 section('Hybrid falls back to rule-based when ML is not ready');
 
 check('hybrid with no model returns filtered rule-based courses (subset, tagged, explained)', () => {
-  const hybrid = new HybridRecommendationEngine(); // real loader → no model
+  const hybrid = new HybridRecommendationEngine();
   const r = hybrid.generate(weakLearner, cat, { interactionCount: 999999 });
   const base = recommendCoursesForGaps(weakLearner, cat);
   const baseSet = new Set(base.courses.map((c) => c.courseId));
-  // Every course the hybrid returns must be one the rule-based engine vouched for (the gate
-  // and count caps may remove some, but never add one), it must be tagged rule-based, and
-  // every survivor must carry an evidence explanation.
   const subset = r.courses.every((c) => baseSet.has(c.courseId));
   const tagged = r.strategy.engine === 'hybrid:rule-based';
   const explained = r.courses.every((c) => Array.isArray(c.why) && typeof c.summary === 'string');
@@ -186,12 +147,9 @@ check('hybrid never returns empty just because ML is untrained', () => {
   return r.courses.length > 0 || 'hybrid returned an empty course list with an untrained model';
 });
 
-/* ------------------------------------ 4. ML (injected) only re-orders, never adds */
-
 section('ML re-ranks the same candidates — no new or dropped courses');
 
 check('injected ready model re-ranks only the filtered survivors, never adds a course', () => {
-  // A model that strongly favours the `tag_overlap` feature, with enough interactions.
   const model = {
     modelVersion: 'ltr-test-001',
     features: FEATURE_NAMES,
@@ -201,7 +159,6 @@ check('injected ready model re-ranks only the filtered survivors, never adds a c
   };
   const mlEngine = new MLRecommendationEngine({ load: () => ({ ready: true, model }), score: scoreVector, minInteractions: 10 });
   const hybrid = new HybridRecommendationEngine({ mlEngine });
-  // The ML path must be a subset of the filtered rule-based path (same gate), just reordered.
   const filteredIds = new Set(new HybridRecommendationEngine().generate(weakLearner, cat, { interactionCount: 0 }).courses.map((c) => c.courseId));
   const r = hybrid.generate(weakLearner, cat, { interactionCount: 50 });
   const subset = r.courses.every((c) => filteredIds.has(c.courseId));
@@ -216,8 +173,6 @@ check('service defaults to hybrid and returns a valid shape', () => {
   const valid = Array.isArray(r.courses) && typeof r.available === 'boolean' && Boolean(r.strategy);
   return valid || `shape=${JSON.stringify(Object.keys(r))}`;
 });
-
-/* --------------------------------------------------- 5. interaction log privacy */
 
 section('Interaction log is anonymised and PII-free');
 
@@ -272,8 +227,6 @@ check('all documented interaction types are accepted', () => {
   return bad.length === 0 || `rejected types: [${bad.join(',')}]`;
 });
 
-/* ------------------------------------------- 6. training rows + outcome labels */
-
 section('Training rows and outcome labels model learning, not clicks');
 
 check('buildTrainingRows aggregates events per (learner, course)', () => {
@@ -302,8 +255,6 @@ check('extractFeatures produces every declared feature name', () => {
   return missing.length === 0 || `missing features: [${missing.join(',')}]`;
 });
 
-/* -------------------------------------------------- 7. quality / rejection gate (§6) */
-
 section('Quality gate rejects the courses the spec names');
 
 check('rejects a course with no valid URL (§8)', () => {
@@ -323,7 +274,6 @@ check('rejects an already-completed course', () => {
 });
 
 check('rejects a near-duplicate of an already-kept course', () => {
-  // Same course title from two providers — the classic near-duplicate we must not show twice.
   const a = course('intro-python', ['python-programming'], { title: 'Introduction to Python Programming', provider: 'Provider A' });
   const b = course('intro-python-2', ['python-programming'], { title: 'Introduction to Python Programming', provider: 'Provider B' });
   a.matchedTags = ['python-programming']; b.matchedTags = ['python-programming'];
@@ -341,11 +291,9 @@ check('prerequisite check: unmet competency prereq blocks; met one passes', () =
 
 check('difficulty: advanced course is a mismatch for a beginner', () => {
   const adv = course('deep-learning', ['machine-learning'], { level: 'advanced' });
-  const d = difficultyMatch(adv, 0); // learner level 0 (beginner)
+  const d = difficultyMatch(adv, 0);
   return (d.ok === false && d.distance === 2) || `ok=${d.ok} distance=${d.distance}`;
 });
-
-/* ------------------------------------------------ 8. variable count + explanations */
 
 section('Variable count by gap severity (§10) and evidence explanations (§9)');
 
@@ -353,7 +301,6 @@ check('count scales with gap size: critical > moderate > small', () => {
   const critical = countForGap({ gap: 55 });
   const moderate = countForGap({ gap: 25 });
   const small = countForGap({ gap: 10 });
-  // Deliberately small shortlist: a serious gap earns 3, moderate 2, minor 1.
   return (critical === 3 && moderate === 2 && small === 1) || `critical=${critical} moderate=${moderate} small=${small}`;
 });
 
@@ -370,7 +317,6 @@ check('explanation is built from real evidence, not fabricated', () => {
 });
 
 check('refine caps a small gap to fewer courses and explains survivors', () => {
-  // A base result with one small gap (gap=10 → cap 2) that has 4 candidate courses.
   const base = {
     available: true, measured: true, hasGaps: true, note: null,
     groups: [{
@@ -389,8 +335,6 @@ check('refine caps a small gap to fewer courses and explains survivors', () => {
   return (capped && explained) || `count=${refined.groups[0].courses.length} explained=${explained}`;
 });
 
-/* ---------------------------------------------- 9. the REAL trainer learns a signal */
-
 section('Offline trainer is real ML: it learns a signal and refuses thin data');
 
 check('trainer refuses to emit a model on too little data (§16)', () => {
@@ -400,9 +344,6 @@ check('trainer refuses to emit a model on too little data (§16)', () => {
 });
 
 check('trainer learns that tag-overlap predicts a good outcome', () => {
-  // Synthetic data with a clear, honest signal: rows whose course matched the gap (high
-  // tag_overlap + completion) are label 1; rows with no overlap and abandonment are label 0.
-  // A real fit must rank the label-1 rows above the label-0 rows.
   const rows = [];
   for (let i = 0; i < 60; i += 1) {
     const good = i % 2 === 0;
@@ -415,7 +356,6 @@ check('trainer learns that tag-overlap predicts a good outcome', () => {
   }
   const model = trainAndEvaluate(rows, { min: 20, k: 3 });
   if (!model.ready) return `model not ready: ${model.reason}`;
-  // The trained model must score a matched+completed course above an unmatched+abandoned one.
   const goodFeat = extractFeatures({ gap: 40, priority: 40 }, course('g', ['statistics', 'probability', 'machine-learning']), { count: 3, matched: ['statistics', 'probability', 'machine-learning'] }, { learnerLevel: 1 });
   const badFeat = extractFeatures({ gap: 40, priority: 40 }, course('b', ['unrelated-topic']), { count: 0, matched: [] }, { learnerLevel: 1 });
   const goodScore = predictRaw(model.weights, model.bias, goodFeat);
@@ -427,7 +367,6 @@ check('trainer learns that tag-overlap predicts a good outcome', () => {
 
 check('buildLabeledRows pairs recommendation_shown (before) with competency_measured (after)', () => {
   const secret = 's'.repeat(32);
-  // Simulate: course shown (Stats 38 before) → completed → reassessed (Stats 66 after).
   const events = [
     { learner: 'L1', type: 'recommendation_shown', courseId: 'stats-101', competency: 'inference', competencyScoreBefore: 38, gapBefore: 42, courseCompetencies: ['statistics'], courseLevel: 'introductory', courseDurationHours: 8, at: 1 },
     { learner: 'L1', type: 'course_completed', courseId: 'stats-101', completionPercent: 100, at: 2 },
@@ -435,11 +374,8 @@ check('buildLabeledRows pairs recommendation_shown (before) with competency_meas
   ];
   const rows = buildLabeledRows(events);
   const row = rows.find((r) => r.courseId === 'stats-101');
-  // 38 → 66 is a +28 gain with full completion: a strong positive label.
   return (row && row.label === 1 && row.outcome > 0.7) || `row=${JSON.stringify(row)}`;
 });
-
-/* --------------------------------------------------------------------- report */
 
 console.log(`\n  ${passed} passed, ${failed} failed\n`);
 if (failed > 0) {

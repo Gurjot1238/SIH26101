@@ -1,25 +1,9 @@
-/**
- * Tests the question engine, the scorer and the recommender by running them.
- *
- * Usage:  node scripts/engine-test.mjs <compiled-out-dir>
- *         (or, more usefully:  npm run engine:test)
- *
- * These are assertions about behaviour, not about source text. Every check below
- * imports the real compiled module, feeds it a document, and inspects what comes
- * back. Several exist because the first working version of the generator failed
- * them: it made "and the" a topic, it printed five cloze questions in a row, it
- * offered "the base year is 3622" as a distractor, and it gave the cloze answer
- * away by capitalising it differently from the other three options.
- */
-
 const OUT = process.argv[2];
 if (!OUT) {
   console.error('usage: node scripts/engine-test.mjs <compiled-out-dir>');
   process.exit(2);
 }
 
-// pdfjs-dist prints a legacy-build warning on import in Node. It is irrelevant
-// here and would drown the report, so it is silenced for the import only.
 const realWarn = console.warn;
 console.warn = () => {};
 const materials = await import(`${OUT}/lib/materials.js`);
@@ -30,12 +14,6 @@ const assessment = await import(`${OUT}/lib/assessment.js`);
 const markdown = await import(`${OUT}/lib/markdown.js`);
 console.warn = realWarn;
 
-/**
- * The assessment item bank now lives on the server, so the checks on it import the
- * server module rather than the compiled `src/`. It is plain ESM over Node built-ins,
- * which is what makes that possible from here: `src/lib/assessment.ts` holds the two
- * index spaces and no questions, and both halves are exercised below together.
- */
 const exam = await import(new URL('../server/assessment.mjs', import.meta.url).href);
 
 let passed = 0;
@@ -65,7 +43,6 @@ function section(title) {
   console.log(`\n  -- ${title} ${'-'.repeat(Math.max(0, 58 - title.length))}`);
 }
 
-/** A second document, deliberately about a different subject than the built-in sample. */
 const surveyDoc = [
   'The quarterly labour force survey collects employment status from a rotating panel of households across all states.',
   'The survey response rate for the quarter was 84 percent, down from 89 percent in the previous round.',
@@ -88,7 +65,6 @@ const documents = [
   ['labour force survey note', survey],
 ];
 
-/** Words that must never begin or end a topic, nor be a topic on their own. */
 const functionWords = new Set([
   'the', 'and', 'a', 'an', 'of', 'in', 'to', 'for', 'is', 'are', 'was', 'were',
   'with', 'that', 'this', 'its', 'it', 'any', 'all', 'from', 'on', 'by', 'as',
@@ -188,7 +164,6 @@ check('sample: all four question kinds are used', () => {
 });
 
 check('kinds do not arrive in one long run', () => {
-  // The first working version emitted cloze x5, statement x5, numeric x2.
   let longest = 1;
   let run = 1;
   for (let index = 1; index < sample.questions.length; index += 1) {
@@ -200,8 +175,6 @@ check('kinds do not arrive in one long run', () => {
 
 for (const [label, doc] of documents) {
   check(`${label}: cloze options are cased alike`, () => {
-    // A lowercase answer beside three title-cased distractors is findable without
-    // reading the passage. All four must look the same.
     for (const question of doc.questions) {
       if (question.kind !== 'cloze') continue;
       const leading = question.a.map((option) => /^[A-Z]/.test(option));
@@ -231,7 +204,6 @@ for (const [label, doc] of documents) {
   });
 
   check(`${label}: no wrong option is an unaltered document sentence`, () => {
-    // Two true options means the question has no answer.
     const sentences = new Set(doc.sentences.map((sentence) => sentence.toLowerCase()));
     for (const [index, question] of doc.questions.entries()) {
       if (question.kind !== 'statement' && question.kind !== 'identify') continue;
@@ -253,7 +225,6 @@ for (const [label, doc] of documents) {
       for (const option of question.a) {
         const value = Number(option.replace(/,/g, ''));
         if (!Number.isFinite(value)) return `option "${option}" is not a number`;
-        // A year answered with 3622 is a free mark; so is 240 percent.
         if (isYear && (value < 1900 || value > 2100)) return `year option "${option}" is not a year`;
         if (!isYear && answer <= 100 && value > 100) return `option "${option}" exceeds 100 where the answer is ${answer}`;
       }
@@ -286,7 +257,6 @@ check('an empty document produces no questions and does not throw', () => {
 check('a one-line document degrades instead of failing', () => {
   const thin = materials.analyzeMaterial('The consumer price index rose by 4.1 percent this quarter.', 1);
   if (!Array.isArray(thin.questions)) return 'questions is not an array';
-  // Fewer than ten is the honest outcome here; the UI has to handle it, not pretend.
   if (thin.questions.length > materials.TARGET_QUESTIONS) return 'padded a one-line document';
 });
 
@@ -337,7 +307,6 @@ check('a half-finished paper still grades', () => {
 });
 
 check('one question is not enough to band a topic', () => {
-  // Built by hand: two topics, one question each. Neither may be called weak.
   const questions = [
     { q: 'a', a: ['1', '2', '3', '4'], correct: 0, source: 'x', topic: 'Sampling Frame', kind: 'statement', explanation: 'x', sourceIndex: 0 },
     { q: 'b', a: ['1', '2', '3', '4'], correct: 0, source: 'y', topic: 'Response Rate', kind: 'statement', explanation: 'y', sourceIndex: 1 },
@@ -376,8 +345,6 @@ check('the roll-up reports only competencies the paper tested', () => {
 });
 
 check('the stored payload carries no document text', () => {
-  // The PDF is read in the tab and must stay there. This is the assertion that
-  // keeps that claim true as the payload changes.
   const result = scoring.gradeAttempt(sample.questions, allWrong);
   const payload = scoring.toAttemptPayload(result, {
     source: 'material',
@@ -462,8 +429,6 @@ check('every weak topic carries a real band label and an actionable summary', ()
     if (!['Good', 'Average', 'Needs work'].includes(topic.bandLabel)) {
       throw new Error(`"${topic.score.topic}" has band label "${topic.bandLabel}"`);
     }
-    // Advice always exists now: either a passage to re-read or the review-screen
-    // explanation. The summary line must never leave the learner with nothing to do.
     if (!/re-read|explanation/i.test(lines[index] ?? '')) {
       throw new Error(`"${topic.score.topic}" was flagged with no advice: "${lines[index]}"`);
     }
@@ -493,12 +458,6 @@ check('classifyTopic refuses to guess', () => {
 
 section('the generated paper survives a reload');
 
-/**
- * `material-session.ts` is a browser module, so Node needs a `window.sessionStorage`.
- * The shim is a real string store on purpose: the claim under test is that a paper the
- * Materials page wrote can be read back by the Quiz page after the tab reloads, and a
- * shim that handed objects back by reference would hide a broken JSON round trip.
- */
 const cell = new Map();
 globalThis.window = {
   sessionStorage: {
@@ -541,8 +500,6 @@ check('the paper is stored as JSON text, not held by reference', () => {
   if (JSON.parse(raw).questions.length !== sample.questions.length) return 'the stored copy lost questions';
 });
 
-// A fresh module instance has empty in-memory state, which is exactly what a page reload
-// leaves behind: nothing but whatever sessionStorage kept.
 const afterReload = await import(`${STORE}?reload=1`);
 
 check('a reload restores the same paper from tab storage', () => {
@@ -600,9 +557,6 @@ check('unsubscribing stops the notifications', () => {
   return announced === before ? true : `${announced - before} notifications arrived after unsubscribing`;
 });
 
-// Safari in private mode and a full quota both throw on setItem. The paper still has to
-// work for as long as the tab stays open — but the page must be told, so it can stop
-// promising that a reload is safe.
 globalThis.window = {
   sessionStorage: {
     getItem: () => null,
@@ -625,13 +579,6 @@ check('a failed write is reported, so the page can stop promising a reload is sa
 
 section('the finished result survives leaving the page');
 
-/**
- * The bug the learner hit: finish a paper, click to another page, and the report was gone —
- * the material persisted but the sitting did not, so the only way back was to retake it.
- * `attempt-session.ts` keeps the sitting's inputs in the same tab storage, keyed to the
- * assignment, so the report can be rebuilt on return. The shim is a real string store for
- * the same reason as above: a broken JSON round trip must show up as a lost result.
- */
 const attemptCell = new Map();
 globalThis.window = {
   sessionStorage: {
@@ -668,8 +615,6 @@ check('the result is only returned against the assignment it was taken on', () =
   if (attempts.loadAttempt('') !== null) return 'an empty key matched a stored sitting';
 });
 
-// A fresh module instance has empty in-memory state — exactly what leaving the page and
-// coming back leaves behind: nothing but whatever tab storage kept.
 const afterLeaving = await import(`${ATTEMPT}?reload=1`);
 
 check('returning to the page restores the same finished sitting', () => {
@@ -755,10 +700,6 @@ check('the file input and the help text offer the same formats', () => {
   }
 });
 
-// A PDF's text layer routinely arrives with NUL bytes, form feeds and CRLF endings.
-// They reach the sentence splitter unless extraction strips them, and a NUL inside a
-// sentence would be quoted straight back to the learner as part of a question. Every
-// control character below is written as an escape, so this file stays plain text.
 const messy = await materials.readMaterial(
   new File(
     [
@@ -787,21 +728,6 @@ check('no two questions in a paper share a stem', () => {
 
 section('the retry loop the quiz page runs');
 
-/*
- * The Quiz report offers "practise what you missed", and the paper it builds is a
- * subset of the paper just graded. That makes the question indexes relative to the
- * subset, not to the original document — so a second retry has to be planned from
- * the retry paper. Passing the original list there would quote the wrong passages
- * and re-ask questions the learner already got right, which is the defect these
- * checks exist to catch.
- *
- * The fixture is the reason this section works at all. It first used `weakPlan`,
- * which comes from an all-wrong attempt: every question is missed, so the retry
- * paper is the whole paper and "the retry is shorter" could not fail no matter what
- * buildRetryPaper did. Missing every third question instead retries 4 of the 12
- * questions across 4 of the 5 topics, so "shorter" and "fewer topics" are both
- * claims the code has to earn.
- */
 const mixedAnswers = sample.questions.map((question, index) =>
   index % 3 === 0 ? (question.correct + 1) % question.a.length : question.correct,
 );
@@ -843,7 +769,6 @@ check('answering the retry correctly scores 100 and ends the loop', () => {
 });
 
 check('a retry of a retry re-asks only what was missed in the retry', () => {
-  // Miss exactly the first question of the retry paper, answer the rest.
   const answers = retryOne.questions.map((question, index) =>
     index === 0 ? (question.correct + 1) % question.a.length : question.correct,
   );
@@ -869,16 +794,6 @@ check('the report only names topics the paper being graded actually covers', () 
   if (result.skipped !== retryOne.questions.length) return `skipped=${result.skipped}`;
 });
 
-/*
- * The three checks below exist because of a real defect, found by the fixture above.
- *
- * `plan.retry` used to be collected from `plan.topics`, which only holds topics that
- * earned a band — and a topic needs MIN_QUESTIONS_FOR_BAND questions to earn one. A
- * retry paper is short, so it typically carries one question per topic: every topic
- * came back `unrated`, `focus` was empty, and the retry list came back empty even
- * though the learner had just got a question wrong. The Quiz page gates its
- * "practise what you missed" button on `retry.length`, so the loop dead-ended.
- */
 check('a missed question is still offered for retry when its topic is unrated', () => {
   const answers = retryOne.questions.map((question, index) =>
     index === 0 ? (question.correct + 1) % question.a.length : question.correct,
@@ -935,32 +850,10 @@ check('the plan headline never hides a retry and never invents one', () => {
 
 section('the quarterly assessment paper');
 
-/*
- * The Assessment page had three questions and no answer key, so it scored every
- * sitting 78% and "2 / 3 correct" whatever was chosen. These checks are against the
- * curated paper that replaced it. They matter more than they look: nothing else in the
- * project can tell whether a hand-written item bank is well formed, and a paper with a
- * stub option, a repeated stem or every answer at position B measures nothing while
- * still rendering perfectly.
- *
- * The bank moved to `server/assessment.mjs` so the key would stop shipping in the
- * browser bundle. That splits what used to be one object in two, and the fixture below
- * is how the two halves are put back together — the same way the page does it:
- *
- *   sealedPaper()    the questions a browser is allowed to see, no key
- *   gradeSubmission  the server marking a sitting, which returns the key with it
- *   rebuildPaper     the client folding both into the `MaterialQuestion[]` the
- *                    report, the study plan and the retry paper already speak
- *
- * So every check from here down runs both sides, and a drift between them fails here
- * rather than on screen. `shuffle: false` deals the bank in its written order so the
- * assertions can name a fixed paper; the shuffled path is checked on its own below.
- */
 const sealedExam = exam.sealedPaper({ shuffle: false });
 const examSections = sealedExam.sections;
 const optionLetters = 'ABCD';
 
-/** One sitting, every answer right, expressed the way the tab would express it. */
 function sitPerfectly(paper) {
   const keyById = new Map(exam.answerKey().map((row) => [row.id, row.option]));
   return paper.questions.map((question) => ({ question: question.id, option: keyById.get(question.id) ?? null }));
@@ -1068,8 +961,6 @@ check('assessment: sectionOf places every question in the section it was written
       return `question ${index + 1} is topic "${examPaper[index].topic}" but sectionOf says "${item.topic}"`;
     }
   }
-  // The stepper highlights the dot sectionOf returns, so interleaved sections would make
-  // it jump backwards mid-paper.
   let previous = 0;
   for (let index = 0; index < examPaper.length; index += 1) {
     const current = assessment.sectionOf(sealedExam, index);
@@ -1084,8 +975,6 @@ check('assessment: sectionOf places every question in the section it was written
 check('assessment: nothing in a dealt paper gives the answer away', () => {
   const dealt = exam.sealedPaper();
   const serialized = JSON.stringify(dealt);
-  // Field names with their quotes, so a scenario that happens to discuss "the correct
-  // procedure" in prose does not read as a leak.
   for (const field of ['"correct"', '"explanation"', '"answer"', '"key"', '"right"']) {
     if (serialized.includes(field)) return `a dealt paper carries ${field}`;
   }
@@ -1099,7 +988,6 @@ check('assessment: nothing in a dealt paper gives the answer away', () => {
     for (const option of question.options) {
       if (Object.keys(option).join(',') !== 'id,text') return `${question.id} deals an option as {${Object.keys(option)}}`;
     }
-    // The key exists for this question, and none of the four options is marked as it.
     if (!keyed.some((row) => row.id === question.id)) return `${question.id} has no entry in the answer key`;
   }
 });
@@ -1109,7 +997,6 @@ check('assessment: shuffling moves options without moving them between sections'
   const second = exam.sealedPaper();
   if (first === second || first.questions === second.questions) return 'two sittings share one object';
 
-  // Section grouping survives, because the stepper walks the five competencies in order.
   for (const paper of [first, second]) {
     let previous = 0;
     for (const question of paper.questions) {
@@ -1122,8 +1009,6 @@ check('assessment: shuffling moves options without moving them between sections'
     }
   }
 
-  // And something actually moved. Two independent shuffles of fifteen questions and
-  // sixty options agreeing everywhere would mean `shuffle` is not shuffling.
   const orderMoved = first.questions.some((question, index) => question.id !== second.questions[index].id);
   const optionsMoved = first.questions.some((question, index) =>
     question.options.some((option, slot) => option.id !== second.questions[index].options[slot].id),
@@ -1132,19 +1017,14 @@ check('assessment: shuffling moves options without moving them between sections'
 });
 
 check('assessment: a shuffled sitting is graded by option id, not by position', () => {
-  // The one check that proves the two index spaces are handled correctly end to end.
-  // A page that sent display positions would score near a quarter of the paper here.
   const keyById = new Map(exam.answerKey().map((row) => [row.id, row.option]));
   let moved = 0;
   for (let attempt = 0; attempt < 12; attempt += 1) {
     const dealt = exam.sealedPaper();
-    // Which button the learner would press for the right answer on this sitting.
     const answers = dealt.questions.map((question) =>
       question.options.findIndex((option) => option.id === keyById.get(question.id)),
     );
     if (answers.some((index) => index < 0)) return 'a dealt question does not contain its own keyed option';
-    // How many of those buttons are in a different slot than the bank position, which is
-    // the difference a position-based submission would get wrong.
     moved += answers.filter(
       (index, slot) => index !== exam.OPTION_IDS.indexOf(keyById.get(dealt.questions[slot].id)),
     ).length;
@@ -1201,8 +1081,6 @@ check('assessment: the report is rebuilt at the position the learner saw, not th
 });
 
 check('assessment: a question the marking omits cannot be marked right by accident', () => {
-  // A truncated or filtered response. `correct: -1` is equal to no choice, so every
-  // question in the gap reads as missed rather than as correct-by-default.
   const truncated = { ...perfectMarking, questions: perfectMarking.questions.slice(0, 2) };
   const rebuilt = assessment.rebuildPaper(sealedExam, truncated);
   if (rebuilt.length !== sealedExam.questions.length) return `${rebuilt.length} questions rebuilt`;
@@ -1214,14 +1092,6 @@ check('assessment: a question the marking omits cannot be marked right by accide
 });
 
 check('assessment: the score on screen is the score the server stored', () => {
-  // adoptServerScore exists so a drift between the two banding implementations shows
-  // rather than hides. Feed it a marking that disagrees with the local grading and the
-  // server's figures must be the ones that survive.
-  //
-  // `total: 16` is the stale-bundle case: the server dealt a paper of a length this build
-  // does not expect. It is here because the first version of this claim agreed with the
-  // local grading on `total`, so `total: local.total` inside adoptServerScore was a
-  // mutation this check could not see — verified by making it and watching 104 pass.
   const local = scoring.gradeAttempt(examPaper, examKey);
   const claim = {
     ...perfectMarking,
@@ -1292,8 +1162,6 @@ check('assessment: a section is filed under the competency it declares, not a ke
 });
 
 check('assessment: a disagreement between two questions is not resolved by ordering', () => {
-  // Same topic, different declared competencies. Neither claim can be trusted, so the
-  // keyword pass has to decide rather than whichever question happened to come first.
   const [a, b] = [examPaper[0], examPaper[1]];
   const clash = [
     { ...a, topic: 'Shared label', competency: 'inference' },
@@ -1312,11 +1180,6 @@ check('assessment: a disagreement between two questions is not resolved by order
   }
 });
 
-/*
- * One section answered entirely wrong, the rest right. This is the fixture the page's
- * result screen is built for: a real band per section, one weak topic to advise on, and
- * a retry that holds three questions rather than fifteen.
- */
 const weakSection = examSections[2];
 const missOneSection = examPaper.map((question) =>
   question.topic === weakSection.topic ? (question.correct + 1) % question.a.length : question.correct,
@@ -1423,12 +1286,6 @@ section('the overview: every figure on the Dashboard, derived');
 
 const insights = await import(`${OUT}/lib/insights.js`);
 
-/**
- * A pinned "now" — Thursday 10 September 2026, 14:00 local — because every figure the
- * overview prints depends on today's date. The fixture below straddles three different
- * windows on purpose: the last seven days, this calendar month, and everything held.
- * One history therefore proves that the three are not the same arithmetic.
- */
 const DASH_NOW = new Date(2026, 8, 10, 14, 0, 0);
 
 function sitting(daysBack, minutes, percent, band, extra = {}) {
@@ -1450,7 +1307,6 @@ function sitting(daysBack, minutes, percent, band, extra = {}) {
   };
 }
 
-// Newest first, as the server sends it.
 const dashHistory = [
   sitting(0, 20, 78, 'average', { source: 'assessment', label: 'Quarterly competency assessment' }),
   sitting(1, 15, 61, 'average'),
@@ -1471,7 +1327,6 @@ check('the rhythm chart covers seven days ending today, and only those', () => {
   if (dashBuckets[0].key !== '2026-09-04') return `the first bucket is ${dashBuckets[0].key}`;
   const keys = dashBuckets.map((day) => day.key);
   if (keys.join() !== [...keys].sort().join()) return `the buckets are not in date order: ${keys.join(' ')}`;
-  // 1 Sep and the four August sittings are in the history and must not be in the window.
   const minutes = dashBuckets.reduce((sum, day) => sum + day.minutes, 0);
   if (minutes !== 20 + 15 + 12 + 9) return `${minutes} minutes in the window, expected 56`;
   if (insights.bucketHours(dashBuckets) !== 0.9) return `the badge would read ${insights.bucketHours(dashBuckets)} hours`;
@@ -1495,11 +1350,9 @@ check('the streak counts real consecutive days, and the best run is not the curr
   if (streak.best === streak.current) return 'the fixture cannot tell the two apart, so this check proves nothing';
   const none = insights.practiceStreak([], DASH_NOW);
   if (none.current !== 0 || none.best !== 0) return `an empty history produced ${JSON.stringify(none)}`;
-  // A run that ended three days ago has ended.
   const stale = insights.practiceStreak([sitting(3, 10, 50, 'average')], DASH_NOW);
   if (stale.current !== 0) return `a sitting three days ago still counts as a current streak of ${stale.current}`;
   if (stale.best !== 1) return `its best run came back as ${stale.best}`;
-  // Yesterday still counts, or every streak reads zero until the learner practises today.
   const yesterday = insights.practiceStreak([sitting(1, 10, 50, 'average')], DASH_NOW);
   if (yesterday.current !== 1) return `a sitting yesterday counted ${yesterday.current}`;
 });
@@ -1549,7 +1402,6 @@ check('the competency chart shows what was answered, strongest first, and nothin
   const scores = bars.map((bar) => bar.score);
   if (scores.join() !== [...scores].sort((left, right) => right - left).join()) return `not sorted: ${scores.join(' ')}`;
   if (bars[0].score !== 90 || bars[3].score !== 41) return `the ends are ${bars[0].score} and ${bars[3].score}`;
-  // The axis labels must stay the compact names the chart was designed around.
   const expected = taxonomy.competencyById('data-quality').short;
   if (bars[0].name !== expected) return `the top bar is labelled "${bars[0].name}", not "${expected}"`;
   if (insights.competencyBars(emptyDashRollup()).length !== 0) return 'a new account produced bars';
@@ -1629,9 +1481,7 @@ check('the dates on screen are the dates in the data', () => {
 });
 section('lesson markdown parser (the in-app reader depends on this)');
 
-/** Find the first block of a given type in a parsed tree. */
 const firstBlock = (blocks, type) => blocks.find((b) => b.type === type);
-/** Flatten an inline tree back to its visible text, so a check can assert on content. */
 const inlineText = (nodes) => nodes.map((n) => {
   if (n.type === 'text' || n.type === 'code') return n.value;
   if (n.type === 'image') return `[image:${n.alt}]`;

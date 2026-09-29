@@ -17,14 +17,6 @@ const learnerNav: NavItem[] = [
   { href: '/quiz', label: 'Knowledge check', icon: Sparkles },
 ];
 
-/**
- * The notification feed for the signed-in account, fetched only when the account
- * has notifications switched on. There is no stored notifications table — the
- * server derives the feed from the account's own progress — so the only writes
- * this makes are "mark seen". `enabled` is `signed-in && preferences.notify`;
- * when it is false the hook holds no feed and never calls the network, which is
- * also why this is safe during server rendering (effects do not run there).
- */
 type NoticeState = { feed: NotificationFeed | null; loading: boolean; error: string | null };
 
 function useNotices(enabled: boolean) {
@@ -73,13 +65,9 @@ export function AppShell({ children }: { children: ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [noticeOpen, setNoticeOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-  // Who is actually signed in. Null when the auth server is not running or the
-  // gate is switched off, in which case every line below falls back to the
-  // original demonstration text.
   const { user, signOut } = useSession();
   const { preferences } = useProgress();
   const [signingOut, setSigningOut] = useState(false);
-  // Notifications are only real for a signed-in account that has them on.
   const notifyOn = Boolean(user) && preferences.notify;
   const notices = useNotices(notifyOn);
   const unread = notices.feed?.unread ?? 0;
@@ -89,10 +77,6 @@ export function AppShell({ children }: { children: ReactNode }) {
     setNoticeOpen(next);
     if (next && notifyOn) void notices.reload();
   };
-  // A popover the keyboard can open must also be closable without a mouse, and a
-  // click anywhere else should dismiss it — otherwise it traps focus and lingers.
-  // One listener covers both menus: Escape closes whichever is open; a pointer press
-  // outside a menu's own root (button + panel share a data-attr) closes it.
   useEffect(() => {
     if (!noticeOpen && !profileOpen) return;
     const onDown = (e: MouseEvent) => {

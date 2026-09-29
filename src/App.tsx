@@ -19,18 +19,6 @@ import {
 
 const queryClient = new QueryClient();
 
-/**
- * Sign in and create account render full-page, so they sit in their own Switch
- * ahead of the shell. Everything else falls through to <RequireAuth>, which
- * sends a signed-out visitor to /login and otherwise hands over to <AppShell>
- * with every existing page exactly as it was.
- *
- * Set VITE_REQUIRE_AUTH=false in .env.local to open the workspace without an
- * account, which is what the app did before the gate existed.
- *
- * Exported so the route table itself can be rendered and asserted on — see
- * scripts/render-test.mjs.
- */
 export function Router() {
   return (
     <Switch>

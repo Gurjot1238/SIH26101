@@ -1,51 +1,6 @@
-/**
- * The document analyser: PDF or text in, sentences, concepts and topics out.
- *
- * Reading still happens entirely in the browser. The file itself is decoded with
- * pdf.js in the tab and is never uploaded — no multipart POST, no copy on the
- * server, no temporary file. Everything from `normalizeText` down to
- * `extractTopics` is local, offline and key-free.
- *
- *   What is no longer true, and where it went
- *
- * Writing the questions is not local any more. It moved to the server, which calls
- * a real language model — see `ai-questions.ts` for the browser half and
- * `server/ai/` for the rest. So the *extracted text* does leave the tab on its way
- * to that endpoint, while the file does not. Any surface that says otherwise is a
- * bug: the earlier version of this comment claimed "no network call", and the
- * Materials page carried a "No external AI required" badge to match, both of which
- * would now be lies told by the product about itself.
- *
- *   Why the generator below still exists
- *
- * `generateQuestions` and `analyzeMaterial` are no longer the product's path to a
- * quiz — the browser does not call them, because a locally assembled question
- * presented under an "AI generated" label is exactly the deception this feature was
- * built to remove. They are kept because the test suites need a deterministic way to
- * manufacture a valid `MaterialQuestion[]` for scoring, study plans, retry papers
- * and band thresholds, and because the sentence, concept and topic passes they sit on
- * are still live product code. Deleting them would take real coverage with them.
- *
- * How they work, since they are still read: candidate noun phrases are scored to find
- * a handful of topics, then four kinds of question are built against them with wrong
- * options made from the document's own prose — a real figure moved, a real claim
- * negated, a real term swapped for another term on the same page. That is good
- * enough to exercise a grader. It is not comprehension, which is why a model does the
- * job now.
- */
-
 import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
 import pdfWorker from 'pdfjs-dist/legacy/build/pdf.worker.min.mjs?url';
 
-/**
- * Polyfill: Uint8Array.prototype.toHex — added in ES2024, not in all browsers yet.
- *
- * pdfjs-dist v6 calls toHex() when computing file fingerprints. The call happens
- * inside the Web Worker, which is a separate JS context that cannot see this
- * polyfill — so we also load the LEGACY worker (which bundles its own polyfill
- * inside the worker context). This main-thread polyfill covers any toHex calls
- * that happen outside the worker.
- */
 if (typeof (Uint8Array.prototype as any).toHex !== 'function') {
   Object.defineProperty(Uint8Array.prototype, 'toHex', {
     value: function toHex() {
@@ -60,17 +15,6 @@ if (typeof (Uint8Array.prototype as any).toHex !== 'function') {
   });
 }
 
-/**
- * Polyfill: async iteration over a ReadableStream (`for await (const x of stream)`).
- *
- * pdfjs-dist v6 iterates streams this way while parsing a PDF, but WebKit — the engine
- * this app runs on — does not implement `ReadableStream.prototype[Symbol.asyncIterator]`,
- * so the call lands on `undefined` and throws "undefined is not a function (near
- * '...value of readableStream...')" the moment a real PDF is opened. (The sample material
- * is plain text and never touches pdfjs, which is why it appeared only on a real upload.)
- * Same story as toHex above: a newer JS API pdfjs assumes, added here so Safari/WebKit
- * behaves like Chrome. Defined only when missing, so a compliant engine is untouched.
- */
 if (typeof ReadableStream !== 'undefined' && typeof (ReadableStream.prototype as any)[Symbol.asyncIterator] !== 'function') {
   const asyncIterator = function (this: ReadableStream, options?: { preventCancel?: boolean }) {
     const reader = this.getReader();
@@ -113,14 +57,6 @@ import { type CompetencyId } from './topics';
 
 GlobalWorkerOptions.workerSrc = pdfWorker;
 
-/**
- * How the question was built. Shown on the review screen so a wrong answer is explainable.
- *
- * `scenario` is not produced by the generator below — no sentence in a PDF can be turned
- * into a judgement call about what to do next. It belongs to the curated paper in
- * `assessment.ts`, and it lives in this union so that a curated question and a generated
- * one are the same type and go through the same grader.
- */
 export type QuestionKind = 'statement' | 'cloze' | 'numeric' | 'identify' | 'scenario';
 
 export const questionKindLabels: Record<QuestionKind, string> = {
@@ -135,35 +71,20 @@ export type MaterialQuestion = {
   q: string;
   a: string[];
   correct: number;
-  /** The sentence the question was built from. Belongs on the review screen, never beside the options. */
   source: string;
-  /** Which topic this question measures. Drives the per-topic score. */
   topic: string;
-  /**
-   * The framework competency this question measures, when it is known rather than guessed.
-   *
-   * Generated questions leave this out: their topic came from the document, so the only
-   * way to place it in the framework is `classifyTopic`'s keyword match, which is a guess
-   * and returns null when it is unsure. A curated question already knows — it was written
-   * for a competency — so it states it here and the grader trusts it over the keyword pass.
-   */
   competency?: CompetencyId | null;
   kind: QuestionKind;
-  /** Why the right answer is right, for the review screen. */
   explanation: string;
-  /** Position of the source sentence in the document, so revision passages read in order. */
   sourceIndex: number;
 };
 
 export type MaterialAnalysis = {
   text: string;
   pageCount: number;
-  /** Terms shown as pills on the Materials page. Wider and noisier than `topics` on purpose. */
   concepts: string[];
-  /** The few topics questions are actually generated against and scored by. */
   topics: string[];
   questions: MaterialQuestion[];
-  /** Every sentence the questions were drawn from, in document order, for revision passages. */
   sentences: string[];
 };
 
@@ -173,31 +94,15 @@ export type MaterialSession = MaterialAnalysis & {
   fileType: string;
 };
 
-/**
- * A quiz is only a measurement if each topic carries at least two questions, so
- * ten questions over five topics is the floor rather than ten over ten topics.
- * `MAX_TOPICS` exists for exactly that reason: more topics would look thorough
- * and measure nothing.
- */
 export const MIN_QUESTIONS = 10;
 export const TARGET_QUESTIONS = 12;
 export const MAX_TOPICS = 5;
 
-/**
- * Words that carry no topic information. The previous list had forty entries and
- * two duplicates, and still let "Before", "Calculated" and "Analysts" through as
- * concepts, which is how three consecutive questions ended up asking "What does
- * the material state about Basket?".
- */
 const stopWords = new Set([
-  // Function words. Without these, "and the" scores as a two-word phrase and ends
-  // up as a topic, which is how the first run produced the question "What does the
-  // material state about and the?".
   'the', 'and', 'but', 'for', 'nor', 'yet', 'its', 'his', 'her', 'our', 'their',
   'are', 'was', 'has', 'had', 'not', 'all', 'any', 'one', 'two', 'per', 'out',
   'off', 'who', 'why', 'how', 'may', 'can', 'did', 'let', 'see', 'set', 'use',
   'you', 'she', 'him', 'them', 'was', 'were', 'been', 'that', 'this',
-  // Ordinary stop words.
   'about', 'above', 'across', 'after', 'again', 'against', 'along', 'also', 'although',
   'among', 'amount', 'another', 'because', 'before', 'being', 'below',
   'besides', 'better', 'between', 'both', 'cannot', 'come', 'could', 'described',
@@ -218,11 +123,6 @@ const stopWords = new Set([
   'within', 'without', 'would', 'your',
 ]);
 
-/**
- * Low-information nouns: real words, useless as the subject of a question. Units of
- * measure are in here too — the first run blanked out "percent" from "prices rose
- * 7.2 ______", which tests nothing, and then reported "Percent" as a competency.
- */
 const weakTopicWords = new Set([
   'analyst', 'analysts', 'example', 'examples', 'figure', 'figures', 'note', 'notes',
   'page', 'pages', 'paragraph', 'people', 'person', 'point', 'points', 'section',
@@ -231,14 +131,6 @@ const weakTopicWords = new Set([
   'percent', 'percentage', 'unit', 'units', 'total', 'totals', 'level', 'levels',
 ]);
 
-/**
- * Flatten what a PDF actually hands over.
- *
- * The control-character pass is written as an escape on purpose. Extracted PDF text
- * routinely carries NUL and other C0 bytes, and the first version of this line held a
- * literal NUL inside the regex: it worked, but it made this file read as binary to
- * `grep` and would not survive an editor that strips unprintable characters.
- */
 function normalizeText(value: string) {
   return value
     .replace(/\r\n?/g, '\n')
@@ -248,16 +140,6 @@ function normalizeText(value: string) {
     .trim();
 }
 
-/**
- * Sentence splitting good enough for official prose. The lookbehind keeps the
- * terminator with the sentence and the lookahead requires the next sentence to
- * start with a capital or a digit, which stops "7.2 percent" and "No. 4" from
- * being treated as boundaries.
- *
- * Exported because the AI path needs the same list the deterministic path uses: a
- * question's `sourceIndex` is a position in *this* list, and revision passages are
- * ordered by it. Two different splitters would order them differently.
- */
 export function sentenceList(text: string, minLength = 45, maxLength = 360) {
   return text
     .replace(/\s+/g, ' ')
@@ -266,10 +148,6 @@ export function sentenceList(text: string, minLength = 45, maxLength = 360) {
     .filter((sentence) => sentence.length >= minLength && sentence.length <= maxLength);
 }
 
-/**
- * "margin of error" -> "Margin of Error". Connectors stay lowercase unless they
- * lead, because "Margin Of Error" reads like a heading, not like a topic.
- */
 function titleCase(value: string) {
   return value
     .split(' ')
@@ -284,7 +162,6 @@ function words(sentence: string): string[] {
   return (sentence.toLowerCase().match(/\b[a-z][a-z-]{1,}\b/g) ?? []);
 }
 
-/** Participles and adverbs make poor standalone topics: "Calculated", "Quarterly". */
 function usableUnigram(word: string): boolean {
   if (word.length < 4) return false;
   if (stopWords.has(word) || weakTopicWords.has(word)) return false;
@@ -292,20 +169,10 @@ function usableUnigram(word: string): boolean {
   return true;
 }
 
-/**
- * A phrase is only a topic if it both starts and ends with a content word.
- * "base year and" and "and the" are not topics; "base year" is.
- */
 function usableInPhrase(word: string): boolean {
   return word.length >= 3 && !stopWords.has(word);
 }
 
-/**
- * Short words allowed *inside* a phrase but never at either end. Statistical
- * vocabulary is full of these — "margin of error", "coefficient of variation",
- * "quality of the frame" — and without them the phrase breaks up and the engine
- * ends up asking about "Error" on its own.
- */
 const connectors = new Set(['of', 'per']);
 
 function phraseUsable(gram: string[]): boolean {
@@ -320,14 +187,6 @@ function phraseUsable(gram: string[]): boolean {
 
 type Candidate = { term: string; count: number; size: number; score: number };
 
-/**
- * Score candidate terms of one to three words.
- *
- * Longer phrases win over their own parts: once "consumer price index" is a
- * candidate, "index" on its own is dropped, because a question about "Index" is
- * vague and a question about "Consumer price index" is answerable. That single
- * rule is most of the difference in question quality.
- */
 function rankCandidates(sentences: string[]): Candidate[] {
   const counts = new Map<string, { count: number; size: number }>();
 
@@ -350,15 +209,9 @@ function rankCandidates(sentences: string[]): Candidate[] {
     }
   }
 
-  // A repeated phrase has to outrank the single word inside it: "basket weights"
-  // used twice is a better topic than "basket" used five times, so the per-word
-  // weight rises steeply with length.
   const sizeWeight = [0, 1, 3.2, 5];
   const candidates: Candidate[] = [];
   for (const [term, { count, size }] of counts) {
-    // A word used once is vocabulary, not a topic. A long phrase used once usually
-    // is a topic, because prose does not repeat long phrases by accident — but it
-    // is discounted, so a phrase the document actually returns to still wins.
     if (size === 1 && count < 2) continue;
     const score = count * sizeWeight[size] * (count === 1 ? 0.6 : 1);
     candidates.push({ term, count, size, score });
@@ -368,8 +221,6 @@ function rankCandidates(sentences: string[]): Candidate[] {
 
   const kept: Candidate[] = [];
   for (const candidate of candidates) {
-    // Space-padded so containment is by whole words: "rate" must not count as
-    // already covered by "corporate".
     const padded = ` ${candidate.term} `;
     const covered = kept.some((existing) => {
       const other = ` ${existing.term} `;
@@ -380,7 +231,6 @@ function rankCandidates(sentences: string[]): Candidate[] {
   return kept;
 }
 
-/** Terms for the pills on the Materials page. Broader than `topics`, and only display. */
 export function extractConcepts(text: string): string[] {
   const sentences = sentenceList(text, 20, 900);
   return rankCandidates(sentences)
@@ -388,18 +238,12 @@ export function extractConcepts(text: string): string[] {
     .map((candidate) => titleCase(candidate.term));
 }
 
-/** The handful of topics questions are generated against and scored by. */
 export function extractTopics(sentences: string[]): string[] {
   return rankCandidates(sentences)
     .slice(0, MAX_TOPICS)
     .map((candidate) => titleCase(candidate.term));
 }
 
-/**
- * Deterministic randomness. The same document always produces the same quiz,
- * which is what makes the generator testable, but the correct answer moves around
- * instead of sitting at `index % 4` the way it used to.
- */
 function hashSeed(value: string): number {
   let hash = 2166136261;
   for (let index = 0; index < value.length; index += 1) {
@@ -420,7 +264,6 @@ function makeRandom(seed: number): () => number {
   };
 }
 
-/** Fisher-Yates. Returns the options plus where the answer ended up. */
 function placeOptions(answer: string, distractors: string[], random: () => number) {
   const options = [answer, ...distractors];
   for (let index = options.length - 1; index > 0; index -= 1) {
@@ -437,10 +280,6 @@ function shorten(value: string, maxLength = 220) {
   return `${value.slice(0, maxLength).replace(/\s+\S*$/, '')}…`;
 }
 
-/**
- * Pairs used to turn a true sentence into a false one that still reads like the
- * source. Applied in both directions.
- */
 const opposites: Array<[string, string]> = [
   ['rose', 'fell'], ['increased', 'decreased'], ['increase', 'decrease'],
   ['growth', 'decline'], ['higher', 'lower'], ['highest', 'lowest'],
@@ -455,7 +294,6 @@ const opposites: Array<[string, string]> = [
 
 const negatable = /\b(should|must|can|may|will|does|do|is|are|was|were|has|have)\b/;
 
-/** "reference quarter" -> "Reference quarter". Sentence case, not title case. */
 function capitalizeFirst(value: string) {
   return value.charAt(0).toUpperCase() + value.slice(1);
 }
@@ -463,26 +301,15 @@ function capitalizeFirst(value: string) {
 function swapWord(sentence: string, from: string, to: string): string | null {
   const pattern = new RegExp(`\\b${from}\\b`, 'i');
   if (!pattern.test(sentence)) return null;
-  // Sentence case when the replaced text started a sentence. Title-casing it here
-  // made swapped-in terms stand out typographically — "Reference Quarter show the
-  // relative importance" is spottable as the wrong option without reading it.
   return sentence.replace(pattern, (matched) =>
     matched[0] === matched[0].toUpperCase() ? capitalizeFirst(to) : to);
 }
 
-/**
- * Nudge a figure far enough to be wrong, keeping its shape (decimals, commas) and
- * its plausibility. A distractor that reads "the base year is 3622" or "prices rose
- * 240 percent" is not a distractor; it is a free mark, because the reader can rule
- * it out without knowing anything about the document.
- */
 function perturbNumber(value: string, random: () => number): string {
   const numeric = Number(value.replace(/,/g, ''));
   if (!Number.isFinite(numeric) || numeric === 0) return value;
   const decimals = value.includes('.') ? (value.split('.')[1] ?? '').length : 0;
 
-  // A four-digit integer between 1900 and 2100 is a year, not a quantity. Scaling
-  // it is absurd; moving it a few years is exactly the mistake worth testing.
   const isYear = decimals === 0 && numeric >= 1900 && numeric <= 2100 && !value.includes(',');
   if (isYear) {
     const shifts = [-6, -5, -4, -3, -2, 2, 3, 4, 5, 6];
@@ -494,15 +321,12 @@ function perturbNumber(value: string, random: () => number): string {
   let changed = numeric * factor;
   if (Math.abs(changed - numeric) < Math.max(1, Math.abs(numeric) * 0.1)) changed = numeric + 1;
 
-  // Figures at or below 100 are usually shares, rates or index points; keeping the
-  // distractor inside the same range is what makes it worth reading.
   if (numeric <= 100 && changed > 99) changed = Math.max(1, numeric * 0.6);
 
   const rendered = changed.toFixed(decimals);
   return value.includes(',') ? Number(rendered).toLocaleString('en-IN') : rendered;
 }
 
-/** Up to `wanted` distinct false rewrites of one true sentence. */
 function alterations(sentence: string, random: () => number, wanted: number, terms: string[] = []): string[] {
   const out: string[] = [];
   const add = (candidate: string | null) => {
@@ -516,7 +340,6 @@ function alterations(sentence: string, random: () => number, wanted: number, ter
     add(swapWord(sentence, right, left));
   }
 
-  // Each figure is tried a few times, because one factor may round back to itself.
   const numbers = sentence.match(/\b\d[\d,]*(?:\.\d+)?\b/g) ?? [];
   for (const number of numbers) {
     for (let attempt = 0; attempt < 3 && out.length < wanted; attempt += 1) {
@@ -524,12 +347,6 @@ function alterations(sentence: string, random: () => number, wanted: number, ter
     }
   }
 
-  /**
-   * Swap one of the document's own terms for another of its terms. This is the
-   * most reliable technique available — it needs no antonym and no figure, only
-   * two topics — and it produces a sentence that is grammatical, on-subject and
-   * false, which is exactly what a distractor has to be.
-   */
   const lower = sentence.toLowerCase();
   const present = terms.filter((term) => lower.includes(term.toLowerCase()));
   const absent = terms.filter((term) => !lower.includes(term.toLowerCase()));
@@ -562,7 +379,6 @@ function quoted(sentence: string): string {
   return `The material says: “${sentence}”`;
 }
 
-/** "What does the material state about X?" with wrong options rewritten from the same sentence. */
 function buildStatement(topic: string, index: number, context: BuildContext): MaterialQuestion | null {
   const sentence = context.sentences[index];
   const wrong = alterations(sentence, context.random, 3, context.terms).map((item) => shorten(item));
@@ -581,20 +397,12 @@ function buildStatement(topic: string, index: number, context: BuildContext): Ma
   };
 }
 
-/** The topic term is removed from its own sentence and has to be put back. */
 function buildCloze(topic: string, index: number, context: BuildContext): MaterialQuestion | null {
   const sentence = context.sentences[index];
-  // Global: a sentence often uses the term twice ("Basket weights show ... and the
-  // basket weights are drawn from ..."). Blanking only the first occurrence left the
-  // answer printed in the stem, which the engine test now refuses to allow.
   const pattern = new RegExp(`\\b${topic.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'gi');
   const found = sentence.match(pattern);
   if (!found) return null;
 
-  // All four options are title-cased. Taking the answer verbatim out of the
-  // sentence meant it arrived lowercase while the distractors came from the
-  // title-cased term list, and the odd one out was the answer — findable without
-  // reading the passage at all.
   const answer = titleCase(found[0].toLowerCase());
   const blanked = shorten(sentence.replace(pattern, '______'), 260);
   const lower = sentence.toLowerCase();
@@ -617,7 +425,6 @@ function buildCloze(topic: string, index: number, context: BuildContext): Materi
   };
 }
 
-/** A figure is removed from its sentence; the wrong options are the same figure, moved. */
 function buildNumeric(index: number, context: BuildContext): MaterialQuestion | null {
   const sentence = context.sentences[index];
   const numbers: string[] = sentence.match(/\b\d[\d,]*(?:\.\d+)?\b/g) ?? [];
@@ -647,12 +454,6 @@ function buildNumeric(index: number, context: BuildContext): MaterialQuestion | 
   };
 }
 
-/**
- * One real claim against three rewritten claims taken from elsewhere in the same
- * document. Only successfully altered sentences are used as wrong options — an
- * unaltered sentence from the document would also be true, which would make the
- * question unanswerable.
- */
 function buildIdentify(index: number, context: BuildContext): MaterialQuestion | null {
   const sentence = context.sentences[index];
   const wrong: string[] = [];
@@ -677,18 +478,6 @@ function buildIdentify(index: number, context: BuildContext): MaterialQuestion |
   };
 }
 
-/**
- * Assemble the paper.
- *
- * Questions are collected into one bucket per topic and then taken round-robin, so
- * every topic reaches two questions before any topic reaches three. Two is the
- * floor for reporting a band, and a per-topic score built on one question would be
- * a coin toss dressed up as a measurement.
- *
- * The round-robin also spreads topics through the running order, so the quiz does
- * not ask three questions about the same term back to back the way the old
- * generator did.
- */
 function assemble(sentences: string[], target: number): MaterialQuestion[] {
   const topics = extractTopics(sentences);
   const terms = rankCandidates(sentences).slice(0, 14).map((item) => titleCase(item.term));
@@ -710,9 +499,6 @@ function assemble(sentences: string[], target: number): MaterialQuestion[] {
     const mentions = sentences
       .map((sentence, index) => ({ sentence, index }))
       .filter((entry) => entry.sentence.toLowerCase().includes(topic.toLowerCase()));
-    // Alternate which kind each topic leads with. The round-robin below takes the
-    // first entry of every bucket before the second, so building every bucket in
-    // the same order produced five cloze questions followed by five statements.
     const clozeFirst = topicIndex % 2 === 0;
     for (const mention of mentions) {
       if (clozeFirst) {
@@ -725,9 +511,6 @@ function assemble(sentences: string[], target: number): MaterialQuestion[] {
     }
   });
 
-  // Interleaved, not concatenated: the top-up pool used to be every numeric
-  // question followed by every identify question, and since only the last two or
-  // three slots are ever filled from it, identify questions never appeared at all.
   const numeric: MaterialQuestion[] = [];
   const identify: MaterialQuestion[] = [];
   sentences.forEach((_sentence, index) => keep(buildNumeric(index, context), numeric));
@@ -746,15 +529,6 @@ function assemble(sentences: string[], target: number): MaterialQuestion[] {
     const exhausted = buckets.every((bucket, topicIndex) => taken[topicIndex] >= bucket.length);
     if (exhausted) break;
   }
-  /**
-   * Top up with the other two kinds, taking one of each in turn so both appear.
-   *
-   * Freshness is a preference inside each kind, not a filter across the pool: a
-   * question about a passage the paper has already quoted is weaker, but a paper
-   * with no identify question at all is weaker still. Making it a hard filter is
-   * what silently removed the identify questions on the first attempt — every
-   * unused sentence happened to be one a numeric question could use.
-   */
   const usedSentences = new Set(chosen.map((question) => question.sourceIndex));
   const freshFirst = (pool: MaterialQuestion[]) => [
     ...pool.filter((question) => !usedSentences.has(question.sourceIndex)),
@@ -770,12 +544,6 @@ function assemble(sentences: string[], target: number): MaterialQuestion[] {
   return chosen;
 }
 
-/**
- * Public entry point for generation. Tries the normal sentence window first and
- * widens it once if the document is too terse to reach the floor — a two-page
- * table of figures has few well-formed sentences, and a slightly looser window
- * beats padding the paper with junk.
- */
 export function generateQuestions(text: string, target = TARGET_QUESTIONS) {
   let sentences = sentenceList(text);
   let questions = assemble(sentences, target);
@@ -793,20 +561,10 @@ export function generateQuestions(text: string, target = TARGET_QUESTIONS) {
   return { questions, sentences, topics: extractTopics(sentences) };
 }
 
-/**
- * Kept for compatibility with the original signature. `concepts` is ignored —
- * topics are now derived inside the generator, because the old caller passed in
- * frequency-ranked single words and those made poor question subjects.
- */
 export function buildGroundedQuestions(text: string, _concepts: string[], count = TARGET_QUESTIONS): MaterialQuestion[] {
   return generateQuestions(text, count).questions;
 }
 
-/**
- * Called after each page is read, so a caller can show progress that reflects work
- * actually done rather than a timer. A 40-page PDF takes long enough that an invented
- * percentage would be visibly wrong — it would sit at 28% and then jump to done.
- */
 export type PageProgress = (pagesRead: number, pageCount: number) => void;
 
 export async function extractPdfText(file: File, onPage?: PageProgress) {
@@ -833,13 +591,6 @@ export async function extractPdfText(file: File, onPage?: PageProgress) {
   return { text, pageCount: pdf.numPages };
 }
 
-/**
- * Like {@link extractPdfText}, but keeps each page's text separate.
- *
- * The large-document workflow needs per-page text so it can upload the book in bounded
- * page batches (never one giant request) and so every chunk keeps a real page number. This
- * shares the same pdfjs pass; it simply does not join the pages into one string.
- */
 export async function extractPdfPages(file: File, onPage?: PageProgress): Promise<{ pages: { page: number; text: string }[]; pageCount: number }> {
   const data = new Uint8Array(await file.arrayBuffer());
   const pdf = await getDocument({ data }).promise;
@@ -855,72 +606,29 @@ export async function extractPdfPages(file: File, onPage?: PageProgress): Promis
   return { pages, pageCount: pdf.numPages };
 }
 
-/**
- * The formats that actually work. The Materials page reads this list instead of
- * keeping its own copy, because the two had drifted: the page advertised DOCX and
- * PPTX in its accept attribute and its help text, validated them happily, and then
- * `readMaterial` threw. Selecting a file the interface offered and being told it is
- * unsupported is worse than not being offered it.
- */
 export const supportedExtensions = ['pdf', 'txt', 'md'] as const;
 
-/**
- * Upload ceiling. Nothing is uploaded anywhere — the limit exists because the whole
- * file is decoded in the tab, and a 200 MB PDF freezes it. Declared here so the input
- * that enforces it and the help text that states it cannot disagree.
- */
 export const MAX_MATERIAL_BYTES = 25 * 1024 * 1024;
 
-// --- Scanned-page (OCR) seam ------------------------------------------------
-//
-// Native text extraction still runs FIRST and for free in the browser. Only a page that
-// comes back with too little selectable text is a candidate for OCR — a page that is
-// really an image of text (a scan, a photographed slide). For those, and only those, we
-// rasterise the page here in the tab and hand the PNG bytes to the server's local OCR
-// service through an injected callback. The file itself is still never uploaded; a
-// scanned page leaves the tab as a one-page image, one page at a time.
-//
-// The callback is injected rather than imported so this module stays server-agnostic and
-// unit-testable (the same reason question generation moved out), and so importing this
-// file under SSR/import-smoke never reaches for `document` or the network.
-
-/** A page's extracted text plus how it was obtained. `source` defaults to native text. */
 export type PageText = {
   page: number;
   text: string;
   source?: 'native_text' | 'ocr' | 'ocr_failed';
-  /** OCR confidence in [0,1], present only for a page whose text came from OCR. */
   confidence?: number;
 };
 
-/** Result of an injected OCR call for one page image, or null when it could not be read. */
 export type OcrPageResult = { text: string; confidence: number } | null;
 
-/** Injected OCR transport: image bytes in, recognised text out. Never throws for the caller. */
 export type OcrPageFn = (args: { imageBase64: string; pageNumber: number }) => Promise<OcrPageResult>;
 
-/**
- * A page with fewer selectable characters than this is treated as scanned and sent for
- * OCR. Chosen well below a normal prose page but above the stray ligatures/headers a
- * truly blank scan sometimes yields.
- */
 export const LOW_TEXT_PAGE_CHARS = 24;
 
-/** True when a page's native text is too sparse to be the real content of the page. */
 export function isLowTextPage(text: string): boolean {
   return normalizeText(text).length < LOW_TEXT_PAGE_CHARS;
 }
 
-/** Progress hook for the OCR pass: called as each scanned page finishes (ok or failed). */
 export type OcrProgress = (pagesOcred: number, pagesToOcr: number) => void;
 
-/**
- * Render one already-loaded pdf.js page to a PNG and return its base64 (no data: prefix).
- *
- * Browser-only by nature — it needs a real canvas. It is never called during import, so
- * SSR/import-smoke never touches `document`. `scale` trades OCR accuracy for image size;
- * ~2x is a good default for recognising body text without producing a huge PNG.
- */
 async function rasterizePageToPngBase64(page: any, scale = 2): Promise<string> {
   if (typeof document === 'undefined') throw new Error('Page rasterization requires a browser environment.');
   const viewport = page.getViewport({ scale });
@@ -931,22 +639,11 @@ async function rasterizePageToPngBase64(page: any, scale = 2): Promise<string> {
   if (!context) throw new Error('Could not get a 2D canvas context for rasterization.');
   await page.render({ canvasContext: context, viewport }).promise;
   const dataUrl = canvas.toDataURL('image/png');
-  // Free the backing store promptly — a scanned book would otherwise pin one bitmap per page.
   canvas.width = 0;
   canvas.height = 0;
   return dataUrl.slice(dataUrl.indexOf(',') + 1);
 }
 
-/**
- * Extract a PDF page-by-page, then OCR only the scanned (low-text) pages via `ocr`.
- *
- * Native extraction runs first for every page (fast, local, free). The pages that come
- * back essentially empty are rasterised and OCR'd ONE AT A TIME — the image is created,
- * sent, and discarded before the next page, so a large scan never holds many bitmaps and
- * never posts more than a single page image per request. A page OCR cannot read is tagged
- * `ocr_failed` (honest, not silently blank); a page OCR reads becomes `ocr` with its
- * confidence. If `ocr` is absent, this behaves like the native-only extractor.
- */
 export async function extractPdfPagesWithOcr(
   file: File,
   { onPage, ocr, onOcr }: { onPage?: PageProgress; ocr?: OcrPageFn; onOcr?: OcrProgress } = {},
@@ -956,8 +653,6 @@ export async function extractPdfPagesWithOcr(
   const pages: PageText[] = [];
   const scanned: number[] = [];
 
-  // Pass 1 — native text for every page (unchanged behaviour). Keep the pdf open so a
-  // low-text page can be re-fetched and rendered in pass 2 without decoding the file twice.
   for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
     const page = await pdf.getPage(pageNumber);
     const content = await page.getTextContent();
@@ -970,7 +665,6 @@ export async function extractPdfPagesWithOcr(
 
   let pagesOcred = 0;
   let pagesOcrFailed = 0;
-  // Pass 2 — OCR the scanned pages only, streamed one image at a time.
   if (ocr && scanned.length > 0) {
     let done = 0;
     for (const pageNumber of scanned) {
@@ -987,13 +681,10 @@ export async function extractPdfPagesWithOcr(
           if (typeof result.confidence === 'number') entry.confidence = result.confidence;
           pagesOcred += 1;
         } else {
-          // OCR ran but produced nothing usable: mark it failed rather than faking text.
           entry.source = 'ocr_failed';
           pagesOcrFailed += 1;
         }
       } catch {
-        // Rasterization or transport failed for this page. Native text (if any) stays;
-        // the page is honestly marked failed so downstream metadata reflects reality.
         entry.source = 'ocr_failed';
         pagesOcrFailed += 1;
       }
@@ -1001,8 +692,6 @@ export async function extractPdfPagesWithOcr(
       onOcr?.(done, scanned.length);
     }
   }
-  // With no OCR wired, scanned pages simply stay as sparse native_text — not marked
-  // failed, because OCR was never attempted.
 
   return { pages, pageCount: pdf.numPages, pagesOcred, pagesOcrFailed };
 }
@@ -1019,15 +708,6 @@ export async function readMaterial(file: File, onPage?: PageProgress) {
   throw new Error(`${extension ? `.${extension}` : 'That format'} is not supported. Upload a text-based PDF, TXT or MD file.`);
 }
 
-/**
- * Read a file to page-tagged text (for the large-document workflow) plus the joined text
- * and page count (so the caller can decide small-vs-large from the same single read).
- *
- * When an `ocr` transport is supplied in `opts`, scanned (low-text) PDF pages are run
- * through OCR and their text folded into the same page list — so the rest of the pipeline
- * (chunk → index → retrieve → generate) never has to know a page was scanned. Without it,
- * behaviour is exactly the native-only read it always was.
- */
 export async function readMaterialWithPages(
   file: File,
   onPage?: PageProgress,
@@ -1038,7 +718,6 @@ export async function readMaterialWithPages(
     const { pages, pageCount, pagesOcred, pagesOcrFailed } = await extractPdfPagesWithOcr(file, { onPage, ocr: opts.ocr, onOcr: opts.onOcr });
     const text = normalizeText(pages.map((p) => p.text).join('\n\n'));
     if (text.length < 45) {
-      // Still too little text after OCR (or with none wired): the honest scanned-PDF error.
       throw new Error('This PDF appears to be scanned or contains too little selectable text. Try a text-based PDF or export it with OCR first.');
     }
     return { text, pageCount, pages, pagesOcred, pagesOcrFailed };
@@ -1052,31 +731,20 @@ export async function readMaterialWithPages(
   throw new Error(`${extension ? `.${extension}` : 'That format'} is not supported. Upload a text-based PDF, TXT or MD file.`);
 }
 
-/** A PDF at or above this page count uses the large-document (search-then-generate) flow. */
 export const LARGE_DOCUMENT_PAGE_THRESHOLD = 50;
-/** …or a document whose extracted text exceeds this many characters (a dense short book). */
 export const LARGE_DOCUMENT_CHAR_THRESHOLD = 200_000;
 
-/** True when a read document should take the large-document workflow. */
 export function isLargeDocument(pageCount: number, textLength: number): boolean {
   return pageCount >= LARGE_DOCUMENT_PAGE_THRESHOLD || textLength >= LARGE_DOCUMENT_CHAR_THRESHOLD;
 }
 
-/** ".pdf,.txt,.md" — for the file input, built from the one supported-format list. */
 export const supportedAccept = supportedExtensions.map((extension) => `.${extension}`).join(',');
 
-/** "PDF, TXT or MD" — for prose and error messages, from the same list. */
 export const supportedFormatsSentence = (() => {
   const names = supportedExtensions.map((extension) => extension.toUpperCase());
   return `${names.slice(0, -1).join(', ')} or ${names[names.length - 1]}`;
 })();
 
-/**
- * Illustrative methodology prose, used by the "Try a sample" button so the
- * pipeline can be demonstrated without a file to hand. The figures are invented
- * for the example and are not published statistics — every surface that shows this
- * material labels it with `sampleMaterialLabel`.
- */
 export const sampleMaterialText = `The consumer price index measures the change in prices paid by households for a fixed basket of goods and services. The current consumer price index uses 2012 as its base year, and every published index value is expressed against that base year. Basket weights show the relative importance of each item, and the basket weights are drawn from the most recent household consumption expenditure survey. Consumer prices rose 7.2 percent in the reference quarter compared with the same quarter a year earlier. Food and beverages made the largest contribution to the headline movement in the reference quarter. The rural basket recorded a slower pace of increase than the urban basket in the reference quarter, at 6.4 percent against 7.9 percent. Price collection covers 1181 selected markets, and field staff record quoted prices on a fixed schedule every month. A quoted price is treated as missing when the item is unavailable, and a missing quoted price is imputed from the same item in a neighbouring market. The response rate for the quarter was 96 percent, which is above the 92 percent threshold set for publication. Seasonal adjustment removes the part of a movement that repeats at the same point every year, so that the underlying trend can be read. Analysts should check the reference period, the coverage and the collection method before interpreting any quarterly change. A revision is published whenever a late return changes an index value that has already been released. The index is disseminated through a monthly press note, and the press note carries the caveats that apply to the headline figure.`;
 
 export const sampleMaterialLabel = 'Sample / Demonstration Data';
@@ -1088,13 +756,6 @@ export const sampleMaterialMeta = {
   pageCount: 1,
 };
 
-/**
- * Analyse a document with the local generator, end to end.
- *
- * Not the product's path any more — the Materials page calls the server AI instead.
- * This stays as the deterministic fixture builder the engine and client suites use to
- * produce a real `MaterialQuestion[]` without a network or an API key.
- */
 export function analyzeMaterial(text: string, pageCount: number): MaterialAnalysis {
   const { questions, sentences, topics } = generateQuestions(text);
   return {

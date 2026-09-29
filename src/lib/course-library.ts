@@ -1,73 +1,27 @@
-/**
- * A catalogue of real, external online courses — the "browse and discover" library,
- * separate from the five internal MoSPI competency pathways in `./courses.ts`.
- *
- * Why this is its own file, and its own type. `courses.ts` describes the handful of
- * pathways the platform itself teaches against a competency, with module outlines and
- * the standing warning that no lesson content ships. This file is the opposite kind of
- * thing: pointers *out* to courses that already exist on Coursera, edX, MIT
- * OpenCourseWare, freeCodeCamp and the like. Nothing here is hosted by NEXORA AI, and
- * every row is a link a learner follows to another site. Keeping the two apart means the
- * recommendation engine, the competency scoring and their tests never have to know this
- * catalogue exists.
- *
- *   Honesty about the data
- *
- * These are genuine courses from named providers, and every `url` points at that
- * provider's own canonical page for the course. Providers do restructure their sites
- * and retire courses, so a link should be re-checked before a public launch — the
- * `verifyLinks` note below says how. Durations are the provider's own estimate where one
- * is published and a considered approximation otherwise; every one is at least one hour,
- * which is the floor this catalogue promises. Ratings are omitted rather than invented:
- * a number no one measured would be exactly the kind of decoration the rest of this
- * project refuses to ship.
- */
-
 export type CourseCategory = 'engineering' | 'medical' | 'data-science' | 'business';
 
 export type CourseLevel = 'Beginner' | 'Intermediate' | 'Advanced' | 'All levels';
 
-/**
- * What it costs to take. "Free to audit" is Coursera/edX's model — the material is free,
- * a certificate is paid — and is kept distinct from "Free" (freeCodeCamp, MIT OCW, NPTEL)
- * because the two are a real difference to a learner deciding where to spend an evening.
- */
 export type CourseCost = 'Free' | 'Free to audit' | 'Paid' | 'Subscription';
 
 export type ExternalCourse = {
-  /** Unique kebab-case slug, used as a React key and in any saved-course record. */
   id: string;
   title: string;
-  /** The platform the link lands on: Coursera, edX, MIT OpenCourseWare, freeCodeCamp… */
   provider: string;
-  /** The university or company that authored it, e.g. "Stanford", "Google", "IIT Madras". */
   partner: string;
   category: CourseCategory;
-  /** The finer topic, for the on-card label and search: "Machine learning", "Cardiology". */
   subject: string;
   level: CourseLevel;
-  /** Approximate total hours. Always ≥ 1 — the catalogue's floor. */
   hours: number;
   cost: CourseCost;
-  /** Whether a certificate is available (often paid even when the course is free to audit). */
   certificate: boolean;
-  /** True for the courses in highest demand right now, surfaced in the "Trending" filter. */
   trending: boolean;
-  /** The provider's own canonical page for this course. */
   url: string;
-  /** One line: what the course is and who it is for. */
   blurb: string;
 };
 
-/**
- * Shown wherever the external course library appears. It says "these lead off-site and
- * are not ours", which is the honest thing to tell a learner about an external link —
- * distinct from the in-app dataset catalogue, which ships its own downloaded material.
- */
 export const libraryNote =
   'These are real courses hosted by external providers. NEXORA AI does not host or endorse them; links open on the provider’s site and may change over time.';
-
-/* ----------------------------------------------------------------- engineering */
 
 const engineering: ExternalCourse[] = [
   {
@@ -702,8 +656,6 @@ const engineering: ExternalCourse[] = [
   },
 ];
 
-/* --------------------------------------------------------------------- medical */
-
 const medical: ExternalCourse[] = [
   {
     id: 'michigan-anatomy',
@@ -856,8 +808,6 @@ const medical: ExternalCourse[] = [
     blurb: 'A full medical-school neuroscience course: the sensory, motor and cognitive brain in depth.',
   },
 ];
-
-/* --------------------------------------------------------------- data science & AI */
 
 const dataScience: ExternalCourse[] = [
   {
@@ -1042,8 +992,6 @@ const dataScience: ExternalCourse[] = [
   },
 ];
 
-/* -------------------------------------------------------------------- business */
-
 const business: ExternalCourse[] = [
   {
     id: 'wharton-business-foundations',
@@ -1212,9 +1160,6 @@ const business: ExternalCourse[] = [
   },
 ];
 
-/* --------------------------------------------------------------------- the catalogue */
-
-/** Every course, in category order. This is the array pages and helpers read from. */
 export const courseLibrary: ExternalCourse[] = [
   ...engineering,
   ...medical,
@@ -1222,7 +1167,6 @@ export const courseLibrary: ExternalCourse[] = [
   ...business,
 ];
 
-/** Human-readable label for each category, for filter chips and headings. */
 export const categoryLabels: Record<CourseCategory, string> = {
   engineering: 'Engineering',
   medical: 'Medical & Health',
@@ -1230,36 +1174,25 @@ export const categoryLabels: Record<CourseCategory, string> = {
   business: 'Business & Management',
 };
 
-/** The category ids in display order, so a filter bar renders the same way everywhere. */
 export const categoryOrder: CourseCategory[] = ['engineering', 'medical', 'data-science', 'business'];
 
-/** How many courses sit under each category. Derived from the data, never hardcoded. */
 export function categoryCounts(): Record<CourseCategory, number> {
   const counts = { engineering: 0, medical: 0, 'data-science': 0, business: 0 } as Record<CourseCategory, number>;
   for (const course of courseLibrary) counts[course.category] += 1;
   return counts;
 }
 
-/** Courses in one category, or all of them. */
 export function coursesInCategory(category: CourseCategory | 'all'): ExternalCourse[] {
   return category === 'all' ? courseLibrary : courseLibrary.filter((course) => course.category === category);
 }
 
-/** The trending set, across every category, for the "Trending now" view. */
 export function trendingCourses(): ExternalCourse[] {
   return courseLibrary.filter((course) => course.trending);
 }
 
-/** "1h", "6h", "180h" — the duration as the card prints it. Every course is at least 1h. */
 export function courseHoursLabel(hours: number): string {
   return `${hours}h`;
 }
 
-/**
- * A reminder, not a runtime check. The sandbox has no outbound network and a live link
- * probe belongs in a deploy step, not a unit test that would flake whenever a provider
- * had a slow day. Before a public launch, curl -I -L each `url` and confirm a 200; a 404
- * or a redirect to a catalogue root means the course moved and the row needs updating.
- */
 export const verifyLinks =
   'Re-check every course URL before a public launch — providers retire and restructure courses. A link that redirects to a catalogue root has moved.';

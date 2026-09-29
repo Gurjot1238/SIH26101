@@ -1,19 +1,3 @@
-/**
- * Renders the real route table from src/App.tsx and asserts what comes out.
- *
- * Run it with scripts/render-test.sh, which compiles src/ to plain JS first and
- * passes the output directory in as argv[1].
- *
- * Why server-rendering instead of a browser: it needs no browser, no test
- * runner and no extra dependency, and it still proves the things that actually
- * break — that every route resolves, that the gate lets nothing through when
- * signed out, and that the signed-in name really comes from the session.
- *
- * What it cannot prove: anything that only happens in an effect or on a click.
- * useEffect does not run during server rendering, which is exactly why the
- * session is injected through SessionContext here rather than fetched.
- */
-
 import { createElement as h } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { readFileSync, readdirSync } from 'node:fs';
@@ -26,10 +10,6 @@ if (!OUT) {
   process.exit(2);
 }
 
-/**
- * Vite replaces import.meta.env at build time; plain Node has no such thing, so
- * the compile step rewrites it to this global. Set before the app modules load.
- */
 globalThis.__VITE_ENV__ = {
   BASE_URL: '/',
   DEV: false,
@@ -37,12 +17,6 @@ globalThis.__VITE_ENV__ = {
   VITE_REQUIRE_AUTH: process.env.VITE_REQUIRE_AUTH ?? 'true',
 };
 
-/**
- * pdfjs-dist prints "Please use the legacy build in Node.js environments" the
- * moment it is imported, because src/lib/materials.ts loads it at module scope.
- * It has nothing to do with rendering, so it is dropped rather than left to look
- * like a test failure. Every other warning still comes through.
- */
 const warn = console.warn;
 console.warn = (...args) => {
   if (String(args[0] ?? '').includes('legacy')) return;
@@ -54,14 +28,7 @@ const { SessionContext } = await import(`${OUT}/components/session-provider.js`)
 const { Router: WouterRouter } = await import('wouter');
 console.warn = warn;
 
-/**
- * The real item bank, imported from the server so the leak checks below are looking
- * for the actual scenarios rather than a fixture that resembles them. `src/` no longer
- * contains a single question, which is the point of importing it from here.
- */
 const paperSource = await import(new URL('../server/assessment.mjs', import.meta.url).href);
-
-/* ------------------------------------------------------------------ harness */
 
 let pass = 0;
 let fail = 0;
@@ -76,17 +43,10 @@ function check(name, condition) {
   }
 }
 
-/** React 19 emits camelCase attributes server-side, so match case-insensitively. */
 function has(html, needle) {
   return html.toLowerCase().includes(String(needle).toLowerCase());
 }
 
-/**
- * React escapes text before it reaches the markup, so a question containing an
- * apostrophe is never in the HTML verbatim. Asserting on raw question text would
- * therefore fail for the wrong reason — or worse, a `not present` assertion would
- * pass for the wrong reason. This mirrors React's own text escaping.
- */
 function esc(text) {
   return String(text)
     .replaceAll('&', '&amp;')
@@ -127,15 +87,12 @@ const SIGNED_OUT = session('signed-out');
 const CHECKING = session('checking');
 const UNREACHABLE = session('unreachable', null, 'Cannot reach the auth server at http://127.0.0.1:4000.');
 
-/** The sidebar only exists inside AppShell, so this is the tell for "gated page". */
 const SIDEBAR = 'data-testid="link-nav-overview"';
 
 console.log(`\n  Rendering the real route table from src/App.tsx\n  gate: ${process.env.VITE_REQUIRE_AUTH === 'false' ? 'OFF (VITE_REQUIRE_AUTH=false)' : 'ON'}\n`);
 
 const GATE_OFF = process.env.VITE_REQUIRE_AUTH === 'false';
 
-/* Every route in src/App.tsx, with a string only that page produces. Proves the
- * route resolved to the right component, not merely that the shell rendered. */
 const ROUTES = [
   ['/', 'Your next best move is clear.'],
   ['/dashboard', 'Your next best move is clear.'],
@@ -216,20 +173,8 @@ for (const [path, marker] of ROUTES) {
 
 console.log('\n  -- the assessment is dealt by the server, not by the bundle -');
 
-/*
- * This section used to prove that the paper the page held in memory did not leak its key
- * into the markup. The paper is no longer held in memory: it is fetched, so an effect has
- * to run before a single scenario exists, and effects do not run in server rendering.
- *
- * That changes what is worth asserting. The first render is the waiting state, and the
- * guarantee is now the stronger one — there is no copy of the paper in `src/` at all for a
- * render to leak. The fixture below is the real item bank, imported from the server, so a
- * re-added local fallback would fail here rather than pass for lack of anything to compare
- * against. `server/smoke-test.sh` covers the same ground from the API side.
- */
 const exam = render('/assessment', session('signed-in', ACCOUNT));
 const bank = paperSource.sealedPaper({ shuffle: false });
-/* Grading an empty submission is how the explanations are reached without a sitting. */
 const bankKey = paperSource.gradeSubmission({ choices: [] });
 
 check('the assessment page renders while the paper is being dealt', has(exam, 'data-testid="assessment-dealing"'));
@@ -251,16 +196,9 @@ check('the review card cannot be reached before submitting', !has(exam, 'button-
 check('no option is pressable before a paper arrives', !has(exam, 'button-assessment-option-0'));
 check('the paper cannot be submitted before it is dealt', !has(exam, 'button-assessment-back'));
 
-/* What the fake version said, and must not say any more. */
 check('the countdown that counted nothing is gone', !has(exam, '6 min remaining'));
 check('the paper is not labelled a demonstration', !has(exam, 'Demonstration score'));
 
-/*
- * The strongest form of the same guarantee, and the reason the bank was moved at all.
- * A render can only leak what the bundle contains, so this searches every file Vite
- * would compile for the scenarios and the explanations themselves. It is what would
- * have failed loudly when `src/lib/assessment.ts` held the key.
- */
 const sourceFiles = [];
 (function walk(dir) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {

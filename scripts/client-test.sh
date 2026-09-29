@@ -1,11 +1,4 @@
 #!/usr/bin/env bash
-# Runs the compiled browser progress client against a real server.
-#
-# Usage:  npm run client:test        (or ./scripts/client-test.sh)
-#
-# Starts its own server on a spare port against a throwaway data directory, so it
-# never touches server/data. Nothing is written inside the project.
-
 set -uo pipefail
 
 cd "$(dirname "$0")/.."
@@ -47,8 +40,6 @@ fi
 STATUS=0
 node "$APP/scripts/client-test.mjs" "$WORK/out" "$BASE" || STATUS=1
 
-# The privacy claim, checked from the storage side as well: the harness graded a
-# real generated paper, so if any question text could leak this is where it lands.
 if [ -f "${DATA_DIR}/attempts.json" ]; then
   if grep -qE '"(text|questions|sentences|stem)"' "${DATA_DIR}/attempts.json"; then
     printf '  FAIL  attempts.json holds a field that can carry document text\n'

@@ -1,18 +1,3 @@
-/**
- * PostgreSQL backend for the document store, behind the same API as the JSON
- * document store (server/documents/json-store.mjs).
- *
- * Same shape as db/pg-store.mjs: document and job METADATA is small, read
- * synchronously by index.mjs (getDocument, listDocuments, getJob), so it is held
- * in an in-memory snapshot and written through to Postgres. Chunk text and staged
- * pages can be large and are only ever read/written through async methods, so they
- * are NOT cached — they live in Postgres and are fetched on demand, exactly as the
- * JSON store read them from per-document files.
- *
- * Ownership is enforced on every read and write: a lookup whose userId does not
- * match returns null rather than another account's data. Ids are server-generated.
- */
-
 import { randomUUID } from 'node:crypto';
 import { getDb, jsonb } from './pool.mjs';
 import { sanitizeFilename, DocumentPageLimitError } from '../documents/json-store.mjs';
@@ -102,7 +87,6 @@ export async function openPostgresDocumentStore() {
           if (j >= 0) jobs.splice(j, 1);
         }
       }
-      // ON DELETE CASCADE removes the chunk, pending-page and job rows for this document.
       await enqueue(() => db.query('DELETE FROM documents WHERE id = $1 AND user_id = $2', [id, userId]));
       return true;
     },
@@ -130,7 +114,6 @@ export async function openPostgresDocumentStore() {
       const chunks = result.rows[0]?.chunks;
       return Array.isArray(chunks) ? chunks : [];
     },
-    /* ---- staged page upload (avoids one giant request for a large book) ---- */
 
     async appendPages(userId, id, pages, options = {}) {
       const rec = getOwned(userId, id);
@@ -141,8 +124,6 @@ export async function openPostgresDocumentStore() {
       await enqueue(async () => {
         const existing = await db.query('SELECT pages FROM document_pages WHERE document_id = $1', [id]);
         const current = Array.isArray(existing.rows[0]?.pages) ? existing.rows[0].pages : [];
-        // Enforce the cap inside the serialized section, BEFORE writing, so a concurrent
-        // pair of appends cannot both slip past the limit and nothing over-limit is stored.
         if (current.length + incoming.length > maxPages) throw new DocumentPageLimitError(maxPages);
         const merged = current.concat(incoming);
         mergedLength = merged.length;
@@ -167,8 +148,6 @@ export async function openPostgresDocumentStore() {
       });
       return pages;
     },
-
-    /* ---- jobs ---- */
 
     async createJob({ userId, documentId, totalChunks = 0, stages = [] }) {
       const id = randomUUID().replace(/-/g, '').slice(0, 24);

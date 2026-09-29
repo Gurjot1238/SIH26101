@@ -31,6 +31,7 @@ import { DocumentError, checkOcrAvailable, createOcrTransport, guardMaterial, in
 import { MAX_SAVED_PAPERS, PaperError, type SavedPaperSummary, deletePaper, getPaper, listPapers, savePaper } from '@/lib/papers';
 import { clearMaterial, isDurable, setMaterial, useMaterial } from '@/lib/material-session';
 import { attemptKey, clearAttempt, loadAttempt, saveAttempt } from '@/lib/attempt-session';
+import { clearAssessment, loadAssessment, saveAssessment } from '@/lib/assessment-session';
 import {
   type AssessmentResult,
   type SealedPaper,
@@ -87,15 +88,7 @@ import { GapCourseRecommendations } from '@/components/gap-course-recommendation
 
 const competencyData = [{ name: 'Data quality', score: 82 }, { name: 'Inference', score: 68 }, { name: 'Dissemination', score: 74 }, { name: 'Leadership', score: 54 }, { name: 'Digital tools', score: 61 }];
 const weeklyData = [{ name: 'Mon', hours: 0.8 }, { name: 'Tue', hours: 1.4 }, { name: 'Wed', hours: 0.3 }, { name: 'Thu', hours: 1.7 }, { name: 'Fri', hours: 1.1 }, { name: 'Sat', hours: 2.2 }, { name: 'Sun', hours: 1.6 }];
-/** One of the four figures across the top of the overview. */
 type MetricRow = { label: string; value: string; note: string; accent: 'teal' | 'amber' | 'coral' };
-/**
- * The sample overview, shown only when the progress API is not the source — demo mode
- * (`VITE_REQUIRE_AUTH=false`) or the server not answering. Left exactly as the design
- * shipped it, including the figures, because inventing *new* sample numbers would be
- * worse than keeping the ones the screenshot has always had. The eyebrow and the strip
- * at the top say out loud that this is what the reader is looking at.
- */
 const sampleMetrics: MetricRow[] = [
   { label: 'Competency index', value: '68.4', note: '+4.8 pts since last review', accent: 'teal' as const },
   { label: 'Learning streak', value: '12 days', note: 'Best: 18 days', accent: 'amber' as const },
@@ -107,7 +100,6 @@ const sampleActivity: ActivityRow[] = [
   { id: 's2', title: 'Course milestone', detail: 'R for Survey Processing · Module 4', date: '16 Sep', tone: 'amber' },
   { id: 's3', title: 'Certificate issued', detail: 'Foundations of Official Statistics', date: '12 Sep', tone: 'navy' },
 ];
-/** Rows in the activity list, collapsed and expanded. 20 is the server's inline history. */
 const ACTIVITY_ROWS = 3;
 const ACTIVITY_ROWS_ALL = 20;
 
@@ -122,18 +114,6 @@ function Metric({ label, value, note, accent = 'teal' }: { label: string; value:
   return <Card className={`border-t-[3px] ${border} p-4`}><p className="text-xs text-muted-foreground">{label}</p><p className="mt-2 font-serif text-3xl">{value}</p><p className="mt-1 text-xs text-muted-foreground">{note}</p></Card>;
 }
 
-/**
- * The overview, driven by what the account measured.
- *
- * Every figure here used to be a literal: a 68.4 index, a 12-day streak, 7.6 hours, 42%
- * of a pathway, a competency chart of five invented scores, a week of invented hours,
- * three dated events that never happened. They are now derived from `useProgress()` —
- * see `src/lib/insights.ts`, which holds the arithmetic so a test can execute it.
- *
- * One switch decides which of two worlds the page is in, and there is nothing in
- * between: `live` means every number below is this learner's own. When it is false the
- * sample overview above is shown, and the eyebrow and the strip say so.
- */
 export function Dashboard() {
   const [, setLocation] = useLocation();
   const [toast, setToast] = useState('');
@@ -177,70 +157,29 @@ export function Dashboard() {
   </div>;
 }
 
-/** m:ss, so a twelve-minute sitting reads 12:04 rather than 724 seconds. */
 function clockText(seconds: number) {
   const minutes = Math.floor(seconds / 60);
   return `${minutes}:${String(seconds % 60).padStart(2, '0')}`;
 }
 
-/**
- * The quarterly competency check.
- *
- * What was here before measured nothing. Three questions, no answer key, a donut
- * hardcoded to 78%, "2 / 3 correct" and "+6 pts" printed whatever was chosen, and a
- * "Review answers" button that deleted the attempt instead of showing it. The layout
- * was the honest part, so the layout is what has been kept.
- *
- * The paper then moved into `lib/assessment.ts` and was graded here in the tab. That
- * fixed the measurement and left one problem: the answer key was in the bundle, and the
- * score the account kept was a number this page had worked out about itself. Both are
- * now the server's. `GET /api/assessment/paper` deals fifteen scenarios with the options
- * shuffled and no key; `POST /api/assessment/submit` marks them, stores the attempt and
- * sends back its own figures, which is what appears below.
- *
- * The report screens are unchanged, because the key that comes back with the result is
- * rebuilt into the same `MaterialQuestion[]` a quiz from an uploaded document produces.
- * One grader, one set of bands, one set of tests — `adoptServerScore` then puts the
- * stored numbers on screen so a drift between the two would show rather than hide.
- *
- * Three things about the answering screen look like design choices and are really
- * constraints:
- *
- *  - The stepper keeps its markup but its dots are now the five *sections* rather than
- *    the questions. Fifteen `size-7` circles do not fit a 375px viewport.
- *  - The badge shows elapsed time. It used to say "6 min remaining", counting down from
- *    nothing on a paper that had no clock.
- *  - Nothing is revealed question by question. This is the assessment, not the practice
- *    quiz: the key stays on the server until the paper is submitted, and then all of it
- *    opens at once.
- */
 export function Assessment() {
   const [, setLocation] = useLocation();
   const { openAssessment, sitAssessment } = useProgress();
-  /** The dealt paper. Null until the server answers — there is no local fallback. */
-  const [paper, setPaper] = useState<SealedPaper | null>(null);
-  const [dealing, setDealing] = useState(true);
+  const [restored] = useState(() => loadAssessment());
+  const [paper, setPaper] = useState<SealedPaper | null>(restored?.paper ?? null);
+  const [dealing, setDealing] = useState(!restored);
   const [dealProblem, setDealProblem] = useState('');
   const [step, setStep] = useState(0);
-  /** Index-aligned with `paper.questions`, holding display indexes. */
-  const [answers, setAnswers] = useState<Choice[]>([]);
+  const [answers, setAnswers] = useState<Choice[]>(restored?.answers ?? []);
   const [selected, setSelected] = useState<number | null>(null);
-  /** The server's marking. Its arrival is what "submitted" means. */
-  const [result, setResult] = useState<AssessmentResult | null>(null);
-  /**
-   * The server's per-question rollup for this sitting: how many were attempted, how many
-   * missed, and which topic accounts for most of the misses. It rides along with the
-   * submission, so the report needs no second round trip, and it is the server's count
-   * rather than a second tally taken from `graded`.
-   */
-  const [answerAnalysis, setAnswerAnalysis] = useState<AnswerAnalysis | null>(null);
+  const [result, setResult] = useState<AssessmentResult | null>(restored?.result ?? null);
+  const [answerAnalysis, setAnswerAnalysis] = useState<AnswerAnalysis | null>(restored?.answerAnalysis ?? null);
   const [showReview, setShowReview] = useState(false);
   const [startedAt, setStartedAt] = useState(() => Date.now());
-  const [elapsed, setElapsed] = useState(0);
+  const [elapsed, setElapsed] = useState(restored?.elapsed ?? 0);
   const [saving, setSaving] = useState(false);
   const [saveNote, setSaveNote] = useState('');
 
-  /** Deal a paper, or say why not. Also used by "Take it again", which reshuffles. */
   const deal = async () => {
     setDealing(true);
     setDealProblem('');
@@ -255,15 +194,14 @@ export function Assessment() {
   };
 
   useEffect(() => {
+    // A completed sitting restored from this tab's storage keeps its result on screen;
+    // dealing a fresh paper here is what used to wipe it when navigating back.
+    if (restored) return;
     void deal();
     // Once per mount. Retaking calls `deal` directly rather than through a dependency.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /**
-   * The report, rebuilt from the sealed paper plus the key that came back with the
-   * result. Null until then, which is what keeps the key out of the answering screen.
-   */
   const marked = useMemo(() => (paper && result ? rebuildPaper(paper, result) : null), [paper, result]);
   const graded = useMemo(
     () => (marked && result ? adoptServerScore(gradeAttempt(marked, answers), result) : null),
@@ -275,7 +213,6 @@ export function Assessment() {
   const section = paper && scenario ? paper.sections[scenario.section] : null;
   const isLast = paper ? step === paper.questions.length - 1 : false;
 
-  /** One tick a second while the paper is open, so the badge is a clock and not a claim. */
   useEffect(() => {
     if (result) return;
     const timer = window.setInterval(() => setElapsed(Math.floor((Date.now() - startedAt) / 1000)), 1000);
@@ -285,8 +222,6 @@ export function Assessment() {
   const choose = (index: number) => {
     setSelected(index);
     setAnswers((prev) => {
-      // Assign at `step` rather than truncating: going back to change one answer used to
-      // discard every answer after it.
       const next = [...prev];
       next[step] = index;
       return next;
@@ -298,13 +233,6 @@ export function Assessment() {
     setSelected(answers[next] ?? null);
   };
 
-  /**
-   * Hand the sitting in. What goes out is `{ question, option }` per answer and the time
-   * taken — no score, no percent, no band, because the server would ignore them.
-   *
-   * A failure here leaves every answer in place and offers the button again: the sitting
-   * is not lost because the network was, and nothing is shown as graded until it is.
-   */
   const submit = async () => {
     if (!paper) return;
     setSaving(true);
@@ -320,9 +248,19 @@ export function Assessment() {
     setResult(outcome.value.result);
     setAnswerAnalysis(outcome.value.answers);
     setSaveNote('Saved to your account.');
+    // Keep this finished sitting on screen when the learner navigates away and back,
+    // instead of dealing a fresh paper over the top of their result.
+    saveAssessment({
+      paper,
+      answers: [...answers],
+      result: outcome.value.result,
+      answerAnalysis: outcome.value.answers,
+      elapsed: seconds,
+    });
   };
 
   const retake = () => {
+    clearAssessment();
     setStep(0);
     setAnswers([]);
     setSelected(null);
@@ -449,18 +387,8 @@ export function Assessment() {
     </div>
   );
 
-  /**
-   * Waiting for the paper. A skeleton rather than a spinner because the shape of what is
-   * coming is known — one scenario and four options — so the page does not jump when it
-   * arrives.
-   */
   if (dealing) return <div className="mx-auto max-w-4xl animate-rise-in"><PageIntro eyebrow="Quarterly competency check" title="Assessment, without the anxiety." description="Dealing a fresh paper. The scenarios and the answer key are held on the server, so your sitting is marked there and not in this tab." /><Card className="p-6 sm:p-10"><div data-testid="assessment-dealing" className="h-5 w-40 animate-pulse rounded bg-secondary" /><div className="mt-8 h-7 w-full animate-pulse rounded bg-secondary" /><div className="mt-3 h-7 w-2/3 animate-pulse rounded bg-secondary" /><div className="mt-8 space-y-3">{[0, 1, 2, 3].map((i) => <div key={i} className="h-[58px] w-full animate-pulse rounded-xl bg-secondary" />)}</div></Card></div>;
 
-  /**
-   * No paper. Signed out, or the server is not running — either way there is nothing to
-   * sit, and the honest thing is to say which and offer the two ways forward rather than
-   * a local exam nobody can mark.
-   */
   if (!paper || !scenario || !section) return <div className="mx-auto max-w-4xl animate-rise-in"><PageIntro eyebrow="Quarterly competency check" title="The paper could not be dealt." description="The assessment is dealt and marked by the server, so this screen needs it. Nothing about your earlier attempts is affected." /><Card className="p-6 sm:p-10"><div className="flex items-start gap-3"><TriangleAlert className="mt-0.5 size-5 shrink-0 text-[#c86c5e]" /><div><p className="text-sm font-semibold text-foreground">What went wrong</p><p data-testid="text-assessment-unavailable" className="mt-1 text-sm leading-6 text-muted-foreground">{dealProblem || 'The assessment API did not answer.'}</p></div></div><div className="mt-7 flex flex-col gap-3 sm:flex-row"><ActionButton onClick={() => void deal()} icon={<RefreshCw className="size-4" />}>Try again</ActionButton><ActionButton variant="outline" onClick={() => setLocation('/assignment')} icon={<ArrowRight className="size-4" />}>Practise from a document instead</ActionButton></div><p className="mt-5 text-xs leading-5 text-muted-foreground">A quiz built from your own PDF is graded in this tab, so it works without the assessment server.</p></Card></div>;
 
   return <div className="mx-auto max-w-4xl animate-rise-in"><PageIntro eyebrow="Quarterly competency check" title="Assessment, without the anxiety." description={`${paper.length} scenario questions, ${paper.questionsPerSection} for each of the five competencies in the National Competency Framework for official statistics. Marked on the server against a fixed answer key.`} action={<Badge tone="navy"><Clock3 className="size-3.5" /> {clockText(elapsed)} elapsed</Badge>} /><div className="mb-5 flex items-center gap-2">{paper.sections.map((item, i) => <div key={item.competency} className="flex flex-1 items-center gap-2"><div className={`flex size-7 items-center justify-center rounded-full text-xs font-bold ${i < sectionOf(paper, step) ? 'bg-primary text-white' : i === sectionOf(paper, step) ? 'bg-accent text-foreground' : 'bg-secondary text-muted-foreground'}`}>{i < sectionOf(paper, step) ? <Check className="size-3.5" /> : i + 1}</div>{i < paper.sections.length - 1 && <div className={`h-px flex-1 ${i < sectionOf(paper, step) ? 'bg-primary' : 'bg-border'}`} />}</div>)}</div><Card className="p-6 sm:p-10"><div className="flex items-center justify-between"><Badge tone="teal">Scenario {step + 1} of {paper.questions.length}</Badge><span className="font-mono text-xs text-muted-foreground">{section.focus}</span></div><h2 className="mt-8 max-w-2xl font-serif text-2xl leading-snug sm:text-3xl">{scenario.q}</h2><div className="mt-8 space-y-3">{scenario.options.map((option, i) => <button key={option.id} data-testid={`button-assessment-option-${i}`} onClick={() => choose(i)} className={`flex w-full items-start gap-3 rounded-xl border p-4 text-left text-sm transition-all ${selected === i ? 'border-primary bg-[#edf7f5] ring-1 ring-primary' : 'border-border hover:border-primary/40 hover:bg-secondary'}`}><span className={`flex size-6 shrink-0 items-center justify-center rounded-full border text-xs font-semibold ${selected === i ? 'border-primary bg-primary text-white' : 'border-border text-muted-foreground'}`}>{String.fromCharCode(65 + i)}</span><span className="leading-6">{option.text}</span></button>)}</div><div className="mt-8 flex justify-between border-t border-border pt-5"><button data-testid="button-assessment-back" onClick={() => goTo(Math.max(0, step - 1))} disabled={step === 0} className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground disabled:opacity-30"><ArrowLeft className="size-4" /> Back</button><ActionButton disabled={selected === null || saving} onClick={() => { if (isLast) void submit(); else goTo(step + 1); }} icon={<ArrowRight className="size-4" />}>{isLast ? (saving ? 'Marking...' : 'Submit assessment') : 'Save & continue'}</ActionButton></div>{saveNote && <p data-testid="text-assessment-submit-problem" className="mt-4 text-sm leading-6 text-[#a34d43]">{saveNote}</p>}</Card><p className="mt-4 text-xs leading-5 text-muted-foreground">{paper.note}</p></div>;
@@ -474,8 +402,6 @@ export function Learning() {
     { status: 'loading', problem: '', courses: [], available: false },
   );
 
-  // The course list is the REAL downloaded catalogue (GET /api/courses), the same source the
-  // /catalog page uses — no hard-coded demo courses. Progress is measured per account.
   useEffect(() => {
     let live = true;
     setState((s) => ({ ...s, status: 'loading', problem: '' }));
@@ -492,10 +418,6 @@ export function Learning() {
   }, [records]);
   const percentOf = (course: CatalogueCourse) => (course.lessons > 0 ? Math.min(100, Math.round(((doneByCourse.get(course.courseId) ?? 0) / course.lessons) * 100)) : 0);
 
-  // Bookmarks are the account's own: which courses are saved comes from the progress
-  // records, and the star writes straight through `markCourse`. With nobody signed in
-  // the write declines and the learner is told to sign in rather than the star silently
-  // lighting up and forgetting on reload.
   const savedIds = useMemo(() => new Set(records.filter((record) => record.saved).map((record) => record.courseId)), [records]);
   const toggleSave = async (courseId: string) => {
     const outcome = await markCourse({ courseId, saved: !savedIds.has(courseId) });
@@ -509,7 +431,6 @@ export function Learning() {
     return true;
   });
 
-  // Pathway completion = average real completion across the courses the learner has started.
   const started = state.courses.filter((c) => (doneByCourse.get(c.courseId) ?? 0) > 0);
   const pathwayValue = started.length ? Math.round(started.reduce((sum, c) => sum + percentOf(c), 0) / started.length) : 0;
   const milestones: [string, string, number][] = [['01', 'Get started', 1], ['02', 'Building momentum', 40], ['03', 'Most of the way', 75], ['04', 'Pathway complete', 100]];
@@ -521,17 +442,8 @@ export function Learning() {
     {state.status === 'ready' && state.available && <div className="space-y-3">{shown.map((course) => { const done = doneByCourse.get(course.courseId) ?? 0; const progress = percentOf(course); return <Card key={course.courseId} interactive className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center"><div className="flex size-14 shrink-0 items-center justify-center rounded-xl bg-[#dceeea]"><GraduationCap className="size-6 text-primary/80" /></div><div className="min-w-0 flex-1"><div className="flex flex-wrap items-center gap-2"><p className="text-[10px] font-semibold uppercase tracking-[.1em] text-muted-foreground">{course.provider}</p><Badge tone={progress === 100 ? 'teal' : progress > 0 ? 'teal' : 'amber'}>{progress === 100 ? 'Completed' : progress > 0 ? 'In progress' : 'Not started'}</Badge></div><h3 className="mt-1 font-semibold">{course.title}</h3><div className="mt-2 flex items-center gap-4 text-xs text-muted-foreground">{course.estimatedHours ? <span className="flex items-center gap-1"><Clock3 className="size-3.5" />{course.estimatedHours} hrs</span> : null}<span className="flex items-center gap-1"><ListChecks className="size-3.5" />{course.lessons} {course.lessons === 1 ? 'lesson' : 'lessons'}</span><span>{course.level}</span></div>{progress > 0 && <div className="mt-3 flex items-center gap-2"><ProgressBar value={progress} className="max-w-[180px] flex-1" /><span className="font-mono text-[10px] text-muted-foreground">{done}/{course.lessons}</span></div>}</div><div className="flex items-center gap-2 sm:flex-col sm:items-end"><button data-testid={`button-save-course-${course.courseId}`} onClick={() => void toggleSave(course.courseId)} aria-label={savedIds.has(course.courseId) ? 'Remove from saved courses' : 'Save this course'} aria-pressed={savedIds.has(course.courseId)} className={`rounded-lg p-2 ${savedIds.has(course.courseId) ? 'text-accent' : 'text-muted-foreground hover:bg-secondary'}`}><Target className="size-4" /></button><Link href={`/catalog/${course.courseId}`} data-testid={`link-course-${course.courseId}`} className="inline-flex items-center gap-1 rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white">{progress > 0 ? 'Resume' : 'Open'} <ArrowRight className="size-3.5" /></Link></div></Card>; })}</div>}</div></div>{toast && <ToastMessage message={toast} onClose={() => setToast('')} />}</div>;
 }
 
-/**
- * The external course library: real courses on Coursera, edX, MIT OCW, freeCodeCamp and
- * the like, filterable by category or by what is trending. Everything it shows comes from
- * `src/lib/course-library.ts`; this page does no arithmetic and invents no field. Links
- * leave the app (`target="_blank"`), and `libraryNote` states plainly that NEXORA neither
- * hosts nor endorses them. It reuses the page's existing Card, Badge and ActionButton and
- * the same tokens as every other screen — no new design language.
- */
 type LibraryFilter = 'all' | 'trending' | CourseCategory;
 
-/** Cost maps to the same badge tones the rest of the app already uses. */
 function costTone(cost: string): 'teal' | 'amber' | 'coral' {
   if (cost === 'Paid') return 'amber';
   if (cost === 'Subscription') return 'coral';
@@ -551,25 +463,8 @@ export function CourseLibrary() {
   return <div className="mx-auto max-w-[1440px] animate-rise-in"><PageIntro eyebrow="Course library" title="Courses worth your evening, from across the web." description="A hand-picked catalogue of real online courses — engineering, medicine, data science and business — every one at least an hour, linking straight to the provider." action={<ActionButton variant="outline" onClick={() => setFilter('all')} icon={<RefreshCw className="size-4" />}>Reset filters</ActionButton>} /><div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><div className="flex flex-wrap gap-1 rounded-lg bg-secondary p-1">{chips.map((chip) => <button key={chip.id} data-testid={`button-library-filter-${chip.id}`} onClick={() => setFilter(chip.id)} aria-pressed={filter === chip.id} className={`inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-xs font-semibold ${filter === chip.id ? 'bg-card text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}>{chip.id === 'trending' && <TrendingUp className="size-3.5" />}{chip.label}<span className="font-mono text-[10px] text-muted-foreground">{chip.count}</span></button>)}</div><span className="text-xs text-muted-foreground">{shown.length} {shown.length === 1 ? 'course' : 'courses'}</span></div><div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">{shown.map((course) => <Card key={course.id} interactive className="flex flex-col gap-3 p-5"><div className="flex items-start justify-between gap-2"><div className="flex flex-wrap items-center gap-2"><Badge tone="navy">{categoryLabels[course.category]}</Badge>{course.trending && <Badge tone="amber"><TrendingUp className="size-3" /> Trending</Badge>}</div><span className="shrink-0 font-mono text-[10px] uppercase tracking-[.12em] text-muted-foreground">{course.level}</span></div><div className="min-w-0 flex-1"><h3 className="font-semibold leading-snug">{course.title}</h3><p className="mt-1 text-xs text-muted-foreground">{course.provider} · {course.partner}</p><p className="mt-3 text-sm leading-6 text-muted-foreground">{course.blurb}</p></div><div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground"><span className="flex items-center gap-1"><Clock3 className="size-3.5" />{courseHoursLabel(course.hours)}</span><Badge tone={costTone(course.cost)}>{course.cost}</Badge>{course.certificate && <span className="flex items-center gap-1"><Award className="size-3.5" />Certificate</span>}</div><a href={course.url} target="_blank" rel="noopener noreferrer" data-testid={`link-library-course-${course.id}`} className="mt-1 inline-flex items-center justify-center gap-1.5 rounded-lg bg-primary px-3 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-primary/90">View course <ArrowUpRight className="size-3.5" /></a></Card>)}</div><p className="mt-6 max-w-3xl text-xs leading-5 text-muted-foreground">{libraryNote}</p></div>;
 }
 
-/**
- * The course catalogue: the real, openly-licensed courses the dataset builder
- * downloaded to disk, each one openable and each one tracking how far this learner
- * has actually got through it.
- *
- * This is a different thing from `CourseLibrary` above, and the difference is the
- * whole point. That page links out to courses on the web; this one serves content
- * that is on the server, keyed on the same `course_id` the progress store records
- * completed lessons against. So the percentage on each card is measured, not
- * decorative — it is `completed lessons / total lessons` for this account, and it
- * reads 0% until the learner marks a lesson done on the detail page.
- *
- * When no dataset is present the page says so plainly rather than inventing a
- * catalogue. Everything it shows comes from `GET /api/courses`; it invents no field
- * and reuses the same Card, Badge and chip styling as every other screen.
- */
 type CatalogueFilter = 'all' | 'technology' | 'medical';
 
-/** A category maps to one of the badge tones the app already uses. */
 function categoryTone(category: string): 'navy' | 'coral' | 'neutral' {
   const key = category.toLowerCase();
   if (key.startsWith('tech')) return 'navy';
@@ -599,9 +494,6 @@ export function CourseCatalog() {
     return () => { live = false; };
   }, []);
 
-  // Completed-lesson counts keyed by courseId, so a card can show "3 / 40" without
-  // fetching each course's full tree. A record only ever holds this course's own
-  // lesson ids, so count / total is the honest figure the detail page also computes.
   const doneByCourse = useMemo(() => {
     const map = new Map<string, number>();
     for (const record of records) map.set(record.courseId, record.completedLessons.length);
@@ -656,21 +548,6 @@ export function CourseCatalog() {
   </div>;
 }
 
-/**
- * One dataset course, opened.
- *
- * The layout is the internal `CourseDetail` above, kept deliberately: a header, a
- * sticky progress card, and the module/lesson outline down the middle. What is
- * different is that all of it is real. The modules and lessons come from the
- * course's own `course.json`; "Open" streams the actual file from the server; and
- * the checkbox against each lesson writes to this account's `completedLessons`, so
- * the donut is this learner's measured progress, not a number the page chose.
- *
- * Marking is a full-set write: the page sends the whole list of completed lesson
- * ids, and the provider adopts what the server stored. There is no optimistic
- * update, so the box reflects what was actually saved. In demo mode (no session)
- * the save declines and the page says to sign in, exactly like every other mutator.
- */
 export function CatalogCourse() {
   const { id } = useParams<{ id: string }>();
   const { courseFor, markCourse, live } = useProgress();
@@ -678,7 +555,6 @@ export function CatalogCourse() {
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
   const [problem, setProblem] = useState('');
   const [toast, setToast] = useState('');
-  /** The lesson currently open in the in-app reader, or null when nothing is open. */
   const [reading, setReading] = useState<CourseLesson | null>(null);
 
   useEffect(() => {
@@ -697,12 +573,6 @@ export function CatalogCourse() {
   const doneCount = course ? completedCount(course.lessonIds, completed) : 0;
   const doneSet = useMemo(() => new Set(completed), [completed]);
 
-  /**
-   * Mark a lesson done because it was *read* — the reader calls this once the learner has
-   * scrolled to the end of it. There is no un-mark: completion is earned by reading, and a
-   * lesson already done stays done. The next set is rebuilt from the course's real lessons,
-   * so a stale id from an older version of the course can never ride along to the server.
-   */
   async function completeLesson(lessonId: string) {
     if (!course || doneSet.has(lessonId)) return;
     const next = new Set(course.lessonIds.filter((lid) => doneSet.has(lid)));
@@ -735,9 +605,6 @@ export function CatalogCourse() {
             <div className="flex items-center gap-2"><span className="font-mono text-xs text-muted-foreground">{String(mi + 1).padStart(2, '0')}</span><h3 className="text-sm font-semibold">{module.title || `Module ${mi + 1}`}</h3></div>
             <div className="mt-3 divide-y divide-border rounded-xl border border-border">{module.lessons.map((lesson) => {
               const isDone = doneSet.has(lesson.lessonId);
-              // A lesson with content opens in the reader (which is what completes it when
-              // read). A lesson with only a source link falls back to that; there is nothing
-              // to read in-app, so it can't auto-complete, and that is the honest state.
               return <div key={lesson.lessonId} className="flex items-center gap-3 p-3.5">
                 <span aria-hidden className={`flex size-6 shrink-0 items-center justify-center rounded-md border ${isDone ? 'border-primary bg-primary text-white' : 'border-border text-transparent'}`}><Check className="size-3.5" /></span>
                 <div className="min-w-0 flex-1"><p className={`truncate text-sm font-semibold ${isDone ? 'text-muted-foreground' : ''}`}>{lesson.title || lesson.lessonId}</p><p className="text-[11px] text-muted-foreground">{lesson.estimatedMinutes ? `${lesson.estimatedMinutes} min · ` : ''}{lesson.type}{isDone ? ' · Read' : ''}</p></div>
@@ -775,14 +642,6 @@ export function CatalogCourse() {
 const stageOrder = ['reading', 'classifying', 'topics', 'questions', 'checking'] as const;
 type Stage = (typeof stageOrder)[number];
 
-/**
- * What the learner is told is happening, and what is actually happening at that moment.
- *
- * The old page moved a bar to 12 / 28 / 58 / 86 / 100 around one synchronous call, so
- * these four labels were decoration: they all painted after the work had finished. Each
- * one now brackets exactly one real step, and `paint()` between steps gives the browser
- * the frame it needs to show a label before that step blocks the thread.
- */
 const stageLabels: Record<Stage, string> = {
   reading: 'Reading document',
   classifying: 'Identifying document type',
@@ -801,25 +660,11 @@ type Work = {
   pageCount: number;
   conceptCount: number;
   questionCount: number;
-  /** When the AI request went out, so the wait can be reported in seconds actually elapsed. */
   askedAt: number;
-  /** What the model classified the document as — shown as a banner before questions. */
   classification: MaterialClassification | null;
-  /** True once OCR has started reading scanned pages, so the label can say so honestly. */
   ocrActive?: boolean;
 };
 
-/**
- * Reading and the model call own the bar between them; the two local passes in the
- * middle are near-instant and are marked rather than animated.
- *
- * The numbers changed when generation moved to the server. Reading used to be the only
- * step that took real time and owned most of the bar; now a model call sits behind
- * `questions` and takes far longer than decoding a PDF, so parking the bar at 86% for
- * twenty seconds would have implied the work was nearly done when it had barely
- * started. It holds at 62 instead, and the seconds counter beside it — a measured
- * number, not an estimate — is what shows the wait is progressing.
- */
 function progressFor(work: Work): number {
   if (work.stage === 'reading') return work.pageCount > 0 ? Math.round(4 + (38 * work.pagesRead) / work.pageCount) : 4;
   if (work.stage === 'classifying') return 46;
@@ -829,7 +674,6 @@ function progressFor(work: Work): number {
   return 100;
 }
 
-/** Yield to the browser so the stage label on screen is the stage that is about to run. */
 const paint = () => new Promise<void>((resolve) => { setTimeout(resolve, 0); });
 
 function formatFileSize(bytes: number) {
@@ -839,12 +683,6 @@ function formatFileSize(bytes: number) {
 
 const maxMaterialSize = formatFileSize(MAX_MATERIAL_BYTES);
 
-/**
- * The large-document workflow: a book has been uploaded and indexed; the learner searches
- * it for a topic, sees the pages/sections found, then generates a grounded quiz from ONLY
- * those pages. Reuses the same exact-count MCQ engine — the questions land as a normal
- * StoredMaterial and flow into the existing quiz/grading path unchanged.
- */
 function LargePdfPanel({ document, initialDifficulty, initialCount, onDiscard }: {
   document: DocumentRecord;
   initialDifficulty: Difficulty;
@@ -897,7 +735,6 @@ function LargePdfPanel({ document, initialDifficulty, initialCount, onDiscard }:
       });
       setLocation('/assignment/quiz');
     } catch (failure) {
-      // A shortfall carries how many were produced, so the learner can generate that many.
       const produced = (failure as any)?.payload?.questions?.length ?? 0;
       setGenError(failure instanceof DocumentError
         ? `${failure.message}${produced > 0 ? ` (${produced} grounded questions are available for this topic.)` : ''}`
@@ -957,31 +794,16 @@ export function Materials() {
   const [isDragging, setIsDragging] = useState(false);
   const [showQuestions, setShowQuestions] = useState(false);
   const [confirmingDiscard, setConfirmingDiscard] = useState(false);
-  /** What the learner picked before uploading: how hard, and how many. */
   const [difficulty, setDifficulty] = useState<Difficulty>('medium');
   const [count, setCount] = useState(TARGET_QUESTIONS);
-  /** What the model classified the last uploaded document as. Persists after work ends. */
   const [classification, setClassification] = useState<MaterialClassification | null>(null);
-  /** Set when a large book has been indexed and is waiting for a topic search. */
   const [largeDoc, setLargeDoc] = useState<DocumentRecord | null>(null);
-  /** Upload/index progress for a large book (real work, not a timer). */
   const [preparing, setPreparing] = useState<{ sent: number; total: number; stage: string } | null>(null);
-  /**
-   * The account's saved papers. `null` means "not fetched yet", which is different from
-   * an empty array: an empty array is a signed-in learner with nothing saved, and that
-   * case gets a line of text rather than an empty box.
-   */
   const [savedPapers, setSavedPapers] = useState<SavedPaperSummary[] | null>(null);
   const [savingPaper, setSavingPaper] = useState(false);
-  /** The id of the saved paper being opened or deleted, so only that row shows a busy state. */
   const [busyPaperId, setBusyPaperId] = useState('');
   const [paperError, setPaperError] = useState('');
   const [confirmingPaperDelete, setConfirmingPaperDelete] = useState('');
-  /**
-   * Redraws the seconds counter while the model is thinking. It is a re-render trigger
-   * and nothing else — the number shown is computed from `askedAt`, so a dropped tick
-   * shows a slightly stale figure rather than a wrong one.
-   */
   const [, setTick] = useState(0);
   const waiting = work?.stage === 'questions';
   useEffect(() => {
@@ -1011,14 +833,6 @@ export function Materials() {
         setWork((previous) => (previous ? { ...previous, pagesRead, pageCount: totalPages } : previous));
       });
 
-      // STUDY MATERIAL ONLY gate (spec §2/§9). A local, no-AI check runs HERE — before any
-      // large-document upload and before any Gemini call — so a non-study file (marksheet, ID,
-      // resume, medical report, …) is stopped with a clear message and never parsed further,
-      // uploaded, indexed, or sent to the AI. Only a bounded head sample of the already-
-      // extracted text is sent. The server re-runs the identical guard authoritatively at
-      // /finalize and /generate, so this is a fast UX gate, not the security boundary — a
-      // transport failure here is therefore non-fatal: we fall through and let the
-      // server-side gate decide rather than block a legitimate upload on a transient error.
       try {
         const verdict = await guardMaterial({ text, filename: meta.fileName, pageCount });
         if (verdict.decision === 'reject') {
@@ -1033,9 +847,6 @@ export function Materials() {
         // same policy at finalize and generate, so nothing rejected slips past; proceed.
       }
 
-      // Large book: do NOT send it whole to the AI. Upload it in bounded page batches,
-      // index it once, then hand off to the topic-search panel below. Small documents fall
-      // straight through to the existing fast path.
       if (pageList && isLargeDocument(pageCount, text.length)) {
         setWork(null);
         setPreparing({ sent: 0, total: pageCount, stage: 'uploading' });
@@ -1049,28 +860,16 @@ export function Materials() {
       }
 
       await advance('classifying');
-      // Ask the model what kind of document this is — study material, marksheet,
-      // report, etc. A fast call that warns the learner before the long generation.
       const classification = await classifyDocument(text);
       setClassification(classification);
       await advance('topics', { pageCount, classification });
-      // Still local, still key-free: the file was decoded in this tab, and the concept
-      // and topic passes below run on it here. Only the extracted text goes further.
       const concepts = extractConcepts(text);
       const topics = extractTopics(sentenceList(text));
       await advance('questions', { conceptCount: concepts.length, askedAt: Date.now() });
 
-      // The real request. There is deliberately no local fallback behind this: if the
-      // server has no provider key, or the model cannot ground enough questions in this
-      // document, the learner is told so. Quietly substituting sentence-manipulation
-      // questions under an "AI generated" heading would be undetectable from the outside,
-      // which is exactly what makes it the wrong thing to do.
       const generated = await generateAiQuestions({ text, topics, concepts, questionCount: count, difficulty });
 
       await advance('checking');
-      // A second, independent pass over what the server already validated. A repeated
-      // stem, or an answer index outside its own option list, is cheaper to drop here
-      // than to explain to a learner mid-quiz.
       const seen = new Set<string>();
       const checked = generated.questions.filter((question) => {
         if (question.correct < 0 || question.correct >= question.a.length) return false;
@@ -1082,10 +881,7 @@ export function Materials() {
       if (checked.length === 0) {
         throw new Error('The questions that came back could not be checked against this document. Please try again.');
       }
-      // Store only the topics this paper can actually score, in the order the analyser
-      // ranked them, so the topic list on screen matches the questions behind it.
       const scored = generated.topics.filter((topic) => checked.some((question) => question.topic === topic));
-      // Only now — after the questions exist and have been checked — is a count shown.
       setWork((previous) => (previous ? { ...previous, questionCount: checked.length } : previous));
       await paint();
       setMaterial({ ...meta, pageCount, concepts, topics: scored, questions: checked, createdAt: new Date().toISOString() });
@@ -1098,8 +894,6 @@ export function Materials() {
         return;
       }
       if (failure instanceof AiGenerationError) {
-        // `produced` is how many questions did survive validation. "6 of the 10 needed"
-        // points at the document; a bare failure points nowhere.
         setError(failure.produced > 0
           ? `${failure.message} (${failure.produced} of the ${MIN_QUESTIONS} needed were usable.)`
           : failure.message);
@@ -1112,8 +906,6 @@ export function Materials() {
   const handleFile = (file: File) => {
     setError('');
     const extension = file.name.split('.').pop()?.toLowerCase() ?? '';
-    // One list, in the lib, shared with the `accept` attribute and the help text — the
-    // page used to offer DOCX and PPTX here that `readMaterial` then refused.
     if (!(supportedExtensions as readonly string[]).includes(extension)) {
       setError(`Please choose a ${supportedFormatsSentence} file.`);
       return;
@@ -1128,12 +920,6 @@ export function Materials() {
     }
     void startProcessing(
       { fileName: file.name, fileSize: file.size, fileType: extension, isSample: false },
-      // Read with per-page text so a large book can take the search-then-generate path;
-      // small documents ignore the extra `pages` field and use the existing fast flow.
-      // Only PDFs can hold scanned pages, so text files never probe for OCR. When the local
-      // OCR service is up, its transport is handed in; low-text pages are then rasterised and
-      // read one at a time inside the reader. When it is down we pass nothing, so text PDFs
-      // are wholly unaffected and a scanned file falls through to the existing honest error.
       async (onPage) => {
         let ocr: OcrPageFn | undefined;
         if (extension === 'pdf') {
@@ -1155,11 +941,6 @@ export function Materials() {
     if (file) handleFile(file);
   };
 
-  /**
-   * The sample describes itself. Its name, size and page count come from the sample text
-   * in the lib, so nothing on screen refers to a file that does not exist — the previous
-   * version announced a 482 KB, three-page 'Quarterly_Inflation_Brief_Q2.pdf'.
-   */
   const chooseSample = () => {
     void startProcessing({ ...sampleMaterialMeta, isSample: true }, async (onPage) => {
       onPage(sampleMaterialMeta.pageCount, sampleMaterialMeta.pageCount);
@@ -1176,13 +957,6 @@ export function Materials() {
     setPreparing(null);
   };
 
-  /**
-   * Read the account's saved sets once, when the page opens.
-   *
-   * A failure deliberately leaves the list at `null` rather than `[]`. Being signed out,
-   * or not reaching the server, is not the same as having nothing saved, and showing
-   * "no saved sets yet" in those cases would be a claim the page cannot support.
-   */
   useEffect(() => {
     let cancelled = false;
     listPapers()
@@ -1197,10 +971,6 @@ export function Materials() {
     };
   }, []);
 
-  /**
-   * Store the set on screen against the account. The id comes back from the server and is
-   * written into the tab's copy of the paper, so a reload still knows it is saved.
-   */
   const saveCurrentPaper = async () => {
     if (!material || savingPaper || material.savedPaperId) return;
     setSavingPaper(true);
@@ -1216,11 +986,6 @@ export function Materials() {
     }
   };
 
-  /**
-   * Pull one saved set back into the tab and go straight to the quiz. The questions come
-   * from the server, not from this browser, so the stored paper is marked with its id and
-   * carries no file size or page count it cannot justify.
-   */
   const openSavedPaper = async (id: string) => {
     if (busyPaperId !== '') return;
     setBusyPaperId(id);
@@ -1251,7 +1016,6 @@ export function Materials() {
     }
   };
 
-  /** Remove one saved set from the account. The copy in this tab, if any, is left alone. */
   const removeSavedPaper = async (id: string) => {
     if (busyPaperId !== '') return;
     setBusyPaperId(id);
@@ -1269,19 +1033,9 @@ export function Materials() {
 
   const stageIndex = work ? stageOrder.indexOf(work.stage) : -1;
   const progress = work ? progressFor(work) : 0;
-  /**
-   * The reading stage says "Reading scanned content" once OCR is actually running on this
-   * document, so a learner watching a scanned upload sees why it takes a moment. Every other
-   * stage keeps its normal label.
-   */
   const stageLabel = work
     ? (work.stage === 'reading' && work.ocrActive ? 'Reading scanned content' : stageLabels[work.stage])
     : '';
-  /**
-   * Seconds the model has actually been thinking. Measured, not estimated — it is the
-   * one honest thing that can move while the bar has nothing new to say, and a request
-   * that has been out for 40 seconds looks different from one that has been out for 3.
-   */
   const waitSeconds = work && work.stage === 'questions' && work.askedAt > 0
     ? Math.floor((Date.now() - work.askedAt) / 1000)
     : 0;
@@ -1377,15 +1131,6 @@ export function Materials() {
   </div>;
 }
 
-/**
- * Why an answer was right, and the sentence it came from.
- *
- * This is a component rather than inline markup for one reason. For a `statement`
- * question the source sentence *is* the correct option, so the question screen must
- * not be able to mention it at all — printing it there is how the old version gave
- * every answer away. Keeping the sentence in here makes revealing it something a
- * screen has to opt into by name, which `scripts/render-test.sh` can then count.
- */
 function AnswerReveal({ question, pick, className = '' }: { question: MaterialQuestion; pick: Choice; className?: string }) {
   const right = pick !== null && pick === question.correct;
   const tone = pick === null ? 'bg-secondary text-muted-foreground' : right ? 'bg-[#edf8f5] text-[#216b67]' : 'bg-[#f9e5e1] text-[#a34d43]';
@@ -1395,18 +1140,6 @@ function AnswerReveal({ question, pick, className = '' }: { question: MaterialQu
   </div>;
 }
 
-/**
- * A graph-rich analytics report of a single paper, built entirely from the local
- * `AttemptResult` that `gradeAttempt` already produced — no server call, so it is exactly
- * the sitting just finished and nothing else. Three views: how the questions broke down
- * (correct / wrong / unanswered), how each topic scored, and how each framework competency
- * the paper touched scored. Every number here is one the score card above also shows; this
- * is the same truth, drawn, so a learner sees the shape of the result and not just a ratio.
- *
- * Recharts is already the app's chart library (see the imports at the top of this file), so
- * nothing new is pulled in. Bars are coloured by band with the same `bandColors` the rest of
- * the report uses, so "strong" is the same green everywhere.
- */
 function QuizAnalytics({ graded }: { graded: AttemptResult }) {
   const wrong = Math.max(0, graded.answered - graded.correct);
   const outcome = [
@@ -1415,8 +1148,6 @@ function QuizAnalytics({ graded }: { graded: AttemptResult }) {
     { name: 'Unanswered', value: graded.skipped, fill: '#9aa8b0' },
   ].filter((slice) => slice.value > 0);
 
-  // Recharts wants a plain row per bar. Topics keep the report's worst-first order; the
-  // label is trimmed so a long topic name does not blow out the axis gutter.
   const topicData = graded.topics.map((score) => ({
     label: score.topic.length > 22 ? `${score.topic.slice(0, 21)}…` : score.topic,
     percent: score.percent,
@@ -1432,7 +1163,6 @@ function QuizAnalytics({ graded }: { graded: AttemptResult }) {
     total: entry.total,
   }));
 
-  // Height grows with the number of bars so labels never overlap on a long paper.
   const topicHeight = Math.max(160, topicData.length * 46);
   const competencyHeight = Math.max(140, competencyData.length * 46);
 
@@ -1510,43 +1240,10 @@ function QuizAnalytics({ graded }: { graded: AttemptResult }) {
   );
 }
 
-/**
- * The knowledge check, and the report that is the whole point of it.
- *
- * Two things were wrong with the old version. It printed the source sentence in a
- * "Grounding:" box directly beneath the options — and for a `statement` question that
- * sentence *is* the correct option, so every answer was given away. And it ended on
- * `{score} / {quiz.length}`, a single number that tells a learner nothing about what
- * to do next.
- *
- * So the source sentence now appears only after the question has been answered, as
- * the explanation for the answer key, and the final screen is a per-topic report:
- * each topic banded on its own, the passages behind the questions that were missed,
- * the pathways that build the matching competency, and a retry paper made only of
- * the questions that were wrong. `answered` is what gates the reveal.
- *
- * The report is computed by `gradeAttempt` and `buildStudyPlan`, which know nothing
- * about React and are covered by `scripts/engine-test.sh`. This component only
- * arranges what they return.
- */
-/**
- * Knowledge check — the persistent results page.
- *
- * Unlike the quiz-taking flow (which lives on the Assignment page), everything here is
- * server-driven: the competency gaps and the recommended courses are fetched from the
- * account's stored attempts on every mount. So they stay put after the learner opens a
- * recommended course and comes back — no need to retake the quiz to see them again.
- */
 export function KnowledgeCheck() {
   const { live, status, problem, history } = useProgress();
   const [, setLocation] = useLocation();
-  // The current sitting: the newest saved attempt. History is newest-first, so [0] is the
-  // check just taken — never an older one. It is drawn from the account, so it persists
-  // between visits and survives opening a recommended course.
   const latest = history[0] ?? null;
-  // `!live` alone cannot tell "still loading" from "server unreachable" from "signed in but
-  // never sat a check" — three states that deserve three different answers. Read the status
-  // so a slow load is not mislabelled "no check taken", and a real outage says so.
   const loading = status === 'idle' || status === 'loading';
   return <div className="mx-auto max-w-5xl animate-rise-in">
     <PageIntro
@@ -1573,21 +1270,13 @@ export function KnowledgeCheck() {
 export function Quiz() {
   const material = useMaterial();
   const { record } = useProgress();
-  // The sitting belongs to the assignment it was taken on, so a stored result is only ever
-  // restored against the same generated paper — a new paper carries a new key.
   const materialId = attemptKey(material);
-  // Read any finished sitting for THIS assignment once, at mount. Restoring the result here
-  // — rather than after mount — is what brings the report straight back when the learner
-  // returns from another page, instead of the quiz snapping back to its "Begin" screen.
   const [restored] = useState(() => loadAttempt(materialId));
-  /** Non-null once the learner chooses to re-sit only what they missed. */
   const [retryPaper, setRetryPaper] = useState<MaterialQuestion[] | null>(restored?.retry ?? null);
   const [started, setStarted] = useState(restored?.done ?? false);
   const [q, setQ] = useState(0);
   const [choice, setChoice] = useState<number | null>(null);
-  /** Index-aligned with the paper. A hole means the question was skipped. */
   const [answers, setAnswers] = useState<Choice[]>(restored?.answers ?? []);
-  /** True once the current answer is locked in, which is what reveals the explanation. */
   const [answered, setAnswered] = useState(false);
   const [done, setDone] = useState(restored?.done ?? false);
   const [startedAt, setStartedAt] = useState(restored?.startedAt ?? 0);
@@ -1603,19 +1292,10 @@ export function Quiz() {
   const current = paper[q];
   const isLast = q === paper.length - 1;
 
-  /**
-   * A newly generated paper invalidates everything: a retry paper holds questions from the
-   * document the learner has just replaced, and a half-finished attempt is measuring a
-   * document that is no longer on screen. This must NOT fire on a mere remount, though —
-   * coming back to this page from another one is exactly when a finished result has to
-   * return — so it keys off the assignment's identity and runs only when that changes.
-   */
   const seenMaterial = useRef(materialId);
   useEffect(() => {
     if (seenMaterial.current === materialId) return;
     seenMaterial.current = materialId;
-    // A genuinely different assignment replaced the old one: drop the previous sitting so
-    // its result is never shown against the new paper.
     clearAttempt();
     setRetryPaper(null);
     setStarted(false);
@@ -1629,8 +1309,6 @@ export function Quiz() {
   }, [materialId]);
 
   const begin = (questions: MaterialQuestion[] | null) => {
-    // A new sitting supersedes the last finished one; if the learner leaves before
-    // completing this paper, there is no stale result waiting to be restored.
     clearAttempt();
     setRetryPaper(questions);
     setStarted(true);
@@ -1644,7 +1322,6 @@ export function Quiz() {
     setStartedAt(Date.now());
   };
 
-  /** Lock the answer in and show why it was right or wrong. Nothing advances yet. */
   const check = () => {
     if (choice === null || answered) return;
     const next = [...answers];
@@ -1653,11 +1330,6 @@ export function Quiz() {
     setAnswered(true);
   };
 
-  /**
-   * Move on without guessing. A blank still counts as wrong in the total, but the
-   * report counts it separately, so "I did not know" is never presented back as
-   * "I got this wrong" — and a guess would corrupt the learner's own diagnostic.
-   */
   const skip = () => {
     if (answered) return;
     const blank = [...answers];
@@ -1667,10 +1339,6 @@ export function Quiz() {
     setAnswered(true);
   };
 
-  /**
-   * Save the graded attempt. Topic names and counts only — `toAttemptPayload` is the
-   * file that keeps the document text in this tab, and the server never sees it.
-   */
   const save = async () => {
     if (paper.length === 0) return;
     setSaving(true);
@@ -1693,9 +1361,6 @@ export function Quiz() {
     if (isLast) {
       setDone(true);
       void save();
-      // Keep the finished sitting in the tab, so leaving this page and returning shows the
-      // report again rather than forcing a retake. Held until a new sitting begins or a new
-      // assignment is generated. Inputs only — the report is re-derived by the same grader.
       saveAttempt({ materialKey: materialId, answers: [...answers], retry: retryPaper, done: true, startedAt });
       return;
     }
@@ -1704,7 +1369,6 @@ export function Quiz() {
     setAnswered(false);
   };
 
-  /** Re-sit only the questions that were wrong, keeping the original options and key. */
   const practiseMissed = () => {
     const { questions } = buildRetryPaper(paper, plan);
     if (questions.length > 0) begin(questions);
@@ -1804,11 +1468,6 @@ export function Quiz() {
     </div>
   );
 
-  /**
-   * Option styling. The unanswered branches are exactly what this screen has always
-   * shown; the answered ones are new, because before the reveal there was nothing to
-   * reveal — the answer was already printed underneath.
-   */
   const optionClass = (index: number) => {
     if (!answered) return choice === index ? 'border-primary bg-[#edf7f5] ring-1 ring-primary' : 'border-border hover:bg-secondary';
     if (index === current.correct) return 'border-primary bg-[#edf7f5] ring-1 ring-primary';
@@ -1829,12 +1488,9 @@ export function Profile() {
   const { live, progress, preferences, personal, history, setPreferences, setProfileDetails } = useProgress();
   const [editing, setEditing] = useState(false);
   const [toast, setToast] = useState('');
-  // Identity is a credential, not a profile field: name and email come from the session
-  // and are read-only here. The editable details are the Personal block the server stores.
   const name = user?.name ?? 'Ananya Sharma';
   const email = user?.email ?? 'ananya.sharma@mospi.gov.in';
   const samplePersonal = { phone: '+91 98765 43210', bio: 'Statistical Officer with 6 years of experience in survey design, data quality assurance, and dissemination of national economic indicators.', role: 'Statistical Officer', department: 'Directorate of Economics & Statistics', location: 'Bengaluru, Karnataka' };
-  // Live shows the account's own details; demo mode shows the screenshot's sample identity.
   const details = live ? personal : samplePersonal;
   const [form, setForm] = useState(personal);
   useEffect(() => { setForm(personal); }, [personal]);
@@ -1855,7 +1511,6 @@ export function Profile() {
     ? [{ v: String(progress.attempts), l: 'Assessments' }, { v: `${progress.index}`, l: 'Score' }, { v: `${Math.round(progress.minutes / 60)}h`, l: 'Learning' }]
     : [{ v: '27', l: 'Courses' }, { v: sampleMetrics[0].value, l: 'Score' }, { v: '142h', l: 'Learning' }];
 
-  // Measured competencies when live; the demo screenshot's five bars otherwise.
   const skills = live
     ? competencyBars(progress).map((bar) => ({ name: bar.name, level: bar.score }))
     : [

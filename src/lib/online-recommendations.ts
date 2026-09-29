@@ -1,28 +1,6 @@
-/**
- * A second recommendation source: genuine external online courses matched to the learner's
- * measured competency gaps.
- *
- * The internal catalogue recommender (server/course-recommendations.mjs) already answers
- * "which of OUR courses close your gaps". This adds the browse-library courses in
- * `course-library.ts` — real, named-provider courses with canonical URLs — as a second
- * source, matched to the SAME gaps the server returned. It invents nothing: every course
- * here is a row that already ships in `courseLibrary`, and a gap with no genuinely relevant
- * external course simply gets none rather than a padded, off-topic link.
- *
- * The match is deterministic and keyword-based (no model, no network): each MoSPI framework
- * competency maps to a set of subject keywords, and a course is a candidate only when it
- * clears a minimum-relevance floor against the gap — so an online course is recommended
- * because it addresses the gap, never merely because it has a URL.
- */
-
 import { type RecommendationGroup } from './analytics';
 import { type ExternalCourse, courseLibrary } from './course-library';
 
-/**
- * Framework competency → keywords found in an external course's subject/category/title.
- * Deliberately conservative: a keyword is here only when a course carrying it genuinely
- * builds that competency. Editable in one place, like the server-side tag bridge.
- */
 const COMPETENCY_KEYWORDS: Record<string, string[]> = {
   'data-quality': ['data quality', 'data cleaning', 'database', 'sql', 'data engineering', 'data science', 'data wrangling', 'etl'],
   inference: ['statistic', 'probability', 'inference', 'regression', 'machine learning', 'econometric', 'bayesian', 'hypothesis', 'data science'],
@@ -31,7 +9,6 @@ const COMPETENCY_KEYWORDS: Record<string, string[]> = {
   leadership: ['management', 'leadership', 'project management', 'team', 'business', 'strategy', 'operations'],
 };
 
-/** Approx level suitability from the learner's current score on the competency. */
 function preferredLevels(currentScore: number): Set<ExternalCourse['level']> {
   if (currentScore < 50) return new Set(['Beginner', 'All levels']);
   if (currentScore < 70) return new Set(['Beginner', 'Intermediate', 'All levels']);
@@ -46,7 +23,6 @@ function isValidUrl(url: string): boolean {
   return typeof url === 'string' && /^https?:\/\/[^\s]+\.[^\s]+/.test(url.trim());
 }
 
-/** Count distinct competency keywords a course hits, and return which matched. */
 function relevance(course: ExternalCourse, competencyId: string): { score: number; matched: string[] } {
   const keys = COMPETENCY_KEYWORDS[competencyId] ?? [];
   const hay = haystack(course);
@@ -62,16 +38,6 @@ export type OnlineRecommendation = {
   reason: string;
 };
 
-/**
- * Recommend external courses for the learner's gaps.
- *
- *   groups          the server's ranked gap groups (worst first)
- *   minRelevance    minimum distinct keyword hits to count as relevant (default 1)
- *   perGap/limit    caps so the learner is not flooded
- *
- * A course is assigned to the single gap it matches best, never listed twice; only courses
- * with a valid stored URL are eligible; results are stable (deterministic tie-breaks).
- */
 export function recommendOnlineCourses(
   groups: RecommendationGroup[],
   { minRelevance = 1, perGap = 3, limit = 6 }: { minRelevance?: number; perGap?: number; limit?: number } = {},
@@ -80,7 +46,6 @@ export function recommendOnlineCourses(
   const gapOrder = groups.filter((g) => COMPETENCY_KEYWORDS[g.competency]);
   if (gapOrder.length === 0) return [];
 
-  // Assign each valid course to its single best-matching gap.
   const bestFor = new Map<string, { course: ExternalCourse; rel: { score: number; matched: string[] } }[]>();
   for (const g of gapOrder) bestFor.set(g.competency, []);
 
@@ -97,7 +62,6 @@ export function recommendOnlineCourses(
 
   const out: OnlineRecommendation[] = [];
   const seen = new Set<string>();
-  // Worst gap first; within a gap, most-relevant then level-suitable then fewest hours.
   for (const g of gapOrder) {
     if (out.length >= limit) break;
     const levels = preferredLevels(g.currentScore);

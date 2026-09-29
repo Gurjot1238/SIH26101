@@ -1,34 +1,8 @@
-/**
- * Put the competency analysis into sentences — without letting the model do arithmetic.
- *
- * Every number on the dashboard is computed in `server/competency.mjs` from stored
- * attempts. This module hands that finished object to the model and asks for prose. The
- * model is a writer here, not a calculator, and the difference matters: a language model
- * asked to "analyse these results" will cheerfully average two percentages and get it
- * wrong, and a wrong number in a friendly paragraph is more convincing — and so more
- * damaging — than a wrong number in a table.
- *
- * So the output is checked before it is returned. Every percentage and every "N points"
- * claim in the reply must be a figure that appears in the payload; anything else is an
- * invention. One corrective re-ask, then refusal. Refusing is the right failure: the page
- * already has the real numbers and can draw the whole dashboard without this paragraph.
- *
- *   { ok: true,  explanation: { paragraphs, text, provider, attempts } }
- *   { ok: false, code, message, unsupported? }
- *
- * `code` reuses the provider vocabulary (not_configured | timeout | rate_limited |
- * network_error | provider_error) plus `unverified` for a reply that failed the check,
- * so the route can map it to a status the same way it maps a generation failure.
- */
-
 import { generateText } from './provider.mjs';
 import { COMPETENCY_LABELS } from '../competency.mjs';
 
-/** A local model is answering from a cold start, so allow the same headroom classification does. */
 const EXPLAIN_TIMEOUT_MS = 180_000;
-/** Enough for four short paragraphs. Anything longer is the model padding, and gets cut. */
 const MAX_EXPLANATION_CHARS = 2_000;
-/** Generate, then at most one corrective re-ask naming the invented figures. */
 const MAX_ATTEMPTS = 2;
 
 const EXPLAIN_ROLE = `You are a learning advisor for NEXORA AI, a competency development platform for statistical officers. You explain assessment results to the learner who took the assessment.`;
@@ -42,20 +16,9 @@ const EXPLAIN_RULES = `HARD RULES:
 6. If a competency is marked "not enough questions", say it has not been measured yet. Do NOT describe it as weak.
 7. Four short paragraphs at most. Plain sentences. No headings, no bullet points, no markdown, no bold.`;
 
-/** Percent claims and "N points" claims — the two ways a sentence asserts a figure. */
 const PERCENT_CLAIM = /(\d+(?:\.\d+)?)\s*(?:%|per ?cent(?:age)?)/gi;
 const POINTS_CLAIM = /(\d+(?:\.\d+)?)\s*(?:points?|marks?|pp\b)/gi;
 
-/**
- * Every finite number anywhere in the payload, walked recursively.
- *
- * Deliberately indiscriminate. A narrower list (scores and gaps only) would reject the
- * model for quoting a target or a question count, which are legitimate things to quote,
- * and the cost of being broad is only that an invented figure which happens to collide
- * with some unrelated count slips through. That trade is the right way round: the guard
- * exists to catch arithmetic the model did itself, and arithmetic rarely lands on a
- * number already in the data.
- */
 function collectNumbers(value, into = new Set()) {
   if (typeof value === 'number' && Number.isFinite(value)) {
     into.add(round1(value));
@@ -75,13 +38,6 @@ function round1(value) {
   return Math.round(value * 10) / 10;
 }
 
-/**
- * Which figures in the reply were not in the data.
- *
- * Whole percentages are also matched against the number one above and below, because a
- * model rounding 66.7 to 67 is reporting the server's figure, not inventing one, and
- * refusing that would make the feature fail constantly for no safety gain.
- */
 export function unsupportedFigures(text, allowed) {
   const claimed = [];
   for (const pattern of [PERCENT_CLAIM, POINTS_CLAIM]) {
@@ -112,14 +68,6 @@ function describeTopics(topics, limit = 4) {
     .join('\n');
 }
 
-/**
- * Flatten the analytics object into the few lines the model actually needs.
- *
- * Not `JSON.stringify(analytics)`: the payload carries trend points, priority inputs and
- * formula strings that are for the charts, and a small local model handed all of it
- * starts quoting fields at the learner. Fewer numbers in front of it is also fewer
- * numbers it can mangle.
- */
 export function buildExplanationPrompt(analytics, { correction = null } = {}) {
   const lines = [];
 
@@ -177,7 +125,6 @@ ${lines.join('\n')}
 Write the explanation now.`;
 }
 
-/** Strip a stray heading or bullet the model added anyway, then split into paragraphs. */
 function toParagraphs(text) {
   return String(text)
     .replace(/\*\*/g, '')
@@ -188,14 +135,6 @@ function toParagraphs(text) {
     .filter((paragraph) => paragraph !== '');
 }
 
-/**
- * Explain a competency summary in prose.
- *
- * `analytics` must be the object `buildAnalyticsSummary` returned on this request. It is
- * never taken from the browser: the whole guarantee here is that the numbers the model
- * saw are the numbers the server computed, and a payload that arrived over the wire
- * would make the guard meaningless.
- */
 export async function explainAnalytics(analytics, { env = process.env, fetchImpl } = {}) {
   if (!analytics || typeof analytics !== 'object') {
     return { ok: false, code: 'no_data', message: 'There is no competency analysis to explain yet.' };
@@ -221,9 +160,6 @@ export async function explainAnalytics(analytics, { env = process.env, fetchImpl
     });
 
     if (!outcome.ok) {
-      // A provider problem is not a verification problem — pass it straight through so
-      // the page can say "not configured" or "try again" rather than blaming the model's
-      // arithmetic for a missing key.
       return { ok: false, code: outcome.code, message: outcome.message, provider: outcome.provider };
     }
 

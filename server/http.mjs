@@ -1,29 +1,7 @@
-/**
- * HTTP plumbing for the NEXORA AI auth server.
- *
- * Deliberately dependency-free: everything here uses only Node built-ins so
- * `npm install` is never required for the backend and there is no native
- * module that can fail to compile on Apple Silicon.
- */
-
-/**
- * Hard cap on request bodies. Almost every payload this API accepts is small — an
- * auth form, or a quiz result carrying topic names and counts — so anything larger is
- * either a bug or abuse. Enforced twice below: once on the declared
- * Content-Length, once on the bytes actually read, because the header can lie.
- */
 export const MAX_BODY_BYTES = 8 * 1024;
 
-/**
- * The one exception: extracted document text on its way to AI question generation.
- *
- * Raised for that single route rather than globally, so a bug or an attack against
- * /api/auth/login still cannot post a megabyte. 256 KB comfortably holds the 60 000
- * characters the AI service will accept plus JSON escaping, and nothing more.
- */
 export const MAX_AI_BODY_BYTES = 256 * 1024;
 
-/** An error we are willing to describe to the client. Anything else becomes a 500. */
 export class HttpError extends Error {
   constructor(status, code, message, fields) {
     super(message);
@@ -34,13 +12,6 @@ export class HttpError extends Error {
   }
 }
 
-/**
- * Read and parse a JSON body.
- *
- * Requiring `application/json` is a deliberate CSRF control: a cross-site
- * HTML <form> cannot produce that content type, and a cross-site fetch that
- * sets it triggers a CORS preflight, which the origin allow-list rejects.
- */
 export async function readJsonBody(req, { maxBytes = MAX_BODY_BYTES } = {}) {
   const contentType = String(req.headers['content-type'] ?? '')
     .split(';')[0]
@@ -75,7 +46,6 @@ export async function readJsonBody(req, { maxBytes = MAX_BODY_BYTES } = {}) {
 
   try {
     const parsed = JSON.parse(raw);
-    // Reject arrays and primitives so downstream code can assume an object.
     if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) {
       throw new Error('not an object');
     }
@@ -84,8 +54,6 @@ export async function readJsonBody(req, { maxBytes = MAX_BODY_BYTES } = {}) {
     throw new HttpError(400, 'invalid_json', 'Request body must be a JSON object.');
   }
 }
-
-/* ------------------------------------------------------------------ cookies */
 
 export function parseCookies(header) {
   const jar = Object.create(null);
@@ -109,15 +77,11 @@ export function serializeCookie(name, value, options = {}) {
   const bits = [`${name}=${encodeURIComponent(value)}`];
   bits.push(`Path=${options.path ?? '/'}`);
   if (options.maxAge !== undefined) bits.push(`Max-Age=${Math.floor(options.maxAge)}`);
-  // HttpOnly keeps the token away from JavaScript, so an XSS bug cannot read it.
   if (options.httpOnly !== false) bits.push('HttpOnly');
   bits.push(`SameSite=${options.sameSite ?? 'Lax'}`);
-  // Secure must be off on plain http://localhost or the browser drops the cookie.
   if (options.secure) bits.push('Secure');
   return bits.join('; ');
 }
-
-/* ---------------------------------------------------------------- responses */
 
 const SECURITY_HEADERS = {
   'X-Content-Type-Options': 'nosniff',
@@ -125,11 +89,7 @@ const SECURITY_HEADERS = {
   'Referrer-Policy': 'no-referrer',
   'Cross-Origin-Resource-Policy': 'same-site',
   'Cache-Control': 'no-store',
-  // This is a JSON API and never renders HTML, so lock the policy right down.
   'Content-Security-Policy': "default-src 'none'; frame-ancestors 'none'",
-  // HSTS: browsers ignore this when it arrives over plain http (so it is a no-op on
-  // localhost) and enforce https-only for a year once the site is served over https —
-  // exactly the behaviour we want in production without breaking local development.
   'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
 };
 
@@ -149,15 +109,6 @@ export function sendEmpty(res, status, extraHeaders = {}) {
   res.end();
 }
 
-/* --------------------------------------------------------------------- CORS */
-
-/**
- * Build the CORS headers for one request.
- *
- * The allow-list is exact-match only. `Access-Control-Allow-Origin: *` is never
- * used, because a wildcard is incompatible with credentialed requests and would
- * let any site on the internet call this API with the user's session cookie.
- */
 export function corsHeaders(req, allowedOrigins) {
   const origin = req.headers.origin;
   if (!origin || !allowedOrigins.has(origin)) return {};
@@ -176,20 +127,12 @@ export function handlePreflight(req, res, allowedOrigins) {
   }
   sendEmpty(res, 204, {
     ...headers,
-    // DELETE is here for "clear my quiz history" and nothing else. An HTML form
-    // cannot issue it, so it cannot be forged cross-site the way a POST can.
     'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Max-Age': '600',
   });
 }
 
-/**
- * Second CSRF control, alongside the SameSite=Lax cookie and the JSON-only
- * body rule: if a browser sent an Origin header on a state-changing request,
- * it has to be one we trust. Requests with no Origin (curl, server-to-server)
- * are allowed through, since a browser always sends one on cross-site POSTs.
- */
 export function assertTrustedOrigin(req, allowedOrigins) {
   const origin = req.headers.origin;
   if (origin && !allowedOrigins.has(origin)) {
@@ -197,18 +140,6 @@ export function assertTrustedOrigin(req, allowedOrigins) {
   }
 }
 
-/**
- * Best-effort client address, used only for rate limiting.
- *
- * `trustProxy` is the number of trusted reverse-proxy hops in front of this server (a boolean
- * `true` is read as 1; `false`/`0` means "trust nothing"). This matters for security: a client
- * can put anything in `X-Forwarded-For`, and each proxy in the chain APPENDS the address it saw
- * to the right. So the honest client address is the entry `hops` from the RIGHT — never the
- * leftmost, which is fully attacker-controlled. Taking the leftmost value would let a client mint
- * a fresh rate-limit bucket per forged IP and defeat every per-IP limit. If the header is missing
- * or shorter than the configured hop count (misconfiguration), we fall back to the socket peer
- * (the proxy itself) rather than to a spoofable value.
- */
 export function clientKey(req, trustProxy) {
   const hops = trustProxy === true ? 1
     : (Number.isInteger(trustProxy) && trustProxy > 0 ? trustProxy : 0);

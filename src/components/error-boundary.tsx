@@ -13,7 +13,6 @@ export interface ErrorFallbackProps {
 interface ErrorBoundaryProps {
   children: ReactNode;
   FallbackComponent?: ComponentType<ErrorFallbackProps>;
-  /** Changing this clears a caught error. Pass the route to recover on navigation. */
   resetKey?: unknown;
 }
 
@@ -79,8 +78,6 @@ export class ErrorBoundary extends Component<
   }
 
   componentDidCatch(error: unknown, info: ErrorInfo): void {
-    // Dev only: error messages and component stacks can carry API responses
-    // and other internals that should not reach a production console.
     if (import.meta.env.DEV) {
       console.error(
         'ErrorBoundary caught an error:',

@@ -1,20 +1,6 @@
-/**
- * Browser client for the Smart Document Intelligence (large-PDF) backend.
- *
- * This is the counterpart to ai-questions.ts, for documents too large to send as one
- * request. The whole point is that a 900-page book is NEVER posted in a single body: it is
- * uploaded as bounded page batches, chunked and indexed once on the server, and thereafter a
- * topic search returns only the relevant pages. The heavy text stays server-side; the
- * browser holds page text just long enough to upload it in pieces.
- *
- * No key, no prompt, no provider logic here — same as the rest of the client. Everything
- * goes through the session cookie to the API origin.
- */
-
 import { API_URL } from './auth';
 import type { MaterialQuestion, QuestionKind, OcrPageFn, OcrPageResult, PageText } from './materials';
 
-/** Keep each upload request comfortably under the server's 256 KB JSON cap. */
 const BATCH_CHAR_BUDGET = 120_000;
 
 export type DocumentRecord = {
@@ -71,11 +57,6 @@ async function post(path: string, body: unknown): Promise<any> {
   return payload;
 }
 
-/**
- * Upload a document as bounded page batches, then finalize (chunk + index once).
- * `onProgress` reports upload progress (pages sent / total) so the UI reflects real work.
- * Returns the finalized document record + mode.
- */
 export async function ingestLargeDocument(
   { filename, sizeBytes, pages }: { filename: string; sizeBytes: number; pages: PageText[] },
   onProgress?: (sent: number, total: number, stage: 'uploading' | 'indexing') => void,
@@ -83,9 +64,6 @@ export async function ingestLargeDocument(
   const created = await post('/api/documents/upload', { filename, sizeBytes });
   const documentId: string = created.documentId;
 
-  // Send pages in char-bounded batches so no single request approaches the body limit.
-  // Batches keep each page's per-page metadata (source/confidence) so OCR'd pages arrive at
-  // the append route already tagged — the server threads that straight into chunk metadata.
   let batch: PageText[] = [];
   let batchChars = 0;
   let sent = 0;
@@ -109,7 +87,6 @@ export async function ingestLargeDocument(
   return { document: finalized.document, mode: finalized.mode, isLargeMode: finalized.isLargeMode, classification: finalized.classification };
 }
 
-/** Search one document for a topic; returns the relevant pages/sections (or not-found). */
 export async function searchDocument(documentId: string, query: string): Promise<SearchPreview> {
   const r = await post('/api/documents/search', { documentId, query });
   return {
@@ -126,7 +103,6 @@ export async function searchDocument(documentId: string, query: string): Promise
 
 const KINDS: readonly string[] = ['statement', 'cloze', 'numeric', 'identify', 'scenario'];
 
-/** Render a source object from the server into the display string the quiz expects. */
 function sourceLabel(src: any, documentTitle: string): string {
   if (!src || typeof src !== 'object') return documentTitle;
   const pages = Number.isFinite(src.pageStart) && Number.isFinite(src.pageEnd)
@@ -136,11 +112,6 @@ function sourceLabel(src: any, documentTitle: string): string {
   return `${documentTitle}${pages ? ` (${pages})` : ''}${sec}`;
 }
 
-/**
- * Generate MCQs from a topic in an indexed document. Converts the server's wire questions
- * into the MaterialQuestion shape the existing quiz/grader already runs on, keeping the
- * per-question page source visible.
- */
 export async function generateFromTopic(
   { documentId, query, questionCount, difficulty, documentTitle }:
   { documentId: string; query: string; questionCount: number; difficulty?: 'easy' | 'medium' | 'hard'; documentTitle: string },
@@ -171,16 +142,6 @@ export async function listDocuments(): Promise<DocumentRecord[]> {
   return payload.documents ?? [];
 }
 
-// --- Study-material upload gate ---------------------------------------------
-//
-// A local, no-AI pre-check that runs in the browser BEFORE any large-document upload or any
-// Gemini call, so a non-study file (marksheet, ID, resume, medical report, …) is stopped at
-// the door with a clear message and never parsed, uploaded, or sent to the AI. Only a bounded
-// head sample of the already-extracted text is sent — never the whole document. This is a UX
-// fast-path only: the server enforces the SAME guard authoritatively at /finalize and
-// /generate, so a client that skips or fails this check still cannot push a rejected file
-// through (spec §2, §9, §10).
-
 export type GuardDecision = {
   decision: 'accept' | 'reject';
   accepted: boolean;
@@ -190,13 +151,6 @@ export type GuardDecision = {
   message: string | null;
 };
 
-/**
- * Ask the server's document-type guard whether an extracted text sample is study material.
- * Resolves to the decision on any definite server answer. THROWS DocumentError only on a
- * transport/rate-limit/auth failure — callers treat a throw as "couldn't pre-check, let the
- * authoritative server-side gate decide" and proceed with the normal flow, because
- * /finalize and /generate re-run the identical guard and will reject there if warranted.
- */
 export async function guardMaterial(
   { text, filename, pageCount }: { text: string; filename?: string; pageCount?: number },
 ): Promise<GuardDecision> {
@@ -216,15 +170,6 @@ export async function guardMaterial(
   };
 }
 
-// --- OCR transport ----------------------------------------------------------
-//
-// The browser-side extractor (materials.ts) is deliberately server-agnostic: it takes an
-// injected `OcrPageFn` and knows nothing about URLs or cookies. These helpers are that
-// injection — the only place the OCR HTTP route is named — so the extractor stays unit
-// testable and this file stays the single client-side transport, mirroring the rest of
-// the document client.
-
-/** Whether the server has OCR enabled AND its local engine is reachable right now. */
 export async function checkOcrAvailable(): Promise<{ enabled: boolean; available: boolean }> {
   try {
     const response = await fetch(`${API_URL}/api/documents/ocr-health`, { credentials: 'include' });
@@ -236,12 +181,6 @@ export async function checkOcrAvailable(): Promise<{ enabled: boolean; available
   }
 }
 
-/**
- * Build an OCR transport bound to an optional documentId. The returned function posts one
- * page image to the local OCR route and resolves to the recognised text, or to null when
- * the page could not be read — it NEVER throws, so a single unreadable page marks itself
- * `ocr_failed` in the extractor rather than aborting the whole document read.
- */
 export function createOcrTransport(documentId?: string): OcrPageFn {
   return async ({ imageBase64, pageNumber }): Promise<OcrPageResult> => {
     let response: Response;
@@ -253,7 +192,7 @@ export function createOcrTransport(documentId?: string): OcrPageFn {
         body: JSON.stringify({ ...(documentId ? { documentId } : {}), pageNumber, imageBase64 }),
       });
     } catch {
-      return null; // network/transport failure for this page — caller marks it ocr_failed
+      return null;
     }
     const payload = await response.json().catch(() => null);
     if (!response.ok || payload?.ok !== true || typeof payload.text !== 'string') return null;

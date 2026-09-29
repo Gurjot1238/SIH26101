@@ -1,21 +1,3 @@
-/**
- * The notification feed, built entirely from an account's own measured data.
- *
- * There is no notifications table and no push channel: a feed is *derived* on
- * every read from the same three things the Dashboard already trusts — the
- * account's progress rollup, its saved/started courses, and its profile. That is
- * the whole point of building it this way. A notification can only ever say
- * something that is already true of the account, so the bell can never show a
- * number the rest of the app would contradict. `now` and `seenAt` are injected so
- * the builder is pure and testable.
- *
- * Unread accounting: a dated item is unread when it arrived after the learner last
- * opened the panel (`at > seenAt`); an undated call-to-action (the welcome item)
- * is unread only until the panel is opened for the first time. Opening the panel
- * writes `notificationsSeenAt`, after which a rebuilt feed reports unread = 0.
- */
-
-/** "data-quality" -> "Data Quality", "r-programming" -> "R Programming". */
 function titleCase(slug) {
   return String(slug)
     .split('-')
@@ -24,7 +6,6 @@ function titleCase(slug) {
     .join(' ');
 }
 
-/** How a single course record reads, given what the learner has actually done with it. */
 function courseItem(course, fallbackAt) {
   const title = titleCase(course.courseId);
   const at = course.updatedAt ?? course.startedAt ?? fallbackAt;
@@ -41,10 +22,6 @@ function courseItem(course, fallbackAt) {
   return { id: `course-${course.courseId}`, kind: 'course', title: `Saved ${title}`, body: `${title} is in your library, ready when you are.`, at };
 }
 
-/**
- * Build the feed. Returns `{ items, unread, seenAt }` where every item is
- * `{ id, kind, title, body, at }` and `at` is an ISO string or null.
- */
 export function buildNotifications({ progress, courses = [], profile = {}, now }) {
   const nowIso = now instanceof Date ? now.toISOString() : (now ?? new Date().toISOString());
   const seenAt = typeof profile.notificationsSeenAt === 'string' ? profile.notificationsSeenAt : null;
@@ -54,8 +31,6 @@ export function buildNotifications({ progress, courses = [], profile = {}, now }
   const lastAt = progress?.lastAttemptAt ?? null;
 
   if (attempts === 0) {
-    // No measured work yet: one honest call to action, undated so it leads the feed
-    // and stays until the learner actually sits an assessment (after which it is gone).
     items.push({
       id: 'welcome',
       kind: 'welcome',
@@ -64,7 +39,6 @@ export function buildNotifications({ progress, courses = [], profile = {}, now }
       at: null,
     });
   } else {
-    // A plain summary of where the account stands, dated to the most recent sitting.
     items.push({
       id: 'summary',
       kind: 'summary',
@@ -73,8 +47,6 @@ export function buildNotifications({ progress, courses = [], profile = {}, now }
       at: lastAt,
     });
 
-    // The single weakest competency worth working on, if any — the same one the
-    // Dashboard's focus section surfaces.
     const focus = Array.isArray(progress.focus) ? progress.focus[0] : null;
     if (focus) {
       items.push({
@@ -87,8 +59,6 @@ export function buildNotifications({ progress, courses = [], profile = {}, now }
     }
   }
 
-  // The most recently touched saved/started courses, newest first, capped so the
-  // panel stays a glance rather than a backlog.
   const touched = courses
     .filter((c) => c && (c.saved || c.startedAt || (c.completedModules?.length ?? 0) > 0 || (c.completedLessons?.length ?? 0) > 0))
     .sort((a, b) => String(b.updatedAt ?? '').localeCompare(String(a.updatedAt ?? '')))
@@ -96,7 +66,6 @@ export function buildNotifications({ progress, courses = [], profile = {}, now }
     .map((c) => courseItem(c, lastAt));
   items.push(...touched);
 
-  // Newest first; the undated welcome item sorts to the top as a call to action.
   items.sort((a, b) => {
     if (a.at === null && b.at === null) return 0;
     if (a.at === null) return -1;

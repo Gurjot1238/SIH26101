@@ -1,24 +1,3 @@
-/**
- * What the model is actually asked.
- *
- * Kept in its own file because the prompt is the single largest determinant of whether
- * this feature is honest. Everything downstream can only reject a bad question; only the
- * prompt can make good ones likely. It is versioned in the repo and reviewable as text
- * rather than buried in a request body.
- *
- * Three instructions do most of the work:
- *
- *  - Quote the source verbatim. The validator checks the quote against the document, so
- *    a model that paraphrases its own citation gets its question thrown away. Saying so
- *    explicitly turns a silent rejection into a followed rule.
- *  - Use only the supplied passage. Models know a great deal about price indices and
- *    will cheerfully write a textbook-correct question the uploaded document does not
- *    support, which would then be marked against a learner who read the document.
- *  - Say when there is not enough material. Given a target of twelve and a thin
- *    paragraph, a model will pad. An explicit permission to return fewer is what makes
- *    "8 good questions beat 12 invented ones" achievable rather than aspirational.
- */
-
 const SCHEMA = `{
   "questions": [
     {
@@ -80,14 +59,6 @@ function topicBlock(topics, concepts) {
   return lines.join('\n\n');
 }
 
-/**
- * The difficulty instruction, chosen by what the learner picked on the page.
- *
- * `easy | medium | hard` each get a focused instruction; anything else (including an
- * absent choice) gets the balanced mix, which is the sensible default when nobody said.
- * The last two lines are shared by every level: a good distractor and a verbatim source
- * are required regardless of how hard the question is.
- */
 const DIFFICULTY_SHARED = `- Distractors must be the answers a reader gives when they half-understood the passage — a common misreading, a plausible-but-wrong application, the right idea applied to the wrong case — never random or absurd wrong facts.
 - You may still quote "source" verbatim (that rule never relaxes); the difficulty lives in the stem and the options, not in the sentence you cite.`;
 
@@ -133,11 +104,6 @@ ${chunk}
 """`;
 }
 
-/**
- * The second attempt. Same rules, plus the exact reasons the previous batch was thrown
- * out, because "some were rejected" teaches a model nothing but "the source passage was
- * not in the document" changes what it does next.
- */
 export function buildRepairPrompt({ chunk, topics = [], count = 6, reasons = [], difficulty }) {
   const unique = [...new Set(reasons)].slice(0, 8);
   return `${ROLE}
@@ -159,4 +125,3 @@ PASSAGE (the only permitted source of truth):
 ${chunk}
 """`;
 }
-

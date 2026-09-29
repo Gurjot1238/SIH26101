@@ -1,25 +1,3 @@
-/**
- * HTTP-level acceptance test for the large-PDF (899-page) scenario.
- *
- * Boots a real server (mock AI provider, throwaway data dir) and drives the exact flow the
- * bug report is about, over real HTTP, asserting:
- *
- *   1. the OLD single-shot path (POST /api/ai/generate-mcqs) with a whole-book-sized body
- *      returns 413 body_too_large — reproducing the reported failure and showing WHY the
- *      staged path is needed;
- *   2. the staged path uploads ~899 pages in bounded batches, and NOT ONE append request
- *      approaches the 256 KB cap (no 413 anywhere in the large-document flow);
- *   3. finalize indexes the book (LARGE/DEEP mode), a topic search returns relevant pages,
- *      and generation returns EXACTLY the requested count, grounded, with page sources.
- *
- *   node scripts/large-pdf-http-test.mjs
- *
- * No key and no network: the mock provider returns questions built (by backfill, below)
- * from the same topic text the retriever will surface, so they ground exactly as a real
- * model's would. Where the fixture questions come from is irrelevant to what is under test
- * here — the HTTP body-size behaviour and the staged wiring.
- */
-
 import { spawn } from 'node:child_process';
 import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -37,7 +15,6 @@ let pass = 0; let fail = 0;
 const ok = (name) => { pass += 1; console.log(`  ok    ${name}`); };
 const bad = (name, detail) => { fail += 1; console.log(`  FAIL  ${name}\n        ${detail}`); };
 
-// The topic paragraph the questions will be grounded in.
 const TOPIC_TEXT = 'Normalization decomposes relations to remove redundancy and prevent update anomalies. First normal form requires that every attribute holds a single atomic value. Second normal form removes partial dependencies on a composite key. Third normal form removes transitive dependencies. Boyce Codd normal form is a stricter form that addresses anomalies third normal form can leave behind. Functional dependencies drive the whole decomposition process.';
 
 function buildPages() {
@@ -50,7 +27,6 @@ function buildPages() {
   return pages;
 }
 
-/** A mock model reply: valid questions grounded in the topic text. */
 function buildMockReply() {
   const idx = buildDocumentIndex(TOPIC_TEXT);
   const pool = generateBackfill(TOPIC_TEXT, idx, { need: 24, existing: [], allowedTopics: ['normalization'], preferTopics: ['normalization'] }).accepted
@@ -104,20 +80,17 @@ async function main() {
   if (!(await waitForHealth())) { bad('server boot', `did not start:\n${serverLog}`); return; }
   ok('server booted');
 
-  // Sign in.
   const signup = await req('POST', '/api/auth/signup', { body: { name: 'Large PDF Tester', email: 'large.pdf@mospi.gov.in', password: 'correct-horse-battery-staple-42' } });
   if (signup.status !== 201) { bad('signup', `status ${signup.status}`); return; }
   ok('signed in');
 
   const pages = buildPages();
 
-  // 1. The OLD path with a whole-book-sized body → 413 (the reported bug).
   const wholeBookText = pages.map((p) => p.text).join('\n');
   const old = await req('POST', '/api/ai/generate-mcqs', { body: { text: wholeBookText, topics: ['normalization'], concepts: [], questionCount: 20 } });
   if (old.status === 413) ok(`old single-shot path rejects the whole book (413), size ≈ ${(wholeBookText.length / 1024 / 1024).toFixed(1)} MB`);
   else bad('old path 413', `expected 413, got ${old.status}`);
 
-  // 2. Staged upload — create, then append in bounded batches.
   const create = await req('POST', '/api/documents/upload', { body: { filename: 'DBMS 899 pages.pdf', sizeBytes: 6_000_000 } });
   if (create.status !== 201 || !create.json?.documentId) { bad('upload create', `status ${create.status}`); return; }
   const documentId = create.json.documentId;
@@ -147,20 +120,17 @@ async function main() {
   if (maxBatchBytes < CAP) ok(`largest append body was ${(maxBatchBytes / 1024).toFixed(0)} KB — under the 256 KB cap (no 413)`);
   else bad('batch under cap', `a batch was ${maxBatchBytes} bytes, over the ${CAP} cap`);
 
-  // 3. Finalize (index once).
   const finalize = await req('POST', '/api/documents/finalize', { body: { documentId } });
   if (finalize.status !== 200 || finalize.json?.document?.status !== 'ready') { bad('finalize', `status ${finalize.status} ${JSON.stringify(finalize.json?.error ?? '')}`); return; }
   if (['LARGE', 'VERY_LARGE', 'DEEP'].includes(finalize.json.mode)) ok(`finalized and indexed once (mode ${finalize.json.mode}, ${finalize.json.document.chunkCount} chunks)`);
   else bad('large mode', `mode was ${finalize.json.mode}`);
 
-  // 4. Topic search.
   const search = await req('POST', '/api/documents/search', { body: { documentId, query: 'normalization' } });
   if (search.status !== 200 || !search.json?.topicFound) { bad('search', `status ${search.status} topicFound=${search.json?.topicFound}`); return; }
   const pagesHit = (search.json.pageRanges ?? []).some((r) => r.start <= 330 && r.end >= 300);
   if (pagesHit) ok(`topic search found relevant pages ${JSON.stringify(search.json.pageRanges)}`);
   else bad('search pages', `page ranges ${JSON.stringify(search.json.pageRanges)} missed 300-330`);
 
-  // 5. Generate exactly 20 from the retrieved context.
   const gen = await req('POST', '/api/documents/generate', { body: { documentId, query: 'normalization', questionCount: 20, difficulty: 'medium' } });
   if (gen.status !== 200) { bad('generate', `status ${gen.status}: ${JSON.stringify(gen.json?.error ?? '')}`); return; }
   if (Array.isArray(gen.json.questions) && gen.json.questions.length === 20) ok('generate returned EXACTLY 20 questions');
@@ -169,7 +139,6 @@ async function main() {
   if (allGrounded) ok('every question carries a real document id and page range');
   else bad('grounded sources', 'a question was missing its document/page source');
 
-  // Also confirm a smaller count is exact.
   const gen5 = await req('POST', '/api/documents/generate', { body: { documentId, query: 'normalization', questionCount: 5 } });
   if (gen5.status === 200 && gen5.json.questions?.length === 5) ok('generate returned EXACTLY 5 when 5 requested');
   else bad('exact 5', `got ${gen5.json?.questions?.length} (status ${gen5.status})`);

@@ -38,7 +38,6 @@ OUT_DIR = os.path.join(REPO, "tests", "fixtures", "ocr")
 PNG_PATH = os.path.join(OUT_DIR, "sample-scan.png")
 PDF_PATH = os.path.join(OUT_DIR, "sample-scan.pdf")
 
-# Distinct, high-contrast pages. Every required fixture token appears at least once.
 PNG_LINES = [
     "NEXORA AI",
     "Artificial Intelligence",
@@ -56,9 +55,6 @@ PDF_PAGE_2 = [
     "Machine Learning",
 ]
 
-# Candidate sans-serif fonts across macOS (operator) and Linux (CI). First hit wins;
-# a clean TrueType/OpenType face makes recognition far more reliable than PIL's tiny
-# built-in bitmap font.
 FONT_CANDIDATES = [
     "/System/Library/Fonts/Supplemental/Arial.ttf",
     "/System/Library/Fonts/Helvetica.ttc",
@@ -68,7 +64,6 @@ FONT_CANDIDATES = [
     "/usr/share/fonts/opentype/urw-base35/NimbusSans-Regular.otf",
 ]
 
-
 def load_font(size):
     for path in FONT_CANDIDATES:
         if os.path.exists(path):
@@ -76,13 +71,11 @@ def load_font(size):
                 return ImageFont.truetype(path, size)
             except Exception:
                 continue
-    return ImageFont.load_default()  # last resort; recognition will be weaker
-
+    return ImageFont.load_default()
 
 def render_page(lines, width=1000, font_size=52, margin=70, line_gap=44):
     """A white page with black, generously spaced lines — a clean 'scanned' look."""
     font = load_font(font_size)
-    # Measure line heights so the page is sized to its content (deterministic).
     probe = Image.new("RGB", (width, 10), "white")
     draw = ImageDraw.Draw(probe)
     heights = []
@@ -98,7 +91,6 @@ def render_page(lines, width=1000, font_size=52, margin=70, line_gap=44):
         y += h + line_gap
     return img
 
-
 def _freeze_pdf_dates(path):
     """PIL stamps the current time into /CreationDate and /ModDate, which would make the
     committed fixture churn on every regenerate. Replace both with one fixed timestamp of
@@ -111,22 +103,18 @@ def _freeze_pdf_dates(path):
         with open(path, "wb") as fh:
             fh.write(frozen)
 
-
 def build():
     os.makedirs(OUT_DIR, exist_ok=True)
     render_page(PNG_LINES).save(PNG_PATH, format="PNG", optimize=True)
     p1 = render_page(PDF_PAGE_1)
     p2 = render_page(PDF_PAGE_2)
-    # Image-only, multi-page PDF == a scan. No text layer, so OCR is the only way in.
     p1.save(PDF_PATH, format="PDF", save_all=True, append_images=[p2], resolution=150.0)
     _freeze_pdf_dates(PDF_PATH)
     print(f"[fixtures] wrote {os.path.relpath(PNG_PATH, REPO)} ({os.path.getsize(PNG_PATH)} bytes)")
     print(f"[fixtures] wrote {os.path.relpath(PDF_PATH, REPO)} ({os.path.getsize(PDF_PATH)} bytes)")
 
-
 def check():
     ok = True
-    # PNG: PIL can verify it directly.
     if os.path.exists(PNG_PATH):
         try:
             Image.open(PNG_PATH).verify()
@@ -137,7 +125,6 @@ def check():
     else:
         print(f"[fixtures] MISSING {PNG_PATH}")
         ok = False
-    # PDF: PIL cannot read PDFs back; verify via pypdfium2 if present, else the %PDF magic.
     if os.path.exists(PDF_PATH):
         try:
             import pypdfium2 as pdfium
@@ -157,7 +144,6 @@ def check():
         print(f"[fixtures] MISSING {PDF_PATH}")
         ok = False
     return ok
-
 
 if __name__ == "__main__":
     if "--check" in sys.argv:

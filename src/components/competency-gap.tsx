@@ -1,18 +1,3 @@
-/**
- * The competency gap section of the Dashboard.
- *
- * Three charts and an overview strip, all drawn from `GET /api/analytics/competencies`.
- * Not one number on this screen is calculated here — the scores, the bands, the targets,
- * the shortfalls and the study order all arrive from the server, and this file decides
- * only where they sit and what colour they are.
- *
- * It lives in its own file rather than inside `demo-pages.tsx` so that adding it changed
- * no existing markup: the Dashboard gained one line. Everything visual reuses the tokens
- * already on the page — the same Card, the same eyebrow type, the same #dfe9ea grid and
- * 8px tooltips as the two charts above it — so it reads as part of the design rather
- * than bolted to it.
- */
-
 import { useEffect, useMemo, useState } from 'react';
 import { Bar, BarChart, CartesianGrid, Cell, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { ArrowRight, BarChart3, Sparkles, Target, TriangleAlert } from 'lucide-react';
@@ -30,7 +15,6 @@ import {
   statusTones,
 } from '@/lib/analytics';
 
-/** Chart axis and tooltip styling, copied from the charts already on this page. */
 const AXIS = { fontSize: 10, fill: '#718189' } as const;
 const CATEGORY_AXIS = { fontSize: 11, fill: '#40515a' } as const;
 const TOOLTIP = { borderRadius: 8, border: '1px solid #dfe9ea', fontSize: 12 } as const;
@@ -40,7 +24,6 @@ function StatusBadge({ status, scale }: { status: PerformanceStatus; scale: Comp
   return <Badge tone={statusTones[status]}>{statusLabel(status, scale)}</Badge>;
 }
 
-/** One figure in the overview strip. Count-first, so a 0% off one question cannot mislead. */
 function Tally({ label, value, note, tone }: { label: string; value: string; note: string; tone: PerformanceStatus }) {
   return <div className="rounded-lg border border-border p-4">
     <div className="flex items-center gap-2">
@@ -52,12 +35,6 @@ function Tally({ label, value, note, tone }: { label: string; value: string; not
   </div>;
 }
 
-/**
- * `refreshKey` lets a parent force a re-fetch after it knows the data changed — e.g. the
- * quiz result screen bumps it once the just-finished attempt has been saved, so the gaps
- * shown include that sitting rather than the state from before it. Omitted on the
- * Dashboard, where a mount is always fresh.
- */
 export function CompetencyGapSection({ refreshKey = 0, scope = 'all' }: { refreshKey?: number; scope?: 'all' | 'latest' } = {}) {
   const [analytics, setAnalytics] = useState<CompetencyAnalytics | null>(null);
   const [status, setStatus] = useState<'loading' | 'ready' | 'unavailable'>('loading');
@@ -77,9 +54,6 @@ export function CompetencyGapSection({ refreshKey = 0, scope = 'all' }: { refres
       })
       .catch((error: unknown) => {
         if (!live) return;
-        // A signed-out or offline visitor gets nothing rather than a placeholder chart.
-        // Drawing invented bars here would be the exact failure this whole feature exists
-        // to remove, so the section simply does not render.
         setProblem(error instanceof AnalyticsError ? error.message : 'Could not load your competency analysis.');
         setStatus('unavailable');
       });
@@ -92,11 +66,6 @@ export function CompetencyGapSection({ refreshKey = 0, scope = 'all' }: { refres
     [rows, selected],
   );
 
-  /**
-   * Chart 2's data. `reached` and `short` stack to the target, so the bar's full height is
-   * the required level and the coral part is literally the gap — the shortfall is a
-   * distance you can see rather than a number you have to find.
-   */
   const gapData = useMemo(
     () => rows.map((row) => ({
       name: row.name,
@@ -130,7 +99,6 @@ export function CompetencyGapSection({ refreshKey = 0, scope = 'all' }: { refres
     return <div className="mt-8"><Card className="p-5"><p className="text-sm text-muted-foreground">Loading your competency analysis…</p></Card></div>;
   }
 
-  // Nothing to draw and nothing to pretend. The rest of the Dashboard is unaffected.
   if (status === 'unavailable' || !analytics) {
     return <div className="mt-8"><Card className="p-5"><p className="text-sm leading-6 text-muted-foreground">{problem}</p></Card></div>;
   }

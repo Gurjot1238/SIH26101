@@ -43,15 +43,9 @@ import threading
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
-# ---------------------------------------------------------------------------
-# Configuration (env, with the same safe defaults as server/documents/config.mjs)
-# ---------------------------------------------------------------------------
-
 HOST = os.environ.get("OCR_HOST", "127.0.0.1").strip() or "127.0.0.1"
 PORT = int(os.environ.get("OCR_PORT", "8091") or "8091")
 LANG = os.environ.get("OCR_LANG", "en").strip() or "en"
-# "stub" -> deterministic fixture text, no paddle import (used by the test suite).
-# anything else -> real local PaddleOCR.
 ENGINE_KIND = os.environ.get("OCR_ENGINE", "paddle").strip().lower() or "paddle"
 MAX_IMAGE_BYTES = int(os.environ.get("OCR_MAX_IMAGE_BYTES", str(12 * 1024 * 1024)))
 MAX_PDF_PAGES = int(os.environ.get("OCR_MAX_PAGES", "200") or "200")
@@ -67,18 +61,12 @@ DEFAULT_STUB_TEXT = (
     "TCP Congestion Control\n"
 )
 
-
 def log(event, **fields):
     """One structured line per event. Never logs image bytes or recognised text."""
     parts = [f"[ocr] {event}"]
     for k, v in fields.items():
         parts.append(f"{k}={v}")
     print(" ".join(parts), file=sys.stderr, flush=True)
-
-
-# ---------------------------------------------------------------------------
-# Engine — built once, reused. Two implementations behind one interface.
-# ---------------------------------------------------------------------------
 
 class OcrError(Exception):
     """Raised with a stable machine code so the Node adapter can branch cleanly."""
@@ -87,7 +75,6 @@ class OcrError(Exception):
         super().__init__(message)
         self.code = code
         self.message = message
-
 
 def _normalise(lines):
     """lines: [(text, score)] -> the normalised response payload (text + mean score)."""
@@ -100,7 +87,6 @@ def _normalise(lines):
         "lineCount": len(clean),
         "lines": [{"text": t, "score": round(s, 4)} for (t, s) in clean],
     }
-
 
 class StubEngine:
     """Deterministic, paddle-free. Honours an optional `stubText` so tests can drive
@@ -118,7 +104,6 @@ class StubEngine:
         lines = [(ln.strip(), 0.95) for ln in text.splitlines() if ln.strip()]
         return _normalise(lines)
 
-
 class PaddleEngine:
     """Real local PaddleOCR. Lazily constructs the model on first use and reuses it.
     Tolerant of both the 3.x (.predict) and 2.x (.ocr) APIs and result shapes."""
@@ -129,13 +114,13 @@ class PaddleEngine:
         self._lang = lang
         self._engine = None
         self._lock = threading.Lock()
-        self._mode = None  # "predict" (3.x) or "ocr" (2.x), decided at build time
+        self._mode = None
         self.version = None
         try:
-            import paddleocr  # noqa: F401
+            import paddleocr
             self.version = getattr(paddleocr, "__version__", None)
             self.available = True
-        except Exception as exc:  # import failure must not crash the process
+        except Exception as exc:
             self.available = False
             self._import_error = str(exc)
 
@@ -144,8 +129,6 @@ class PaddleEngine:
         first-requests cannot both pay the model-load cost."""
         from paddleocr import PaddleOCR
 
-        # Keep it light and fast: skip the doc-orientation / unwarping sub-models.
-        # Newer (3.x) kwargs first; fall back progressively for older builds.
         attempts = [
             dict(lang=self._lang, use_doc_orientation_classify=False,
                  use_doc_unwarping=False, use_textline_orientation=False),
@@ -196,12 +179,10 @@ class PaddleEngine:
         if result is None:
             return lines
 
-        # 3.x .predict(): iterable of dict-like OCRResult with rec_texts/rec_scores.
         if self._mode == "predict":
             for res in result:
                 texts = None
                 scores = None
-                # OCRResult behaves like a dict; be defensive about access style.
                 for getter in (
                     lambda r: (r["rec_texts"], r.get("rec_scores")),
                     lambda r: (r.get("rec_texts"), r.get("rec_scores")),
@@ -220,7 +201,6 @@ class PaddleEngine:
                     lines.append((t, scores[i] if i < len(scores) else 1.0))
             return lines
 
-        # 2.x .ocr(): [[ [box, (text, score)], ... ]] (outer list is per-image).
         for page in result:
             if not page:
                 continue
@@ -229,7 +209,6 @@ class PaddleEngine:
                     _box, (text, score) = item
                     lines.append((text, score))
                 except Exception:
-                    # Some builds return [box, text, score] or a dict — handle loosely.
                     if isinstance(item, dict) and "text" in item:
                         lines.append((item.get("text"), item.get("score", 1.0)))
         return lines
@@ -240,7 +219,6 @@ class PaddleEngine:
             try:
                 return engine.predict(ndarray)
             except Exception as exc:
-                # Some 3.x builds still expose .ocr; try it before giving up.
                 if hasattr(engine, "ocr"):
                     self._mode = "ocr"
                     return engine.ocr(ndarray)
@@ -253,7 +231,7 @@ class PaddleEngine:
         except Exception as exc:
             raise OcrError("ocr_failed", f"ocr failed: {exc}")
 
-    def image_bytes(self, data, stub_text=None):  # stub_text ignored by the real engine
+    def image_bytes(self, data, stub_text=None):
         if not self.available:
             raise OcrError("ocr_unavailable", getattr(self, "_import_error", "paddleocr not importable"))
         self.warmup()
@@ -261,11 +239,8 @@ class PaddleEngine:
         result = self._run(ndarray)
         return _normalise(self._parse_result(result))
 
-
-# One engine per process.
 _ENGINE = None
 _ENGINE_LOCK = threading.Lock()
-
 
 def get_engine():
     global _ENGINE
@@ -274,7 +249,6 @@ def get_engine():
             if _ENGINE is None:
                 _ENGINE = StubEngine() if ENGINE_KIND == "stub" else PaddleEngine(LANG)
     return _ENGINE
-
 
 def render_pdf_pages(pdf_bytes, dpi, max_pages):
     """Render PDF pages to PNG bytes with pypdfium2 (present in .venv-ocr). Returns
@@ -300,17 +274,12 @@ def render_pdf_pages(pdf_bytes, dpi, max_pages):
         out.append((i + 1, buf.getvalue()))
     return out
 
-
-# ---------------------------------------------------------------------------
-# HTTP layer (stdlib only)
-# ---------------------------------------------------------------------------
-
 class Handler(BaseHTTPRequestHandler):
     server_version = "NexoraOCR/1.0"
     protocol_version = "HTTP/1.1"
 
     def log_message(self, *_args):
-        pass  # our own structured log() is the only output; silence the default spam.
+        pass
 
     def _send(self, status, payload):
         body = json.dumps(payload).encode("utf-8")
@@ -368,12 +337,12 @@ class Handler(BaseHTTPRequestHandler):
             log("request_failed", route=route, code=err.code)
             status = 503 if err.code in ("ocr_unavailable", "pdf_unsupported") else 400
             return self._send(status, {"ok": False, "code": err.code, "message": err.message})
-        except Exception as exc:  # never let a handler crash the process
+        except Exception as exc:
             log("request_error", route=route, error=type(exc).__name__)
             return self._send(500, {"ok": False, "code": "internal_error", "message": str(exc)})
 
     def _handle_image(self):
-        body = self._read_json(MAX_IMAGE_BYTES * 2)  # base64 inflates ~4/3; allow headroom
+        body = self._read_json(MAX_IMAGE_BYTES * 2)
         data = self._decode_b64("imageBase64", body.get("imageBase64"), MAX_IMAGE_BYTES)
         page_no = body.get("pageNumber")
         engine = get_engine()
@@ -401,9 +370,8 @@ class Handler(BaseHTTPRequestHandler):
         return self._send(200, {"ok": True, "engine": engine.kind, "pageCount": len(pages_out),
                                 "pages": pages_out, "durationMs": dur})
 
-
 def main():
-    engine = get_engine()  # constructs the engine object (does NOT load the model yet)
+    engine = get_engine()
     httpd = ThreadingHTTPServer((HOST, PORT), Handler)
     log("service_started", host=HOST, port=PORT, engine=engine.kind,
         available=bool(getattr(engine, "available", False)), lang=LANG)
@@ -415,9 +383,5 @@ def main():
         httpd.server_close()
         log("service_stopped")
 
-
 if __name__ == "__main__":
     main()
-
-
-

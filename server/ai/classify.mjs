@@ -1,51 +1,8 @@
-/**
- * Material classification: what kind of document did the learner upload?
- *
- * Before the server spends thirty seconds generating MCQs from a document, it is
- * worth knowing whether the document is actually study material or something else
- * entirely — a marksheet, a results report, an attendance sheet, a blank form.
- * Generating quiz questions from a marksheet produces nonsense; telling the learner
- * that *before* the long wait is the whole point of this module.
- *
- * The classification uses the same local provider as MCQ generation — the same
- * Ollama model, the same OpenAI chat format — but a much shorter prompt and a much
- * smaller text sample. A classification call takes a few seconds, not the tens of
- * seconds a full generation round trip costs, because the model is asked to read
- * a snippet and return one small JSON object, not a dozen grounded questions.
- *
- *   What it returns
- *
- *   { ok: true, classification: { type, label, suitable, reason, topics } }
- *   { ok: false, code, message }
- *
- * `type` is one of a fixed set of categories. `suitable` is a boolean: can the
- * generator make good MCQs from this? `reason` is one sentence the page can print.
- * `topics` is the model's read of what the document is about, independent of the
- * n-gram extraction in materials.ts — the two are complementary, not redundant.
- */
-
 import * as local from './local.mjs';
 import { ProviderError } from './gemini.mjs';
 
-/**
- * How much of the document to send to the model.
- *
- * Classification does not need the whole document — the first 2 000 characters
- * are enough for the model to recognise a marksheet, a methodology note, a
- * textbook chapter or a blank form. Keeping the sample small is what makes the
- * call fast: the model reads less and writes less.
- */
 const SAMPLE_CHARS = 2_000;
 
-/**
- * The fixed set of document types the model can return.
- *
- * Each entry has:
- *  - `value`: the machine-readable string the model is asked to emit
- *  - `label`: the human-readable string the page prints
- *  - `suitable`: whether MCQ generation is worth attempting
- *  - `advice`: what to tell the learner when this type is detected
- */
 export const DOCUMENT_TYPES = [
   {
     value: 'study_material',
@@ -135,9 +92,6 @@ const CLASSIFY_RULES = `HARD RULES:
 OUTPUT:
 Return a single JSON object and nothing else. No prose, no markdown fence, no commentary.`;
 
-/**
- * Build the classification prompt from a document text sample.
- */
 function buildClassifyPrompt(sample) {
   return `${CLASSIFY_ROLE}
 
@@ -152,10 +106,6 @@ ${sample}
 """`;
 }
 
-/**
- * Parse the model's JSON response, tolerating fences and preamble.
- * Mirrors the approach in validation.mjs's parseProviderJson but simpler.
- */
 function parseClassifyJson(raw) {
   if (typeof raw !== 'string' || raw.trim() === '') {
     return { ok: false, reason: 'empty response' };
@@ -163,11 +113,9 @@ function parseClassifyJson(raw) {
 
   let text = raw.trim();
 
-  // Strip ```json ... ``` fence
   const fenced = text.match(/```(?:json)?\s*([\s\S]*?)\s*```/i);
   if (fenced && fenced[1]) text = fenced[1].trim();
 
-  // Take the outermost braces
   if (!text.startsWith('{')) {
     const first = text.indexOf('{');
     const last = text.lastIndexOf('}');
@@ -189,13 +137,9 @@ function parseClassifyJson(raw) {
   return { ok: true, parsed };
 }
 
-/**
- * Validate and normalise the classification the model returned.
- */
 function normaliseClassification(parsed) {
   const type = typeof parsed.type === 'string' ? parsed.type.trim().toLowerCase() : 'other';
 
-  // Find the matching type entry, defaulting to 'other'.
   const matched = DOCUMENT_TYPES.find((t) => t.value === type) ?? DOCUMENT_TYPES.find((t) => t.value === 'other');
 
   const confidence = ['high', 'medium', 'low'].includes(String(parsed.confidence).toLowerCase())
@@ -229,16 +173,6 @@ function normaliseClassification(parsed) {
   };
 }
 
-/**
- * Classify a document by sending a sample to the local model.
- *
- * Uses the same provider as MCQ generation (Ollama via local.mjs), so the
- * configuration is shared: AI_PROVIDER=local, AI_LOCAL_URL, AI_MODEL.
- *
- * Returns:
- *   { ok: true, classification }
- *   { ok: false, code, message }
- */
 export async function classifyMaterial(input, { env = process.env } = {}) {
   const text = String(input.text ?? '');
 
@@ -250,8 +184,6 @@ export async function classifyMaterial(input, { env = process.env } = {}) {
     };
   }
 
-  // Take a sample from the start of the document. If the document is shorter
-  // than the sample size, use it all.
   const sample = text.slice(0, SAMPLE_CHARS).trim();
 
   const prompt = buildClassifyPrompt(sample);
@@ -284,10 +216,6 @@ export async function classifyMaterial(input, { env = process.env } = {}) {
   return { ok: true, classification };
 }
 
-/**
- * Is classification available? Same check as MCQ generation: the provider must
- * be configured. The route asks first so it can say "not configured" honestly.
- */
 export function classificationStatus(env = process.env) {
   return local.isConfigured(env);
 }

@@ -1,28 +1,3 @@
-/**
- * Read-only reader for the Nexora Genuine Course Content Dataset.
- *
- * The dataset is a folder of real, openly-licensed courses that were downloaded
- * and assembled by a separate builder (see ../Nexora-Course-Dataset). This module
- * is the *only* thing in the server that touches it, and it never writes: courses
- * are content the app serves, not user data it owns. A learner's progress through
- * a course lives in profiles.json via progress.mjs; nothing here is per-user.
- *
- * Three things this file exists to guarantee:
- *
- *   1. **It serves only what is really on disk.** A course appears in the
- *      catalogue only if its course.json parses; a lesson is served only if its
- *      content_file exists. There is no synthesized or placeholder content.
- *   2. **A file request cannot escape the dataset.** `resolveContent` refuses any
- *      path that, once resolved, does not sit inside that course's own directory,
- *      so `..` or an absolute path cannot read users.json or /etc/passwd.
- *   3. **The catalogue key is the course_id inside course.json, not the folder
- *      name.** The builder names folders `course-001-…` but the stable id used for
- *      progress is the `course_id` field, so that is what everything keys on.
- *
- * The dataset does not change while the server runs, so the catalogue and the
- * id→directory map are read once and cached. Restart the server after a rebuild.
- */
-
 import { readFileSync, existsSync, statSync, readdirSync, realpathSync } from 'node:fs';
 import { dirname, join, resolve, sep, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -31,15 +6,8 @@ import { HttpError } from './http.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 
-/** Same slug shape progress.mjs allows for a courseId. */
 const COURSE_ID = /^[a-z0-9][a-z0-9-]{0,63}$/;
 
-/**
- * Where the dataset lives. An explicit env var wins; otherwise the two natural
- * places relative to the server: a sibling of the app folder (the builder's
- * default), or inside the app folder. The first candidate that actually contains
- * a `courses/` directory is used.
- */
 function resolveDatasetDir() {
   const fromEnv = process.env.NEXORA_DATASET_DIR;
   const candidates = fromEnv
@@ -60,13 +28,6 @@ function resolveDatasetDir() {
   return fromEnv ? resolve(fromEnv) : null;
 }
 
-/* --------------------------------------------------------------- light view */
-
-/**
- * The catalogue row for one course: enough to list and filter it, without the
- * module/lesson tree. `lessons` is the denominator the completion percentage
- * divides into, so the browser can show "0 / 40" before opening anything.
- */
 function summarize(course) {
   const totals = course.totals ?? {};
   const lessonCount =
@@ -94,29 +55,13 @@ function summarize(course) {
     officialUrl: source.official_url ?? '',
     modules: moduleCount,
     lessons: lessonCount,
-    // Additive metadata for the recommender's quality/prerequisite/difficulty checks (§7).
-    // All optional and defaulted so every existing course.json stays valid without editing:
-    // the current dataset carries `language` and `format`, not `prerequisites`/`availability`,
-    // so those default to an empty list and "available". A course only gains prerequisite-aware
-    // or availability filtering once its course.json actually declares these fields — nothing
-    // is invented here.
     language: typeof course.language === 'string' ? course.language : '',
-    // `learning_format` is the documented field name; the dataset currently writes `format`.
     learningFormat: course.learning_format ?? course.format ?? '',
-    // Prerequisites are course ids OR competency requirements; both shapes are accepted and
-    // normalised by the quality module. Absent → no prerequisites, which never blocks.
     prerequisites: Array.isArray(course.prerequisites) ? course.prerequisites : [],
-    // A course is assumed available unless it explicitly says otherwise. Only an explicit
-    // "unavailable"/"archived"/false removes it from candidates (§6, §8).
     availability: normaliseAvailability(course.availability),
   };
 }
 
-/**
- * Fold the various ways a course.json might express availability into a single string the
- * recommender checks: 'available' (the default and the only value that gets recommended) or
- * 'unavailable'. Missing means available — most of the dataset predates this field.
- */
 function normaliseAvailability(value) {
   if (value === undefined || value === null || value === true) return 'available';
   if (value === false) return 'unavailable';
@@ -125,15 +70,8 @@ function normaliseAvailability(value) {
   return 'unavailable';
 }
 
-/* ------------------------------------------------------------------- loader */
-
 let cache = null;
 
-/**
- * Read every course.json once. A folder whose course.json is missing, unparseable
- * or carries an id that is not a clean slug is skipped rather than trusted — the
- * dataset can be hand-edited, and a bad id must never become a lookup key.
- */
 function load() {
   if (cache) return cache;
 
@@ -166,18 +104,17 @@ function load() {
     try {
       course = JSON.parse(readFileSync(jsonPath, 'utf8'));
     } catch {
-      continue; // unparseable — skip, never serve half a file
+      continue;
     }
     const id = course.course_id;
     if (typeof id !== 'string' || !COURSE_ID.test(id)) continue;
-    if (byId.has(id)) continue; // first wins; a duplicate id is a dataset bug, not ours to merge
+    if (byId.has(id)) continue;
 
     byId.set(id, course);
     dirById.set(id, courseDir);
     summaries.push(summarize(course));
   }
 
-  // Stable, human order: category then title.
   summaries.sort(
     (a, b) => a.category.localeCompare(b.category) || a.title.localeCompare(b.title),
   );
@@ -186,12 +123,9 @@ function load() {
   return cache;
 }
 
-/** Test hook: drop the cache so a test can point at a fixture dataset. */
 export function resetCoursesCache() {
   cache = null;
 }
-
-/* -------------------------------------------------------------------- reads */
 
 export function datasetAvailable() {
   return load().root !== null;
@@ -210,11 +144,6 @@ export function catalogue() {
   };
 }
 
-/**
- * One course's full module/lesson tree, plus the summary fields. Only lessons
- * whose content_file exists on disk are returned, and each gets a `hasContent`
- * flag so the UI never links to a file that is not there.
- */
 export function getCourse(courseId) {
   if (typeof courseId !== 'string' || !COURSE_ID.test(courseId)) {
     throw new HttpError(400, 'invalid_input', 'Course id must be a lowercase slug.');
@@ -250,12 +179,9 @@ export function getCourse(courseId) {
     ...summarize(course),
     progressModel: course.progress_model ?? { unit: 'lesson', formula: 'completed_lessons / total_lessons * 100' },
     modules,
-    /** Every lesson id in order — the set a completion percentage divides into. */
     lessonIds,
   };
 }
-
-/* ----------------------------------------------------------- file streaming */
 
 const CONTENT_TYPES = {
   '.pdf': 'application/pdf',
@@ -278,15 +204,8 @@ const CONTENT_TYPES = {
   '.svg': 'image/svg+xml',
 };
 
-/**
- * Resolve `relativePath` under `courseDir` and return the absolute path only if it
- * stays inside `courseDir`. Anything that escapes — `..`, an absolute path, a
- * symlink target outside the tree — returns null. This is the whole defence
- * against a crafted `?file=` reading arbitrary disk.
- */
 function fileWithin(courseDir, relativePath) {
   if (typeof relativePath !== 'string' || relativePath === '') return null;
-  // A leading slash or a drive letter would make join ignore courseDir.
   if (relativePath.startsWith('/') || relativePath.startsWith('\\') || /^[a-zA-Z]:/.test(relativePath)) {
     return null;
   }
@@ -296,12 +215,6 @@ function fileWithin(courseDir, relativePath) {
   try {
     const st = statSync(target);
     if (!st.isFile() || st.size === 0) return null;
-    // The lexical check above only proves the *path string* stays inside the course
-    // folder. A symlink whose name sits inside the folder but whose target is outside
-    // (e.g. a link to /etc/passwd) would still pass it, because statSync follows links.
-    // Re-check the fully-resolved real paths so an inner symlink cannot escape the tree.
-    // realpathSync the base too, so a dataset that itself lives behind a symlink still
-    // matches instead of being wrongly rejected.
     const realBase = realpathSync(base);
     const realTarget = realpathSync(target);
     if (realTarget !== realBase && !realTarget.startsWith(realBase + sep)) return null;
@@ -311,10 +224,6 @@ function fileWithin(courseDir, relativePath) {
   }
 }
 
-/**
- * Absolute path + content type for one lesson file, or an HttpError. The file
- * must belong to the named course and exist; nothing else is reachable.
- */
 export function resolveContent(courseId, file) {
   if (typeof courseId !== 'string' || !COURSE_ID.test(courseId)) {
     throw new HttpError(400, 'invalid_input', 'Course id must be a lowercase slug.');
@@ -329,7 +238,6 @@ export function resolveContent(courseId, file) {
   return { path: abs, contentType: CONTENT_TYPES[extname(abs).toLowerCase()] ?? 'application/octet-stream' };
 }
 
-/** For the startup banner: where the dataset was found and how much is in it. */
 export function coursesStatus() {
   const { root, courses } = load();
   return { root, count: courses.length };

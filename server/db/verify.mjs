@@ -1,17 +1,6 @@
 import dotenv from 'dotenv';
 
-dotenv.config({ path: new URL('../.env', import.meta.url) });/**
- * PostgreSQL-side proof that the migration landed intact and safely.
- *
- *   DATABASE_URL=postgres://localhost:5432/nexora  node server/db/verify.mjs
- *
- * Prints a row count per table, then runs a few security assertions that must hold
- * no matter what was imported:
- *   - every user's passwordHash is a scrypt hash (never plaintext);
- *   - no user row carries a stray `password` field;
- *   - attempt rows carry only scores/topics, never document or question text.
- * Exits non-zero if any assertion fails, so it can gate a deploy.
- */
+dotenv.config({ path: new URL('../.env', import.meta.url) });
 
 import { getDb, closeDb } from './pool.mjs';
 
@@ -34,7 +23,6 @@ async function main() {
     console.log(`  ${table.padEnd(16)} ${rows[0].count}`);
   }
 
-  // 1. Every stored credential is a scrypt hash, never plaintext.
   const notHashed = await db.query(
     `SELECT id FROM users
      WHERE data->>'passwordHash' IS NULL OR data->>'passwordHash' NOT LIKE 'scrypt$%'`,
@@ -43,13 +31,11 @@ async function main() {
     failures.push(`${notHashed.rows.length} user(s) without a scrypt passwordHash`);
   }
 
-  // 2. No user row leaks a plaintext password field.
   const plaintext = await db.query(`SELECT id FROM users WHERE data ? 'password'`);
   if (plaintext.rows.length > 0) {
     failures.push(`${plaintext.rows.length} user(s) carry a plaintext 'password' field`);
   }
 
-  // 3. Attempts store scores only — never document or question text.
   const leaky = await db.query(
     `SELECT id FROM attempts WHERE data ?| array['text','questions','sentences','chunks','content']`,
   );

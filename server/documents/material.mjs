@@ -1,19 +1,3 @@
-/**
- * One-page learning material, generated from retrieved context and nothing else.
- *
- * The spec asks for more than MCQs: for a chosen topic, produce a concise study page
- * (overview, key concepts, rules, example, common mistakes, quick revision). The hard
- * constraint is grounding — the material must be built ONLY from the chunks the retriever
- * pulled for this topic, with page references, and it must not invent facts the source does
- * not support. Any general explanation the model adds to aid understanding has to be clearly
- * labelled as such, so a reader can always tell document-fact from model-elaboration.
- *
- * This reuses the existing provider abstraction (`generateText` in provider.mjs), so it
- * works with whichever provider is configured and needs no key of its own. It never sends
- * the whole book: its only source is `retrieval.contextText`, which is already bounded by
- * the retriever's chunk/character caps.
- */
-
 import { generateText } from '../ai/provider.mjs';
 
 export const MATERIAL_STYLES = Object.freeze(['quick', 'detailed', 'revision', 'exam']);
@@ -25,10 +9,6 @@ const STYLE_INSTRUCTION = {
   exam: 'Write EXAM PREPARATION material: the definitions and rules most likely to be tested, common mistakes, and a short "what to remember" list. Focus on what earns marks.',
 };
 
-/**
- * Build the grounding-first prompt. The section headings are fixed so the output is
- * predictable to render, and the page range is passed through for the Source footer.
- */
 export function buildMaterialPrompt({ topic, contextText, style = 'revision', pageRanges = [], documentTitle = 'the uploaded material' }) {
   const styleLine = STYLE_INSTRUCTION[style] ?? STYLE_INSTRUCTION.revision;
   const pages = pageRanges.length
@@ -63,14 +43,6 @@ ${contextText}
 """`;
 }
 
-/**
- * Generate the material. Returns:
- *   { ok:true, topic, style, markdown, sourcePages, sections, provider }
- *   { ok:false, code, message }
- *
- * A retrieval that found nothing is refused honestly (no material invented from an empty
- * context), matching the rest of the pipeline's no-fabrication stance.
- */
 export async function generateMaterial({ topic, retrieval, style = 'revision', documentTitle, env = process.env } = {}) {
   const contextText = String(retrieval?.contextText ?? '').trim();
   if (contextText === '') {

@@ -1,22 +1,3 @@
-/**
- * "Recommended for your gaps" — real dataset courses to open next, chosen from the
- * learner's own measured competency gaps.
- *
- * This sits directly under CompetencyGapSection on the Dashboard and answers the
- * question that section raises but does not: "you are weak here — so what do I open?".
- * The gap section ranks the gaps; this turns the top ones into links to real courses in
- * /catalog.
- *
- * Every number and every course comes from the server (GET /api/analytics/
- * recommended-courses): the gap ranking is the analytics engine's, and the courses are
- * whatever the dataset actually contains, matched through the competency→subject-tag
- * bridge in server/course-recommendations.mjs. The browser does no matching and invents
- * nothing — it draws what it was sent, and renders a quiet empty state (or nothing) when
- * there is no honest recommendation to make.
- *
- * It is a *new, additive* section: CompetencyGapSection is left untouched.
- */
-
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
 import { ArrowUpRight, Clock3, ExternalLink, Globe, GraduationCap, ListChecks } from 'lucide-react';
@@ -28,7 +9,6 @@ import {
 } from '@/lib/analytics';
 import { recommendOnlineCourses } from '@/lib/online-recommendations';
 
-/** Same category→tone mapping the catalogue cards use, kept local to avoid coupling. */
 function categoryTone(category: string): 'navy' | 'coral' | 'neutral' {
   const value = (category ?? '').toLowerCase();
   if (value.startsWith('tech')) return 'navy';
@@ -36,11 +16,6 @@ function categoryTone(category: string): 'navy' | 'coral' | 'neutral' {
   return 'neutral';
 }
 
-/**
- * `refreshKey` lets a parent force a re-fetch after the data changed — the quiz result
- * screen bumps it once the just-finished attempt has been saved, so the recommendations
- * reflect that sitting. Omitted on the Dashboard, where a mount is always fresh.
- */
 export function GapCourseRecommendations({ refreshKey = 0, scope = 'all' }: { refreshKey?: number; scope?: 'all' | 'latest' } = {}) {
   const [data, setData] = useState<CourseRecommendations | null>(null);
   const [status, setStatus] = useState<'loading' | 'ready' | 'unavailable'>('loading');
@@ -54,8 +29,6 @@ export function GapCourseRecommendations({ refreshKey = 0, scope = 'all' }: { re
         setStatus('ready');
       })
       .catch((error: unknown) => {
-        // The gap section above already reports a server or auth problem; this section
-        // stays quiet rather than showing the same error twice.
         if (!live) return;
         void (error instanceof AnalyticsError);
         setStatus('unavailable');
@@ -71,18 +44,10 @@ export function GapCourseRecommendations({ refreshKey = 0, scope = 'all' }: { re
     </div>;
   }
 
-  // No dataset loaded, a transport error, or no data at all: draw nothing. The catalogue
-  // and the gap chart cover those states in their own places.
   if (status === 'unavailable' || !data || !data.available) return null;
 
-  // Before the first assessment there are no measured gaps; the gap section already
-  // prompts the learner to sit one, so this section adds nothing and stays hidden.
   if (!data.measured) return null;
 
-  // A second, additive source: real external courses from the browse-library, matched to the
-  // SAME ranked gaps the server returned (deterministic keyword match, no network, no model).
-  // Distinct from the in-catalogue courses above — these open on the provider's own site. When
-  // no gap has a genuinely relevant external course, this is empty and the block is not shown.
   const onlineRecs = recommendOnlineCourses(data.groups ?? []);
 
   return <div className="mt-7">

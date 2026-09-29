@@ -1,28 +1,9 @@
-/**
- * Sign in and create account pages.
- *
- * Every visual token here is borrowed from the rest of NEXORA AI — the same
- * `Card`, the same `ActionButton`, the same field markup used on the Profile
- * page, the same `civic-grid` / `noise` / `animate-rise-in` utilities. Nothing
- * in an existing file was modified to make these fit.
- *
- * Differences from the HTML mockups these replace, all deliberate:
- *   - autocomplete hints so password managers behave
- *   - a show/hide toggle instead of a password you cannot check
- *   - real loading, error, field-error and success states
- *   - no "Remember me" checkbox, because the session length is fixed by the
- *     server and a checkbox that changes nothing is worse than no checkbox
- *   - the cross-links point at /signup and /login, not /signup.html
- */
-
 import { type ReactNode, useId, useState } from 'react';
 import { ArrowRight, Check, CircleAlert, Eye, EyeOff, LoaderCircle, ShieldCheck } from 'lucide-react';
 import { Link, useLocation } from 'wouter';
 import { ActionButton, Card, ProgressBar } from '@/components/ui';
 import { useSession } from '@/components/session-provider';
 import { AuthError, PASSWORD_MIN, type AuthUser, type FieldErrors, login, signup } from '@/lib/auth';
-
-/* ------------------------------------------------------------------ layout */
 
 function AuthLayout({ eyebrow, title, description, children, footer }: {
   eyebrow: string;
@@ -59,8 +40,6 @@ function AuthLayout({ eyebrow, title, description, children, footer }: {
   </div>;
 }
 
-/* ------------------------------------------------------------------- fields */
-
 const FIELD_BASE = 'mt-2 w-full rounded-lg border bg-card px-3 py-2.5 text-sm outline-none transition-colors';
 const FIELD_OK = 'border-input focus:ring-2 focus:ring-primary/20';
 const FIELD_BAD = 'border-[#c86c5e] focus:ring-2 focus:ring-[#c86c5e]/25';
@@ -69,7 +48,6 @@ function fieldClass(hasError: boolean) {
   return `${FIELD_BASE} ${hasError ? FIELD_BAD : FIELD_OK}`;
 }
 
-/** Shown under an input. Also referenced by aria-describedby so it is announced. */
 function FieldNote({ id, error, hint }: { id: string; error?: string; hint?: string }) {
   if (error) {
     return <span id={id} role="alert" className="mt-1.5 flex items-start gap-1.5 text-xs font-medium text-[#a34d43]">
@@ -80,7 +58,6 @@ function FieldNote({ id, error, hint }: { id: string; error?: string; hint?: str
   return null;
 }
 
-/** The one place a request-level failure is rendered, so both pages match. */
 function ErrorBanner({ message }: { message: string }) {
   return <div
     role="alert"
@@ -103,7 +80,6 @@ function SuccessBanner({ message }: { message: string }) {
   </div>;
 }
 
-/** Reveal toggle. Sits inside the input's box so the layout does not shift. */
 function RevealButton({ shown, onToggle }: { shown: boolean; onToggle: () => void }) {
   return <button
     type="button"
@@ -116,14 +92,6 @@ function RevealButton({ shown, onToggle }: { shown: boolean; onToggle: () => voi
   </button>;
 }
 
-/* ---------------------------------------------------------------- session peek */
-
-/**
- * Both pages read the one session the app already fetched, rather than asking
- * the server again. If somebody is signed in, the page says so instead of
- * silently presenting a form that would just replace their session. A server
- * that is down leaves this null and never blocks the form.
- */
 function AlreadySignedIn({ user, onContinue }: { user: AuthUser; onContinue: () => void }) {
   return <div className="mb-5 rounded-lg border border-[#b4d8d3] bg-[#edf8f5] px-3.5 py-3 text-sm text-[#216b67] animate-rise-in">
     <p>Signed in as <b>{user.name}</b>.</p>
@@ -137,8 +105,6 @@ function AlreadySignedIn({ user, onContinue }: { user: AuthUser; onContinue: () 
     </button>
   </div>;
 }
-
-/* --------------------------------------------------------------------- login */
 
 export function Login() {
   const [, setLocation] = useLocation();
@@ -163,11 +129,8 @@ export function Login() {
 
     try {
       const user = await login({ email, password });
-      // Hand the account to the session before navigating, or the gate on
-      // /dashboard would still be holding the earlier "signed out" answer.
       adopt(user);
       setDone(true);
-      // Give the success line a beat to render before leaving the page.
       window.setTimeout(() => setLocation('/dashboard'), 600);
     } catch (error) {
       if (error instanceof AuthError) {
@@ -254,13 +217,6 @@ export function Login() {
   </AuthLayout>;
 }
 
-/* ------------------------------------------------------------ password meter */
-
-/**
- * A hint, not a gate. The server owns the real policy (see validateNewPassword
- * in server/auth.mjs); this only tells the user which way is up while they type.
- * Length is weighted hardest because length beats character-class trickery.
- */
 function passwordStrength(value: string) {
   if (value === '') return { score: 0, label: 'Not set yet', color: 'bg-secondary' };
 
@@ -278,8 +234,6 @@ function passwordStrength(value: string) {
   if (score < 88) return { score, label: 'Strong', color: 'bg-primary' };
   return { score, label: 'Very strong', color: 'bg-primary' };
 }
-
-/* -------------------------------------------------------------------- signup */
 
 export function Signup() {
   const [, setLocation] = useLocation();
@@ -307,7 +261,6 @@ export function Signup() {
 
     try {
       const user = await signup({ name, email, password });
-      // Same reason as on the login page: the gate must know before we navigate.
       adopt(user);
       setCreated(user);
       setPassword('');
