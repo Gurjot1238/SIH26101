@@ -613,13 +613,18 @@ export const MAX_MATERIAL_BYTES = 25 * 1024 * 1024;
 export type PageText = {
   page: number;
   text: string;
-  source?: 'native_text' | 'ocr' | 'ocr_failed';
+  source?: 'native_text' | 'ocr' | 'ocr_failed' | 'vision' | 'vision_failed';
   confidence?: number;
 };
 
 export type OcrPageResult = { text: string; confidence: number } | null;
 
 export type OcrPageFn = (args: { imageBase64: string; pageNumber: number }) => Promise<OcrPageResult>;
+
+// Vision recovers the *meaning* of a chart/diagram page as study text; OCR only recovers glyphs.
+export type VisionPageResult = { text: string } | null;
+
+export type VisionPageFn = (args: { imageBase64: string; pageNumber: number }) => Promise<VisionPageResult>;
 
 export const LOW_TEXT_PAGE_CHARS = 24;
 
@@ -628,6 +633,7 @@ export function isLowTextPage(text: string): boolean {
 }
 
 export type OcrProgress = (pagesOcred: number, pagesToOcr: number) => void;
+export type VisionProgress = (pagesDescribed: number, pagesToDescribe: number) => void;
 
 async function rasterizePageToPngBase64(page: any, scale = 2): Promise<string> {
   if (typeof document === 'undefined') throw new Error('Page rasterization requires a browser environment.');
@@ -646,8 +652,14 @@ async function rasterizePageToPngBase64(page: any, scale = 2): Promise<string> {
 
 export async function extractPdfPagesWithOcr(
   file: File,
-  { onPage, ocr, onOcr }: { onPage?: PageProgress; ocr?: OcrPageFn; onOcr?: OcrProgress } = {},
-): Promise<{ pages: PageText[]; pageCount: number; pagesOcred: number; pagesOcrFailed: number }> {
+  { onPage, ocr, onOcr, vision, onVision }: {
+    onPage?: PageProgress;
+    ocr?: OcrPageFn;
+    onOcr?: OcrProgress;
+    vision?: VisionPageFn;
+    onVision?: VisionProgress;
+  } = {},
+): Promise<{ pages: PageText[]; pageCount: number; pagesOcred: number; pagesOcrFailed: number; pagesDescribed: number }> {
   const data = new Uint8Array(await file.arrayBuffer());
   const pdf = await getDocument({ data }).promise;
   const pages: PageText[] = [];
@@ -663,37 +675,67 @@ export async function extractPdfPagesWithOcr(
     onPage?.(pageNumber, pdf.numPages);
   }
 
-  let pagesOcred = 0;
-  let pagesOcrFailed = 0;
-  if (ocr && scanned.length > 0) {
-    let done = 0;
+  // A page with almost no selectable text is either scanned (OCR recovers the printed words)
+  // or a chart/diagram/figure (vision describes what it shows). We rasterize each such page
+  // once and try OCR first, then fall back to vision only while the page is still text-empty —
+  // so vision is spent only where it adds something OCR could not.
+  if ((ocr || vision) && scanned.length > 0) {
+    let ocrDone = 0;
+    let visionDone = 0;
     for (const pageNumber of scanned) {
       const entry = pages[pageNumber - 1];
+      let imageBase64: string | null = null;
       try {
         const page = await pdf.getPage(pageNumber);
-        const imageBase64 = await rasterizePageToPngBase64(page);
+        imageBase64 = await rasterizePageToPngBase64(page);
         page.cleanup();
-        const result = await ocr({ imageBase64, pageNumber });
-        const text = normalizeText(result?.text ?? '');
-        if (result && text.length >= LOW_TEXT_PAGE_CHARS) {
-          entry.text = text;
-          entry.source = 'ocr';
-          if (typeof result.confidence === 'number') entry.confidence = result.confidence;
-          pagesOcred += 1;
-        } else {
-          entry.source = 'ocr_failed';
-          pagesOcrFailed += 1;
-        }
       } catch {
-        entry.source = 'ocr_failed';
-        pagesOcrFailed += 1;
+        imageBase64 = null;
       }
-      done += 1;
-      onOcr?.(done, scanned.length);
+
+      if (ocr) {
+        try {
+          if (imageBase64 === null) throw new Error('page could not be rasterized');
+          const result = await ocr({ imageBase64, pageNumber });
+          const text = normalizeText(result?.text ?? '');
+          if (result && text.length >= LOW_TEXT_PAGE_CHARS) {
+            entry.text = text;
+            entry.source = 'ocr';
+            if (typeof result.confidence === 'number') entry.confidence = result.confidence;
+          } else {
+            entry.source = 'ocr_failed';
+          }
+        } catch {
+          entry.source = 'ocr_failed';
+        }
+        ocrDone += 1;
+        onOcr?.(ocrDone, scanned.length);
+      }
+
+      if (vision && imageBase64 !== null && isLowTextPage(entry.text)) {
+        try {
+          const described = await vision({ imageBase64, pageNumber });
+          const text = normalizeText(described?.text ?? '');
+          if (text.length >= LOW_TEXT_PAGE_CHARS) {
+            entry.text = text;
+            entry.source = 'vision';
+          } else if (entry.source !== 'ocr_failed') {
+            entry.source = 'vision_failed';
+          }
+        } catch {
+          if (entry.source !== 'ocr_failed') entry.source = 'vision_failed';
+        }
+        visionDone += 1;
+        onVision?.(visionDone, scanned.length);
+      }
     }
   }
 
-  return { pages, pageCount: pdf.numPages, pagesOcred, pagesOcrFailed };
+  const pagesOcred = pages.filter((page) => page.source === 'ocr').length;
+  const pagesOcrFailed = pages.filter((page) => page.source === 'ocr_failed').length;
+  const pagesDescribed = pages.filter((page) => page.source === 'vision').length;
+
+  return { pages, pageCount: pdf.numPages, pagesOcred, pagesOcrFailed, pagesDescribed };
 }
 
 export async function readMaterial(file: File, onPage?: PageProgress) {
@@ -711,22 +753,28 @@ export async function readMaterial(file: File, onPage?: PageProgress) {
 export async function readMaterialWithPages(
   file: File,
   onPage?: PageProgress,
-  opts: { ocr?: OcrPageFn; onOcr?: OcrProgress } = {},
-): Promise<{ text: string; pageCount: number; pages: PageText[]; pagesOcred: number; pagesOcrFailed: number }> {
+  opts: { ocr?: OcrPageFn; onOcr?: OcrProgress; vision?: VisionPageFn; onVision?: VisionProgress } = {},
+): Promise<{ text: string; pageCount: number; pages: PageText[]; pagesOcred: number; pagesOcrFailed: number; pagesDescribed: number }> {
   const extension = file.name.split('.').pop()?.toLowerCase() ?? '';
   if (extension === 'pdf') {
-    const { pages, pageCount, pagesOcred, pagesOcrFailed } = await extractPdfPagesWithOcr(file, { onPage, ocr: opts.ocr, onOcr: opts.onOcr });
+    const { pages, pageCount, pagesOcred, pagesOcrFailed, pagesDescribed } = await extractPdfPagesWithOcr(file, {
+      onPage,
+      ocr: opts.ocr,
+      onOcr: opts.onOcr,
+      vision: opts.vision,
+      onVision: opts.onVision,
+    });
     const text = normalizeText(pages.map((p) => p.text).join('\n\n'));
     if (text.length < 45) {
       throw new Error('This PDF appears to be scanned or contains too little selectable text. Try a text-based PDF or export it with OCR first.');
     }
-    return { text, pageCount, pages, pagesOcred, pagesOcrFailed };
+    return { text, pageCount, pages, pagesOcred, pagesOcrFailed, pagesDescribed };
   }
   if (extension === 'txt' || extension === 'md') {
     const text = normalizeText(await file.text());
     if (text.length < 45) throw new Error('That file has too little text to build a knowledge check from.');
     onPage?.(1, 1);
-    return { text, pageCount: 1, pages: [{ page: 1, text, source: 'native_text' }], pagesOcred: 0, pagesOcrFailed: 0 };
+    return { text, pageCount: 1, pages: [{ page: 1, text, source: 'native_text' }], pagesOcred: 0, pagesOcrFailed: 0, pagesDescribed: 0 };
   }
   throw new Error(`${extension ? `.${extension}` : 'That format'} is not supported. Upload a text-based PDF, TXT or MD file.`);
 }

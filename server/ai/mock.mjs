@@ -5,11 +5,27 @@ import { ProviderError } from './gemini.mjs';
 
 export const providerName = 'mock';
 
+// The mock provider echoes canned replies, so it can stand in for a multimodal
+// provider in tests: when images are supplied it serves AI_VISION_MOCK_FILE.
+export const supportsVision = true;
+
 export function isConfigured(env = process.env) {
-  return Boolean((env.AI_MOCK_FILE ?? '').trim() || (env.AI_MOCK_DIR ?? '').trim());
+  return Boolean((env.AI_MOCK_FILE ?? '').trim() || (env.AI_MOCK_DIR ?? '').trim() || (env.AI_VISION_MOCK_FILE ?? '').trim());
 }
 
-export async function generateRaw(_prompt, { env = process.env, attempt = 1 } = {}) {
+export async function generateRaw(_prompt, { env = process.env, attempt = 1, images } = {}) {
+  const hasImages = Array.isArray(images) && images.length > 0;
+  if (hasImages) {
+    const visionFile = (env.AI_VISION_MOCK_FILE ?? '').trim();
+    if (visionFile !== '') {
+      try {
+        return readFileSync(visionFile, 'utf8');
+      } catch {
+        throw new ProviderError('provider_error', 'Mock provider has no canned vision reply.');
+      }
+    }
+  }
+
   const dir = (env.AI_MOCK_DIR ?? '').trim();
   if (dir !== '') {
     try {

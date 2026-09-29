@@ -9,6 +9,7 @@ import {
   MIN_QUESTIONS,
   type MaterialQuestion,
   type OcrPageFn,
+  type VisionPageFn,
   type PageProgress,
   type PageText,
   TARGET_QUESTIONS,
@@ -27,7 +28,7 @@ import {
   supportedFormatsSentence,
 } from '@/lib/materials';
 import { AiGenerationError, generateAiQuestions, classifyDocument, type MaterialClassification, type Difficulty } from '@/lib/ai-questions';
-import { DocumentError, checkOcrAvailable, createOcrTransport, guardMaterial, ingestLargeDocument, searchDocument, generateFromTopic, type DocumentRecord, type SearchPreview } from '@/lib/documents';
+import { DocumentError, checkOcrAvailable, createOcrTransport, checkVisionAvailable, createVisionTransport, guardMaterial, ingestLargeDocument, searchDocument, generateFromTopic, type DocumentRecord, type SearchPreview } from '@/lib/documents';
 import { MAX_SAVED_PAPERS, PaperError, type SavedPaperSummary, deletePaper, getPaper, listPapers, savePaper } from '@/lib/papers';
 import { clearMaterial, isDurable, setMaterial, useMaterial } from '@/lib/material-session';
 import { attemptKey, clearAttempt, loadAttempt, saveAttempt } from '@/lib/attempt-session';
@@ -922,13 +923,17 @@ export function Materials() {
       { fileName: file.name, fileSize: file.size, fileType: extension, isSample: false },
       async (onPage) => {
         let ocr: OcrPageFn | undefined;
+        let vision: VisionPageFn | undefined;
         if (extension === 'pdf') {
-          const health = await checkOcrAvailable();
-          if (health.available) ocr = createOcrTransport();
+          const [ocrHealth, visionHealth] = await Promise.all([checkOcrAvailable(), checkVisionAvailable()]);
+          if (ocrHealth.available) ocr = createOcrTransport();
+          if (visionHealth.available) vision = createVisionTransport();
         }
         return readMaterialWithPages(file, onPage, {
           ocr,
+          vision,
           onOcr: () => setWork((previous) => (previous ? { ...previous, ocrActive: true } : previous)),
+          onVision: () => setWork((previous) => (previous ? { ...previous, ocrActive: true } : previous)),
         });
       },
     );

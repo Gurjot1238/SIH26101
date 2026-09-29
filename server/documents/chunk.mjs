@@ -40,14 +40,19 @@ function headingKind(line) {
 function normaliseSource(source) {
   if (source === 'ocr') return 'ocr';
   if (source === 'ocr_failed') return 'ocr_failed';
+  if (source === 'vision') return 'vision';
+  if (source === 'vision_failed') return 'vision_failed';
   return 'native_text';
 }
 
 function methodFromSources(sources) {
   const hasNative = sources.has('native_text');
   const hasOcr = sources.has('ocr');
-  if (hasNative && hasOcr) return 'mixed';
+  const hasVision = sources.has('vision');
+  const kinds = (hasNative ? 1 : 0) + (hasOcr ? 1 : 0) + (hasVision ? 1 : 0);
+  if (kinds > 1) return 'mixed';
   if (hasOcr) return 'ocr';
+  if (hasVision) return 'vision';
   return 'native_text';
 }
 

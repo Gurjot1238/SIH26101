@@ -5,9 +5,37 @@ const DEFAULT_TIMEOUT_MS = 30_000;
 
 const MAX_RESPONSE_BYTES = 8 * 1024 * 1024;
 
+// Gemini is multimodal: a request may carry inline images alongside the prompt.
+// These caps guard the request envelope itself; callers (e.g. documents/vision.mjs)
+// enforce the real per-page limits from configuration before reaching this layer.
+const MAX_IMAGE_PARTS = 8;
+const MAX_IMAGE_BASE64_BYTES = 16 * 1024 * 1024;
+const ALLOWED_IMAGE_MIME = new Set(['image/png', 'image/jpeg', 'image/jpg', 'image/webp', 'image/gif']);
+
 export const providerName = 'gemini';
 
+// This provider can accept images, so the vision stage may route through it.
+export const supportsVision = true;
+
 export const defaultModel = DEFAULT_MODEL;
+
+function normalizeImages(images) {
+  if (!Array.isArray(images) || images.length === 0) return [];
+  const parts = [];
+  let totalBytes = 0;
+  for (const image of images) {
+    if (parts.length >= MAX_IMAGE_PARTS) break;
+    if (!image || typeof image !== 'object') continue;
+    const data = typeof image.data === 'string' ? image.data.trim() : '';
+    if (data === '') continue;
+    const declared = typeof image.mimeType === 'string' ? image.mimeType.toLowerCase() : '';
+    const mimeType = ALLOWED_IMAGE_MIME.has(declared) ? declared : 'image/png';
+    totalBytes += Math.floor((data.length * 3) / 4);
+    if (totalBytes > MAX_IMAGE_BASE64_BYTES) break;
+    parts.push({ inlineData: { mimeType, data } });
+  }
+  return parts;
+}
 
 export function isConfigured(env = process.env) {
   return typeof env.GEMINI_API_KEY === 'string' && env.GEMINI_API_KEY.trim() !== '';
@@ -46,7 +74,7 @@ async function readCappedText(response, maxBytes) {
   return out;
 }
 
-export async function generateRaw(prompt, { env = process.env, timeoutMs = DEFAULT_TIMEOUT_MS, fetchImpl } = {}) {
+export async function generateRaw(prompt, { env = process.env, timeoutMs = DEFAULT_TIMEOUT_MS, fetchImpl, images, format } = {}) {
   const key = (env.GEMINI_API_KEY ?? '').trim();
   if (key === '') {
     throw new ProviderError('not_configured', 'The AI provider is not configured.');
@@ -60,13 +88,22 @@ export async function generateRaw(prompt, { env = process.env, timeoutMs = DEFAU
   const model = modelFor(env);
   const url = `${ENDPOINT_BASE}/${encodeURIComponent(model)}:generateContent`;
 
+  const parts = [{ text: String(prompt ?? '') }];
+  const imageParts = normalizeImages(images);
+  for (const part of imageParts) parts.push(part);
+
+  // A JSON response envelope is always returned by the REST API; responseMimeType only
+  // constrains the model's own output. Ask for JSON MCQs by default, but drop that
+  // constraint for image understanding or any explicit text request (prose descriptions).
+  const wantJson = imageParts.length === 0 && format !== 'text';
+
   const body = {
-    contents: [{ role: 'user', parts: [{ text: prompt }] }],
+    contents: [{ role: 'user', parts }],
     generationConfig: {
       temperature: 0.4,
       topP: 0.9,
       maxOutputTokens: 4096,
-      responseMimeType: 'application/json',
+      ...(wantJson ? { responseMimeType: 'application/json' } : {}),
     },
   };
 

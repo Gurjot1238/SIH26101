@@ -7,22 +7,40 @@ import { DEFAULT_STAGES, runJob, jobView } from './jobs.mjs';
 import { generateMaterial } from './material.mjs';
 import { generateMcqs } from '../ai/provider.mjs';
 
-function ocrSummary(pageList) {
+function extractionSummary(pageList) {
   let ocred = 0;
-  let failed = 0;
+  let ocrFailed = 0;
+  let described = 0;
+  let visionFailed = 0;
   let native = 0;
   for (const p of pageList) {
     if (p.source === 'ocr') ocred += 1;
-    else if (p.source === 'ocr_failed') failed += 1;
+    else if (p.source === 'ocr_failed') ocrFailed += 1;
+    else if (p.source === 'vision') described += 1;
+    else if (p.source === 'vision_failed') visionFailed += 1;
     else if ((p.text ?? '').trim() !== '') native += 1;
   }
   let ocrStatus;
-  if (ocred === 0 && failed === 0) ocrStatus = 'not_required';
-  else if (failed === 0) ocrStatus = 'completed';
+  if (ocred === 0 && ocrFailed === 0) ocrStatus = 'not_required';
+  else if (ocrFailed === 0) ocrStatus = 'completed';
   else if (ocred === 0) ocrStatus = 'failed';
   else ocrStatus = 'partial';
-  const extractionMethod = ocred > 0 && native > 0 ? 'mixed' : ocred > 0 ? 'ocr' : 'native_text';
-  return { ocrStatus, pagesOcred: ocred, pagesOcrFailed: failed, extractionMethod };
+  let visionStatus;
+  if (described === 0 && visionFailed === 0) visionStatus = 'not_required';
+  else if (visionFailed === 0) visionStatus = 'completed';
+  else if (described === 0) visionStatus = 'failed';
+  else visionStatus = 'partial';
+  const kinds = (native > 0 ? 1 : 0) + (ocred > 0 ? 1 : 0) + (described > 0 ? 1 : 0);
+  const extractionMethod = kinds > 1 ? 'mixed' : ocred > 0 ? 'ocr' : described > 0 ? 'vision' : 'native_text';
+  return {
+    ocrStatus,
+    pagesOcred: ocred,
+    pagesOcrFailed: ocrFailed,
+    visionStatus,
+    pagesDescribed: described,
+    pagesVisionFailed: visionFailed,
+    extractionMethod,
+  };
 }
 
 export async function ingestDocument({ store, userId, filename = 'document', text = '', pages = null, mimeType = '', sizeBytes = 0, env = process.env } = {}) {
@@ -70,8 +88,8 @@ export async function ingestDocument({ store, userId, filename = 'document', tex
   });
 
   await store.saveChunks(userId, document.id, chunks);
-  const ocr = ocrSummary(pageList);
-  await store.setDocumentStatus(userId, document.id, { status: job.status === 'completed' ? 'ready' : 'failed', ...ocr });
+  const extraction = extractionSummary(pageList);
+  await store.setDocumentStatus(userId, document.id, { status: job.status === 'completed' ? 'ready' : 'failed', ...extraction });
 
   return { ok: true, document: store.getDocument(userId, document.id), job: jobView(job), classification, mode, isLargeMode: isLargeMode(mode) };
 }
@@ -118,8 +136,8 @@ export async function finalizeDocument({ store, userId, documentId, env = proces
     persist: async (j) => { await store.updateJob(userId, j.id, { status: j.status, stages: j.stages, chunkStatus: j.chunkStatus, error: j.error }); },
   });
   await store.saveChunks(userId, documentId, chunks);
-  const ocr = ocrSummary(pageList);
-  await store.setDocumentStatus(userId, documentId, { status: job.status === 'completed' ? 'ready' : 'failed', ...ocr });
+  const extraction = extractionSummary(pageList);
+  await store.setDocumentStatus(userId, documentId, { status: job.status === 'completed' ? 'ready' : 'failed', ...extraction });
 
   return { ok: true, document: store.getDocument(userId, documentId), job: jobView(job), classification, mode, isLargeMode: isLargeMode(mode) };
 }

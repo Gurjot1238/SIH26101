@@ -40,6 +40,7 @@ import { openDocumentStore, DocumentPageLimitError } from './documents/store.mjs
 import { ingestDocument, finalizeDocument, searchDocuments, generateFromTopic } from './documents/pipeline.mjs';
 import { guardDocument } from './documents/document-type-guard.mjs';
 import { ocrImage, ocrHealth } from './documents/ocr.mjs';
+import { describePageImage, visionAvailable } from './documents/vision.mjs';
 import { jobView } from './documents/jobs.mjs';
 import { extractMarksheet, analyzePerformance } from './documents/marksheet.mjs';
 import { loadConfig } from './documents/config.mjs';
@@ -1002,6 +1003,8 @@ const MAX_PAGE_BATCH = 400;
 
 const MAX_OCR_BODY_BYTES = Math.ceil((docConfig.ocr.maxImageBytes * 4) / 3) + 16 * 1024;
 
+const MAX_VISION_BODY_BYTES = Math.ceil((docConfig.vision.maxImageBytes * 4) / 3) + 16 * 1024;
+
 function requireDocId(body) {
   const id = typeof body?.documentId === 'string' ? body.documentId.trim() : '';
   if (id === '') throw badRequest('document_required', 'A documentId is required.', { documentId: 'required' });
@@ -1035,7 +1038,7 @@ async function handleDocumentAppend(req, res, cors) {
     .filter((p) => p && (typeof p.text === 'string'))
     .map((p, i) => {
       const page = { page: Number.isInteger(p.page) ? p.page : i + 1, text: String(p.text).slice(0, 200_000) };
-      if (p.source === 'ocr' || p.source === 'ocr_failed' || p.source === 'native_text') page.source = p.source;
+      if (p.source === 'ocr' || p.source === 'ocr_failed' || p.source === 'vision' || p.source === 'vision_failed' || p.source === 'native_text') page.source = p.source;
       if (typeof p.confidence === 'number' && p.confidence >= 0 && p.confidence <= 1) page.confidence = p.confidence;
       return page;
     });
@@ -1125,6 +1128,50 @@ async function handleDocumentList(req, res, cors) {
   const { user } = await requireSession(req);
   const docs = documentStore.listDocuments(user.id).map(publicDocument);
   sendJson(res, 200, { ok: true, documents: docs }, cors);
+}
+
+const VISION_PAGE_STATUS_BY_CODE = Object.freeze({
+  vision_disabled: 503,
+  not_configured: 503,
+  vision_unsupported: 503,
+  timeout: 504,
+  rate_limited: 429,
+  image_too_large: 400,
+  image_required: 400,
+  vision_empty: 422,
+});
+
+async function handleDocumentVisionPage(req, res, cors) {
+  assertTrustedOrigin(req, ALLOWED_ORIGINS);
+  const { user } = await requireSession(req);
+  // Vision spends an AI call per page, so it shares the AI-generation budget.
+  enforce(limiters.aiGenerationsPerIp, clientKey(req, TRUSTED_PROXY_HOPS));
+  if (!docConfig.vision.enabled) throw new HttpError(503, 'vision_disabled', 'Image understanding is not enabled on this server.');
+
+  const body = await readJsonBody(req, { maxBytes: MAX_VISION_BODY_BYTES });
+  const documentId = typeof body?.documentId === 'string' ? body.documentId.trim() : '';
+  if (documentId !== '' && !documentStore.getDocument(user.id, documentId)) throw new HttpError(404, 'not_found', 'No such document.');
+
+  const imageBase64 = typeof body.imageBase64 === 'string' ? body.imageBase64 : '';
+  if (imageBase64 === '') throw badRequest('image_required', 'A page image is required.', { imageBase64: 'required' });
+  const pageNumber = Number.isInteger(body.pageNumber) ? body.pageNumber : null;
+  const mimeType = typeof body.mimeType === 'string' ? body.mimeType : 'image/png';
+
+  const result = await describePageImage({ imageBase64, mimeType, pageNumber, cfg: docConfig, env: process.env });
+  if (!result.ok) {
+    const status = VISION_PAGE_STATUS_BY_CODE[result.code] ?? 502;
+    console.log(`  doc.vision-page: doc=${documentId ? documentId.slice(0, 8) : '-'} page=${pageNumber ?? '-'} failed=${result.code}`);
+    sendJson(res, status, { ok: false, error: { code: result.code, message: result.message }, page: pageNumber, source: 'vision_failed' }, cors);
+    return;
+  }
+  console.log(`  doc.vision-page: doc=${documentId ? documentId.slice(0, 8) : '-'} page=${pageNumber ?? '-'} chars=${result.text.length} via=${result.provider}`);
+  sendJson(res, 200, { ok: true, page: pageNumber, source: 'vision', text: result.text }, cors);
+}
+
+async function handleDocumentVisionHealth(req, res, cors) {
+  await requireSession(req);
+  const status = visionAvailable({ cfg: docConfig, env: process.env });
+  sendJson(res, 200, { ok: true, enabled: status.enabled, available: status.available }, cors);
 }
 
 async function handleDocumentOcrHealth(req, res, cors) {
@@ -1342,9 +1389,11 @@ const ROUTES = new Map([
   ['POST /api/documents/guard', handleDocumentGuard],
   ['POST /api/documents/append', handleDocumentAppend],
   ['POST /api/documents/ocr-page', handleDocumentOcrPage],
+  ['POST /api/documents/vision-page', handleDocumentVisionPage],
   ['POST /api/documents/finalize', handleDocumentFinalize],
   ['GET /api/documents', handleDocumentList],
   ['GET /api/documents/ocr-health', handleDocumentOcrHealth],
+  ['GET /api/documents/vision-health', handleDocumentVisionHealth],
   ['GET /api/documents/job', handleDocumentJob],
   ['POST /api/documents/search', handleDocumentSearch],
   ['POST /api/documents/generate', handleDocumentGenerate],
@@ -1425,6 +1474,7 @@ housekeeping.unref();
 server.listen(PORT, HOST, () => {
   const counts = store.counts();
   const ai = providerStatus(process.env);
+  const vision = visionAvailable({ cfg: docConfig, env: process.env });
   console.log(`
   NEXORA AI auth server
   ---------------------
@@ -1437,6 +1487,7 @@ server.listen(PORT, HOST, () => {
   Courses    ${coursesStatus().root ? `${coursesStatus().count} from ${coursesStatus().root}` : 'no dataset found (set NEXORA_DATASET_DIR) — /api/courses returns an empty catalogue'}
   Assessment ${ASSESSMENT_LENGTH} questions, graded here (the browser never sees the key)
   AI         ${ai.ok ? `${ai.provider} ready (${describeModel(process.env)})${describeTarget(process.env) ? ` at ${describeTarget(process.env)}` : ''}` : `${ai.provider} NOT configured — question generation will return an honest error`}
+  Vision     ${!vision.enabled ? 'disabled (VISION_ENABLED=false)' : vision.available ? `${vision.provider} can read charts/diagrams on low-text pages` : 'no multimodal provider — visual-only pages fall back to text/OCR'}
   Hashing    scrypt (Node built-in), min ${PASSWORD_POLICY.min} character password
   Origins    ${[...ALLOWED_ORIGINS].join(', ')}
   Cookie     ${SESSION_COOKIE}; HttpOnly; SameSite=Lax${COOKIE_SECURE ? '; Secure' : ' (Secure off — http is fine on localhost)'}

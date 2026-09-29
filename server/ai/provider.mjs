@@ -338,3 +338,49 @@ export async function generateText(prompt, { env = process.env, timeoutMs, fetch
 function emptyMeta(provider) {
   return { provider, asked: 0, accepted: 0, rejected: 0, calls: 0, chunks: 0, selected: 0 };
 }
+
+// ---- Vision (multimodal image understanding) -------------------------------
+// Reuses the same provider selection so there is one AI abstraction, not two.
+// Only providers that declare supportsVision === true receive image bytes;
+// everything else fails honestly rather than pretending to read the page.
+
+export function visionStatus(env = process.env) {
+  const provider = selectProvider(env);
+  if (!provider) {
+    return { ok: false, code: 'not_configured', provider: 'unrecognised', supportsVision: false };
+  }
+  const configured = provider.isConfigured(env);
+  const supportsVision = provider.supportsVision === true;
+  let code = 'ok';
+  if (!configured) code = 'not_configured';
+  else if (!supportsVision) code = 'vision_unsupported';
+  return { ok: configured && supportsVision, code, provider: provider.providerName, supportsVision };
+}
+
+export async function describeImages(prompt, images, { env = process.env, timeoutMs, fetchImpl } = {}) {
+  const provider = selectProvider(env);
+  if (!provider) {
+    return { ok: false, code: 'not_configured', message: 'The server is set to an AI provider it does not recognise. Check AI_PROVIDER in server/.env.', provider: 'unknown' };
+  }
+  if (!provider.isConfigured(env)) {
+    return { ok: false, code: 'not_configured', message: 'AI image understanding is not configured. Add the server AI provider key and try again.', provider: provider.providerName };
+  }
+  if (provider.supportsVision !== true) {
+    return { ok: false, code: 'vision_unsupported', message: `The configured AI provider (${provider.providerName}) cannot read images. Set AI_PROVIDER to a multimodal provider such as gemini.`, provider: provider.providerName };
+  }
+
+  const safeImages = Array.isArray(images)
+    ? images.filter((image) => image && typeof image.data === 'string' && image.data.trim() !== '')
+    : [];
+  if (safeImages.length === 0) {
+    return { ok: false, code: 'image_required', message: 'No page image was supplied to describe.', provider: provider.providerName };
+  }
+
+  try {
+    const raw = await provider.generateRaw(prompt, { env, timeoutMs, fetchImpl, images: safeImages, format: 'text' });
+    return { ok: true, text: String(raw ?? ''), provider: provider.providerName };
+  } catch (error) {
+    const problem = normalizeProviderError(error);
+    return { ok: false, code: problem.code, message: problem.message, provider: provider.providerName };
+  }
+}

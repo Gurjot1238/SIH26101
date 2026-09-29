@@ -1,5 +1,5 @@
 import { API_URL } from './auth';
-import type { MaterialQuestion, QuestionKind, OcrPageFn, OcrPageResult, PageText } from './materials';
+import type { MaterialQuestion, QuestionKind, OcrPageFn, OcrPageResult, VisionPageFn, VisionPageResult, PageText } from './materials';
 
 const BATCH_CHAR_BUDGET = 120_000;
 
@@ -198,5 +198,35 @@ export function createOcrTransport(documentId?: string): OcrPageFn {
     if (!response.ok || payload?.ok !== true || typeof payload.text !== 'string') return null;
     const confidence = typeof payload.confidence === 'number' ? payload.confidence : 0;
     return { text: payload.text, confidence };
+  };
+}
+
+export async function checkVisionAvailable(): Promise<{ enabled: boolean; available: boolean }> {
+  try {
+    const response = await fetch(`${API_URL}/api/documents/vision-health`, { credentials: 'include' });
+    const payload = await response.json().catch(() => null);
+    if (!response.ok || payload?.ok !== true) return { enabled: false, available: false };
+    return { enabled: Boolean(payload.enabled), available: Boolean(payload.available) };
+  } catch {
+    return { enabled: false, available: false };
+  }
+}
+
+export function createVisionTransport(documentId?: string): VisionPageFn {
+  return async ({ imageBase64, pageNumber }): Promise<VisionPageResult> => {
+    let response: Response;
+    try {
+      response = await fetch(`${API_URL}/api/documents/vision-page`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...(documentId ? { documentId } : {}), pageNumber, imageBase64, mimeType: 'image/png' }),
+      });
+    } catch {
+      return null;
+    }
+    const payload = await response.json().catch(() => null);
+    if (!response.ok || payload?.ok !== true || typeof payload.text !== 'string') return null;
+    return { text: payload.text };
   };
 }

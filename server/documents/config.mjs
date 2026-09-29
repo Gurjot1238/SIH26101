@@ -105,6 +105,18 @@ export function loadConfig(env = process.env) {
         })(),
       },
     },
+
+    // Multimodal vision: pages that are visual (charts, diagrams, figures) and carry
+    // little machine-readable text can be sent as an image to a multimodal AI provider
+    // to produce study-oriented descriptive text. The provider/model come from the shared
+    // AI abstraction (AI_PROVIDER / AI_MODEL / provider key); this block only bounds it.
+    vision: {
+      enabled: envBool('VISION_ENABLED', true, env),
+      maxImageBytes: envInt('VISION_MAX_IMAGE_BYTES', 12 * 1024 * 1024, env), // decoded image ceiling
+      maxPages: envInt('VISION_MAX_PAGES', 40, env),        // never describe more than this per document
+      minTextChars: envInt('VISION_MIN_TEXT_CHARS', 24, env), // a page under this is a vision candidate
+      timeoutMs: envInt('VISION_TIMEOUT_MS', 45_000, env),
+    },
   };
   return cfg;
 }

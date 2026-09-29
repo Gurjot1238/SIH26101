@@ -7,6 +7,10 @@ const MAX_OUTPUT_TOKENS = 8_192;
 
 export const providerName = 'local';
 
+// The default local text models (Ollama gpt-oss, llama, etc.) are text-only.
+// Vision routing must fall back to a multimodal provider rather than pretend.
+export const supportsVision = false;
+
 export const defaultModel = DEFAULT_MODEL;
 
 import { ProviderError } from './gemini.mjs';
