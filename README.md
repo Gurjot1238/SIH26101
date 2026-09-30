@@ -1,8 +1,19 @@
 # NEXORA AI Intelligence Platform
 
+![Smart India Hackathon 2026](https://img.shields.io/badge/Smart%20India%20Hackathon-2026-0a7d2c)
+![Problem Statement](https://img.shields.io/badge/Problem-SIH26101-1f6feb)
+![Node](https://img.shields.io/badge/Node-%E2%89%A520.19-3c873a)
+![Stack](https://img.shields.io/badge/React%2019-Vite%207-646cff)
+![License](https://img.shields.io/badge/License-Proprietary-lightgrey)
+
 A competency-based learning and assessment platform for statistical officers, built for
 Ministry of Statistics and Programme Implementation (MoSPI) capacity building.
 Smart India Hackathon 2026 — problem statement **SIH26101**.
+
+> **SIH26101** calls for an AI-assisted platform to assess and strengthen the statistical
+> competencies of MoSPI officers. NEXORA AI answers it with server-graded assessments,
+> document-grounded practice, measured competency gaps, and a real course catalogue — all
+> running on the user's own machine.
 
 NEXORA AI runs entirely on your own machine. It deals and grades real competency
 assessments on the server, turns a learner's own uploaded material into
@@ -23,6 +34,8 @@ itself unavailable.
 - [Project structure](#project-structure)
 - [Security](#security)
 - [Documentation](#documentation)
+- [Team](#team)
+- [License](#license)
 
 ## Capabilities
 
@@ -227,11 +240,34 @@ Deeper guides live in [`docs/`](docs/):
 - [Competency analytics](docs/COMPETENCY-ANALYTICS.md) — how strengths and gaps are computed.
 - [Recommendations](docs/RECOMMENDER.md) — the gap-to-course recommendation service.
 - [OCR](docs/OCR.md) — the local and hosted PaddleOCR providers.
+- [GitHub repo presentation](docs/GITHUB-ABOUT.md) — paste-ready About description, topics, and release steps.
+
+## Team
+
+Built by **Team NEXORA AI** for Smart India Hackathon 2026 (SIH26101).
+
+<!-- Fill in your real team details before submission. -->
+
+| Role | Name | Contact |
+| --- | --- | --- |
+| Team lead | _add name_ | [@Gurjot1238](https://github.com/Gurjot1238) |
+| Member | _add name_ | _add_ |
+| Member | _add name_ | _add_ |
+| Member | _add name_ | _add_ |
+| Mentor | _add name_ | _add_ |
+
+**Institution:** _add your college / institution_
+
+## License
+
+All rights reserved. See [LICENSE](LICENSE). The Software is provided for Smart India
+Hackathon 2026 evaluation; it is not licensed for redistribution or reuse without the
+copyright holders' written permission.
 
 ---
 
 Built for the Ministry of Statistics and Programme Implementation · Smart India Hackathon
-2026 (SIH26101). Private project; not for redistribution.
+2026 (SIH26101).
 
 
 
