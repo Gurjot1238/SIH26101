@@ -252,13 +252,14 @@ Built by **Team NEXORA AI** for Smart India Hackathon 2026 (SIH26101).
 
 | Role | Name | Contact |
 | --- | --- | --- |
-| Team lead | _add name_ | [@Gurjot1238](https://github.com/Gurjot1238) |
-| Member | _add name_ | _add_ |
-| Member | _add name_ | _add_ |
-| Member | _add name_ | _add_ |
-| Mentor | _add name_ | _add_ |
+| Team lead | Gurjot singh | gurjot2738.beai24@chitkara.edu.in |
+| Member | Anshika Aggarwal | anshika2475.beaiml26@chitkara.edu.in |
+| Member | Kyna Singla | kyna2641.beaiml26@chitkara.edu.in |
+| Member | Jaskeerat singh | jaskeerat3112.beaiml26@chitkara.edu.in |
+| Member | Damanpre et Singh | damanpreet2671.beaiml26@chitkara.edu.in |
+| Member | Gurleen Sandhu | gurleen2134.beaiml26@chitkara.edu.in |
 
-**Institution:** _add your college / institution_
+**Institution:** _ Chitkara university _
 
 ## License
 
