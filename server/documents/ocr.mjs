@@ -1,6 +1,7 @@
 import http from 'node:http';
 import { loadConfig } from './config.mjs';
 import { ocrImageOfficial, officialHealth } from './ocr-official.mjs';
+import { ocrImageOcrspace, ocrspaceHealth } from './ocr-ocrspace.mjs';
 
 function approxDecodedBytes(b64) {
   const len = b64.length;
@@ -86,6 +87,9 @@ export async function ocrHealth({ cfg = loadConfig(), env = process.env } = {}) 
   if (cfg.ocr.provider === 'official_api') {
     return officialHealth({ cfg });
   }
+  if (cfg.ocr.provider === 'ocrspace') {
+    return ocrspaceHealth({ cfg });
+  }
   const { host, port } = cfg.ocr;
   const reply = await requestJson({
     host, port, path: '/health', method: 'GET',
@@ -114,6 +118,9 @@ export async function ocrImage({ imageBase64, pageNumber = null, stubText, cfg =
 
   if (cfg.ocr.provider === 'official_api') {
     return ocrImageOfficial({ imageBase64, pageNumber, cfg, env });
+  }
+  if (cfg.ocr.provider === 'ocrspace') {
+    return ocrImageOcrspace({ imageBase64, pageNumber, cfg, env });
   }
 
   const payload = { imageBase64, pageNumber, lang: cfg.ocr.lang };

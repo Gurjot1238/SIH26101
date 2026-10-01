@@ -1,5 +1,6 @@
 # NEXORA AI Intelligence Platform
 
+[![CI](https://github.com/Gurjot1238/SIH26101/actions/workflows/ci.yml/badge.svg)](https://github.com/Gurjot1238/SIH26101/actions/workflows/ci.yml)
 ![Smart India Hackathon 2026](https://img.shields.io/badge/Smart%20India%20Hackathon-2026-0a7d2c)
 ![Problem Statement](https://img.shields.io/badge/Problem-SIH26101-1f6feb)
 ![Node](https://img.shields.io/badge/Node-%E2%89%A520.19-3c873a)
@@ -89,15 +90,16 @@ NEXORA AI is a single-page app talking to a small HTTP API, with two optional ad
   data (users, sessions, attempts, competency profiles, saved papers, the anonymised
   interaction log, and the whole document subtree) is stored in PostgreSQL instead.
 
-```
-Browser (React SPA, Vite)
-        │  fetch  (cookies: signed session token)
-        ▼
-Node API server  ──►  JSON files  (default)
-  server/index.mjs        or  PostgreSQL  (DATABASE_URL)
-        │
-        ├──►  AI provider   (local Ollama  |  Google Gemini)
-        └──►  OCR provider   (local PaddleOCR sidecar  |  hosted PaddleOCR API)
+```mermaid
+flowchart TD
+    B["Browser — React 19 SPA (Vite)<br/>login gate · rasterizes low-text PDF pages"]
+    B -- "fetch · signed session cookie" --> S["Node API server (server/index.mjs)<br/>auth · assessments · analytics · recommendations · documents"]
+    S --> D{Storage}
+    D --> J["JSON files (default)"]
+    D --> P["PostgreSQL (DATABASE_URL)"]
+    S --> AI["AI provider<br/>local Ollama · Google Gemini"]
+    S --> OCR["OCR provider<br/>local PaddleOCR · hosted PaddleOCR API"]
+    S --> V["Vision — Gemini multimodal<br/>describes charts/diagrams on image-only pages"]
 ```
 
 ## Requirements

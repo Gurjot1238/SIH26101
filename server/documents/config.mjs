@@ -74,7 +74,7 @@ export function loadConfig(env = process.env) {
       enabled: envBool('OCR_ENABLED', true, env),
       provider: (() => {
         const raw = envStr('OCR_PROVIDER', 'local', env).toLowerCase();
-        return ['local', 'official_api', 'disabled'].includes(raw) ? raw : 'local';
+        return ['local', 'official_api', 'ocrspace', 'disabled'].includes(raw) ? raw : 'local';
       })(),
       host: envStr('OCR_HOST', '127.0.0.1', env),
       port: envInt('OCR_PORT', 8091, env),
@@ -102,6 +102,24 @@ export function loadConfig(env = process.env) {
         defaultConfidence: (() => {
           const raw = Number.parseFloat((env.PADDLEOCR_DEFAULT_CONFIDENCE ?? '').trim());
           return Number.isFinite(raw) && raw >= 0 && raw <= 1 ? raw : 0.9;
+        })(),
+      },
+
+      // OCR.space — free hosted OCR API (https://ocr.space/ocrapi). Synchronous:
+      // one POST returns the recognised text. Key is server-side only.
+      ocrspace: {
+        apiKey: envStr('OCRSPACE_API_KEY', '', env),
+        apiUrl: envStr('OCRSPACE_API_URL', 'https://api.ocr.space/parse/image', env),
+        language: envStr('OCRSPACE_LANGUAGE', 'eng', env),
+        engine: (() => {
+          const raw = envInt('OCRSPACE_ENGINE', 2, env);
+          return [1, 2, 3, 5].includes(raw) ? raw : 2;
+        })(),
+        timeoutMs: envInt('OCRSPACE_TIMEOUT_MS', 30_000, env),
+        maxResultBytes: envInt('OCRSPACE_MAX_RESULT_BYTES', 8 * 1024 * 1024, env),
+        defaultConfidence: (() => {
+          const raw = Number.parseFloat((env.OCRSPACE_DEFAULT_CONFIDENCE ?? '').trim());
+          return Number.isFinite(raw) && raw >= 0 && raw <= 1 ? raw : 0.85;
         })(),
       },
     },

@@ -288,6 +288,46 @@ to a stable HTTP status (`503` config/unavailable, `504` timeout, `429` rate-lim
 bad input, `502` otherwise), and the browser only ever sees a safe fixed message such as
 *"Cloud OCR is temporarily unavailable. Please try again."* — never a token or provider detail.
 
+## Free hosted OCR (OCR.space)
+
+When PaddleOCR (local or official) is unavailable and you want a zero-install free fallback,
+set `OCR_PROVIDER=ocrspace`. This uses [OCR.space](https://ocr.space/ocrapi)'s free OCR API,
+which is **synchronous** — one `POST` per page image returns the recognised text directly, with
+no local Python and no submit/poll job cycle.
+
+```
+Browser rasterises a low-text page
+   → POST /api/documents/ocr-page   (page image only)
+server/documents/ocr.mjs  (provider dispatch: ocrspace)
+   → server/documents/ocr-ocrspace.mjs
+   → POST https://api.ocr.space/parse/image   (apikey header; base64Image body)
+   ← { ParsedResults:[{ ParsedText }], OCRExitCode, IsErroredOnProcessing }
+   → { ok, text, confidence, lineCount, engine:'ocrspace', durationMs }
+```
+
+Setup:
+
+1. Get a free key at <https://ocr.space/ocrapi/freekey> (25,000 requests/month; ~1 MB per image).
+2. In `server/.env`:
+
+   ```
+   OCR_ENABLED=true
+   OCR_PROVIDER=ocrspace
+   OCRSPACE_API_KEY=your-free-key
+   OCR_MAX_IMAGE_BYTES=1000000     # keep near the free-tier 1 MB image limit
+   ```
+
+Config keys (all optional except the key): `OCRSPACE_API_URL` (default the public endpoint,
+must be https in production), `OCRSPACE_LANGUAGE` (default `eng`), `OCRSPACE_ENGINE` (1/2/3/5,
+default 2), `OCRSPACE_TIMEOUT_MS`, `OCRSPACE_MAX_RESULT_BYTES`, `OCRSPACE_DEFAULT_CONFIDENCE`.
+
+Behaviour matches the other providers: an empty key answers `ocr_not_configured` with **no
+network call**; `401/403` → `ocr_auth_failed`; `429` (or a rate-limit message inside a `200`
+body) → `ocr_rate_limited`; a processing error → `ocr_failed`; empty text → `empty_result`. The
+key travels only in the `apikey` header — never the URL, body, response, or any error message.
+The recognised text is tagged `source:'ocr'` and flows through the identical
+chunk → index → retrieve → AI pipeline.
+
 ## Security
 
 - **Server-side token only.** `PADDLEOCR_ACCESS_TOKEN` is read from the server environment and
